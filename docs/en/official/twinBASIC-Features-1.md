@@ -34,7 +34,7 @@ twinBASIC can compile native 64bit executables in addition to 32bit. The syntax 
 ### Defining interfaces
 twinBASIC supports defining COM interfaces using BASIC syntax, rather than needing an type library with IDL and C++. These are only supported in .twin files, not in legacy .bas or .cls files. They must appear *before* the `Class` or `Module` statement, and will always have a project-wide scope. the The generic form for this is as follows:
 
-```vba
+```vb
 [InterfaceId ("00000000-0000-0000-0000-000000000000")]
 *<attributes>*
 Interface <name> Extends <base-interface>
@@ -69,7 +69,7 @@ Available attributes for methods currently include:
 * `[DispId(number)]` - Defines a dispatch ID associated with the method.
 
 #### Example 
-```vba
+```vb
 [InterfaceId("E7064791-0E4A-425B-8C8F-08802AAFEE61")]
 [Description("Defines the IFoo interface")]
 [OleAutomation(False)]
@@ -86,7 +86,7 @@ End Interface
 ### Defining coclasses
 In addition to interfaces, twinBASIC also allows defining coclasses-- creatable classes that implement one or more defined interfaces. Like interfaces, these too must be in .twin files and not legacy .bas/.cls files, and must appear prior to the `Class` or `Module` statement. The generic form is:
 
-```vba
+```vb
 [CoClassId("00000000-0000-0000-0000-000000000000")]
 *<attributes>*
 CoClass <name>
@@ -104,7 +104,7 @@ The attributes available for coclasses are as follows:
 * `[Hidden]` - Hides the coclass from appearing in certain places. 
 
 #### Example
-```vba
+```vb
 [CoClassId("52112FA1-FBE4-11CA-B5DD-0020AFE7292D")]
 CoClass Foo
    [Default] Interface IFoo
@@ -118,14 +118,14 @@ Where `IFoo` and `IBar` are interface defined with the `Interface` syntax descri
 
 * If you have an interface multiple others extend from, you can write multiple implementations, or specify one implementation for all. For example: 
 
-    ```vba
+    ```vb
     IOleWindow_GetWindow() As LongPtr _
       Implements IOleWindow.GetWindow, IShellBrowser.GetWindow, IShellView2.GetWindow
     ```
 
 * `Implements` allowed on interfaces with 'As Any' parameters: In VBx, you'd get an error if you attempted to use any interface containing a member with an `As Any` argument. With twinBASIC, this is allowed if you substitute `As LongPtr` for `As Any`, for example:
 
-    ```vba
+    ```vb
     Interface IFoo Extends IUnknown
         Sub Bar(ppv As Any)
     End Interface
@@ -151,7 +151,7 @@ There is native support for calling a function by pointer, by way of `Delegate` 
 
 The syntax looks like this:
 7
-```vba
+```vb
     Private Delegate Function Delegate1 (ByVal A As Long, ByVal B As Long) As Long
     
     Private Sub Command1_Click()
@@ -166,7 +166,7 @@ The syntax looks like this:
 
 The delegate type can also be used in interface/API declarations and as members of a User-defined type, for example, the `ChooseColor` API:
 
-```vba
+```vb
 Public Delegate Function CCHookProc (ByVal hwnd As LongPtr, ByVal uMsg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
 Public Type CHOOSECOLOR
     lStructSize As Long
@@ -183,7 +183,7 @@ End Type
 
 If you already have code assigning a `Long`/`LongPtr` to the `lpfnHook` member, it will continue to work normally, but now you can also have the type safety benefits of setting it to a method matching the Delegate:
 
-```vba
+```vb
 Dim tCC As CHOOSECOLOR
 tCC.lpfnHook = AddressOf ChooseColorHookProc
 
@@ -199,7 +199,7 @@ End Function
 
 tB allows you to use properly compiled .lib and .obj files as statically linked libraries, using declares similar to DLLs, only referring a lib/obj file in your Miscellaneous files folder of your project. Once the file is in the project, it's set up with this syntax outside of declares, example from the sqlite sample:
 
-```vba
+```vb
 #If Win64 Then
     Import Library "/Miscellaneous/sqlite3_64.obj" As SQLITE3 Link "stdlib", "kernel32"
 #Else
@@ -213,7 +213,7 @@ Generically:
 
 After that, you can use NAMESPACE in place of a DLL name, inside class/module declares:
 
-```vba
+```vb
 ' Compiled sqlite-amalgamation-3440200 (v3.44.2) 
 '   using cmdline (MSVC):  cl /c /Gw /Gy /GS- /DSQLITE_OMIT_SEH sqlite3.c
 #If Win64 Then
@@ -240,7 +240,7 @@ Raw bytecode can be inserted into a binary with tB's `Emit()` function. To suppo
 
 For example, the following is an implementation of the InterlockedIncrement compiler intrinsic that replaces the API in Microsoft C/C++ (adds one to `Addend` and returns the result, as an atomic operation which isn't guaranteed with regular code):
 
-```vba
+```vb
 Public Function InlineInterlockedIncrement CDecl Naked(Addend As Long) As Long
 #If Win64 Then
     Emit(&Hb8, &H01, &H00, &H00, &H00) ' mov    eax,0x1
@@ -271,7 +271,7 @@ This is only for the `Dim` statement; arguments cannot be `As Any` except in API
 * `vbNullPtr` - Allows passing null pointers to UDT members of APIs/interfaces. The equivalent behavior in VBx is to declare them `As Any` and then pass `ByVal 0` at call sites.
 
     **Example**
-    ```vba
+    ```vb
     Type Foo
        bar As Long
     End Type
@@ -312,7 +312,7 @@ While there's no native language syntax yet (planned), you can call `CreateThrea
 
 In a new Standard EXE project, add a CommandButton and TextBox to your form:
 
-```vba
+```vb
     Private Declare PtrSafe Function GetCurrentThreadId Lib "kernel32" () As Long
 
     Private Declare PtrSafe Function CreateThread Lib "kernel32" ( _
@@ -353,7 +353,7 @@ Under a single-threaded code, if you called `TestThread` before updating `Text1.
 ## Improvements to `AddressOf` 
 `AddressOf` can be now be used on class/form/usercontrol members, including from outside the class by specifying the instance. Also, no need for `FARPROC`-type functions, you can use it like `Ptr = AddressOf Func`. So if you have class `CFoo` with member function `bar`, the following is valid:
 
-```vba
+```vb
 Dim foo1 As New CFoo
 Dim lpfn As LongPtr = AddressOf foo1.bar
 ```

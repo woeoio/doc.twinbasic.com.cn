@@ -36,7 +36,7 @@
 ### 定义接口
 twinBASIC 支持使用 BASIC 语法定义 COM 接口，而不需要带有 IDL 和 C++ 的类型库。这些只支持在 .twin 文件中使用，不支持在传统的 .bas 或 .cls 文件中使用。它们必须出现在 `Class` 或 `Module` 语句之前，并且始终具有项目范围。通用形式如下：
 
-```vba
+```vb
 [InterfaceId ("00000000-0000-0000-0000-000000000000")]
 *<attributes>*
 Interface <n> Extends <base-interface>
@@ -64,7 +64,7 @@ End Interface
 * `[DispId(number)]` - 定义与方法关联的调度 ID。
 
 #### 示例
-```vba
+```vb
 [InterfaceId("E7064791-0E4A-425B-8C8F-08802AAFEE61")]
 [Description("定义 IFoo 接口")]
 [OleAutomation(False)]
@@ -80,7 +80,7 @@ End Interface
 ### 定义 COM 类
 除了接口外，twinBASIC 还允许定义 COM 类 —— 可以创建的实现一个或多个已定义接口的类。像接口一样，这些也必须在 .twin 文件中，而不是传统的 .bas/.cls 文件中，并且必须出现在 `Class` 或 `Module` 语句之前。通用形式是：
 
-```vba
+```vb
 [CoClassId("00000000-0000-0000-0000-000000000000")]
 *<attributes>*
 CoClass <n>
@@ -99,7 +99,7 @@ COM 类可用的特性如下：
 * `[Hidden]` - 使 COM 类在某些地方不出现。
 
 #### 示例
-```vba
+```vb
 [CoClassId("52112FA1-FBE4-11CA-B5DD-0020AFE7292D")]
 CoClass Foo
    [Default] Interface IFoo
@@ -113,14 +113,14 @@ End CoClass
 
 * 如果您有一个被多个其他接口扩展的接口，您可以编写多个实现，或者为所有接口指定一个实现。例如：
 
-    ```vba
+    ```vb
     IOleWindow_GetWindow() As LongPtr _
       Implements IOleWindow.GetWindow, IShellBrowser.GetWindow, IShellView2.GetWindow
     ```
 
 * 允许在带有 "As Any" 参数的接口上使用 `Implements`：在 VBx 中，如果您尝试使用任何包含 `As Any` 参数的接口成员，都会收到错误。在 twinBASIC 中，如果您用 `As LongPtr` 代替 `As Any`，则允许这样做，例如：
 
-    ```vba
+    ```vb
     Interface IFoo Extends IUnknown
         Sub Bar(ppv As Any)
     End Interface
@@ -146,7 +146,7 @@ End CoClass
 
 语法如下：
 
-```vba
+```vb
     Private Delegate Function Delegate1 (ByVal A As Long, ByVal B As Long) As Long
     
     Private Sub Command1_Click()
@@ -161,7 +161,7 @@ End CoClass
 
 委托类型也可以在接口/API 声明和用户定义类型的成员中使用，例如 `ChooseColor` API：
 
-```vba
+```vb
 Public Delegate Function CCHookProc (ByVal hwnd As LongPtr, ByVal uMsg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
 Public Type CHOOSECOLOR
     lStructSize As Long
@@ -178,7 +178,7 @@ End Type
 
 如果您已经有代码将 `Long`/`LongPtr` 分配给 `lpfnHook` 成员，它将继续正常工作，但现在您还可以获得将其设置为匹配委托的方法的类型安全好处：
 
-```vba
+```vb
 Dim tCC As CHOOSECOLOR
 tCC.lpfnHook = AddressOf ChooseColorHookProc
 
@@ -193,7 +193,7 @@ End Function
 
 tB 允许您使用正确编译的 .lib 和 .obj 文件作为静态链接库，使用类似于 DLL 的声明，只需引用项目的 Miscellaneous 文件夹中的 lib/obj 文件。一旦文件在项目中，就使用以下语法设置，以 sqlite 示例为例：
 
-```vba
+```vb
 #If Win64 Then
     Import Library "/Miscellaneous/sqlite3_64.obj" As SQLITE3 Link "stdlib", "kernel32"
 #Else
@@ -207,7 +207,7 @@ tB 允许您使用正确编译的 .lib 和 .obj 文件作为静态链接库，�
 
 之后，您可以在类/模块声明中使用命名空间代替 DLL 名称：
 
-```vba
+```vb
 ' 使用命令行编译 sqlite-amalgamation-3440200 (v3.44.2)
 '   (MSVC): cl /c /Gw /Gy /GS- /DSQLITE_OMIT_SEH sqlite3.c
 #If Win64 Then
@@ -234,7 +234,7 @@ Module MainModule
 
 例如，以下是 InterlockedIncrement 编译器内部函数的实现，它替代了 Microsoft C/C++ 中的 API（将 1 添加到 `Addend` 并返回结果，作为一个原子操作，这在普通代码中不能保证）：
 
-```vba
+```vb
 Public Function InlineInterlockedIncrement CDecl Naked(Addend As Long) As Long
 #If Win64 Then
     Emit(&Hb8, &H01, &H00, &H00, &H00) ' mov    eax,0x1
@@ -265,7 +265,7 @@ End Function
 * `vbNullPtr` - 允许将空指针传递给 API/接口的 UDT 成员。在 VBx 中的等效行为是将它们声明为 `As Any` 然后在调用时传递 `ByVal 0`。
 
     **示例**
-    ```vba
+    ```vb
     Type Foo
        bar As Long
     End Type
@@ -304,7 +304,7 @@ End Function
 
 在一个新的标准 EXE 项目中，向您的窗体添加一个命令按钮和文本框：
 
-```vba
+```vb
     Private Declare PtrSafe Function GetCurrentThreadId Lib "kernel32" () As Long
 
     Private Declare PtrSafe Function CreateThread Lib "kernel32" ( _
@@ -345,7 +345,7 @@ End Function
 ## `AddressOf` 的改进
 `AddressOf` 现在可以用于类/窗体/用户控件成员，包括通过指定实例从类外部使用。此外，不需要 `FARPROC` 类型的函数，您可以像 `Ptr = AddressOf Func` 这样使用它。所以如果您有类 `CFoo` 及其成员函数 `bar`，以下代码是有效的：
 
-```vba
+```vb
 Dim foo1 As New CFoo
 Dim lpfn As LongPtr = AddressOf foo1.bar
 ```

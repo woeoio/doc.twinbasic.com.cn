@@ -4,7 +4,7 @@
 
 考虑以下 UDT：
 
-```vba
+```vb
 Private Type foo
     a As Long
     b As Long
@@ -20,7 +20,7 @@ End Type
 
 以下代码示例演示如何操作这些指针：
 
-```vba
+```vb
 Sub call1()
     Dim f As foo
     test1 VarPtr(f)
@@ -36,7 +36,7 @@ End Sub
 
 这将打印 `1  2`。
 
-```vba
+```vb
 Sub call2()
     Dim f As foo, b As bar
     b.pfoo = VarPtr(f)
@@ -52,7 +52,7 @@ End Sub
 ```
 这将打印 `3  4`
 
-```vba
+```vb
 Sub call3()
     Dim f As foo, b As bar, z As fizz
     f.pfizz = VarPtr(z)
@@ -77,7 +77,7 @@ twinBASIC 支持两种方式的重载：
 ### 按参数类型重载
 以下子程序可以在同一个模块/类等中共存：
 
-```vba
+```vb
 Sub foo(bar As Integer)
 '...
 End Sub
@@ -95,7 +95,7 @@ End Sub
 ### 按参数数量重载
 除了上述之外，您还可以添加以下内容：
 
-```vba
+```vb
 Sub Foo(bar1 As Integer)
 '...
 End Sub
@@ -120,7 +120,7 @@ End Sub
 
 ## `For` 的内联变量声明
 您现在不再需要为计数器变量单独的 `Dim` 语句：
-```vba
+```vb
 For i As Long = 0 To 10
     ...
 Next
@@ -130,7 +130,7 @@ Next
 ## 泛型
 以下是在 tB 中使用泛型的示例：
 
-```vba
+```vb
 Public Function TCast(Of T)(ByRef Expression As T) As T
 Return Expression
 End Function
@@ -154,14 +154,14 @@ cdecl 调用约定既支持 API 声明，也支持代码中的方法。这包括
 
 `Private DeclareWide PtrSafe Function _wtoi64 CDecl Lib "msvcrt" (ByVal psz As String) As LongLong`
  
-```vba
+```vb
 [ DllExport ]
 Public Function MyExportedFunction CDecl(foo As Long, Bar As Long) As Long
 ```
 
 还支持使用 `CDecl` 的回调。您将传递一个在原型中包含 `CDecl` 作为定义的委托。以下是使用 [`qsort` 函数](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-wsprintfw) 执行快速排序的示例代码：
 
-```vba
+```vb
 Private Delegate Function LongComparator CDecl ( _
     ByRef a As Long, _
     ByRef b As Long _
@@ -212,7 +212,7 @@ int WINAPIV wsprintfW(
 ```
 
 twinBASIC 声明和使用它的函数可以这样写：
-```vba
+```vb
 Private DeclareWide PtrSafe Function wsprintfW CDecl _
 Lib "user32" ( _
   ByVal buf As String, _
@@ -230,13 +230,13 @@ End Sub
 ### `[PreserveSig]`
 之前为 COM 方法描述的 `[PreserveSig]` 特性也可以用于 API 声明。对于 API，默认值为 `True`。因此，您可以指定 `False` 以将最后一个参数重写为返回值。示例：
 
-```vba
+```vb
 Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" (ppshf As IShellFolder) As Long
 ```
 
 可以重写为
 
-```vba
+```vb
 [PreserveSig(False)] 
 Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" () As IShellFolder`
 ```
@@ -252,7 +252,7 @@ Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" () As IShellFol
 ## 函数的 `Return` 语法
 您现在可以像许多其他语言一样，将赋值返回值和退出函数合并为单个语句。这是通过 `Return` 关键字实现的：
 
-```vba
+```vb
 Private Function Foo() As Long
 Dim i As Long = 1
 If i Then
@@ -261,7 +261,7 @@ End If
 End Function
 ```
 这等同于
-```vba
+```vb
 Private Function Foo() As Long
 Dim i As Long = 1
 If i Then
@@ -287,7 +287,7 @@ End Function
 
 ## 自定义 UDT 打包
 如果您做过大量的 Windows API 工作，您偶尔会遇到用户定义类型中添加了一个称为 pad、padding、reserved 等的额外成员，但在该类型的文档中并未出现。这是因为 UDT 应用了与默认不同的打包规则。默认情况下，UDT 有隐藏的间距字节，使其最大大小的成员出现在其大小的倍数处，并使整个 UDT 成为该大小的倍数。考虑以下 UDT：
-```vba
+```vb
 Private Type MyUDT
     x As Integer
     y As Long
@@ -298,7 +298,7 @@ Private t As MyUDT
 如果您查询 `Len(t)`，得到 8——2 个 2 字节的 Integer 和 1 个 4 字节的 Long 的总和。但如果您查询 `LenB(t)`，得到 12。这是因为最大大小类型是 4，所以那就是打包对齐数。每个 Long 必须出现在 4 字节的倍数处，所以在 x 和 y 之间插入了 2 字节的隐藏填充。您可以通过检查 `VarPtr(t.y) - VarPtr(t)` 自己看到这一点。这给出了 `y` 的起始偏移量——是 4，而不是如果它紧跟在 `x` 后面时的 2。最后，有了隐藏的 2 字节，我们现在是 10 字节。但 UDT 的总大小必须是 4 的倍数，所以在结尾又添加了 2 个隐藏字节。\
 一些 API UDT 看起来像 `MyUDT` 是正确的，但您会看到它在 VBx 中被定义为 2 个 Long——这样就得到了所需的 8 字节，对第一个成员需要特殊处理。如果您回看原始的 C/C++ 头文件，您会发现，对于这种情况，在 UDT 之前有类似 `#include <pshpack1.h>` 或 `#pragma pack(push,1)` 的内容。这手动更改了打包规则，不在任何地方插入隐藏字节。\
 在 twinBASIC 中，您不必使用两个 Long 并且在第一个不是 Integer 时担心如何处理它，您可以使用原始定义加上：
-```vba
+```vb
 [PackingAlignment(1)]
 Private Type MyUDT
     x As Integer
@@ -323,7 +323,7 @@ Private t As MyUDT
 ## 数组的解构赋值支持
 此功能允许您在一行中将数组的内容赋值给多个变量：
 
-```vba
+```vb
     Dim a As Long, b As Long, c As Long
     Dim d(2) As Long
     d(0) = 1
@@ -335,7 +335,7 @@ Private t As MyUDT
 
 这将打印 `1   2   3`。您也可以这样同时赋值多个变量并得到相同的结果：
 
-```vba
+```vb
     Dim a As Long, b As Long, c As Long
     Array(a, b, c) = Array(1, 2, 3)
     Debug.Print a, b, c
@@ -343,7 +343,7 @@ Private t As MyUDT
 
 您现在还可以这样赋值：
 
-```vba
+```vb
         Dim a As Long = 9
         Dim b As Long = 7
         Dim c() As Long = Array(a, b)
@@ -360,7 +360,7 @@ Private t As MyUDT
 ## 模块级定义不限于顶部
 现在可以在方法或属性之间插入模块级代码。以前所有的 `Declare` 语句、`Enum`、`Type` 等都必须出现在第一个 `Sub/Function/Property` 之前，现在以下代码是有效的：
 
-```vba
+```vb
 Private Const foo = "foo"
 Sub SomeMethod()
 '...
@@ -386,7 +386,7 @@ twinBASIC 不对这些、窗体上的控件数量、模块大小等设置人为�
 ## 参数化类构造函数
 类现在支持带有添加参数能力的 `New` 子程序，在 `Class_Initialize` 事件之前调用。例如，一个类可以有：
 
-```vba
+```vb
 [ComCreatable(False)]
 Class MyClass
 Private MyClassVar As Long
@@ -422,14 +422,14 @@ End Class
 
 * `BitShift` - 对数值变量执行编程移位。它不是新的二进制运算符语法 `>>` 和 `<<` 的替代品，而是一个补充品：它可以处理 Byte、Integer 和 Long 类型，并且可以在适当的情况下保持数据类型。它不会产生像在大整数之间使用操作符运算符时可能出现的溢出或转换问题。
 
-    ```vba
+    ```vb
     Dim i As Integer = &H7123
     ' 效果等同于 i >> 4，但返回的仍然是 Integer
     Debug.Print Hex$(BitShift(i, 4))  ' = "712"
     ```
 
 * 数学函数接受任何数字类型，而不仅仅是 Double，并相应地返回适当的数据类型。例如，如果参数是 Single，返回值也将是 Single。
-    ```vba
+    ```vb
     Dim y As Single
     y = Cos(3.14159!)  ' y 将是 Single
     ```
@@ -444,7 +444,7 @@ End Class
 
 众所周知，在 VBx 中使用 Windows API 处理返回字符串有些麻烦，解决方案通常涉及预分配缓冲区、检查返回长度以确保缓冲区足够大，然后根据实际长度进行截断。这在 twinBASIC 中得到了改进：如果有一个返回 BSTR 的 API，您可以从 VB 中以一种简单的方式使用它，不需要额外的步骤：
 
-```vba
+```vb
 Private Declare PtrSafe Function GetPath Lib "MyDLL" (ByVal bstrPath As String) As String
 
 Private Sub Test()
@@ -455,27 +455,27 @@ End Sub
 ## 以空开头的数组
 twinBASIC 支持从下标 0 开始的数组，在试图与 C/C++ 代码连接时这很有用。这无需任何技巧；您只需将数组的下界设置为 0：
 
-```vba
+```vb
 Dim a(0 To 9) As Long
 ```
 
 ## 带范围的变量
 传统上 BASIC 会用 DefXXX 语句为没有显式声明类型的变量提供默认类型 - 例如，DefInt I-N 会给出一个范围内变量的默认类型。除了这个，twinBASIC 现在还支持可以在单个语句中同时声明多个变量：
 
-```vba
+```vb
 Dim i%, j%, k%
 ```
 
 或者
 
-```vba
+```vb
 Dim i To k As Integer
 ```
 
 ## 变体数组
 与现代编译器中的大多数函数一样，VarPtr/StrPtr/ObjPtr 不会将其参数固定；这意味着它们可以安全地应用于变体数组的元素：
 
-```vba
+```vb
 Dim va() As Variant
 va = Array(1, 2, "hello", Nothing)
 
@@ -486,7 +486,7 @@ Debug.Print ObjPtr(va(3))       '有效
 ## 对象内部的值语义
 在 VBx 中，让一个类/接口作为值类型的一部分需要用一些丑陋的代码，通常涉及复制和释放引用并增加和减少引用计数。在 twinBASIC 中，这可以正常工作：
 
-```vba
+```vb
 Private Type Pair
     First As CFoo             '这在 VBx 中会导致错误
     Second As CFoo
@@ -510,14 +510,14 @@ End Sub
 ## Windows API 调用的改进
 * 现在支持 ANSI API 函数，但在许多情况下可以避免因为使用了 `LPCSTR` 或 `LPSTR` 而需要特殊处理：对于这些，在内部执行从 Unicode 到 ANSI 和从 ANSI 到 Unicode 的转换，这样您就可以编写：
 
-```vba
+```vb
 Private Declare PtrSafe Function GetWindowTextA Lib "user32" (ByVal hWnd As LongPtr, ByVal lpString As String, ByVal cch As Long) As Long
 Private Declare PtrSafe Function SendMessageA Lib "user32" (ByVal hWnd As LongPtr, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As String) As Long
 ```
 
 而不是：
 
-```vba
+```vb
 Private Declare PtrSafe Function GetWindowTextA Lib "user32" (ByVal hWnd As LongPtr, ByVal lpString As LongPtr, ByVal cch As Long) As Long
 Private Declare PtrSafe Function SendMessageA Lib "user32" (ByVal hWnd As LongPtr, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As LongPtr) As Long
 ```
@@ -526,7 +526,7 @@ Private Declare PtrSafe Function SendMessageA Lib "user32" (ByVal hWnd As LongPt
 
 * 在 VBx 中，当一个 API 有一个带缓冲区大小的输出字符串参数时，一个常见的习惯是这样的：
 
-```vba
+```vb
 ' 调用一次获取所需的长度
 ret = Function(0, 0, lpLength)
 ' 分配必要的缓冲区
@@ -539,7 +539,7 @@ Return Left$(lpBuffer, lpLength - 1)
 
 twinBASIC 中与 Windows API 的字符串参数交互得到了极大的改进，所以通常不需要这些步骤 - 编译器能够判断哪些是输入字符串，哪些是输出字符串（有时两者都是）。如果您有一个返回带零终止的字符串的函数，您可以创建一个与 C++ 中基本相同的声明：
 
-```vba
+```vb
 Private Declare PtrSafe Function GetUserName Lib "advapi32" Alias "GetUserNameW" (ByVal lpBuffer As String, ByRef nSize As Long) As Long
 
 Private Function GetCurrentUserName() As String
@@ -557,7 +557,7 @@ End Function
 
 如果一个函数返回的缓冲区没有正确终止，您可以使用 `lpBufferSize` 参数：
 
-```vba
+```vb
 Private Declare PtrSafe Function Function Lib "DLL" (ByVal lpBuffer As String, ByVal lpBufferSize As Long, ByRef lpLength As Long) As Long
 ```
 

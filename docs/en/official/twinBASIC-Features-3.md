@@ -2,7 +2,7 @@
 ## Exported Functions and Variables
 It's possible to export a function or variable from standard modules, including with CDecl, e.g.
 
-```vba
+```vb
 [DllExport]
 Public Const MyExportedSymbol As Long = &H00000001
 
@@ -74,7 +74,7 @@ The `Open` statement supports Unicode through the use of a new `Encoding` keywor
 
 Usage example:
 
-```vba
+```vb
 Open "C:\MyFile.txt" For Input Encoding utf-8 As #1
 ```
 
@@ -270,7 +270,7 @@ When assigning a member of one Enum to a variabled typed as another, such as `Di
 **TB0020: Suspicious interface conversion**\
 If a declared coclass doesn't explicitly name an interface as supported, converting to it will trigger this warning, e.g.
 
-```vba
+```vb
 Dim myPic As StdPicture
 Dim myFont As StdFont
 Set myFont = myPic

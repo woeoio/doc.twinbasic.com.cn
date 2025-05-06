@@ -43,7 +43,7 @@
 
 这些常量的使用遵循标准语法，即在标准的 `If/Else/ElseIf` 条件语句前使用井号。例如，要区分 32 位和 64 位 VBA 与 64 位 twinBASIC：
 
-```vb6
+```vb
 #If VBA7 Then
     '我们在 VBA7 或 twinBASIC 中
     #If Win64 Then
@@ -68,7 +68,7 @@
 
 或者更简单地，要确定是否使用 `PtrSafe` 然后使用 `DeclareWide` 或其他 tB 功能：
 
-```vb6
+```vb
 #If VBA7 Then
     #If TWINBASIC Then
         '如果需要，使用 PtrSafe DeclareWide 声明，也可以使用行内注释和 `[ TypeHint() ]`，以及函数属性

@@ -4,7 +4,7 @@ The `CType(Of <type>)` operator specifies an explicit intent to cast one type to
 
 Consider the following UDTs:
 
-```vba
+```vb
 Private Type foo
     a As Long
     b As Long
@@ -20,7 +20,7 @@ End Type
 
 The following codes examples work to manipulate the pointers:
 
-```vba
+```vb
 Sub call1()
     Dim f As foo
     test1 VarPtr(f)
@@ -36,7 +36,7 @@ End Sub
 
 This will print `1  2`.
 
-```vba
+```vb
 Sub call2()
     Dim f As foo, b As bar
     b.pfoo = VarPtr(f)
@@ -52,7 +52,7 @@ End Sub
 ```
 This will print `3  4`
 
-```vba
+```vb
 Sub call3()
     Dim f As foo, b As bar, z As fizz
     f.pfizz = VarPtr(z)
@@ -78,7 +78,7 @@ twinBASIC supports overloading in two ways:
 ### Overloading by type of argument
 The following Subs are valid together in a module/class/etc:
 
-```vba
+```vb
 Sub foo(bar As Integer)
 '...
 End Sub
@@ -96,7 +96,7 @@ The compiler will automatically pick which one is called by the data type.
 ### Overloading by number of arguments
 In addition to the above, you could also add the following:
 
-```vba
+```vb
 Sub Foo(bar1 As Integer)
 '...
 End Sub
@@ -121,7 +121,7 @@ You can now set initial values for variables inline, without needing a line-cont
 
 ## Inline variable declaration for `For`
 You now no longer need a separate `Dim` statement for counter variables:
-```vba
+```vb
 For i As Long = 0 To 10
     ...
 Next
@@ -131,7 +131,7 @@ is now valid syntax. You can use any type, not just `Long`.
 ## Generics
 The following is an examples of generics use in tB:
 
-```vba
+```vb
 Public Function TCast(Of T)(ByRef Expression As T) As T
 Return Expression
 End Function
@@ -157,14 +157,14 @@ The cdecl calling convention is supported both for API declares and methods in y
 
 `Private DeclareWide PtrSafe Function _wtoi64 CDecl Lib "msvcrt" (ByVal psz As String) As LongLong`
  
-```vba
+```vb
 [ DllExport ]
 Public Function MyExportedFunction CDecl(foo As Long, Bar As Long) As Long
 ```
 
 Support for callbacks using `CDecl` is also available. You would pass a delegate that includes `CDecl` as the definition in the prototype. Here is an example code that performs a quicksort using the [`qsort` function](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-wsprintfw):
 
-```vba
+```vb
 Private Delegate Function LongComparator CDecl ( _
     ByRef a As Long, _
     ByRef b As Long _
@@ -215,7 +215,7 @@ int WINAPIV wsprintfW(
 ```
 
 The twinBASIC declaration and function using it can be written as shown:
-```vba
+```vb
 Private DeclareWide PtrSafe Function wsprintfW CDecl _
 Lib "user32" ( _
   ByVal buf As String, _
@@ -233,13 +233,13 @@ End Sub
 ### `[PreserveSig]`
 The `[PreserveSig]` attribute was described earlier for COM methods, but it can also be used on API declares. For APIs, the default is `True`. So therefore, you can specify `False` in order to rewrite the last parameter as a return. Example:
 
-```vba
+```vb
 Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" (ppshf As IShellFolder) As Long
 ```
 
 can be rewritten as
 
-```vba
+```vb
 [PreserveSig(False)] 
 Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" () As IShellFolder`
 ```
@@ -256,7 +256,7 @@ The following new statements are available for controlling the procession of loo
 ## `Return` syntax for functions.
 You can now combine assigning a return value and exiting a function into a single statement like many other languages allow. This is accomplished with the `Return` keyword:
 
-```vba
+```vb
 Private Function Foo() As Long
 Dim i As Long = 1
 If i Then
@@ -265,7 +265,7 @@ End If
 End Function
 ```
 this is the equivalent of
-```vba
+```vb
 Private Function Foo() As Long
 Dim i As Long = 1
 If i Then
@@ -291,7 +291,7 @@ Similar to the above, for forms/UCs/classes that use `Implements`, you can use `
 
 ## Custom UDT packing
 If you've done extensive work with the Windows API, every so often you'll come across user-defined types that have an extraneous member added called pad, padding, reserved, etc, that doesn't appear in the documentation for that type. This is the result of the UDT applying packing rules different from the default. By default, UDTs have hidden spacing bytes that make their largest sized member appear at a multiple of it's size, and making the entire UDT be a multiple of that size. Consider the following UDT:
-```vba
+```vb
 Private Type MyUDT
     x As Integer
     y As Long
@@ -302,7 +302,7 @@ Private t As MyUDT
 If you ask for `Len(t)`, you get 8-- the sum of 2x2-byte Integers and 1 4-byte Long. But if you ask for `LenB(t)`, you get 12. This is because the largest size type is 4, so that's the packing alignment number. Each Long must appear at a multiple of 4 bytes, so 2 byte of hidden padding is inserted between x and y. You can see this for yourself by checking `VarPtr(t.y) - VarPtr(t)`. This gives you the starting offset of `y`-- which is 4, not 2 like you'd get if it immediately followed `x`. Finally, with the hidden 2 bytes, we're now up to 10 bytes. But the total UDT size must be a multiple of 4, so 2 more hidden bytes are added on the end.\
 Some API UDTs will look like `MyUDT` is correct, but you'll see it defined in VBx as 2 Longs-- which gets the required 8 bytes, with some special handling for the first member. If you refer back to the original C/C++ header, you'll find, for this situation, something like `#include <pshpack1.h>` or `#pragma pack(push,1)` somewhere before the UDT. This manually alters the packing rule to insert no hidden bytes anywhere.\
 In twinBASIC, instead of two Longs and having to worry about getting the first one right when it's not an Integer, you can use the original definition with:
-```vba
+```vb
 [PackingAlignment(1)]
 Private Type MyUDT
     x As Integer
@@ -328,7 +328,7 @@ a comment until:
 ## Destructuring assignment support for arrays
 This feature allows you to assign the contents of an array to multiple variables in a single line:
 
-```vba
+```vb
     Dim a As Long, b As Long, c As Long
     Dim d(2) As Long
     d(0) = 1
@@ -340,7 +340,7 @@ This feature allows you to assign the contents of an array to multiple variables
 
 This would print `1   2   3`. You could also assign multiple variables at once like this and get the same result:
 
-```vba
+```vb
     Dim a As Long, b As Long, c As Long
     Array(a, b, c) = Array(1, 2, 3)
     Debug.Print a, b, c
@@ -348,7 +348,7 @@ This would print `1   2   3`. You could also assign multiple variables at once l
 
 You can now also do assignments like this:
 
-```vba
+```vb
         Dim a As Long = 9
         Dim b As Long = 7
         Dim c() As Long = Array(a, b)
@@ -366,7 +366,7 @@ More importantly, you can now **set** the `HRESULT` in interface implementations
 ## Module-level definitions not limited to top
 It's now possible to insert module-level code in between methods or properties. Where previously all `Declare` statements, `Enum`, `Type`, etc had to appear prior to the first `Sub/Function/Property`, the following would now be valid:
 
-```vba
+```vb
 Private Const foo = "foo"
 Sub SomeMethod()
 '...
@@ -393,7 +393,7 @@ twinBASIC imposes no artificial limitations on those, number of controls on a fo
 ## Parameterized class constructors.
 Classes now support a `New` sub with ability to add arguments, called as the class is constructed prior to the `Class_Initialize` event. For example a class can have:
 
-```vba
+```vb
 [ComCreatable(False)]
 Class MyClass
 Private MyClassVar As Long

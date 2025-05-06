@@ -1,7 +1,7 @@
 ## 导出函数和变量
 可以从标准模块导出函数或变量，包括使用 CDecl，例如：
 
-```vba
+```vb
 [DllExport]
 Public Const MyExportedSymbol As Long = &H00000001
 
@@ -72,7 +72,7 @@ tB 提供了 Project: Register DLL after build 选项，因此您可以禁用自
 
 使用示例：
 
-```vba
+```vb
 Open "C:\MyFile.txt" For Input Encoding utf-8 As #1
 ```
 
