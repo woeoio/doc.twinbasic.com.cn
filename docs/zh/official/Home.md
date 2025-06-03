@@ -28,7 +28,7 @@
 3. [关于重入性的信息](twinBASIC-WebView2-Information-about-re-entrancy)
 
 ## 新的语言和 IDE 功能
-1. [twinBASIC 新特性概述](twinBASIC-Features)（与 VBx 相比）
+1. [twinBASIC 新特性概述](twinBASIC-Features-1)（与 VBx 相比）
 2. [控件锚定和停靠 - 自动大小和位置管理](Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management)
 
 ## twinBASIC 编译器常量

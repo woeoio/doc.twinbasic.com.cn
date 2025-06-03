@@ -91,12 +91,14 @@ If you wish to treat these as `Boolean`, you can use the `CBool()` function, e.g
 The tB editor has the helpful feature of showing you in real time which compiler constants are active. Code in `#If` blocks is inactive and will appear grayed out if it will not execute under current settings. Note that unlike VBx, inactive code is not evaluated for errors.
 
 For example, in 32bit mode:\
-![image](https://i.imgur.com/oHpCiV1.png)
+![image](/images/official/oHpCiV1.png)
 
 Then switching to 64bit mode:\
-![image](https://i.imgur.com/TYizrRW.png)
+![image](/images/official/TYizrRW.png)
 
 
 ---
 *VB6, VBA, VBA6, and VBA7 are trademarks of the Microsoft Corporation.*\
 *MacOS is a trademark of Apple, Inc.*
+
+1. [twinBASIC 新特性概述](twinBASIC-Features-1)（与 VBx 相比）
