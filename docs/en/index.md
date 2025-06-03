@@ -34,7 +34,7 @@ features:
     details: Multi-thread debugging support with call stack, variables, and watch windows
   - icon: 🎮
     title: Rich Controls
-    details: Built-in WebView2 support, QRCode generator, and extensive custom controls capability
+    details: Built-in FlexGrid support, QRCode generator, and extensive custom controls capability
 ---
 
 ---
@@ -87,7 +87,7 @@ If you need to access the origin site, please click  [https://twinbasic.com](htt
 - Debug console
 
 ### New Built-in Controls 🎮
-- WebView2 support
+- FlexGrid support
 - QRCode generator
 - Support for more custom controls
 

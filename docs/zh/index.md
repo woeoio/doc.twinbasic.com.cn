@@ -34,7 +34,7 @@ features:
     details: 支持多线程调试，提供调用堆栈、变量、监视等调试功能
   - icon: 🎮
     title: 丰富控件
-    details: 内置 WebView2 支持，QRCode 生成器等现代控件，支持自定义控件开发
+    details: 内置 FlexGrid 支持，QRCode 生成器等现代控件，支持自定义控件开发
 ---
 
 ---
@@ -87,7 +87,7 @@ features:
 - 调试控制台
 
 ### 新的内置控件 🎮
-- WebView2 支持
+- FlexGrid 支持
 - QRCode 生成器
 - 更多自定义控件支持
 
