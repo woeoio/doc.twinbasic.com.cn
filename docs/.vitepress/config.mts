@@ -67,8 +67,8 @@ export default defineConfig({
         },
 
         footer: {
-          message: 'twinBASIC及其LOGO版权为twinBASIC公司所有',
-          copyright: `twinBASIC中文文档 版权所有 © 2023-${new Date().getFullYear()}`
+          message: 'twinBASIC及其LOGO版权为作者"韦恩"所有',
+          copyright: `twinBASIC中文文档 © 2023-${new Date().getFullYear()} 由本站翻译`
         },
 
         docFooter: {
@@ -139,8 +139,8 @@ export default defineConfig({
         },
 
         footer: {
-          message: 'twinBASIC and LOGO copyright of twinBASIC',
-          copyright: `twinBASIC Chinese Documentation copyright © 2023-${new Date().getFullYear()}`
+          message: 'twinBASIC and LOGO copyright of "WaynePhillipsEA" author',
+          copyright: `twinBASIC Chinese Documentation copyright © 2023-${new Date().getFullYear()} Translated by this site`
         }
       }
     }

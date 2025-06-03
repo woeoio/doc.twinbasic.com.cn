@@ -37,6 +37,13 @@ features:
     details: 内置 WebView2 支持，QRCode 生成器等现代控件，支持自定义控件开发
 ---
 
+---
+# 特别说明
+
+本站不是Twinbasic的官方网站，只是因为官方网站无法访问而创立的分享网站。
+如果需要访问源站，请点击 [https://twinbasic.com](https://twinbasic.com)
+
+
 ## 核心特性 ✨
 
 ### 完美的兼容性 🤝
@@ -98,7 +105,7 @@ features:
 - 专业的技术支持
 
 ## 参与社区 👥
-- 加入 Discord 社区交流
+- 加入 Discord 社区交流 [https://discord.gg/UaW9GgKKuE](https://discord.gg/UaW9GgKKuE)
 - 关注官方更新
 - 参与 GitHub 问题追踪
 - 成为 VIP Gold 会员获取更多支持

@@ -37,6 +37,13 @@ features:
     details: Built-in WebView2 support, QRCode generator, and extensive custom controls capability
 ---
 
+---
+# Specifically stated
+
+This site is not the official website of Twinbasic, but a sharing website created because the official website is inaccessible.
+If you need to access the origin site, please click  [https://twinbasic.com](https://twinbasic.com)
+
+
 ## Core Features ✨
 
 ### Perfect Compatibility 🤝
@@ -98,7 +105,7 @@ features:
 - Professional technical support
 
 ## Join the Community 👥
-- Join the Discord community
+- Join the Discord community  [https://discord.gg/UaW9GgKKuE](https://discord.gg/UaW9GgKKuE)
 - Follow official updates
 - Participate in GitHub issue tracking
 - Become a VIP Gold member for additional support
