@@ -2,12 +2,12 @@
 
 当您加载项目时，如果 TWINSERV 上有项目中某个包的新版本可用，编译器会通知您：
 
-![image](https://github.com/user-attachments/assets/db4636f6-d988-4e31-94a2-c4c170418e81)
+![image](/images/official/a485146a44f8b54cf517cc218ec38587.png)
 
 
 如果您发现 TWINSERV 上有可用的更新包，您必须首先通过取消选择来从项目中移除旧包。打开 Settings 到 References 并取消勾选该复选框。然后系统会提示您从文件系统中移除它：
 
-![415937809-87a11bc3-9a9c-4551-86c2-69d206d95087](https://github.com/user-attachments/assets/a1331a0e-3ba3-45cf-8dc3-2e24f0fa1fe6)
+![415937809-87a11bc3-9a9c-4551-86c2-69d206d95087](/images/official/9defb3469dde01c9287b90d0eab37540.png)
 <br/>
 <br/>
 <br/>

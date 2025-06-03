@@ -2,13 +2,13 @@
 
 要创建新的 TWINPACK 包，请导航到 twinBASIC 新建项目对话框，在"Samples"标签下，选择标记为"Package"的选项：
 
-![image](https://github.com/user-attachments/assets/6ad7a172-0e1b-4276-ac89-042681552507)
+![image](/images/official/a24890b414bf8caaf1ab31a5978d2826.png)
 <br>
 <br>
 
 创建项目后，您应该能看到额外的"PACKAGE PUBLISHING"面板作为弹出窗口：
 
-![image](https://github.com/user-attachments/assets/9eeffbcf-d73e-4a92-bce5-811ed60aba98)
+![image](/images/official/1df35a6adce7e4c56f482b2f6a360e21.png)
 <br>
 <br>
 
@@ -29,10 +29,10 @@
 
 如果您只想创建可以在其他项目中使用的本地 TWINPACK 文件，请使用此选项。对此，构建过程与任何普通的 twinBASIC 构建相同...只需点击 TWINBASIC 工具栏中的构建按钮：
 
-![image](https://github.com/user-attachments/assets/4d90f313-35d5-426d-8fc3-852ca03382fa)
+![image](/images/official/0b6927257bee1e652f75a545fe2aebf5.png)
 <br>
 <br>
-![image](https://github.com/user-attachments/assets/8d74d820-9907-4e76-ac42-71d0233187f1)
+![image](/images/official/bc256630513f0905f00dbd03e3bc5c07.png)
 
 您将在`DEBUG CONSOLE`中看到构建输出通知，如上所示。
 

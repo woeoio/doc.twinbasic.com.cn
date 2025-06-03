@@ -130,7 +130,7 @@ tB 内置支持一些最常用的运行时函数，以实现兼容性。这些�
 
 以下图像显示了一个具有红色 `TransparencyKey` 的窗体，使用形状控件定义透明区域，同时为整个窗体指定 75% 的 `Opacity`：
 
-![image alt ><](https://github.com/twinbasic/documentation/assets/7834493/85f25aa2-abc8-4d42-8510-078f8ee4a324)
+![image alt ><](/images/official/544a69b8541e668fa3645bcc41e6ae60.png)
 
 ## 额外的窗体功能
 

@@ -136,7 +136,7 @@ End CoClass
 * 基本继承的 `Implements Via`\
 现在可以在类之间实现简单的继承。例如，如果您有一个实现了包含 Honk 方法的 IVehicle 接口的 cVehicle 类，您可以创建像 cCar 或 cTruck 这样的子类，它们继承原始类的方法，这样您就可以调用 cCar.Honk 而不需要编写单独的实现。以下是代码示例：
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/b0724fe2-636d-47db-a8fc-531a585ddaf9)
+![image](/images/official/43b0342bf8490d979fb6802eaae3c36a.png)
 
 您可以看到，Honk 方法只由父类实现，然后当您从 IDE 中点击 CodeLens 按钮以在原地运行子程序时，从子类调用它。
 

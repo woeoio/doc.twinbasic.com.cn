@@ -36,21 +36,21 @@
 
 * 在窗体设计器中，`Visible = False` 的控件会淡化显示以直观地指示这一点。此外，按住 Control 键会显示每个 tab stop 的 tab 索引。
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/014a1d28-30af-4a4d-8b9b-83ab6084f00a)\
+![image](/images/official/3e4464fb80ed1a2411313e50bcc6b938.png)\
 [完整大小](https://www.twinbasic.com/images/fafaloneIDEscreenshot1.png)
 
 * 基于新代码结构的项目资源管理器：\
-![image](https://github.com/twinbasic/documentation/assets/7834493/9a5c50d5-a9f8-44a7-96f7-ae84548bd7ef)
+![image](/images/official/787503850744c170c3be174d4dc20af9.png)
 
 经典的基于文件的视图仍然是默认使用的，您可以用一个切换按钮激活新视图：\
-![image](https://github.com/twinbasic/documentation/assets/7834493/b000d3aa-3689-4d94-88e3-bca44f8b7de6)
+![image](/images/official/5afe3cf2634a0d3d112ddce67146b11f.png)
 
 
 ## 包服务器
 
 代码可以分组为包，并发布到在线服务器。您可以有私有包（只有您可见）或公共包（对所有人可见）。
 
-![image](https://github.com/user-attachments/assets/5951dab6-738e-4b63-83c4-3331ec6d36b9)
+![image](/images/official/414436d91238b08a13911e4e21e8f84f.png)
 
 有关更多信息，请参见以下 Wiki 条目：
 
@@ -67,9 +67,9 @@
 ## 以 JSON 格式查看窗体和包
 项目窗体和包以 JSON 格式数据存储，您可以通过在项目资源管理器中右键单击并选择"View as JSON"来查看。这对包特别有趣，因为它以更容易解析的格式展示了整个代码。
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/22660f54-ff5d-4b21-93d3-39715f1f35ed)
+![image](/images/official/74a74f15d6e0e7ebe303aa6f35711cac.png)
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/a6525b1d-ac22-4303-ae27-7984c20eba0c)
+![image](/images/official/df7ca92236571514b70e057b44e0758d.png)
 
 
 ---

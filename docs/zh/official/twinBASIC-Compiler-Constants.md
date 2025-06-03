@@ -89,10 +89,10 @@
 tB 编辑器具有实时显示哪些编译器常量处于活动状态的有用功能。`#If` 块中的代码如果在当前设置下不会执行，则处于非活动状态并显示为灰色。请注意，与 VBx 不同，非活动代码不会进行错误评估。
 
 例如，在 32 位模式下：\
-![image](https://i.imgur.com/oHpCiV1.png)
+![image](/images/official/oHpCiV1.png)
 
 然后切换到 64 位模式：\
-![image](https://i.imgur.com/TYizrRW.png)
+![image](/images/official/TYizrRW.png)
 
 
 ---

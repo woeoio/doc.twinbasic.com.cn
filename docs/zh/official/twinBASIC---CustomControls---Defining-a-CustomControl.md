@@ -3,31 +3,31 @@
 
 _**提示：强烈建议在尝试实现自己的自定义控件之前，先查看并试验 twinBASIC 提供的示例项目。**_
 
-![CustomControl attribute](https://www.twinbasic.com/images/wiki/ccSampleProject.png)
+![CustomControl attribute](/images/official/ccSampleProject.png)
 
 ***
 ### CustomControl() 特性
-![CustomControl attribute](https://www.twinbasic.com/images/wiki/ccCustomControlAttribute.png)
+![CustomControl attribute](/images/official/ccCustomControlAttribute.png)
 
 这是所有自定义控件必需的特性。您必须提供项目中图像文件的相对路径，该图像将用于在窗体设计器工具箱中标识您的控件。我们建议您将图像文件放在项目的 Miscellaneous 文件夹中。
 
-![CustomControl GridImage Folder](https://www.twinbasic.com/images/wiki/ccGridButtonImage.png)
+![CustomControl GridImage Folder](/images/official/ccGridButtonImage.png)
 ***
 ### ClassId() 特性
-![CustomControl ClassId Attribute](https://www.twinbasic.com/images/wiki/ccClassIdAttribute.png)
+![CustomControl ClassId Attribute](/images/official/ccClassIdAttribute.png)
 
 这是所有自定义控件必需的特性。您必须提供一个唯一的 CLSID (GUID)，以便窗体引擎能够使用您的控件。
 ##### 提示：如果您输入 ` [ ClassId () ] `，twinBASIC 会帮助您 - 只需点击"insert a randomly generated GUID"文本：
 
-![CustomControl ClassId auto-generate](https://www.twinbasic.com/images/wiki/ccClassIdInsert.png)
+![CustomControl ClassId auto-generate](/images/official/ccClassIdInsert.png)
 ***
 ### COMCreatable() 特性
-![CustomControl COMCreatable attribute](https://www.twinbasic.com/images/wiki/ccCOMCreatable.png)
+![CustomControl COMCreatable attribute](/images/official/ccCOMCreatable.png)
 
 这是一个可选特性，但通常建议将此特性设置为 False，因为您不需要从外部 COM 环境实例化自定义控件。
 ***
 ### 必须实现 ICustomControl
-![CustomControl ICustomControl interface](https://www.twinbasic.com/images/wiki/ccICustomControl.png)
+![CustomControl ICustomControl interface](/images/official/ccICustomControl.png)
 
 所有自定义控件*必须*实现 CustomControls.ICustomControl。此接口目前有 3 个必须实现的方法：
 

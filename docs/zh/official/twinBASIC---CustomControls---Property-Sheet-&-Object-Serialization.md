@@ -1,11 +1,11 @@
 # 属性表和对象序列化
 窗体设计器属性表将获取您通过自定义控件类公开的任何**_public_**自定义属性（字段）。例如，添加一个字段 `Public MyField As Long` 将自动显示在窗体设计器的控件属性表中：
 
-![CustomControl MyField propertySheet](https://www.twinbasic.com/images/wiki/ccMyFieldPropertySheet1a.png)
+![CustomControl MyField propertySheet](/images/official/ccMyFieldPropertySheet1a.png)
 
 这然后会作为属性保存在您的项目的窗体 JSON 结构中：
 
-![CustomControl MyField JSON](https://www.twinbasic.com/images/wiki/ccMyFieldJson1a.png)
+![CustomControl MyField JSON](/images/official/ccMyFieldJson1a.png)
 
 使其工作的关键是您的序列化构造函数，它可能看起来像这样：
 
@@ -19,31 +19,31 @@
 ### 默认值
 设置默认值的另一种方法是将它们内联到类字段定义中：
 
-![CustomControl MyField = 42](https://www.twinbasic.com/images/wiki/ccMyFieldPropertySheet1b.png)
+![CustomControl MyField = 42](/images/official/ccMyFieldPropertySheet1b.png)
 
 如果控件正在从持久化的属性表数据同步，序列化构造函数中的 `Deserialize(Me)` 调用将覆盖属性值。
 ***
 ### 枚举
 支持您在 twinBASIC 项目中定义的枚举。只需使用枚举公开一个类字段：
 
-![CustomControl enumeration property sheet example](https://www.twinbasic.com/images/wiki/ccMyEnumFieldPropertySheet.png)
+![CustomControl enumeration property sheet example](/images/official/ccMyEnumFieldPropertySheet.png)
 
 注意：枚举作为字符串持久化到窗体 JSON 结构中，所以在对自定义控件进行更改/更新时请记住这一点，以免通过重命名枚举值引入破坏性更改。
 ***
 ### 对象
 支持您在 twinBASIC 项目中定义的类对象。您***必须***为任何公开的对象提供 ClassId 特性，以便序列化可以识别它。
 
-![CustomControl class property sheet example](https://www.twinbasic.com/images/wiki/ccMyFieldClass.png)
+![CustomControl class property sheet example](/images/official/ccMyFieldClass.png)
 ***
 ### 数组
 支持数组。窗体设计器允许添加新元素、删除元素和重新排序元素（通过拖放）。
 
-![CustomControl array property sheet example](https://www.twinbasic.com/images/wiki/ccMyFieldArray.png)
+![CustomControl array property sheet example](/images/official/ccMyFieldArray.png)
 ***
 ### Property Get / Let
 支持自定义属性过程。如果您希望属性更改触发控件重绘，您会发现需要使用 Property Get / Let 过程。
 
-![CustomControl custom property example](https://www.twinbasic.com/images/wiki/ccMyFieldCustomProperty.png)
+![CustomControl custom property example](/images/official/ccMyFieldCustomProperty.png)
 
 请注意，_**private**_ 字段和属性不属于序列化的一部分，因此不会出现在属性表中。
 ***
@@ -53,7 +53,7 @@
 ### 事件
 您在类中定义的事件将在事件属性表中公开：
 
-![CustomControl attribute](https://www.twinbasic.com/images/wiki/ccEvents.png)
+![CustomControl attribute](/images/official/ccEvents.png)
 
 目前，窗体设计器还不支持代码隐藏窗体，所以这个功能还不完整。
 ***
