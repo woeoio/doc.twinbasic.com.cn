@@ -28,7 +28,7 @@
 3. [Information about re-entrancy](twinBASIC-WebView2-Information-about-re-entrancy) -->
 
 ## New Language and IDE Features
-1. [Overview of features new to twinBASIC](twinBASIC-Features) (compared to VBx)
+1. [Overview of features new to twinBASIC](twinBASIC-Features-1) (compared to VBx)
 2. [Control Anchoring and Docking ‐ Automatic size and position management](Control-Anchoring-and-Docking-%E2%80%90-Automatic-size-and-position-management)
 
 ## twinBASIC Compiler Constants
