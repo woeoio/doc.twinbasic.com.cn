@@ -23,7 +23,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '首页', link: '/' },
-          { text: '官方文档', link: '/zh/official/Home' },
+          { text: '官方文档', link: '/official/Home' },
           { text: 'VB6.PRO', link: 'https://doc.vb6.pro/' },
           { text: '加QQ群', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
         ], sidebar: {
@@ -31,38 +31,38 @@ export default defineConfig({
             {
               text: '入门指南',
               items: [
-                { text: '首页', link: '/zh/official/Home' },
-                { text: '常见问题', link: '/zh/official/twinBASIC-Frequently-Asked-Questions-(FAQs)' }
+                { text: '首页', link: '/official/Home' },
+                { text: '常见问题', link: '/official/twinBASIC-Frequently-Asked-Questions-(FAQs)' }
               ]
             },
             {
               text: 'twinBASIC 功能',
               items: [
-                { text: '功能特性 (1)', link: '/zh/official/twinBASIC-Features-1' },
-                { text: '功能特性 (2)', link: '/zh/official/twinBASIC-Features-2' },
-                { text: '功能特性 (3)', link: '/zh/official/twinBASIC-Features-3' },
-                { text: '功能特性 (4)', link: '/zh/official/twinBASIC-Features-4' },
-                { text: '编译器常量', link: '/zh/official/twinBASIC-Compiler-Constants' }
+                { text: '功能特性 (1)', link: '/official/twinBASIC-Features-1' },
+                { text: '功能特性 (2)', link: '/official/twinBASIC-Features-2' },
+                { text: '功能特性 (3)', link: '/official/twinBASIC-Features-3' },
+                { text: '功能特性 (4)', link: '/official/twinBASIC-Features-4' },
+                { text: '编译器常量', link: '/official/twinBASIC-Compiler-Constants' }
               ]
             },
             {
               text: '自定义控件',
               items: [
-                { text: '自定义控件介绍', link: '/zh/official/twinBASIC-CustomControls-Introduction' },
-                { text: '定义自定义控件', link: '/zh/official/twinBASIC---CustomControls---Defining-a-CustomControl' },
-                { text: '窗体设计器说明', link: '/zh/official/twinBASIC---CustomControls---Notes-about-the-form-designer' },
-                { text: '控件绘制', link: '/zh/official/twinBASIC---CustomControls---Painting---drawing-to-your-control' },
-                { text: '属性表和对象序列化', link: '/zh/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization' }
+                { text: '自定义控件介绍', link: '/official/twinBASIC-CustomControls-Introduction' },
+                { text: '定义自定义控件', link: '/official/twinBASIC---CustomControls---Defining-a-CustomControl' },
+                { text: '窗体设计器说明', link: '/official/twinBASIC---CustomControls---Notes-about-the-form-designer' },
+                { text: '控件绘制', link: '/official/twinBASIC---CustomControls---Painting---drawing-to-your-control' },
+                { text: '属性表和对象序列化', link: '/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization' }
               ]
             },
             {
               text: '包管理',
               items: [
-                { text: '什么是包', link: '/zh/official/twinBASIC-Packages-What-is-a-package' },
-                { text: '创建TWINPACK包', link: '/zh/official/twinBASIC-Packages-Creating-a-TWINPACK-package' },
-                { text: '从TWINPACK导入包', link: '/zh/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file' },
-                { text: '从TWINSERV导入包', link: '/zh/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV' },
-                { text: '更新包', link: '/zh/official/twinBASIC-Packages-Updating-a-package' }
+                { text: '什么是包', link: '/official/twinBASIC-Packages-What-is-a-package' },
+                { text: '创建TWINPACK包', link: '/official/twinBASIC-Packages-Creating-a-TWINPACK-package' },
+                { text: '从TWINPACK导入包', link: '/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file' },
+                { text: '从TWINSERV导入包', link: '/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV' },
+                { text: '更新包', link: '/official/twinBASIC-Packages-Updating-a-package' }
               ]
             }
           ]
