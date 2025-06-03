@@ -1,6 +1,41 @@
-# twinBasic 简介 🚀
+---
+layout: home
 
-twinBasic 是一个现代化的编程语言和开发环境，它完全兼容 VB6 和 VBA 代码库，同时带来了许多新特性和改进。自 2021 年 4 月 9 日公开 BETA 版以来，它一直在快速发展和完善。
+hero:
+  name: "TwinBasic"
+  text: "现代化的 VB6 替代方案"
+  tagline: "完全兼容 VB6/VBA，同时带来了现代化的开发体验"
+  image:
+    src: /images/twinBASICIconTransparent.png
+    alt: TwinBasic
+  actions:
+    - theme: brand
+      text: 开始使用
+      link: /zh/official/Home
+    - theme: alt
+      text: 功能特性
+      link: /zh/official/twinBASIC-Features-1
+
+features:
+  - icon: 🤝
+    title: 完美兼容
+    details: 与现有的 VB6/VBA 代码库 100% 向后兼容，完全基于 COM 技术
+  - icon: 💻
+    title: 现代化开发
+    details: 轻量级专用 IDE，支持深色主题、代码折叠、实时提示、语法高亮等特性
+  - icon: 🔧
+    title: 强大编译器
+    details: 支持 32/64 位原生编译，完整的 Unicode 支持，生成独立可执行文件
+  - icon: 🌟
+    title: 增强特性
+    details: 支持泛型、继承、多线程、内联汇编等现代编程特性，引入多种新数据类型和运算符
+  - icon: 🔍
+    title: 内置调试器
+    details: 支持多线程调试，提供调用堆栈、变量、监视等调试功能
+  - icon: 🎮
+    title: 丰富控件
+    details: 内置 WebView2 支持，QRCode 生成器等现代控件，支持自定义控件开发
+---
 
 ## 核心特性 ✨
 

@@ -1,6 +1,41 @@
-# Introduction to twinBasic 🚀
+---
+layout: home
 
-twinBasic is a modern programming language and development environment that maintains 100% compatibility with VB6 and VBA codebases while introducing numerous new features and improvements. Since its public BETA release on April 9th, 2021, it has been rapidly evolving and improving.
+hero:
+  name: "TwinBasic"
+  text: "Modern VB6 Alternative"
+  tagline: "100% compatible with VB6/VBA, with modern development experience"
+  image:
+    src: /images/twinBASICIconTransparent.png
+    alt: TwinBasic
+  actions:
+    - theme: brand
+      text: Get Started
+      link: /en/official/Home
+    - theme: alt
+      text: Features
+      link: /en/official/twinBASIC-Features-1
+
+features:
+  - icon: 🤝
+    title: Perfect Compatibility
+    details: 100% backward compatible with existing VB6/VBA codebases, fully based on COM technology
+  - icon: 💻
+    title: Modern Development
+    details: Lightweight dedicated IDE with dark theme, code folding, real-time hints, and syntax highlighting
+  - icon: 🔧
+    title: Powerful Compiler
+    details: Native 32/64-bit compilation, complete Unicode support, generates standalone executables
+  - icon: 🌟
+    title: Enhanced Features
+    details: Supports generics, inheritance, multi-threading, inline assembly, new data types and operators
+  - icon: 🔍
+    title: Built-in Debugger
+    details: Multi-thread debugging support with call stack, variables, and watch windows
+  - icon: 🎮
+    title: Rich Controls
+    details: Built-in WebView2 support, QRCode generator, and extensive custom controls capability
+---
 
 ## Core Features ✨
 
