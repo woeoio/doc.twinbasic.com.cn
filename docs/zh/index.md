@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: "TwinBasic"
-  text: "现代化的 VB6 替代方案"
+  text: "现代化的 VB6 平替"
   tagline: "完全兼容 VB6/VBA，同时带来了现代化的开发体验"
   image:
     src: /images/twinBASICIconTransparent.png
