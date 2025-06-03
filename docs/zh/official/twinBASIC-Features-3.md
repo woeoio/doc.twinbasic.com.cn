@@ -142,4 +142,4 @@ tB 内置支持一些最常用的运行时函数，以实现兼容性。这些�
 * 控件锚定：控件的 x/y/cx/cy 可以设为相对的，这样它们就会随着窗体自动移动/调整大小。例如，如果您在右下角放置一个 TextBox，然后选中右和底部锚点（除了顶部和左侧），右下角将随窗体调整大小而调整大小。这节省了大量样板调整大小代码。
 * 控件停靠：控件可以固定在窗体（或容器）的一侧，或者填充整个窗体/容器。多个控件可以在停靠位置组合和混合/匹配。
 
-有关控件锚定和控件停靠的更多信息，请参见 Wiki 条目[控件锚定和停靠 ‐ 自动大小和位置管理](https://github.com/twinbasic/documentation/wiki/Control-Anchoring-and-Docking-%E2%80%90-Automatic-size-and-position-management)。
+有关控件锚定和控件停靠的更多信息，请参见 Wiki 条目[控件锚定和停靠 ‐ 自动大小和位置管理](Control-Anchoring-and-Docking-%E2%80%90-Automatic-size-and-position-management)。

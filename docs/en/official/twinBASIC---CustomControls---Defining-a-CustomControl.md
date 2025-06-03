@@ -38,7 +38,7 @@ This method is called when your control is attached to a form.  You must store t
 This method is called when your control is detached from a form.  This allows an opportunity to break circular references so that your object instance can be destructed properly.   The implementation for this can often be left empty provided you don't create circular references in objects.
 
     Sub Paint(ByVal Canvas As Canvas)
-This is the most interesting part for a CustomControl.  As such, it gets its own section, see [Painting / drawing to your control](https://github.com/WaynePhillipsEA/twinbasic/wiki/twinBASIC---CustomControls---Painting---drawing-to-your-control)
+This is the most interesting part for a CustomControl.  As such, it gets its own section, see [Painting / drawing to your control](twinBASIC---CustomControls---Painting---drawing-to-your-control)
 ***
 ### Minimum set of properties
 As twinBASIC doesn't yet support inheritance, you must expose a set of common properties (class fields) for all CustomControls:
@@ -53,10 +53,10 @@ As twinBASIC doesn't yet support inheritance, you must expose a set of common pr
     Public Visible As Boolean
 The form designer and the form engine work with these properties, so it is important to include them in your CustomControl class.
 
-Note that the form designer works with pixel values which are not DPI-scaled.  So the Left/Top/Width/Height properties of your control do not reflect DPI scaling.  For example, if your control has a width of 50 pixels, then at DPI 150%, then the actual drawing width is 75 pixels ( see [Painting / drawing to your control](https://github.com/WaynePhillipsEA/twinbasic/wiki/twinBASIC---CustomControls---Painting---drawing-to-your-control) ).
+Note that the form designer works with pixel values which are not DPI-scaled.  So the Left/Top/Width/Height properties of your control do not reflect DPI scaling.  For example, if your control has a width of 50 pixels, then at DPI 150%, then the actual drawing width is 75 pixels ( see [Painting / drawing to your control](twinBASIC---CustomControls---Painting---drawing-to-your-control) ).
 ***
 ### Must have a serialization constructor
 CustomControls *must* offer a serialization constructor:
 
     Public Sub New(Serializer As SerializationInfo)
-The passed in Serializer object offers a `Deserialize()` method that you call in order to load the properties that have been set for your control via the form designer.  See [Property Sheet & Object Serialization](https://github.com/WaynePhillipsEA/twinbasic/wiki/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization) for further information.
+The passed in Serializer object offers a `Deserialize()` method that you call in order to load the properties that have been set for your control via the form designer.  See [Property Sheet & Object Serialization](twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization) for further information.

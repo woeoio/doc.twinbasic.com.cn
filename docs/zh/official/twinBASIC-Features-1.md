@@ -2,12 +2,12 @@
 
 本页旨在列出并简要描述 twinBASIC 相比 VBx 带来的所有新功能，并假设读者已经熟悉 BASIC 语言编程的基本原理。这些功能分为以下几类：
 
-* [语言语法](https://github.com/twinbasic/documentation/wiki/twinbasic-features#language-syntax)
+<!-- * [语言语法](https://github.com/twinbasic/documentation/wiki/twinbasic-features#language-syntax)
 * [项目配置](https://github.com/twinbasic/documentation/wiki/twinbasic-features#project-configuration)
 * [特性（Attributes）](https://github.com/twinbasic/documentation/wiki/twinbasic-features#attributes)
 * [标准库](https://github.com/twinbasic/documentation/wiki/twinbasic-features#standard-library)
 * [GUI 组件](https://github.com/twinbasic/documentation/wiki/twinbasic-features#gui-components)（例如控件和窗体）
-* [设计体验](https://github.com/twinbasic/documentation/wiki/twinbasic-features#design-experience)
+* [设计体验](https://github.com/twinbasic/documentation/wiki/twinbasic-features#design-experience) -->
 
 # 特性（Attributes）
 特性具有两个主要功能：它们可以作为指令影响编译器生成代码的方式，或者用于注解一个元素（窗体、模块、类、类型、枚举、声明、子程序/函数等）。在 VBx 中，特性是存在的，但不会在代码窗格中显示，并且使用难以通过源文件使用的晦涩语法。以前在 VBx 中，一些特性（如过程描述、隐藏特性和默认成员）是通过编辑器不显示的隐藏文本设置的，通过"过程特性"对话框或其他地方进行配置。在 tB 中，这些都在代码编辑器中可见。为了兼容性，保留了 VBx 中的旧特性，但新特性使用以下语法：\

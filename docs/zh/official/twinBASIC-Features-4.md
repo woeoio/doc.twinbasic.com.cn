@@ -37,7 +37,7 @@
 * 在窗体设计器中，`Visible = False` 的控件会淡化显示以直观地指示这一点。此外，按住 Control 键会显示每个 tab stop 的 tab 索引。
 
 ![image](/images/official/3e4464fb80ed1a2411313e50bcc6b938.png)\
-[完整大小](https://www.twinbasic.com/images/fafaloneIDEscreenshot1.png)
+[完整大小](/images/official/fafaloneIDEscreenshot1.png)
 
 * 基于新代码结构的项目资源管理器：\
 ![image](/images/official/787503850744c170c3be174d4dc20af9.png)
@@ -54,15 +54,15 @@
 
 有关更多信息，请参见以下 Wiki 条目：
 
-[twinBASIC 包是什么](https://github.com/twinbasic/documentation/wiki/twinBASIC-Packages-What-is-a-package)
+[twinBASIC 包是什么](twinBASIC-Packages-What-is-a-package)
 
-[创建 TWINPACK 包](https://github.com/twinbasic/documentation/wiki/twinBASIC-Packages-Creating-a-TWINPACK-package)
+[创建 TWINPACK 包](twinBASIC-Packages-Creating-a-TWINPACK-package)
 
-[从 TWINPACK 文件导入包](https://github.com/twinbasic/documentation/wiki/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file)
+[从 TWINPACK 文件导入包](twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file)
 
-[从 TWINSERV 导入包](https://github.com/twinbasic/documentation/wiki/twinBASIC-Packages-Importing-a-package-from-TWINSERV)
+[从 TWINSERV 导入包](twinBASIC-Packages-Importing-a-package-from-TWINSERV)
 
-[更新包](https://github.com/twinbasic/documentation/wiki/twinBASIC-Packages-Updating-a-package)
+[更新包](twinBASIC-Packages-Updating-a-package)
 
 ## 以 JSON 格式查看窗体和包
 项目窗体和包以 JSON 格式数据存储，您可以通过在项目资源管理器中右键单击并选择"View as JSON"来查看。这对包特别有趣，因为它以更容易解析的格式展示了整个代码。

@@ -9,7 +9,7 @@
 2. [HOW TO: Create a Tool Window in the VBIDE with twinBASIC](https://nolongerset.com/create-a-vbe-addin-with-twinbasic/) _[by Mike Wolfe @nolongerset]_
 
 ## CustomControls
-1. [Introduction](https://github.com/WaynePhillipsEA/twinbasic/wiki/twinBASIC-CustomControls-Introduction)
+1. [Introduction](twinBASIC-CustomControls-Introduction)
 2. [Defining a CustomControl](twinBASIC---CustomControls---Defining-a-CustomControl)
 3. [Property Sheet & Object Serialization](twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization)
 4. [Painting / drawing to your control](twinBASIC---CustomControls---Painting---drawing-to-your-control)

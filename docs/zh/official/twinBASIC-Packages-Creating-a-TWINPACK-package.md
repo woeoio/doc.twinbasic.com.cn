@@ -36,7 +36,7 @@
 
 您将在`DEBUG CONSOLE`中看到构建输出通知，如上所示。
 
-工作完成。有关在其他 twinBASIC 项目中引用和使用 TWINPACK 文件的信息，请参见[从 TWINPACK 文件导入包](https://github.com/WaynePhillipsEA/twinbasic/wiki/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file)。
+工作完成。有关在其他 twinBASIC 项目中引用和使用 TWINPACK 文件的信息，请参见[从 TWINPACK 文件导入包](twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file)。
 
 <br>
 
@@ -64,7 +64,7 @@
 
 如果包上传成功，它应该在几分钟内通过 TWINSERV 可用。如果您创建了"PUBLIC"包，其他人此时将能够看到和下载它。
 
-有关引用和使用已上传包的信息，请参见[从 TWINSERV 导入包](https://github.com/WaynePhillipsEA/twinbasic/wiki/twinBASIC-Packages-Importing-a-package-from-TWINSERV)。
+有关引用和使用已上传包的信息，请参见[从 TWINSERV 导入包](twinBASIC-Packages-Importing-a-package-from-TWINSERV)。
 
 <br>
 <br>
