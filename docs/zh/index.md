@@ -11,10 +11,10 @@ hero:
   actions:
     - theme: brand
       text: 开始使用
-      link: /zh/official/Home
+      link: /official/Home
     - theme: alt
       text: 功能特性
-      link: /zh/official/twinBASIC-Features-1
+      link: /official/twinBASIC-Features-1
 
 features:
   - icon: 🤝
