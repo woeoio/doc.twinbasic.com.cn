@@ -141,7 +141,7 @@ Where `IFoo` and `IBar` are interface defined with the `Interface` syntax descri
 * `Implements Via` for basic inheritance\
 It's now possible to have simple inheritance among classes. For example, if you have class cVehicle which implements IVehicle containing method Honk, you could create child classes like cCar or cTruck, which inherit the methods of the original, so you could call cCar.Honk without writing a separate implementation. Here's what this looks like as code:
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/b0724fe2-636d-47db-a8fc-531a585ddaf9)
+![image](/images/official/43b0342bf8490d979fb6802eaae3c36a.png)
 
 You can see that the Honk method is only implemented by the parent class, then called from the child class when you click the CodeLens button to run the sub in place from the IDE.
 

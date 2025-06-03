@@ -96,7 +96,7 @@ The twinBASIC IDE is supported on Windows 7 through Windows 11. The installation
 
 WebView2 is required. This is normally preinstalled on newer versions of Windows, and is installed along with Edge if you've installed that browser. You can also obtain it from [Microsoft's website](https://developer.microsoft.com/en-us/microsoft-edge/webview2?form=MA13LH#download-section). Select the Standalone Evergreen x86 version:
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/94490c87-fafe-4d5b-ae39-d3cedba1c21d)
+![image](/images/official/d2cbe5675e78a688c22f3f8648efd5bd.png)
 
 
 ### twinBASIC won't run; says there's an invalid entry point.
@@ -129,11 +129,11 @@ Anyone who has ever tested their own programs against a wide variety of AV engin
 
 The easiest way is through the import wizard. When you first start the twinBASIC IDE, you're presented with the New Project dialog- this contains an 'Import from VBP' option:
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/7e1cb69c-6db3-4f3f-aea1-c1fae25938a2)
+![image](/images/official/2d5c186ff65ca2c2f3427b29eb7972ab.png)
 
 This is currently the only way to import Forms, UserControls, and .res Resource files. For standard modules and class modules, you can import them individually by right-clicking the 'Sources' folder in the Project Explorer, and choosing Import file:
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/60335cfc-3573-489a-90e9-9dbec2b2113c)
+![image](/images/official/0d4057c59f0eac3fc20fdc6ea9f56002.png)
 
 >[!NOTE]
 >If you import Forms or UserControls through this method, they are currently processed as plain text and will not be recognized by the compiler. This will be fixed in the future. For now, please import these as part of a VBP project.
@@ -148,7 +148,7 @@ twinBASIC supports **creating** addins for VBA. It's currently the only tool tha
 
 Currently tB does not have a dedicated resource editor; instead, resources are managed through the Project Explorer. In the tree, you'll see a Resources folder; by default, it will include ICON in a Standard EXE, and MANIFEST, if you've chosen to enable Visual Styles:
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/71ddde83-a091-47e3-b5b8-681954b0639d)
+![image](/images/official/ca4d5bdfa8919e9e528ced574fef5409.png)
 
 You can create additional folders here, using their standard names. For example a BITMAP group could be added, then used with `LoadResImage`. Unlike its predecessor, tB does not restrict the type of resources: you can create any type of folder you want, and import binary data into it. For example, some community projects have inserted `UIFILE` resources for Ribbon controls and `DIALOG` resources for property sheets. Resources can be imported by right-clicking the folder you want them in, and selecting Add->Import file... from the menu.
 
@@ -158,7 +158,7 @@ If you're importing a project, the resources in a linked .res file will be impor
 
 String table resources are currently treated specially; they're edited in the IDE as JSON. If you import from VBP with a .res, string resources will be automatically converted. If you right click the 'Resources' folder, and go to the 'Add' submenu, at the bottom, you'll find "Add resource: String table" that adds one populated with example strings:
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/97cc8655-7a8b-47f3-b52c-eb1ddfce662f)
+![image](/images/official/42182f8f191917cda9a9d7f7954d38fb.png)
 
 #### Group names
 
@@ -187,7 +187,7 @@ Imported projects use the icon of the Form chosen in Settings. This can be modif
 If you don't set that option, or your project contains no Forms, the icon can be managed manually through the Resources folder.\
 If you're not already familiar with using resources in twinBASIC, see the FAQ entry right above this one. In this scenario, the icon used for your application in Explorer is the one in the Resources\ICON folder that comes first alphabetically. If you do not have an ICON folder in your project, you can create one by right-clicking the Resources folder and selecting Add->Add folder.
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/8611d12a-d7a6-48cc-9544-cb27c5299aa5)
+![image](/images/official/48de0d4f88352830eb9f2d7a021606aa.png)
 
 In the above picture, MyOwnIcon.ico would be used by Explorer and other apps to represent your .exe, as it comes before twinBASIC.ico alphabetically. 
 

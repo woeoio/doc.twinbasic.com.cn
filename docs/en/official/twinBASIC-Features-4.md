@@ -36,21 +36,21 @@ While the twinBASIC IDE still has a lot of work planned, it already includes a n
 
 * On the Form Designer, control with `Visible = False` are faded to visually indicate this. Also, pressing and holding Control shows the tab index of each tab stop.
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/014a1d28-30af-4a4d-8b9b-83ab6084f00a)\
+![image](/images/official/3e4464fb80ed1a2411313e50bcc6b938.png)\
 [Full size](https://www.twinbasic.com/images/fafaloneIDEscreenshot1.png)
 
 * New code structure based Project Explorer:\
-![image](https://github.com/twinbasic/documentation/assets/7834493/9a5c50d5-a9f8-44a7-96f7-ae84548bd7ef)
+![image](/images/official/787503850744c170c3be174d4dc20af9.png)
 
 The classic file-based view is still used by default, you can activate the new view with a toggle button:\
-![image](https://github.com/twinbasic/documentation/assets/7834493/b000d3aa-3689-4d94-88e3-bca44f8b7de6)
+![image](/images/official/5afe3cf2634a0d3d112ddce67146b11f.png)
 
 
 ## Package Server
 
 Code can be grouped as a package, and published to an online server. You can have Private packages, visible only to you, or Public packages, visible to everyone.
 
-![image](https://github.com/user-attachments/assets/5951dab6-738e-4b63-83c4-3331ec6d36b9)
+![image](/images/official/414436d91238b08a13911e4e21e8f84f.png)
 
 For more information, see the following Wiki entries:
 
@@ -67,9 +67,9 @@ For more information, see the following Wiki entries:
 ## View Forms and Packages as JSON
 Project forms and packages are stored as JSON format data, and you can view this by right-click in Project Explorer and selecting 'View as JSON'. This is particularly interesting for packages as it exposes the entire code in a much more easily parsed format.
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/22660f54-ff5d-4b21-93d3-39715f1f35ed)
+![image](/images/official/74a74f15d6e0e7ebe303aa6f35711cac.png)
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/a6525b1d-ac22-4303-ae27-7984c20eba0c)
+![image](/images/official/df7ca92236571514b70e057b44e0758d.png)
 
 
 ---

@@ -3,31 +3,31 @@ A CustomControl is simply an ordinary twinBASIC class, with a few extra attribut
 
 _**TIP: It is highly advisable to look at and experiment with the sample project provided with twinBASIC before trying to implement your own CustomControl.**_
 
-![CustomControl attribute](https://www.twinbasic.com/images/wiki/ccSampleProject.png)
+![CustomControl attribute](/images/official/ccSampleProject.png)
 
 ***
 ### CustomControl() attribute
-![CustomControl attribute](https://www.twinbasic.com/images/wiki/ccCustomControlAttribute.png)
+![CustomControl attribute](/images/official/ccCustomControlAttribute.png)
 
 This is a required attribute for all CustomControls.  You must provide the relative path to an image file within your project that can be used to identify your control in the form designer toolbox.  We recommend that you put the image file in the Miscellaneous folder in your project.
 
-![CustomControl GridImage Folder](https://www.twinbasic.com/images/wiki/ccGridButtonImage.png)
+![CustomControl GridImage Folder](/images/official/ccGridButtonImage.png)
 ***
 ###  ClassId() attribute
-![CustomControl ClassId Attribute](https://www.twinbasic.com/images/wiki/ccClassIdAttribute.png)
+![CustomControl ClassId Attribute](/images/official/ccClassIdAttribute.png)
 
 This is a required attribute for all CustomControls.  You must provide a unique CLSID (GUID) in order for the form engine to work with your control. 
 ##### TIP:  if you enter ` [ ClassId () ] ` twinBASIC helps you out - just press the 'insert a randomly generated GUID' text:
 
-![CustomControl ClassId auto-generate](https://www.twinbasic.com/images/wiki/ccClassIdInsert.png)
+![CustomControl ClassId auto-generate](/images/official/ccClassIdInsert.png)
 ***
 ###  COMCreatable() attribute
-![CustomControl COMCreatable attribute](https://www.twinbasic.com/images/wiki/ccCOMCreatable.png)
+![CustomControl COMCreatable attribute](/images/official/ccCOMCreatable.png)
 
 This is an optional attribute, but it is usually advisable to set this attribute to False, as you don't need to instantiate CustomControls from external COM environments.
 ***
 ### Must implement ICustomControl
-![CustomControl ICustomControl interface](https://www.twinbasic.com/images/wiki/ccICustomControl.png)
+![CustomControl ICustomControl interface](/images/official/ccICustomControl.png)
 
 All CustomControls *must* implement CustomControls.ICustomControl.  This interface currently has 3 methods that you must implement:
 

@@ -132,7 +132,7 @@ This sets an alpha blending level for the entire form. Like transparency, this i
 
 The following image shows a Form with a `TransparencyKey` of Red, using a Shape control to define the transparent area, while also specifying 75% `Opacity` for the entire form:
 
-![image alt ><](https://github.com/twinbasic/documentation/assets/7834493/85f25aa2-abc8-4d42-8510-078f8ee4a324)
+![image alt ><](/images/official/544a69b8541e668fa3645bcc41e6ae60.png)
 
 ## Additional Form features
 
@@ -191,12 +191,12 @@ Additionally, the original OCX controls provided by Microsoft will work fine; ho
 ## New Controls
 
 ### QR Code Control
-![image](https://github.com/user-attachments/assets/54ed49d8-b434-45e3-9e63-a1fe75cdf814)
+![image](/images/official/c00eec6f45de50bd89132fa4ece42ba8.png)
 
 Easily display custom QR codes with a native control.
 
 ### Multiframe Control
-![image-15](https://github.com/user-attachments/assets/4ad9c774-b31d-47d3-9963-6d99ac4f37bb)
+![image-15](/images/official/45592d2d48e4ec44ecde3fbb6f08e46d.png)
 
 This control allows you to create a number of frames within it with their size specified as a percentage, such that as the control is resized the frames within expand proportionally. For details and a video demonstration, Mike Wolfe's twinBASIC Weekly Update [covered it when released](https://nolongerset.com/twinbasic-update-april-29-2025/#experimental-multi-frame-control).\
 Combined with anchors and docking, this allows designing highly functional and complex layouts visually, without writing any code to handling resizing.
@@ -218,7 +218,7 @@ Under the hood, a Boolean is a 2-byte type. With memory APIs, or when receiving 
 
 Bugs result from using Strings and Variants after they have been freed. It may not be noticed immediately if the memory has not been overwritten, but it's sometimes hard to detect and can cause issues like a String displaying it's previous value or garbage. This debugging option detects use-after-free, and replaces the data with a special symbol indicating the problem. Below shows an example where the ListView ColumnHeader text had been set by previously-freed string and detected by this feature:
 
-![image](https://github.com/twinbasic/documentation/assets/7834493/021f6cbf-acce-445d-ade7-3fcad0af4927)
+![image](/images/official/4fc8c6ccc7b0a0add636402981b5adf1.png)
 
 Previously, it had shown the same text for every column-- but only under certain circumstances, leading to the issue being overlooking for a long time. 
 
@@ -252,7 +252,7 @@ When you use `ReDim myArray(1)`, the `myArray` variable is created for you, when
 This feature is discouraged for it making code difficult to read and prone to difficult to debug errors.
 
 The full list can be found in your project's Settings page:\
-![image](https://github.com/twinbasic/documentation/assets/7834493/017bd6f8-4b35-43a9-b6be-84cba69daf64)
+![image](/images/official/92d64db1df25aca9b7252f4ab2225b56.png)
 
 ### Adjusting warnings
 Each warning has the ability to set them to ignore or turn them into an error both project-wide via the Settings page, and per-module/class, and per-procedure with `[IgnoreWarnings(TB___)]`, `[EnforceWarnings(TB____)]`, and `[EnforceErrors(TB____)]` attributes, where the underscores are replaced with the **full** number, e.g. `[IgnoreWarnings(TB0001)]`; the leading zeroes must be included.
@@ -285,5 +285,5 @@ Triggered by assigning a numeric literal to a variabled typed as an Enum, such a
 
 The CodeLens feature allows running Subs and Functions, with no arguments and in modules (but not classes/Forms/UserControls) right from the editor without starting the full program. It has robust access to your code; it can access constants, call other functions both instrinsic and user-define, call APIs, and print to the Debug Console.\
 Methods eligible to run with CodeLens (when enabled), have a bar above them that you can click to run:\
-![image](https://github.com/twinbasic/documentation/assets/7834493/351d0147-cad3-4e16-89e5-0a9e43496740)
+![image](/images/official/ff3aa54a6855e5e7953aec406116ad2a.png)
 

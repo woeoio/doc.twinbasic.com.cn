@@ -1,11 +1,11 @@
 # Property Sheet & Object Serialization
 The form designer property sheet will pickup any **_public_** custom properties (fields) that you expose via your CustomControl class.  For example, adding a field `Public MyField As Long` will then automatically show up in the control property sheet in the form designer:
 
-![CustomControl MyField propertySheet](https://www.twinbasic.com/images/wiki/ccMyFieldPropertySheet1a.png)
+![CustomControl MyField propertySheet](/images/official/ccMyFieldPropertySheet1a.png)
 
 This is then persisted to your project as properties inside your form JSON structure:
 
-![CustomControl MyField JSON](https://www.twinbasic.com/images/wiki/ccMyFieldJson1a.png)
+![CustomControl MyField JSON](/images/official/ccMyFieldJson1a.png)
 
 The key to making this work is your serialization constructor, which might look something like this:
 
@@ -19,31 +19,31 @@ If `Deserialize(Me)` returns `True`, then your class properties were synchronize
 ### Default Values
 An alternative method for setting up default values is to inline them into the class field definition:
 
-![CustomControl MyField = 42](https://www.twinbasic.com/images/wiki/ccMyFieldPropertySheet1b.png)
+![CustomControl MyField = 42](/images/official/ccMyFieldPropertySheet1b.png)
 
 The `Deserialize(Me)` call inside your serialization constructor will overwrite the property value if  the control is being synchronized from the persisted property sheet data.
 ***
 ### Enumerations
 Enumerations that you define in your twinBASIC project are supported.  Simply expose a class field with the enumeration:
 
-![CustomControl enumeration property sheet example](https://www.twinbasic.com/images/wiki/ccMyEnumFieldPropertySheet.png)
+![CustomControl enumeration property sheet example](/images/official/ccMyEnumFieldPropertySheet.png)
 
 Note:  Enumerations are persisted to the form JSON structure as strings, so bare this in mind when making changes/updates to a CustomControl so that you don't introduce breaking changes by renaming an enumeration value.
 ***
 ### Objects
 Class objects that you define in your twinBASIC project are supported.  You ***must*** supply a ClassId attribute for any exposed object, so that the serialization can identify it.
 
-![CustomControl class property sheet example](https://www.twinbasic.com/images/wiki/ccMyFieldClass.png)
+![CustomControl class property sheet example](/images/official/ccMyFieldClass.png)
 ***
 ### Arrays
 Arrays are supported.   The form designer allows for adding new elements, removing elements, and re-ordering of elements (via drag/drop).
 
-![CustomControl array property sheet example](https://www.twinbasic.com/images/wiki/ccMyFieldArray.png)
+![CustomControl array property sheet example](/images/official/ccMyFieldArray.png)
 ***
 ### Property Get / Let
 Custom property procedures are supported.  You will find that using Property Get / Let procedures is required if you want property changes to trigger repainting of your control.
 
-![CustomControl custom property example](https://www.twinbasic.com/images/wiki/ccMyFieldCustomProperty.png)
+![CustomControl custom property example](/images/official/ccMyFieldCustomProperty.png)
 
 Note that _**private**_ fields and properties do not form part of the serialization, and so will not appear on the property sheet.
 ***
@@ -53,7 +53,7 @@ The serialization does not support Variants or generic Objects.  Always use stro
 ### Events
 Events that you define in your class will be exposed in the Events property sheet:
 
-![CustomControl attribute](https://www.twinbasic.com/images/wiki/ccEvents.png)
+![CustomControl attribute](/images/official/ccEvents.png)
 
 At the moment, the form-designer doesn't yet support code-behind-forms, so this feature is not yet complete.
 ***

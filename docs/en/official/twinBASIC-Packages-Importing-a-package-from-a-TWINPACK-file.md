@@ -6,17 +6,17 @@ To import a package directly from a TWINPACK file (instead of using TWINSERV), f
 - open the `Settings` file within it
 - navigate to the References section
 - select the 'Available Packages' button
-![image](https://github.com/user-attachments/assets/d9f1e4d9-1805-47e5-93aa-251151b4e914)
+![image](/images/official/9ba2115df1581847198f5f5c2b9314a3.png)
 
 - press the 'Import from file...' button:
 
-![image](https://github.com/user-attachments/assets/e35d5955-9e70-4d6e-abd7-748558da75ba)
+![image](/images/official/0d2f9a60cd924a02ac1e6e46a0d45e09.png)
 
 
 
 - choose the TWINPACK file you want to import, and then it should appear in the references list (ticked):
 
-![image](https://github.com/user-attachments/assets/4e4b8e4d-2a1c-42e5-8f4b-5a9b3f523ee8)
+![image](/images/official/e6ec4678b8ee3b325712c2a2e7b85f18.png)
 
 <br>
 <br>
@@ -25,6 +25,6 @@ To import a package directly from a TWINPACK file (instead of using TWINSERV), f
 
 Now you're ready to use the package!  In the example shown above I added a reference to the CSharpishStringFormater package, and I can now confirm that I can access components from the package in my code:
 
-![image](https://github.com/user-attachments/assets/e9a3fd21-8e6a-4485-b52c-0c041600826b)
+![image](/images/official/d5658d7720ab70866e8c7ee289783ba4.png)
 <br>
 <br>

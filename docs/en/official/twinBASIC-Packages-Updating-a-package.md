@@ -2,12 +2,12 @@
 
 The compiler will notify you if a newer version of a package in your project is available on TWINSERV when you load your project:
 
-![image](https://github.com/user-attachments/assets/db4636f6-d988-4e31-94a2-c4c170418e81)
+![image](/images/official/a485146a44f8b54cf517cc218ec38587.png)
 
 
 If you find an updated package is available on TWINSERV, you must first remove the old package from your project by deselecting it. Open Settings to References and untick the box. You will then be prompted to remove it from the filesystem:
 
-![415937809-87a11bc3-9a9c-4551-86c2-69d206d95087](https://github.com/user-attachments/assets/a1331a0e-3ba3-45cf-8dc3-2e24f0fa1fe6)
+![415937809-87a11bc3-9a9c-4551-86c2-69d206d95087](/images/official/9defb3469dde01c9287b90d0eab37540.png)
 <br/>
 <br/>
 <br/>

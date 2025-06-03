@@ -2,13 +2,13 @@
 
 To create a new TWINPACK package, navigate to the twinBASIC New Project dialog, and under the 'Samples' tab, choose the option labelled 'Package':
 
-![image](https://github.com/user-attachments/assets/6ad7a172-0e1b-4276-ac89-042681552507)
+![image](/images/official/a24890b414bf8caaf1ab31a5978d2826.png)
 <br>
 <br>
 
 Once you've created the project, you should find the extra 'PACKAGE PUBLISHING' panel as a popup:
 
-![image](https://github.com/user-attachments/assets/9eeffbcf-d73e-4a92-bce5-811ed60aba98)
+![image](/images/official/1df35a6adce7e4c56f482b2f6a360e21.png)
 <br>
 <br>
 
@@ -29,10 +29,10 @@ You can now create components (Class, Module, Interface) in your project as norm
 
 Use this option if you want to just create a local TWINPACK file that you can use in other projects.  For this, the build process is the same as any ordinary twinBASIC build... just hit the Build button in the TWINBASIC toolbar:
 
-![image](https://github.com/user-attachments/assets/4d90f313-35d5-426d-8fc3-852ca03382fa)
+![image](/images/official/0b6927257bee1e652f75a545fe2aebf5.png)
 <br>
 <br>
-![image](https://github.com/user-attachments/assets/8d74d820-9907-4e76-ac42-71d0233187f1)
+![image](/images/official/bc256630513f0905f00dbd03e3bc5c07.png)
 
 You'll see the build output notification in the `DEBUG CONSOLE`, as seen above.
 
