@@ -109,5 +109,6 @@ If you need to access the origin site, please click  [https://twinbasic.com](htt
 - Follow official updates
 - Participate in GitHub issue tracking
 - Become a VIP Gold member for additional support
+- Join to QQ group [788160802](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802)
 
 > Note: twinBasic is under active development with daily updates being the norm. It's recommended to follow official channels for the latest updates.

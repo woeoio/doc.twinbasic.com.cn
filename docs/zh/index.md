@@ -109,5 +109,6 @@ features:
 - 关注官方更新
 - 参与 GitHub 问题追踪
 - 成为 VIP Gold 会员获取更多支持
+- 点击链接加入群聊【TwinBasic开发交流】：[788160802](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802)
 
 > 注意：twinBasic 仍在积极开发中，每日更新是常态。建议关注官方渠道获取最新动态。

@@ -23,7 +23,9 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '首页', link: '/' },
-          { text: '官方文档', link: '/zh/official/Home' }
+          { text: '官方文档', link: '/zh/official/Home' },
+          { text: 'VB6.PRO', link: 'https://doc.vb6.pro/' },
+          { text: '加QQ群', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
         ], sidebar: {
           '/': [
             {
@@ -93,7 +95,9 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Home', link: '/en/' },
-          { text: 'Official Docs', link: '/en/official/Home' }
+          { text: 'Official Docs', link: '/en/official/Home' },
+          { text: 'VB6.PRO', link: 'https://doc.vb6.pro/' },
+          { text: 'Join QQ Group', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
         ],
 
         sidebar: {
