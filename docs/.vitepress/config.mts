@@ -171,7 +171,10 @@ export default defineConfig({
         "name": "twinBASIC中文文档",
         "url": "https://doc.twinbasic.com.cn"
       }
-    `]
+    `],
+    // 统计
+    ['script', { src: 'https://tj.a-vi.com/script.js', 'data-website-id': '981a4811-c51f-4403-a37a-8351e0e3b1cb', 'data-spa': 'auto', defer: '' }],
+    ['script', { src: '//api.a-vi.com/tongji/vist.js' }],
   ],
 
   themeConfig: {
