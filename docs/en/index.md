@@ -40,9 +40,10 @@ features:
 ---
 # Development
 
+::: info Note
 This site is not the official website of Twinbasic, but a sharing website created because the official website is inaccessible.
 If you need to access the origin site, please click  [https://twinbasic.com](https://twinbasic.com)
-
+::: 
 
 ## Core Features ✨
 
