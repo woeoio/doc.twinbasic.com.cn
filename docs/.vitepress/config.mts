@@ -23,7 +23,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '首页', link: '/' },
-          { text: '官方文档', link: '/official/Home' },
+          { text: '文档', link: '/official/Home' },
           { text: 'VB6.PRO', link: 'https://doc.vb6.pro/' },
           { text: '捐赠', link: 'https://doc.vb6.pro/donate/' },
           { text: '加QQ群', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
@@ -39,6 +39,12 @@ export default defineConfig({
               items: [
                 { text: '首页', link: '/official/Home' },
                 { text: '常见问题', link: '/official/twinBASIC-Frequently-Asked-Questions-(FAQs)' }
+              ]
+            },
+            {
+              text: 'twinBASIC 入门',
+              items: [
+                { text: '入门指南', link: '/start/base' },
               ]
             },
             {
