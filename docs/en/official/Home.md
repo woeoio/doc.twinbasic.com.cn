@@ -22,10 +22,10 @@
 4. [Importing a package from a TWINPACK file](twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file)
 5. [Updating a package](twinBASIC-Packages-Updating-a-package)
 
-<!-- ## WebView2
+## WebView2
 1. [Getting Started](twinBASIC-WebView2-Getting-Started)
 2. [Customize the UserDataFolder](twinBASIC-WebView2-Customize-The-UserDataFolder)
-3. [Information about re-entrancy](twinBASIC-WebView2-Information-about-re-entrancy) -->
+3. [Information about re-entrancy](twinBASIC-WebView2-Information-about-re-entrancy)
 
 ## New Language and IDE Features
 1. [Overview of features new to twinBASIC](twinBASIC-Features-1) (compared to VBx)
