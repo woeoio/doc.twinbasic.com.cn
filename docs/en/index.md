@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "TwinBasic"
   text: "Modern VB6 Alternative"
-  tagline: "100% compatible with VB6/VBA, with modern development experience"
+  tagline: "100% compatible with VB6/VBA, Native x64, native multi-threaded, package management"
   image:
     src: /images/twinBASICIconTransparent.png
     alt: TwinBasic
