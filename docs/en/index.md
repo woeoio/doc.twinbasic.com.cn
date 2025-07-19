@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "TwinBasic"
   text: "Modern VB6 Twins"
-  tagline: "100% compatible with VB6/VBA, Native x64, more..."
+  tagline: "100% compatible with VB6/VBA, Native x64, More..."
   image:
     src: /images/twinBASICIconTransparent.png
     alt: TwinBasic
