@@ -23,7 +23,8 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '首页', link: '/' },
-          { text: '文档', link: '/official/Home' },
+          { text: 'TBMAN', link: '/tbman' },
+          { text: '官方', link: '/official/Home' },
           { text: 'VB6.PRO', link: 'https://vb6.pro/' },
           { text: '捐赠', link: 'https://doc.vb6.pro/donate/' },
           { text: '加QQ群', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
@@ -77,6 +78,30 @@ export default defineConfig({
                 { text: '更新包', link: '/official/twinBASIC-Packages-Updating-a-package' }
               ]
             }
+          ],
+          '/tbman/': [
+          {
+              text: 'TBMAN 开发手册',
+              items: [
+                { text: '简介', link: '/tbman/' },
+                {
+                  text: '线程池类库',
+                  collapsed: false,
+                  items: [
+                    { text: '简介', link: '/tbman/threadPool/' },
+                    { text: 'API 参考', link: '/tbman/threadPool/api-reference' },
+                    { text: '使用教程', link: '/tbman/threadPool/tutorials' },
+                    { text: '示例代码', link: '/tbman/threadPool/examples' },
+                    { text: '高级特性', link: '/tbman/threadPool/advanced-features' },
+                    { text: '任务数据与结果管理', link: '/tbman/threadPool/TaskDataAndResult' },
+                    { text: '性能优化指南', link: '/tbman/threadPool/PerformanceOptimization' },
+                    { text: '特性集成指南', link: '/tbman/threadPool/FeatureIntegration' },
+                    { text: '高级应用示例', link: '/tbman/threadPool/AdvancedExamples' },
+                    { text: '故障排除指南', link: '/tbman/threadPool/Troubleshooting' }
+                  ]
+                }
+              ]
+            },
           ]
         },
 
@@ -107,6 +132,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'Home', link: '/en/' },
+          { text: 'TBMAN', link: '/tbman' },
           { text: 'Official Docs', link: '/en/official/Home' },
           { text: 'VB6.PRO', link: 'https://vb6.pro/' },
           { text: 'Join QQ Group', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
@@ -151,6 +177,30 @@ export default defineConfig({
                 { text: 'Updating packages', link: '/en/official/twinBASIC-Packages-Updating-a-package' }
               ]
             }
+          ],
+          '/en/tbman/': [
+            {
+              text: 'TBMAN Developer',
+              items: [
+                { text: 'Introduction', link: '/en/tbman/' },
+                {
+                  text: 'ThreadPool Library',
+                  collapsed: false,
+                  items: [
+                    { text: 'Introduction', link: '/en/tbman/threadPool/' },
+                    { text: 'API Reference', link: '/en/tbman/threadPool/api-reference' },
+                    { text: 'Tutorials', link: '/en/tbman/threadPool/tutorials' },
+                    { text: 'Examples', link: '/en/tbman/threadPool/examples' },
+                    { text: 'Advanced Features', link: '/en/tbman/threadPool/advanced-features' },
+                    { text: 'Task Data and Result Management', link: '/en/tbman/threadPool/TaskDataAndResult' },
+                    { text: 'Performance Optimization Guide', link: '/en/tbman/threadPool/PerformanceOptimization' },
+                    { text: 'Feature Integration Guide', link: '/en/tbman/threadPool/FeatureIntegration' },
+                    { text: 'Advanced Application Examples', link: '/en/tbman/threadPool/AdvancedExamples' },
+                    { text: 'Troubleshooting Guide', link: '/en/tbman/threadPool/Troubleshooting' }
+                  ]
+                }
+              ]
+            },
           ]
         },
 
