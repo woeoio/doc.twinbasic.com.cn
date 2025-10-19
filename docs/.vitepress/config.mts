@@ -84,22 +84,22 @@ export default defineConfig({
               text: 'TBMAN 开发手册',
               items: [
                 { text: '简介', link: '/tbman/' },
-                {
-                  text: '线程池类库',
-                  collapsed: false,
-                  items: [
-                    { text: '简介', link: '/tbman/threadPool/' },
-                    { text: 'API 参考', link: '/tbman/threadPool/api-reference' },
-                    { text: '使用教程', link: '/tbman/threadPool/tutorials' },
-                    { text: '示例代码', link: '/tbman/threadPool/examples' },
-                    { text: '高级特性', link: '/tbman/threadPool/advanced-features' },
-                    { text: '任务数据与结果管理', link: '/tbman/threadPool/TaskDataAndResult' },
-                    { text: '性能优化指南', link: '/tbman/threadPool/PerformanceOptimization' },
-                    { text: '特性集成指南', link: '/tbman/threadPool/FeatureIntegration' },
-                    { text: '高级应用示例', link: '/tbman/threadPool/AdvancedExamples' },
-                    { text: '故障排除指南', link: '/tbman/threadPool/Troubleshooting' }
-                  ]
-                }
+                // {
+                //   text: '线程池类库',
+                //   collapsed: false,
+                //   items: [
+                //     { text: '简介', link: '/tbman/threadPool/' },
+                //     { text: 'API 参考', link: '/tbman/threadPool/api-reference' },
+                //     { text: '使用教程', link: '/tbman/threadPool/tutorials' },
+                //     { text: '示例代码', link: '/tbman/threadPool/examples' },
+                //     { text: '高级特性', link: '/tbman/threadPool/advanced-features' },
+                //     { text: '任务数据与结果管理', link: '/tbman/threadPool/TaskDataAndResult' },
+                //     { text: '性能优化指南', link: '/tbman/threadPool/PerformanceOptimization' },
+                //     { text: '特性集成指南', link: '/tbman/threadPool/FeatureIntegration' },
+                //     { text: '高级应用示例', link: '/tbman/threadPool/AdvancedExamples' },
+                //     { text: '故障排除指南', link: '/tbman/threadPool/Troubleshooting' }
+                //   ]
+                // }
               ]
             },
           ]
@@ -183,22 +183,22 @@ export default defineConfig({
               text: 'TBMAN Developer',
               items: [
                 { text: 'Introduction', link: '/en/tbman/' },
-                {
-                  text: 'ThreadPool Library',
-                  collapsed: false,
-                  items: [
-                    { text: 'Introduction', link: '/en/tbman/threadPool/' },
-                    { text: 'API Reference', link: '/en/tbman/threadPool/api-reference' },
-                    { text: 'Tutorials', link: '/en/tbman/threadPool/tutorials' },
-                    { text: 'Examples', link: '/en/tbman/threadPool/examples' },
-                    { text: 'Advanced Features', link: '/en/tbman/threadPool/advanced-features' },
-                    { text: 'Task Data and Result Management', link: '/en/tbman/threadPool/TaskDataAndResult' },
-                    { text: 'Performance Optimization Guide', link: '/en/tbman/threadPool/PerformanceOptimization' },
-                    { text: 'Feature Integration Guide', link: '/en/tbman/threadPool/FeatureIntegration' },
-                    { text: 'Advanced Application Examples', link: '/en/tbman/threadPool/AdvancedExamples' },
-                    { text: 'Troubleshooting Guide', link: '/en/tbman/threadPool/Troubleshooting' }
-                  ]
-                }
+                // {
+                //   text: 'ThreadPool Library',
+                //   collapsed: false,
+                //   items: [
+                //     { text: 'Introduction', link: '/en/tbman/threadPool/' },
+                //     { text: 'API Reference', link: '/en/tbman/threadPool/api-reference' },
+                //     { text: 'Tutorials', link: '/en/tbman/threadPool/tutorials' },
+                //     { text: 'Examples', link: '/en/tbman/threadPool/examples' },
+                //     { text: 'Advanced Features', link: '/en/tbman/threadPool/advanced-features' },
+                //     { text: 'Task Data and Result Management', link: '/en/tbman/threadPool/TaskDataAndResult' },
+                //     { text: 'Performance Optimization Guide', link: '/en/tbman/threadPool/PerformanceOptimization' },
+                //     { text: 'Feature Integration Guide', link: '/en/tbman/threadPool/FeatureIntegration' },
+                //     { text: 'Advanced Application Examples', link: '/en/tbman/threadPool/AdvancedExamples' },
+                //     { text: 'Troubleshooting Guide', link: '/en/tbman/threadPool/Troubleshooting' }
+                //   ]
+                // }
               ]
             },
           ]
