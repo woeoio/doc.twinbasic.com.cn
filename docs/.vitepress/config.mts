@@ -46,6 +46,7 @@ export default defineConfig({
               text: 'twinBASIC 入门',
               items: [
                 { text: '入门指南', link: '/start/base' },
+                { text: '资源文件', link: '/start/base' },
               ]
             },
             {
@@ -59,6 +60,12 @@ export default defineConfig({
               ]
             },
             {
+              text: '控件和属性',
+              items: [
+                { text: '锚定布局', link: '/official/Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management' },
+              ]
+            },
+            {
               text: '自定义控件',
               items: [
                 { text: '自定义控件介绍', link: '/official/twinBASIC-CustomControls-Introduction' },
@@ -67,7 +74,7 @@ export default defineConfig({
                 { text: '控件绘制', link: '/official/twinBASIC---CustomControls---Painting---drawing-to-your-control' },
                 { text: '属性表和对象序列化', link: '/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization' }
               ]
-            },
+            },            
             {
               text: '包管理',
               items: [
@@ -155,6 +162,12 @@ export default defineConfig({
                 { text: 'Features (3)', link: '/en/official/twinBASIC-Features-3' },
                 { text: 'Features (4)', link: '/en/official/twinBASIC-Features-4' },
                 { text: 'Compiler Constants', link: '/en/official/twinBASIC-Compiler-Constants' }
+              ]
+            },
+            {
+              text: 'Controls and Properties',
+              items: [
+                { text: 'Anchoring and Docking', link: '/official/Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management' },
               ]
             },
             {
