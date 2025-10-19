@@ -143,3 +143,8 @@
   max-width: 200px;
   max-height: 200px;
 }
+
+/* 图片查看器插件样式 */
+.main .vp-doc img {
+  cursor: pointer;
+}
