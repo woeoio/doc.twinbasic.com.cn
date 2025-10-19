@@ -46,7 +46,7 @@ export default defineConfig({
               text: 'twinBASIC 入门',
               items: [
                 { text: '入门指南', link: '/start/base' },
-                { text: '资源文件', link: '/start/base' },
+                { text: '资源文件', link: '/res/pic' },
               ]
             },
             {
@@ -151,7 +151,8 @@ export default defineConfig({
               text: 'Getting Started',
               items: [
                 { text: 'Home', link: '/en/official/Home' },
-                { text: 'FAQs', link: '/en/official/twinBASIC-Frequently-Asked-Questions-(FAQs)' }
+                { text: 'FAQs', link: '/en/official/twinBASIC-Frequently-Asked-Questions-(FAQs)' },
+                { text: 'Resource Files', link: '/en/res/pic' },
               ]
             },
             {
