@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@datapunt/matomo-tracker-js':
+        specifier: ^0.5.1
+        version: 0.5.1
       viewerjs:
         specifier: ^1.11.7
         version: 1.11.7
@@ -112,6 +115,9 @@ packages:
   '@babel/types@7.27.1':
     resolution: {integrity: sha512-+EzkxvLNfiUeKMgy/3luqfsCWFRXLb7U6wNQTk60tovuckwB15B191tJWvpp4HjiQWdJkCxO3Wbvc6jlk3Xb2Q==}
     engines: {node: '>=6.9.0'}
+
+  '@datapunt/matomo-tracker-js@0.5.1':
+    resolution: {integrity: sha512-9/MW9vt/BA5Db7tO6LqCeQKtuvBNjyq51faF3AzUmPMlYsJCnASIxcut3VqJKiribhUoey7aYbPIYuj9x4DLPA==}
 
   '@docsearch/css@3.8.2':
     resolution: {integrity: sha512-y05ayQFyUmCXze79+56v/4HpycYF3uFqB78pLPrSV5ZKAlDuIAAJNhaRi8tTdRNXh05yxX/TyNnzD6LwSM89vQ==}
@@ -913,6 +919,8 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
+
+  '@datapunt/matomo-tracker-js@0.5.1': {}
 
   '@docsearch/css@3.8.2': {}
 
