@@ -2,6 +2,15 @@
 
 本文档说明如何在 VitePress 项目中配置 Matomo 页面追踪统计。
 
+## 包管理
+
+确保您的项目已经安装了 `@datapunt/matomo-tracker-js` 包：
+
+```bash
+pnpm add @datapunt/matomo-tracker-js
+```
+
+
 ## 环境变量配置
 
 在项目根目录创建 `.env` 文件（如果不存在），并添加以下环境变量：
