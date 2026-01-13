@@ -4,5 +4,5 @@ docs/.vitepress/cache
 .env
 dist
 
-
+.SpecStory
 docs/zh/packages/vbccr/readme
