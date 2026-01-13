@@ -3,3 +3,6 @@ docs/.vitepress/dist
 docs/.vitepress/cache
 .env
 dist
+
+
+docs/zh/packages/vbccr/readme
