@@ -6,3 +6,5 @@ dist
 
 .SpecStory
 docs/zh/packages/vbccr/readme
+
+.vscode
