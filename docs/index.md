@@ -1,0 +1,3 @@
+---
+redirect: /zh/index.md
+---
