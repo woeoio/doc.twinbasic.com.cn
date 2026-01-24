@@ -25,6 +25,7 @@ export default defineConfig({
           { text: '首页', link: '/' },
           { text: 'TBMAN', link: '/tbman' },
           { text: '官方', link: '/official/Home' },
+          { text: '挑战', link: '/challenge/2026/202601' },
           { text: 'VBCCR', link: '/packages/vbccr/' },
           { text: 'VB6.PRO', link: 'https://vb6.pro/' },
           { text: '捐赠', link: 'https://doc.vb6.pro/donate/' },
@@ -167,6 +168,15 @@ export default defineConfig({
                 // }
               ]
             },
+          ],
+          '/challenge/2026/202601': [
+          {
+              text: '官方赛事',
+              items: [
+                { text: '2026年1月', link: '/challenge/2026/202601' },
+                
+              ]
+            },
           ]
         },
 
@@ -199,6 +209,7 @@ export default defineConfig({
           { text: 'Home', link: '/en/' },
           { text: 'TBMAN', link: '/tbman' },
           { text: 'Official Docs', link: '/en/official/Home' },
+          { text: 'Challenges', link: '/en/challenge/2026/202601' },
           { text: 'VBCCR', link: '/packages/vbccr/' },
           { text: 'VB6.PRO', link: 'https://vb6.pro/' },
           { text: 'Join QQ Group', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
@@ -329,6 +340,15 @@ export default defineConfig({
                 //     { text: 'Troubleshooting Guide', link: '/en/tbman/threadPool/Troubleshooting' }
                 //   ]
                 // }
+              ]
+            },
+          ],
+          '/en/challenge/2026/202601': [
+          {
+              text: 'Challenges',
+              items: [
+                { text: '2026.01', link: '/en/challenge/2026/202601' },
+                
               ]
             },
           ]
