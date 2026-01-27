@@ -25,7 +25,7 @@ export default defineConfig({
         nav: [
           { text: '首页', link: '/' },
           { text: 'TBMAN', link: '/tbman' },
-          { text: '官方', link: '/official/Home' },
+          { text: '官方', link: 'https://docs.twinbasic.com/' },
           { text: '挑战', link: '/challenge/2026/202601' },
           { text: 'VBCCR', link: '/packages/vbccr/' },
           { text: 'VB6.PRO', link: 'https://vb6.pro/' },
@@ -209,7 +209,7 @@ export default defineConfig({
         nav: [
           { text: 'Home', link: '/en/' },
           { text: 'TBMAN', link: '/tbman' },
-          { text: 'Official Docs', link: '/en/official/Home' },
+          { text: 'Official Docs', link: 'https://docs.twinbasic.com/' },
           { text: 'Challenges', link: '/en/challenge/2026/202601' },
           { text: 'VBCCR', link: '/packages/vbccr/' },
           { text: 'VB6.PRO', link: 'https://vb6.pro/' },
