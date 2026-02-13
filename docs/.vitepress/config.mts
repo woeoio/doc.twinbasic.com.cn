@@ -27,7 +27,7 @@ export default defineConfig({
           { text: 'TBMAN', link: '/tbman' },
           { text: '官方', link: 'https://docs.twinbasic.com/' },
           { text: '挑战', link: '/challenge/2026/202601' },
-          { text: 'VBCCR', link: '/packages/vbccr/' },
+          // { text: 'VBCCR', link: '/packages/vbccr/' },
           { text: 'VB6.PRO', link: 'https://vb6.pro/' },
           { text: '捐赠', link: 'https://doc.vb6.pro/donate/' },
           { text: '加QQ群', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
@@ -211,7 +211,7 @@ export default defineConfig({
           { text: 'TBMAN', link: '/tbman' },
           { text: 'Official Docs', link: 'https://docs.twinbasic.com/' },
           { text: 'Challenges', link: '/en/challenge/2026/202601' },
-          { text: 'VBCCR', link: '/packages/vbccr/' },
+          // { text: 'VBCCR', link: '/packages/vbccr/' },
           { text: 'VB6.PRO', link: 'https://vb6.pro/' },
           { text: 'Join QQ Group', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802' }
         ],
