@@ -13,8 +13,8 @@ hero:
       text: 开始使用
       link: /official/Home
     - theme: alt
-      text: 功能特性
-      link: /official/twinBASIC-Features-1
+      text: 加群下载
+      link: http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802
 
 features:
   - icon: 🤝
@@ -38,6 +38,7 @@ features:
 ---
 
 ---
+
 # 中文开发文档
 
 ::: info 特别说明
@@ -48,11 +49,13 @@ features:
 ## 核心特性 ✨
 
 ### 完美的兼容性 🤝
+
 - 与现有的 VB6/VBA 代码库 100% 向后兼容
 - 完全基于 COM 技术，与经典版本的 Visual Basic 保持一致
 - 模拟了所有已知的 VB6 特性和行为
 
 ### 现代化的开发环境 💻
+
 - 轻量级、现代化的专用 IDE
 - 基于 Monaco 的代码编辑器
 - 支持深色和浅色主题
@@ -62,6 +65,7 @@ features:
 - 实时项目错误诊断
 
 ### 强大的编译器特性 🔧
+
 - 支持 32 位和 64 位原生编译
 - 完整的 Unicode 支持
 - 生成无需运行时库的独立可执行文件
@@ -69,6 +73,7 @@ features:
 - 计划支持 Mac、Linux 和 Android 平台
 
 ### 增强的语言特性 🌟
+
 - 支持位移运算符
 - 类实例 AddressOf
 - 继承支持
@@ -78,9 +83,10 @@ features:
 - 泛型支持（类似 VB.NET 但更灵活）
 - 新的数据类型：LongLong、LongPtr、Decimal
 - 新的运算符：AndAlso、OrElse、<<、>>
-- 新的赋值运算符：+=、-=、*=等
+- 新的赋值运算符：+=、-=、\*=等
 
 ### 内置调试器 🔍
+
 - 支持多线程调试
 - 调用堆栈窗口
 - 变量窗口
@@ -88,16 +94,19 @@ features:
 - 调试控制台
 
 ### 新的内置控件 🎮
+
 - FlexGrid 支持
 - QRCode 生成器
 - 更多自定义控件支持
 
 ## 包管理功能 📦
+
 - 内置包服务器
 - 支持 TWINPACK 包格式
 - 便捷的包导入和更新机制
 
 ## 为什么选择 twinBasic？ 🤔
+
 - 无缝升级现有 VB6/VBA 项目
 - 现代化的开发体验
 - 活跃的社区支持
@@ -106,6 +115,7 @@ features:
 - 专业的技术支持
 
 ## 参与社区 👥
+
 - 加入 Discord 社区交流 [https://discord.gg/UaW9GgKKuE](https://discord.gg/UaW9GgKKuE)
 - 关注官方更新
 - 参与 GitHub 问题追踪
