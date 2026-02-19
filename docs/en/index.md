@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /en/official/Home
+      link: /en/tbman
     - theme: alt
       text: Features
       link: /en/official/twinBASIC-Features-1
@@ -38,21 +38,24 @@ features:
 ---
 
 ---
+
 # Development
 
 ::: info Note
 This site is not the official website of Twinbasic, but a sharing website created because the official website is inaccessible.
-If you need to access the origin site, please click  [https://twinbasic.com](https://twinbasic.com)
-::: 
+If you need to access the origin site, please click [https://twinbasic.com](https://twinbasic.com)
+:::
 
 ## Core Features ✨
 
 ### Perfect Compatibility 🤝
+
 - 100% backward compatible with existing VB6/VBA codebases
 - Fully based on COM technology, consistent with classic Visual Basic versions
 - Simulates all known VB6 features and behaviors
 
 ### Modern Development Environment 💻
+
 - Lightweight, modern dedicated IDE
 - Monaco-based code editor
 - Support for dark and light themes
@@ -62,6 +65,7 @@ If you need to access the origin site, please click  [https://twinbasic.com](htt
 - Real-time project error diagnostics
 
 ### Powerful Compiler Features 🔧
+
 - Native 32-bit and 64-bit compilation support
 - Complete Unicode support
 - Generates standalone executables without runtime libraries
@@ -69,6 +73,7 @@ If you need to access the origin site, please click  [https://twinbasic.com](htt
 - Planned support for Mac, Linux, and Android platforms
 
 ### Enhanced Language Features 🌟
+
 - Bit-shift operators support
 - Class instance AddressOf
 - Inheritance support
@@ -78,9 +83,10 @@ If you need to access the origin site, please click  [https://twinbasic.com](htt
 - Generics support (similar to VB.NET but more flexible)
 - New data types: LongLong, LongPtr, Decimal
 - New operators: AndAlso, OrElse, <<, >>
-- New assignment operators: +=, -=, *=, etc.
+- New assignment operators: +=, -=, \*=, etc.
 
 ### Built-in Debugger 🔍
+
 - Multi-thread debugging support
 - Call stack window
 - Variables window
@@ -88,16 +94,19 @@ If you need to access the origin site, please click  [https://twinbasic.com](htt
 - Debug console
 
 ### New Built-in Controls 🎮
+
 - FlexGrid support
 - QRCode generator
 - Support for more custom controls
 
 ## Package Management Features 📦
+
 - Built-in package server
 - TWINPACK package format support
 - Convenient package import and update mechanism
 
 ## Why Choose twinBasic? 🤔
+
 - Seamless upgrade path for existing VB6/VBA projects
 - Modern development experience
 - Active community support
@@ -106,7 +115,8 @@ If you need to access the origin site, please click  [https://twinbasic.com](htt
 - Professional technical support
 
 ## Join the Community 👥
-- Join the Discord community  [https://discord.gg/UaW9GgKKuE](https://discord.gg/UaW9GgKKuE)
+
+- Join the Discord community [https://discord.gg/UaW9GgKKuE](https://discord.gg/UaW9GgKKuE)
 - Follow official updates
 - Participate in GitHub issue tracking
 - Become a VIP Gold member for additional support
