@@ -117,7 +117,7 @@ export const enSidebar = {
       ]
     },
   ],
-  '/en/challenge/2026/202601': [
+  '/en/challenge/2026': [
     {
       text: 'Challenges',
       items: [

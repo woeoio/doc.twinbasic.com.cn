@@ -124,7 +124,7 @@ export const zhSidebar = {
       ]
     },
   ],
-  '/challenge/2026/202601': [
+  '/challenge/2026': [
     {
       text: '官方赛事',
       items: [
