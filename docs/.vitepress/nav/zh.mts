@@ -129,6 +129,7 @@ export const zhSidebar = {
       text: '官方赛事',
       items: [
         { text: '2026年1月', link: '/challenge/2026/202601' },
+        { text: '2026年2月', link: '/challenge/2026/202602' },
       ]
     },
   ]

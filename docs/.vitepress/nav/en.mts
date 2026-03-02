@@ -122,6 +122,7 @@ export const enSidebar = {
       text: 'Challenges',
       items: [
         { text: '2026.01', link: '/en/challenge/2026/202601' },
+        { text: '2026.02', link: '/en/challenge/2026/202602' },
       ]
     },
   ]
