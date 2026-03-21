@@ -1,7 +1,7 @@
 export const zhNav = [
   { text: '首页', link: '/' },
   { text: 'TBMAN', link: '/tbman' },
-  { text: '官方', link: 'https://docs.twinbasic.com/' },
+  { text: '官方', link: '/official/' },
   { text: '挑战', link: '/challenge/2026/202601' },
   { text: 'VB6.PRO', link: 'https://vb6.pro/' },
   { text: '捐赠', link: 'https://doc.vb6.pro/donate/' },

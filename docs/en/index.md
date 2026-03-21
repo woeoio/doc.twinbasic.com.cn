@@ -14,7 +14,7 @@ hero:
       link: /en/official/
     - theme: alt
       text: Features
-      link: /en/official/twinBASIC-Features-1
+      link: /en/official/Features
 
 features:
   - icon: 🤝
