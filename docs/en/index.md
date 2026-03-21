@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "TwinBasic"
   text: "Modern VB6 Twins"
-  tagline: "100% compatible with VB6/VBA, Native x64, More..."
+  tagline: "Here is for the convenience of Chinese developers only. English users, please go to the official documentation site.[https://docs.twinbasic.com]"
   image:
     src: /images/twinBASICIconTransparent.png
     alt: TwinBasic
@@ -37,14 +37,16 @@ features:
     details: Built-in FlexGrid support, QRCode generator, and extensive custom controls capability
 ---
 
----
+::: info ℹ️ About This Site
+This is a **community mirror site** for twinBASIC documentation, created because the official website is sometimes inaccessible in certain regions.
+
+- 🌐 Official Website: [https://twinbasic.com](https://twinbasic.com)
+- 📖 Official Docs: [https://docs.twinbasic.com](https://docs.twinbasic.com)
+- 💬 Join Discord: [https://discord.gg/UaW9GgKKuE](https://discord.gg/UaW9GgKKuE)
+
+:::
 
 # Development
-
-::: info Note
-This site is not the official website of Twinbasic, but a sharing website created because the official website is inaccessible.
-If you need to access the origin site, please click [https://twinbasic.com](https://twinbasic.com)
-:::
 
 ## Core Features ✨
 
@@ -123,3 +125,4 @@ If you need to access the origin site, please click [https://twinbasic.com](http
 - Join to QQ group [788160802](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802)
 
 > Note: twinBasic is under active development with daily updates being the norm. It's recommended to follow official channels for the latest updates.
+

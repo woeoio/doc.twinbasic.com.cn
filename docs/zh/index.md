@@ -44,6 +44,8 @@ features:
 ::: info 特别说明
 本站不是Twinbasic的官方网站，只是因为官方网站无法访问而创立的分享网站。
 如果需要访问源站，请点击 [https://twinbasic.com](https://twinbasic.com)
+
+Here is for the convenience of Chinese developers only. English users, please go to the official documentation site.[https://docs.twinbasic.com](https://docs.twinbasic.com)
 :::
 
 ## 核心特性 ✨
