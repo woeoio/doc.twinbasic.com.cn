@@ -128,6 +128,29 @@ function main() {
   log('✅ 复制完成！', 'green');
 }
 
+// 递归查找所有 Images 目录
+function findImagesDirs(baseDir, currentDir = '', results = []) {
+  const fullPath = path.join(baseDir, currentDir);
+  if (!fs.existsSync(fullPath)) return results;
+  
+  const entries = fs.readdirSync(fullPath, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      const relativePath = path.join(currentDir, entry.name);
+      
+      if (entry.name === 'Images') {
+        results.push(relativePath);
+      } else {
+        // 递归查找子目录
+        findImagesDirs(baseDir, relativePath, results);
+      }
+    }
+  }
+  
+  return results;
+}
+
 // 同步图片到中文版
 function syncImages() {
   log('🔄 开始同步图片到中文版...', 'blue');
@@ -135,23 +158,26 @@ function syncImages() {
   const enBaseDir = path.join(__dirname, '..', 'docs', 'en', 'official2');
   const zhBaseDir = path.join(__dirname, '..', 'docs', 'zh', 'official2');
   
-  // 需要同步图片的目录
-  const dirsToSync = ['Features', 'IDE', 'Miscellaneous', 'Reference', 'Tutorials', 'Videos'];
+  // 查找英文版所有 Images 目录
+  const imagesDirs = findImagesDirs(enBaseDir);
   
-  for (const dir of dirsToSync) {
-    const enImagesDir = path.join(enBaseDir, dir, 'Images');
-    const zhImagesDir = path.join(zhBaseDir, dir, 'Images');
-    
-    if (fs.existsSync(enImagesDir)) {
-      ensureDir(zhImagesDir);
-      // 清空中文版的旧图片
-      cleanDir(zhImagesDir);
-      copyDir(enImagesDir, zhImagesDir);
-      log(`📁 已同步 ${dir}/Images`, 'green');
-    }
+  if (imagesDirs.length === 0) {
+    log('⚠️  未找到 Images 目录', 'yellow');
+    return;
   }
   
-  log('✅ 图片同步完成！', 'green');
+  for (const imagesDir of imagesDirs) {
+    const enImagesDir = path.join(enBaseDir, imagesDir);
+    const zhImagesDir = path.join(zhBaseDir, imagesDir);
+    
+    ensureDir(zhImagesDir);
+    // 清空中文版的旧图片
+    cleanDir(zhImagesDir);
+    copyDir(enImagesDir, zhImagesDir);
+    log(`📁 已同步 ${imagesDir}`, 'green');
+  }
+  
+  log(`✅ 图片同步完成！共同步 ${imagesDirs.length} 个 Images 目录`, 'green');
 }
 
 // 主函数
