@@ -2,32 +2,24 @@ import { defineConfig } from 'vitepress'
 import llmstxt from 'vitepress-plugin-llms'
 import { zhNav, zhSidebar, zhFooter, zhDocFooter } from './nav/zh.mts'
 import { enNav, enSidebar, enFooter } from './nav/en.mts'
+import { clearDieLink } from './plugins/clearDieLink.ts'
 
-// 自定义插件：处理 Jekyll 语法
-const jekyllPlugin = () => ({
-  name: 'jekyll-transform',
-  enforce: 'pre',
-  transform(code: string, id: string) {
-    // 只处理 markdown 文件
-    if (!id.endsWith('.md')) return null
-    
-    let transformed = code
-    
-    // 1. 处理图片的 {:style="..."} -> 改为 VitePress 支持的 {style="..."}
-    transformed = transformed.replace(
-      /!\[([^\]]*)\]\(([^)]+)\)\{:style="([^"]+)"\}/g,
-      '![$1]($2){style="$3"}'
-    )
-    
-    // 2. 移除其他所有 Jekyll Attribute Lists ({: ... })
-    // 包括 {: #id }, {: .class }, {: .no_toc } 等
-    transformed = transformed.replace(/\s*\{:[^}]+\}/g, '')
-    
-    // 3. 移除 Jekyll 的 {% include %} 语法
-    transformed = transformed.replace(/\{%\s*include\s+[^%]+%\}/g, '')
-    
-    return transformed === code ? null : transformed
-  }
+// clearDieLink 插件：从 Jekyll 迁移的文档死链修复
+// 功能：
+// 1. 自动添加 .md 后缀到相对链接
+// 2. HTML 后缀转 MD
+// 3. 目录链接规范化（/ → /index.md）
+// 4. Jekyll Attribute Lists 清理
+// 5. Jekyll TOC 语法清理
+// 6. 图片路径空格处理
+// 7. Jekyll include 语法移除
+const dieLinkPlugin = clearDieLink({
+  debug: false,           // 开发时可设为 true 查看处理日志
+  addMdExtension: true,   // 自动添加 .md 后缀
+  convertHtmlToMd: true,  // HTML 转 MD
+  normalizeDirLinks: true,// 目录链接规范化
+  cleanJekyllSyntax: true,// 清理 Jekyll 语法
+  encodeImageSpaces: true // 编码图片路径空格
 })
 
 // https://vitepress.dev/reference/site-config
@@ -37,11 +29,25 @@ export default defineConfig({
   description: "an new vb6",
 
   // 忽略死链接检查（从Jekyll迁移的文档链接需要逐步修复）
-  ignoreDeadLinks: true,
+  // ignoreDeadLinks: true,
 
-  // 重定向默认语言目录
+  // 重定向默认语言目录 + Jekyll 迁移的旧路径
   rewrites: {
-    'zh/:rest*': ':rest*'
+    'zh/:rest*': ':rest*',
+    // Jekyll tB/ 路径重定向到实际路径 - 覆盖所有可能的路径
+    ':lang(zh|en)/official/tB/:path*': ':lang/official/:path*',
+    ':lang(zh|en)/official/tB/Core/:path*': ':lang/official/Reference/:path*',
+    ':lang(zh|en)/official/tB/Modules/:path*': ':lang/official/Reference/Modules/:path*',
+    ':lang(zh|en)/official/tB/IDE/Project/:path*': ':lang/official/IDE/:path*',
+    ':lang(zh|en)/official/tB/IDE/AddIns/:path*': ':lang/official/IDE/AddIns/:path*',
+    ':lang(zh|en)/official/tB/Reference/:path*': ':lang/official/Reference/:path*',
+    ':lang(zh|en)/official/tB/Tutorials/:path*': ':lang/official/Tutorials/:path*',
+    ':lang(zh|en)/official/tB/Features/:path*': ':lang/official/Features/:path*',
+    ':lang(zh|en)/official/tB/Videos/:path*': ':lang/official/Videos/:path*',
+    ':lang(zh|en)/official/tB/Controls': ':lang/official/Reference/Controls',
+    ':lang(zh|en)/official/tB/Gloss': ':lang/official/Reference/Glossary',
+    ':lang(zh|en)/official/tB/Modules': ':lang/official/Reference/Modules',
+    ':lang(zh|en)/official/tB/Core': ':lang/official/Reference',
   },
 
   sitemap: {
@@ -166,6 +172,9 @@ export default defineConfig({
 
   lastUpdated: true,
   vite: {
-    plugins: [llmstxt(), jekyllPlugin() as any]
+    plugins: [
+      // llmstxt(), 
+      dieLinkPlugin as any
+    ]
   }
 })
