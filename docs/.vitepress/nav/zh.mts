@@ -86,9 +86,29 @@ export const zhSidebar = {
         {
           text: 'Packages 包管理',
           items: [
+            { text: '概述', link: '/official2/Features/Packages/' },
             { text: '创建TWINPACK包', link: '/official2/Features/Packages/Creating a TWINPACK package' },
             { text: '从TWINPACK导入包', link: '/official2/Features/Packages/Importing a package from a TWINPACK file' },
-            { text: '从TWINSERV导入包', link: '/official2/Features/Packages/Importing a package from TWINSERV' }
+            { text: '从TWINSERV导入包', link: '/official2/Features/Packages/Importing a package from TWINSERV' },
+            { text: '更新包', link: '/official2/Features/Packages/Updating a package' }
+          ]
+        },
+        {
+          text: 'Project-Configuration 项目配置',
+          items: [
+            { text: '概述', link: '/official2/Features/Project-Configuration/' },
+            { text: 'ActiveX注册', link: '/official2/Features/Project-Configuration/ActiveX-Registration' },
+            { text: '编译器选项', link: '/official2/Features/Project-Configuration/Compiler-Options' },
+            { text: '项目类型', link: '/official2/Features/Project-Configuration/Project-Types' }
+          ]
+        },
+        {
+          text: 'Standard-Library 标准库',
+          items: [
+            { text: '概述', link: '/official2/Features/Standard-Library/' },
+            { text: '文件I/O', link: '/official2/Features/Standard-Library/File-IO' },
+            { text: '新函数', link: '/official2/Features/Standard-Library/New-Functions' },
+            { text: 'Unicode支持', link: '/official2/Features/Standard-Library/Unicode-Support' }
           ]
         }
       ]

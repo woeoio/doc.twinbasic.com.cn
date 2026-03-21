@@ -57,6 +57,58 @@ export const enSidebar = {
             { text: 'UserControl', link: '/en/official2/Features/GUI-Components/UserControl' },
             { text: 'Windowless', link: '/en/official2/Features/GUI-Components/Windowless' }
           ]
+        },
+        {
+          text: 'Language',
+          items: [
+            { text: 'Overview', link: '/en/official2/Features/Language/' },
+            { text: 'Alias Types', link: '/en/official2/Features/Language/Alias-Types' },
+            { text: 'Comments', link: '/en/official2/Features/Language/Comments' },
+            { text: 'Data Types', link: '/en/official2/Features/Language/Data-Types' },
+            { text: 'Delegates', link: '/en/official2/Features/Language/Delegates' },
+            { text: 'Generics', link: '/en/official2/Features/Language/Generics' },
+            { text: 'Handlers', link: '/en/official2/Features/Language/Handlers' },
+            { text: 'Inheritance', link: '/en/official2/Features/Language/Inheritance' },
+            { text: 'Inline Initialization', link: '/en/official2/Features/Language/Inline-Initialization' },
+            { text: 'Interfaces & CoClasses', link: '/en/official2/Features/Language/Interfaces-CoClasses' },
+            { text: 'Literals', link: '/en/official2/Features/Language/Literals' },
+            { text: 'Loop Control', link: '/en/official2/Features/Language/Loop-Control' },
+            { text: 'Module Organization', link: '/en/official2/Features/Language/Module-Organization' },
+            { text: 'Operators', link: '/en/official2/Features/Language/Operators' },
+            { text: 'Overloading', link: '/en/official2/Features/Language/Overloading' },
+            { text: 'Pointers', link: '/en/official2/Features/Language/Pointers' },
+            { text: 'Return', link: '/en/official2/Features/Language/Return' },
+            { text: 'Type Inference', link: '/en/official2/Features/Language/Type-Inference' },
+            { text: 'UDTs', link: '/en/official2/Features/Language/UDTs' }
+          ]
+        },
+        {
+          text: 'Packages',
+          items: [
+            { text: 'Overview', link: '/en/official2/Features/Packages/' },
+            { text: 'Creating TWINPACK', link: '/en/official2/Features/Packages/Creating a TWINPACK package' },
+            { text: 'Importing from TWINPACK', link: '/en/official2/Features/Packages/Importing a package from a TWINPACK file' },
+            { text: 'Importing from TWINSERV', link: '/en/official2/Features/Packages/Importing a package from TWINSERV' },
+            { text: 'Updating', link: '/en/official2/Features/Packages/Updating a package' }
+          ]
+        },
+        {
+          text: 'Project Configuration',
+          items: [
+            { text: 'Overview', link: '/en/official2/Features/Project-Configuration/' },
+            { text: 'ActiveX Registration', link: '/en/official2/Features/Project-Configuration/ActiveX-Registration' },
+            { text: 'Compiler Options', link: '/en/official2/Features/Project-Configuration/Compiler-Options' },
+            { text: 'Project Types', link: '/en/official2/Features/Project-Configuration/Project-Types' }
+          ]
+        },
+        {
+          text: 'Standard Library',
+          items: [
+            { text: 'Overview', link: '/en/official2/Features/Standard-Library/' },
+            { text: 'File I/O', link: '/en/official2/Features/Standard-Library/File-IO' },
+            { text: 'New Functions', link: '/en/official2/Features/Standard-Library/New-Functions' },
+            { text: 'Unicode Support', link: '/en/official2/Features/Standard-Library/Unicode-Support' }
+          ]
         }
       ]
     },
