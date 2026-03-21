@@ -128,4 +128,41 @@ function main() {
   log('✅ 复制完成！', 'green');
 }
 
+// 同步图片到中文版
+function syncImages() {
+  log('🔄 开始同步图片到中文版...', 'blue');
+  
+  const enBaseDir = path.join(__dirname, '..', 'docs', 'en', 'official2');
+  const zhBaseDir = path.join(__dirname, '..', 'docs', 'zh', 'official2');
+  
+  // 需要同步图片的目录
+  const dirsToSync = ['Features', 'IDE', 'Miscellaneous', 'Reference', 'Tutorials', 'Videos'];
+  
+  for (const dir of dirsToSync) {
+    const enImagesDir = path.join(enBaseDir, dir, 'Images');
+    const zhImagesDir = path.join(zhBaseDir, dir, 'Images');
+    
+    if (fs.existsSync(enImagesDir)) {
+      ensureDir(zhImagesDir);
+      // 清空中文版的旧图片
+      cleanDir(zhImagesDir);
+      copyDir(enImagesDir, zhImagesDir);
+      log(`📁 已同步 ${dir}/Images`, 'green');
+    }
+  }
+  
+  log('✅ 图片同步完成！', 'green');
+}
+
+// 主函数
+function main() {
+  const command = process.argv[2];
+  
+  if (command === 'syncimg') {
+    syncImages();
+  } else {
+    copyDocs();
+  }
+}
+
 main();
