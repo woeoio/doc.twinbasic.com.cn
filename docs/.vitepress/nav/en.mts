@@ -10,6 +10,12 @@ export const enNav = [
 export const enSidebar = {
   '/en/': [
     {
+      text: 'Official',
+      items: [
+        { text: 'Overview', link: '/en/official/' }
+      ]
+    },
+    {
       text: 'Challenges',
       items: [
         { text: 'Overview', link: '/en/official2/Challenges/' },

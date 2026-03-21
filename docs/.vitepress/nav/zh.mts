@@ -11,6 +11,12 @@ export const zhNav = [
 export const zhSidebar = {
   '/': [
     {
+      text: '官方文档',
+      items: [
+        { text: '概述', link: '/official/' }
+      ]
+    },
+    {
       text: 'Challenges 挑战',
       items: [
         { text: '概述', link: '/official2/Challenges/' },
