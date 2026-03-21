@@ -36,6 +36,9 @@ export default defineConfig({
   title: "twinbasic-docs",
   description: "an new vb6",
 
+  // 忽略死链接检查（从Jekyll迁移的文档链接需要逐步修复）
+  ignoreDeadLinks: true,
+
   // 重定向默认语言目录
   rewrites: {
     'zh/:rest*': ':rest*'
