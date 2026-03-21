@@ -11,53 +11,169 @@ export const zhNav = [
 export const zhSidebar = {
   '/': [
     {
-      text: '入门指南',
+      text: 'Challenges 挑战',
       items: [
-        { text: '首页', link: '/official/Home' },
-        { text: '常见问题', link: '/official/twinBASIC-Frequently-Asked-Questions-(FAQs)' }
+        { text: '概述', link: '/official2/Challenges/' },
+        { text: '创建游戏', link: '/official2/Challenges/create-a-game' },
+        { text: '诊断工具', link: '/official2/Challenges/self-contained_diagnostic_tool' }
       ]
     },
     {
-      text: 'twinBASIC 入门',
+      text: 'Features 功能特性',
       items: [
-        { text: '入门指南', link: '/start/base' },
-        { text: '资源文件', link: '/res/pic' },
+        { text: '概述', link: '/official2/Features/' },
+        { text: '64位支持', link: '/official2/Features/64bit' },
+        { text: '属性介绍', link: '/official2/Features/Attributes-Intro' },
+        {
+          text: 'Advanced 高级',
+          items: [
+            { text: '概述', link: '/official2/Features/Advanced/' },
+            { text: 'API声明', link: '/official2/Features/Advanced/API-Declarations' },
+            { text: '汇编', link: '/official2/Features/Advanced/Assembly' },
+            { text: '类和模块', link: '/official2/Features/Advanced/Classes-and-Modules' },
+            { text: '多线程', link: '/official2/Features/Advanced/Multithreading' },
+            { text: '静态链接', link: '/official2/Features/Advanced/Static-Linking' }
+          ]
+        },
+        {
+          text: 'Compiler-IDE 编译器和IDE',
+          items: [
+            { text: '概述', link: '/official2/Features/Compiler-IDE/' },
+            { text: '代码透镜', link: '/official2/Features/Compiler-IDE/CodeLens' },
+            { text: '编译器警告', link: '/official2/Features/Compiler-IDE/Compiler-Warnings' },
+            { text: '调试', link: '/official2/Features/Compiler-IDE/Debugging' },
+            { text: 'IDE功能', link: '/official2/Features/Compiler-IDE/IDE-Features' },
+            { text: '包服务器', link: '/official2/Features/Compiler-IDE/Package-Server' }
+          ]
+        },
+        {
+          text: 'GUI-Components 界面组件',
+          items: [
+            { text: '概述', link: '/official2/Features/GUI-Components/' },
+            { text: '锚定和停靠', link: '/official2/Features/GUI-Components/Anchoring-Docking' },
+            { text: '控件属性', link: '/official2/Features/GUI-Components/Control-Properties' },
+            { text: '窗体', link: '/official2/Features/GUI-Components/Forms' },
+            { text: '现代化', link: '/official2/Features/GUI-Components/Modernization' },
+            { text: '新控件', link: '/official2/Features/GUI-Components/New' },
+            { text: '用户控件', link: '/official2/Features/GUI-Components/UserControl' },
+            { text: '无窗口控件', link: '/official2/Features/GUI-Components/Windowless' }
+          ]
+        },
+        {
+          text: 'Language 语言特性',
+          items: [
+            { text: '概述', link: '/official2/Features/Language/' },
+            { text: '别名类型', link: '/official2/Features/Language/Alias-Types' },
+            { text: '注释', link: '/official2/Features/Language/Comments' },
+            { text: '数据类型', link: '/official2/Features/Language/Data-Types' },
+            { text: '委托', link: '/official2/Features/Language/Delegates' },
+            { text: '泛型', link: '/official2/Features/Language/Generics' },
+            { text: '处理程序', link: '/official2/Features/Language/Handlers' },
+            { text: '继承', link: '/official2/Features/Language/Inheritance' },
+            { text: '内联初始化', link: '/official2/Features/Language/Inline-Initialization' },
+            { text: '接口和CoClasses', link: '/official2/Features/Language/Interfaces-CoClasses' },
+            { text: '字面量', link: '/official2/Features/Language/Literals' },
+            { text: '循环控制', link: '/official2/Features/Language/Loop-Control' },
+            { text: '模块组织', link: '/official2/Features/Language/Module-Organization' },
+            { text: '运算符', link: '/official2/Features/Language/Operators' },
+            { text: '重载', link: '/official2/Features/Language/Overloading' },
+            { text: '指针', link: '/official2/Features/Language/Pointers' },
+            { text: '返回值', link: '/official2/Features/Language/Return' },
+            { text: '类型推断', link: '/official2/Features/Language/Type-Inference' },
+            { text: '用户定义类型', link: '/official2/Features/Language/UDTs' }
+          ]
+        },
+        {
+          text: 'Packages 包管理',
+          items: [
+            { text: '创建TWINPACK包', link: '/official2/Features/Packages/Creating a TWINPACK package' },
+            { text: '从TWINPACK导入包', link: '/official2/Features/Packages/Importing a package from a TWINPACK file' },
+            { text: '从TWINSERV导入包', link: '/official2/Features/Packages/Importing a package from TWINSERV' }
+          ]
+        }
       ]
     },
     {
-      text: 'twinBASIC 功能',
+      text: 'IDE 集成开发环境',
       items: [
-        { text: '功能特性 (1)', link: '/official/twinBASIC-Features-1' },
-        { text: '功能特性 (2)', link: '/official/twinBASIC-Features-2' },
-        { text: '功能特性 (3)', link: '/official/twinBASIC-Features-3' },
-        { text: '功能特性 (4)', link: '/official/twinBASIC-Features-4' },
-        { text: '编译器常量', link: '/official/twinBASIC-Compiler-Constants' }
+        { text: '概述', link: '/official2/IDE/' },
+        { text: '调用堆栈', link: '/official2/IDE/Call Stack' },
+        { text: '调试控制台', link: '/official2/IDE/Debug Console' },
+        { text: '诊断', link: '/official2/IDE/Diagnostics' },
+        { text: '编辑器', link: '/official2/IDE/Editor' },
+        { text: '查找替换', link: '/official2/IDE/FindReplace' },
+        { text: '历史记录', link: '/official2/IDE/History' },
+        { text: '内存', link: '/official2/IDE/Memory' },
+        { text: '新建项目', link: '/official2/IDE/New Project' },
+        { text: '打开的编辑器', link: '/official2/IDE/Open Editors' },
+        { text: '大纲', link: '/official2/IDE/Outline' },
+        { text: '包发布', link: '/official2/IDE/Package Publishing' },
+        { text: '项目资源管理器', link: '/official2/IDE/Project Explorer' },
+        { text: '项目设置', link: '/official2/IDE/Project Settings' },
+        { text: '属性', link: '/official2/IDE/Properties' },
+        { text: '启动画面', link: '/official2/IDE/Splash Screen' },
+        { text: '状态栏', link: '/official2/IDE/Status Bar' },
+        { text: 'tbForm', link: '/official2/IDE/tbForm' },
+        { text: 'tbReport', link: '/official2/IDE/tbReport' },
+        { text: '工具栏', link: '/official2/IDE/Toolbar' },
+        { text: '工具箱', link: '/official2/IDE/Toolbox' },
+        { text: '变量', link: '/official2/IDE/Variables' },
+        { text: '监视', link: '/official2/IDE/Watches' },
+        { text: '网页', link: '/official2/IDE/Webpage' }
       ]
     },
     {
-      text: '控件和属性',
+      text: 'Miscellaneous 其他',
       items: [
-        { text: '锚定布局', link: '/official/Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management' },
+        { text: '文档开发', link: '/official2/Miscellaneous/Documentation Development' },
+        { text: '常见问题', link: '/official2/Miscellaneous/FAQs' }
       ]
     },
     {
-      text: '自定义控件',
+      text: 'Reference 参考',
       items: [
-        { text: '自定义控件介绍', link: '/official/twinBASIC-CustomControls-Introduction' },
-        { text: '定义自定义控件', link: '/official/twinBASIC---CustomControls---Defining-a-CustomControl' },
-        { text: '窗体设计器说明', link: '/official/twinBASIC---CustomControls---Notes-about-the-form-designer' },
-        { text: '控件绘制', link: '/official/twinBASIC---CustomControls---Painting---drawing-to-your-control' },
-        { text: '属性表和对象序列化', link: '/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization' }
+        { text: '概述', link: '/official2/Reference/' },
+        { text: '属性', link: '/official2/Reference/Attributes' },
+        { text: '分类', link: '/official2/Reference/Categories' },
+        { text: '编译器常量', link: '/official2/Reference/Compiler Constants' },
+        { text: '控件', link: '/official2/Reference/Controls' },
+        { text: '术语表', link: '/official2/Reference/Glossary' },
+        { text: '过程和函数', link: '/official2/Reference/Procedures and Functions' },
+        { text: '语句', link: '/official2/Reference/Statements' }
       ]
     },
     {
-      text: '包管理',
+      text: 'Tutorials 教程',
       items: [
-        { text: '什么是包', link: '/official/twinBASIC-Packages-What-is-a-package' },
-        { text: '创建TWINPACK包', link: '/official/twinBASIC-Packages-Creating-a-TWINPACK-package' },
-        { text: '从TWINPACK导入包', link: '/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file' },
-        { text: '从TWINSERV导入包', link: '/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV' },
-        { text: '更新包', link: '/official/twinBASIC-Packages-Updating-a-package' }
+        { text: '概述', link: '/official2/Tutorials/' },
+        { text: '数组', link: '/official2/Tutorials/Arrays' },
+        {
+          text: 'CustomControls 自定义控件',
+          items: [
+            { text: '概述', link: '/official2/Tutorials/CustomControls/' },
+            { text: '定义自定义控件', link: '/official2/Tutorials/CustomControls/Defining a CustomControl' },
+            { text: '窗体设计器说明', link: '/official2/Tutorials/CustomControls/Notes about the form designer' },
+            { text: '绘制控件', link: '/official2/Tutorials/CustomControls/Painting-drawing to your control' },
+            { text: '属性表和对象序列化', link: '/official2/Tutorials/CustomControls/Property sheet and object serialization' }
+          ]
+        },
+        {
+          text: 'WebView2',
+          items: [
+            { text: '概述', link: '/official2/Tutorials/WebView2/' },
+            { text: '自定义用户数据文件夹', link: '/official2/Tutorials/WebView2/Customize the UserDataFolder' },
+            { text: '入门指南', link: '/official2/Tutorials/WebView2/Getting started' },
+            { text: '重入', link: '/official2/Tutorials/WebView2/Re-entrancy' }
+          ]
+        }
+      ]
+    },
+    {
+      text: 'Videos 视频',
+      items: [
+        { text: '概述', link: '/official2/Videos/' },
+        { text: 'AccessDevCon', link: '/official2/Videos/AccessDevCon' },
+        { text: 'twinBASIC', link: '/official2/Videos/twinBASIC' }
       ]
     }
   ],

@@ -10,47 +10,137 @@ export const enNav = [
 export const enSidebar = {
   '/en/': [
     {
-      text: 'Getting Started',
+      text: 'Challenges',
       items: [
-        { text: 'Home', link: '/en/official/Home' },
-        { text: 'FAQs', link: '/en/official/twinBASIC-Frequently-Asked-Questions-(FAQs)' },
-        { text: 'Resource Files', link: '/en/res/pic' },
+        { text: 'Overview', link: '/en/official2/Challenges/' },
+        { text: 'Create a Game', link: '/en/official2/Challenges/create-a-game' },
+        { text: 'Diagnostic Tool', link: '/en/official2/Challenges/self-contained_diagnostic_tool' }
       ]
     },
     {
-      text: 'twinBASIC Features',
+      text: 'Features',
       items: [
-        { text: 'Features (1)', link: '/en/official/twinBASIC-Features-1' },
-        { text: 'Features (2)', link: '/en/official/twinBASIC-Features-2' },
-        { text: 'Features (3)', link: '/en/official/twinBASIC-Features-3' },
-        { text: 'Features (4)', link: '/en/official/twinBASIC-Features-4' },
-        { text: 'Compiler Constants', link: '/en/official/twinBASIC-Compiler-Constants' }
+        { text: 'Overview', link: '/en/official2/Features/' },
+        { text: '64bit Support', link: '/en/official2/Features/64bit' },
+        { text: 'Attributes Intro', link: '/en/official2/Features/Attributes-Intro' },
+        {
+          text: 'Advanced',
+          items: [
+            { text: 'Overview', link: '/en/official2/Features/Advanced/' },
+            { text: 'API Declarations', link: '/en/official2/Features/Advanced/API-Declarations' },
+            { text: 'Assembly', link: '/en/official2/Features/Advanced/Assembly' },
+            { text: 'Classes and Modules', link: '/en/official2/Features/Advanced/Classes-and-Modules' },
+            { text: 'Multithreading', link: '/en/official2/Features/Advanced/Multithreading' },
+            { text: 'Static Linking', link: '/en/official2/Features/Advanced/Static-Linking' }
+          ]
+        },
+        {
+          text: 'Compiler & IDE',
+          items: [
+            { text: 'Overview', link: '/en/official2/Features/Compiler-IDE/' },
+            { text: 'CodeLens', link: '/en/official2/Features/Compiler-IDE/CodeLens' },
+            { text: 'Compiler Warnings', link: '/en/official2/Features/Compiler-IDE/Compiler-Warnings' },
+            { text: 'Debugging', link: '/en/official2/Features/Compiler-IDE/Debugging' },
+            { text: 'IDE Features', link: '/en/official2/Features/Compiler-IDE/IDE-Features' },
+            { text: 'Package Server', link: '/en/official2/Features/Compiler-IDE/Package-Server' }
+          ]
+        },
+        {
+          text: 'GUI Components',
+          items: [
+            { text: 'Overview', link: '/en/official2/Features/GUI-Components/' },
+            { text: 'Anchoring & Docking', link: '/en/official2/Features/GUI-Components/Anchoring-Docking' },
+            { text: 'Control Properties', link: '/en/official2/Features/GUI-Components/Control-Properties' },
+            { text: 'Forms', link: '/en/official2/Features/GUI-Components/Forms' },
+            { text: 'Modernization', link: '/en/official2/Features/GUI-Components/Modernization' },
+            { text: 'New Controls', link: '/en/official2/Features/GUI-Components/New' },
+            { text: 'UserControl', link: '/en/official2/Features/GUI-Components/UserControl' },
+            { text: 'Windowless', link: '/en/official2/Features/GUI-Components/Windowless' }
+          ]
+        }
       ]
     },
     {
-      text: 'Controls and Properties',
+      text: 'IDE',
       items: [
-        { text: 'Anchoring and Docking', link: '/official/Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management' },
+        { text: 'Overview', link: '/en/official2/IDE/' },
+        { text: 'Call Stack', link: '/en/official2/IDE/Call Stack' },
+        { text: 'Debug Console', link: '/en/official2/IDE/Debug Console' },
+        { text: 'Diagnostics', link: '/en/official2/IDE/Diagnostics' },
+        { text: 'Editor', link: '/en/official2/IDE/Editor' },
+        { text: 'Find & Replace', link: '/en/official2/IDE/FindReplace' },
+        { text: 'History', link: '/en/official2/IDE/History' },
+        { text: 'Memory', link: '/en/official2/IDE/Memory' },
+        { text: 'New Project', link: '/en/official2/IDE/New Project' },
+        { text: 'Open Editors', link: '/en/official2/IDE/Open Editors' },
+        { text: 'Outline', link: '/en/official2/IDE/Outline' },
+        { text: 'Package Publishing', link: '/en/official2/IDE/Package Publishing' },
+        { text: 'Project Explorer', link: '/en/official2/IDE/Project Explorer' },
+        { text: 'Project Settings', link: '/en/official2/IDE/Project Settings' },
+        { text: 'Properties', link: '/en/official2/IDE/Properties' },
+        { text: 'Splash Screen', link: '/en/official2/IDE/Splash Screen' },
+        { text: 'Status Bar', link: '/en/official2/IDE/Status Bar' },
+        { text: 'tbForm', link: '/en/official2/IDE/tbForm' },
+        { text: 'tbReport', link: '/en/official2/IDE/tbReport' },
+        { text: 'Toolbar', link: '/en/official2/IDE/Toolbar' },
+        { text: 'Toolbox', link: '/en/official2/IDE/Toolbox' },
+        { text: 'Variables', link: '/en/official2/IDE/Variables' },
+        { text: 'Watches', link: '/en/official2/IDE/Watches' },
+        { text: 'Webpage', link: '/en/official2/IDE/Webpage' }
       ]
     },
     {
-      text: 'Custom Controls',
+      text: 'Miscellaneous',
       items: [
-        { text: 'CustomControls Introduction', link: '/en/official/twinBASIC-CustomControls-Introduction' },
-        { text: 'Defining a CustomControl', link: '/en/official/twinBASIC---CustomControls---Defining-a-CustomControl' },
-        { text: 'Form Designer Notes', link: '/en/official/twinBASIC---CustomControls---Notes-about-the-form-designer' },
-        { text: 'Control Painting', link: '/en/official/twinBASIC---CustomControls---Painting---drawing-to-your-control' },
-        { text: 'Property Sheet & Serialization', link: '/en/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization' }
+        { text: 'Documentation Development', link: '/en/official2/Miscellaneous/Documentation Development' },
+        { text: 'FAQs', link: '/en/official2/Miscellaneous/FAQs' }
       ]
     },
     {
-      text: 'Package Management',
+      text: 'Reference',
       items: [
-        { text: 'What is a package', link: '/en/official/twinBASIC-Packages-What-is-a-package' },
-        { text: 'Creating TWINPACK package', link: '/en/official/twinBASIC-Packages-Creating-a-TWINPACK-package' },
-        { text: 'Import from TWINPACK', link: '/en/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file' },
-        { text: 'Import from TWINSERV', link: '/en/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV' },
-        { text: 'Updating packages', link: '/en/official/twinBASIC-Packages-Updating-a-package' }
+        { text: 'Overview', link: '/en/official2/Reference/' },
+        { text: 'Attributes', link: '/en/official2/Reference/Attributes' },
+        { text: 'Categories', link: '/en/official2/Reference/Categories' },
+        { text: 'Compiler Constants', link: '/en/official2/Reference/Compiler Constants' },
+        { text: 'Controls', link: '/en/official2/Reference/Controls' },
+        { text: 'Glossary', link: '/en/official2/Reference/Glossary' },
+        { text: 'Procedures and Functions', link: '/en/official2/Reference/Procedures and Functions' },
+        { text: 'Statements', link: '/en/official2/Reference/Statements' }
+      ]
+    },
+    {
+      text: 'Tutorials',
+      items: [
+        { text: 'Overview', link: '/en/official2/Tutorials/' },
+        { text: 'Arrays', link: '/en/official2/Tutorials/Arrays' },
+        {
+          text: 'Custom Controls',
+          items: [
+            { text: 'Overview', link: '/en/official2/Tutorials/CustomControls/' },
+            { text: 'Defining a CustomControl', link: '/en/official2/Tutorials/CustomControls/Defining a CustomControl' },
+            { text: 'Notes about the form designer', link: '/en/official2/Tutorials/CustomControls/Notes about the form designer' },
+            { text: 'Painting - drawing to your control', link: '/en/official2/Tutorials/CustomControls/Painting-drawing to your control' },
+            { text: 'Property sheet and object serialization', link: '/en/official2/Tutorials/CustomControls/Property sheet and object serialization' }
+          ]
+        },
+        {
+          text: 'WebView2',
+          items: [
+            { text: 'Overview', link: '/en/official2/Tutorials/WebView2/' },
+            { text: 'Customize the UserDataFolder', link: '/en/official2/Tutorials/WebView2/Customize the UserDataFolder' },
+            { text: 'Getting started', link: '/en/official2/Tutorials/WebView2/Getting started' },
+            { text: 'Re-entrancy', link: '/en/official2/Tutorials/WebView2/Re-entrancy' }
+          ]
+        }
+      ]
+    },
+    {
+      text: 'Videos',
+      items: [
+        { text: 'Overview', link: '/en/official2/Videos/' },
+        { text: 'AccessDevCon', link: '/en/official2/Videos/AccessDevCon' },
+        { text: 'twinBASIC', link: '/en/official2/Videos/twinBASIC' }
       ]
     }
   ],
