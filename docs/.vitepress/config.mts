@@ -33,7 +33,7 @@ const jekyllPlugin = () => ({
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   outDir: '../dist',
-  title: "twinbasic-docs",
+  title: "Twinbasic Document",
   description: "an new vb6",
 
   // 忽略死链接检查（从Jekyll迁移的文档链接需要逐步修复）
