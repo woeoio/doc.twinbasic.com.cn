@@ -114,10 +114,10 @@ function main() {
     copyDir(srcPath, destPath);
   }
   
-  // 复制根目录的 markdown 文件（排除 index.md）
+  // 复制根目录的 markdown 文件
   const rootFiles = fs.readdirSync(SOURCE_DIR, { withFileTypes: true });
   for (const file of rootFiles) {
-    if (file.isFile() && file.name.endsWith('.md') && file.name !== 'index.md') {
+    if (file.isFile() && file.name.endsWith('.md')) {
       const srcPath = path.join(SOURCE_DIR, file.name);
       const destPath = path.join(TARGET_DIR, file.name);
       copyFile(srcPath, destPath);
