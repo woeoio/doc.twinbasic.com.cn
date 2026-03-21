@@ -3,6 +3,33 @@ import llmstxt from 'vitepress-plugin-llms'
 import { zhNav, zhSidebar, zhFooter, zhDocFooter } from './nav/zh.mts'
 import { enNav, enSidebar, enFooter } from './nav/en.mts'
 
+// 自定义插件：处理 Jekyll 语法
+const jekyllPlugin = () => ({
+  name: 'jekyll-transform',
+  enforce: 'pre',
+  transform(code: string, id: string) {
+    // 只处理 markdown 文件
+    if (!id.endsWith('.md')) return null
+    
+    let transformed = code
+    
+    // 1. 处理图片的 {:style="..."} -> 改为 VitePress 支持的 {style="..."}
+    transformed = transformed.replace(
+      /!\[([^\]]*)\]\(([^)]+)\)\{:style="([^"]+)"\}/g,
+      '![$1]($2){style="$3"}'
+    )
+    
+    // 2. 移除其他所有 Jekyll Attribute Lists ({: ... })
+    // 包括 {: #id }, {: .class }, {: .no_toc } 等
+    transformed = transformed.replace(/\s*\{:[^}]+\}/g, '')
+    
+    // 3. 移除 Jekyll 的 {% include %} 语法
+    transformed = transformed.replace(/\{%\s*include\s+[^%]+%\}/g, '')
+    
+    return transformed === code ? null : transformed
+  }
+})
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   outDir: '../dist',
@@ -136,6 +163,6 @@ export default defineConfig({
 
   lastUpdated: true,
   vite: {
-    plugins: [llmstxt()]
+    plugins: [llmstxt(), jekyllPlugin() as any]
   }
 })
