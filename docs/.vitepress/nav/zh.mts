@@ -19,102 +19,102 @@ export const zhSidebar = {
     {
       text: 'Challenges 挑战',
       items: [
-        { text: '概述', link: '/official2/Challenges/' },
-        { text: '创建游戏', link: '/official2/Challenges/create-a-game' },
-        { text: '诊断工具', link: '/official2/Challenges/self-contained_diagnostic_tool' }
+        { text: '概述', link: '/official/Challenges/' },
+        { text: '创建游戏', link: '/official/Challenges/create-a-game' },
+        { text: '诊断工具', link: '/official/Challenges/self-contained_diagnostic_tool' }
       ]
     },
     {
       text: 'Features 功能特性',
       items: [
-        { text: '概述', link: '/official2/Features/' },
-        { text: '64位支持', link: '/official2/Features/64bit' },
-        { text: '属性介绍', link: '/official2/Features/Attributes-Intro' },
+        { text: '概述', link: '/official/Features/' },
+        { text: '64位支持', link: '/official/Features/64bit' },
+        { text: '属性介绍', link: '/official/Features/Attributes-Intro' },
         {
           text: 'Advanced 高级',
           items: [
-            { text: '概述', link: '/official2/Features/Advanced/' },
-            { text: 'API声明', link: '/official2/Features/Advanced/API-Declarations' },
-            { text: '汇编', link: '/official2/Features/Advanced/Assembly' },
-            { text: '类和模块', link: '/official2/Features/Advanced/Classes-and-Modules' },
-            { text: '多线程', link: '/official2/Features/Advanced/Multithreading' },
-            { text: '静态链接', link: '/official2/Features/Advanced/Static-Linking' }
+            { text: '概述', link: '/official/Features/Advanced/' },
+            { text: 'API声明', link: '/official/Features/Advanced/API-Declarations' },
+            { text: '汇编', link: '/official/Features/Advanced/Assembly' },
+            { text: '类和模块', link: '/official/Features/Advanced/Classes-and-Modules' },
+            { text: '多线程', link: '/official/Features/Advanced/Multithreading' },
+            { text: '静态链接', link: '/official/Features/Advanced/Static-Linking' }
           ]
         },
         {
           text: 'Compiler-IDE 编译器和IDE',
           items: [
-            { text: '概述', link: '/official2/Features/Compiler-IDE/' },
-            { text: '代码透镜', link: '/official2/Features/Compiler-IDE/CodeLens' },
-            { text: '编译器警告', link: '/official2/Features/Compiler-IDE/Compiler-Warnings' },
-            { text: '调试', link: '/official2/Features/Compiler-IDE/Debugging' },
-            { text: 'IDE功能', link: '/official2/Features/Compiler-IDE/IDE-Features' },
-            { text: '包服务器', link: '/official2/Features/Compiler-IDE/Package-Server' }
+            { text: '概述', link: '/official/Features/Compiler-IDE/' },
+            { text: '代码透镜', link: '/official/Features/Compiler-IDE/CodeLens' },
+            { text: '编译器警告', link: '/official/Features/Compiler-IDE/Compiler-Warnings' },
+            { text: '调试', link: '/official/Features/Compiler-IDE/Debugging' },
+            { text: 'IDE功能', link: '/official/Features/Compiler-IDE/IDE-Features' },
+            { text: '包服务器', link: '/official/Features/Compiler-IDE/Package-Server' }
           ]
         },
         {
           text: 'GUI-Components 界面组件',
           items: [
-            { text: '概述', link: '/official2/Features/GUI-Components/' },
-            { text: '锚定和停靠', link: '/official2/Features/GUI-Components/Anchoring-Docking' },
-            { text: '控件属性', link: '/official2/Features/GUI-Components/Control-Properties' },
-            { text: '窗体', link: '/official2/Features/GUI-Components/Forms' },
-            { text: '现代化', link: '/official2/Features/GUI-Components/Modernization' },
-            { text: '新控件', link: '/official2/Features/GUI-Components/New' },
-            { text: '用户控件', link: '/official2/Features/GUI-Components/UserControl' },
-            { text: '无窗口控件', link: '/official2/Features/GUI-Components/Windowless' }
+            { text: '概述', link: '/official/Features/GUI-Components/' },
+            { text: '锚定和停靠', link: '/official/Features/GUI-Components/Anchoring-Docking' },
+            { text: '控件属性', link: '/official/Features/GUI-Components/Control-Properties' },
+            { text: '窗体', link: '/official/Features/GUI-Components/Forms' },
+            { text: '现代化', link: '/official/Features/GUI-Components/Modernization' },
+            { text: '新控件', link: '/official/Features/GUI-Components/New' },
+            { text: '用户控件', link: '/official/Features/GUI-Components/UserControl' },
+            { text: '无窗口控件', link: '/official/Features/GUI-Components/Windowless' }
           ]
         },
         {
           text: 'Language 语言特性',
           items: [
-            { text: '概述', link: '/official2/Features/Language/' },
-            { text: '别名类型', link: '/official2/Features/Language/Alias-Types' },
-            { text: '注释', link: '/official2/Features/Language/Comments' },
-            { text: '数据类型', link: '/official2/Features/Language/Data-Types' },
-            { text: '委托', link: '/official2/Features/Language/Delegates' },
-            { text: '泛型', link: '/official2/Features/Language/Generics' },
-            { text: '处理程序', link: '/official2/Features/Language/Handlers' },
-            { text: '继承', link: '/official2/Features/Language/Inheritance' },
-            { text: '内联初始化', link: '/official2/Features/Language/Inline-Initialization' },
-            { text: '接口和CoClasses', link: '/official2/Features/Language/Interfaces-CoClasses' },
-            { text: '字面量', link: '/official2/Features/Language/Literals' },
-            { text: '循环控制', link: '/official2/Features/Language/Loop-Control' },
-            { text: '模块组织', link: '/official2/Features/Language/Module-Organization' },
-            { text: '运算符', link: '/official2/Features/Language/Operators' },
-            { text: '重载', link: '/official2/Features/Language/Overloading' },
-            { text: '指针', link: '/official2/Features/Language/Pointers' },
-            { text: '返回值', link: '/official2/Features/Language/Return' },
-            { text: '类型推断', link: '/official2/Features/Language/Type-Inference' },
-            { text: '用户定义类型', link: '/official2/Features/Language/UDTs' }
+            { text: '概述', link: '/official/Features/Language/' },
+            { text: '别名类型', link: '/official/Features/Language/Alias-Types' },
+            { text: '注释', link: '/official/Features/Language/Comments' },
+            { text: '数据类型', link: '/official/Features/Language/Data-Types' },
+            { text: '委托', link: '/official/Features/Language/Delegates' },
+            { text: '泛型', link: '/official/Features/Language/Generics' },
+            { text: '处理程序', link: '/official/Features/Language/Handlers' },
+            { text: '继承', link: '/official/Features/Language/Inheritance' },
+            { text: '内联初始化', link: '/official/Features/Language/Inline-Initialization' },
+            { text: '接口和CoClasses', link: '/official/Features/Language/Interfaces-CoClasses' },
+            { text: '字面量', link: '/official/Features/Language/Literals' },
+            { text: '循环控制', link: '/official/Features/Language/Loop-Control' },
+            { text: '模块组织', link: '/official/Features/Language/Module-Organization' },
+            { text: '运算符', link: '/official/Features/Language/Operators' },
+            { text: '重载', link: '/official/Features/Language/Overloading' },
+            { text: '指针', link: '/official/Features/Language/Pointers' },
+            { text: '返回值', link: '/official/Features/Language/Return' },
+            { text: '类型推断', link: '/official/Features/Language/Type-Inference' },
+            { text: '用户定义类型', link: '/official/Features/Language/UDTs' }
           ]
         },
         {
           text: 'Packages 包管理',
           items: [
-            { text: '概述', link: '/official2/Features/Packages/' },
-            { text: '创建TWINPACK包', link: '/official2/Features/Packages/Creating a TWINPACK package' },
-            { text: '从TWINPACK导入包', link: '/official2/Features/Packages/Importing a package from a TWINPACK file' },
-            { text: '从TWINSERV导入包', link: '/official2/Features/Packages/Importing a package from TWINSERV' },
-            { text: '更新包', link: '/official2/Features/Packages/Updating a package' }
+            { text: '概述', link: '/official/Features/Packages/' },
+            { text: '创建TWINPACK包', link: '/official/Features/Packages/Creating a TWINPACK package' },
+            { text: '从TWINPACK导入包', link: '/official/Features/Packages/Importing a package from a TWINPACK file' },
+            { text: '从TWINSERV导入包', link: '/official/Features/Packages/Importing a package from TWINSERV' },
+            { text: '更新包', link: '/official/Features/Packages/Updating a package' }
           ]
         },
         {
           text: 'Project-Configuration 项目配置',
           items: [
-            { text: '概述', link: '/official2/Features/Project-Configuration/' },
-            { text: 'ActiveX注册', link: '/official2/Features/Project-Configuration/ActiveX-Registration' },
-            { text: '编译器选项', link: '/official2/Features/Project-Configuration/Compiler-Options' },
-            { text: '项目类型', link: '/official2/Features/Project-Configuration/Project-Types' }
+            { text: '概述', link: '/official/Features/Project-Configuration/' },
+            { text: 'ActiveX注册', link: '/official/Features/Project-Configuration/ActiveX-Registration' },
+            { text: '编译器选项', link: '/official/Features/Project-Configuration/Compiler-Options' },
+            { text: '项目类型', link: '/official/Features/Project-Configuration/Project-Types' }
           ]
         },
         {
           text: 'Standard-Library 标准库',
           items: [
-            { text: '概述', link: '/official2/Features/Standard-Library/' },
-            { text: '文件I/O', link: '/official2/Features/Standard-Library/File-IO' },
-            { text: '新函数', link: '/official2/Features/Standard-Library/New-Functions' },
-            { text: 'Unicode支持', link: '/official2/Features/Standard-Library/Unicode-Support' }
+            { text: '概述', link: '/official/Features/Standard-Library/' },
+            { text: '文件I/O', link: '/official/Features/Standard-Library/File-IO' },
+            { text: '新函数', link: '/official/Features/Standard-Library/New-Functions' },
+            { text: 'Unicode支持', link: '/official/Features/Standard-Library/Unicode-Support' }
           ]
         }
       ]
@@ -122,74 +122,74 @@ export const zhSidebar = {
     {
       text: 'IDE 集成开发环境',
       items: [
-        { text: '概述', link: '/official2/IDE/' },
-        { text: '调用堆栈', link: '/official2/IDE/Call Stack' },
-        { text: '调试控制台', link: '/official2/IDE/Debug Console' },
-        { text: '诊断', link: '/official2/IDE/Diagnostics' },
-        { text: '编辑器', link: '/official2/IDE/Editor' },
-        { text: '查找替换', link: '/official2/IDE/FindReplace' },
-        { text: '历史记录', link: '/official2/IDE/History' },
-        { text: '内存', link: '/official2/IDE/Memory' },
-        { text: '新建项目', link: '/official2/IDE/New Project' },
-        { text: '打开的编辑器', link: '/official2/IDE/Open Editors' },
-        { text: '大纲', link: '/official2/IDE/Outline' },
-        { text: '包发布', link: '/official2/IDE/Package Publishing' },
-        { text: '项目资源管理器', link: '/official2/IDE/Project Explorer' },
-        { text: '项目设置', link: '/official2/IDE/Project Settings' },
-        { text: '属性', link: '/official2/IDE/Properties' },
-        { text: '启动画面', link: '/official2/IDE/Splash Screen' },
-        { text: '状态栏', link: '/official2/IDE/Status Bar' },
-        { text: 'tbForm', link: '/official2/IDE/tbForm' },
-        { text: 'tbReport', link: '/official2/IDE/tbReport' },
-        { text: '工具栏', link: '/official2/IDE/Toolbar' },
-        { text: '工具箱', link: '/official2/IDE/Toolbox' },
-        { text: '变量', link: '/official2/IDE/Variables' },
-        { text: '监视', link: '/official2/IDE/Watches' },
-        { text: '网页', link: '/official2/IDE/Webpage' }
+        { text: '概述', link: '/official/IDE/' },
+        { text: '调用堆栈', link: '/official/IDE/Call Stack' },
+        { text: '调试控制台', link: '/official/IDE/Debug Console' },
+        { text: '诊断', link: '/official/IDE/Diagnostics' },
+        { text: '编辑器', link: '/official/IDE/Editor' },
+        { text: '查找替换', link: '/official/IDE/FindReplace' },
+        { text: '历史记录', link: '/official/IDE/History' },
+        { text: '内存', link: '/official/IDE/Memory' },
+        { text: '新建项目', link: '/official/IDE/New Project' },
+        { text: '打开的编辑器', link: '/official/IDE/Open Editors' },
+        { text: '大纲', link: '/official/IDE/Outline' },
+        { text: '包发布', link: '/official/IDE/Package Publishing' },
+        { text: '项目资源管理器', link: '/official/IDE/Project Explorer' },
+        { text: '项目设置', link: '/official/IDE/Project Settings' },
+        { text: '属性', link: '/official/IDE/Properties' },
+        { text: '启动画面', link: '/official/IDE/Splash Screen' },
+        { text: '状态栏', link: '/official/IDE/Status Bar' },
+        { text: 'tbForm', link: '/official/IDE/tbForm' },
+        { text: 'tbReport', link: '/official/IDE/tbReport' },
+        { text: '工具栏', link: '/official/IDE/Toolbar' },
+        { text: '工具箱', link: '/official/IDE/Toolbox' },
+        { text: '变量', link: '/official/IDE/Variables' },
+        { text: '监视', link: '/official/IDE/Watches' },
+        { text: '网页', link: '/official/IDE/Webpage' }
       ]
     },
     {
       text: 'Miscellaneous 其他',
       items: [
-        { text: '文档开发', link: '/official2/Miscellaneous/Documentation Development' },
-        { text: '常见问题', link: '/official2/Miscellaneous/FAQs' }
+        { text: '文档开发', link: '/official/Miscellaneous/Documentation Development' },
+        { text: '常见问题', link: '/official/Miscellaneous/FAQs' }
       ]
     },
     {
       text: 'Reference 参考',
       items: [
-        { text: '概述', link: '/official2/Reference/' },
-        { text: '属性', link: '/official2/Reference/Attributes' },
-        { text: '分类', link: '/official2/Reference/Categories' },
-        { text: '编译器常量', link: '/official2/Reference/Compiler Constants' },
-        { text: '控件', link: '/official2/Reference/Controls' },
-        { text: '术语表', link: '/official2/Reference/Glossary' },
-        { text: '过程和函数', link: '/official2/Reference/Procedures and Functions' },
-        { text: '语句', link: '/official2/Reference/Statements' }
+        { text: '概述', link: '/official/Reference/' },
+        { text: '属性', link: '/official/Reference/Attributes' },
+        { text: '分类', link: '/official/Reference/Categories' },
+        { text: '编译器常量', link: '/official/Reference/Compiler Constants' },
+        { text: '控件', link: '/official/Reference/Controls' },
+        { text: '术语表', link: '/official/Reference/Glossary' },
+        { text: '过程和函数', link: '/official/Reference/Procedures and Functions' },
+        { text: '语句', link: '/official/Reference/Statements' }
       ]
     },
     {
       text: 'Tutorials 教程',
       items: [
-        { text: '概述', link: '/official2/Tutorials/' },
-        { text: '数组', link: '/official2/Tutorials/Arrays' },
+        { text: '概述', link: '/official/Tutorials/' },
+        { text: '数组', link: '/official/Tutorials/Arrays' },
         {
           text: 'CustomControls 自定义控件',
           items: [
-            { text: '概述', link: '/official2/Tutorials/CustomControls/' },
-            { text: '定义自定义控件', link: '/official2/Tutorials/CustomControls/Defining a CustomControl' },
-            { text: '窗体设计器说明', link: '/official2/Tutorials/CustomControls/Notes about the form designer' },
-            { text: '绘制控件', link: '/official2/Tutorials/CustomControls/Painting-drawing to your control' },
-            { text: '属性表和对象序列化', link: '/official2/Tutorials/CustomControls/Property sheet and object serialization' }
+            { text: '概述', link: '/official/Tutorials/CustomControls/' },
+            { text: '定义自定义控件', link: '/official/Tutorials/CustomControls/Defining a CustomControl' },
+            { text: '窗体设计器说明', link: '/official/Tutorials/CustomControls/Notes about the form designer' },
+            { text: '绘制控件', link: '/official/Tutorials/CustomControls/Painting-drawing to your control' },
+            { text: '属性表和对象序列化', link: '/official/Tutorials/CustomControls/Property sheet and object serialization' }
           ]
         },
         {
           text: 'WebView2',
           items: [
-            { text: '概述', link: '/official2/Tutorials/WebView2/' },
-            { text: '自定义用户数据文件夹', link: '/official2/Tutorials/WebView2/Customize the UserDataFolder' },
-            { text: '入门指南', link: '/official2/Tutorials/WebView2/Getting started' },
-            { text: '重入', link: '/official2/Tutorials/WebView2/Re-entrancy' }
+            { text: '概述', link: '/official/Tutorials/WebView2/' },
+            { text: '自定义用户数据文件夹', link: '/official/Tutorials/WebView2/Customize the UserDataFolder' },
+            { text: '入门指南', link: '/official/Tutorials/WebView2/Getting started' },
+            { text: '重入', link: '/official/Tutorials/WebView2/Re-entrancy' }
           ]
         }
       ]
@@ -197,9 +197,9 @@ export const zhSidebar = {
     {
       text: 'Videos 视频',
       items: [
-        { text: '概述', link: '/official2/Videos/' },
-        { text: 'AccessDevCon', link: '/official2/Videos/AccessDevCon' },
-        { text: 'twinBASIC', link: '/official2/Videos/twinBASIC' }
+        { text: '概述', link: '/official/Videos/' },
+        { text: 'AccessDevCon', link: '/official/Videos/AccessDevCon' },
+        { text: 'twinBASIC', link: '/official/Videos/twinBASIC' }
       ]
     }
   ],

@@ -18,102 +18,102 @@ export const enSidebar = {
     {
       text: 'Challenges',
       items: [
-        { text: 'Overview', link: '/en/official2/Challenges/' },
-        { text: 'Create a Game', link: '/en/official2/Challenges/create-a-game' },
-        { text: 'Diagnostic Tool', link: '/en/official2/Challenges/self-contained_diagnostic_tool' }
+        { text: 'Overview', link: '/en/official/Challenges/' },
+        { text: 'Create a Game', link: '/en/official/Challenges/create-a-game' },
+        { text: 'Diagnostic Tool', link: '/en/official/Challenges/self-contained_diagnostic_tool' }
       ]
     },
     {
       text: 'Features',
       items: [
-        { text: 'Overview', link: '/en/official2/Features/' },
-        { text: '64bit Support', link: '/en/official2/Features/64bit' },
-        { text: 'Attributes Intro', link: '/en/official2/Features/Attributes-Intro' },
+        { text: 'Overview', link: '/en/official/Features/' },
+        { text: '64bit Support', link: '/en/official/Features/64bit' },
+        { text: 'Attributes Intro', link: '/en/official/Features/Attributes-Intro' },
         {
           text: 'Advanced',
           items: [
-            { text: 'Overview', link: '/en/official2/Features/Advanced/' },
-            { text: 'API Declarations', link: '/en/official2/Features/Advanced/API-Declarations' },
-            { text: 'Assembly', link: '/en/official2/Features/Advanced/Assembly' },
-            { text: 'Classes and Modules', link: '/en/official2/Features/Advanced/Classes-and-Modules' },
-            { text: 'Multithreading', link: '/en/official2/Features/Advanced/Multithreading' },
-            { text: 'Static Linking', link: '/en/official2/Features/Advanced/Static-Linking' }
+            { text: 'Overview', link: '/en/official/Features/Advanced/' },
+            { text: 'API Declarations', link: '/en/official/Features/Advanced/API-Declarations' },
+            { text: 'Assembly', link: '/en/official/Features/Advanced/Assembly' },
+            { text: 'Classes and Modules', link: '/en/official/Features/Advanced/Classes-and-Modules' },
+            { text: 'Multithreading', link: '/en/official/Features/Advanced/Multithreading' },
+            { text: 'Static Linking', link: '/en/official/Features/Advanced/Static-Linking' }
           ]
         },
         {
           text: 'Compiler & IDE',
           items: [
-            { text: 'Overview', link: '/en/official2/Features/Compiler-IDE/' },
-            { text: 'CodeLens', link: '/en/official2/Features/Compiler-IDE/CodeLens' },
-            { text: 'Compiler Warnings', link: '/en/official2/Features/Compiler-IDE/Compiler-Warnings' },
-            { text: 'Debugging', link: '/en/official2/Features/Compiler-IDE/Debugging' },
-            { text: 'IDE Features', link: '/en/official2/Features/Compiler-IDE/IDE-Features' },
-            { text: 'Package Server', link: '/en/official2/Features/Compiler-IDE/Package-Server' }
+            { text: 'Overview', link: '/en/official/Features/Compiler-IDE/' },
+            { text: 'CodeLens', link: '/en/official/Features/Compiler-IDE/CodeLens' },
+            { text: 'Compiler Warnings', link: '/en/official/Features/Compiler-IDE/Compiler-Warnings' },
+            { text: 'Debugging', link: '/en/official/Features/Compiler-IDE/Debugging' },
+            { text: 'IDE Features', link: '/en/official/Features/Compiler-IDE/IDE-Features' },
+            { text: 'Package Server', link: '/en/official/Features/Compiler-IDE/Package-Server' }
           ]
         },
         {
           text: 'GUI Components',
           items: [
-            { text: 'Overview', link: '/en/official2/Features/GUI-Components/' },
-            { text: 'Anchoring & Docking', link: '/en/official2/Features/GUI-Components/Anchoring-Docking' },
-            { text: 'Control Properties', link: '/en/official2/Features/GUI-Components/Control-Properties' },
-            { text: 'Forms', link: '/en/official2/Features/GUI-Components/Forms' },
-            { text: 'Modernization', link: '/en/official2/Features/GUI-Components/Modernization' },
-            { text: 'New Controls', link: '/en/official2/Features/GUI-Components/New' },
-            { text: 'UserControl', link: '/en/official2/Features/GUI-Components/UserControl' },
-            { text: 'Windowless', link: '/en/official2/Features/GUI-Components/Windowless' }
+            { text: 'Overview', link: '/en/official/Features/GUI-Components/' },
+            { text: 'Anchoring & Docking', link: '/en/official/Features/GUI-Components/Anchoring-Docking' },
+            { text: 'Control Properties', link: '/en/official/Features/GUI-Components/Control-Properties' },
+            { text: 'Forms', link: '/en/official/Features/GUI-Components/Forms' },
+            { text: 'Modernization', link: '/en/official/Features/GUI-Components/Modernization' },
+            { text: 'New Controls', link: '/en/official/Features/GUI-Components/New' },
+            { text: 'UserControl', link: '/en/official/Features/GUI-Components/UserControl' },
+            { text: 'Windowless', link: '/en/official/Features/GUI-Components/Windowless' }
           ]
         },
         {
           text: 'Language',
           items: [
-            { text: 'Overview', link: '/en/official2/Features/Language/' },
-            { text: 'Alias Types', link: '/en/official2/Features/Language/Alias-Types' },
-            { text: 'Comments', link: '/en/official2/Features/Language/Comments' },
-            { text: 'Data Types', link: '/en/official2/Features/Language/Data-Types' },
-            { text: 'Delegates', link: '/en/official2/Features/Language/Delegates' },
-            { text: 'Generics', link: '/en/official2/Features/Language/Generics' },
-            { text: 'Handlers', link: '/en/official2/Features/Language/Handlers' },
-            { text: 'Inheritance', link: '/en/official2/Features/Language/Inheritance' },
-            { text: 'Inline Initialization', link: '/en/official2/Features/Language/Inline-Initialization' },
-            { text: 'Interfaces & CoClasses', link: '/en/official2/Features/Language/Interfaces-CoClasses' },
-            { text: 'Literals', link: '/en/official2/Features/Language/Literals' },
-            { text: 'Loop Control', link: '/en/official2/Features/Language/Loop-Control' },
-            { text: 'Module Organization', link: '/en/official2/Features/Language/Module-Organization' },
-            { text: 'Operators', link: '/en/official2/Features/Language/Operators' },
-            { text: 'Overloading', link: '/en/official2/Features/Language/Overloading' },
-            { text: 'Pointers', link: '/en/official2/Features/Language/Pointers' },
-            { text: 'Return', link: '/en/official2/Features/Language/Return' },
-            { text: 'Type Inference', link: '/en/official2/Features/Language/Type-Inference' },
-            { text: 'UDTs', link: '/en/official2/Features/Language/UDTs' }
+            { text: 'Overview', link: '/en/official/Features/Language/' },
+            { text: 'Alias Types', link: '/en/official/Features/Language/Alias-Types' },
+            { text: 'Comments', link: '/en/official/Features/Language/Comments' },
+            { text: 'Data Types', link: '/en/official/Features/Language/Data-Types' },
+            { text: 'Delegates', link: '/en/official/Features/Language/Delegates' },
+            { text: 'Generics', link: '/en/official/Features/Language/Generics' },
+            { text: 'Handlers', link: '/en/official/Features/Language/Handlers' },
+            { text: 'Inheritance', link: '/en/official/Features/Language/Inheritance' },
+            { text: 'Inline Initialization', link: '/en/official/Features/Language/Inline-Initialization' },
+            { text: 'Interfaces & CoClasses', link: '/en/official/Features/Language/Interfaces-CoClasses' },
+            { text: 'Literals', link: '/en/official/Features/Language/Literals' },
+            { text: 'Loop Control', link: '/en/official/Features/Language/Loop-Control' },
+            { text: 'Module Organization', link: '/en/official/Features/Language/Module-Organization' },
+            { text: 'Operators', link: '/en/official/Features/Language/Operators' },
+            { text: 'Overloading', link: '/en/official/Features/Language/Overloading' },
+            { text: 'Pointers', link: '/en/official/Features/Language/Pointers' },
+            { text: 'Return', link: '/en/official/Features/Language/Return' },
+            { text: 'Type Inference', link: '/en/official/Features/Language/Type-Inference' },
+            { text: 'UDTs', link: '/en/official/Features/Language/UDTs' }
           ]
         },
         {
           text: 'Packages',
           items: [
-            { text: 'Overview', link: '/en/official2/Features/Packages/' },
-            { text: 'Creating TWINPACK', link: '/en/official2/Features/Packages/Creating a TWINPACK package' },
-            { text: 'Importing from TWINPACK', link: '/en/official2/Features/Packages/Importing a package from a TWINPACK file' },
-            { text: 'Importing from TWINSERV', link: '/en/official2/Features/Packages/Importing a package from TWINSERV' },
-            { text: 'Updating', link: '/en/official2/Features/Packages/Updating a package' }
+            { text: 'Overview', link: '/en/official/Features/Packages/' },
+            { text: 'Creating TWINPACK', link: '/en/official/Features/Packages/Creating a TWINPACK package' },
+            { text: 'Importing from TWINPACK', link: '/en/official/Features/Packages/Importing a package from a TWINPACK file' },
+            { text: 'Importing from TWINSERV', link: '/en/official/Features/Packages/Importing a package from TWINSERV' },
+            { text: 'Updating', link: '/en/official/Features/Packages/Updating a package' }
           ]
         },
         {
           text: 'Project Configuration',
           items: [
-            { text: 'Overview', link: '/en/official2/Features/Project-Configuration/' },
-            { text: 'ActiveX Registration', link: '/en/official2/Features/Project-Configuration/ActiveX-Registration' },
-            { text: 'Compiler Options', link: '/en/official2/Features/Project-Configuration/Compiler-Options' },
-            { text: 'Project Types', link: '/en/official2/Features/Project-Configuration/Project-Types' }
+            { text: 'Overview', link: '/en/official/Features/Project-Configuration/' },
+            { text: 'ActiveX Registration', link: '/en/official/Features/Project-Configuration/ActiveX-Registration' },
+            { text: 'Compiler Options', link: '/en/official/Features/Project-Configuration/Compiler-Options' },
+            { text: 'Project Types', link: '/en/official/Features/Project-Configuration/Project-Types' }
           ]
         },
         {
           text: 'Standard Library',
           items: [
-            { text: 'Overview', link: '/en/official2/Features/Standard-Library/' },
-            { text: 'File I/O', link: '/en/official2/Features/Standard-Library/File-IO' },
-            { text: 'New Functions', link: '/en/official2/Features/Standard-Library/New-Functions' },
-            { text: 'Unicode Support', link: '/en/official2/Features/Standard-Library/Unicode-Support' }
+            { text: 'Overview', link: '/en/official/Features/Standard-Library/' },
+            { text: 'File I/O', link: '/en/official/Features/Standard-Library/File-IO' },
+            { text: 'New Functions', link: '/en/official/Features/Standard-Library/New-Functions' },
+            { text: 'Unicode Support', link: '/en/official/Features/Standard-Library/Unicode-Support' }
           ]
         }
       ]
@@ -121,74 +121,74 @@ export const enSidebar = {
     {
       text: 'IDE',
       items: [
-        { text: 'Overview', link: '/en/official2/IDE/' },
-        { text: 'Call Stack', link: '/en/official2/IDE/Call Stack' },
-        { text: 'Debug Console', link: '/en/official2/IDE/Debug Console' },
-        { text: 'Diagnostics', link: '/en/official2/IDE/Diagnostics' },
-        { text: 'Editor', link: '/en/official2/IDE/Editor' },
-        { text: 'Find & Replace', link: '/en/official2/IDE/FindReplace' },
-        { text: 'History', link: '/en/official2/IDE/History' },
-        { text: 'Memory', link: '/en/official2/IDE/Memory' },
-        { text: 'New Project', link: '/en/official2/IDE/New Project' },
-        { text: 'Open Editors', link: '/en/official2/IDE/Open Editors' },
-        { text: 'Outline', link: '/en/official2/IDE/Outline' },
-        { text: 'Package Publishing', link: '/en/official2/IDE/Package Publishing' },
-        { text: 'Project Explorer', link: '/en/official2/IDE/Project Explorer' },
-        { text: 'Project Settings', link: '/en/official2/IDE/Project Settings' },
-        { text: 'Properties', link: '/en/official2/IDE/Properties' },
-        { text: 'Splash Screen', link: '/en/official2/IDE/Splash Screen' },
-        { text: 'Status Bar', link: '/en/official2/IDE/Status Bar' },
-        { text: 'tbForm', link: '/en/official2/IDE/tbForm' },
-        { text: 'tbReport', link: '/en/official2/IDE/tbReport' },
-        { text: 'Toolbar', link: '/en/official2/IDE/Toolbar' },
-        { text: 'Toolbox', link: '/en/official2/IDE/Toolbox' },
-        { text: 'Variables', link: '/en/official2/IDE/Variables' },
-        { text: 'Watches', link: '/en/official2/IDE/Watches' },
-        { text: 'Webpage', link: '/en/official2/IDE/Webpage' }
+        { text: 'Overview', link: '/en/official/IDE/' },
+        { text: 'Call Stack', link: '/en/official/IDE/Call Stack' },
+        { text: 'Debug Console', link: '/en/official/IDE/Debug Console' },
+        { text: 'Diagnostics', link: '/en/official/IDE/Diagnostics' },
+        { text: 'Editor', link: '/en/official/IDE/Editor' },
+        { text: 'Find & Replace', link: '/en/official/IDE/FindReplace' },
+        { text: 'History', link: '/en/official/IDE/History' },
+        { text: 'Memory', link: '/en/official/IDE/Memory' },
+        { text: 'New Project', link: '/en/official/IDE/New Project' },
+        { text: 'Open Editors', link: '/en/official/IDE/Open Editors' },
+        { text: 'Outline', link: '/en/official/IDE/Outline' },
+        { text: 'Package Publishing', link: '/en/official/IDE/Package Publishing' },
+        { text: 'Project Explorer', link: '/en/official/IDE/Project Explorer' },
+        { text: 'Project Settings', link: '/en/official/IDE/Project Settings' },
+        { text: 'Properties', link: '/en/official/IDE/Properties' },
+        { text: 'Splash Screen', link: '/en/official/IDE/Splash Screen' },
+        { text: 'Status Bar', link: '/en/official/IDE/Status Bar' },
+        { text: 'tbForm', link: '/en/official/IDE/tbForm' },
+        { text: 'tbReport', link: '/en/official/IDE/tbReport' },
+        { text: 'Toolbar', link: '/en/official/IDE/Toolbar' },
+        { text: 'Toolbox', link: '/en/official/IDE/Toolbox' },
+        { text: 'Variables', link: '/en/official/IDE/Variables' },
+        { text: 'Watches', link: '/en/official/IDE/Watches' },
+        { text: 'Webpage', link: '/en/official/IDE/Webpage' }
       ]
     },
     {
       text: 'Miscellaneous',
       items: [
-        { text: 'Documentation Development', link: '/en/official2/Miscellaneous/Documentation Development' },
-        { text: 'FAQs', link: '/en/official2/Miscellaneous/FAQs' }
+        { text: 'Documentation Development', link: '/en/official/Miscellaneous/Documentation Development' },
+        { text: 'FAQs', link: '/en/official/Miscellaneous/FAQs' }
       ]
     },
     {
       text: 'Reference',
       items: [
-        { text: 'Overview', link: '/en/official2/Reference/' },
-        { text: 'Attributes', link: '/en/official2/Reference/Attributes' },
-        { text: 'Categories', link: '/en/official2/Reference/Categories' },
-        { text: 'Compiler Constants', link: '/en/official2/Reference/Compiler Constants' },
-        { text: 'Controls', link: '/en/official2/Reference/Controls' },
-        { text: 'Glossary', link: '/en/official2/Reference/Glossary' },
-        { text: 'Procedures and Functions', link: '/en/official2/Reference/Procedures and Functions' },
-        { text: 'Statements', link: '/en/official2/Reference/Statements' }
+        { text: 'Overview', link: '/en/official/Reference/' },
+        { text: 'Attributes', link: '/en/official/Reference/Attributes' },
+        { text: 'Categories', link: '/en/official/Reference/Categories' },
+        { text: 'Compiler Constants', link: '/en/official/Reference/Compiler Constants' },
+        { text: 'Controls', link: '/en/official/Reference/Controls' },
+        { text: 'Glossary', link: '/en/official/Reference/Glossary' },
+        { text: 'Procedures and Functions', link: '/en/official/Reference/Procedures and Functions' },
+        { text: 'Statements', link: '/en/official/Reference/Statements' }
       ]
     },
     {
       text: 'Tutorials',
       items: [
-        { text: 'Overview', link: '/en/official2/Tutorials/' },
-        { text: 'Arrays', link: '/en/official2/Tutorials/Arrays' },
+        { text: 'Overview', link: '/en/official/Tutorials/' },
+        { text: 'Arrays', link: '/en/official/Tutorials/Arrays' },
         {
           text: 'Custom Controls',
           items: [
-            { text: 'Overview', link: '/en/official2/Tutorials/CustomControls/' },
-            { text: 'Defining a CustomControl', link: '/en/official2/Tutorials/CustomControls/Defining a CustomControl' },
-            { text: 'Notes about the form designer', link: '/en/official2/Tutorials/CustomControls/Notes about the form designer' },
-            { text: 'Painting - drawing to your control', link: '/en/official2/Tutorials/CustomControls/Painting-drawing to your control' },
-            { text: 'Property sheet and object serialization', link: '/en/official2/Tutorials/CustomControls/Property sheet and object serialization' }
+            { text: 'Overview', link: '/en/official/Tutorials/CustomControls/' },
+            { text: 'Defining a CustomControl', link: '/en/official/Tutorials/CustomControls/Defining a CustomControl' },
+            { text: 'Notes about the form designer', link: '/en/official/Tutorials/CustomControls/Notes about the form designer' },
+            { text: 'Painting - drawing to your control', link: '/en/official/Tutorials/CustomControls/Painting-drawing to your control' },
+            { text: 'Property sheet and object serialization', link: '/en/official/Tutorials/CustomControls/Property sheet and object serialization' }
           ]
         },
         {
           text: 'WebView2',
           items: [
-            { text: 'Overview', link: '/en/official2/Tutorials/WebView2/' },
-            { text: 'Customize the UserDataFolder', link: '/en/official2/Tutorials/WebView2/Customize the UserDataFolder' },
-            { text: 'Getting started', link: '/en/official2/Tutorials/WebView2/Getting started' },
-            { text: 'Re-entrancy', link: '/en/official2/Tutorials/WebView2/Re-entrancy' }
+            { text: 'Overview', link: '/en/official/Tutorials/WebView2/' },
+            { text: 'Customize the UserDataFolder', link: '/en/official/Tutorials/WebView2/Customize the UserDataFolder' },
+            { text: 'Getting started', link: '/en/official/Tutorials/WebView2/Getting started' },
+            { text: 'Re-entrancy', link: '/en/official/Tutorials/WebView2/Re-entrancy' }
           ]
         }
       ]
@@ -196,9 +196,9 @@ export const enSidebar = {
     {
       text: 'Videos',
       items: [
-        { text: 'Overview', link: '/en/official2/Videos/' },
-        { text: 'AccessDevCon', link: '/en/official2/Videos/AccessDevCon' },
-        { text: 'twinBASIC', link: '/en/official2/Videos/twinBASIC' }
+        { text: 'Overview', link: '/en/official/Videos/' },
+        { text: 'AccessDevCon', link: '/en/official/Videos/AccessDevCon' },
+        { text: 'twinBASIC', link: '/en/official/Videos/twinBASIC' }
       ]
     }
   ],
