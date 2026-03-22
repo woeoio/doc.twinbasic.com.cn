@@ -572,14 +572,25 @@ export default function clearDieLinkPlugin() {
                           normalizedPath.includes('/docs/zh/official/')
       if (!isTargetDir) return null
       
-      // 第一步：先处理 %20，这比 clearDieLinks 更早
+      // 第一步：先处理 Markdown 链接/图片中的 %20，这比 clearDieLinks 更早
       let transformed = code
       let hasChanged = false
       
+      // 处理 [text](url) 格式中的 %20（只处理 .md 链接，不处理图片）
       if (code.includes('%20')) {
-        transformed = code.replace(/%20/g, '-')
-        hasChanged = true
+        // 处理链接 [text](url)，排除图片 ![alt](url)，且只处理 .md 结尾的链接
+        transformed = code.replace(/(?<!!)\[([^\]]+)\]\(([^)]+\.md[^)]*)\)/g, (match, text, url) => {
+          const decodedUrl = url.replace(/%20/g, '-')
+          if (decodedUrl !== url) {
+            return `[${text}](${decodedUrl})`
+          }
+          return match
+        })
+        hasChanged = transformed !== code
       }
+      
+      // 注意：不要处理图片路径中的空格，因为实际图片文件名可能就是带空格的
+      // VitePress 会自动处理资源文件名的编码
       
       // 第二步：处理死链
       const result = clearDieLinks(transformed, id)
