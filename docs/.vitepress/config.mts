@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import path from 'path'
 import { zhNav, zhSidebar, zhFooter, zhDocFooter } from './nav/zh.mts'
 import { enNav, enSidebar, enFooter } from './nav/en.mts'
 import clearDieLinkPlugin from './plugins/clearDieLink'
@@ -6,6 +7,7 @@ import jekyllPlugin from './plugins/jekyll'
 import navRedirectPlugin from './plugins/navRedirect'
 import rewrites from './plugins/rewrites'
 import llmstxtQuiet from './plugins/llmstxt-quiet'
+import { renameBuildFiles } from './plugins/renameBuildFiles'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -18,6 +20,11 @@ export default defineConfig({
 
   // 重定向默认语言目录
   rewrites,
+
+  async buildEnd(siteConfig) {
+    const outDir = siteConfig.outDir || path.resolve(__dirname, '../../dist')
+    renameBuildFiles(outDir)
+  },
 
   sitemap: {
     hostname: 'https://doc.twinbasic.com.cn',
