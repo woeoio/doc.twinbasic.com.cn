@@ -424,6 +424,12 @@ export function clearDieLinks(code: string, id: string): string | null {
   // 只处理 markdown 文件
   if (!id.endsWith('.md')) return null
 
+  // 只处理指定目录下的文件
+  const normalizedPath = id.replace(/\\/g, '/')
+  const isTargetDir = normalizedPath.includes('/docs/en/official/') || 
+                      normalizedPath.includes('/docs/zh/official/')
+  if (!isTargetDir) return null
+
   let transformed = code
   let hasChanged = false
   let replacedCount = 0
