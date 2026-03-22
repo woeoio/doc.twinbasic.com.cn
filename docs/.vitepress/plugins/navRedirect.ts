@@ -9,7 +9,7 @@ const redirectMap: Record<string, string> = {
   '/official/Home': '/official/',
   
   // FAQ
-  '/official/twinBASIC-Frequently-Asked-Questions-(FAQs)': '/official/Miscellaneous/FAQs',
+  '/official/twinBASIC-Frequently-Asked-Questions-(FAQs).html': '/official/Miscellaneous/FAQs.html',
   
   // 入门指南相关
   '/start/base': '/official/Tutorials/',
@@ -24,60 +24,60 @@ const redirectMap: Record<string, string> = {
   '/official/twinBASIC-Features-4': '/official/Features/',
   
   // 编译器常量
-  '/official/twinBASIC-Compiler-Constants': '/official/Reference/Compiler-Constants',
-  
+  '/official/twinBASIC-Compiler-Constants': '/official/Reference/Compiler-Constants.html',
+
   // 控件相关
-  '/official/Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management': '/official/Features/GUI-Components/Anchoring-Docking',
-  
+  '/official/Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management': '/official/Features/GUI-Components/Anchoring-Docking.html',
+
   // 自定义控件
   '/official/twinBASIC-CustomControls-Introduction': '/official/Tutorials/CustomControls/',
-  '/official/twinBASIC---CustomControls---Defining-a-CustomControl': '/official/Tutorials/CustomControls/Defining-a-CustomControl',
-  '/official/twinBASIC---CustomControls---Notes-about-the-form-designer': '/official/Tutorials/CustomControls/Notes-about-the-form-designer',
-  '/official/twinBASIC---CustomControls---Painting---drawing-to-your-control': '/official/Tutorials/CustomControls/Painting-drawing-to-your-control',
-  '/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization': '/official/Tutorials/CustomControls/Property-sheet-and-object-serialization',
-  
+  '/official/twinBASIC---CustomControls---Defining-a-CustomControl': '/official/Tutorials/CustomControls/Defining-a-CustomControl.html',
+  '/official/twinBASIC---CustomControls---Notes-about-the-form-designer': '/official/Tutorials/CustomControls/Notes-about-the-form-designer.html',
+  '/official/twinBASIC---CustomControls---Painting---drawing-to-your-control': '/official/Tutorials/CustomControls/Painting-drawing-to-your-control.html',
+  '/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization': '/official/Tutorials/CustomControls/Property-sheet-and-object-serialization.html',
+
   // 包管理
   '/official/twinBASIC-Packages-What-is-a-package': '/official/Features/Packages/',
-  '/official/twinBASIC-Packages-Creating-a-TWINPACK-package': '/official/Features/Packages/Creating-a-TWINPACK-package',
-  '/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file': '/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file',
-  '/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV': '/official/Features/Packages/Importing-a-package-from-TWINSERV',
-  '/official/twinBASIC-Packages-Updating-a-package': '/official/Features/Packages/Updating-a-package',
+  '/official/twinBASIC-Packages-Creating-a-TWINPACK-package': '/official/Features/Packages/Creating-a-TWINPACK-package.html',
+  '/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file': '/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file.html',
+  '/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV': '/official/Features/Packages/Importing-a-package-from-TWINSERV.html',
+  '/official/twinBASIC-Packages-Updating-a-package': '/official/Features/Packages/Updating-a-package.html',
   
   // ========== 英文路径 ==========
   // 首页相关
   '/en/official/Home': '/en/official/',
   
   // FAQ
-  '/en/official/twinBASIC-Frequently-Asked-Questions-(FAQs)': '/en/official/Miscellaneous/FAQs',
-  
+  '/en/official/twinBASIC-Frequently-Asked-Questions-(FAQs).html': '/en/official/Miscellaneous/FAQs.html',
+
   // 入门指南相关
   '/en/start/base': '/en/official/Tutorials/',
   '/en/res/pic': '/en/official/Tutorials/',
   // 搜索引擎抓取的错误路径，显示“入门指南”却跑到 WebView2 子目录
   '/en/official/twinBASIC-WebView2-Getting-Started': '/en/official/Tutorials/',
-  
+
   // Features 功能特性
   '/en/official/twinBASIC-Features-1': '/en/official/Features/',
   '/en/official/twinBASIC-Features-2': '/en/official/Features/',
   '/en/official/twinBASIC-Features-3': '/en/official/Features/',
   '/en/official/twinBASIC-Features-4': '/en/official/Features/',
-  
+
   // 编译器常量
-  '/en/official/twinBASIC-Compiler-Constants': '/en/official/Reference/Compiler-Constants',
+  '/en/official/twinBASIC-Compiler-Constants': '/en/official/Reference/Compiler-Constants.html',
 
   // 自定义控件
   '/en/official/twinBASIC-CustomControls-Introduction': '/en/official/Tutorials/CustomControls/',
-  '/en/official/twinBASIC---CustomControls---Defining-a-CustomControl': '/en/official/Tutorials/CustomControls/Defining-a-CustomControl',
-  '/en/official/twinBASIC---CustomControls---Notes-about-the-form-designer': '/en/official/Tutorials/CustomControls/Notes-about-the-form-designer',
-  '/en/official/twinBASIC---CustomControls---Painting---drawing-to-your-control': '/en/official/Tutorials/CustomControls/Painting-drawing-to-your-control',
-  '/en/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization': '/en/official/Tutorials/CustomControls/Property-sheet-and-object-serialization',
+  '/en/official/twinBASIC---CustomControls---Defining-a-CustomControl': '/en/official/Tutorials/CustomControls/Defining-a-CustomControl.html',
+  '/en/official/twinBASIC---CustomControls---Notes-about-the-form-designer': '/en/official/Tutorials/CustomControls/Notes-about-the-form-designer.html',
+  '/en/official/twinBASIC---CustomControls---Painting---drawing-to-your-control': '/en/official/Tutorials/CustomControls/Painting-drawing-to-your-control.html',
+  '/en/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization': '/en/official/Tutorials/CustomControls/Property-sheet-and-object-serialization.html',
 
   // 包管理
   '/en/official/twinBASIC-Packages-What-is-a-package': '/en/official/Features/Packages/',
-  '/en/official/twinBASIC-Packages-Creating-a-TWINPACK-package': '/en/official/Features/Packages/Creating-a-TWINPACK-package',
-  '/en/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file': '/en/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file',
-  '/en/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV': '/en/official/Features/Packages/Importing-a-package-from-TWINSERV',
-  '/en/official/twinBASIC-Packages-Updating-a-package': '/en/official/Features/Packages/Updating-a-package'
+  '/en/official/twinBASIC-Packages-Creating-a-TWINPACK-package': '/en/official/Features/Packages/Creating-a-TWINPACK-package.html',
+  '/en/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file': '/en/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file.html',
+  '/en/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV': '/en/official/Features/Packages/Importing-a-package-from-TWINSERV.html',
+  '/en/official/twinBASIC-Packages-Updating-a-package': '/en/official/Features/Packages/Updating-a-package.html'
 }
 
 export function navRedirectPlugin(): Plugin {
@@ -95,7 +95,10 @@ export function navRedirectPlugin(): Plugin {
       for (const [oldPath, newPath] of Object.entries(redirectMap)) {
         // 移除开头的斜杠
         const relativePath = oldPath.startsWith('/') ? oldPath.slice(1) : oldPath
-        const htmlPath = path.join(outDir, relativePath + '.html')
+        // 如果路径已以 .html 结尾，则不再添加
+        const htmlPath = relativePath.endsWith('.html')
+          ? path.join(outDir, relativePath)
+          : path.join(outDir, relativePath + '.html')
         
         // 确保目标目录存在
         const dir = path.dirname(htmlPath)
