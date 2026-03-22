@@ -445,6 +445,24 @@ export function clearDieLinks(code: string, id: string): string | null {
     // [text](tB/IDE/AddIns/) 或 [text](tB/IDE/AddIns/index) - 注意：没有 ./ 前缀
     { pattern: /\[([^\]]+)\]\(tB\/IDE\/AddIns\/?(?:index)?\)/g, replacement: '$1' },
   ]
+
+  // 处理 [完整大小] 和 [Full size] 图片链接 - 转换为 Markdown 图片语法
+  const fullSizePatterns = [
+    // [完整大小](/images/...) -> ![完整大小](/images/...)
+    { pattern: /\[完整大小\]\(([^)]+)\)/g, replacement: '![完整大小]($1)' },
+    // [Full size](...) -> ![Full size](...)
+    { pattern: /\[Full size\]\(([^)]+)\)/g, replacement: '![Full size]($1)' },
+    // [full size](...) -> ![full size](...)
+    { pattern: /\[full size\]\(([^)]+)\)/g, replacement: '![full size]($1)' },
+  ]
+  
+  for (const { pattern, replacement } of fullSizePatterns) {
+    const newTransformed = transformed.replace(pattern, replacement)
+    if (newTransformed !== transformed) {
+      transformed = newTransformed
+      hasChanged = true
+    }
+  }
   
   // 特殊处理：替换纯文本 URL（不是 markdown 链接）
   transformed = transformed.replace(/http:\/\/localhost:4000/g, 'localhost:4000')
