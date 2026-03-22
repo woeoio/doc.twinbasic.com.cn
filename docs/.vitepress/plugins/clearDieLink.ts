@@ -538,12 +538,18 @@ export default function clearDieLinkPlugin() {
     name: 'clear-dead-links',
     enforce: 'pre' as const,
     transform(code: string, id: string) {
-      const result = clearDieLinks(code, id)
+      // 只处理指定目录下的 markdown 文件
+      if (!id.endsWith('.md')) return null
+      
+      const normalizedPath = id.replace(/\\/g, '/')
+      const isTargetDir = normalizedPath.includes('/docs/en/official/') || 
+                          normalizedPath.includes('/docs/zh/official/')
+      if (!isTargetDir) return null
+      
       // 调试：显示处理的文件
-      // if (id.endsWith('.md')) {
-      //   console.log(`[clearDieLinkPlugin] 处理: ${id}`)
-      // }
-      return result
+      // console.log(`[clearDieLinkPlugin] 处理: ${id}`)
+      
+      return clearDieLinks(code, id)
     }
   }
 }
