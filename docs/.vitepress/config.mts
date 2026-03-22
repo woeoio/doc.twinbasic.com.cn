@@ -1,10 +1,11 @@
 import { defineConfig } from 'vitepress'
-import llmstxt from 'vitepress-plugin-llms'
 import { zhNav, zhSidebar, zhFooter, zhDocFooter } from './nav/zh.mts'
 import { enNav, enSidebar, enFooter } from './nav/en.mts'
 import clearDieLinkPlugin from './plugins/clearDieLink'
 import jekyllPlugin from './plugins/jekyll'
 import navRedirectPlugin from './plugins/navRedirect'
+import rewrites from './plugins/rewrites'
+import llmstxtQuiet from './plugins/llmstxt-quiet'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -16,9 +17,7 @@ export default defineConfig({
   // ignoreDeadLinks: true,
 
   // 重定向默认语言目录
-  rewrites: {
-    'zh/:rest*': ':rest*'
-  },
+  rewrites,
 
   sitemap: {
     hostname: 'https://doc.twinbasic.com.cn',
@@ -144,7 +143,7 @@ export default defineConfig({
 
   vite: {
     plugins: [
-      llmstxt(), 
+      llmstxtQuiet(), 
       clearDieLinkPlugin(),
       jekyllPlugin() as any,
       navRedirectPlugin()
