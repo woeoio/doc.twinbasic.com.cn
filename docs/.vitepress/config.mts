@@ -4,6 +4,7 @@ import { zhNav, zhSidebar, zhFooter, zhDocFooter } from './nav/zh.mts'
 import { enNav, enSidebar, enFooter } from './nav/en.mts'
 import clearDieLinkPlugin from './plugins/clearDieLink'
 import jekyllPlugin from './plugins/jekyll'
+import navRedirectPlugin from './plugins/navRedirect'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -145,7 +146,8 @@ export default defineConfig({
     plugins: [
       llmstxt(), 
       clearDieLinkPlugin(),
-      jekyllPlugin() as any
+      jekyllPlugin() as any,
+      navRedirectPlugin()
     ]
   }
 })
