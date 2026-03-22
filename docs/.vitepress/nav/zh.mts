@@ -145,7 +145,31 @@ export const zhSidebar = {
         { text: '工具箱', link: '/official/IDE/Toolbox' },
         { text: '变量', link: '/official/IDE/Variables' },
         { text: '监视', link: '/official/IDE/Watches' },
-        { text: '网页', link: '/official/IDE/Webpage' }
+        { text: '网页', link: '/official/IDE/Webpage' },
+        {
+          text: 'Menu 菜单',
+          items: [
+            { text: '概述', link: '/official/IDE/Menu/' },
+            { text: '文件菜单', link: '/official/IDE/Menu/File' },
+            { text: '编辑菜单', link: '/official/IDE/Menu/Edit' },
+            { text: '视图菜单', link: '/official/IDE/Menu/View' },
+            { text: '项目菜单', link: '/official/IDE/Menu/Project' },
+            { text: '格式菜单', link: '/official/IDE/Menu/Format' },
+            { text: '调试菜单', link: '/official/IDE/Menu/Debug' },
+            { text: '运行菜单', link: '/official/IDE/Menu/Run' },
+            { text: '外接程序菜单', link: '/official/IDE/Menu/Add-Ins' },
+            { text: '工具菜单', link: '/official/IDE/Menu/Tools' },
+            { text: '窗口菜单', link: '/official/IDE/Menu/Window' },
+            { text: '帮助菜单', link: '/official/IDE/Menu/Help' }
+          ]
+        },
+        {
+          text: 'AddIns 外接程序',
+          items: [
+            { text: '概述', link: '/official/IDE/AddIns/' },
+            { text: '全局搜索', link: '/official/IDE/AddIns/GlobalSearch' }
+          ]
+        }
       ]
     },
     {
@@ -165,7 +189,39 @@ export const zhSidebar = {
         { text: '控件', link: '/official/Reference/Controls' },
         { text: '术语表', link: '/official/Reference/Glossary' },
         { text: '过程和函数', link: '/official/Reference/Procedures-and-Functions' },
-        { text: '语句', link: '/official/Reference/Statements' }
+        { text: '语句', link: '/official/Reference/Statements' },
+        {
+          text: 'Core 核心语言',
+          items: [
+            { text: 'Call', link: '/official/Reference/Core/Call' },
+            { text: 'Class', link: '/official/Reference/Core/Class' },
+            { text: 'Close', link: '/official/Reference/Core/Close' },
+            { text: 'Const', link: '/official/Reference/Core/Const' },
+            { text: 'Continue', link: '/official/Reference/Core/Continue' },
+            { text: 'Declare', link: '/official/Reference/Core/Declare' },
+            { text: 'Dim', link: '/official/Reference/Core/Dim' },
+            { text: 'Do-Loop', link: '/official/Reference/Core/Do-Loop' },
+            { text: 'End', link: '/official/Reference/Core/End' },
+            { text: 'Enum', link: '/official/Reference/Core/Enum' },
+            { text: 'Erase', link: '/official/Reference/Core/Erase' },
+            { text: 'Error', link: '/official/Reference/Core/Error' },
+            { text: 'Event', link: '/official/Reference/Core/Event' },
+            { text: 'Exit', link: '/official/Reference/Core/Exit' },
+            { text: 'For-Each-Next', link: '/official/Reference/Core/For-Each-Next' },
+            { text: 'For-Next', link: '/official/Reference/Core/For-Next' },
+            { text: 'Function', link: '/official/Reference/Core/Function' },
+            { text: 'Option', link: '/official/Reference/Core/Option' }
+          ]
+        },
+        {
+          text: 'Modules 模块',
+          items: [
+            { text: '概述', link: '/official/Reference/Modules/' },
+            { text: '财务', link: '/official/Reference/Modules/Financial' },
+            { text: '数学', link: '/official/Reference/Modules/Math' },
+            { text: '字符串', link: '/official/Reference/Modules/Strings' }
+          ]
+        }
       ]
     },
     {
@@ -216,12 +272,14 @@ export const zhSidebar = {
         { text: '通用对话框控件', link: '/packages/vbccr/commondialog' },
         { text: '工具条控件', link: '/packages/vbccr/coolbar' },
         { text: '日期时间选择器控件', link: '/packages/vbccr/datetimepicker' },
+        { text: 'DTPicker控件', link: '/packages/vbccr/dtpicker' },
         { text: '驱动器列表控件', link: '/packages/vbccr/drivelist' },
         { text: '驱动器路径控件', link: '/packages/vbccr/drivepath' },
         { text: '文件路径控件', link: '/packages/vbccr/filepath' },
         { text: '字体组合框控件', link: '/packages/vbccr/fontcombo' },
         { text: '框架控件', link: '/packages/vbccr/frame' },
         { text: '热键控件', link: '/packages/vbccr/hotkey' },
+        { text: '图像控件', link: '/packages/vbccr/image' },
         { text: '图像组合框控件', link: '/packages/vbccr/imagecombo' },
         { text: '图像列表控件', link: '/packages/vbccr/imagelist' },
         { text: 'IP地址控件', link: '/packages/vbccr/ipaddress' },
@@ -253,6 +311,7 @@ export const zhSidebar = {
         { text: '上下调节控件', link: '/packages/vbccr/updown' },
         { text: '虚拟组合框控件', link: '/packages/vbccr/virtualcombo' },
         { text: '虚拟列表框控件', link: '/packages/vbccr/vlistbox' },
+        { text: '网页浏览器控件', link: '/packages/vbccr/webbrowser' },
         { text: '窗口化标签控件', link: '/packages/vbccr/windowedlabel' },
         { text: '官方文档', link: '/packages/vbccr/readme' }
       ]

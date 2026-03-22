@@ -144,7 +144,31 @@ export const enSidebar = {
         { text: 'Toolbox', link: '/en/official/IDE/Toolbox' },
         { text: 'Variables', link: '/en/official/IDE/Variables' },
         { text: 'Watches', link: '/en/official/IDE/Watches' },
-        { text: 'Webpage', link: '/en/official/IDE/Webpage' }
+        { text: 'Webpage', link: '/en/official/IDE/Webpage' },
+        {
+          text: 'Menu',
+          items: [
+            { text: 'Overview', link: '/en/official/IDE/Menu/' },
+            { text: 'File', link: '/en/official/IDE/Menu/File' },
+            { text: 'Edit', link: '/en/official/IDE/Menu/Edit' },
+            { text: 'View', link: '/en/official/IDE/Menu/View' },
+            { text: 'Project', link: '/en/official/IDE/Menu/Project' },
+            { text: 'Format', link: '/en/official/IDE/Menu/Format' },
+            { text: 'Debug', link: '/en/official/IDE/Menu/Debug' },
+            { text: 'Run', link: '/en/official/IDE/Menu/Run' },
+            { text: 'Add-Ins', link: '/en/official/IDE/Menu/Add-Ins' },
+            { text: 'Tools', link: '/en/official/IDE/Menu/Tools' },
+            { text: 'Window', link: '/en/official/IDE/Menu/Window' },
+            { text: 'Help', link: '/en/official/IDE/Menu/Help' }
+          ]
+        },
+        {
+          text: 'AddIns',
+          items: [
+            { text: 'Overview', link: '/en/official/IDE/AddIns/' },
+            { text: 'Global Search', link: '/en/official/IDE/AddIns/GlobalSearch' }
+          ]
+        }
       ]
     },
     {
@@ -164,7 +188,39 @@ export const enSidebar = {
         { text: 'Controls', link: '/en/official/Reference/Controls' },
         { text: 'Glossary', link: '/en/official/Reference/Glossary' },
         { text: 'Procedures and Functions', link: '/en/official/Reference/Procedures-and-Functions' },
-        { text: 'Statements', link: '/en/official/Reference/Statements' }
+        { text: 'Statements', link: '/en/official/Reference/Statements' },
+        {
+          text: 'Core',
+          items: [
+            { text: 'Call', link: '/en/official/Reference/Core/Call' },
+            { text: 'Class', link: '/en/official/Reference/Core/Class' },
+            { text: 'Close', link: '/en/official/Reference/Core/Close' },
+            { text: 'Const', link: '/en/official/Reference/Core/Const' },
+            { text: 'Continue', link: '/en/official/Reference/Core/Continue' },
+            { text: 'Declare', link: '/en/official/Reference/Core/Declare' },
+            { text: 'Dim', link: '/en/official/Reference/Core/Dim' },
+            { text: 'Do-Loop', link: '/en/official/Reference/Core/Do-Loop' },
+            { text: 'End', link: '/en/official/Reference/Core/End' },
+            { text: 'Enum', link: '/en/official/Reference/Core/Enum' },
+            { text: 'Erase', link: '/en/official/Reference/Core/Erase' },
+            { text: 'Error', link: '/en/official/Reference/Core/Error' },
+            { text: 'Event', link: '/en/official/Reference/Core/Event' },
+            { text: 'Exit', link: '/en/official/Reference/Core/Exit' },
+            { text: 'For-Each-Next', link: '/en/official/Reference/Core/For-Each-Next' },
+            { text: 'For-Next', link: '/en/official/Reference/Core/For-Next' },
+            { text: 'Function', link: '/en/official/Reference/Core/Function' },
+            { text: 'Option', link: '/en/official/Reference/Core/Option' }
+          ]
+        },
+        {
+          text: 'Modules',
+          items: [
+            { text: 'Overview', link: '/en/official/Reference/Modules/' },
+            { text: 'Financial', link: '/en/official/Reference/Modules/Financial' },
+            { text: 'Math', link: '/en/official/Reference/Modules/Math' },
+            { text: 'Strings', link: '/en/official/Reference/Modules/Strings' }
+          ]
+        }
       ]
     },
     {
@@ -215,12 +271,14 @@ export const enSidebar = {
         { text: 'CommonDialog Control', link: '/en/packages/vbccr/commondialog' },
         { text: 'CoolBar Control', link: '/en/packages/vbccr/coolbar' },
         { text: 'DateTimePicker Control', link: '/en/packages/vbccr/datetimepicker' },
+        { text: 'DTPicker Control', link: '/en/packages/vbccr/dtpicker' },
         { text: 'DriveList Control', link: '/en/packages/vbccr/drivelist' },
         { text: 'DrivePath Control', link: '/en/packages/vbccr/drivepath' },
         { text: 'FilePath Control', link: '/en/packages/vbccr/filepath' },
         { text: 'FontCombo Control', link: '/en/packages/vbccr/fontcombo' },
         { text: 'Frame Control', link: '/en/packages/vbccr/frame' },
         { text: 'HotKey Control', link: '/en/packages/vbccr/hotkey' },
+        { text: 'Image Control', link: '/en/packages/vbccr/image' },
         { text: 'ImageCombo Control', link: '/en/packages/vbccr/imagecombo' },
         { text: 'ImageList Control', link: '/en/packages/vbccr/imagelist' },
         { text: 'IPAddress Control', link: '/en/packages/vbccr/ipaddress' },
@@ -252,6 +310,7 @@ export const enSidebar = {
         { text: 'UpDown Control', link: '/en/packages/vbccr/updown' },
         { text: 'VirtualCombo Control', link: '/en/packages/vbccr/virtualcombo' },
         { text: 'VListBox Control', link: '/en/packages/vbccr/vlistbox' },
+        { text: 'WebBrowser Control', link: '/en/packages/vbccr/webbrowser' },
         { text: 'WindowedLabel Control', link: '/en/packages/vbccr/windowedlabel' },
         { text: 'Official Documentation', link: '/en/packages/vbccr/readme' }
       ]
