@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import llmstxt from 'vitepress-plugin-llms'
 import { zhNav, zhSidebar, zhFooter, zhDocFooter } from './nav/zh.mts'
 import { enNav, enSidebar, enFooter } from './nav/en.mts'
+import clearDieLinkPlugin from './plugins/clearDieLink'
 
 // 自定义插件：处理 Jekyll 语法
 const jekyllPlugin = () => ({
@@ -36,8 +37,8 @@ export default defineConfig({
   title: "Twinbasic Document",
   description: "an new vb6",
 
-  // 忽略死链接检查（从Jekyll迁移的文档链接需要逐步修复）
-  ignoreDeadLinks: true,
+  // 忽略死链接检查（插件 clearDieLinkPlugin 会在构建时替换死链为纯文本）
+  // ignoreDeadLinks: true,
 
   // 重定向默认语言目录
   rewrites: {
@@ -165,7 +166,12 @@ export default defineConfig({
   },
 
   lastUpdated: true,
+
   vite: {
-    plugins: [llmstxt(), jekyllPlugin() as any]
+    plugins: [
+      // llmstxt(), 
+      clearDieLinkPlugin(),
+      jekyllPlugin() as any
+    ]
   }
 })
