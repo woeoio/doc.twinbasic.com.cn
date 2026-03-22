@@ -92,10 +92,10 @@ export const enSidebar = {
           text: 'Packages',
           items: [
             { text: 'Overview', link: '/en/official/Features/Packages/' },
-            { text: 'Creating TWINPACK', link: '/en/official/Features/Packages/Creating a TWINPACK package' },
-            { text: 'Importing from TWINPACK', link: '/en/official/Features/Packages/Importing a package from a TWINPACK file' },
-            { text: 'Importing from TWINSERV', link: '/en/official/Features/Packages/Importing a package from TWINSERV' },
-            { text: 'Updating', link: '/en/official/Features/Packages/Updating a package' }
+            { text: 'Creating TWINPACK', link: '/en/official/Features/Packages/Creating-a-TWINPACK-package' },
+            { text: 'Importing from TWINPACK', link: '/en/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file' },
+            { text: 'Importing from TWINSERV', link: '/en/official/Features/Packages/Importing-a-package-from-TWINSERV' },
+            { text: 'Updating', link: '/en/official/Features/Packages/Updating-a-package' }
           ]
         },
         {
@@ -122,22 +122,22 @@ export const enSidebar = {
       text: 'IDE',
       items: [
         { text: 'Overview', link: '/en/official/IDE/' },
-        { text: 'Call Stack', link: '/en/official/IDE/Call Stack' },
-        { text: 'Debug Console', link: '/en/official/IDE/Debug Console' },
+        { text: 'Call Stack', link: '/en/official/IDE/Call-Stack' },
+        { text: 'Debug Console', link: '/en/official/IDE/Debug-Console' },
         { text: 'Diagnostics', link: '/en/official/IDE/Diagnostics' },
         { text: 'Editor', link: '/en/official/IDE/Editor' },
         { text: 'Find & Replace', link: '/en/official/IDE/FindReplace' },
         { text: 'History', link: '/en/official/IDE/History' },
         { text: 'Memory', link: '/en/official/IDE/Memory' },
-        { text: 'New Project', link: '/en/official/IDE/New Project' },
-        { text: 'Open Editors', link: '/en/official/IDE/Open Editors' },
+        { text: 'New Project', link: '/en/official/IDE/New-Project' },
+        { text: 'Open Editors', link: '/en/official/IDE/Open-Editors' },
         { text: 'Outline', link: '/en/official/IDE/Outline' },
-        { text: 'Package Publishing', link: '/en/official/IDE/Package Publishing' },
-        { text: 'Project Explorer', link: '/en/official/IDE/Project Explorer' },
-        { text: 'Project Settings', link: '/en/official/IDE/Project Settings' },
+        { text: 'Package Publishing', link: '/en/official/IDE/Package-Publishing' },
+        { text: 'Project Explorer', link: '/en/official/IDE/Project-Explorer' },
+        { text: 'Project Settings', link: '/en/official/IDE/Project-Settings' },
         { text: 'Properties', link: '/en/official/IDE/Properties' },
-        { text: 'Splash Screen', link: '/en/official/IDE/Splash Screen' },
-        { text: 'Status Bar', link: '/en/official/IDE/Status Bar' },
+        { text: 'Splash Screen', link: '/en/official/IDE/Splash-Screen' },
+        { text: 'Status Bar', link: '/en/official/IDE/Status-Bar' },
         { text: 'tbForm', link: '/en/official/IDE/tbForm' },
         { text: 'tbReport', link: '/en/official/IDE/tbReport' },
         { text: 'Toolbar', link: '/en/official/IDE/Toolbar' },
@@ -150,7 +150,7 @@ export const enSidebar = {
     {
       text: 'Miscellaneous',
       items: [
-        { text: 'Documentation Development', link: '/en/official/Miscellaneous/Documentation Development' },
+        { text: 'Documentation Development', link: '/en/official/Miscellaneous/Documentation-Development' },
         { text: 'FAQs', link: '/en/official/Miscellaneous/FAQs' }
       ]
     },
@@ -160,10 +160,10 @@ export const enSidebar = {
         { text: 'Overview', link: '/en/official/Reference/' },
         { text: 'Attributes', link: '/en/official/Reference/Attributes' },
         { text: 'Categories', link: '/en/official/Reference/Categories' },
-        { text: 'Compiler Constants', link: '/en/official/Reference/Compiler Constants' },
+        { text: 'Compiler Constants', link: '/en/official/Reference/Compiler-Constants' },
         { text: 'Controls', link: '/en/official/Reference/Controls' },
         { text: 'Glossary', link: '/en/official/Reference/Glossary' },
-        { text: 'Procedures and Functions', link: '/en/official/Reference/Procedures and Functions' },
+        { text: 'Procedures and Functions', link: '/en/official/Reference/Procedures-and-Functions' },
         { text: 'Statements', link: '/en/official/Reference/Statements' }
       ]
     },
@@ -176,18 +176,18 @@ export const enSidebar = {
           text: 'Custom Controls',
           items: [
             { text: 'Overview', link: '/en/official/Tutorials/CustomControls/' },
-            { text: 'Defining a CustomControl', link: '/en/official/Tutorials/CustomControls/Defining a CustomControl' },
-            { text: 'Notes about the form designer', link: '/en/official/Tutorials/CustomControls/Notes about the form designer' },
-            { text: 'Painting - drawing to your control', link: '/en/official/Tutorials/CustomControls/Painting-drawing to your control' },
-            { text: 'Property sheet and object serialization', link: '/en/official/Tutorials/CustomControls/Property sheet and object serialization' }
+            { text: 'Defining a CustomControl', link: '/en/official/Tutorials/CustomControls/Defining-a-CustomControl' },
+            { text: 'Notes about the form designer', link: '/en/official/Tutorials/CustomControls/Notes-about-the-form-designer' },
+            { text: 'Painting - drawing to your control', link: '/en/official/Tutorials/CustomControls/Painting-drawing-to-your-control' },
+            { text: 'Property sheet and object serialization', link: '/en/official/Tutorials/CustomControls/Property-sheet-and-object-serialization' }
           ]
         },
         {
           text: 'WebView2',
           items: [
             { text: 'Overview', link: '/en/official/Tutorials/WebView2/' },
-            { text: 'Customize the UserDataFolder', link: '/en/official/Tutorials/WebView2/Customize the UserDataFolder' },
-            { text: 'Getting started', link: '/en/official/Tutorials/WebView2/Getting started' },
+            { text: 'Customize the UserDataFolder', link: '/en/official/Tutorials/WebView2/Customize-the-UserDataFolder' },
+            { text: 'Getting started', link: '/en/official/Tutorials/WebView2/Getting-started' },
             { text: 'Re-entrancy', link: '/en/official/Tutorials/WebView2/Re-entrancy' }
           ]
         }

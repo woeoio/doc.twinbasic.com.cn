@@ -93,10 +93,10 @@ export const zhSidebar = {
           text: 'Packages 包管理',
           items: [
             { text: '概述', link: '/official/Features/Packages/' },
-            { text: '创建TWINPACK包', link: '/official/Features/Packages/Creating a TWINPACK package' },
-            { text: '从TWINPACK导入包', link: '/official/Features/Packages/Importing a package from a TWINPACK file' },
-            { text: '从TWINSERV导入包', link: '/official/Features/Packages/Importing a package from TWINSERV' },
-            { text: '更新包', link: '/official/Features/Packages/Updating a package' }
+            { text: '创建TWINPACK包', link: '/official/Features/Packages/Creating-a-TWINPACK-package' },
+            { text: '从TWINPACK导入包', link: '/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file' },
+            { text: '从TWINSERV导入包', link: '/official/Features/Packages/Importing-a-package-from-TWINSERV' },
+            { text: '更新包', link: '/official/Features/Packages/Updating-a-package' }
           ]
         },
         {
@@ -123,22 +123,22 @@ export const zhSidebar = {
       text: 'IDE 集成开发环境',
       items: [
         { text: '概述', link: '/official/IDE/' },
-        { text: '调用堆栈', link: '/official/IDE/Call Stack' },
-        { text: '调试控制台', link: '/official/IDE/Debug Console' },
+        { text: '调用堆栈', link: '/official/IDE/Call-Stack' },
+        { text: '调试控制台', link: '/official/IDE/Debug-Console' },
         { text: '诊断', link: '/official/IDE/Diagnostics' },
         { text: '编辑器', link: '/official/IDE/Editor' },
         { text: '查找替换', link: '/official/IDE/FindReplace' },
         { text: '历史记录', link: '/official/IDE/History' },
         { text: '内存', link: '/official/IDE/Memory' },
-        { text: '新建项目', link: '/official/IDE/New Project' },
-        { text: '打开的编辑器', link: '/official/IDE/Open Editors' },
+        { text: '新建项目', link: '/official/IDE/New-Project' },
+        { text: '打开的编辑器', link: '/official/IDE/Open-Editors' },
         { text: '大纲', link: '/official/IDE/Outline' },
-        { text: '包发布', link: '/official/IDE/Package Publishing' },
-        { text: '项目资源管理器', link: '/official/IDE/Project Explorer' },
-        { text: '项目设置', link: '/official/IDE/Project Settings' },
+        { text: '包发布', link: '/official/IDE/Package-Publishing' },
+        { text: '项目资源管理器', link: '/official/IDE/Project-Explorer' },
+        { text: '项目设置', link: '/official/IDE/Project-Settings' },
         { text: '属性', link: '/official/IDE/Properties' },
-        { text: '启动画面', link: '/official/IDE/Splash Screen' },
-        { text: '状态栏', link: '/official/IDE/Status Bar' },
+        { text: '启动画面', link: '/official/IDE/Splash-Screen' },
+        { text: '状态栏', link: '/official/IDE/Status-Bar' },
         { text: 'tbForm', link: '/official/IDE/tbForm' },
         { text: 'tbReport', link: '/official/IDE/tbReport' },
         { text: '工具栏', link: '/official/IDE/Toolbar' },
@@ -151,7 +151,7 @@ export const zhSidebar = {
     {
       text: 'Miscellaneous 其他',
       items: [
-        { text: '文档开发', link: '/official/Miscellaneous/Documentation Development' },
+        { text: '文档开发', link: '/official/Miscellaneous/Documentation-Development' },
         { text: '常见问题', link: '/official/Miscellaneous/FAQs' }
       ]
     },
@@ -161,10 +161,10 @@ export const zhSidebar = {
         { text: '概述', link: '/official/Reference/' },
         { text: '属性', link: '/official/Reference/Attributes' },
         { text: '分类', link: '/official/Reference/Categories' },
-        { text: '编译器常量', link: '/official/Reference/Compiler Constants' },
+        { text: '编译器常量', link: '/official/Reference/Compiler-Constants' },
         { text: '控件', link: '/official/Reference/Controls' },
         { text: '术语表', link: '/official/Reference/Glossary' },
-        { text: '过程和函数', link: '/official/Reference/Procedures and Functions' },
+        { text: '过程和函数', link: '/official/Reference/Procedures-and-Functions' },
         { text: '语句', link: '/official/Reference/Statements' }
       ]
     },
@@ -177,18 +177,18 @@ export const zhSidebar = {
           text: 'CustomControls 自定义控件',
           items: [
             { text: '概述', link: '/official/Tutorials/CustomControls/' },
-            { text: '定义自定义控件', link: '/official/Tutorials/CustomControls/Defining a CustomControl' },
-            { text: '窗体设计器说明', link: '/official/Tutorials/CustomControls/Notes about the form designer' },
-            { text: '绘制控件', link: '/official/Tutorials/CustomControls/Painting-drawing to your control' },
-            { text: '属性表和对象序列化', link: '/official/Tutorials/CustomControls/Property sheet and object serialization' }
+            { text: '定义自定义控件', link: '/official/Tutorials/CustomControls/Defining-a-CustomControl' },
+            { text: '窗体设计器说明', link: '/official/Tutorials/CustomControls/Notes-about-the-form-designer' },
+            { text: '绘制控件', link: '/official/Tutorials/CustomControls/Painting-drawing-to-your-control' },
+            { text: '属性表和对象序列化', link: '/official/Tutorials/CustomControls/Property-sheet-and-object-serialization' }
           ]
         },
         {
           text: 'WebView2',
           items: [
             { text: '概述', link: '/official/Tutorials/WebView2/' },
-            { text: '自定义用户数据文件夹', link: '/official/Tutorials/WebView2/Customize the UserDataFolder' },
-            { text: '入门指南', link: '/official/Tutorials/WebView2/Getting started' },
+            { text: '自定义用户数据文件夹', link: '/official/Tutorials/WebView2/Customize-the-UserDataFolder' },
+            { text: '入门指南', link: '/official/Tutorials/WebView2/Getting-started' },
             { text: '重入', link: '/official/Tutorials/WebView2/Re-entrancy' }
           ]
         }
