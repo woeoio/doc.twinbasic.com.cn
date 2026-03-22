@@ -572,14 +572,29 @@ export default function clearDieLinkPlugin() {
                           normalizedPath.includes('/docs/zh/official/')
       if (!isTargetDir) return null
       
-      processedCount++
-      const result = clearDieLinks(code, id)
-      if (result) {
-        // 简单统计替换次数（通过对比代码长度变化估算）
-        replacedTotal += (code.length - result.length) > 0 ? 1 : 0
+      // 第一步：先处理 %20，这比 clearDieLinks 更早
+      let transformed = code
+      let hasChanged = false
+      
+      if (code.includes('%20')) {
+        transformed = code.replace(/%20/g, '-')
+        hasChanged = true
       }
       
-      return result
+      // 第二步：处理死链
+      const result = clearDieLinks(transformed, id)
+      if (result) {
+        transformed = result
+        hasChanged = true
+      }
+      
+      if (hasChanged) {
+        processedCount++
+        replacedTotal += (code.length - transformed.length) > 0 ? 1 : 0
+        return transformed
+      }
+      
+      return null
     },
     
     closeBundle() {
