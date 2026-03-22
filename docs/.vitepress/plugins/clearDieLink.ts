@@ -519,9 +519,9 @@ export function clearDieLinks(code: string, id: string): string | null {
   }
 
   // 调试输出（只在有替换时显示）
-  if (replacedCount > 0) {
-    console.log(`[clearDieLink] ${id}: 替换了 ${replacedCount} 个死链`)
-  }
+  // if (replacedCount > 0) {
+  //   console.log(`[clearDieLink] ${id}: 替换了 ${replacedCount} 个死链`)
+  // }
 
   return hasChanged ? transformed : null
 }
@@ -534,9 +534,9 @@ export default function clearDieLinkPlugin() {
     transform(code: string, id: string) {
       const result = clearDieLinks(code, id)
       // 调试：显示处理的文件
-      if (id.endsWith('.md')) {
-        console.log(`[clearDieLinkPlugin] 处理: ${id}`)
-      }
+      // if (id.endsWith('.md')) {
+      //   console.log(`[clearDieLinkPlugin] 处理: ${id}`)
+      // }
       return result
     }
   }
