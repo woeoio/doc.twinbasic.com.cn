@@ -87,6 +87,8 @@ export function navRedirectPlugin(): Plugin {
     
     // 生成重定向 HTML 文件
     closeBundle() {
+      console.log('[nav-redirect] Generating redirect files...')
+      
       const outDir = path.resolve(process.cwd(), 'dist')
       
       // 为每个旧路径生成重定向 HTML
@@ -106,7 +108,7 @@ export function navRedirectPlugin(): Plugin {
         
         try {
           fs.writeFileSync(htmlPath, redirectHtml, 'utf-8')
-          console.log(`[nav-redirect] Created redirect: ${oldPath} -> ${newPath}`)
+          // console.log(`[nav-redirect] Created redirect: ${oldPath} -> ${newPath}`)
         } catch (err) {
           console.error(`[nav-redirect] Failed to create redirect for ${oldPath}:`, err)
         }
@@ -115,7 +117,7 @@ export function navRedirectPlugin(): Plugin {
       // 生成 _redirects 文件 (用于 Netlify/Vercel)
       generateRedirectsFile(outDir, redirectMap)
       
-      console.log(`[nav-redirect] Generated ${Object.keys(redirectMap).length} redirect rules`)
+      console.log(`[nav-redirect] Done: ${Object.keys(redirectMap).length} redirects generated`)
     }
   }
 }
@@ -158,7 +160,7 @@ function generateRedirectsFile(outDir: string, redirects: Record<string, string>
   
   try {
     fs.writeFileSync(redirectsFile, lines.join('\n') + '\n', 'utf-8')
-    console.log(`[nav-redirect] Generated _redirects file with ${lines.length} rules`)
+    // console.log(`[nav-redirect] Generated _redirects file with ${lines.length} rules`)
   } catch (err) {
     console.error('[nav-redirect] Failed to generate _redirects file:', err)
   }
@@ -175,7 +177,7 @@ function generateRedirectsFile(outDir: string, redirects: Record<string, string>
   const vercelFile = path.join(outDir, 'vercel.json')
   try {
     fs.writeFileSync(vercelFile, JSON.stringify(vercelConfig, null, 2), 'utf-8')
-    console.log(`[nav-redirect] Generated vercel.json with ${vercelConfig.redirects.length} rules`)
+    // console.log(`[nav-redirect] Generated vercel.json with ${vercelConfig.redirects.length} rules`)
   } catch (err) {
     console.error('[nav-redirect] Failed to generate vercel.json:', err)
   }

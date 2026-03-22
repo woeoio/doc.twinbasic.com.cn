@@ -534,9 +534,17 @@ export function clearDieLinks(code: string, id: string): string | null {
 
 // Vite 插件形式导出（兼容之前的用法）
 export default function clearDieLinkPlugin() {
+  let processedCount = 0
+  let replacedTotal = 0
+  
   return {
     name: 'clear-dead-links',
     enforce: 'pre' as const,
+    
+    buildStart() {
+      console.log('[clear-dead-links] Starting dead link cleanup...')
+    },
+    
     transform(code: string, id: string) {
       // 只处理指定目录下的 markdown 文件
       if (!id.endsWith('.md')) return null
@@ -546,10 +554,18 @@ export default function clearDieLinkPlugin() {
                           normalizedPath.includes('/docs/zh/official/')
       if (!isTargetDir) return null
       
-      // 调试：显示处理的文件
-      // console.log(`[clearDieLinkPlugin] 处理: ${id}`)
+      processedCount++
+      const result = clearDieLinks(code, id)
+      if (result) {
+        // 简单统计替换次数（通过对比代码长度变化估算）
+        replacedTotal += (code.length - result.length) > 0 ? 1 : 0
+      }
       
-      return clearDieLinks(code, id)
+      return result
+    },
+    
+    closeBundle() {
+      console.log(`[clear-dead-links] Done: ${processedCount} files processed`)
     }
   }
 }
