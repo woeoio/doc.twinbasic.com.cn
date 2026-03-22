@@ -2,55 +2,6 @@ import type { Plugin } from 'vite'
 import fs from 'fs'
 import path from 'path'
 
-// 从 _bak/nav.js 提取的旧路径列表
-const oldNavPaths = {
-  // 中文路径
-  zh: [
-    '/official/Home',
-    '/official/twinBASIC-Frequently-Asked-Questions-(FAQs)',
-    '/start/base',
-    '/res/pic',
-    '/official/twinBASIC-Features-1',
-    '/official/twinBASIC-Features-2',
-    '/official/twinBASIC-Features-3',
-    '/official/twinBASIC-Features-4',
-    '/official/twinBASIC-Compiler-Constants',
-    '/official/Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management',
-    '/official/twinBASIC-CustomControls-Introduction',
-    '/official/twinBASIC---CustomControls---Defining-a-CustomControl',
-    '/official/twinBASIC---CustomControls---Notes-about-the-form-designer',
-    '/official/twinBASIC---CustomControls---Painting---drawing-to-your-control',
-    '/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization',
-    '/official/twinBASIC-Packages-What-is-a-package',
-    '/official/twinBASIC-Packages-Creating-a-TWINPACK-package',
-    '/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file',
-    '/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV',
-    '/official/twinBASIC-Packages-Updating-a-package'
-  ],
-  // 英文路径
-  en: [
-    '/en/official/Home',
-    '/en/official/twinBASIC-Frequently-Asked-Questions-(FAQs)',
-    '/en/res/pic',
-    '/en/official/twinBASIC-Features-1',
-    '/en/official/twinBASIC-Features-2',
-    '/en/official/twinBASIC-Features-3',
-    '/en/official/twinBASIC-Features-4',
-    '/en/official/twinBASIC-Compiler-Constants',
-    '/official/Control-Anchoring-and-Docking-‐-Automatic-size-and-position-management',
-    '/en/official/twinBASIC-CustomControls-Introduction',
-    '/en/official/twinBASIC---CustomControls---Defining-a-CustomControl',
-    '/en/official/twinBASIC---CustomControls---Notes-about-the-form-designer',
-    '/en/official/twinBASIC---CustomControls---Painting---drawing-to-your-control',
-    '/en/official/twinBASIC---CustomControls---Property-Sheet-&-Object-Serialization',
-    '/en/official/twinBASIC-Packages-What-is-a-package',
-    '/en/official/twinBASIC-Packages-Creating-a-TWINPACK-package',
-    '/en/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file',
-    '/en/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV',
-    '/en/official/twinBASIC-Packages-Updating-a-package'
-  ]
-}
-
 // 路径映射规则：旧路径 -> 新路径
 const redirectMap: Record<string, string> = {
   // ========== 中文路径 ==========
@@ -62,7 +13,9 @@ const redirectMap: Record<string, string> = {
   
   // 入门指南相关
   '/start/base': '/official/Tutorials/',
-  '/res/pic': '/official/',
+  '/res/pic': '/official/Tutorials/',
+  // 搜索引擎抓取的错误路径，显示“入门指南”却跑到 WebView2 子目录
+  '/official/twinBASIC-WebView2-Getting-Started': '/official/Tutorials/',
   
   // Features 功能特性
   '/official/twinBASIC-Features-1': '/official/Features/',
@@ -97,8 +50,11 @@ const redirectMap: Record<string, string> = {
   // FAQ
   '/en/official/twinBASIC-Frequently-Asked-Questions-(FAQs)': '/en/official/Miscellaneous/FAQs',
   
-  // 资源文件
-  '/en/res/pic': '/en/official/',
+  // 入门指南相关
+  '/en/start/base': '/en/official/Tutorials/',
+  '/en/res/pic': '/en/official/Tutorials/',
+  // 搜索引擎抓取的错误路径，显示“入门指南”却跑到 WebView2 子目录
+  '/en/official/twinBASIC-WebView2-Getting-Started': '/en/official/Tutorials/',
   
   // Features 功能特性
   '/en/official/twinBASIC-Features-1': '/en/official/Features/',
