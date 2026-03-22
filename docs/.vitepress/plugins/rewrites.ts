@@ -1,0 +1,62 @@
+import type { UserConfig } from 'vitepress'
+
+/**
+ * 路径重写规则
+ * 将带连字符的 URL 路径映射到带空格的文件名
+ */
+export const rewrites: UserConfig['rewrites'] = {
+  'zh/:rest*': ':rest*',
+  // IDE 路径映射（- 转空格）
+  'zh/official/IDE/Call-Stack.md': 'zh/official/IDE/Call Stack.md',
+  'zh/official/IDE/Debug-Console.md': 'zh/official/IDE/Debug Console.md',
+  'zh/official/IDE/New-Project.md': 'zh/official/IDE/New Project.md',
+  'zh/official/IDE/Open-Editors.md': 'zh/official/IDE/Open Editors.md',
+  'zh/official/IDE/Package-Publishing.md': 'zh/official/IDE/Package Publishing.md',
+  'zh/official/IDE/Project-Explorer.md': 'zh/official/IDE/Project Explorer.md',
+  'zh/official/IDE/Project-Settings.md': 'zh/official/IDE/Project Settings.md',
+  'zh/official/IDE/Splash-Screen.md': 'zh/official/IDE/Splash Screen.md',
+  'zh/official/IDE/Status-Bar.md': 'zh/official/IDE/Status Bar.md',
+  // Packages 路径映射
+  'zh/official/Features/Packages/Creating-a-TWINPACK-package.md': 'zh/official/Features/Packages/Creating a TWINPACK package.md',
+  'zh/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file.md': 'zh/official/Features/Packages/Importing a package from a TWINPACK file.md',
+  'zh/official/Features/Packages/Importing-a-package-from-TWINSERV.md': 'zh/official/Features/Packages/Importing a package from TWINSERV.md',
+  'zh/official/Features/Packages/Updating-a-package.md': 'zh/official/Features/Packages/Updating a package.md',
+  // Miscellaneous
+  'zh/official/Miscellaneous/Documentation-Development.md': 'zh/official/Miscellaneous/Documentation Development.md',
+  // Reference
+  'zh/official/Reference/Compiler-Constants.md': 'zh/official/Reference/Compiler Constants.md',
+  'zh/official/Reference/Procedures-and-Functions.md': 'zh/official/Reference/Procedures and Functions.md',
+  // CustomControls
+  'zh/official/Tutorials/CustomControls/Defining-a-CustomControl.md': 'zh/official/Tutorials/CustomControls/Defining a CustomControl.md',
+  'zh/official/Tutorials/CustomControls/Notes-about-the-form-designer.md': 'zh/official/Tutorials/CustomControls/Notes about the form designer.md',
+  'zh/official/Tutorials/CustomControls/Painting-drawing-to-your-control.md': 'zh/official/Tutorials/CustomControls/Painting-drawing to your control.md',
+  'zh/official/Tutorials/CustomControls/Property-sheet-and-object-serialization.md': 'zh/official/Tutorials/CustomControls/Property sheet and object serialization.md',
+  // WebView2
+  'zh/official/Tutorials/WebView2/Customize-the-UserDataFolder.md': 'zh/official/Tutorials/WebView2/Customize the UserDataFolder.md',
+  'zh/official/Tutorials/WebView2/Getting-started.md': 'zh/official/Tutorials/WebView2/Getting started.md',
+  // 英文路径映射
+  'en/official/IDE/Call-Stack.md': 'en/official/IDE/Call Stack.md',
+  'en/official/IDE/Debug-Console.md': 'en/official/IDE/Debug Console.md',
+  'en/official/IDE/New-Project.md': 'en/official/IDE/New Project.md',
+  'en/official/IDE/Open-Editors.md': 'en/official/IDE/Open Editors.md',
+  'en/official/IDE/Package-Publishing.md': 'en/official/IDE/Package Publishing.md',
+  'en/official/IDE/Project-Explorer.md': 'en/official/IDE/Project Explorer.md',
+  'en/official/IDE/Project-Settings.md': 'en/official/IDE/Project Settings.md',
+  'en/official/IDE/Splash-Screen.md': 'en/official/IDE/Splash Screen.md',
+  'en/official/IDE/Status-Bar.md': 'en/official/IDE/Status Bar.md',
+  'en/official/Features/Packages/Creating-a-TWINPACK-package.md': 'en/official/Features/Packages/Creating a TWINPACK package.md',
+  'en/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file.md': 'en/official/Features/Packages/Importing a package from a TWINPACK file.md',
+  'en/official/Features/Packages/Importing-a-package-from-TWINSERV.md': 'en/official/Features/Packages/Importing a package from TWINSERV.md',
+  'en/official/Features/Packages/Updating-a-package.md': 'en/official/Features/Packages/Updating a package.md',
+  'en/official/Miscellaneous/Documentation-Development.md': 'en/official/Miscellaneous/Documentation Development.md',
+  'en/official/Reference/Compiler-Constants.md': 'en/official/Reference/Compiler Constants.md',
+  'en/official/Reference/Procedures-and-Functions.md': 'en/official/Reference/Procedures and Functions.md',
+  'en/official/Tutorials/CustomControls/Defining-a-CustomControl.md': 'en/official/Tutorials/CustomControls/Defining a CustomControl.md',
+  'en/official/Tutorials/CustomControls/Notes-about-the-form-designer.md': 'en/official/Tutorials/CustomControls/Notes about the form designer.md',
+  'en/official/Tutorials/CustomControls/Painting-drawing-to-your-control.md': 'en/official/Tutorials/CustomControls/Painting-drawing to your control.md',
+  'en/official/Tutorials/CustomControls/Property-sheet-and-object-serialization.md': 'en/official/Tutorials/CustomControls/Property sheet and object serialization.md',
+  'en/official/Tutorials/WebView2/Customize-the-UserDataFolder.md': 'en/official/Tutorials/WebView2/Customize the UserDataFolder.md',
+  'en/official/Tutorials/WebView2/Getting-started.md': 'en/official/Tutorials/WebView2/Getting started.md',
+}
+
+export default rewrites
