@@ -8,6 +8,7 @@ import navRedirectPlugin from './plugins/navRedirect'
 import rewrites from './plugins/rewrites'
 import llmstxtQuiet from './plugins/llmstxt-quiet'
 import { renameBuildFiles } from './plugins/renameBuildFiles'
+import { generateSpaceRedirects } from './plugins/spaceRedirect'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -23,7 +24,10 @@ export default defineConfig({
 
   async buildEnd(siteConfig) {
     const outDir = siteConfig.outDir || path.resolve(__dirname, '../../dist')
+    // 1. 重命名文件（空格 -> 连字符）并修复内部链接
     renameBuildFiles(outDir)
+    // 2. 为带连字符的文件生成带空格的重定向文件
+    generateSpaceRedirects(outDir)
   },
 
   sitemap: {
