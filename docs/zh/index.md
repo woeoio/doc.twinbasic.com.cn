@@ -13,8 +13,11 @@ hero:
       text: 开始使用
       link: /official/
     - theme: alt
-      text: 加群下载
+      text: 加群讨论
       link: http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=c9Pkw_KrA0V0VYNhHq1bQ3ury6s85ZmM&authKey=QJ4ZvpFfXPivXHgvfpcnbPg%2F99jOQOqvHArXoPz5VIvFX%2Bn%2BV0CBf8uQf%2F14aLrn&noverify=0&group_code=788160802
+    - theme: alt
+      text: 立即下载Twinbasic
+      link: https://gitcode.com/woeoio/Twinbasic/releases/download/twinBASIC_IDE_BETA_979/twinBASIC_IDE_BETA_979.zip
 
 features:
   - icon: 🤝
