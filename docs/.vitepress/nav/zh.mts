@@ -73,6 +73,7 @@ export const zhSidebar = {
             { text: '注释', link: '/official/Features/Language/Comments' },
             { text: '数据类型', link: '/official/Features/Language/Data-Types' },
             { text: '委托', link: '/official/Features/Language/Delegates' },
+            { text: '委托详解', link: '/official/Features/Language/DelegatesDetail' },
             { text: '泛型', link: '/official/Features/Language/Generics' },
             { text: '处理程序', link: '/official/Features/Language/Handlers' },
             { text: '继承', link: '/official/Features/Language/Inheritance' },
