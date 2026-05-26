@@ -72,6 +72,8 @@ export const enSidebar = {
             { text: 'Comments', link: '/en/official/Features/Language/Comments' },
             { text: 'Data Types', link: '/en/official/Features/Language/Data-Types' },
             { text: 'Delegates', link: '/en/official/Features/Language/Delegates' },
+            { text: 'Delegates (Detail)', link: '/en/official/Features/Language/DelegatesDetail' },
+            { text: 'Delegate Cases', link: '/en/official/Features/Language/DelegateCases' },
             { text: 'Generics', link: '/en/official/Features/Language/Generics' },
             { text: 'Handlers', link: '/en/official/Features/Language/Handlers' },
             { text: 'Inheritance', link: '/en/official/Features/Language/Inheritance' },
