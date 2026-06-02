@@ -214,5 +214,14 @@
     "content": "已完成 docs/zh/official/Features/Language 目录下所有19个文件的翻译工作。\n\n翻译完成的文件列表：\n1. index.md - 目录索引\n2. Alias-Types.md - 别名类型\n3. Comments.md - 注释语法\n4. Data-Types.md - 数据类型\n5. Delegates.md - 委托类型\n6. Generics.md - 泛型\n7. Handlers.md - 处理程序方法\n8. Inheritance.md - 继承\n9. Inline-Initialization.md - 内联初始化\n10. Interfaces-CoClasses.md - 接口和CoClasses\n11. Literals.md - 字面量\n12. Loop-Control.md - 循环控制\n13. Module-Organization.md - 模块组织\n14. Operators.md - 运算符\n15. Overloading.md - 重载\n16. Pointers.md - 指针增强\n17. Return.md - Return语法\n18. Type-Inference.md - 类型推断\n19. UDTs.md - UDT增强\n\n所有文件均保持原有的代码示例和格式，仅将英文内容翻译为中文。文件路径：d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Features/Language/",
     "timestamp": "2026-06-02T10:06:58.472Z",
     "read": true
+  },
+  {
+    "id": "msg-1780395926992-h3eey1",
+    "from": "translator-index",
+    "to": "team-lead",
+    "type": "message",
+    "content": "已完成中英文导航文件的更新。\n\n## 更新内容摘要\n\n### 英文导航 (en.mts) 更新：\n1. **Features/Language** - 添加了 `DelegatesDetail` 和 `DelegateCases` 链接\n2. **IDE** - 添加了 `Menu` 和 `AddIns` 子目录导航\n3. **Reference** - 添加了所有缺失的子目录：\n   - Assert (Exact, Permissive, Strict)\n   - CEF\n   - Core\n   - CustomControls\n   - tbIDE\n   - VB\n   - VBA\n   - VBRUN\n   - WebView2\n   - WinEventLogLib (EventLog, EventLogHelperPublic)\n   - WinNamedPipesLib (NamedPipeClientConnection, NamedPipeClientManager, NamedPipeServer, NamedPipeServerConnection)\n   - WinNativeCommonCtls (DTPicker, MonthView, ProgressBar, Slider, UpDown)\n   - WinServicesLib (ITbService, ServiceCreator, ServiceManager, Services, ServiceState)\n4. **Tutorials** - 添加了 CEF 教程部分\n\n### 中文导航 (zh.mts) 更新：\n1. **Features** - 添加了 `Fusion` 链接\n2. **Features/Language** - 添加了 `DelegatesDetail` 和 `DelegateCases` 链接\n3. **Features/Packages** - 添加了 `Linked-Packages` 链接\n4. **IDE** - 添加了 `AddIns` 子目录导航（Menu 已存在）\n5. **Reference** - 添加了所有缺失的子目录（同上英文）\n6. **Tutorials** - 添加了 CEF 教程部分（包含 Forms, Hello-World, Testing-with-Assert, Windows-API）\n\n### 文件路径：\n- `docs/.vitepress/nav/en.mts`\n- `docs/.vitepress/nav/zh.mts`\n\n两个导航文件现在结构对应一致，所有实际存在的目录和文件都已包含在导航中。",
+    "timestamp": "2026-06-02T10:25:26.992Z",
+    "read": true
   }
 ]

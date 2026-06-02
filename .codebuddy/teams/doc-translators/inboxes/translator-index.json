@@ -16,5 +16,14 @@
     "content": "请报告当前翻译进度：\n1. 已完成翻译的文件数 / 总文件数\n2. 当前正在处理的文件\n3. 预计完成时间\n4. 是否遇到任何问题需要协助？\n\n回复格式：\n- 负责目录：xxx\n- 已完成：x / y 文件\n- 状态：进行中/已完成\n- 问题：（如有）",
     "timestamp": "2026-06-02T07:18:18.835Z",
     "read": true
+  },
+  {
+    "id": "msg-1780395614622-e93spc",
+    "from": "team-lead",
+    "to": "translator-index",
+    "type": "message",
+    "content": "需要重建中英文导航文件，请参考以下信息：\n\n## 当前导航文件位置\n- docs/.vitepress/nav/zh.mts - 中文导航\n- docs/.vitepress/nav/en.mts - 英文导航\n\n## 目录结构对比\n两个目录基本一致：\n- docs/en/official/ - 英文文档\n- docs/zh/official/ - 中文文档\n\n主要目录包括：\n1. Challenges/ - 挑战\n2. Features/ - 功能特性 (含 Advanced, Compiler-IDE, GUI-Components, Language, Packages)\n3. IDE/ - IDE文档 (中文多一个 Menu/ 子目录)\n4. Miscellaneous/ - 其他\n5. Reference/ - 参考文档 (含 Assert, CEF, Core, CustomControls, VBA, VB, VBRUN, WinNativeCommonCtls, WebView2, WinServicesLib, WinEventLogLib, WinNamedPipesLib, tbIDE)\n6. Tutorials/ - 教程\n7. Videos/ - 视频\n\n## 任务\n请根据实际的 docs/en/official/ 和 docs/zh/official/ 目录结构，更新 zh.mts 和 en.mts 导航文件，确保：\n1. 所有存在的目录和文件都包含在导航中\n2. 中英文导航结构对应一致\n3. 链接路径正确\n\n请完成后报告更新的内容摘要。",
+    "timestamp": "2026-06-02T10:20:14.622Z",
+    "read": true
   }
 ]
