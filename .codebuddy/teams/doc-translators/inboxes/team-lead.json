@@ -1,0 +1,20 @@
+[
+  {
+    "id": "msg-1780384618860-a9bxcg",
+    "from": "translator-challenges",
+    "to": "team-lead",
+    "type": "message",
+    "content": "已完成 Challenges 目录下所有 Markdown 文件的翻译工作。\n\n**翻译文件清单：**\n\n1. `docs/zh/official/Challenges/index.md` - 挑战赛首页\n   - 原文字数：约 120 词\n   \n2. `docs/zh/official/Challenges/create-a-game.md` - 创建游戏挑战赛\n   - 原文字数：约 380 词\n   \n3. `docs/zh/official/Challenges/self-contained_diagnostic_tool.md` - 自包含诊断工具挑战赛\n   - 原文字数：约 350 词\n\n**总计：**\n- 文件数量：3 个\n- 原文总字数：约 850 词\n\n**翻译要点：**\n- 保持了所有 Markdown 格式（YAML frontmatter、标题、列表、链接等）\n- 保留了所有链接路径（如 /Challenges/1、/Challenges/2）\n- 保留了所有 Discord 链接和外部引用\n- 术语统一：twinBASIC 保持英文名，技术术语使用标准中文表达\n- 文件使用 CRLF 换行符",
+    "timestamp": "2026-06-02T07:16:58.860Z",
+    "read": true
+  },
+  {
+    "id": "msg-1780384619335-g3ybnk",
+    "from": "translator-index",
+    "to": "team-lead",
+    "type": "message",
+    "content": "已完成 `docs/zh/official/index.md` 文件的翻译。\n\n**翻译统计：**\n- 文件名：docs/zh/official/index.md\n- 原文字数：约 650 词（英文）\n- 翻译后字数：约 1100 字（中文）\n\n**翻译要点：**\n1. 保持所有 Markdown 格式和 Frontmatter 不变\n2. 保持所有链接路径不变\n3. 保持代码块和英文术语（如 twinBASIC、VB6、VBA）不变\n4. 使用 CRLF 换行符\n5. 专业术语统一：\n   - IDE → IDE\n   - Package → 包\n   - Control → 控件\n   - Interface/CoClass → 保持英文（链接目标）\n   - Addin → 插件\n   - Runtime → 运行时",
+    "timestamp": "2026-06-02T07:16:59.335Z",
+    "read": true
+  }
+]
