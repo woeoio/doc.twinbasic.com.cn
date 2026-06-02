@@ -1,7 +1,7 @@
 ---
 title: Compiler Constants
 parent: Reference Section
-nav_order: 4
+nav_order: 5
 permalink: /Reference/Compiler-Constants
 ---
 
@@ -55,7 +55,7 @@ This is a guide to the built in compiler constants in twinBASIC. It includes the
 
 Usage of these follows the standard syntax of using a hashtag before the standard `If/Else/ElseIf` conditionals. For example, to differentiate between 32bit and 64bit VBA vs 64bit twinBASIC, 
 
-``` vb
+```tb
 #If VBA7 Then
     'We're in either VBA7 or twinBASIC
     #If Win64 Then
@@ -83,7 +83,7 @@ Usage of these follows the standard syntax of using a hashtag before the standar
 
 Or more simply, to determine whether to use `PtrSafe` then `DeclareWide` or other tB features:
 
-``` vb
+```tb
 #If VBA7 Then
     #If TWINBASIC Then
         'PtrSafe DeclareWide declares, if desired, also inline comments and `[ TypeHint() ]`, and function attributes.
@@ -96,7 +96,7 @@ Or more simply, to determine whether to use `PtrSafe` then `DeclareWide` or othe
 ```
 
 > [!IMPORTANT]
-> Reminder: Compiler Constants are not `Boolean` values, so you shouuldn't use syntax like `#If Not Win64 Then` as the result may not be desired, for instance that example evaluates to `True` for both 32bit and 64bit modes when you likely used it expecting `False` under 64bit in order to use 32bit-only code.\
+> Reminder: Compiler Constants are not `Boolean` values, so you shouuldn't use syntax like `#If Not Win64 Then` as the result may not be desired, for instance that example evaluates to `True` for both 32bit and 64bit modes when you likely used it expecting `False` under 64bit to use 32bit-only code.\
 If you wish to treat these as `Boolean`, you can use the `CBool()` function, e.g. `#If Not CBool(Win64) Then`.
 
 # Appearance

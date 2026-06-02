@@ -21,7 +21,7 @@ twinBASIC provides several mechanisms for inheritance to support both simple and
 
 If you have an interface that multiple others extend from, you can write multiple implementations, or specify one implementation for all. For example:
 
-```vb
+```tb
 IOleWindow_GetWindow() As LongPtr _
     Implements IOleWindow.GetWindow, IShellBrowser.GetWindow, IShellView2.GetWindow
 ```
@@ -30,7 +30,7 @@ IOleWindow_GetWindow() As LongPtr _
 
 `Implements` is allowed on interfaces with 'As Any' parameters: In VBx, you'd get an error if you attempted to use any interface containing a member with an `As Any` argument. With twinBASIC, this is allowed if you substitute `As LongPtr` for `As Any`, for example:
 
-```vb
+```tb
 Interface IFoo Extends IUnknown
     Sub Bar(ppv As Any)
 End Interface
@@ -53,13 +53,13 @@ You can see that the Honk method is only implemented by the parent class, then c
 
 ## **Inherits** for Complete OOP
 
-This is a more robust option for full inheritance and OOP. It supports `Protected` methods and variables that are accessible to derived classes but not outside callers, `Overridable` and `Overrides` syntax, multiple inheritance, and explicit base class constructors.
+This option supports full inheritance and OOP: `Protected` methods and variables accessible to derived classes (but not outside callers), `Overridable` and `Overrides` syntax, multiple inheritance, and explicit base class constructors.
 
 ### Example: Animal Class Hierarchy
 
 Starting with a base class:
 
-```vb
+```tb
 Private Class Animal
     Protected _name As String
     Protected _dob As Date  ' date of birth
@@ -103,7 +103,7 @@ End Class
 
 Others can inherit:
 
-```vb
+```tb
 ' ===== Derived: Dog =====
 Private Class Dog
     Inherits Animal

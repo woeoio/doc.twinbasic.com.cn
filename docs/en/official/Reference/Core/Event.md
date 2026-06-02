@@ -3,6 +3,8 @@ title: Event
 parent: Statements
 permalink: /tB/Core/Event
 ---
+# Event
+{: .no_toc }
 
 Declares a user-defined event.
 
@@ -15,23 +17,23 @@ Syntax: [ **Public** ] **Event** *procedurename* [ (*arglist*) ]
 : Name of the event; follows standard variable naming conventions.
 
 *arglist*
-:  [ **ByVal** \| **ByRef** ] *varname* \[ **()** ] [ **As** *type* ]
+: [ **ByVal** \| **ByRef** ] *varname* \[ **()** ] [ **As** *type* ]
    
    **ByVal**
    : *optional* Indicates that the argument is passed by value.
    
    **ByRef**
-   : *optional* Indicates that the argument is passed by reference. **ByRef** is the default in  unlike in Visual Basic .NET.
+   : *optional* Indicates that the argument is passed by reference. **ByRef** is the default, unlike in Visual Basic .NET.
    
    *varname*
-   : Name  of the variable representing the argument being passed to the procedure; follows standard variable naming conventions.
+   : Name of the variable representing the argument being passed to the procedure; follows standard variable naming conventions.
    
    *type*
-   : *optional* Data type of the argument passed to the procedure; may be Byte, Boolean, Integer, Long, Currency, Single, Double, Decimal (not currently supported), Date, String (variable length only), Object, Variant, a user-defined type (UDT), or an object type.
+   : *optional* Data type of the argument passed to the procedure; may be Byte, Boolean, Integer, Long, Currency, Single, Double, Decimal, Date, String (variable length only), Object, Variant, a user-defined type (UDT), or an object type.
 
 After the event has been declared, use the [**RaiseEvent**](RaiseEvent) statement to fire the event. A syntax error occurs if an **Event** declaration appears in a standard module. An event can't be declared to return a value. A typical event might be declared and raised as shown in the following fragments.
 
-```vb
+```tb
 ' Declare an event at module level of a class module 
  
 Event LogonCompleted (UserName as String) 
@@ -41,9 +43,7 @@ Sub
 End Sub
 ```
 
-> [!NOTE]
-> 
-> You can declare event arguments just as you do arguments of procedures, with the following exceptions: events cannot have named arguments, **Optional** arguments, or **ParamArray** arguments. Events don't have return values.
+Event arguments are declared the same way as procedure arguments, with the following exceptions: events cannot have named arguments, **Optional** arguments, or **ParamArray** arguments. Events don't have return values.
 
 ### Example
 
@@ -51,11 +51,11 @@ The following example uses events to count off seconds during a demonstration of
 
 The class that raises an event is the event source, and the classes that implement the event are the sinks. An event source can have multiple sinks for the events it generates. When the class raises the event, that event is fired on every class that has elected to sink events for that instance of the object.
 
-The example also uses a form (`Form1`) with a button (`Command1`), a label (`Label1`), and two text boxes (`Text1` and `Text2`). When you click the button, the first text box displays "From Now" and the second starts to count seconds. When the full time (9.84 seconds) has elapsed, the first text box displays "Until Now" and the second displays "9.84".
+The example also uses a form (`Form1`) with a button (`Command1`), a label (`Label1`), and two text boxes (`Text1` and `Text2`). When the button is clicked, the first text box displays "From Now" and the second starts to count seconds. When the full time (9.84 seconds) has elapsed, the first text box displays "Until Now" and the second displays "9.84".
 
 The code specifies the initial and terminal states of the form. It also contains the code executed when events are raised.
 
-```vb
+```tb
 Class Form1
   Option Explicit 
  
@@ -93,7 +93,7 @@ The remaining code is in a class module named TimerState. The **Event** statemen
 
 VB
 
-```vb
+```tb
 Class TimerState
     Option Explicit 
     Public Event UpdateTime(ByVal dblJump As Double)

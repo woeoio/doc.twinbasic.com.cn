@@ -1,6 +1,7 @@
 ---
 title: File
 parent: Menu
+grand_parent: IDE
 nav_order: 1
 permalink: /tB/IDE/Project/Menu/File
 ---
@@ -24,7 +25,3 @@ permalink: /tB/IDE/Project/Menu/File
 - Clean
 ---
 - Exit <kbd>ALT</kbd> + <kbd>F4</kbd>
-
-> [!NOTE]
->
->  TODO: Add each Menu item.

@@ -1,6 +1,7 @@
 ---
 title: Attributes
 parent: Reference Section
+nav_order: 6
 permalink: /tB/Core/Attributes
 ---
 
@@ -12,7 +13,7 @@ Attributes have two major functions:
 - they can act as instructions to compiler to influence how code is generated, or 
 - to annotate Forms, Modules, Classes, Types, Enums, Declares, and [procedures](../Gloss#procedure) i.e. Subs/Functions/Properties. 
 
-Previously in VBx, these attributes, such as the procedure description, hidden, default member, and others, were set via hidden text the IDE's editor didn't show you, configured via the Procedure Attributes dialog or some other places. In tB, these are all visible in the code editor. The legacy ones from VBx are supported for compatibility, but new attributes utilize the following syntax:   
+Previously in VBx, these attributes, such as the procedure description, hidden, default member, and others, were set via hidden text the IDE's editor didn't show you, configured via the Procedure Attributes dialog or some other places. In tB, these are all visible in the code editor. The legacy ones from VBx are supported for compatibility, but new attributes use the following syntax:   
 `[Attribute]` or `[Attribute(value)]`
 
 In attributes that take an optional boolean argument, the value of the argument is taken to be **True** if no value is provided. This does not mean that the default value of the attribute is True, just that if the attribute is specified within the braces with no value, its value will be set to True. Different boolean-valued attributes have different default values. Those values apply unless the user has explicitly provided the attribute.
@@ -95,7 +96,7 @@ Allows custom logic for creating and returning a new instance of the coclass' im
 
 Example:
 
-```vb
+```tb
 [CoClassId("7980D953-10BF-478C-93BB-DD0093315D96")]
 [CoClassCustomConstructor("FooFactory.CreateFoo")]
 [COMCreatable(True)]
@@ -115,7 +116,7 @@ Applicable to: [**CoClass**](CoClass)
 
 In addition to interfaces, twinBASIC also allows defining coclasses -- creatable classes that implement one or more defined interfaces. Like interfaces, these too must be in .twin files and not legacy .bas/.cls files, and must appear prior to the `Class` or `Module` statement. The generic form is:
 
-```vb
+```tb
 [CoClassId("00000000-0000-0000-0000-000000000000")]
 *<attributes>*
 CoClass <name>
@@ -239,7 +240,7 @@ Applicable to: [procedure in a **Class**](../Gloss#procedure)
 
 Default members are accessed under the instance of the object itself, without specifying their name. For example, a class that offers indexable elements may have an **Item** property that is the default member:
 
-```vb
+```tb
 Class MyCollection
     [DefaultMember]
     Property Get Item(ByVal index&) As String
@@ -297,7 +298,7 @@ Applicable to: [procedures](../Gloss#procedure) and variables in a module.
 
 It's possible to export a function or variable from standard modules. Example:
 
-```vb
+```tb
 [DllExport]
 Public Const MyExportedSymbol As Long = &H00000001
 ```
@@ -368,7 +369,7 @@ Calculate implicit enum values as a flag set (powers of 2).
 > [!NOTE]
 > To prevent confusion, once an explicit value is used, all remaining values after it must also be explicit)
 
-![image](Images/flags attribute.png)
+![image](Images/flags-attribute.png)
 
 ## FloatingPointErrorChecks  (optional Bool)
 {: #floatingpointerrorchecks }
@@ -427,7 +428,7 @@ Applicable to: [**Interface**](Interface)
 
 twinBASIC supports defining COM interfaces using BASIC syntax, rather than needing an type library with IDL and C++. These are only supported in .twin files, not in legacy .bas or .cls files. They must appear *before* the [**Class**](Class) or [**Module**](Module) statement, and will always have a project-wide scope. the The generic form for is as follows:
 
-``` vb
+```tb
 [InterfaceId ("00000000-0000-0000-0000-000000000000")]
 *<attributes>*
 Interface <name> Extends <base-interface>
@@ -468,7 +469,7 @@ Applicable to: [**Type** (UDT)](Type)
 
 twinBASIC normally aligns objects naturally within UDTs, e.g. an 8-byte object is aligned at the 8-byte boundary relative to the beginning of the UDT. This can leave gaps between UDT fields. A tighter packing can be achieved with a smaller **PackingAlignment**:
 
-```vb
+```tb
 [PackingAlignment(2)]
 Private Type MyUDT
     x As Integer
@@ -501,7 +502,7 @@ In the future, this attribute may be expanded to allow more data file types, and
 
 For example, consider this enum declaration in a .twin file:
 
-``` vb
+```tb
 [PopulateFrom("json", "/Resources/MESSAGETABLE/Strings.json", "events", "name", "id")]
 Enum EVENTS
 End Enum
@@ -524,7 +525,7 @@ Then, there should be a `/Resources/MESSAGETABLE/Strings.json` file with followi
 
 The result is as-if we hand-typed the following **Enum** definition:
 
-``` vb
+```tb
 Enum EVENTS
     service_started = -1073610751
 End Enum
@@ -552,15 +553,15 @@ Default value: **False** in an Interface, **True** in an API Declare.
 
 In COM interfaces, the default value of this attribute is **False**, since normally methods return an HRESULT that the language hides from you. **[PreserveSig** [ **(True)** ] **]** overrides this behavior and defines the function exactly as you provide. This is necessary if you need to define it as returning something other than a 4-byte **Long**, or want to handle the result yourself, bypassing the normal runtime error raised if the return value is negative (this is helpful when a negative value indicates an expected, acceptable failure, rather than a true error, like when an enum interface is out of items).
 
-In APIs, the default value of this attribute is `True`. So therefore, you can specify `False` in order to rewrite the last parameter as a return. Example:
+In APIs, the default value of this attribute is `True`. So therefore, you can specify `False` to rewrite the last parameter as a return. Example:
 
-``` vb
+```tb
 Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" (ppshf As IShellFolder) As Long
 ```
 
 can be rewritten as
 
-```vb
+```tb
 [PreserveSig(False)] 
 Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" () As IShellFolder`
 ```

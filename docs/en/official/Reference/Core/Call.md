@@ -2,11 +2,12 @@
 title: Call
 parent: Statements
 permalink: /tB/Core/Call
+vba_attribution: true
 ---
 
 # Call
 
-{: no_toc }
+{: .no_toc }
 
 Transfers control to a **Sub** [procedure](../Gloss#procedure), **Function** procedure, or dynamic-link library (DLL) procedure.
 
@@ -24,9 +25,9 @@ Syntax:
 : The name of the procedure to call
 
 *argumentlist*
-: *optional*  A comma-delimited list of variables, arrays or expressions to pass to the procedure. Components of *argumentlist* may include the keywords **ByVal** or **ByRef** to describe how the arguments are to be passed to the called procedure.
+: *optional* A comma-delimited list of variables, arrays or expressions to pass to the procedure. Components of *argumentlist* may include the keywords **ByVal** or **ByRef** to describe how the arguments are to be passed to the called procedure.
 
-You are not required to use the **Call** keyword when calling a procedure. However, if you use the **Call** keyword to call a procedure that requires arguments, *argumentlist* must be enclosed in parentheses. If you omit the **Call** keyword, you also must omit the parentheses around *argumentlist*. If you use either **Call** syntax to call any intrinsic or user-defined function, the function's return value is discarded.
+The **Call** keyword is not required when calling a procedure. However, when the **Call** keyword is used to call a procedure that requires arguments, *argumentlist* must be enclosed in parentheses. When the **Call** keyword is omitted, the parentheses around *argumentlist* must also be omitted. When either **Call** syntax is used to call any intrinsic or user-defined function, the function's return value is discarded.
 
 To pass a whole array to a procedure, use the array name followed by empty parentheses.
 
@@ -34,7 +35,7 @@ To pass a whole array to a procedure, use the array name followed by empty paren
 
 This example illustrates how the **Call** statement is used to transfer control to a **Sub** procedure, an intrinsic function, and a dynamic-link library (DLL) procedure.
 
-``` vb
+```tb
 ' Call a Sub procedure. 
 Call PrintToDebugWindow("Hello World")     
 ' The above statement causes control to be passed to the following 
@@ -63,6 +64,3 @@ End Sub
 - [**Function** statement](Function)
 - [**Sub** statement](Sub)
 
-
-
-{% include VBA-Attribution.md %}

@@ -17,7 +17,7 @@ This is then persisted to your project as properties inside your form JSON struc
 
 The key to making this work is your serialization constructor, which might look something like this:
 
-``` vb
+```tb
 Public Sub New(Serializer As SerializationInfo)
    If Not Serializer.Deserialize(Me) Then
       InitializeDefaultValues  ' you implement this
@@ -84,3 +84,9 @@ At the moment, the form-designer doesn't yet support code-behind-forms, so this 
 
 > [!TIP]
 > When making changes or updates to a CustomControl always consider backwards compatibility.  For example, if you rename an exposed property, the old property values stored via the property sheet won't be deserialized to your new property.
+
+***
+## See also
+
+- [`SerializeInfo`](../../tB/Packages/CustomControls/Framework/SerializeInfo) -- the reference for the current serializer type (the `SerializationInfo` name in the snippets above is the older draft name; the current type is `SerializeInfo` and `Deserialize()` is exposed as `RuntimeUISrzDeserialize()`)
+- [CustomControls package reference](../../tB/Packages/CustomControls/) -- overview of the framework and the built-in `Waynes…` controls

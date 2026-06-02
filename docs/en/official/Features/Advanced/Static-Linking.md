@@ -13,7 +13,7 @@ tB allows you to use properly compiled .lib and .obj files as statically linked 
 
 Example from the sqlite sample:
 
-```vb
+```tb
 #If Win64 Then
     Import Library "/Miscellaneous/sqlite3_64.obj" As SQLITE3 Link "stdlib", "kernel32"
 #Else
@@ -23,7 +23,7 @@ Example from the sqlite sample:
 
 ### Generic Syntax
 
-```
+```tb
 Import Libary "Relative resource path" As NAMESPACE Link "dependency1", "dependency2", '...
 ```
 
@@ -31,7 +31,7 @@ Import Libary "Relative resource path" As NAMESPACE Link "dependency1", "depende
 
 After that, you can use NAMESPACE in place of a DLL name, inside class/module declares:
 
-```vb
+```tb
 ' Compiled sqlite-amalgamation-3440200 (v3.44.2)
 '   using cmdline (MSVC):  cl /c /Gw /Gy /GS- /DSQLITE_OMIT_SEH sqlite3.c
 #If Win64 Then
@@ -49,5 +49,3 @@ Module MainModule
 
 > [!NOTE]
 > StdCall names will be mangled with argument sizes, e.g. `int myfunc(int x, short y);` would be `myfunc@6`. It therefore may be better to use `CDecl`.
-
-A documentation page will be dedicated to more fully explaining this in the future; for now if you need help with it, visit the tB Discord or Discussions section of the GitHub repository and ask.
