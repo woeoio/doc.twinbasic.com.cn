@@ -1,0 +1,68 @@
+{
+  "name": "doc-translators",
+  "leadAgentId": "80082eeda5974ba589f0d1e28f42fade",
+  "workspacePath": "d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn",
+  "createdAt": "2026-06-02T07:15:14.773Z",
+  "options": {
+    "workspacePath": "d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn",
+    "isAutoTeam": false
+  },
+  "members": [
+    {
+      "memberId": "team-lead@doc-translators",
+      "name": "team-lead",
+      "role": "Team Lead - coordinates the team and interacts with the user"
+    },
+    {
+      "memberId": "translator-index@doc-translators",
+      "name": "translator-index",
+      "role": "翻译首页文档"
+    },
+    {
+      "memberId": "translator-challenges@doc-translators",
+      "name": "translator-challenges",
+      "role": "翻译 Challenges 目录"
+    },
+    {
+      "memberId": "translator-features@doc-translators",
+      "name": "translator-features",
+      "role": "翻译 Features 目录"
+    },
+    {
+      "memberId": "translator-ide@doc-translators",
+      "name": "translator-ide",
+      "role": "翻译 IDE 目录"
+    },
+    {
+      "memberId": "translator-tutorials@doc-translators",
+      "name": "translator-tutorials",
+      "role": "翻译 Tutorials 目录"
+    },
+    {
+      "memberId": "translator-misc@doc-translators",
+      "name": "translator-misc",
+      "role": "翻译 Miscellaneous 和 Videos"
+    },
+    {
+      "memberId": "translator-ref-1@doc-translators",
+      "name": "translator-ref-1",
+      "role": "翻译 Reference 目录(Part 1)"
+    },
+    {
+      "memberId": "translator-ref-2@doc-translators",
+      "name": "translator-ref-2",
+      "role": "翻译 Reference 目录(Part 2)"
+    },
+    {
+      "memberId": "translator-ref-3@doc-translators",
+      "name": "translator-ref-3",
+      "role": "翻译 Reference 目录(Part 3)"
+    },
+    {
+      "memberId": "translator-ref-4@doc-translators",
+      "name": "translator-ref-4",
+      "role": "翻译 Reference/VBA 目录(Part 4)"
+    }
+  ],
+  "isAutoTeam": false
+}
