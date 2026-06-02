@@ -10,7 +10,7 @@ const path = require('path');
 
 // 配置
 const SOURCE_DIR = 'D:\\code\\tb\\docs.twinbasic.com\\docs';
-const TARGET_DIR = path.join(__dirname, '..', 'docs', 'en', 'official2');
+const TARGET_DIR = path.join(__dirname, '..', 'docs', 'en', 'official');
 
 // 需要复制的子目录
 const SUBDIRS = [
@@ -52,13 +52,13 @@ function copyFile(src, dest) {
 // 递归复制目录
 function copyDir(src, dest) {
   ensureDir(dest);
-  
+
   const entries = fs.readdirSync(src, { withFileTypes: true });
-  
+
   for (const entry of entries) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
-    
+
     if (entry.isDirectory()) {
       copyDir(srcPath, destPath);
     } else {
@@ -70,9 +70,9 @@ function copyDir(src, dest) {
 // 清空目标目录
 function cleanDir(dir) {
   if (!fs.existsSync(dir)) return;
-  
+
   const entries = fs.readdirSync(dir, { withFileTypes: true });
-  
+
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
@@ -86,34 +86,34 @@ function cleanDir(dir) {
 // 主函数
 function main() {
   log('🚀 开始复制 twinBASIC 官方文档...', 'blue');
-  
+
   // 检查源目录
   if (!fs.existsSync(SOURCE_DIR)) {
     log(`❌ 源目录不存在: ${SOURCE_DIR}`, 'red');
     process.exit(1);
   }
-  
+
   // 确保目标目录存在
   ensureDir(TARGET_DIR);
-  
+
   // 清空目标目录
   log('🧹 清空目标目录...', 'yellow');
   cleanDir(TARGET_DIR);
-  
+
   // 复制各个子目录
   for (const subdir of SUBDIRS) {
     const srcPath = path.join(SOURCE_DIR, subdir);
     const destPath = path.join(TARGET_DIR, subdir);
-    
+
     if (!fs.existsSync(srcPath)) {
       log(`⚠️  跳过不存在的目录: ${subdir}`, 'yellow');
       continue;
     }
-    
+
     log(`📁 复制 ${subdir}...`, 'blue');
     copyDir(srcPath, destPath);
   }
-  
+
   // 复制根目录的 markdown 文件
   const rootFiles = fs.readdirSync(SOURCE_DIR, { withFileTypes: true });
   for (const file of rootFiles) {
@@ -124,7 +124,7 @@ function main() {
       log(`📄 复制 ${file.name}`, 'blue');
     }
   }
-  
+
   log('✅ 复制完成！', 'green');
 }
 
@@ -132,13 +132,13 @@ function main() {
 function findImagesDirs(baseDir, currentDir = '', results = []) {
   const fullPath = path.join(baseDir, currentDir);
   if (!fs.existsSync(fullPath)) return results;
-  
+
   const entries = fs.readdirSync(fullPath, { withFileTypes: true });
-  
+
   for (const entry of entries) {
     if (entry.isDirectory()) {
       const relativePath = path.join(currentDir, entry.name);
-      
+
       if (entry.name === 'Images') {
         results.push(relativePath);
       } else {
@@ -147,43 +147,43 @@ function findImagesDirs(baseDir, currentDir = '', results = []) {
       }
     }
   }
-  
+
   return results;
 }
 
 // 同步图片到中文版
 function syncImages() {
   log('🔄 开始同步图片到中文版...', 'blue');
-  
+
   const enBaseDir = path.join(__dirname, '..', 'docs', 'en', 'official2');
   const zhBaseDir = path.join(__dirname, '..', 'docs', 'zh', 'official2');
-  
+
   // 查找英文版所有 Images 目录
   const imagesDirs = findImagesDirs(enBaseDir);
-  
+
   if (imagesDirs.length === 0) {
     log('⚠️  未找到 Images 目录', 'yellow');
     return;
   }
-  
+
   for (const imagesDir of imagesDirs) {
     const enImagesDir = path.join(enBaseDir, imagesDir);
     const zhImagesDir = path.join(zhBaseDir, imagesDir);
-    
+
     ensureDir(zhImagesDir);
     // 清空中文版的旧图片
     cleanDir(zhImagesDir);
     copyDir(enImagesDir, zhImagesDir);
     log(`📁 已同步 ${imagesDir}`, 'green');
   }
-  
+
   log(`✅ 图片同步完成！共同步 ${imagesDirs.length} 个 Images 目录`, 'green');
 }
 
 // 主函数
 function main() {
   const command = process.argv[2];
-  
+
   if (command === 'syncimg') {
     syncImages();
   } else {
