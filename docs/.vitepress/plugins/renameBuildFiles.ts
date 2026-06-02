@@ -34,11 +34,7 @@ const renameMap: Record<string, string> = {
   'Driving Monaco.html': 'Driving-Monaco.html',
   'Hosting local web assets.html': 'Hosting-local-web-assets.html',
   'JavaScript interop.html': 'JavaScript-interop.html',
-  // CEF
-  'Building a browser shell.html': 'Building-a-browser-shell.html',
-  'Driving Monaco.html': 'Driving-Monaco.html',
-  'Hosting local web assets.html': 'Hosting-local-web-assets.html',
-  'JavaScript interop.html': 'JavaScript-interop.html',
+  // CEF (Note: keys are the same as WebView2, no duplicates needed)
 }
 
 // 构建反向映射用于链接替换

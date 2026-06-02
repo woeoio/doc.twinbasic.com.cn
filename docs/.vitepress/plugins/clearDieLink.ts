@@ -592,12 +592,12 @@ export default function clearDieLinkPlugin() {
       // 注意：不要处理图片路径中的空格，因为实际图片文件名可能就是带空格的
       // VitePress 会自动处理资源文件名的编码
       
-      // 第二步：处理死链
-      const result = clearDieLinks(transformed, id)
-      if (result) {
-        transformed = result
-        hasChanged = true
-      }
+      // 第二步：处理死链 - 已注释，因为复制时已处理死链
+      // const result = clearDieLinks(transformed, id)
+      // if (result) {
+      //   transformed = result
+      //   hasChanged = true
+      // }
       
       if (hasChanged) {
         processedCount++
