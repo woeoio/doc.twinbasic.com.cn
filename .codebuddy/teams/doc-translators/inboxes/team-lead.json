@@ -88,5 +88,14 @@
     "content": "## 最终翻译报告\n\n**负责目录：**\n- docs/zh/official/Miscellaneous/\n- docs/zh/official/Videos/\n\n**已完成：4 / 4 文件**\n\n**状态：已完成**\n\n**问题：** 无\n\n---\n\n### 翻译文件列表\n\n| 序号 | 文件路径 | 原始大小 | 内容类型 |\n|------|----------|----------|----------|\n| 1 | docs/zh/official/Miscellaneous/FAQs.md | 25.61 KB | 常见问题解答（通用问题、安装、使用指南） |\n| 2 | docs/zh/official/Videos/index.md | 527 B | 视频目录导航页 |\n| 3 | docs/zh/official/Videos/AccessDevCon.md | 3.12 KB | Access DevCon 会议视频（2021-2025） |\n| 4 | docs/zh/official/Videos/twinBASIC.md | 6.46 KB | twinBASIC 官方视频系列 |\n\n### 总字数统计\n约 12,000 中文字符\n\n### 翻译要点\n- 所有技术术语统一（如 IDE、API、DLL、EXE、Unicode 等）\n- 保留品牌名称（twinBASIC、VB6、VBA、GitHub、Discord 等）\n- 链接路径、图片引用、代码块完全保留\n- 使用 CRLF 换行符",
     "timestamp": "2026-06-02T07:21:52.727Z",
     "read": true
+  },
+  {
+    "id": "msg-1780385123385-ga7otb",
+    "from": "translator-ref-1",
+    "to": "team-lead",
+    "type": "message",
+    "content": "翻译进度报告：\n\n负责目录：Reference (Part 1)\n- Reference/index.md\n- Reference/ 根目录文件（前50% = 7个文件）\n- Reference/Core/ 目录\n- Reference/CustomControls/ 目录\n\n已完成：4 / 146 文件\n- ✅ Reference/index.md\n- ✅ Reference/Attributes.md\n- ✅ Reference/Compiler Constants.md\n- ✅ Reference/Controls.md\n\n进行中：\n- 正在处理 Reference/Data-Types.md\n- 待处理：Categories.md, Enumerations.md, Glossary.md\n- 待处理：Core/ 目录（92个文件）\n- 待处理：CustomControls/ 目录（46个文件）\n\n状态：进行中\n\n问题：文件数量较多（约146个），需要分批处理。目前翻译进展顺利，保持 Markdown 格式和链接路径不变。",
+    "timestamp": "2026-06-02T07:25:23.385Z",
+    "read": true
   }
 ]
