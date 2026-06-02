@@ -16,5 +16,14 @@
     "content": "请报告当前翻译进度：\n1. 已完成翻译的文件数 / 总文件数\n2. 当前正在处理的文件\n3. 预计完成时间\n4. 是否遇到任何问题需要协助？\n\n回复格式：\n- 负责目录：xxx\n- 已完成：x / y 文件\n- 状态：进行中/已完成\n- 问题：（如有）",
     "timestamp": "2026-06-02T07:18:18.835Z",
     "read": true
+  },
+  {
+    "id": "msg-1780394469191-z6hba3",
+    "from": "team-lead",
+    "to": "translator-features",
+    "type": "message",
+    "content": "请翻译 docs/zh/official/Features/Language 目录下的所有文件。这个目录有19个文件需要全部翻译成中文:\n\n1. index.md - 目录索引\n2. Alias-Types.md - 别名类型\n3. Comments.md - 注释语法\n4. Data-Types.md - 数据类型\n5. Delegates.md - 委托类型\n6. Generics.md - 泛型\n7. Handlers.md - 处理程序方法\n8. Inheritance.md - 继承\n9. Inline-Initialization.md - 内联初始化\n10. Interfaces-CoClasses.md - 接口和CoClasses\n11. Literals.md - 字面量\n12. Loop-Control.md - 循环控制\n13. Module-Organization.md - 模块组织\n14. Operators.md - 运算符\n15. Overloading.md - 重载\n16. Pointers.md - 指针增强\n17. Return.md - Return语法\n18. Type-Inference.md - 类型推断\n19. UDTs.md - UDT增强\n\n目前这些文件都是英文内容,需要完整翻译成中文。请逐个翻译这些文件,保持原有的代码示例和格式。",
+    "timestamp": "2026-06-02T10:01:09.191Z",
+    "read": true
   }
 ]
