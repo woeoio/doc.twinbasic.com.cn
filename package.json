@@ -11,7 +11,8 @@
     "build": "vitepress build docs",
     "preview": "vitepress preview docs",
     "cptb": "node scripts/copy-twinbasic-docs.js",
-    "syncimg": "node scripts/copy-twinbasic-docs.js syncimg"
+    "syncimg": "node scripts/copy-twinbasic-docs.js syncimg",
+    "test:links": "node scripts/test-deadlinks.js"
   },
   "dependencies": {
     "@datapunt/matomo-tracker-js": "^0.5.1",
