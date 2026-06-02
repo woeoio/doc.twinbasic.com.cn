@@ -1,0 +1,58 @@
+{
+  "name": "twinbasic-docs-copy",
+  "leadAgentId": "80082eeda5974ba589f0d1e28f42fade",
+  "workspacePath": "d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn",
+  "createdAt": "2026-06-02T02:37:33.122Z",
+  "options": {
+    "workspacePath": "d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn",
+    "isAutoTeam": false
+  },
+  "members": [
+    {
+      "memberId": "team-lead@twinbasic-docs-copy",
+      "name": "team-lead",
+      "role": "Team Lead - coordinates the team and interacts with the user"
+    },
+    {
+      "memberId": "copy-challenges@twinbasic-docs-copy",
+      "name": "copy-challenges",
+      "role": "复制Challenges目录"
+    },
+    {
+      "memberId": "copy-features@twinbasic-docs-copy",
+      "name": "copy-features",
+      "role": "复制Features目录"
+    },
+    {
+      "memberId": "copy-ide@twinbasic-docs-copy",
+      "name": "copy-ide",
+      "role": "复制IDE目录"
+    },
+    {
+      "memberId": "copy-miscellaneous@twinbasic-docs-copy",
+      "name": "copy-miscellaneous",
+      "role": "复制Miscellaneous目录"
+    },
+    {
+      "memberId": "copy-reference@twinbasic-docs-copy",
+      "name": "copy-reference",
+      "role": "复制Reference目录"
+    },
+    {
+      "memberId": "copy-tutorials@twinbasic-docs-copy",
+      "name": "copy-tutorials",
+      "role": "复制Tutorials目录"
+    },
+    {
+      "memberId": "copy-videos@twinbasic-docs-copy",
+      "name": "copy-videos",
+      "role": "复制Videos目录"
+    },
+    {
+      "memberId": "copy-root-md@twinbasic-docs-copy",
+      "name": "copy-root-md",
+      "role": "复制根目录MD文件"
+    }
+  ],
+  "isAutoTeam": false
+}
