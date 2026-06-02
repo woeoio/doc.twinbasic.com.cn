@@ -22,6 +22,7 @@ const renameMap: Record<string, string> = {
   'Creating a TWINPACK package.html': 'Creating-a-TWINPACK-package.html',
   'Importing a package from a TWINPACK file.html': 'Importing-a-package-from-a-TWINPACK-file.html',
   'Importing a package from TWINSERV.html': 'Importing-a-package-from-TWINSERV.html',
+  'Linked Packages.html': 'Linked-Packages.html',
   'Updating a package.html': 'Updating-a-package.html',
   'Defining a CustomControl.html': 'Defining-a-CustomControl.html',
   'Notes about the form designer.html': 'Notes-about-the-form-designer.html',
@@ -29,6 +30,15 @@ const renameMap: Record<string, string> = {
   'Property sheet and object serialization.html': 'Property-sheet-and-object-serialization.html',
   'Customize the UserDataFolder.html': 'Customize-the-UserDataFolder.html',
   'Getting started.html': 'Getting-started.html',
+  'Building a browser shell.html': 'Building-a-browser-shell.html',
+  'Driving Monaco.html': 'Driving-Monaco.html',
+  'Hosting local web assets.html': 'Hosting-local-web-assets.html',
+  'JavaScript interop.html': 'JavaScript-interop.html',
+  // CEF
+  'Building a browser shell.html': 'Building-a-browser-shell.html',
+  'Driving Monaco.html': 'Driving-Monaco.html',
+  'Hosting local web assets.html': 'Hosting-local-web-assets.html',
+  'JavaScript interop.html': 'JavaScript-interop.html',
 }
 
 // 构建反向映射用于链接替换

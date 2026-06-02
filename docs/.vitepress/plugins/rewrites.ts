@@ -51,6 +51,7 @@ export const rewrites: UserConfig['rewrites'] = {
   'en/official/Features/Packages/Importing a package from a TWINPACK file.md': 'en/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file.md',
   'en/official/Features/Packages/Importing a package from TWINSERV.md': 'en/official/Features/Packages/Importing-a-package-from-TWINSERV.md',
   'en/official/Features/Packages/Updating a package.md': 'en/official/Features/Packages/Updating-a-package.md',
+  'en/official/Features/Packages/Linked Packages.md': 'en/official/Features/Packages/Linked-Packages.md',
   'en/official/Miscellaneous/Documentation Development.md': 'en/official/Miscellaneous/Documentation-Development.md',
   'en/official/Reference/Compiler Constants.md': 'en/official/Reference/Compiler-Constants.md',
   'en/official/Reference/Procedures and Functions.md': 'en/official/Reference/Procedures-and-Functions.md',
@@ -60,6 +61,18 @@ export const rewrites: UserConfig['rewrites'] = {
   'en/official/Tutorials/CustomControls/Property sheet and object serialization.md': 'en/official/Tutorials/CustomControls/Property-sheet-and-object-serialization.md',
   'en/official/Tutorials/WebView2/Customize the UserDataFolder.md': 'en/official/Tutorials/WebView2/Customize-the-UserDataFolder.md',
   'en/official/Tutorials/WebView2/Getting started.md': 'en/official/Tutorials/WebView2/Getting-started.md',
+  'en/official/Tutorials/WebView2/Building a browser shell.md': 'en/official/Tutorials/WebView2/Building-a-browser-shell.md',
+  'en/official/Tutorials/WebView2/Driving Monaco.md': 'en/official/Tutorials/WebView2/Driving-Monaco.md',
+  'en/official/Tutorials/WebView2/Hosting local web assets.md': 'en/official/Tutorials/WebView2/Hosting-local-web-assets.md',
+  'en/official/Tutorials/WebView2/JavaScript interop.md': 'en/official/Tutorials/WebView2/JavaScript-interop.md',
+  // CEF
+  'en/official/Tutorials/CEF/Getting started.md': 'en/official/Tutorials/CEF/Getting-started.md',
+  'en/official/Tutorials/CEF/Building a browser shell.md': 'en/official/Tutorials/CEF/Building-a-browser-shell.md',
+  'en/official/Tutorials/CEF/Customize the UserDataFolder.md': 'en/official/Tutorials/CEF/Customize-the-UserDataFolder.md',
+  'en/official/Tutorials/CEF/Driving Monaco.md': 'en/official/Tutorials/CEF/Driving-Monaco.md',
+  'en/official/Tutorials/CEF/Hosting local web assets.md': 'en/official/Tutorials/CEF/Hosting-local-web-assets.md',
+  'en/official/Tutorials/CEF/JavaScript interop.md': 'en/official/Tutorials/CEF/JavaScript-interop.md',
+  'en/official/Tutorials/CEF/Re-entrancy.md': 'en/official/Tutorials/CEF/Re-entrancy.md',
 }
 
 export default rewrites

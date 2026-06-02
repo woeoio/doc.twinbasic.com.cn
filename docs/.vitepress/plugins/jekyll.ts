@@ -25,6 +25,10 @@ export const jekyllPlugin = () => ({
     // 3. 移除 Jekyll 的 {% include %} 语法
     transformed = transformed.replace(/\{%\s*include\s+[^%]+%\}/g, '')
 
+    // 4. 代码块语言映射：twinbasic/tb -> vb (VitePress 支持 vb 语法高亮)
+    transformed = transformed.replace(/```\s*tb\b/g, '```vb')
+    transformed = transformed.replace(/```\s*twinbasic\b/g, '```vb')
+
     return transformed === code ? null : transformed
   }
 })
