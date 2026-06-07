@@ -5,7 +5,7 @@ permalink: /tB/Packages/CustomControls/Framework/CustomControlsCollection
 ---
 
 # CustomControlsCollection class
-The collection of controls hosted on a custom form. Accessed as the **Controls** property of a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm). Supports indexed access by integer or name, enumeration with **For Each**, and runtime add / remove of controls.
+The collection of controls hosted on a custom form. Accessed as the **Controls** property of a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm/). Supports indexed access by integer or name, enumeration with **For Each**, and runtime add / remove of controls.
 
 ```vb
 Dim ctl As Object
@@ -29,7 +29,7 @@ Returns the control at the given index or with the given name. The **Default pro
 Syntax: *object*.**Item** ( *IndexOrName* ) **As Object**
 
 *IndexOrName*
-: *required* A **Variant** that is either a **Long** zero-based index or a **String** matching the control's [**Name**](/en/official/Reference/CustomControls#controls).
+: *required* A **Variant** that is either a **Long** zero-based index or a **String** matching the control's [**Name**](/en/official/Reference/CustomControls/#controls).
 
 ## Methods
 
@@ -57,7 +57,7 @@ Removes the control at the given index or with the given name from the collectio
 Syntax: *object*.**Remove** *IndexOrName*
 
 *IndexOrName*
-: *required* A **Variant** that is either a **Long** zero-based index or a **String** matching the control's [**Name**](/en/official/Reference/CustomControls#controls).
+: *required* A **Variant** that is either a **Long** zero-based index or a **String** matching the control's [**Name**](/en/official/Reference/CustomControls/#controls).
 
 ## Iteration
 

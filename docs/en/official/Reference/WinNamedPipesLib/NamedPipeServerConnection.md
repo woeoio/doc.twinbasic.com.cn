@@ -25,7 +25,7 @@ Private Sub server_ClientMessageReceived( _
 End Sub
 ```
 
-See the package [overview](/en/official/Reference/WinNamedPipesLib) for the IOCP / event-marshalling architecture, the cookie correlation pattern, and the transient lifetime of `Data() As Byte` inside events.
+See the package [overview](/en/official/Reference/WinNamedPipesLib/) for the IOCP / event-marshalling architecture, the cookie correlation pattern, and the transient lifetime of `Data() As Byte` inside events.
 
 ## Properties
 
@@ -74,7 +74,7 @@ Sends a message back to this specific client.
 Syntax: *connection*.**AsyncWrite** *Data*() [, *Cookie* ]
 
 *Data*
-: *required* A **Byte()** array containing the bytes to send. An uninitialised or zero-length array is a no-op. For typed multi-field payloads the recommended encoding is [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag) --- see [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib#propertybag-carrier) on the package overview.
+: *required* A **Byte()** array containing the bytes to send. An uninitialised or zero-length array is a no-op. For typed multi-field payloads the recommended encoding is [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) --- see [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) on the package overview.
 
 *Cookie*
 : *optional* A **Variant** correlation value, passed back as the *Cookie* parameter of the matching [**ClientMessageSent**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagesent) event. Default **Empty**.
@@ -93,7 +93,7 @@ To send the same message to every connected client at once, use [**NamedPipeServ
 
 ## See Also
 
-- [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat
-- [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib#propertybag-carrier) -- the deep-copy capture / typed-payload convention for messages
+- [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib/) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat
+- [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- the deep-copy capture / typed-payload convention for messages
 - [NamedPipeServer class](/en/official/Reference/WinNamedPipesLib/NamedPipeServer) -- the parent server that owns this connection
 - [NamedPipeClientConnection class](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) -- the client-side counterpart

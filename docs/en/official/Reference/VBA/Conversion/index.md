@@ -55,7 +55,7 @@ Debug.Print Val("&HFF")          ' 255
 
 [**Nz**](/en/official/Reference/VBA/Conversion/Nz) returns a substitute value when its argument is **Null**, leaving any other value unchanged. It is most useful for reading nullable columns from a database recordset, where directly concatenating or arithmetically combining the field with another value would otherwise propagate **Null** through the rest of the expression.
 
-[**Error**](/en/official/Reference/VBA/Conversion/Error) returns the descriptive text associated with an error number --- the same text that would appear as the **Description** of an [**ErrObject**](/en/official/Reference/VBA/ErrObject) raised with that number. It is the function counterpart to the same-named [**Error** statement](/en/official/Reference/Core/Error), which *raises* a run-time error rather than describing one.
+[**Error**](/en/official/Reference/VBA/Conversion/Error) returns the descriptive text associated with an error number --- the same text that would appear as the **Description** of an [**ErrObject**](/en/official/Reference/VBA/ErrObject/) raised with that number. It is the function counterpart to the same-named [**Error** statement](/en/official/Reference/Core/Error), which *raises* a run-time error rather than describing one.
 
 ## Macintosh compatibility
 

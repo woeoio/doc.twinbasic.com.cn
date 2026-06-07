@@ -67,4 +67,4 @@ End Sub
 ## See also
 
 - [CefEnvironmentOptions](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions) -- full reference for the pre-creation options.
-- [Customize the UserDataFolder (WebView2)](/en/official/Tutorials/WebView2/Customize-UserDataFolder) -- the same idea applied to the [**WebView2**](/en/official/Reference/WebView2/WebView2/) control.
+- [Customize the UserDataFolder (WebView2)](/en/official/Tutorials/WebView2/Customize-the-UserDataFolder) -- the same idea applied to the [**WebView2**](/en/official/Reference/WebView2/WebView2/) control.

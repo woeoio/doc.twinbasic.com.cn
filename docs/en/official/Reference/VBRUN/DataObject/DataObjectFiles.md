@@ -5,7 +5,7 @@ permalink: /tB/Packages/VBRUN/DataObject/DataObjectFiles
 ---
 # DataObjectFiles
 
-A **DataObjectFiles** object is the collection of file paths held by a [**DataObject**](/en/official/Reference/VBRUN/DataObject/.) --- typically the payload of a Windows shell drag-and-drop, which arrives under the `vbCFFiles` clipboard format. Each element is a fully qualified path stored as a **String**. The collection is reachable through the [**Files**](/en/official/Reference/VBRUN/DataObject/Files) property of the parent **DataObject**.
+A **DataObjectFiles** object is the collection of file paths held by a [**DataObject**](/en/official/Reference/VBRUN/DataObject/) --- typically the payload of a Windows shell drag-and-drop, which arrives under the `vbCFFiles` clipboard format. Each element is a fully qualified path stored as a **String**. The collection is reachable through the [**Files**](/en/official/Reference/VBRUN/DataObject/Files) property of the parent **DataObject**.
 
 The collection is mutable: the source side of a drag-and-drop or clipboard operation can build a list with [**Add**](#add), and the destination side reads it back with [**Item**](#item) or **For Each** iteration.
 
@@ -107,5 +107,5 @@ End Sub
 
 ## See Also
 
-- [DataObject](/en/official/Reference/VBRUN/DataObject/.)
+- [DataObject](/en/official/Reference/VBRUN/DataObject/)
 - [Files](/en/official/Reference/VBRUN/DataObject/Files) property

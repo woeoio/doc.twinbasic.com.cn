@@ -5,7 +5,7 @@ permalink: /tB/Packages/WebView2/WebView2/
 ---
 
 # WebView2 class
-A **WebView2** is a twinBASIC control that hosts the Microsoft Edge **WebView2** runtime --- drop one onto a [**Form**](/en/official/Reference/VB/Form) and the running Edge engine renders web content inside its rectangle. Application code can navigate to URLs, run JavaScript, intercept HTTP requests, share BASIC objects with the page, post messages back and forth, and print the document to PDF.
+A **WebView2** is a twinBASIC control that hosts the Microsoft Edge **WebView2** runtime --- drop one onto a [**Form**](/en/official/Reference/VB/Form/) and the running Edge engine renders web content inside its rectangle. Application code can navigate to URLs, run JavaScript, intercept HTTP requests, share BASIC objects with the page, post messages back and forth, and print the document to PDF.
 
 The control wraps the underlying `ICoreWebView2*` COM interfaces and exposes them as ordinary BASIC properties, methods, and events. Most of the work happens asynchronously inside the browser process --- the control raises [**Ready**](#ready) once the WebView2 environment and controller have been created, and most members raise *"WebView2 control is not ready"* (run-time error 5) if called before then.
 
@@ -928,5 +928,5 @@ Syntax: *object*\_**WebResourceRequested**( *Request* **As** [**WebView2Request*
 ## See Also
 
 - [WebView2EnvironmentOptions](/en/official/Reference/WebView2/WebView2/EnvironmentOptions) -- pre-creation environment configuration reached via [**EnvironmentOptions**](#environmentoptions)
-- [WebView2 tutorials](/en/official/Tutorials/WebView2) -- installation, re-entrancy, and `UserDataFolder` worked examples
+- [WebView2 tutorials](/en/official/Tutorials/WebView2/) -- installation, re-entrancy, and `UserDataFolder` worked examples
 - [vbWebView2](/en/official/Reference/VBRUN/Constants/ControlTypeConstants#vbWebView2) -- the **ControlTypeConstants** entry returned by [**ControlType**](#controltype)

@@ -111,7 +111,7 @@ Only meaningful while the service is in a *Pending* state --- it is the upper-bo
 
 ## See Also
 
-- [WinServicesLib package](/en/official/Reference/WinServicesLib) -- overview, lifecycle
+- [WinServicesLib package](/en/official/Reference/WinServicesLib/) -- overview, lifecycle
 - [Services.QueryStateOfService method](/en/official/Reference/WinServicesLib/Services#querystateofservice) -- the only way to obtain a **ServiceState** instance
 - [ServiceStatusConstants enum](/en/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- the values **CurrentState** can take
 - [ServiceTypeConstants enum](/en/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants) -- the values **Type** can take

@@ -170,7 +170,7 @@ Procedures:
 See also
 
 * [Event](/en/official/Reference/Core/Event) - declare an event
-* [IGetMessageHook interface](/en/official/Reference/VBA/HiddenModule#igetmessagehook-interface) - subscribe a callback to a Windows message type, then start/stop delivery
+* [IGetMessageHook interface](/en/official/Reference/VBA/HiddenModule/#igetmessagehook-interface) - subscribe a callback to a Windows message type, then start/stop delivery
 
 ## User Dialogs
 
@@ -432,7 +432,7 @@ Procedures:
 
 See also:
 
-* [ExpressionService module](/en/official/Reference/VBA/ExpressionService) - the underlying engine, when more control over binders or compiled-expression reuse is needed
+* [ExpressionService module](/en/official/Reference/VBA/TbExpressionService/) - the underlying engine, when more control over binders or compiled-expression reuse is needed
 
 ## Financial
 
@@ -455,7 +455,7 @@ Procedures:
 
 ## Unit Testing
 
-Modules of the [Assert](/en/official/Reference/Assert) package:
+Modules of the [Assert](/en/official/Reference/Assert/) package:
 
 * [Exact](/en/official/Reference/Assert/Exact) - strictest comparison semantics; datatypes must match and no implicit conversions happen
 * [Strict](/en/official/Reference/Assert/Strict) - case-sensitive strings, otherwise standard twinBASIC equality

@@ -43,4 +43,4 @@ Close #FileNumber(1), #FileNumber(2), #FileNumber(3)  ' Close the 3 open files.
 ### See Also
 
 - [Open](/en/official/Reference/Core/Open) statement
-- [FreeFile](/en/official/Reference/VBA/FileSystem) function
+- [FreeFile](/en/official/Reference/VBA/FileSystem/) function

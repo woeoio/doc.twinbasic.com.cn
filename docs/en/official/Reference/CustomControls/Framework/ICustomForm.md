@@ -7,7 +7,7 @@ permalink: /tB/Packages/CustomControls/Framework/ICustomForm
 # ICustomForm interface
 The form-class counterpart to [**ICustomControl**](/en/official/Reference/CustomControls/Framework/ICustomControl). Custom *form* classes --- top-level windows that host other custom controls --- implement this interface instead. The shape is identical to **ICustomControl** except that the **Initialize** callback receives a [**CustomFormContext**](/en/official/Reference/CustomControls/Framework/CustomFormContext) (which extends [**CustomControlContext**](/en/official/Reference/CustomControls/Framework/CustomControlContext) with **Show** and **Close**) rather than a plain **CustomControlContext**.
 
-[**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm), the package's only concrete form class, does in fact implement [**ICustomControl**](/en/official/Reference/CustomControls/Framework/ICustomControl) and cast its context to **CustomFormContext** internally --- the **ICustomForm** interface is published for parity with **ICustomControl** but is not currently consumed by any class shipped with the package.
+[**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm/), the package's only concrete form class, does in fact implement [**ICustomControl**](/en/official/Reference/CustomControls/Framework/ICustomControl) and cast its context to **CustomFormContext** internally --- the **ICustomForm** interface is published for parity with **ICustomControl** but is not currently consumed by any class shipped with the package.
 
 ## Methods
 

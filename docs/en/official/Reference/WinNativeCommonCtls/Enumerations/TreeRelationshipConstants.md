@@ -17,5 +17,5 @@ Describes where a new node is inserted relative to an existing node. Passed as t
 
 ## See Also
 
-- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView) -- consumer
+- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView/) -- consumer
 - [Nodes.Add](/en/official/Reference/WinNativeCommonCtls/TreeView/Nodes#add) -- the consuming method

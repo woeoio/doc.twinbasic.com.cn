@@ -11,4 +11,4 @@ The IDE consists of several fixed panes and tool windows. The [**Project Explore
 
 The debug tool windows --- [**Call Stack**](/en/official/IDE/Call-Stack), [**Watches**](/en/official/IDE/Watches), [**Variables**](/en/official/IDE/Variables), [**Debug Console**](/en/official/IDE/Debug-Console), [**Diagnostics**](/en/official/IDE/Diagnostics), [**Outline**](/en/official/IDE/Outline), and [**Memory**](/en/official/IDE/Memory) --- open during a debug session.
 
-The [**tbForm**](/en/official/IDE/tbForm) and [**tbReport**](/en/official/IDE/tbReport) designers open when a form or report file is selected in the Project Explorer. Third-party and community [**addins**](/en/official/IDE/AddIns) extend the IDE with additional commands and tool windows.
+The [**tbForm**](/en/official/IDE/tbForm) and [**tbReport**](/en/official/IDE/tbReport) designers open when a form or report file is selected in the Project Explorer. Third-party and community [**addins**](/en/official/IDE/AddIns/) extend the IDE with additional commands and tool windows.

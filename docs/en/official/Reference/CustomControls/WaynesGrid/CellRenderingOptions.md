@@ -5,7 +5,7 @@ permalink: /tB/Packages/CustomControls/WaynesGrid/CellRenderingOptions
 ---
 
 # CellRenderingOptions class
-A bundle of the style objects that describe one *category* of cell in a [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid). Each grid has six parallel instances --- one for column headers, one for row headers, one for normal cells, one for the hovered cell, one for the selected cell, and one for cells inside a full-row or full-column multi-selection --- and the grid picks the appropriate instance per cell at paint time.
+A bundle of the style objects that describe one *category* of cell in a [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid/). Each grid has six parallel instances --- one for column headers, one for row headers, one for normal cells, one for the hovered cell, one for the selected cell, and one for cells inside a full-row or full-column multi-selection --- and the grid picks the appropriate instance per cell at paint time.
 
 ```vb
 With Grid1.SelectedCellOptions
@@ -34,7 +34,7 @@ The [**Fill**](/en/official/Reference/CustomControls/Styles/Fill) that paints th
 
 ### TextRendering
 
-The [**TextRendering**](/en/official/Reference/CustomControls/Styles/TextRendering) that controls how the cell's text (supplied by the [**GetCellText**](/en/official/Reference/CustomControls/WaynesGrid#getcelltext) event) is drawn.
+The [**TextRendering**](/en/official/Reference/CustomControls/Styles/TextRendering) that controls how the cell's text (supplied by the [**GetCellText**](/en/official/Reference/CustomControls/WaynesGrid/#getcelltext) event) is drawn.
 
 ## Methods
 
@@ -48,4 +48,4 @@ Syntax: **New CellRenderingOptions**
 
 ### OnChanged
 
-Raised whenever any of the contained style objects raises its own **OnChanged**, or when [**Cursor**](#cursor) is assigned. The parent [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid) listens for this and requests a repaint.
+Raised whenever any of the contained style objects raises its own **OnChanged**, or when [**Cursor**](#cursor) is assigned. The parent [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid/) listens for this and requests a repaint.

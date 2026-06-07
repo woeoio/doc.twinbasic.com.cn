@@ -58,7 +58,7 @@ For each instance, exactly one of **InitProperties** or **ReadProperties** runs 
 
 ## Persistent properties
 
-Public read/write members are exposed to the host as design-time properties automatically. Persistent storage goes through the [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag) object handed to [**ReadProperties**](#readproperties) and [**WriteProperties**](#writeproperties); the property bag interns string keys and a small set of variant-friendly types. Calling [**PropertyChanged**](#propertychanged) (optionally with the property name) sets the host's *dirty* flag so the host knows to call [**WriteProperties**](#writeproperties) at the next save.
+Public read/write members are exposed to the host as design-time properties automatically. Persistent storage goes through the [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) object handed to [**ReadProperties**](#readproperties) and [**WriteProperties**](#writeproperties); the property bag interns string keys and a small set of variant-friendly types. Calling [**PropertyChanged**](#propertychanged) (optionally with the property name) sets the host's *dirty* flag so the host knows to call [**WriteProperties**](#writeproperties) at the next save.
 
 ```vb
 Public Property Let Caption(ByVal Value As String)
@@ -73,13 +73,13 @@ End Property
 
 [**Ambient**](#ambient) exposes the host's ambient properties (the colours, font, locale, and design/run-mode flags the host wants child controls to honour). Changes to any of those raise the [**AmbientChanged**](#ambientchanged) event with the name of the affected property.
 
-[**Verbs**](#verbs) and [**VerbInvoked**](#verbinvoked) let the control register host-invokable commands (entries that appear on the host's context menu for the control). [**PropertyPages**](#propertypages) registers the **CLSID**s of additional [**PropertyPage**](/en/official/Reference/VB/PropertyPage) classes that the host should offer through the property browser.
+[**Verbs**](#verbs) and [**VerbInvoked**](#verbinvoked) let the control register host-invokable commands (entries that appear on the host's context menu for the control). [**PropertyPages**](#propertypages) registers the **CLSID**s of additional [**PropertyPage**](/en/official/Reference/VB/PropertyPage/) classes that the host should offer through the property browser.
 
 ## Drawing surface
 
 A **UserControl** is a graphics surface in its own right. The full set of VB6 drawing primitives --- [**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and the [**Print**](#print) statement --- write to its device context, using [**ForeColor**](#forecolor), [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle), [**DrawWidth**](#drawwidth), [**DrawMode**](#drawmode), and [**DrawStyle**](#drawstyle) for the pen and fill, and [**Font**](#font) for text. The current pen position is tracked by [**CurrentX**](#currentx) and [**CurrentY**](#currenty); [**TextWidth**](#textwidth) and [**TextHeight**](#textheight) measure a string in the current font; [**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert single coordinates between scale modes.
 
-The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/en/official/Reference/VB/Form). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the control keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
+The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/en/official/Reference/VB/Form/). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the control keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
 
 [**BackStyle**](#backstyle) chooses between an opaque background (the default --- **BackColor** fills the surface) and a transparent one (the background is left untouched so that whatever is behind the control shows through). Transparent **UserControl**s are commonly windowless ([**Windowless**](#windowless) = **True**) so that mouse hit-testing follows the painted shape rather than the bounding rectangle.
 
@@ -117,7 +117,7 @@ Reserved for compatibility with VB6; not currently implemented in twinBASIC. In 
 
 ### Ambient
 
-A snapshot of the host's [**AmbientProperties**](/en/official/Reference/VBRUN/AmbientProperties). Read-only. Returns a live pass-through wrapper around the host's `IDispatch`, so each member access reads the current ambient value. Changes to any ambient property raise [**AmbientChanged**](#ambientchanged) with the property's name.
+A snapshot of the host's [**AmbientProperties**](/en/official/Reference/VBRUN/AmbientProperties/). Read-only. Returns a live pass-through wrapper around the host's `IDispatch`, so each member access reads the current ambient value. Changes to any ambient property raise [**AmbientChanged**](#ambientchanged) with the property's name.
 
 ### Appearance
 
@@ -406,7 +406,7 @@ Whether the [**PreKeyDown**](#prekeydown) and [**PreKeyUp**](#prekeyup) events a
 
 ### PropertyPages
 
-An array of **String** **CLSID**s identifying the [**PropertyPage**](/en/official/Reference/VB/PropertyPage) classes the host should offer through the **(Custom)** entry on the property browser. Read at the host's `ISpecifyPropertyPages::GetPages` call. Order matters --- the array order is the tab order in the property-sheet dialog.
+An array of **String** **CLSID**s identifying the [**PropertyPage**](/en/official/Reference/VB/PropertyPage/) classes the host should offer through the **(Custom)** entry on the property browser. Read at the host's `ISpecifyPropertyPages::GetPages` call. Order matters --- the array order is the tab order in the property-sheet dialog.
 
 ```vb
 Private Sub UserControl_Initialize()
@@ -614,7 +614,7 @@ Syntax: *object*.**Point**( *X*, *Y* )
 ### PopUpMenu
 
 ::: info
-Declared for VB6 compatibility; not currently implemented on **UserControl** in twinBASIC. A **UserControl** has no menu structure of its own --- invoke a host pop-up through the extender or the parent form's [**PopUpMenu**](/en/official/Reference/VB/Form#popupmenu).
+Declared for VB6 compatibility; not currently implemented on **UserControl** in twinBASIC. A **UserControl** has no menu structure of its own --- invoke a host pop-up through the extender or the parent form's [**PopUpMenu**](/en/official/Reference/VB/Form/#popupmenu).
 :::
 
 Syntax: *object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
@@ -726,7 +726,7 @@ Syntax: *object*.**TextWidth**( *Str* )
 ### ValidateControls
 
 ::: info
-Declared for VB6 compatibility; not currently implemented in twinBASIC. In VB6 this fired the focused child's **Validate** event from code; on a **UserControl** the host normally handles validation through the form-level [**ValidateControls**](/en/official/Reference/VB/Form#validatecontrols).
+Declared for VB6 compatibility; not currently implemented in twinBASIC. In VB6 this fired the focused child's **Validate** event from code; on a **UserControl** the host normally handles validation through the form-level [**ValidateControls**](/en/official/Reference/VB/Form/#validatecontrols).
 :::
 
 Syntax: *object*.**ValidateControls**
@@ -959,7 +959,7 @@ Raised when the host hands the control a property bag containing previously save
 Syntax: *object*\_**ReadProperties**( *PropBag* **As PropertyBag** )
 
 *PropBag*
-: The host-supplied [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag) containing the persisted values.
+: The host-supplied [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) containing the persisted values.
 
 ### Resize
 
@@ -995,4 +995,4 @@ Raised when the host asks the control to persist its current state --- design-ti
 Syntax: *object*\_**WriteProperties**( *PropBag* **As PropertyBag** )
 
 *PropBag*
-: The host-supplied [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag) to write the persisted values into.
+: The host-supplied [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) to write the persisted values into.

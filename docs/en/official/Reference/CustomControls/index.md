@@ -11,7 +11,7 @@ The **CustomControls** built-in package supplies a set of fully owner-drawn cont
 
 The package ships as two paired components: a **CustomControls DESIGNER** library --- the framework half, source-side project `CustomControls` --- that defines the rendering surface and the interface every custom control implements; and the **Custom Controls** package --- source-side project `CustomControlsPackage` --- that supplies the eight concrete `Waynes…` controls. The two are co-versioned with twinBASIC and always ship together; both are MIT-licensed.
 
-Beyond providing ready-to-use controls, the package doubles as a worked example for authoring new custom controls. The `Waynes…` classes implement the same [**ICustomControl**](/en/official/Reference/CustomControls/Framework/ICustomControl) interface that a hand-written control would, against the same [**CustomControlContext**](/en/official/Reference/CustomControls/Framework/CustomControlContext) callback object and [**Canvas**](/en/official/Reference/CustomControls/Framework/Canvas) drawing surface --- see the [Framework](/en/official/Reference/CustomControls/Framework) page for the host-side contract.
+Beyond providing ready-to-use controls, the package doubles as a worked example for authoring new custom controls. The `Waynes…` classes implement the same [**ICustomControl**](/en/official/Reference/CustomControls/Framework/ICustomControl) interface that a hand-written control would, against the same [**CustomControlContext**](/en/official/Reference/CustomControls/Framework/CustomControlContext) callback object and [**Canvas**](/en/official/Reference/CustomControls/Framework/Canvas) drawing surface --- see the [Framework](/en/official/Reference/CustomControls/Framework/) page for the host-side contract.
 
 ```vb
 Private Sub Form_Load()
@@ -28,20 +28,20 @@ End Sub
 
 ## Controls
 
-- [WaynesButton](/en/official/Reference/CustomControls/WaynesButton) -- owner-drawn push-button with separate visual states for normal, hover, focused, and pressed
-- [WaynesForm](/en/official/Reference/CustomControls/WaynesForm) -- top-level form for hosting custom controls; exposes the **WindowsOptions** sub-object that controls the Win32 frame
+- [WaynesButton](/en/official/Reference/CustomControls/WaynesButton/) -- owner-drawn push-button with separate visual states for normal, hover, focused, and pressed
+- [WaynesForm](/en/official/Reference/CustomControls/WaynesForm/) -- top-level form for hosting custom controls; exposes the **WindowsOptions** sub-object that controls the Win32 frame
 - [WaynesFrame](/en/official/Reference/CustomControls/WaynesFrame) -- rectangular container that fills its area with a configurable background
-- [WaynesGrid](/en/official/Reference/CustomControls/WaynesGrid) -- tabular data display with column headers, row headers, hover / selection states, and resizable columns
+- [WaynesGrid](/en/official/Reference/CustomControls/WaynesGrid/) -- tabular data display with column headers, row headers, hover / selection states, and resizable columns
 - [WaynesLabel](/en/official/Reference/CustomControls/WaynesLabel) -- static text display with fill, text rendering, and caption
-- [WaynesSlider](/en/official/Reference/CustomControls/WaynesSlider) -- horizontal or vertical value slider with hover / focused states and a draggable block
-- [WaynesTextBox](/en/official/Reference/CustomControls/WaynesTextBox) -- single-line editable text field with selection, caret, surrogate-pair awareness, and inline text decorators
+- [WaynesSlider](/en/official/Reference/CustomControls/WaynesSlider/) -- horizontal or vertical value slider with hover / focused states and a draggable block
+- [WaynesTextBox](/en/official/Reference/CustomControls/WaynesTextBox/) -- single-line editable text field with selection, caret, surrogate-pair awareness, and inline text decorators
 - [WaynesTimer](/en/official/Reference/CustomControls/WaynesTimer) -- non-visual timer that raises a **Timer** event at a programmable interval
 
 Every concrete control implements [**ICustomControl**](/en/official/Reference/CustomControls/Framework/ICustomControl) and inherits a small set of layout-and-name members from an internal base class:
 
 - All controls expose **Name**, **Left**, **Top**, **Width**, **Height**, **Anchors**, **Dock**, and **Visible**.
-- Controls that can take keyboard focus ([**WaynesButton**](/en/official/Reference/CustomControls/WaynesButton), [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid), [**WaynesSlider**](/en/official/Reference/CustomControls/WaynesSlider), [**WaynesTextBox**](/en/official/Reference/CustomControls/WaynesTextBox)) additionally expose **TabIndex** and **TabStop**.
-- [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm) instead exposes form-level members: **FormDesignerId**, **Name**, position / size, and the **Controls** collection.
+- Controls that can take keyboard focus ([**WaynesButton**](/en/official/Reference/CustomControls/WaynesButton/), [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid/), [**WaynesSlider**](/en/official/Reference/CustomControls/WaynesSlider/), [**WaynesTextBox**](/en/official/Reference/CustomControls/WaynesTextBox/)) additionally expose **TabIndex** and **TabStop**.
+- [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm/) instead exposes form-level members: **FormDesignerId**, **Name**, position / size, and the **Controls** collection.
 
 These members are listed on each control's own page; their definitions are identical and are not repeated separately.
 

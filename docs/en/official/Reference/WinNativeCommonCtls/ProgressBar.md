@@ -76,7 +76,7 @@ The control's border style. A [**ControlBorderStyleConstants**](/en/official/Ref
 The color of the progress bar segments themselves. **OLE_COLOR**. Default: **vbHighlight**. Applied via `PBM_SETBARCOLOR`.
 
 ::: info
-The OS visual styles theme typically overrides this value in standard rendering. To see the assigned **ForeColor** at run time, disable visual styles by setting [**VisualStyles**](/en/official/Reference/VB/CheckBox#visualstyles) to **False**.
+The OS visual styles theme typically overrides this value in standard rendering. To see the assigned **ForeColor** at run time, disable visual styles by setting [**VisualStyles**](/en/official/Reference/VB/CheckBox/#visualstyles) to **False**.
 :::
 
 ### MarqueeAnimation

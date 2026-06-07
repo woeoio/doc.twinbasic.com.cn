@@ -6,9 +6,9 @@ permalink: /tB/Packages/VB/Frame/
 
 # Frame class
 
-A **Frame** is a Win32 native container control that groups a set of related controls inside a captioned border. It serves two distinct purposes --- a visual cue that the enclosed controls belong together, and a logical grouping for [**OptionButton**](/en/official/Reference/VB/OptionButton) controls: option buttons inside the same frame are mutually exclusive of one another but independent of option buttons elsewhere on the form. Controls dropped onto a frame at design time become its children, and moving, hiding, disabling, or destroying the frame moves, hides, disables, or destroys the entire group with it.
+A **Frame** is a Win32 native container control that groups a set of related controls inside a captioned border. It serves two distinct purposes --- a visual cue that the enclosed controls belong together, and a logical grouping for [**OptionButton**](/en/official/Reference/VB/OptionButton/) controls: option buttons inside the same frame are mutually exclusive of one another but independent of option buttons elsewhere on the form. Controls dropped onto a frame at design time become its children, and moving, hiding, disabling, or destroying the frame moves, hides, disables, or destroys the entire group with it.
 
-A frame cannot itself receive the input focus. The mnemonic marker (`&`) in its [**Caption**](#caption) is honoured, but pressing **Alt+** that character moves the focus to the next control in tab order rather than to the frame itself --- exactly like a [**Label**](/en/official/Reference/VB/Label).
+A frame cannot itself receive the input focus. The mnemonic marker (`&`) in its [**Caption**](#caption) is honoured, but pressing **Alt+** that character moves the focus to the next control in tab order rather than to the frame itself --- exactly like a [**Label**](/en/official/Reference/VB/Label/).
 
 The default property is [**Caption**](#caption) and the default event is [**Click**](#click).
 
@@ -44,7 +44,7 @@ The text in [**Caption**](#caption) is rendered along the top edge of the border
 
 ## OptionButton groups
 
-Each frame defines its own option-button group. When the user selects an [**OptionButton**](/en/official/Reference/VB/OptionButton) whose parent is this frame, every other option button on the same frame is automatically cleared, but option buttons on the form (or in sibling frames) are not affected. Use frames to present multiple independent radio-style choices on the same form:
+Each frame defines its own option-button group. When the user selects an [**OptionButton**](/en/official/Reference/VB/OptionButton/) whose parent is this frame, every other option button on the same frame is automatically cleared, but option buttons on the form (or in sibling frames) are not affected. Use frames to present multiple independent radio-style choices on the same form:
 
 ```vb
 ' Two independent option-button groups on one form:
@@ -172,11 +172,11 @@ The mouse cursor shown when the pointer is over the frame (and not over a child 
 
 ### MultiFramePosition
 
-When the frame is hosted inside a [**MultiFrame**](/en/official/Reference/VB/MultiFrame) layout container, the **Long** zero-based position of this frame in the **MultiFrame**'s ordered sequence. Default `-1` (no position assigned). Outside of a **MultiFrame** the value is ignored.
+When the frame is hosted inside a [**MultiFrame**](/en/official/Reference/VB/MultiFrame/) layout container, the **Long** zero-based position of this frame in the **MultiFrame**'s ordered sequence. Default `-1` (no position assigned). Outside of a **MultiFrame** the value is ignored.
 
 ### MultiFrameSize
 
-When the frame is hosted inside a [**MultiFrame**](/en/official/Reference/VB/MultiFrame), its size as a percentage of the **MultiFrame**'s usable extent (`0` for "share evenly"). **Double**. Outside of a **MultiFrame** the value is ignored.
+When the frame is hosted inside a [**MultiFrame**](/en/official/Reference/VB/MultiFrame/), its size as a percentage of the **MultiFrame**'s usable extent (`0` for "share evenly"). **Double**. Outside of a **MultiFrame** the value is ignored.
 
 ### Name
 
@@ -192,11 +192,11 @@ The frame's opacity as a percentage (0--100, default 100). Values outside the ra
 
 ### OriginalMultiFramePosition
 
-The frame's [**MultiFramePosition**](#multiframeposition) at the moment the [**MultiFrame**](/en/official/Reference/VB/MultiFrame) was last reflowed. **Long**, default `-1`. Used internally by the **MultiFrame** layout engine to compact positions after a frame is moved; not normally written from user code.
+The frame's [**MultiFramePosition**](#multiframeposition) at the moment the [**MultiFrame**](/en/official/Reference/VB/MultiFrame/) was last reflowed. **Long**, default `-1`. Used internally by the **MultiFrame** layout engine to compact positions after a frame is moved; not normally written from user code.
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains the frame. Read-only. Distinct from [**Container**](#container), which returns the immediate parent (form *or* enclosing frame).
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the frame. Read-only. Distinct from [**Container**](#container), which returns the immediate parent (form *or* enclosing frame).
 
 ### RightToLeft
 

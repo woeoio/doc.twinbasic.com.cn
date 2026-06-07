@@ -15,15 +15,15 @@ AIGC:
 
 # WebView2 Package
 
-The **WebView2Package** wraps the Microsoft Edge WebView2 runtime and exposes it as an ordinary twinBASIC control. Drop a [**WebView2**](/en/official/Reference/WebView2/WebView2) onto a form and the running Edge engine renders web content inside it --- navigate to URLs, run JavaScript, intercept HTTP requests, post messages between BASIC and JavaScript, and print pages to PDF.
+The **WebView2Package** wraps the Microsoft Edge WebView2 runtime and exposes it as an ordinary twinBASIC control. Drop a [**WebView2**](/en/official/Reference/WebView2/WebView2/) onto a form and the running Edge engine renders web content inside it --- navigate to URLs, run JavaScript, intercept HTTP requests, post messages between BASIC and JavaScript, and print pages to PDF.
 
-The package is a built-in package shipped with twinBASIC. See the [WebView2 tutorials](/en/official/Tutorials/WebView2) for how to reference it in a project, and worked samples.
+The package is a built-in package shipped with twinBASIC. See the [WebView2 tutorials](/en/official/Tutorials/WebView2/) for how to reference it in a project, and worked samples.
 
 Beyond the control itself, the package exposes a small set of wrapper objects that appear inside the control's event arguments --- the request / response pair on **WebResourceRequested**, the request-header collection on **NavigationStarting**, the environment-options object configured before **Create** --- together with the `wv2…` enumerations used to spell out option values.
 
 ## Classes
 
-- [WebView2](/en/official/Reference/WebView2/WebView2) -- the control: navigation, scripting, settings, deferral-aware events, and PDF / suspend / download / task-manager features controlled by the underlying Edge runtime
+- [WebView2](/en/official/Reference/WebView2/WebView2/) -- the control: navigation, scripting, settings, deferral-aware events, and PDF / suspend / download / task-manager features controlled by the underlying Edge runtime
 - [WebView2EnvironmentOptions](/en/official/Reference/WebView2/WebView2/EnvironmentOptions) -- pre-creation configuration for the WebView2 environment (user-data folder, executable folder, locale, tracking-prevention, …); reached via the control's **EnvironmentOptions** property
 - [WebView2Header](/en/official/Reference/WebView2/WebView2Header) -- one HTTP header (Name / Value); the element type yielded by header iteration
 - [WebView2HeadersCollection](/en/official/Reference/WebView2/WebView2HeadersCollection) -- enumerable wrapper used by `For Each` over request / response headers

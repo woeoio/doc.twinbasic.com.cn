@@ -5,13 +5,13 @@ permalink: /tB/Packages/WinNativeCommonCtls/Enumerations/TreeStyleConstants
 ---
 
 # TreeStyleConstants
-Composite visual style of a [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView), encoding a 3-bit combination of which elements appear: **plus-minus** buttons, **treelines**, and **picture** icons. The labels are always shown.
+Composite visual style of a [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView/), encoding a 3-bit combination of which elements appear: **plus-minus** buttons, **treelines**, and **picture** icons. The labels are always shown.
 
-Used by [**TreeView.Style**](/en/official/Reference/WinNativeCommonCtls/TreeView#style). Default: **tvwTreelinesPlusMinusPictureText**.
+Used by [**TreeView.Style**](/en/official/Reference/WinNativeCommonCtls/TreeView/#style). Default: **tvwTreelinesPlusMinusPictureText**.
 
 The composite decoding:
 
-| [**Style**](/en/official/Reference/WinNativeCommonCtls/TreeView#style)                  | Buttons | Lines | Icons | Labels |
+| [**Style**](/en/official/Reference/WinNativeCommonCtls/TreeView/#style)                  | Buttons | Lines | Icons | Labels |
 |--------------------------------------------------|---------|-------|-------|--------|
 | **tvwTextOnly**                                  | ---       | ---     | ---     | yes    |
 | **tvwPictureText**                               | ---       | ---     | yes   | yes    |
@@ -37,5 +37,5 @@ The enum's underlying values are 0--7, matching the order in the table.
 
 ## See Also
 
-- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView) -- consumer
+- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView/) -- consumer
 - [TreeLineStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants) -- selects whether root-level lines are drawn when the **tvwTreelines…** variants are in effect

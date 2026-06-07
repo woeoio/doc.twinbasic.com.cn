@@ -5,9 +5,9 @@ permalink: /tB/Packages/WinNativeCommonCtls/ListView/ListItems
 ---
 
 # ListItems class
-The **ListItems** collection is the entry point for managing the rows of a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView). Accessed as `<listView>.ListItems`; supports adding, removing, indexed access, and `For Each` iteration.
+The **ListItems** collection is the entry point for managing the rows of a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView/). Accessed as `<listView>.ListItems`; supports adding, removing, indexed access, and `For Each` iteration.
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ListItems** through the parent [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView) control's [**ListItems**](/en/official/Reference/WinNativeCommonCtls/ListView#listitems) property.
+The class is tagged `[COMCreatable(False)]` --- user code accesses **ListItems** through the parent [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView/) control's [**ListItems**](/en/official/Reference/WinNativeCommonCtls/ListView/#listitems) property.
 
 ```vb
 With ListView1.ListItems
@@ -58,10 +58,10 @@ Syntax: *object*.**Add** ( [ *Index* ] [, *Key* ] [, *Text* ] [, *Icon* ] [, *Sm
 : *optional* A **String** giving the row's main label.
 
 *Icon*
-: *optional* A **Variant** identifying the row's large icon --- either a 1-based **Long** index into [**ListView.Icons**](/en/official/Reference/WinNativeCommonCtls/ListView#icons), or a **String** key. Validated against the bound image list.
+: *optional* A **Variant** identifying the row's large icon --- either a 1-based **Long** index into [**ListView.Icons**](/en/official/Reference/WinNativeCommonCtls/ListView/#icons), or a **String** key. Validated against the bound image list.
 
 *SmallIcon*
-: *optional* A **Variant** identifying the row's small icon, against [**ListView.SmallIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#smallicons).
+: *optional* A **Variant** identifying the row's small icon, against [**ListView.SmallIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#smallicons).
 
 Returns the newly-created [**ListItem**](/en/official/Reference/WinNativeCommonCtls/ListView/ListItem).
 
@@ -88,5 +88,5 @@ Syntax: *object*.**_NewEnum** **As stdole.IUnknown**
 
 ## See Also
 
-- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView) -- the parent control
+- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView/) -- the parent control
 - [ListItem](/en/official/Reference/WinNativeCommonCtls/ListView/ListItem) -- one row in the collection

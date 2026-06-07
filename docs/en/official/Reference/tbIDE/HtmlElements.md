@@ -35,7 +35,7 @@ Syntax: *htmlElements*.**Add**( *ElementID*, *TagName* ) **As** [**HtmlElement**
 : *required* A DOM `id` for the new element. **String**. Pick distinct IDs across the tool window --- they double as the key for [**Item**](#item) lookups.
 
 *TagName*
-: *required* The HTML tag name. **String**. Standard tags (`"div"`, `"span"`, `"input"`, `"h1"`, `"label"`, `"img"`, …) work as expected; the IDE additionally accepts four custom-widget tags described in [Tool-window DOM tags](/en/official/Reference/tbIDE#tool-window-dom-tags) on the package overview: `"chartjs"`, `"monaco"`, `"listview"`, `"virtuallistview"`.
+: *required* The HTML tag name. **String**. Standard tags (`"div"`, `"span"`, `"input"`, `"h1"`, `"label"`, `"img"`, …) work as expected; the IDE additionally accepts four custom-widget tags described in [Tool-window DOM tags](/en/official/Reference/tbIDE/#tool-window-dom-tags) on the package overview: `"chartjs"`, `"monaco"`, `"listview"`, `"virtuallistview"`.
 
 ```vb
 ' Standard DOM tags:

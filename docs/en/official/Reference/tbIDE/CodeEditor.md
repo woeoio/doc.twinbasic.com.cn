@@ -56,7 +56,7 @@ Syntax: *codeEditor*.**AddMonacoWidget**( *LineNumber*, *ColumnNumber*, *Html* [
 *Css*
 : *optional* Per-widget CSS as a **String**. Use this for widget-local styles that should not bleed into the rest of the code pane.
 
-The returned [**HtmlElement**](/en/official/Reference/tbIDE/HtmlElement) has the same dynamic-DOM properties as elements inside a tool window --- see [Dynamic DOM property resolution](/en/official/Reference/tbIDE#dynamic-dom-property-resolution) on the package overview. Call [**HtmlElement.Remove**](/en/official/Reference/tbIDE/HtmlElement#remove) on the returned object to remove the widget.
+The returned [**HtmlElement**](/en/official/Reference/tbIDE/HtmlElement) has the same dynamic-DOM properties as elements inside a tool window --- see [Dynamic DOM property resolution](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution) on the package overview. Call [**HtmlElement.Remove**](/en/official/Reference/tbIDE/HtmlElement#remove) on the returned object to remove the widget.
 
 ### ExecuteMonacoCommand
 

@@ -6,7 +6,7 @@ permalink: /tB/Packages/tbIDE/AddIn
 
 # AddIn class
 
-The contract every addin's main class must implement. One read-only property --- [**Name**](#name) --- that the IDE reads to label the addin in error messages, log lines, and any addin-management UI added later. The IDE never creates an **AddIn** itself; the addin DLL constructs the object inside [`tbCreateCompilerAddin`](/en/official/Reference/tbIDE#building-and-loading-an-addin) and returns it.
+The contract every addin's main class must implement. One read-only property --- [**Name**](#name) --- that the IDE reads to label the addin in error messages, log lines, and any addin-management UI added later. The IDE never creates an **AddIn** itself; the addin DLL constructs the object inside [`tbCreateCompilerAddin`](/en/official/Reference/tbIDE/#building-and-loading-an-addin) and returns it.
 
 ```vb
 Private Class MyAddIn

@@ -11,8 +11,8 @@ The [**WebView2**](/en/official/Reference/WebView2/WebView2/) control hosts the 
 
 These tutorials demonstrate the most common patterns:
 
-- [Getting started](/en/official/Tutorials/WebView2/Getting-Started) -- adding the package references and dropping a control onto a form.
-- [Customize the UserDataFolder](/en/official/Tutorials/WebView2/Customize-UserDataFolder) -- relocating the runtime's working folder for hosted scenarios (Office add-ins, kiosk installs).
+- [Getting started](/en/official/Tutorials/WebView2/Getting-started) -- adding the package references and dropping a control onto a form.
+- [Customize the UserDataFolder](/en/official/Tutorials/WebView2/Customize-the-UserDataFolder) -- relocating the runtime's working folder for hosted scenarios (Office add-ins, kiosk installs).
 - [Re-entrancy](/en/official/Tutorials/WebView2/Re-entrancy) -- what the control's deferred-event machinery does for you, and the one place you still have to think about it.
 - [Building a browser shell](/en/official/Tutorials/WebView2/Building-a-browser-shell) -- address bar, back / forward / reload, zoom, PDF export --- turning the control into a working browser.
 - [Hosting local web assets](/en/official/Tutorials/WebView2/Hosting-local-web-assets) -- serve HTML / JS / CSS from a project resource folder, without an HTTP server.

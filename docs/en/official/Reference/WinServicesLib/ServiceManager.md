@@ -5,7 +5,7 @@ permalink: /tB/Packages/WinServicesLib/ServiceManager
 ---
 
 # ServiceManager class
-The per-service configuration object. One [**ServiceManager**](/en/official/Reference/WinServicesLib) describes one Windows service the EXE knows how to host --- its [**Name**](#name), [**Description**](#description), service [**Type**](#type), [**InstallStartMode**](#installstartmode), [**InstanceCreator**](#instancecreator), and the optional fields the SCM cares about --- and exposes the methods that act on a single service: [**Install**](#install), [**Uninstall**](#uninstall), and the [**ReportStatus**](#reportstatus) call the service uses to inform the SCM of state transitions while running.
+The per-service configuration object. One [**ServiceManager**](/en/official/Reference/WinServicesLib/) describes one Windows service the EXE knows how to host --- its [**Name**](#name), [**Description**](#description), service [**Type**](#type), [**InstallStartMode**](#installstartmode), [**InstanceCreator**](#instancecreator), and the optional fields the SCM cares about --- and exposes the methods that act on a single service: [**Install**](#install), [**Uninstall**](#uninstall), and the [**ReportStatus**](#reportstatus) call the service uses to inform the SCM of state transitions while running.
 
 ::: info
 Do not construct **ServiceManager** instances directly. Call [**Services.ConfigureNew**](/en/official/Reference/WinServicesLib/Services#configurenew) instead --- it allocates a fresh manager and registers it in the package's internal collection so the dispatcher can find it.
@@ -22,7 +22,7 @@ With Services.ConfigureNew
 End With
 ```
 
-See the package [overview](/en/official/Reference/WinServicesLib) for the broader lifecycle, the [two-thread split](/en/official/Reference/WinServicesLib#two-thread-split), and the elevation rules around installation.
+See the package [overview](/en/official/Reference/WinServicesLib/) for the broader lifecycle, the [two-thread split](/en/official/Reference/WinServicesLib/#two-thread-split), and the elevation rules around installation.
 
 ## Fields
 
@@ -128,7 +128,7 @@ The Win32 service type --- controls whether the service runs in its own process,
 Typical settings:
 
 - [**tbServiceTypeOwnProcess**](/en/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeOwnProcess) -- one service per EXE.
-- [**tbServiceTypeShareProcess**](/en/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeShareProcess) -- multiple services hosted in a single EXE; the SCM keeps one process alive that serves all of them. Each [**ServiceManager**](/en/official/Reference/WinServicesLib) still needs its own configuration and [**InstanceCreator**](#instancecreator).
+- [**tbServiceTypeShareProcess**](/en/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeShareProcess) -- multiple services hosted in a single EXE; the SCM keeps one process alive that serves all of them. Each [**ServiceManager**](/en/official/Reference/WinServicesLib/) still needs its own configuration and [**InstanceCreator**](#instancecreator).
 
 The driver-only modes ([**tbServiceTypeSystemDriver**](/en/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeSystemDriver), [**tbServiceTypeKernelDriver**](/en/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeKernelDriver), …) are not meaningful for user-mode twinBASIC services.
 
@@ -189,7 +189,7 @@ Opens the SCM, opens the service with `SERVICE_DELETE`, calls `DeleteService`. T
 
 ## See Also
 
-- [WinServicesLib package](/en/official/Reference/WinServicesLib) -- overview, lifecycle, two-thread split
+- [WinServicesLib package](/en/official/Reference/WinServicesLib/) -- overview, lifecycle, two-thread split
 - [Services class](/en/official/Reference/WinServicesLib/Services) -- the predeclared coordinator that **ConfigureNew** comes from
 - [ITbService interface](/en/official/Reference/WinServicesLib/ITbService) -- what **InstanceCreator** must produce
 - [ServiceCreator(Of T)](/en/official/Reference/WinServicesLib/ServiceCreator) -- the generic factory typically passed to **InstanceCreator**

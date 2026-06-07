@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/CustomControls/Enumerations/DockMode
 ---
 # DockMode
-How a control is positioned relative to its container --- attached to one edge, filling the whole client area, or not docked at all (positioned absolutely by [**Left**](/en/official/Reference/CustomControls#controls) / [**Top**](/en/official/Reference/CustomControls#controls) / [**Width**](/en/official/Reference/CustomControls#controls) / [**Height**](/en/official/Reference/CustomControls#controls)). Used by the **Dock** property that every concrete custom control inherits.
+How a control is positioned relative to its container --- attached to one edge, filling the whole client area, or not docked at all (positioned absolutely by [**Left**](/en/official/Reference/CustomControls/#controls) / [**Top**](/en/official/Reference/CustomControls/#controls) / [**Width**](/en/official/Reference/CustomControls/#controls) / [**Height**](/en/official/Reference/CustomControls/#controls)). Used by the **Dock** property that every concrete custom control inherits.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

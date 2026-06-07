@@ -7,8 +7,8 @@ permalink: /tB/Packages/WebView2/WebView2RequestHeaders
 # WebView2RequestHeaders class
 The mutable HTTP-request-header collection for a navigation or a web-resource request. Reached two ways:
 
-- As the **RequestHeaders** argument of the [**NavigationStarting**](/en/official/Reference/WebView2/WebView2#navigationstarting) event --- the headers about to be sent for the page navigation. Mutations made before the event handler returns are transmitted.
-- Through [**WebView2Request.Headers**](/en/official/Reference/WebView2/WebView2Request#headers) when handling a [**WebResourceRequested**](/en/official/Reference/WebView2/WebView2#webresourcerequested) event.
+- As the **RequestHeaders** argument of the [**NavigationStarting**](/en/official/Reference/WebView2/WebView2/#navigationstarting) event --- the headers about to be sent for the page navigation. Mutations made before the event handler returns are transmitted.
+- Through [**WebView2Request.Headers**](/en/official/Reference/WebView2/WebView2Request#headers) when handling a [**WebResourceRequested**](/en/official/Reference/WebView2/WebView2/#webresourcerequested) event.
 
 The collection is enumerable: a `For Each` loop yields one [**WebView2Header**](/en/official/Reference/WebView2/WebView2Header) per entry.
 

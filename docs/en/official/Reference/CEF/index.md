@@ -7,24 +7,24 @@ permalink: /tB/Packages/CEF/
 
 # CEF Package
 
-The **cefPackage** wraps the [Chromium Embedded Framework](https://chromiumembedded.github.io/cef/) and exposes it as an ordinary twinBASIC control. Drop a [**CefBrowser**](/en/official/Reference/CEF/CefBrowser) onto a form and a Chromium browser renders web content inside it --- navigate to URLs, run JavaScript, print pages to PDF, and exchange messages with the loaded page.
+The **cefPackage** wraps the [Chromium Embedded Framework](https://chromiumembedded.github.io/cef/) and exposes it as an ordinary twinBASIC control. Drop a [**CefBrowser**](/en/official/Reference/CEF/CefBrowser/) onto a form and a Chromium browser renders web content inside it --- navigate to URLs, run JavaScript, print pages to PDF, and exchange messages with the loaded page.
 
 The package is a built-in package shipped with twinBASIC, but the CEF runtime itself is distributed *separately* --- applications must ship the matching runtime ZIP alongside the executable. See [Runtime files](#runtime-files) below.
 
 ::: important
-The CEF package is currently in **BETA**. Several features available on [**WebView2**](/en/official/Reference/WebView2) are not yet exposed; see [WebView2 parity](#webview2-parity) below.
+The CEF package is currently in **BETA**. Several features available on [**WebView2**](/en/official/Reference/WebView2/) are not yet exposed; see [WebView2 parity](#webview2-parity) below.
 :::
 
 
 ## Why CEF instead of WebView2?
 
-CEF and [**WebView2**](/en/official/Reference/WebView2) both wrap a Chromium-based browser inside a twinBASIC control. CEF brings advantages that matter for some applications:
+CEF and [**WebView2**](/en/official/Reference/WebView2/) both wrap a Chromium-based browser inside a twinBASIC control. CEF brings advantages that matter for some applications:
 
-- **Cross-platform ready.** CEF runs on Windows, Linux, and macOS. [**WebView2**](/en/official/Reference/WebView2) is Windows-only.
+- **Cross-platform ready.** CEF runs on Windows, Linux, and macOS. [**WebView2**](/en/official/Reference/WebView2/) is Windows-only.
 - **Full control over the runtime stack.** The application targets a specific Chromium build and distributes it alongside the software. There is no automatic runtime update outside the application's control, so behavior stays consistent across deployments.
 - **Deeper runtime integration.** CEF allows hosting twinBASIC code inside the renderer / JavaScript process --- something the more restricted WebView2 object model cannot do.
 
-[**WebView2**](/en/official/Reference/WebView2) is the right fit when targeting only modern Windows and the system-installed Edge runtime is acceptable; **CEF** is preferable when control over the Chromium version or cross-platform readiness matters.
+[**WebView2**](/en/official/Reference/WebView2/) is the right fit when targeting only modern Windows and the system-installed Edge runtime is acceptable; **CEF** is preferable when control over the Chromium version or cross-platform readiness matters.
 
 ## Supported runtimes
 
@@ -42,7 +42,7 @@ Older Chromium versions should not generally be used for unrestricted internet b
 
 The user picks a runtime in two places that must agree:
 
-- **At compile time** --- by adding the matching `[COMPILER PACKAGE] twinBASIC - Chromium Embedded Framework Package v<N>` reference to the project. This sets the `CEF_VERSION` conditional-compilation constant (49, 109, or 145) that the package's own sources compile against. [**CefBrowser.CefMajorVersion**](/en/official/Reference/CEF/CefBrowser#cefmajorversion) returns this value at run time.
+- **At compile time** --- by adding the matching `[COMPILER PACKAGE] twinBASIC - Chromium Embedded Framework Package v<N>` reference to the project. This sets the `CEF_VERSION` conditional-compilation constant (49, 109, or 145) that the package's own sources compile against. [**CefBrowser.CefMajorVersion**](/en/official/Reference/CEF/CefBrowser/#cefmajorversion) returns this value at run time.
 - **At deploy time** --- by shipping the matching runtime ZIP, extracted into [the discovery folder](#installing-runtime-files) or pointed at via [**EnvironmentOptions.BrowserExecutableFolder**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#browserexecutablefolder).
 
 The runtime bitness must match the application bitness --- a 32-bit application needs the 32-bit runtime ZIP, a 64-bit application needs the 64-bit ZIP.
@@ -76,11 +76,11 @@ For example, the v145 Win64 runtime ends up at:
 
 The version-stamped folder must contain `libcef.dll` and its sibling runtime files.
 
-At launch, [**CefBrowser**](/en/official/Reference/CEF/CefBrowser) searches for the runtime in this default location. If `libcef.dll` cannot be found, the [**Error**](/en/official/Reference/CEF/CefBrowser#error) event fires with the exact path that was searched.
+At launch, [**CefBrowser**](/en/official/Reference/CEF/CefBrowser/) searches for the runtime in this default location. If `libcef.dll` cannot be found, the [**Error**](/en/official/Reference/CEF/CefBrowser/#error) event fires with the exact path that was searched.
 
 ### Overriding the runtime location
 
-A different folder --- for example a portable side-by-side deployment --- is selected by assigning [**EnvironmentOptions.BrowserExecutableFolder**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#browserexecutablefolder) before or during the [**Create**](/en/official/Reference/CEF/CefBrowser#create) event:
+A different folder --- for example a portable side-by-side deployment --- is selected by assigning [**EnvironmentOptions.BrowserExecutableFolder**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#browserexecutablefolder) before or during the [**Create**](/en/official/Reference/CEF/CefBrowser/#create) event:
 
 ```vb
 Private Sub CefBrowser1_Create()
@@ -93,30 +93,30 @@ The folder must contain `libcef.dll`.
 
 ## WebView2 parity
 
-These [**WebView2**](/en/official/Reference/WebView2) features are not yet exposed on **CefBrowser** and have no documented counterpart:
+These [**WebView2**](/en/official/Reference/WebView2/) features are not yet exposed on **CefBrowser** and have no documented counterpart:
 
 - Methods: **OpenTaskManagerWindow**, **AddObject** (host-object publication for JavaScript), **AddWebResourceRequestedFilter** and the surrounding request-interception machinery.
 - Events: **AcceleratorKeyPressed**, **PermissionRequested**, **WebResourceRequested**, **ProcessFailed**, **ScriptDialogOpening**, **UserContextMenu**, **SuspendCompleted**, **SuspendFailed**, **DownloadStarting**, **NewWindowRequested**.
 
-The [**NavigationComplete**](/en/official/Reference/CEF/CefBrowser#navigationcomplete) event has **IsSuccess** and **WebErrorStatus** parameters in its signature but currently returns placeholder values (`True` and `0`) --- the underlying CEF callbacks that would populate them have not yet been connected.
+The [**NavigationComplete**](/en/official/Reference/CEF/CefBrowser/#navigationcomplete) event has **IsSuccess** and **WebErrorStatus** parameters in its signature but currently returns placeholder values (`True` and `0`) --- the underlying CEF callbacks that would populate them have not yet been connected.
 
 The API will continue to grow; this list is a snapshot of the current beta, not a long-term limitation.
 
 ## Classes
 
-- [CefBrowser](/en/official/Reference/CEF/CefBrowser) -- the control: navigation, scripting, virtual-host mapping, PDF printing, and lifecycle events controlled by the matching CEF runtime
+- [CefBrowser](/en/official/Reference/CEF/CefBrowser/) -- the control: navigation, scripting, virtual-host mapping, PDF printing, and lifecycle events controlled by the matching CEF runtime
 - [CefEnvironmentOptions](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions) -- pre-creation configuration for the CEF environment (executable folder, user-data folder, log file, log severity); reached via the control's **EnvironmentOptions** property
 
 ## Enumerations
 
 - [CefLogSeverity](/en/official/Reference/CEF/Enumerations/CefLogSeverity) -- the verbosity threshold for the CEF debug log; used by [**EnvironmentOptions.LogSeverity**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#logseverity)
-- [cefPrintOrientation](/en/official/Reference/CEF/Enumerations/cefPrintOrientation) -- page orientation passed to [**PrintToPdf**](/en/official/Reference/CEF/CefBrowser#printtopdf)
+- [cefPrintOrientation](/en/official/Reference/CEF/Enumerations/cefPrintOrientation) -- page orientation passed to [**PrintToPdf**](/en/official/Reference/CEF/CefBrowser/#printtopdf)
 
 ## Tutorials
 
 - [Getting started](/en/official/Tutorials/CEF/Getting-started) -- package reference, runtime download, install path
 - [Customize the UserDataFolder](/en/official/Tutorials/CEF/Customize-the-UserDataFolder) -- relocating the runtime's working folder
-- [Re-entrancy](/en/official/Tutorials/CEF/Re-entrancy) -- the deferred-event model and the one place ([**JsRun**](/en/official/Reference/CEF/CefBrowser#jsrun)) that still requires attention
+- [Re-entrancy](/en/official/Tutorials/CEF/Re-entrancy) -- the deferred-event model and the one place ([**JsRun**](/en/official/Reference/CEF/CefBrowser/#jsrun)) that still requires attention
 - [Building a browser shell](/en/official/Tutorials/CEF/Building-a-browser-shell) -- back / forward / reload / zoom / PDF
 - [Hosting local web assets](/en/official/Tutorials/CEF/Hosting-local-web-assets) -- virtual-host folder mappings
 - [JavaScript interop](/en/official/Tutorials/CEF/JavaScript-interop) -- messages and scripted calls between BASIC and the page

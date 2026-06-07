@@ -5,7 +5,7 @@ permalink: /tB/Packages/CEF/Enumerations/CefLogSeverity
 ---
 # CefLogSeverity
 
-The minimum severity at which the CEF runtime records messages to its debug log. Assigned to [**EnvironmentOptions.LogSeverity**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#logseverity) before or during the [**Create**](/en/official/Reference/CEF/CefBrowser#create) event; messages below the chosen level are discarded, messages at or above it are written to the file named by [**LogFilePath**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#logfilepath).
+The minimum severity at which the CEF runtime records messages to its debug log. Assigned to [**EnvironmentOptions.LogSeverity**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#logseverity) before or during the [**Create**](/en/official/Reference/CEF/CefBrowser/#create) event; messages below the chosen level are discarded, messages at or above it are written to the file named by [**LogFilePath**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#logfilepath).
 
 | Constant | Value | Description |
 |----------|-------|-------------|

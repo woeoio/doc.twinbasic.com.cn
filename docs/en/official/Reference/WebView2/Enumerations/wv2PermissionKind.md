@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/WebView2/Enumerations/wv2PermissionKind
 ---
 # wv2PermissionKind
-Identifies which device or browser capability a web page is asking permission to use. Passed as the `PermissionKind` argument of the [**PermissionRequested**](/en/official/Reference/WebView2/WebView2#permissionrequested) event. Mirrors the `COREWEBVIEW2_PERMISSION_KIND` enumeration in the Edge WebView2 runtime.
+Identifies which device or browser capability a web page is asking permission to use. Passed as the `PermissionKind` argument of the [**PermissionRequested**](/en/official/Reference/WebView2/WebView2/#permissionrequested) event. Mirrors the `COREWEBVIEW2_PERMISSION_KIND` enumeration in the Edge WebView2 runtime.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

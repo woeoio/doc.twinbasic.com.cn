@@ -34,4 +34,4 @@ The property's value. Read returns the current value as a **Variant**; assigning
 
 Syntax: *property* [ = *value* ]
 
-The interface is **`[COMExtensible(True)]`** --- see [Dynamic DOM property resolution](/en/official/Reference/tbIDE#dynamic-dom-property-resolution) on the package overview. Property names that route through [**Properties**](#properties) are resolved against the live DOM at run time, not declared statically.
+The interface is **`[COMExtensible(True)]`** --- see [Dynamic DOM property resolution](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution) on the package overview. Property names that route through [**Properties**](#properties) are resolved against the live DOM at run time, not declared statically.

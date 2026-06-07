@@ -1,4 +1,4 @@
-﻿---
+---
 title: EventLogHelperPublic
 parent: WinEventLogLib Package
 permalink: /tB/Packages/WinEventLogLib/EventLogHelperPublic
@@ -41,7 +41,7 @@ If the registry key cannot be opened for write, **RegisterEventLogInternal** rai
 
 ## See Also
 
-- [WinEventLogLib](/en/official/Reference/WinEventLogLib) package -- overview, lifecycle, message-resource generation
+- [WinEventLogLib](/en/official/Reference/WinEventLogLib/) package -- overview, lifecycle, message-resource generation
 - [EventLog](/en/official/Reference/WinEventLogLib/EventLog) class -- the generic class whose [**Register**](/en/official/Reference/WinEventLogLib/EventLog#register) method wraps this helper
 
 > AI生成

@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Printers/
 
 # Printers class
 
-A **Printers** object is a read-only collection of every printer installed on the system. It is exposed through the implicit **Printers** global --- there is no user-callable constructor --- and yields a [**Printer**](/en/official/Reference/VB/Printer) for each device, keyed by its **DeviceName**. Use it to enumerate the installed devices, or to switch the active printer with `Set Printer = Printers(name)`.
+A **Printers** object is a read-only collection of every printer installed on the system. It is exposed through the implicit **Printers** global --- there is no user-callable constructor --- and yields a [**Printer**](/en/official/Reference/VB/Printer/) for each device, keyed by its **DeviceName**. Use it to enumerate the installed devices, or to switch the active printer with `Set Printer = Printers(name)`.
 
 ```vb
 Dim p As Printer
@@ -20,13 +20,13 @@ Set Printer = Printers("HP LaserJet")    ' make this the active printer
 
 ## What the collection contains
 
-Each entry is a [**Printer**](/en/official/Reference/VB/Printer) bound to the corresponding device. These instances are **immutable** descriptors --- they are intended for identification and for handing to `Set Printer = …`, not for running a print job directly. Assigning any of the settings properties on one raises run-time error 383 (*Property is read-only*); calling [**EndDoc**](/en/official/Reference/VB/Printer#enddoc), [**KillDoc**](/en/official/Reference/VB/Printer#killdoc), [**NewPage**](/en/official/Reference/VB/Printer#newpage), [**Print**](/en/official/Reference/VB/Printer#print), or the other document-control methods raises run-time error 438 (*Object doesn't support this property or method*). [**TrackDefault**](/en/official/Reference/VB/Printer#trackdefault) is always **False** on these instances.
+Each entry is a [**Printer**](/en/official/Reference/VB/Printer/) bound to the corresponding device. These instances are **immutable** descriptors --- they are intended for identification and for handing to `Set Printer = …`, not for running a print job directly. Assigning any of the settings properties on one raises run-time error 383 (*Property is read-only*); calling [**EndDoc**](/en/official/Reference/VB/Printer/#enddoc), [**KillDoc**](/en/official/Reference/VB/Printer/#killdoc), [**NewPage**](/en/official/Reference/VB/Printer/#newpage), [**Print**](/en/official/Reference/VB/Printer/#print), or the other document-control methods raises run-time error 438 (*Object doesn't support this property or method*). [**TrackDefault**](/en/official/Reference/VB/Printer/#trackdefault) is always **False** on these instances.
 
-A driver that advertises a single device over multiple ports produces one [**Printer**](/en/official/Reference/VB/Printer) entry per port; only the first such entry is keyed by **DeviceName**, the rest are accessible only by numeric index.
+A driver that advertises a single device over multiple ports produces one [**Printer**](/en/official/Reference/VB/Printer/) entry per port; only the first such entry is keyed by **DeviceName**, the rest are accessible only by numeric index.
 
 ## Live enumeration
 
-The collection is **not cached**. Every call to [**Count**](#count), [**Item**](#item), or `For Each` re-reads the system's installed-printers list from the Windows registry's profile section and reconstructs a fresh batch of [**Printer**](/en/official/Reference/VB/Printer) instances. A printer added or removed in **Settings → Printers** therefore appears the next time the collection is touched, with no need to refresh anything from code. The trade-off is that consecutive accesses are not cheap --- when enumerating, cache the result if many lookups are needed:
+The collection is **not cached**. Every call to [**Count**](#count), [**Item**](#item), or `For Each` re-reads the system's installed-printers list from the Windows registry's profile section and reconstructs a fresh batch of [**Printer**](/en/official/Reference/VB/Printer/) instances. A printer added or removed in **Settings → Printers** therefore appears the next time the collection is touched, with no need to refresh anything from code. The trade-off is that consecutive accesses are not cheap --- when enumerating, cache the result if many lookups are needed:
 
 ```vb
 Dim snapshot As Variant : snapshot = Array()      ' or use a Collection
@@ -51,7 +51,7 @@ Syntax: *object*.**Count**
 
 ### Item
 
-Returns the [**Printer**](/en/official/Reference/VB/Printer) at the given index. **Default property** --- `Printers(0)` is shorthand for `Printers.Item(0)`.
+Returns the [**Printer**](/en/official/Reference/VB/Printer/) at the given index. **Default property** --- `Printers(0)` is shorthand for `Printers.Item(0)`.
 
 Syntax: *object*.**Item**( *Index* ) **As Printer**
 
@@ -60,4 +60,4 @@ Syntax: *object*.**Item**( *Index* ) **As Printer**
 
 ## See Also
 
-- [Printer](/en/official/Reference/VB/Printer) -- the printer object itself, and the implicit **Printer** global.
+- [Printer](/en/official/Reference/VB/Printer/) -- the printer object itself, and the implicit **Printer** global.

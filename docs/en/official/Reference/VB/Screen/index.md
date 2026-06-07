@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Screen/
 
 # Screen class
 
-The **Screen** class wraps the user's primary display --- its dimensions and twip-to-pixel ratio, the list of installed fonts, the currently active [**Form**](/en/official/Reference/VB/Form) and the currently focused control on that form, and the application-wide mouse-pointer override. It is a singleton: there is exactly one **Screen** instance per process, owned by the runtime and exposed through the [**Screen**](/en/official/Reference/VB/Global#screen) property of the [**Global**](/en/official/Reference/VB/Global) app-object. Code reaches it without qualification:
+The **Screen** class wraps the user's primary display --- its dimensions and twip-to-pixel ratio, the list of installed fonts, the currently active [**Form**](/en/official/Reference/VB/Form/) and the currently focused control on that form, and the application-wide mouse-pointer override. It is a singleton: there is exactly one **Screen** instance per process, owned by the runtime and exposed through the [**Screen**](/en/official/Reference/VB/Global/#screen) property of the [**Global**](/en/official/Reference/VB/Global/) app-object. Code reaches it without qualification:
 
 ```vb
 ' Centre a form on the primary display
@@ -35,9 +35,9 @@ twinBASIC's **Screen** describes the *primary* monitor only. For per-monitor inf
 
 ## Active form and active control
 
-[**ActiveForm**](#activeform) returns the [**Form**](/en/official/Reference/VB/Form) instance that is currently the foreground form in the application; [**ActiveControl**](#activecontrol) returns the control within that form that currently holds the focus. Both return **Nothing** if no form in the application is active.
+[**ActiveForm**](#activeform) returns the [**Form**](/en/official/Reference/VB/Form/) instance that is currently the foreground form in the application; [**ActiveControl**](#activecontrol) returns the control within that form that currently holds the focus. Both return **Nothing** if no form in the application is active.
 
-The most common idiom is accessing the active form from a global handler --- for example, a toolbar button on an [**MDIForm**](/en/official/Reference/VB/MDIForm) that operates on whatever MDI child is in front:
+The most common idiom is accessing the active form from a global handler --- for example, a toolbar button on an [**MDIForm**](/en/official/Reference/VB/MDIForm/) that operates on whatever MDI child is in front:
 
 ```vb
 Private Sub tbrEdit_ButtonClick(ByVal Button As MSComctlLib.Button)
@@ -65,7 +65,7 @@ Next
 
 ## Mouse pointer override
 
-[**MousePointer**](#mousepointer) is an application-wide cursor override. Setting it to anything other than **vbDefault** forces the chosen cursor over every window of the application, regardless of each individual control's own [**MousePointer**](/en/official/Reference/VB/CheckBox#mousepointer) setting --- the typical use is showing the hourglass while a synchronous operation runs. Set it back to **vbDefault** when the operation completes.
+[**MousePointer**](#mousepointer) is an application-wide cursor override. Setting it to anything other than **vbDefault** forces the chosen cursor over every window of the application, regardless of each individual control's own [**MousePointer**](/en/official/Reference/VB/CheckBox/#mousepointer) setting --- the typical use is showing the hourglass while a synchronous operation runs. Set it back to **vbDefault** when the operation completes.
 
 [**MouseIcon**](#mouseicon) supplies a custom **StdPicture** to use when [**MousePointer**](#mousepointer) is **vbCustom**.
 
@@ -73,11 +73,11 @@ Next
 
 ### ActiveControl
 
-The control on the [**ActiveForm**](#activeform) that currently has the input focus, as a [**Control**](/en/official/Reference/VB/CheckBox) reference, or **Nothing** if no form is active. Read-only.
+The control on the [**ActiveForm**](#activeform) that currently has the input focus, as a [**Control**](/en/official/Reference/VB/CheckBox/) reference, or **Nothing** if no form is active. Read-only.
 
 ### ActiveForm
 
-The [**Form**](/en/official/Reference/VB/Form) that is currently the foreground form in the application, or **Nothing** if no form is active. Read-only.
+The [**Form**](/en/official/Reference/VB/Form/) that is currently the foreground form in the application, or **Nothing** if no form is active. Read-only.
 
 ### FontCount
 

@@ -47,7 +47,7 @@ A linked object's last-cached presentation can be re-fetched from its server wit
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the container's contents to a binary field on a [**Data**](/en/official/Reference/VB/Data) control's recordset, so the embedded object is loaded from and saved back into the row. [**DataChanged**](#datachanged) reports whether the contained object differs from the bound row's stored value.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the container's contents to a binary field on a [**Data**](/en/official/Reference/VB/Data/) control's recordset, so the embedded object is loaded from and saved back into the row. [**DataChanged**](#datachanged) reports whether the contained object differs from the bound row's stored value.
 
 ## Properties
 
@@ -169,7 +169,7 @@ The name of the binary field, in the recordset of the bound [**DataSource**](#da
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-A reference to a [**Data**](/en/official/Reference/VB/Data) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### DataText
 
@@ -369,7 +369,7 @@ Restricts which kinds of contained object the container will accept. A member of
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that contains this control. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that contains this control. Read-only.
 
 ### PasteOK
 
@@ -385,7 +385,7 @@ A run-time-only, read-only **Boolean**: **True** if the current clipboard conten
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-A run-time-only, read-only **IPictureDisp** giving the contained object's current presentation as a picture, suitable for printing or copying onto a [**PictureBox**](/en/official/Reference/VB/PictureBox).
+A run-time-only, read-only **IPictureDisp** giving the contained object's current presentation as a picture, suitable for printing or copying onto a [**PictureBox**](/en/official/Reference/VB/PictureBox/).
 
 ### SizeMode
 

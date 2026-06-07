@@ -81,7 +81,7 @@ The check states are kept in an internal array that is preserved across [**AddIt
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control's [**Text**](#text) to a field of a [**Data**](/en/official/Reference/VB/Data) control's recordset. The bound field is read as a string on each move, and assigning to [**Text**](#text) marks the recordset as dirty by setting [**DataChanged**](#datachanged) to **True**. A field whose value cannot be coerced to a string is treated as an empty string rather than raising.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control's [**Text**](#text) to a field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset. The bound field is read as a string on each move, and assigning to [**Text**](#text) marks the recordset as dirty by setting [**DataChanged**](#datachanged) to **True**. A field whose value cannot be coerced to a string is treated as an empty string rather than raising.
 
 ## OLE drag and drop
 
@@ -119,7 +119,7 @@ Switching between zero and non-zero at run time raises run-time error 380 (*Inva
 
 ### Container
 
-The control that hosts this list box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), or a **UserControl**. Read with **Get**, change with **Set**.
+The control that hosts this list box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
 
 ### ControlType
 
@@ -147,7 +147,7 @@ Reserved for compatibility with VB6; not currently implemented in twinBASIC.
 
 ### DataSource
 
-A reference to a [**Data**](/en/official/Reference/VB/Data) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### Dock
 
@@ -270,7 +270,7 @@ The control's opacity as a percentage (0--100, default 100). Values outside the 
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains this list box. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this list box. Read-only.
 
 ### RightToLeft
 

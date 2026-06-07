@@ -5,7 +5,7 @@ permalink: /tB/Packages/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstant
 ---
 
 # TreeBorderStyleConstants
-The border style enumeration used by both [**TreeView.BorderStyle**](/en/official/Reference/WinNativeCommonCtls/TreeView#borderstyle) and [**ListView.BorderStyle**](/en/official/Reference/WinNativeCommonCtls/ListView#borderstyle). The `cc…` (common-controls) prefix reflects that the enum is shared across multiple controls in this package.
+The border style enumeration used by both [**TreeView.BorderStyle**](/en/official/Reference/WinNativeCommonCtls/TreeView/#borderstyle) and [**ListView.BorderStyle**](/en/official/Reference/WinNativeCommonCtls/ListView/#borderstyle). The `cc…` (common-controls) prefix reflects that the enum is shared across multiple controls in this package.
 
 The effective rendering interacts with [**Appearance**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): when **Appearance** is **vbAppear3d** and **BorderStyle** is **ccFixedSingle**, the control gets an OS-themed 3D edge (`WS_EX_CLIENTEDGE`); when **Appearance** is **vbAppearFlat** and **BorderStyle** is **ccFixedSingle**, the control gets a single-pixel flat border (`WS_BORDER`).
 
@@ -16,5 +16,5 @@ The effective rendering interacts with [**Appearance**](/en/official/Reference/V
 
 ## See Also
 
-- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView) -- consumer
-- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView) -- consumer
+- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView/) -- consumer
+- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView/) -- consumer

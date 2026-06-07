@@ -11,4 +11,4 @@ The two user-facing enumerations the **CEF** package exposes. The package's larg
 | Enumeration | Used by |
 |-------------|---------|
 | [CefLogSeverity](/en/official/Reference/CEF/Enumerations/CefLogSeverity) | [**EnvironmentOptions.LogSeverity**](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions#logseverity) |
-| [cefPrintOrientation](/en/official/Reference/CEF/Enumerations/cefPrintOrientation) | `Orientation` on [**PrintToPdf**](/en/official/Reference/CEF/CefBrowser#printtopdf) |
+| [cefPrintOrientation](/en/official/Reference/CEF/Enumerations/cefPrintOrientation) | `Orientation` on [**PrintToPdf**](/en/official/Reference/CEF/CefBrowser/#printtopdf) |

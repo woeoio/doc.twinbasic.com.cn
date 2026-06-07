@@ -18,7 +18,7 @@ For detailed documentation on each feature, navigate to the specific category li
 
 Attributes allow you to annotate Forms, Modules, Classes, Types, Enums, Declares, and procedures with compiler instructions and metadata. These are now visible directly in your code editor.
 
-### [Language Syntax](/en/official/Features/Language)
+### [Language Syntax](/en/official/Features/Language/)
 
 twinBASIC introduces numerous language enhancements including:
 
@@ -30,7 +30,7 @@ twinBASIC introduces numerous language enhancements including:
 - Type inference and pointer functionality,
 - UDT enhancements with methods and events.
 
-### [Project Configuration](/en/official/Features/Project-Configuration)
+### [Project Configuration](/en/official/Features/Project-Configuration/)
 
 twinBASIC offers various project types and configuration options:
 
@@ -39,7 +39,7 @@ twinBASIC offers various project types and configuration options:
 - Entry point override and IAT placement
 - Registration options for ActiveX projects
 
-### [Standard Library](/en/official/Features/Standard-Library)
+### [Standard Library](/en/official/Features/Standard-Library/)
 
 Enhancements to the standard library include:
 
@@ -49,7 +49,7 @@ Enhancements to the standard library include:
 - Direct COM error handling access
 - Destructuring assignment for arrays
 
-### [GUI Components](/en/official/Features/GUI-Components)
+### [GUI Components](/en/official/Features/GUI-Components/)
 
 Modernized GUI components featuring:
 
@@ -59,7 +59,7 @@ Modernized GUI components featuring:
 - 64-bit support and DPI awareness
 - New controls (QR Code, Multiframe, CheckMark)
 
-### [Package Management](/en/official/Features/Packages)
+### [Package Management](/en/official/Features/Packages/)
 
 twinBASIC[^1] has a centralized package repository, called TWINSERV. Users can publish both public and private packages. Package browsing, downloading, and publishing is seamlessly integrated into the IDE.
 
@@ -67,7 +67,7 @@ Packages are collections of components that can be referenced from another twinB
 
 [^1]: A service of TWINBASIC LTD offered to the user community.
 
-### [Advanced Features](/en/official/Features/Advanced)
+### [Advanced Features](/en/official/Features/Advanced/)
 
 Advanced programming capabilities:
 
@@ -77,7 +77,7 @@ Advanced programming capabilities:
 - Enhanced API declarations (CDecl, variadic args, ByVal UDTs)
 - Parameterized constructors and class exports
 
-### [Compiler and IDE Features](/en/official/Features/Compiler-IDE)
+### [Compiler and IDE Features](/en/official/Features/Compiler-IDE/)
 
 Improved development experience:
 

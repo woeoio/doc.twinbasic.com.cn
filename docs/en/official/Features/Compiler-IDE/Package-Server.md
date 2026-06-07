@@ -13,8 +13,8 @@ Code can be grouped as a package, and published to an online server. You can hav
 
 For more information, see the following pages:
 
-- [What is a package](/en/official/Features/Packages)
-- [Creating a TWINPACK package](/en/official/Features/Packages/Creating-TWINPACK)
-- [Importing a package from a TWINPACK file](/en/official/Features/Packages/Importing-TWINPACK)
-- [Importing a package from TWINSERV](/en/official/Features/Packages/Importing-TWINSERV)
-- [Updating a package](/en/official/Features/Packages/Updating)
+- [What is a package](/en/official/Features/Packages/)
+- [Creating a TWINPACK package](/en/official/Features/Packages/Creating-a-TWINPACK-package)
+- [Importing a package from a TWINPACK file](/en/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file)
+- [Importing a package from TWINSERV](/en/official/Features/Packages/Importing-a-package-from-TWINSERV)
+- [Updating a package](/en/official/Features/Packages/Updating-a-package)

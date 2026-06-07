@@ -5,9 +5,9 @@ permalink: /tB/Packages/WinNativeCommonCtls/ListView/ColumnHeaders
 ---
 
 # ColumnHeaders class
-The **ColumnHeaders** collection is the entry point for managing the columns of a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView) in **lvwReport** view. Accessed as `<listView>.ColumnHeaders`; supports adding, removing, indexed access, and `For Each` iteration.
+The **ColumnHeaders** collection is the entry point for managing the columns of a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView/) in **lvwReport** view. Accessed as `<listView>.ColumnHeaders`; supports adding, removing, indexed access, and `For Each` iteration.
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ColumnHeaders** through the parent [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView) control's [**ColumnHeaders**](/en/official/Reference/WinNativeCommonCtls/ListView#columnheaders) property.
+The class is tagged `[COMCreatable(False)]` --- user code accesses **ColumnHeaders** through the parent [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView/) control's [**ColumnHeaders**](/en/official/Reference/WinNativeCommonCtls/ListView/#columnheaders) property.
 
 ```vb
 With ListView1.ColumnHeaders
@@ -58,7 +58,7 @@ Syntax: *object*.**Add** ( [ *Index* ] [, *Key* ] [, *Text* ] [, *Width* ] [, *A
 : *optional* A member of [**ListColumnAlignmentConstants**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#listcolumnalignmentconstants). Default: **lvwColumnLeft**. Attempting to add a non-left-aligned column at position `1` raises run-time error 5.
 
 *Icon*
-: *optional* A **Variant** identifying the header icon --- either a 1-based **Long** index into [**ListView.ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#columnheadericons), or a **String** key.
+: *optional* A **Variant** identifying the header icon --- either a 1-based **Long** index into [**ListView.ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons), or a **String** key.
 
 Returns the newly-created [**ColumnHeader**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader).
 
@@ -85,6 +85,6 @@ Syntax: *object*.**_NewEnum** **As stdole.IUnknown**
 
 ## See Also
 
-- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView) -- the parent control
+- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView/) -- the parent control
 - [ColumnHeader](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) -- a single column header
 - [ListColumnAlignmentConstants](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#listcolumnalignmentconstants) -- the **Alignment** values

@@ -75,7 +75,7 @@ Some enumerations are tagged **\[MustBeQualified\]** in the source --- their mem
 - [OLEDropEffectConstants](/en/official/Reference/VBRUN/Constants/OLEDropEffectConstants) -- effect of an **OLE** drop (copy, move, link, scroll)
 - [OldLinkModeConstants](/en/official/Reference/VBRUN/Constants/OldLinkModeConstants) -- legacy DDE link modes (hot, cold, server)
 - [PaletteModeConstants](/en/official/Reference/VBRUN/Constants/PaletteModeConstants) -- palette source for forms and controls
-- [ParentControlsType](/en/official/Reference/VBRUN/Constants/ParentControlsType) -- whether [**ParentControls**](/en/official/Reference/VBRUN/ParentControls) wraps items in their **Extender**
+- [ParentControlsType](/en/official/Reference/VBRUN/Constants/ParentControlsType) -- whether [**ParentControls**](/en/official/Reference/VBRUN/ParentControls/) wraps items in their **Extender**
 - [PictureTypeConstants](/en/official/Reference/VBRUN/Constants/PictureTypeConstants) -- the type of a **StdPicture** (bitmap, icon, metafile, enhanced metafile)
 - [PrinterObjectConstants](/en/official/Reference/VBRUN/Constants/PrinterObjectConstants) -- combined enumeration of all printer setup values
 - [PrinterObjectConstants_ColorMode](/en/official/Reference/VBRUN/Constants/PrinterObjectConstants_ColorMode) -- colour or monochrome printing

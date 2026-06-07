@@ -5,7 +5,7 @@ permalink: /tB/Packages/CustomControls/WaynesForm/
 ---
 
 # WaynesForm class
-The top-level form class that hosts the package's custom controls. A **WaynesForm** is the equivalent of a `Form` from the [**VB**](/en/official/Reference/VB) package, but instead of being a Win32 native window with controls overlaid on top, it is an owner-drawn surface that paints itself and its child controls through the [**CustomControls**](/en/official/Reference/CustomControls) framework.
+The top-level form class that hosts the package's custom controls. A **WaynesForm** is the equivalent of a `Form` from the [**VB**](/en/official/Reference/VB/) package, but instead of being a Win32 native window with controls overlaid on top, it is an owner-drawn surface that paints itself and its child controls through the [**CustomControls**](/en/official/Reference/CustomControls/) framework.
 
 Within the current release of the package every form created with the designer is hard-coded to use **WaynesForm** as its root class; other base form classes are planned but not yet supported.
 

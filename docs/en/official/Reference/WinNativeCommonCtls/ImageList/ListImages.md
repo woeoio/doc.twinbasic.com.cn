@@ -5,9 +5,9 @@ permalink: /tB/Packages/WinNativeCommonCtls/ImageList/ListImages
 ---
 
 # ListImages class
-The **ListImages** collection is the entry point for managing the pictures inside an [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList). Accessed as `<imageList>.ListImages`; supports adding, removing, indexed access, and `For Each` iteration.
+The **ListImages** collection is the entry point for managing the pictures inside an [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/). Accessed as `<imageList>.ListImages`; supports adding, removing, indexed access, and `For Each` iteration.
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ListImages** through the parent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) control's [**ListImages**](/en/official/Reference/WinNativeCommonCtls/ImageList#listimages) property, never by direct instantiation.
+The class is tagged `[COMCreatable(False)]` --- user code accesses **ListImages** through the parent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) control's [**ListImages**](/en/official/Reference/WinNativeCommonCtls/ImageList/#listimages) property, never by direct instantiation.
 
 ```vb
 With ImageList1.ListImages
@@ -24,7 +24,7 @@ Next
 
 ## Modification while bound
 
-If the parent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) is bound to a consuming control (a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView) or [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView) has it set as their image-list property), [**Clear**](#clear) and [**Remove**](#remove) raise run-time error 35617 (*"ImageList cannot be modified while another control is bound to it"*). [**Add**](#add) is unaffected --- new pictures can always be added.
+If the parent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) is bound to a consuming control (a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView/) or [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView/) has it set as their image-list property), [**Clear**](#clear) and [**Remove**](#remove) raise run-time error 35617 (*"ImageList cannot be modified while another control is bound to it"*). [**Add**](#add) is unaffected --- new pictures can always be added.
 
 To rebuild a bound image list, first unbind by setting the consuming control's image-list property to **Nothing**.
 
@@ -60,22 +60,22 @@ Syntax: *object*.**Add** ( [ *Index* ] [, *Key* ] [, *Picture* ] [, *Tag* ] ) **
 : *optional* A **String** name under which the image can be looked up. When omitted, the image has no key. Numeric strings are rejected with run-time error 35603. Keys must be unique within the collection.
 
 *Picture*
-: *required* A **StdPicture** to add. Bitmaps (`vbPicTypeBitmap`) are scaled and masked according to [**MaskColor**](/en/official/Reference/WinNativeCommonCtls/ImageList#maskcolor) / [**UseMaskColor**](/en/official/Reference/WinNativeCommonCtls/ImageList#usemaskcolor). Icons (`vbPicTypeIcon`) are added directly with their own alpha mask. Omitting *Picture* raises run-time error 35607.
+: *required* A **StdPicture** to add. Bitmaps (`vbPicTypeBitmap`) are scaled and masked according to [**MaskColor**](/en/official/Reference/WinNativeCommonCtls/ImageList/#maskcolor) / [**UseMaskColor**](/en/official/Reference/WinNativeCommonCtls/ImageList/#usemaskcolor). Icons (`vbPicTypeIcon`) are added directly with their own alpha mask. Omitting *Picture* raises run-time error 35607.
 
 *Tag*
 : *optional* Arbitrary data attached to the new image; available as [**ListImage.Tag**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImage#tag).
 
 Returns the newly-created [**ListImage**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImage).
 
-The first call to **Add** fixes [**ImageWidth**](/en/official/Reference/WinNativeCommonCtls/ImageList#imagewidth) and [**ImageHeight**](/en/official/Reference/WinNativeCommonCtls/ImageList#imageheight) (unless those were pre-set in the property sheet); all subsequent pictures are scaled to match.
+The first call to **Add** fixes [**ImageWidth**](/en/official/Reference/WinNativeCommonCtls/ImageList/#imagewidth) and [**ImageHeight**](/en/official/Reference/WinNativeCommonCtls/ImageList/#imageheight) (unless those were pre-set in the property sheet); all subsequent pictures are scaled to match.
 
 ### Clear
 
-Removes every picture from the collection. Resets [**ImageWidth**](/en/official/Reference/WinNativeCommonCtls/ImageList#imagewidth) and [**ImageHeight**](/en/official/Reference/WinNativeCommonCtls/ImageList#imageheight) to `0`, unlocking them for reassignment.
+Removes every picture from the collection. Resets [**ImageWidth**](/en/official/Reference/WinNativeCommonCtls/ImageList/#imagewidth) and [**ImageHeight**](/en/official/Reference/WinNativeCommonCtls/ImageList/#imageheight) to `0`, unlocking them for reassignment.
 
 Syntax: *object*.**Clear**
 
-Raises run-time error 35617 if the parent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) is currently bound to a consuming control.
+Raises run-time error 35617 if the parent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) is currently bound to a consuming control.
 
 ### Exists
 
@@ -95,7 +95,7 @@ Syntax: *object*.**Remove** ( *Index* )
 *Index*
 : A **Variant** --- either a 1-based **Long** position or a **String** key. Out-of-range / non-existent values raise run-time error 35601. Non-string non-numeric values raise run-time error 35603.
 
-Raises run-time error 35617 if the parent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) is currently bound to a consuming control.
+Raises run-time error 35617 if the parent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) is currently bound to a consuming control.
 
 ### _NewEnum
 
@@ -105,5 +105,5 @@ Syntax: *object*.**_NewEnum** **As Object**
 
 ## See Also
 
-- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList) -- the parent control
+- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList/) -- the parent control
 - [ListImage](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImage) -- one picture in the collection

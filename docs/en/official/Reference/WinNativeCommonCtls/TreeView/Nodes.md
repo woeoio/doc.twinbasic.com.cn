@@ -5,9 +5,9 @@ permalink: /tB/Packages/WinNativeCommonCtls/TreeView/Nodes
 ---
 
 # Nodes class
-The **Nodes** collection is the entry point for managing the [**Node**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) tree of a [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView). Accessed as `<treeView>.Nodes`; supports adding, removing, indexed access, and `For Each` iteration.
+The **Nodes** collection is the entry point for managing the [**Node**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) tree of a [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView/). Accessed as `<treeView>.Nodes`; supports adding, removing, indexed access, and `For Each` iteration.
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **Nodes** through the parent [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView) control's [**Nodes**](/en/official/Reference/WinNativeCommonCtls/TreeView#nodes) property.
+The class is tagged `[COMCreatable(False)]` --- user code accesses **Nodes** through the parent [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView/) control's [**Nodes**](/en/official/Reference/WinNativeCommonCtls/TreeView/#nodes) property.
 
 ```vb
 With TreeView1.Nodes
@@ -63,7 +63,7 @@ Syntax: *object*.**Add** ( [ *Relative* ] [, *Relationship* ] [, *Key* ] [, *Tex
 : *optional* A **String** giving the node's label.
 
 *Image*
-: *optional* A **Variant** identifying the unselected-state icon --- either a 1-based **Long** index into [**TreeView.ImageList**](/en/official/Reference/WinNativeCommonCtls/TreeView#imagelist), or a **String** key.
+: *optional* A **Variant** identifying the unselected-state icon --- either a 1-based **Long** index into [**TreeView.ImageList**](/en/official/Reference/WinNativeCommonCtls/TreeView/#imagelist), or a **String** key.
 
 *SelectedImage*
 : *optional* A **Variant** identifying the selected-state icon. When unset, defaults to the same as *Image*.
@@ -93,6 +93,6 @@ Syntax: *object*.**_NewEnum** **As stdole.IUnknown**
 
 ## See Also
 
-- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView) -- the parent control
+- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView/) -- the parent control
 - [Node](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) -- one node in the collection
 - [TreeRelationshipConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) -- the *Relationship* values for [**Add**](#add)

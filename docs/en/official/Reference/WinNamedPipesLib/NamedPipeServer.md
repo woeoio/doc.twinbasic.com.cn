@@ -30,7 +30,7 @@ Private Sub server_ClientMessageReceived( _
 End Sub
 ```
 
-See the package [overview](/en/official/Reference/WinNamedPipesLib) for the IOCP / event-marshalling architecture, the cookie correlation pattern, and the transient lifetime of `Data() As Byte` inside events.
+See the package [overview](/en/official/Reference/WinNamedPipesLib/) for the IOCP / event-marshalling architecture, the cookie correlation pattern, and the transient lifetime of `Data() As Byte` inside events.
 
 ## Properties
 
@@ -93,7 +93,7 @@ Syntax: *server*_**ClientMessageReceived**(*Connection* **As NamedPipeServerConn
 : The opaque correlation value originally passed to the [**NamedPipeServerConnection.AsyncRead**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) that produced this read --- or **Empty** if the read came from the auto-issued reads triggered by [**ContinuouslyReadFromPipe**](#continuouslyreadfrompipe).
 
 *Data*
-: The message payload. See [Working with `Data() As Byte` in events](/en/official/Reference/WinNamedPipesLib#working-with-data-as-byte-in-events) on the package overview for the transient-buffer lifetime caveat --- copy the bytes out before the handler returns if they are needed later. The [recommended capture mechanism](/en/official/Reference/WinNamedPipesLib#propertybag-carrier) is to assign *Data* to a fresh [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag)'s **Contents**, which deep-copies the bytes and provides typed multi-field access in one step.
+: The message payload. See [Working with `Data() As Byte` in events](/en/official/Reference/WinNamedPipesLib/#working-with-data-as-byte-in-events) on the package overview for the transient-buffer lifetime caveat --- copy the bytes out before the handler returns if they are needed later. The [recommended capture mechanism](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) is to assign *Data* to a fresh [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/)'s **Contents**, which deep-copies the bytes and provides typed multi-field access in one step.
 
 ### ClientMessageSent
 
@@ -137,7 +137,7 @@ Syntax: *server*.**ManualMessageLoopEnter**
 
 Intended for console / service hosts that do not have a Forms-style message pump of their own but want the default ([**FreeThreadingEvents**](#freethreadingevents) = **False**) marshalled-event semantics. UI hosts already pump messages naturally and do not need this method.
 
-The canonical caller is a Windows service that owns this server: the service-thread entry-point opens the server, transitions the service to `Running`, calls **ManualMessageLoopEnter** to block while events flow, and a control-code handler running on the dispatcher thread calls [**ManualMessageLoopLeave**](#manualmessageloopleave) when the SCM signals stop. See [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib#service-host-idiom) on the package overview for the complete pattern, including the two-thread coordination and the *Pause* / *Continue* extension.
+The canonical caller is a Windows service that owns this server: the service-thread entry-point opens the server, transitions the service to `Running`, calls **ManualMessageLoopEnter** to block while events flow, and a control-code handler running on the dispatcher thread calls [**ManualMessageLoopLeave**](#manualmessageloopleave) when the SCM signals stop. See [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib/#service-host-idiom) on the package overview for the complete pattern, including the two-thread coordination and the *Pause* / *Continue* extension.
 
 ### ManualMessageLoopLeave
 
@@ -145,7 +145,7 @@ Posts a `WM_USER_QUITTING` message to the hidden marshalling window, causing the
 
 Syntax: *server*.**ManualMessageLoopLeave**
 
-The intended caller is a thread *other* than the one inside [**ManualMessageLoopEnter**](#manualmessageloopenter) --- typically the Windows service's dispatcher thread waking the service-entry-point thread out of its blocked loop. See [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib#service-host-idiom).
+The intended caller is a thread *other* than the one inside [**ManualMessageLoopEnter**](#manualmessageloopenter) --- typically the Windows service's dispatcher thread waking the service-entry-point thread out of its blocked loop. See [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib/#service-host-idiom).
 
 ### Start
 
@@ -171,8 +171,8 @@ Syntax: **New NamedPipeServer**
 
 ## See Also
 
-- [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, known limitations
-- [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib#service-host-idiom) -- the **ManualMessageLoopEnter** / **ManualMessageLoopLeave** service-entry-point pattern
-- [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib#propertybag-carrier) -- the deep-copy capture pattern for transient *Data* in events
+- [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib/) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, known limitations
+- [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib/#service-host-idiom) -- the **ManualMessageLoopEnter** / **ManualMessageLoopLeave** service-entry-point pattern
+- [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- the deep-copy capture pattern for transient *Data* in events
 - [NamedPipeServerConnection class](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) -- the per-client connection passed to every event
 - [NamedPipeClientManager class](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager) -- the client-side counterpart

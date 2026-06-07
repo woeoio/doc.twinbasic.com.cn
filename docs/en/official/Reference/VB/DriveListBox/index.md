@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/DriveListBox/
 
 # DriveListBox class
 
-A **DriveListBox** is a Win32 native drop-down combo control that auto-populates with the drives reported by the operating system. The user picks one from the list; code reads the chosen drive through [**Drive**](#drive) and typically forwards it to a [**DirListBox**](/en/official/Reference/VB/DirListBox) (whose [**Path**](/en/official/Reference/VB/DirListBox#path) it can be assigned to directly) to build a file picker alongside a [**FileListBox**](/en/official/Reference/VB/FileListBox). The control is normally placed on a **Form** or **UserControl** at design time. The default property is [**Drive**](#drive) and the default event is [**Change**](#change).
+A **DriveListBox** is a Win32 native drop-down combo control that auto-populates with the drives reported by the operating system. The user picks one from the list; code reads the chosen drive through [**Drive**](#drive) and typically forwards it to a [**DirListBox**](/en/official/Reference/VB/DirListBox/) (whose [**Path**](/en/official/Reference/VB/DirListBox/#path) it can be assigned to directly) to build a file picker alongside a [**FileListBox**](/en/official/Reference/VB/FileListBox/). The control is normally placed on a **Form** or **UserControl** at design time. The default property is [**Drive**](#drive) and the default event is [**Change**](#change).
 
 ```vb
 Private Sub Form_Load()
@@ -31,7 +31,7 @@ The list is populated automatically when the underlying window is created, by as
 | `d:` (no brackets)   | Drive present but no volume label (unformatted, or empty CD-ROM).|
 | `z: [\\srv\share]`   | Network drive; UNC path in brackets.                             |
 
-Each entry is owner-drawn with an icon chosen from the drive type --- closed disk, removable, fixed, CD-ROM, network, or RAM disk. The list cannot be edited from code: [**AddItem**](/en/official/Reference/VB/ComboBox#additem), [**RemoveItem**](/en/official/Reference/VB/ComboBox#removeitem), and [**Clear**](/en/official/Reference/VB/ComboBox#clear) are present in the type library for VB6 source compatibility but raise run-time error 438 (*Object doesn't support this property or method*) when called. Call [**Refresh**](#refresh) to re-read the drive set from the OS --- useful after a removable medium is inserted or a network drive is mapped.
+Each entry is owner-drawn with an icon chosen from the drive type --- closed disk, removable, fixed, CD-ROM, network, or RAM disk. The list cannot be edited from code: [**AddItem**](/en/official/Reference/VB/ComboBox/#additem), [**RemoveItem**](/en/official/Reference/VB/ComboBox/#removeitem), and [**Clear**](/en/official/Reference/VB/ComboBox/#clear) are present in the type library for VB6 source compatibility but raise run-time error 438 (*Object doesn't support this property or method*) when called. Call [**Refresh**](#refresh) to re-read the drive set from the OS --- useful after a removable medium is inserted or a network drive is mapped.
 
 [**ListCount**](#listcount) is the number of entries, [**List**](#list) returns the text of any entry by zero-based index, and [**TopIndex**](#topindex) controls vertical scrolling within the drop-down portion when it is open. [**NewIndex**](#newindex) reports the position of the last entry added during population (useful only when re-reading the list from code).
 

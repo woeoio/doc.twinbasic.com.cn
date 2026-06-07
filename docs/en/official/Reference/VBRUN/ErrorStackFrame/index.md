@@ -7,7 +7,7 @@ permalink: /tB/Packages/VBRUN/ErrorStackFrame/
 
 # ErrorStackFrame class
 
-An **ErrorStackFrame** describes one procedure that was active on the call stack at the moment a run-time error was raised --- the project it belongs to, the module that contains it, and its own name. Frames are produced by iterating an [**ErrorCallstack**](/en/official/Reference/VBRUN/ErrorCallstack) snapshot, which in turn is reachable from the [**Callstack**](/en/official/Reference/VBRUN/ErrorContext#callstack) property of an [**ErrorContext**](/en/official/Reference/VBRUN/ErrorContext). Every property is read-only.
+An **ErrorStackFrame** describes one procedure that was active on the call stack at the moment a run-time error was raised --- the project it belongs to, the module that contains it, and its own name. Frames are produced by iterating an [**ErrorCallstack**](/en/official/Reference/VBRUN/ErrorCallstack/) snapshot, which in turn is reachable from the [**Callstack**](/en/official/Reference/VBRUN/ErrorContext/#callstack) property of an [**ErrorContext**](/en/official/Reference/VBRUN/ErrorContext/). Every property is read-only.
 
 ```vb
 Sub LogStackTrace(ByVal Stack As ErrorCallstack)

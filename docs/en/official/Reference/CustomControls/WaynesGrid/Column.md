@@ -5,7 +5,7 @@ permalink: /tB/Packages/CustomControls/WaynesGrid/Column
 ---
 
 # Column class
-One column of a [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid). Has a [**Caption**](#caption) that is shown in the column-header row and a [**Width**](#width) that the user can drag at run time. Elements of [**WaynesGrid.Columns**](/en/official/Reference/CustomControls/WaynesGrid#columns).
+One column of a [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid/). Has a [**Caption**](#caption) that is shown in the column-header row and a [**Width**](#width) that the user can drag at run time. Elements of [**WaynesGrid.Columns**](/en/official/Reference/CustomControls/WaynesGrid/#columns).
 
 ```vb
 ReDim Grid1.Columns(2)
@@ -28,4 +28,4 @@ The column's width in pixels (unscaled by DPI). [**PixelCount**](/en/official/Re
 
 ### OnChanged
 
-Raised when [**Caption**](#caption) or [**Width**](#width) is assigned. The parent [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid) listens for this and requests a repaint.
+Raised when [**Caption**](#caption) or [**Width**](#width) is assigned. The parent [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid/) listens for this and requests a repaint.

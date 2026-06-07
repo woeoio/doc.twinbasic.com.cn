@@ -8,7 +8,7 @@ permalink: /tB/Packages/VB/TextBox/
 
 A **TextBox** is a Win32 native edit control that lets the user enter and edit text. It can be configured as a single-line field (default) or a multi-line editor with optional scroll bars, can mask its content for password entry, restrict input to digits, and display a placeholder "cue banner" when empty.
 
-The control is normally placed on a [**Form**](/en/official/Reference/VB/Form) or **UserControl** at design time. The default property is [**Text**](#text) and the default-designer event is [**Change**](#change).
+The control is normally placed on a [**Form**](/en/official/Reference/VB/Form/) or **UserControl** at design time. The default property is [**Text**](#text) and the default-designer event is [**Change**](#change).
 
 ```vb
 Private Sub Form_Load()
@@ -64,7 +64,7 @@ When [**NumbersOnly**](#numbersonly) is **True**, the edit control silently reje
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control's [**Text**](#text) to a field of a [**Data**](/en/official/Reference/VB/Data) control's recordset. The bound value is read as a string on each row change (a **Null** field becomes an empty string), and the current [**Text**](#text) is written back when the row is saved. Modifying [**Text**](#text) --- either by user input or by code --- sets [**DataChanged**](#datachanged) and marks the recordset row as dirty.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control's [**Text**](#text) to a field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset. The bound value is read as a string on each row change (a **Null** field becomes an empty string), and the current [**Text**](#text) is written back when the row is saved. Modifying [**Text**](#text) --- either by user input or by code --- sets [**DataChanged**](#datachanged) and marks the recordset row as dirty.
 
 ## Properties
 
@@ -99,7 +99,7 @@ Determines whether the previously focused control's [**Validate**](#validate) ev
 
 ### Container
 
-The control that hosts this text box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), or a [**PictureBox**](/en/official/Reference/VB/PictureBox). Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the text box.
+The control that hosts this text box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or a [**PictureBox**](/en/official/Reference/VB/PictureBox/). Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the text box.
 
 ### ControlType
 
@@ -131,7 +131,7 @@ When the [**DataSource**](#datasource) exposes more than one recordset, the name
 
 ### DataSource
 
-A reference to a [**Data**](/en/official/Reference/VB/Data) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### Dock
 
@@ -273,7 +273,7 @@ The control's opacity as a percentage (0--100, default 100). Values outside the 
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
 
 ### PasswordChar
 

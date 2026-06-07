@@ -10,9 +10,9 @@ A **PictureBox** is a Win32 native control that combines three roles in one:
 
 1. A **picture display** --- it can show a bitmap, GIF, JPEG, icon, cursor, or metafile loaded into its [**Picture**](#picture) property.
 2. A **drawing surface** --- it exposes the VB6 graphics methods ([**Line**](#line), [**Circle**](#circle), [**PSet**](#pset), [**Print**](#print), [**PaintPicture**](#paintpicture), …) that write into the control's device context.
-3. A **container** --- it can host child controls dropped onto it at design time, much like a [**Frame**](/en/official/Reference/VB/Frame), and can be docked or aligned within its parent.
+3. A **container** --- it can host child controls dropped onto it at design time, much like a [**Frame**](/en/official/Reference/VB/Frame/), and can be docked or aligned within its parent.
 
-The control is normally placed on a [**Form**](/en/official/Reference/VB/Form), [**Frame**](/en/official/Reference/VB/Frame), or **UserControl** at design time. The default property is [**Picture**](#picture); the default-designer event is [**Click**](#click).
+The control is normally placed on a [**Form**](/en/official/Reference/VB/Form/), [**Frame**](/en/official/Reference/VB/Frame/), or **UserControl** at design time. The default property is [**Picture**](#picture); the default-designer event is [**Click**](#click).
 
 ```vb
 Private Sub Form_Load()
@@ -50,7 +50,7 @@ picCanvas.Print "Drawn over a Picture"              ' text at the pen
 
 When [**AutoRedraw**](#autoredraw) is **False** (default) the graphics methods write directly into the visible device context, and the OS may erase that drawing whenever the control is uncovered, resized, or redrawn --- typically the application redraws it from a [**Paint**](#paint) handler.
 
-When [**AutoRedraw**](#autoredraw) is **True**, the graphics methods are recorded into an off-screen persistent bitmap that is automatically blitted onto the control whenever it needs repainting. The control no longer raises [**Paint**](#paint) events; the bitmap is exposed read-only through [**Image**](#image), suitable for saving with **SavePicture** or for assigning to another **PictureBox** or [**Image**](/en/official/Reference/VB/Image) control. Toggling **AutoRedraw** from **False** to **True** preserves the current contents; toggling it back to **False** discards the persistent bitmap.
+When [**AutoRedraw**](#autoredraw) is **True**, the graphics methods are recorded into an off-screen persistent bitmap that is automatically blitted onto the control whenever it needs repainting. The control no longer raises [**Paint**](#paint) events; the bitmap is exposed read-only through [**Image**](#image), suitable for saving with **SavePicture** or for assigning to another **PictureBox** or [**Image**](/en/official/Reference/VB/Image/) control. Toggling **AutoRedraw** from **False** to **True** preserves the current contents; toggling it back to **False** discards the persistent bitmap.
 
 ## Coordinate system
 
@@ -64,7 +64,7 @@ Controls dropped onto a **PictureBox** at design time become its children: their
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) binds the control's [**Picture**](#picture) to a binary field of a [**Data**](/en/official/Reference/VB/Data) control's recordset: the field is read on each row change and **LoadPicture** is called on it, and the round-trip byte representation of the current **Picture** is written back when the row is saved. [**DataChanged**](#datachanged) is set whenever the user modifies the displayed picture.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) binds the control's [**Picture**](#picture) to a binary field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset: the field is read on each row change and **LoadPicture** is called on it, and the round-trip byte representation of the current **Picture** is written back when the row is saved. [**DataChanged**](#datachanged) is set whenever the user modifies the displayed picture.
 
 ## Properties
 
@@ -108,7 +108,7 @@ When **True** (default), child controls are clipped out of the picture box's pai
 
 ### Container
 
-The control that hosts this picture box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), or another picture box. Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the picture box.
+The control that hosts this picture box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or another picture box. Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the picture box.
 
 ### ControlType
 
@@ -140,7 +140,7 @@ When the [**DataSource**](#datasource) exposes more than one recordset, the name
 
 ### DataSource
 
-A reference to a [**Data**](/en/official/Reference/VB/Data) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### Dock
 
@@ -300,7 +300,7 @@ The control's opacity as a percentage (0--100, default 100). Values outside the 
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
 
 ### Picture
 

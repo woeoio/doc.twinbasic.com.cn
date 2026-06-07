@@ -26,7 +26,7 @@ Private Sub OnTimer() Handles InternalTimer.OnTimer
 End Sub
 ```
 
-[**WaynesTimer**](/en/official/Reference/CustomControls/WaynesTimer) wraps a single **CustomControlTimer** and re-exposes its **Interval** / **Enabled** as designer-visible properties. [**WaynesSlider**](/en/official/Reference/CustomControls/WaynesSlider) uses one as an internal mouse-down auto-repeat timer.
+[**WaynesTimer**](/en/official/Reference/CustomControls/WaynesTimer) wraps a single **CustomControlTimer** and re-exposes its **Interval** / **Enabled** as designer-visible properties. [**WaynesSlider**](/en/official/Reference/CustomControls/WaynesSlider/) uses one as an internal mouse-down auto-repeat timer.
 
 ## Properties
 

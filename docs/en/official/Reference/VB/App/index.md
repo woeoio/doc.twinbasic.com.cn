@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/App/
 
 # App class
 
-The **App** class wraps the running application's identity and version metadata, plus a small amount of process-level state (the module handle, the main thread ID, whether the process is running inside the twinBASIC IDE or with elevated privileges, …). It is a singleton --- there is exactly one **App** instance per process, owned by the runtime and exposed through the global **App** property of the [**Global**](/en/official/Reference/VB/Global) object. Code reaches it without qualification:
+The **App** class wraps the running application's identity and version metadata, plus a small amount of process-level state (the module handle, the main thread ID, whether the process is running inside the twinBASIC IDE or with elevated privileges, …). It is a singleton --- there is exactly one **App** instance per process, owned by the runtime and exposed through the global **App** property of the [**Global**](/en/official/Reference/VB/Global/) object. Code reaches it without qualification:
 
 ```vb
 Debug.Print "Running from " & App.Path
@@ -25,7 +25,7 @@ Most properties are read-only and are populated from the project settings (compi
 
 ## Singleton and access
 
-**App** is not creatable: there is no `New App` and no public coclass to instantiate. The runtime exposes the singleton through the [**App**](/en/official/Reference/VB/Global#app) property on the [**Global**](/en/official/Reference/VB/Global) app-object, which is itself accessible without qualification. References returned by **App** are cached and stable for the lifetime of the process.
+**App** is not creatable: there is no `New App` and no public coclass to instantiate. The runtime exposes the singleton through the [**App**](/en/official/Reference/VB/Global/#app) property on the [**Global**](/en/official/Reference/VB/Global/) app-object, which is itself accessible without qualification. References returned by **App** are cached and stable for the lifetime of the process.
 
 ## File and module location
 
@@ -73,7 +73,7 @@ The **FileDescription** field of the application's `VERSIONINFO` resource. **Str
 
 ### HelpFile
 
-The full path to the application's help file (`.hlp` or `.chm`). **String**, readable and writable. The runtime consults this property when a control's [**HelpContextID**](/en/official/Reference/VB/CheckBox#helpcontextid) is non-zero and the user presses **F1**, and when application code calls `MsgBox` with a help-file argument.
+The full path to the application's help file (`.hlp` or `.chm`). **String**, readable and writable. The runtime consults this property when a control's [**HelpContextID**](/en/official/Reference/VB/CheckBox/#helpcontextid) is non-zero and the user presses **F1**, and when application code calls `MsgBox` with a help-file argument.
 
 ### hInstance
 

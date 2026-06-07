@@ -5,7 +5,7 @@ permalink: /tB/Packages/CustomControls/WaynesTextBox/WaynesTextBoxState
 ---
 
 # WaynesTextBoxState class
-A bundle of the style objects that describe a single visual state of a [**WaynesTextBox**](/en/official/Reference/CustomControls/WaynesTextBox). Each textbox holds three parallel instances ([**NormalState**](/en/official/Reference/CustomControls/WaynesTextBox#normalstate), [**HoverState**](/en/official/Reference/CustomControls/WaynesTextBox#hoverstate), [**FocusedState**](/en/official/Reference/CustomControls/WaynesTextBox#focusedstate)); the textbox picks one at each repaint depending on the focus / hover state.
+A bundle of the style objects that describe a single visual state of a [**WaynesTextBox**](/en/official/Reference/CustomControls/WaynesTextBox/). Each textbox holds three parallel instances ([**NormalState**](/en/official/Reference/CustomControls/WaynesTextBox/#normalstate), [**HoverState**](/en/official/Reference/CustomControls/WaynesTextBox/#hoverstate), [**FocusedState**](/en/official/Reference/CustomControls/WaynesTextBox/#focusedstate)); the textbox picks one at each repaint depending on the focus / hover state.
 
 In addition to the usual background / borders / corners / text-rendering quartet, a **WaynesTextBoxState** adds selection-highlight colours, a caret colour and width, and three decorator fills used for the *ERROR* / *WARNING* / *INFO* literal-substring decorations the textbox draws automatically.
 
@@ -37,15 +37,15 @@ The [**Corners**](/en/official/Reference/CustomControls/Styles/Corners) that con
 
 ### DecorationERROR
 
-The [**Fill**](/en/official/Reference/CustomControls/Styles/Fill) used to draw the inline squiggle decoration when the substring `ERROR` is detected in [**Value**](/en/official/Reference/CustomControls/WaynesTextBox#value). Defaults to solid red.
+The [**Fill**](/en/official/Reference/CustomControls/Styles/Fill) used to draw the inline squiggle decoration when the substring `ERROR` is detected in [**Value**](/en/official/Reference/CustomControls/WaynesTextBox/#value). Defaults to solid red.
 
 ### DecorationINFO
 
-The [**Fill**](/en/official/Reference/CustomControls/Styles/Fill) used to draw the inline background-highlight decoration when the substring `INFO` is detected in [**Value**](/en/official/Reference/CustomControls/WaynesTextBox#value). Defaults to a light blue.
+The [**Fill**](/en/official/Reference/CustomControls/Styles/Fill) used to draw the inline background-highlight decoration when the substring `INFO` is detected in [**Value**](/en/official/Reference/CustomControls/WaynesTextBox/#value). Defaults to a light blue.
 
 ### DecorationWARNING
 
-The [**Fill**](/en/official/Reference/CustomControls/Styles/Fill) used to draw the inline 2-pixel straight-underline decoration when the substring `WARNING` is detected in [**Value**](/en/official/Reference/CustomControls/WaynesTextBox#value). Defaults to a dark blue.
+The [**Fill**](/en/official/Reference/CustomControls/Styles/Fill) used to draw the inline 2-pixel straight-underline decoration when the substring `WARNING` is detected in [**Value**](/en/official/Reference/CustomControls/WaynesTextBox/#value). Defaults to a dark blue.
 
 ### SelectedBackgroundFill
 
@@ -57,13 +57,13 @@ The [**Fill**](/en/official/Reference/CustomControls/Styles/Fill) that paints th
 
 ### TextRendering
 
-The [**TextRendering**](/en/official/Reference/CustomControls/Styles/TextRendering) that controls how [**Value**](/en/official/Reference/CustomControls/WaynesTextBox#value) is drawn. Defaults to left-aligned with 5-pixel left / right padding and **tbDisallowPartialChars** overflow.
+The [**TextRendering**](/en/official/Reference/CustomControls/Styles/TextRendering) that controls how [**Value**](/en/official/Reference/CustomControls/WaynesTextBox/#value) is drawn. Defaults to left-aligned with 5-pixel left / right padding and **tbDisallowPartialChars** overflow.
 
 ## Methods
 
 ### InitializeDefaultValues
 
-Populates every field with the package defaults --- used by [**NormalState**](/en/official/Reference/CustomControls/WaynesTextBox#normalstate) and [**HoverState**](/en/official/Reference/CustomControls/WaynesTextBox#hoverstate).
+Populates every field with the package defaults --- used by [**NormalState**](/en/official/Reference/CustomControls/WaynesTextBox/#normalstate) and [**HoverState**](/en/official/Reference/CustomControls/WaynesTextBox/#hoverstate).
 
 Syntax: *object*.**InitializeDefaultValues**
 
@@ -77,4 +77,4 @@ Syntax: *object*.**InitializeDefaultValues_Focused**
 
 ### OnChanged
 
-Raised whenever any of the contained style objects raises its own **OnChanged**, or when [**CaretWidth**](#caretwidth) is assigned. The parent [**WaynesTextBox**](/en/official/Reference/CustomControls/WaynesTextBox) listens for this and requests a repaint.
+Raised whenever any of the contained style objects raises its own **OnChanged**, or when [**CaretWidth**](#caretwidth) is assigned. The parent [**WaynesTextBox**](/en/official/Reference/CustomControls/WaynesTextBox/) listens for this and requests a repaint.

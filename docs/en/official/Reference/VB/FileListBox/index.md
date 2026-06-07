@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/FileListBox/
 
 # FileListBox class
 
-A **FileListBox** is a Win32 native list control that displays the files in a single directory, filtered by a wildcard pattern and a set of file-attribute toggles. It is normally placed on a **Form** or **UserControl** at design time and paired with a [**DriveListBox**](/en/official/Reference/VB/DriveListBox) and a [**DirListBox**](/en/official/Reference/VB/DirListBox) to make a complete file picker --- their **Change** events feed into **FileListBox.Path**, and the user selects a name from the list. The default property is [**FileName**](#filename) and the default event is [**Click**](#click).
+A **FileListBox** is a Win32 native list control that displays the files in a single directory, filtered by a wildcard pattern and a set of file-attribute toggles. It is normally placed on a **Form** or **UserControl** at design time and paired with a [**DriveListBox**](/en/official/Reference/VB/DriveListBox/) and a [**DirListBox**](/en/official/Reference/VB/DirListBox/) to make a complete file picker --- their **Change** events feed into **FileListBox.Path**, and the user selects a name from the list. The default property is [**FileName**](#filename) and the default event is [**Click**](#click).
 
 ```vb
 Private Sub Form_Load()
@@ -32,7 +32,7 @@ End Sub
 
 ## Path and Pattern
 
-[**Path**](#path) is the directory whose files are listed. It defaults to [**App.Path**](/en/official/Reference/VB/App#path) when the control is first created. Setting it from code reloads the list, raises [**PathChange**](#pathchange), and trims any trailing backslash (except for a drive root). Setting a bare drive specifier without a backslash --- `"C:"` --- is silently rejected; use `"C:\"`. Assigning a path that does not exist raises run-time error 76 (*Path not found*). [**PathWithBackslash**](#pathwithbackslash) returns the same value with a trailing backslash always present, which is convenient when concatenating with [**FileName**](#filename).
+[**Path**](#path) is the directory whose files are listed. It defaults to [**App.Path**](/en/official/Reference/VB/App/#path) when the control is first created. Setting it from code reloads the list, raises [**PathChange**](#pathchange), and trims any trailing backslash (except for a drive root). Setting a bare drive specifier without a backslash --- `"C:"` --- is silently rejected; use `"C:\"`. Assigning a path that does not exist raises run-time error 76 (*Path not found*). [**PathWithBackslash**](#pathwithbackslash) returns the same value with a trailing backslash always present, which is convenient when concatenating with [**FileName**](#filename).
 
 [**Pattern**](#pattern) is one or more wildcard masks separated by semicolons (`"*.txt;*.doc"`). Each mask is matched case-insensitively using the **Like** operator; a file is shown if it matches *any* mask. The default is `"*.*"`. Setting **Pattern** reloads the list and raises [**PatternChange**](#patternchange) when the new value differs from the previous one.
 
@@ -204,7 +204,7 @@ A reference to the **Form** (or **UserControl**) that contains this control. Rea
 
 ### Path
 
-The directory whose files are listed. **String**. Defaults to [**App.Path**](/en/official/Reference/VB/App#path) when the control is first created.
+The directory whose files are listed. **String**. Defaults to [**App.Path**](/en/official/Reference/VB/App/#path) when the control is first created.
 
 Syntax: *object*.**Path** [ = *string* ]
 
@@ -376,7 +376,7 @@ Syntax: *object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks an entry. Unlike [**DirListBox**](/en/official/Reference/VB/DirListBox), the **FileListBox** does *not* navigate on double-click --- typically the application listens for **DblClick** to open the file the user has chosen.
+Raised when the user double-clicks an entry. Unlike [**DirListBox**](/en/official/Reference/VB/DirListBox/), the **FileListBox** does *not* navigate on double-click --- typically the application listens for **DblClick** to open the file the user has chosen.
 
 Syntax: *object*\_**DblClick**( )
 
@@ -400,7 +400,7 @@ Syntax: *object*\_**GotFocus**( )
 
 ### Initialize
 
-Raised once, immediately after the underlying window is created and the initial list of files has been loaded from [**App.Path**](/en/official/Reference/VB/App#path). New in twinBASIC --- VB6 had no equivalent on this control.
+Raised once, immediately after the underlying window is created and the initial list of files has been loaded from [**App.Path**](/en/official/Reference/VB/App/#path). New in twinBASIC --- VB6 had no equivalent on this control.
 
 Syntax: *object*\_**Initialize**( )
 

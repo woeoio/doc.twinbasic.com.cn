@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/CheckMark/
 
 # CheckMark class
 
-A **CheckMark** is a windowless control that draws a single check glyph --- checked, unchecked, or grey --- that scales to fill its rectangle. Unlike [**CheckBox**](/en/official/Reference/VB/CheckBox), it has no caption, no font, and cannot take focus or receive keyboard input; it is essentially the box from a check-box rendered at whatever size the layout requires. This makes it especially useful inside reports and other dense layouts where the fixed-size system check would look out of place, but it is also available on a **Form** or **UserControl**.
+A **CheckMark** is a windowless control that draws a single check glyph --- checked, unchecked, or grey --- that scales to fill its rectangle. Unlike [**CheckBox**](/en/official/Reference/VB/CheckBox/), it has no caption, no font, and cannot take focus or receive keyboard input; it is essentially the box from a check-box rendered at whatever size the layout requires. This makes it especially useful inside reports and other dense layouts where the fixed-size system check would look out of place, but it is also available on a **Form** or **UserControl**.
 
 The default property is [**Value**](#value) and the default event is [**Click**](#click).
 

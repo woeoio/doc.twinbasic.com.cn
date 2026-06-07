@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/WebView2/Enumerations/wv2HostResourceAccessKind
 ---
 # wv2HostResourceAccessKind
-How the WebView2 runtime should treat a virtual hostname mapped to a local folder by [**SetVirtualHostNameToFolderMapping**](/en/official/Reference/WebView2/WebView2#setvirtualhostnametofoldermapping) --- whether pages on other origins are allowed to fetch from it. Mirrors the `COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND` enumeration.
+How the WebView2 runtime should treat a virtual hostname mapped to a local folder by [**SetVirtualHostNameToFolderMapping**](/en/official/Reference/WebView2/WebView2/#setvirtualhostnametofoldermapping) --- whether pages on other origins are allowed to fetch from it. Mirrors the `COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND` enumeration.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

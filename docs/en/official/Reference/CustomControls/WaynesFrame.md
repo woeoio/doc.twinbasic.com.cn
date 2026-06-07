@@ -5,7 +5,7 @@ permalink: /tB/Packages/CustomControls/WaynesFrame
 ---
 
 # WaynesFrame class
-A rectangular container control whose entire area is painted with a configurable [**BackgroundFill**](#backgroundfill). Used to group other controls on a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm), with the same layout / sizing members as any other custom control.
+A rectangular container control whose entire area is painted with a configurable [**BackgroundFill**](#backgroundfill). Used to group other controls on a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm/), with the same layout / sizing members as any other custom control.
 
 The default fill is a solid mid-grey ([**WAYNESCOLOR_GREY**](#) --- `&H808080`); change it by accessing the **Fill.ColorPoints** collection.
 

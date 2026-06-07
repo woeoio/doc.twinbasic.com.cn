@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/CustomControls/Enumerations/WindowState
 ---
 # WindowState
-The window state of a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm) --- minimized, restored to normal size, or maximized to fill its monitor. Used by [**WindowsFormOptions.WindowState**](/en/official/Reference/CustomControls/WaynesForm/WindowsFormOptions#windowstate); honoured once when the form is first shown.
+The window state of a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm/) --- minimized, restored to normal size, or maximized to fill its monitor. Used by [**WindowsFormOptions.WindowState**](/en/official/Reference/CustomControls/WaynesForm/WindowsFormOptions#windowstate); honoured once when the form is first shown.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

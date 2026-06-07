@@ -1,4 +1,15 @@
 ---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'bcce87f5-595d-4492-8545-b02e4c267343'
+  PropagateID: 'bcce87f5-595d-4492-8545-b02e4c267343'
+  ReservedCode1: 'ba6b1555-9c01-47ac-9d5c-bd9b2eaf4697'
+  ReservedCode2: 'ba6b1555-9c01-47ac-9d5c-bd9b2eaf4697'
+---
+
+---
 title: twinBASIC Additions
 parent: Reference Section
 nav_order: 11
@@ -9,7 +20,7 @@ permalink: /Reference/twinBASIC-Additions
 
 twinBASIC extends the VBA language with new data types, language constructs, operators, runtime functions, and project-level capabilities. This page lists the additions that have a dedicated reference page, grouped by category.
 
-For a broader overview aimed at developers coming from VBA or VB6, see the [welcome page](/en/official/index).
+For a broader overview aimed at developers coming from VBA or VB6, see the [welcome page](/en/official/).
 
 ---
 
@@ -114,7 +125,7 @@ These functions exist in the VBA package but have no equivalent in standard VBA 
 | [**IsArrayInitialized**](/en/official/Reference/VBA/Information/IsArrayInitialized) | Information | Returns whether a dynamic array has been dimensioned |
 | [**TranslateColor**](/en/official/Reference/VBA/Information/TranslateColor) | Information | Translates an OLE colour to a plain RGB value |
 
-Additional low-level memory, threading, and introspection functions are documented in the [HiddenModule](/en/official/Reference/VBA/HiddenModule) section.
+Additional low-level memory, threading, and introspection functions are documented in the [HiddenModule](/en/official/Reference/VBA/HiddenModule/) section.
 
 ---
 
@@ -152,7 +163,7 @@ See [Features → Enhanced API Declarations](/en/official/Features/Advanced/API-
 ## IDE additions
 
 - **CodeLens** --- inline action bars above procedures ("Run", "Debug", "Test") without leaving the editor. See [Features → CodeLens](/en/official/Features/Compiler-IDE/CodeLens).
-- **Package server** (TWINSERV) --- install packages from a central registry without leaving the IDE. See [Features → Importing a package](/en/official/Features/Packages/Importing-TWINSERV).
+- **Package server** (TWINSERV) --- install packages from a central registry without leaving the IDE. See [Features → Importing a package](/en/official/Features/Packages/Importing-a-package-from-TWINSERV).
 - **Type inference** --- `Dim x = 1` infers **Long**; `For Each item In collection` infers the element type when the collection is typed. See [Features → Type Inference](/en/official/Features/Language/Type-Inference).
 - **Conditional compilation constants** (`#Const`, `#If`) --- a superset of the VBA set; see [Compiler Constants](/en/official/Reference/Compiler-Constants).
 
@@ -161,5 +172,7 @@ See [Features → Enhanced API Declarations](/en/official/Features/Advanced/API-
 ### See Also
 
 - [Data Types](/en/official/Reference/Data-Types) -- storage sizes and ranges for all intrinsic types
-- [Features](/en/official/Features) -- in-depth coverage of every twinBASIC feature
+- [Features](/en/official/Features/) -- in-depth coverage of every twinBASIC feature
 - [Categories](/en/official/Reference/Categories) -- statements and procedures grouped by purpose
+
+> AI生成

@@ -5,7 +5,7 @@ permalink: /tB/Packages/WinNativeCommonCtls/ImageList/ListImage
 ---
 
 # ListImage class
-A **ListImage** is one picture inside an [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList)'s [**ListImages**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages) collection. Returned from [**ListImages.Add**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages#add) and from [**ListImages.Item**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages#item).
+A **ListImage** is one picture inside an [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/)'s [**ListImages**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages) collection. Returned from [**ListImages.Add**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages#add) and from [**ListImages.Item**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages#item).
 
 The class is tagged `[COMCreatable(False)]` --- user code never instantiates a **ListImage** directly; the [**ListImages**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages) collection creates them as part of its **Add** method.
 
@@ -72,6 +72,6 @@ The returned **IPictureDisp** owns its icon handle and destroys it when it goes 
 
 ## See Also
 
-- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList) -- the parent control
+- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList/) -- the parent control
 - [ListImages](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages) -- the collection holding **ListImage** instances
 - [ImlDrawConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants) -- the *Style* flag combinations for [**Draw**](#draw)

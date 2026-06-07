@@ -23,7 +23,7 @@ End With
 
 The package keeps the factory by reference; the dispatcher trampoline calls [**CreateInstance**](#createinstance) once per service start, immediately after the SCM has spawned the service thread. The returned instance is the object whose [**EntryPoint**](/en/official/Reference/WinServicesLib/ITbService#entrypoint), [**StartupFailed**](/en/official/Reference/WinServicesLib/ITbService#startupfailed), and [**ChangeState**](/en/official/Reference/WinServicesLib/ITbService#changestate) methods the package will route to.
 
-See the package [overview](/en/official/Reference/WinServicesLib) for where **ServiceCreator** fits in the broader lifecycle.
+See the package [overview](/en/official/Reference/WinServicesLib/) for where **ServiceCreator** fits in the broader lifecycle.
 
 ## Methods
 
@@ -45,6 +45,6 @@ The same indirection lets the dispatcher pair the [**ITbService**](/en/official/
 
 ## See Also
 
-- [WinServicesLib package](/en/official/Reference/WinServicesLib) -- overview, lifecycle, two-thread split
+- [WinServicesLib package](/en/official/Reference/WinServicesLib/) -- overview, lifecycle, two-thread split
 - [ITbService interface](/en/official/Reference/WinServicesLib/ITbService) -- the contract *T* must implement
 - [ServiceManager class](/en/official/Reference/WinServicesLib/ServiceManager) -- the per-service configuration; **ServiceCreator** instances are assigned to its [**InstanceCreator**](/en/official/Reference/WinServicesLib/ServiceManager#instancecreator) field

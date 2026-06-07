@@ -49,7 +49,7 @@ End Class
 ```
 
 ::: important
-[**EntryPoint**](#entrypoint) runs on the **service thread**. [**ChangeState**](#changestate) runs on the **dispatcher thread** (the EXE's main thread). The two methods execute concurrently and must coordinate through shared `Public` flags on the class --- see [The two-thread split](/en/official/Reference/WinServicesLib#two-thread-split) on the package overview.
+[**EntryPoint**](#entrypoint) runs on the **service thread**. [**ChangeState**](#changestate) runs on the **dispatcher thread** (the EXE's main thread). The two methods execute concurrently and must coordinate through shared `Public` flags on the class --- see [The two-thread split](/en/official/Reference/WinServicesLib/#two-thread-split) on the package overview.
 :::
 
 ## Methods
@@ -84,7 +84,7 @@ End Select
 
 [**ChangeState**](#changestate) **does not stop** [**EntryPoint**](#entrypoint) --- it only delivers the SCM's request. The user's code is responsible for the actual shutdown logic, typically by setting a shared `Public` flag the service thread polls (`IsStopping`) or by calling a signal method on a blocking primitive that [**EntryPoint**](#entrypoint) owns (`NamedPipeServer.ManualMessageLoopLeave`, `SetEvent` on a Win32 event handle, ...).
 
-The method runs on a different thread than [**EntryPoint**](#entrypoint); see [The two-thread split](/en/official/Reference/WinServicesLib#two-thread-split) for the coordination rules.
+The method runs on a different thread than [**EntryPoint**](#entrypoint); see [The two-thread split](/en/official/Reference/WinServicesLib/#two-thread-split) for the coordination rules.
 
 ### EntryPoint
 
@@ -132,7 +132,7 @@ If there is no useful failure-reporting hook to add, an empty implementation is 
 
 ## See Also
 
-- [WinServicesLib package](/en/official/Reference/WinServicesLib) -- overview, lifecycle, [the two-thread split](/en/official/Reference/WinServicesLib#two-thread-split)
+- [WinServicesLib package](/en/official/Reference/WinServicesLib/) -- overview, lifecycle, [the two-thread split](/en/official/Reference/WinServicesLib/#two-thread-split)
 - [ServiceManager class](/en/official/Reference/WinServicesLib/ServiceManager) -- the per-service object passed into every method
 - [ServiceCreator(Of T) class](/en/official/Reference/WinServicesLib/ServiceCreator) -- the factory that creates an **ITbService** instance for each service start
 - [ServiceControlCodeConstants enum](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) -- the values **ChangeState** dispatches on

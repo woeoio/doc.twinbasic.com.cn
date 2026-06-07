@@ -6,7 +6,7 @@ permalink: /tB/Packages/tbIDE/Host
 
 # Host class
 
-The root API the IDE passes to every addin. The DLL receives a **Host** as the argument to its [`tbCreateCompilerAddin`](/en/official/Reference/tbIDE#building-and-loading-an-addin) factory; the addin retains that reference for its lifetime and reaches every other capability through it --- the currently-loaded [**CurrentProject**](#currentproject), the [**ActiveEditors**](#activeeditors), the [**Toolbars**](#toolbars) for adding buttons, the [**ToolWindows**](#toolwindows) for adding HTML-rendered panels, the [**DebugConsole**](#debugconsole) for log output, the virtual [**FileSystem**](#filesystem), the [**KeyboardShortcuts**](#keyboardshortcuts) registry, the [**Themes**](#themes) state, plus the dialog helpers [**ShowMessageBox**](#showmessagebox) / [**ShowNotification**](#shownotification).
+The root API the IDE passes to every addin. The DLL receives a **Host** as the argument to its [`tbCreateCompilerAddin`](/en/official/Reference/tbIDE/#building-and-loading-an-addin) factory; the addin retains that reference for its lifetime and reaches every other capability through it --- the currently-loaded [**CurrentProject**](#currentproject), the [**ActiveEditors**](#activeeditors), the [**Toolbars**](#toolbars) for adding buttons, the [**ToolWindows**](#toolwindows) for adding HTML-rendered panels, the [**DebugConsole**](#debugconsole) for log output, the virtual [**FileSystem**](#filesystem), the [**KeyboardShortcuts**](#keyboardshortcuts) registry, the [**Themes**](#themes) state, plus the dialog helpers [**ShowMessageBox**](#showmessagebox) / [**ShowNotification**](#shownotification).
 
 Typically held via `WithEvents` so the addin can subscribe to lifecycle events:
 

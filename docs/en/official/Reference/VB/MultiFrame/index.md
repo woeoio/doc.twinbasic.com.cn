@@ -6,9 +6,9 @@ permalink: /tB/Packages/VB/MultiFrame/
 
 # MultiFrame class
 
-A **MultiFrame** is a layout container that arranges a set of [**Frame**](/en/official/Reference/VB/Frame) controls in a single horizontal or vertical strip and resizes them whenever the **MultiFrame** itself is resized. Each contained frame keeps its own border, caption, and child controls; the **MultiFrame** decides only where each frame is placed and how wide (or tall) it is.
+A **MultiFrame** is a layout container that arranges a set of [**Frame**](/en/official/Reference/VB/Frame/) controls in a single horizontal or vertical strip and resizes them whenever the **MultiFrame** itself is resized. Each contained frame keeps its own border, caption, and child controls; the **MultiFrame** decides only where each frame is placed and how wide (or tall) it is.
 
-A frame is associated with a **MultiFrame** by setting the frame's [**Container**](/en/official/Reference/VB/Frame#container) to point at the **MultiFrame**. The frame's [**MultiFramePosition**](/en/official/Reference/VB/Frame#multiframeposition) chooses its place in the sequence and [**MultiFrameSize**](/en/official/Reference/VB/Frame#multiframesize) gives its size as a percentage of the **MultiFrame**'s usable extent. Frames whose **MultiFrameSize** is `0` share whatever extent remains after the fixed-size frames have been laid out.
+A frame is associated with a **MultiFrame** by setting the frame's [**Container**](/en/official/Reference/VB/Frame/#container) to point at the **MultiFrame**. The frame's [**MultiFramePosition**](/en/official/Reference/VB/Frame/#multiframeposition) chooses its place in the sequence and [**MultiFrameSize**](/en/official/Reference/VB/Frame/#multiframesize) gives its size as a percentage of the **MultiFrame**'s usable extent. Frames whose **MultiFrameSize** is `0` share whatever extent remains after the fixed-size frames have been laid out.
 
 The default event is [**Initialize**](#initialize). There is no default property.
 
@@ -35,17 +35,17 @@ End Sub
 
 [**Direction**](#direction) chooses between **vbDirectionHorizontal** (the default --- frames laid out left-to-right) and **vbDirectionVertical** (frames stacked top-to-bottom). Changing **Direction** at run time triggers an immediate re-layout.
 
-For each contained frame, [**MultiFrameSize**](/en/official/Reference/VB/Frame#multiframesize) gives its extent as a percentage of the **MultiFrame**'s width (horizontal) or height (vertical). Frames whose **MultiFrameSize** is `0` share the leftover extent equally --- so a typical pattern is to give the edge panels fixed percentages and leave one centre panel at `0` so it absorbs window resizes. Percentages are not clamped; if the fixed-size frames already exceed the **MultiFrame**'s extent the auto-sized frames collapse to zero.
+For each contained frame, [**MultiFrameSize**](/en/official/Reference/VB/Frame/#multiframesize) gives its extent as a percentage of the **MultiFrame**'s width (horizontal) or height (vertical). Frames whose **MultiFrameSize** is `0` share the leftover extent equally --- so a typical pattern is to give the edge panels fixed percentages and leave one centre panel at `0` so it absorbs window resizes. Percentages are not clamped; if the fixed-size frames already exceed the **MultiFrame**'s extent the auto-sized frames collapse to zero.
 
 ## Position and shuffling
 
-Each contained frame is anchored to a sequential position via its [**MultiFramePosition**](/en/official/Reference/VB/Frame#multiframeposition) property (zero-based). Positions are kept contiguous: assigning a frame a new **MultiFramePosition** at run time makes the **MultiFrame** shuffle the remaining frames up or down so that the old slot closes and the new slot opens at the requested index. Duplicate or out-of-range positions are normalised at the next layout pass --- the **MultiFrame** falls back to the original control order on the parent form, renumbering the frames sequentially from `0`.
+Each contained frame is anchored to a sequential position via its [**MultiFramePosition**](/en/official/Reference/VB/Frame/#multiframeposition) property (zero-based). Positions are kept contiguous: assigning a frame a new **MultiFramePosition** at run time makes the **MultiFrame** shuffle the remaining frames up or down so that the old slot closes and the new slot opens at the requested index. Duplicate or out-of-range positions are normalised at the next layout pass --- the **MultiFrame** falls back to the original control order on the parent form, renumbering the frames sequentially from `0`.
 
-A frame whose [**Container**](/en/official/Reference/VB/Frame#container) is the **MultiFrame** but whose **MultiFramePosition** is `-1` is appended at the next free slot the first time the layout is built.
+A frame whose [**Container**](/en/official/Reference/VB/Frame/#container) is the **MultiFrame** but whose **MultiFramePosition** is `-1` is appended at the next free slot the first time the layout is built.
 
 ## Adopting frames at run time
 
-The mapping from frame to **MultiFrame** is discovered from the parent form's control collection on each layout pass: a frame appears in the strip exactly when its [**Container**](/en/official/Reference/VB/Frame#container) property points at the **MultiFrame**. The discovered set is then cached. To force the cache to be rebuilt --- for example after re-parenting a frame at run time --- assign any value to [**FramesCount**](#framescount):
+The mapping from frame to **MultiFrame** is discovered from the parent form's control collection on each layout pass: a frame appears in the strip exactly when its [**Container**](/en/official/Reference/VB/Frame/#container) property points at the **MultiFrame**. The discovered set is then cached. To force the cache to be rebuilt --- for example after re-parenting a frame at run time --- assign any value to [**FramesCount**](#framescount):
 
 ```vb
 Set fraExtra.Container = mfPanels
@@ -82,7 +82,7 @@ Where the **MultiFrame** is docked within its container. A member of [**DockMode
 
 ### FramesCount
 
-The number of [**Frame**](/en/official/Reference/VB/Frame) controls currently in the **MultiFrame**'s layout. **Long**.
+The number of [**Frame**](/en/official/Reference/VB/Frame/) controls currently in the **MultiFrame**'s layout. **Long**.
 
 Syntax: *object*.**FramesCount** [ = *value* ]
 
@@ -110,7 +110,7 @@ The unique design-time name of the **MultiFrame** on its parent form. Read-only 
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) that ultimately contains the **MultiFrame**. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) that ultimately contains the **MultiFrame**. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
 
 ### TabIndex
 

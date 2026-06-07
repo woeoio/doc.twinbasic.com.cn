@@ -44,7 +44,7 @@ Debug.Print Log(100) / Log(10)   ' 2 — base-10 log of 100
 
 ## Rounding
 
-[**Round**](/en/official/Reference/VBA/Math/Round) rounds a number to a chosen number of decimal places using *banker's rounding* --- when the value lies exactly half-way between two possible results, it rounds toward the nearest **even** digit, so `Round(0.5, 0)` is `0` and `Round(1.5, 0)` is `2`. This avoids the systematic upward bias of always-round-half-up and matches VBA's behaviour. For *truncation* rather than rounding, see [**Int**](/en/official/Reference/VBA/Conversion/Int) and [**Fix**](/en/official/Reference/VBA/Conversion/Fix) in the [**Conversion**](/en/official/Reference/VBA/Conversion) module; for narrowing-with-rounding to a specific integer type, see [**CInt**](/en/official/Reference/VBA/Conversion/CInt) and [**CLng**](/en/official/Reference/VBA/Conversion/CLng).
+[**Round**](/en/official/Reference/VBA/Math/Round) rounds a number to a chosen number of decimal places using *banker's rounding* --- when the value lies exactly half-way between two possible results, it rounds toward the nearest **even** digit, so `Round(0.5, 0)` is `0` and `Round(1.5, 0)` is `2`. This avoids the systematic upward bias of always-round-half-up and matches VBA's behaviour. For *truncation* rather than rounding, see [**Int**](/en/official/Reference/VBA/Conversion/Int) and [**Fix**](/en/official/Reference/VBA/Conversion/Fix) in the [**Conversion**](/en/official/Reference/VBA/Conversion/) module; for narrowing-with-rounding to a specific integer type, see [**CInt**](/en/official/Reference/VBA/Conversion/CInt) and [**CLng**](/en/official/Reference/VBA/Conversion/CLng).
 
 ## Random numbers
 

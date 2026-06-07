@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Printer/
 
 # Printer class
 
-A **Printer** object encapsulates one Windows printer device, exposing a drawing surface that records the application's graphics calls and forwards them to the spooler as a print job. The implicit **Printer** is mutable and tracks the system default printer; the entries of the [**Printers**](/en/official/Reference/VB/Printers) collection are read-only descriptors of the installed devices, useful for enumeration or for switching the active printer with `Set Printer = Printers("HP LaserJet")`.
+A **Printer** object encapsulates one Windows printer device, exposing a drawing surface that records the application's graphics calls and forwards them to the spooler as a print job. The implicit **Printer** is mutable and tracks the system default printer; the entries of the [**Printers**](/en/official/Reference/VB/Printers/) collection are read-only descriptors of the installed devices, useful for enumeration or for switching the active printer with `Set Printer = Printers("HP LaserJet")`.
 
 A print job begins implicitly the first time the application calls a drawing or text method on the **Printer** ([**Print**](#print), [**Line**](#line), [**Circle**](#circle), [**PSet**](#pset), [**PaintPicture**](#paintpicture), …), and is finalised by [**EndDoc**](#enddoc). [**NewPage**](#newpage) advances to a fresh page within the same job; [**KillDoc**](#killdoc) aborts the job without finishing the current page.
 
@@ -18,12 +18,12 @@ Printer.Print "Second page."
 Printer.EndDoc
 ```
 
-User code never instantiates a **Printer** directly --- the class is marked `[COMCreatable(False)]` and its public API has no useful constructor. The two access paths are the implicit **Printer** global and the [**Printers**](/en/official/Reference/VB/Printers) collection.
+User code never instantiates a **Printer** directly --- the class is marked `[COMCreatable(False)]` and its public API has no useful constructor. The two access paths are the implicit **Printer** global and the [**Printers**](/en/official/Reference/VB/Printers/) collection.
 
 
 ## The default Printer and the Printers collection
 
-twinBASIC exposes a single implicit **Printer** object, accessible by name from anywhere in user code, plus a [**Printers**](/en/official/Reference/VB/Printers) collection enumerating every printer installed on the system:
+twinBASIC exposes a single implicit **Printer** object, accessible by name from anywhere in user code, plus a [**Printers**](/en/official/Reference/VB/Printers/) collection enumerating every printer installed on the system:
 
 ```vb
 Dim p As Printer
@@ -34,7 +34,7 @@ Next
 
 By default the implicit **Printer** has [**TrackDefault**](#trackdefault) **True**: every property read consults the current system-default printer, so the application reflects changes the user makes in **Settings → Printers** without restarting. Writing to a settings property, calling **Set Printer = Printers(i)**, or starting a print job locks **TrackDefault** to **False** and pins the object to a specific device.
 
-The entries returned by [**Printers**](/en/official/Reference/VB/Printers) are immutable --- assigning to one of their properties raises run-time error 383 (*Property is read-only*), and the document-control methods raise error 438 (*Object doesn't support this property or method*). To print to one of them, copy it onto the implicit **Printer** with **Set**:
+The entries returned by [**Printers**](/en/official/Reference/VB/Printers/) are immutable --- assigning to one of their properties raises run-time error 383 (*Property is read-only*), and the document-control methods raise error 438 (*Object doesn't support this property or method*). To print to one of them, copy it onto the implicit **Printer** with **Set**:
 
 ```vb
 Set Printer = Printers("HP LaserJet")
@@ -140,7 +140,7 @@ The pattern used to fill closed shapes. A member of [**FillStyleConstants**](/en
 
 The **StdFont** used to render [**Print**](#print) output and measured by [**TextWidth**](#textwidth) / [**TextHeight**](#textheight). The convenience properties [**FontName**](#fontname), [**FontSize**](#fontsize), [**FontBold**](#fontbold), [**FontItalic**](#fontitalic), [**FontStrikethru**](#fontstrikethru), [**FontUnderline**](#fontunderline), and [**FontTransparent**](#fonttransparent) read or write members of this object. Assigning a string to **Font** is a shortcut for assigning to **Font.Name**; assigning an **StdFont** with **Set** replaces the underlying font object.
 
-On a printer obtained from [**Printers**](/en/official/Reference/VB/Printers), **Font** can still be read (a fresh, mutable **StdFont** is returned), but reassigning it raises error 383.
+On a printer obtained from [**Printers**](/en/official/Reference/VB/Printers/), **Font** can still be read (a fresh, mutable **StdFont** is returned), but reassigning it raises error 383.
 
 ### FontBold
 
@@ -208,7 +208,7 @@ Syntax: *object*.**Orientation** [ = *value* ]
 
 ### OutputFile
 
-The path of a file to capture the raw spooled bytes into, instead of sending them to the printer device. **String**. New in twinBASIC. Must be set before the first drawing call; assigning while a job is active has no effect on the running job. Read-only on a printer obtained from [**Printers**](/en/official/Reference/VB/Printers).
+The path of a file to capture the raw spooled bytes into, instead of sending them to the printer device. **String**. New in twinBASIC. Must be set before the first drawing call; assigning while a job is active has no effect on the running job. Read-only on a printer obtained from [**Printers**](/en/official/Reference/VB/Printers/).
 
 ### Page
 
@@ -275,7 +275,7 @@ The horizontal extent of the printer's drawing surface in [**ScaleMode**](#scale
 
 When **True**, every property read consults the current system-default printer; when **False**, the **Printer** is locked to the specific device identified by [**DeviceName**](#devicename), [**DriverName**](#drivername), and [**Port**](#port). **Boolean**.
 
-Setting **TrackDefault** to **False** captures the current default device into the cached identifiers so subsequent reads stop drifting. Setting it back to **True** finishes any active print job (as if [**EndDoc**](#enddoc) had been called) and clears the cached device context. Always **False** on a printer obtained from [**Printers**](/en/official/Reference/VB/Printers), and read-only there.
+Setting **TrackDefault** to **False** captures the current default device into the cached identifiers so subsequent reads stop drifting. Setting it back to **True** finishes any active print job (as if [**EndDoc**](#enddoc) had been called) and clears the cached device context. Always **False** on a printer obtained from [**Printers**](/en/official/Reference/VB/Printers/), and read-only there.
 
 ### TwipsPerPixelX
 
@@ -428,7 +428,7 @@ Syntax: *object*.**ScaleX**( *Width*, *FromScale* [, *ToScale* ] ) **As Double**
 : *required* The value to convert. **Double**.
 
 *FromScale*
-: *required* A [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants) member identifying the unit of *Width*. Unlike on a [**PictureBox**](/en/official/Reference/VB/PictureBox) or [**Form**](/en/official/Reference/VB/Form), this argument has no default on a **Printer** --- omitting it raises error 448 (*Named argument not found*).
+: *required* A [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants) member identifying the unit of *Width*. Unlike on a [**PictureBox**](/en/official/Reference/VB/PictureBox/) or [**Form**](/en/official/Reference/VB/Form/), this argument has no default on a **Printer** --- omitting it raises error 448 (*Named argument not found*).
 
 *ToScale*
 : *optional* A [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants) member identifying the unit of the result; defaults to the printer's current [**ScaleMode**](#scalemode).
@@ -453,7 +453,7 @@ Syntax: *object*.**TextWidth**( *Str* **As String** ) **As Double**
 
 ## See Also
 
-- [Printers](/en/official/Reference/VB/Printers) -- read-only collection of every installed printer.
-- [Form.PrintForm](/en/official/Reference/VB/Form#printform) -- sends a screenshot of a form to the implicit **Printer**.
-- [Report.PrintReport](/en/official/Reference/VB/Report#printreport) -- sends every page of a banded report to the implicit **Printer**.
+- [Printers](/en/official/Reference/VB/Printers/) -- read-only collection of every installed printer.
+- [Form.PrintForm](/en/official/Reference/VB/Form/#printform) -- sends a screenshot of a form to the implicit **Printer**.
+- [Report.PrintReport](/en/official/Reference/VB/Report/#printreport) -- sends every page of a banded report to the implicit **Printer**.
 - [PrinterObjectConstants](/en/official/Reference/VBRUN/Constants/PrinterObjectConstants) -- combined enumeration of printer option values.

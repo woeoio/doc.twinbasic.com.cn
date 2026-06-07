@@ -44,7 +44,7 @@ Array(x, y, z) = a              ' destructuring assignment
 
 ## Raw pointers
 
-Three functions return raw addresses for use with API calls or unsafe interop: [**ObjPtr**](/en/official/Reference/VBA/Information/ObjPtr) for an object's COM identity, [**StrPtr**](/en/official/Reference/VBA/Information/StrPtr) for the underlying buffer of a **String**, and [**VarPtr**](/en/official/Reference/VBA/Information/VarPtr) for any variable. The result is a **LongPtr** valid only while the underlying object, string, or variable stays alive --- taking a pointer never holds a reference of its own. To read or write the memory at a known address, pair these with the [**GetMem**](/en/official/Reference/VBA/HiddenModule/GetMem4) / [**PutMem**](/en/official/Reference/VBA/HiddenModule/PutMem4) family from the [(Default)](/en/official/Reference/VBA/HiddenModule) module.
+Three functions return raw addresses for use with API calls or unsafe interop: [**ObjPtr**](/en/official/Reference/VBA/Information/ObjPtr) for an object's COM identity, [**StrPtr**](/en/official/Reference/VBA/Information/StrPtr) for the underlying buffer of a **String**, and [**VarPtr**](/en/official/Reference/VBA/Information/VarPtr) for any variable. The result is a **LongPtr** valid only while the underlying object, string, or variable stays alive --- taking a pointer never holds a reference of its own. To read or write the memory at a known address, pair these with the [**GetMem**](/en/official/Reference/VBA/HiddenModule/GetMem4) / [**PutMem**](/en/official/Reference/VBA/HiddenModule/PutMem4) family from the [(Default)](/en/official/Reference/VBA/HiddenModule/) module.
 
 ```vb
 Dim n As Long = &H12345678
@@ -67,13 +67,13 @@ Debug.Print RGB_B(C)         ' 150
 
 ## Run-time error state
 
-[**Err**](/en/official/Reference/VBA/Information/Err) returns the [**ErrObject**](/en/official/Reference/VBA/ErrObject) describing the run-time error currently in effect --- its number, description, source, and so on. [**Erl**](/en/official/Reference/VBA/Information/Erl) returns the line number of the statement that raised the most recent error, when one was supplied as a numeric label.
+[**Err**](/en/official/Reference/VBA/Information/Err) returns the [**ErrObject**](/en/official/Reference/VBA/ErrObject/) describing the run-time error currently in effect --- its number, description, source, and so on. [**Erl**](/en/official/Reference/VBA/Information/Erl) returns the line number of the statement that raised the most recent error, when one was supplied as a numeric label.
 
 ## Members
 
 - [Array](/en/official/Reference/VBA/Information/Array) -- creates a **Variant** array from a comma-separated list of values, or destructures one when used on the left of an assignment
 - [Erl](/en/official/Reference/VBA/Information/Erl) -- returns the line number where the most recent run-time error occurred
-- [Err](/en/official/Reference/VBA/Information/Err) -- returns the [**ErrObject**](/en/official/Reference/VBA/ErrObject) describing the current run-time error state
+- [Err](/en/official/Reference/VBA/Information/Err) -- returns the [**ErrObject**](/en/official/Reference/VBA/ErrObject/) describing the current run-time error state
 - [IMEStatus](/en/official/Reference/VBA/Information/IMEStatus) -- returns the status of the Input Method Editor
 - [IsArray](/en/official/Reference/VBA/Information/IsArray) -- returns whether a variable is an array
 - [IsArrayInitialized](/en/official/Reference/VBA/Information/IsArrayInitialized) -- returns whether an array has been dimensioned

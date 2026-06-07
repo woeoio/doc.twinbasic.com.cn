@@ -12,9 +12,9 @@ Syntax: **Eval(** *Expression* **)** **As Variant**
 *Expression*
 : *required* **String**. A twinBASIC expression that resolves to a value --- for example, `"2 + 2"`, `"Sqr(2)"`, or `"UCase(""hello"")"`.
 
-A fresh [**TbExpressionService**](/en/official/Reference/VBA/TbExpressionService) is built for every call, with the standard library binder registered so the standard runtime functions ([**Sin**](/en/official/Reference/VBA/Math/Sin), [**Sqr**](/en/official/Reference/VBA/Math/Sqr), [**Len**](/en/official/Reference/VBA/Strings/Len), [**CStr**](/en/official/Reference/VBA/Conversion/CStr), and the rest) are visible. The expression is then compiled and evaluated once, and the service is discarded.
+A fresh [**TbExpressionService**](/en/official/Reference/VBA/TbExpressionService/) is built for every call, with the standard library binder registered so the standard runtime functions ([**Sin**](/en/official/Reference/VBA/Math/Sin), [**Sqr**](/en/official/Reference/VBA/Math/Sqr), [**Len**](/en/official/Reference/VBA/Strings/Len), [**CStr**](/en/official/Reference/VBA/Conversion/CStr), and the rest) are visible. The expression is then compiled and evaluated once, and the service is discarded.
 
-For repeated evaluation of the same source, or for expressions that need to see application objects, construct the service explicitly and reuse a compiled [**ITbExpression**](/en/official/Reference/VBA/TbExpressionService#itbexpression-interface).
+For repeated evaluation of the same source, or for expressions that need to see application objects, construct the service explicitly and reuse a compiled [**ITbExpression**](/en/official/Reference/VBA/TbExpressionService/#itbexpression-interface).
 
 ### Example
 
@@ -25,4 +25,4 @@ Debug.Print Eval("UCase(""hello"")")     ' "HELLO"
 
 ### See Also
 
-- [ExpressionService module](/en/official/Reference/VBA/TbExpressionService)
+- [ExpressionService module](/en/official/Reference/VBA/TbExpressionService/)

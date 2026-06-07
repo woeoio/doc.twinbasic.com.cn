@@ -1,4 +1,4 @@
-﻿---
+---
 title: ControlTypeConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/ControlTypeConstants
@@ -27,7 +27,7 @@ Identifiers for the standard intrinsic and bundled control types, used by runtim
 | **vbDriveListBox** | 15 | A drive list-box. |
 | **vbFileListBox** | 16 | A file list-box. |
 | **vbForm** | 17 | A form. |
-| **vbWebView2** | 18 | A [**WebView2**](/en/official/Reference/WebView2/WebView2) control. |
+| **vbWebView2** | 18 | A [**WebView2**](/en/official/Reference/WebView2/WebView2/) control. |
 | **vbActiveXExtender** | 19 | An ActiveX extender wrapper. |
 | **vbShape** | 20 | A shape control. |
 | **vbProgressBar** | 21 | A progress-bar control. |
@@ -46,4 +46,4 @@ Identifiers for the standard intrinsic and bundled control types, used by runtim
 | **vbReport** | 34 | A report (data-report) control. |
 | **vbCheckMark** | 35 | A check-mark control. |
 | **vbTwinBridge** | 36 | A TwinBridge interop wrapper (twinBASIC). |
-| **vbCefBrowser** | 37 | A [**CefBrowser**](/en/official/Reference/CEF/CefBrowser) control. |
+| **vbCefBrowser** | 37 | A [**CefBrowser**](/en/official/Reference/CEF/CefBrowser/) control. |

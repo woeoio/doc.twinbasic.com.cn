@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Timer/
 
 # Timer class
 
-A **Timer** is a non-visual Win32 control that raises a [**Timer**](#timer) event at a programmable interval. Drop one onto a [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) at design time, set [**Interval**](#interval) to the desired millisecond period, set [**Enabled**](#enabled) to **True**, and handle the [**Timer**](#timer) event. Timers are invisible at run time --- they appear only as icons in the designer.
+A **Timer** is a non-visual Win32 control that raises a [**Timer**](#timer) event at a programmable interval. Drop one onto a [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) at design time, set [**Interval**](#interval) to the desired millisecond period, set [**Enabled**](#enabled) to **True**, and handle the [**Timer**](#timer) event. Timers are invisible at run time --- they appear only as icons in the designer.
 
 The default property is [**Enabled**](#enabled) and the default event is [**Timer**](#timer).
 
@@ -102,7 +102,7 @@ The unique design-time name of the timer on its parent form. **String**, read-on
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that contains this timer. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that contains this timer. Read-only.
 
 ### Tag
 

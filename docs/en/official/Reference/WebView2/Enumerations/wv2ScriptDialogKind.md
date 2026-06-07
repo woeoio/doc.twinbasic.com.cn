@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/WebView2/Enumerations/wv2ScriptDialogKind
 ---
 # wv2ScriptDialogKind
-Identifies which JavaScript-dialog primitive the page is trying to open. Passed as the `ScriptDialogKind` argument of the [**ScriptDialogOpening**](/en/official/Reference/WebView2/WebView2#scriptdialogopening) event --- the event only fires when **AreDefaultScriptDialogsEnabled** is **False**, so the application can implement its own dialogs. Mirrors the `COREWEBVIEW2_SCRIPT_DIALOG_KIND` enumeration.
+Identifies which JavaScript-dialog primitive the page is trying to open. Passed as the `ScriptDialogKind` argument of the [**ScriptDialogOpening**](/en/official/Reference/WebView2/WebView2/#scriptdialogopening) event --- the event only fires when **AreDefaultScriptDialogsEnabled** is **False**, so the application can implement its own dialogs. Mirrors the `COREWEBVIEW2_SCRIPT_DIALOG_KIND` enumeration.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

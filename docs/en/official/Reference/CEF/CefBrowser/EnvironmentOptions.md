@@ -6,9 +6,9 @@ permalink: /tB/Packages/CEF/CefBrowser/EnvironmentOptions
 
 # CefEnvironmentOptions class
 
-Pre-creation configuration for the CEF environment --- runtime folder, user-data folder, and the optional debug-log destination. Available on every [**CefBrowser**](/en/official/Reference/CEF/CefBrowser) control as its **EnvironmentOptions** property; the control instantiates one automatically before raising the [**Create**](/en/official/Reference/CEF/CefBrowser#create) event.
+Pre-creation configuration for the CEF environment --- runtime folder, user-data folder, and the optional debug-log destination. Available on every [**CefBrowser**](/en/official/Reference/CEF/CefBrowser/) control as its **EnvironmentOptions** property; the control instantiates one automatically before raising the [**Create**](/en/official/Reference/CEF/CefBrowser/#create) event.
 
-The fields below take effect only while the CEF runtime is being launched --- that is, *before or during* the control's [**Create**](/en/official/Reference/CEF/CefBrowser#create) event. Assigning them after that point has no effect on the live environment.
+The fields below take effect only while the CEF runtime is being launched --- that is, *before or during* the control's [**Create**](/en/official/Reference/CEF/CefBrowser/#create) event. Assigning them after that point has no effect on the live environment.
 
 ```vb
 Private Sub CefBrowser1_Create()
@@ -26,7 +26,7 @@ The type itself is `Private Class` --- instances are reachable only through the 
 
 ### BrowserExecutableFolder
 
-Path to the folder containing `libcef.dll` and its accompanying runtime files. **String**. Default: empty (the runtime is loaded from `%LocalAppData%\twinBASIC_CEF_Runtime\<version-stamped-folder>` --- see [Installing runtime files](/en/official/Reference/CEF#installing-runtime-files)).
+Path to the folder containing `libcef.dll` and its accompanying runtime files. **String**. Default: empty (the runtime is loaded from `%LocalAppData%\twinBASIC_CEF_Runtime\<version-stamped-folder>` --- see [Installing runtime files](/en/official/Reference/CEF/#installing-runtime-files)).
 
 Set this to point at a portable side-by-side deployment, e.g. a CEF folder shipped beside the application executable:
 
@@ -37,7 +37,7 @@ Private Sub CefBrowser1_Create()
 End Sub
 ```
 
-If `libcef.dll` is not found at the configured (or default) location, the [**Error**](/en/official/Reference/CEF/CefBrowser#error) event fires with the exact path that was searched.
+If `libcef.dll` is not found at the configured (or default) location, the [**Error**](/en/official/Reference/CEF/CefBrowser/#error) event fires with the exact path that was searched.
 
 ### LogFilePath
 
@@ -55,12 +55,12 @@ Set to **CefLogWarning** or **CefLogError** when investigating runtime issues, a
 
 Path to the folder CEF uses for the user profile --- cache, cookies, history, local storage, and so on. **String**. Default: empty (the runtime picks a folder under `%LocalAppData%\twinBASIC_CEF\<ProjectName>\`).
 
-Set a writable, application-specific path when the default would end up in a read-only location, or when multiple deployments of the same application must keep their profiles separate. The same folder cannot be opened by two CEF processes simultaneously --- if it's already locked, the [**Error**](/en/official/Reference/CEF/CefBrowser#error) event fires with *"CEF cache path already locked by another process"*.
+Set a writable, application-specific path when the default would end up in a read-only location, or when multiple deployments of the same application must keep their profiles separate. The same folder cannot be opened by two CEF processes simultaneously --- if it's already locked, the [**Error**](/en/official/Reference/CEF/CefBrowser/#error) event fires with *"CEF cache path already locked by another process"*.
 
 ### See Also
 
-- [CefBrowser control class](/en/official/Reference/CEF/CefBrowser)
-- [Create event](/en/official/Reference/CEF/CefBrowser#create)
-- [Installing runtime files](/en/official/Reference/CEF#installing-runtime-files)
-- [Overriding the runtime location](/en/official/Reference/CEF#overriding-the-runtime-location)
+- [CefBrowser control class](/en/official/Reference/CEF/CefBrowser/)
+- [Create event](/en/official/Reference/CEF/CefBrowser/#create)
+- [Installing runtime files](/en/official/Reference/CEF/#installing-runtime-files)
+- [Overriding the runtime location](/en/official/Reference/CEF/#overriding-the-runtime-location)
 - [WebView2EnvironmentOptions](/en/official/Reference/WebView2/WebView2/EnvironmentOptions) -- the WebView2 counterpart

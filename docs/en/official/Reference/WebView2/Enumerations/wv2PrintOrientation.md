@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/WebView2/Enumerations/wv2PrintOrientation
 ---
 # wv2PrintOrientation
-Page orientation passed to [**PrintToPdf**](/en/official/Reference/WebView2/WebView2#printtopdf) when writing the current document to a PDF file. Mirrors the `COREWEBVIEW2_PRINT_ORIENTATION` enumeration.
+Page orientation passed to [**PrintToPdf**](/en/official/Reference/WebView2/WebView2/#printtopdf) when writing the current document to a PDF file. Mirrors the `COREWEBVIEW2_PRINT_ORIENTATION` enumeration.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

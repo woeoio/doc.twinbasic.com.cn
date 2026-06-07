@@ -6,7 +6,7 @@ permalink: /tB/Packages/CustomControls/Framework/
 
 # Framework
 
-The framework half of the [**CustomControls**](/en/official/Reference/CustomControls) package --- the interfaces, callback objects, and drawing primitives an *author* of a custom control writes against. The eight concrete `Waynes…` controls in the package are themselves built on this framework; the same pieces are available to user code that needs to implement an entirely new custom control.
+The framework half of the [**CustomControls**](/en/official/Reference/CustomControls/) package --- the interfaces, callback objects, and drawing primitives an *author* of a custom control writes against. The eight concrete `Waynes…` controls in the package are themselves built on this framework; the same pieces are available to user code that needs to implement an entirely new custom control.
 
 A custom control:
 
@@ -46,7 +46,7 @@ End Class
 - [CustomControlContext](/en/official/Reference/CustomControls/Framework/CustomControlContext) -- the callback object passed to **Initialize**; **GetSerializer**, **Repaint**, **CreateTimer**, **ChangeFocusedElement**
 - [CustomFormContext](/en/official/Reference/CustomControls/Framework/CustomFormContext) -- a **CustomControlContext** extended with **Show** and **Close**, passed to a custom form's **Initialize**
 - [CustomControlTimer](/en/official/Reference/CustomControls/Framework/CustomControlTimer) -- the timer returned by **CustomControlContext.CreateTimer**; **Interval**, **Enabled**, **OnTimer** event
-- [CustomControlsCollection](/en/official/Reference/CustomControls/Framework/CustomControlsCollection) -- the **Controls** collection on a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm) or any other custom form
+- [CustomControlsCollection](/en/official/Reference/CustomControls/Framework/CustomControlsCollection) -- the **Controls** collection on a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm/) or any other custom form
 
 ## Drawing primitives
 

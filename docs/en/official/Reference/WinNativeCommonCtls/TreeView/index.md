@@ -5,7 +5,7 @@ permalink: /tB/Packages/WinNativeCommonCtls/TreeView/
 ---
 
 # TreeView class
-A **TreeView** is a hierarchical display of [**Node**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) objects organized into a tree. Each node can be expanded or collapsed, optionally has a checkbox, and references an icon from an associated [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList). The collection of nodes is accessed through [**Nodes**](#nodes); each [**Node**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) has its own siblings, parent, and child navigation properties.
+A **TreeView** is a hierarchical display of [**Node**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) objects organized into a tree. Each node can be expanded or collapsed, optionally has a checkbox, and references an icon from an associated [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/). The collection of nodes is accessed through [**Nodes**](#nodes); each [**Node**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) has its own siblings, parent, and child navigation properties.
 
 ```vb
 Private Sub Form_Load()
@@ -54,7 +54,7 @@ Toggling either flag triggers an immediate sort. New nodes added after a node ha
 
 ## Image lists and image references
 
-Bind an [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) through [**ImageList**](#imagelist). Each [**Node**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) references icons through [**Image**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node#image) (rendered when the node is not selected) and [**SelectedImage**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node#selectedimage) (rendered when the node is selected); either accepts a 1-based **Long** index or a **String** key into the bound image list. Omitting [**SelectedImage**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node#selectedimage) defaults the selected icon to the same as [**Image**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node#image).
+Bind an [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) through [**ImageList**](#imagelist). Each [**Node**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) references icons through [**Image**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node#image) (rendered when the node is not selected) and [**SelectedImage**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node#selectedimage) (rendered when the node is selected); either accepts a 1-based **Long** index or a **String** key into the bound image list. Omitting [**SelectedImage**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node#selectedimage) defaults the selected icon to the same as [**Image**](/en/official/Reference/WinNativeCommonCtls/TreeView/Node#image).
 
 ## Checkboxes
 
@@ -101,7 +101,7 @@ The Win32 handle of the currently editing label's textbox window, or `0`. **Long
 
 ### ImageList
 
-The [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) used for node icons. Assignment increments the **ImageList**'s bound-count.
+The [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) used for node icons. Assignment increments the **ImageList**'s bound-count.
 
 ### Indentation
 
@@ -285,6 +285,6 @@ Inherited validation event.
 
 - [Node](/en/official/Reference/WinNativeCommonCtls/TreeView/Node) -- a single node in the tree
 - [Nodes](/en/official/Reference/WinNativeCommonCtls/TreeView/Nodes) -- the collection of nodes
-- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList) -- the picture source for node icons
+- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList/) -- the picture source for node icons
 - [TreeBorderStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants), [TreeLabelEditConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants), [TreeLineStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants), [TreeStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants), [TreeRelationshipConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants), [TreeSortOrderConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants), [TreeSortTypeConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) -- the seven user-facing TreeView enums
 - [ControlTypeConstants](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbTreeView** lives

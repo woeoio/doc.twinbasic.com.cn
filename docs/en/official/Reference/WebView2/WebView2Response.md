@@ -5,7 +5,7 @@ permalink: /tB/Packages/WebView2/WebView2Response
 ---
 
 # WebView2Response class
-The response side of a [**WebResourceRequested**](/en/official/Reference/WebView2/WebView2#webresourcerequested) event. Fill in any of [**StatusCode**](#statuscode), [**ReasonPhrase**](#reasonphrase), [**Headers**](#headers), or one of the content properties, and the runtime returns that synthesised response to the page instead of going to the network.
+The response side of a [**WebResourceRequested**](/en/official/Reference/WebView2/WebView2/#webresourcerequested) event. Fill in any of [**StatusCode**](#statuscode), [**ReasonPhrase**](#reasonphrase), [**Headers**](#headers), or one of the content properties, and the runtime returns that synthesised response to the page instead of going to the network.
 
 If the event handler does not touch the response (no property is written), the runtime falls through to its normal fetch --- the pending request continues unchanged.
 

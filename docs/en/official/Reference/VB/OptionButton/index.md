@@ -8,7 +8,7 @@ permalink: /tB/Packages/VB/OptionButton/
 
 An **OptionButton** is a Win32 native control that displays a small round selector, optionally followed by a text caption, used to give the user a single choice within a group of related options. Option buttons that share a [**Container**](#container) form a *mutually exclusive group*: selecting one automatically clears every other option button in the same container.
 
-The control is normally placed on a [**Form**](/en/official/Reference/VB/Form), [**Frame**](/en/official/Reference/VB/Frame), or **UserControl** at design time. The default property is [**Value**](#value) and the default event is [**Click**](#click).
+The control is normally placed on a [**Form**](/en/official/Reference/VB/Form/), [**Frame**](/en/official/Reference/VB/Frame/), or **UserControl** at design time. The default property is [**Value**](#value) and the default event is [**Click**](#click).
 
 ```vb
 Private Sub Form_Load()
@@ -26,7 +26,7 @@ End Sub
 
 ## Mutual exclusion
 
-Setting [**Value**](#value) to **True** on one option button clears every other option button whose [**Container**](#container) is the same control --- typically the parent form or a [**Frame**](/en/official/Reference/VB/Frame). Option buttons in sibling frames are not affected, so a single form can host any number of independent groups: drop the buttons that belong to one group onto a frame, and the buttons that belong to a different group onto another frame (or directly onto the form).
+Setting [**Value**](#value) to **True** on one option button clears every other option button whose [**Container**](#container) is the same control --- typically the parent form or a [**Frame**](/en/official/Reference/VB/Frame/). Option buttons in sibling frames are not affected, so a single form can host any number of independent groups: drop the buttons that belong to one group onto a frame, and the buttons that belong to a different group onto another frame (or directly onto the form).
 
 ```vb
 ' Two independent groups on one form:
@@ -88,7 +88,7 @@ Determines whether the previously focused control's [**Validate**](#validate) ev
 
 ### Container
 
-The control that hosts this option button --- typically a [**Frame**](/en/official/Reference/VB/Frame) or the parent form. Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the option button into a different group; it is automatically excluded from the old group's mutual-exclusion set and included in the new one.
+The control that hosts this option button --- typically a [**Frame**](/en/official/Reference/VB/Frame/) or the parent form. Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the option button into a different group; it is automatically excluded from the old group's mutual-exclusion set and included in the new one.
 
 ### ControlType
 
@@ -178,7 +178,7 @@ The number of pixels of empty space inserted between the picture and the caption
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent --- for an option button placed inside a [**Frame**](/en/official/Reference/VB/Frame), **Container** returns the frame and **Parent** returns the form.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent --- for an option button placed inside a [**Frame**](/en/official/Reference/VB/Frame/), **Container** returns the frame and **Parent** returns the form.
 
 ### Picture
 

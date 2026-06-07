@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/WebView2/Enumerations/wv2WebResourceContext
 ---
 # wv2WebResourceContext
-The kind of HTTP request a filter should match when registered with [**AddWebResourceRequestedFilter**](/en/official/Reference/WebView2/WebView2#addwebresourcerequestedfilter) (or removed with [**RemoveWebResourceRequestedFilter**](/en/official/Reference/WebView2/WebView2#removewebresourcerequestedfilter)). Mirrors the `COREWEBVIEW2_WEB_RESOURCE_CONTEXT` enumeration.
+The kind of HTTP request a filter should match when registered with [**AddWebResourceRequestedFilter**](/en/official/Reference/WebView2/WebView2/#addwebresourcerequestedfilter) (or removed with [**RemoveWebResourceRequestedFilter**](/en/official/Reference/WebView2/WebView2/#removewebresourcerequestedfilter)). Mirrors the `COREWEBVIEW2_WEB_RESOURCE_CONTEXT` enumeration.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

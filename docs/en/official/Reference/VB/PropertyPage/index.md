@@ -8,7 +8,7 @@ permalink: /tB/Packages/VB/PropertyPage/
 
 A **PropertyPage** is a container that backs a single tab of a COM property-page dialog --- the popup invoked from the **(Custom)** entry on an ActiveX control's property browser. It exposes the **IPropertyPage2** COM interface so that any host that supports ActiveX property pages (the twinBASIC IDE, classic VB6, Office, …) can place it inside its own property-sheet frame, give it the controls the user is editing, and apply the page's changes back to them.
 
-Designing a property page is much like designing a small dialog [**Form**](/en/official/Reference/VB/Form): drop child controls onto it, write event handlers, and use its drawing surface freely. What sets it apart is the lifecycle, which is controlled by the host rather than by the application:
+Designing a property page is much like designing a small dialog [**Form**](/en/official/Reference/VB/Form/): drop child controls onto it, write event handlers, and use its drawing surface freely. What sets it apart is the lifecycle, which is controlled by the host rather than by the application:
 
 1. The host instantiates the property-page class once per dialog.
 2. The host calls **IPropertyPage2.SetObjects** to pass the selected ActiveX controls. The framework stores them in [**SelectedControls**](#selectedcontrols) and raises [**SelectionChanged**](#selectionchanged).
@@ -57,7 +57,7 @@ The VB6 property-page dialog frame draws each tab at one of two standard sizes -
 
 A **PropertyPage** is a graphics surface in its own right. The full set of VB6 drawing primitives --- [**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and the [**Print**](#print) statement --- write to its device context, using [**ForeColor**](#forecolor), [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle), [**DrawWidth**](#drawwidth), [**DrawMode**](#drawmode), and [**DrawStyle**](#drawstyle) for the pen and fill, and [**Font**](#font) for text. The current pen position is tracked by [**CurrentX**](#currentx) and [**CurrentY**](#currenty); [**TextWidth**](#textwidth) and [**TextHeight**](#textheight) measure a string in the current font; [**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert single coordinates between scale modes.
 
-The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/en/official/Reference/VB/Form). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the page keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
+The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/en/official/Reference/VB/Form/). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the page keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
 
 ## Controls and containers
 

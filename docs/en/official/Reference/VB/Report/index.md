@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Report/
 
 # Report class
 
-A **Report** is a top-level Win32 window --- much like a [**Form**](/en/official/Reference/VB/Form) --- specialised for rendering the print preview of a banded report. Each report designed in the IDE becomes its own class derived from **Report**: its sections (report header / page header / detail / page footer / report footer) and the controls placed in them become members of that class. At run time, code assigns a recordset to [**Recordset**](#recordset), calls [**Show**](#show), and the framework iterates the recordset, evaluates expressions on the controls, and paints the resulting pages into a built-in preview window with a navigation toolbar at the bottom. [**PrintReport**](#printreport) sends the same pages to the printer. The default property is [**Controls**](#controls) and the default event is [**Load**](#load).
+A **Report** is a top-level Win32 window --- much like a [**Form**](/en/official/Reference/VB/Form/) --- specialised for rendering the print preview of a banded report. Each report designed in the IDE becomes its own class derived from **Report**: its sections (report header / page header / detail / page footer / report footer) and the controls placed in them become members of that class. At run time, code assigns a recordset to [**Recordset**](#recordset), calls [**Show**](#show), and the framework iterates the recordset, evaluates expressions on the controls, and paints the resulting pages into a built-in preview window with a navigation toolbar at the bottom. [**PrintReport**](#printreport) sends the same pages to the printer. The default property is [**Controls**](#controls) and the default event is [**Load**](#load).
 
 ```vb
 ' In the report's code-behind (rptSales):
@@ -34,19 +34,19 @@ A report is composed of up to five sections, laid out vertically on each page:
 | **PageFooter**   | At the bottom of every page.                                   |
 | **ReportFooter** | Once, at the end of the last page after the final detail row.  |
 
-Sections are designed in the IDE --- each is a container that holds [**Label**](/en/official/Reference/VB/Label), [**Image**](/en/official/Reference/VB/Image), [**QRCode**](/en/official/Reference/VB/QRCode), and other controls. A section's `KeepTogether` property prevents it from splitting across a page break; its `BackStyle` and back colour control the section background; the framework picks an alternating-row colour for the detail section automatically when the section requests it.
+Sections are designed in the IDE --- each is a container that holds [**Label**](/en/official/Reference/VB/Label/), [**Image**](/en/official/Reference/VB/Image/), [**QRCode**](/en/official/Reference/VB/QRCode/), and other controls. A section's `KeepTogether` property prevents it from splitting across a page break; its `BackStyle` and back colour control the section background; the framework picks an alternating-row colour for the detail section automatically when the section requests it.
 
 ## Recordset binding
 
 [**Recordset**](#recordset) accepts any object that exposes the classic ADO/DAO interface --- `EOF`, `MoveNext`, and a `Fields` collection indexable by name. The framework wraps non-tB recordsets transparently. `Recordset` may also be left **Nothing**, in which case the detail section is rendered exactly once with no field data.
 
-A control in a section opts into binding by setting its `DataField` to a recordset field name; the framework reads that field for each detail row and writes it back into the control's value (or [**Caption**](/en/official/Reference/VB/Label#caption) for [**Label**](/en/official/Reference/VB/Label)s, **Payload** for [**QRCode**](/en/official/Reference/VB/QRCode)). For richer cases, prefix `DataField` with `=` to make it an *expression* --- any twinBASIC expression that mixes recordset fields, the report's own [**Page**](#page) / [**Pages**](#pages) / [**Caption**](#caption), and standard library calls. A label whose **DataField** is `="Page " & Report.Page & " of " & Report.Pages` updates itself as each page is rendered.
+A control in a section opts into binding by setting its `DataField` to a recordset field name; the framework reads that field for each detail row and writes it back into the control's value (or [**Caption**](/en/official/Reference/VB/Label/#caption) for [**Label**](/en/official/Reference/VB/Label/)s, **Payload** for [**QRCode**](/en/official/Reference/VB/QRCode/)). For richer cases, prefix `DataField` with `=` to make it an *expression* --- any twinBASIC expression that mixes recordset fields, the report's own [**Page**](#page) / [**Pages**](#pages) / [**Caption**](#caption), and standard library calls. A label whose **DataField** is `="Page " & Report.Page & " of " & Report.Pages` updates itself as each page is rendered.
 
-When **DataField** is empty and a [**Label**](/en/official/Reference/VB/Label)'s [**Caption**](/en/official/Reference/VB/Label#caption) contains `%`-placeholders, those placeholders are converted to an expression automatically --- see [Caption placeholders](#caption-placeholders) below. Setting `DataFieldAggregate` on a Label additionally accumulates the expression's value across rows for running totals.
+When **DataField** is empty and a [**Label**](/en/official/Reference/VB/Label/)'s [**Caption**](/en/official/Reference/VB/Label/#caption) contains `%`-placeholders, those placeholders are converted to an expression automatically --- see [Caption placeholders](#caption-placeholders) below. Setting `DataFieldAggregate` on a Label additionally accumulates the expression's value across rows for running totals.
 
 ## Caption placeholders
 
-Inside a Label that has no **DataField**, the following `%` placeholders in the [**Caption**](/en/official/Reference/VB/Label#caption) are recognised and replaced at render time:
+Inside a Label that has no **DataField**, the following `%` placeholders in the [**Caption**](/en/official/Reference/VB/Label/#caption) are recognised and replaced at render time:
 
 | Placeholder | Replaced with                                                          |
 |-------------|------------------------------------------------------------------------|
@@ -110,7 +110,7 @@ The graphics primitives inherited from the form-style drawing surface ([**Cls**]
 
 ## Printing
 
-[**PrintReport**](#printreport) iterates from page 1 to the last page through the [**Printer**](/en/official/Reference/VB/Printer) object, sending each cached metafile as one printed page.
+[**PrintReport**](#printreport) iterates from page 1 to the last page through the [**Printer**](/en/official/Reference/VB/Printer/) object, sending each cached metafile as one printed page.
 
 ```vb
 rptSales.PrintReport ShowDialog:=False
@@ -130,7 +130,7 @@ Retained for VB6 compatibility; the property has no observable effect on a repor
 
 ### AutoRedraw
 
-Whether drawing performed on the report's window persists across invalidations. **Boolean**, default **False**. Reports normally rely on per-section painting through [**BeforePaintSection**](#beforepaintsection), so this property is rarely useful; it is provided for parity with [**Form**](/en/official/Reference/VB/Form).
+Whether drawing performed on the report's window persists across invalidations. **Boolean**, default **False**. Reports normally rely on per-section painting through [**BeforePaintSection**](#beforepaintsection), so this property is rarely useful; it is provided for parity with [**Form**](/en/official/Reference/VB/Form/).
 
 ### BackColor
 
@@ -274,7 +274,7 @@ The maximum width of the report window's *client area*, in twips. **Double**, de
 
 ### MDIChild
 
-When **True**, the report is hosted as a child inside an [**MDIForm**](/en/official/Reference/VB/MDIForm). **Boolean**, read-only --- set at design time. An MDI child report cannot be shown modally.
+When **True**, the report is hosted as a child inside an [**MDIForm**](/en/official/Reference/VB/MDIForm/). **Boolean**, read-only --- set at design time. An MDI child report cannot be shown modally.
 
 ### MinButton
 
@@ -557,7 +557,7 @@ To send a report to the printer, use [**PrintReport**](#printreport) --- not **P
 
 ### PrintReport
 
-Sends every page of the report to the [**Printer**](/en/official/Reference/VB/Printer) object. Iterates from page 1 to the last page, generating each cached metafile in turn.
+Sends every page of the report to the [**Printer**](/en/official/Reference/VB/Printer/) object. Iterates from page 1 to the last page, generating each cached metafile in turn.
 
 Syntax: *object*.**PrintReport** [ *ShowDialog* [, *Range* [, *PageFrom* [, *PageTo* ] ] ] ]
 

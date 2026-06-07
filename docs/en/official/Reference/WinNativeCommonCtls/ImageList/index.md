@@ -5,7 +5,7 @@ permalink: /tB/Packages/WinNativeCommonCtls/ImageList/
 ---
 
 # ImageList class
-An **ImageList** is an off-screen container for pictures, all of which are scaled to the same [**ImageWidth**](#imagewidth) × [**ImageHeight**](#imageheight) bitmap size. The control has no visible representation at run time --- its purpose is to feed icons to other controls that consume them through their [**Icons**](/en/official/Reference/WinNativeCommonCtls/ListView#icons), [**SmallIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#smallicons), [**ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#columnheadericons), or [**ImageList**](/en/official/Reference/WinNativeCommonCtls/TreeView#imagelist) properties.
+An **ImageList** is an off-screen container for pictures, all of which are scaled to the same [**ImageWidth**](#imagewidth) × [**ImageHeight**](#imageheight) bitmap size. The control has no visible representation at run time --- its purpose is to feed icons to other controls that consume them through their [**Icons**](/en/official/Reference/WinNativeCommonCtls/ListView/#icons), [**SmallIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#smallicons), [**ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons), or [**ImageList**](/en/official/Reference/WinNativeCommonCtls/TreeView/#imagelist) properties.
 
 ```vb
 Private Sub Form_Load()
@@ -39,7 +39,7 @@ Setting [**ColorDepth**](#colordepth) to **ColorDepth32Bit** disables masking en
 
 ## Binding to consumers
 
-When an **ImageList** is bound to a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView) (through [**Icons**](/en/official/Reference/WinNativeCommonCtls/ListView#icons), [**SmallIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#smallicons), or [**ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#columnheadericons)) or a [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView) (through [**ImageList**](/en/official/Reference/WinNativeCommonCtls/TreeView#imagelist)), the consuming control increments the **ImageList**'s internal bound-count. While the bound-count is non-zero, attempts to call [**ListImages.Clear**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages#clear) or [**ListImages.Remove**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages#remove) raise run-time error 35617 (*"ImageList cannot be modified while another control is bound to it"*). To modify the contents, first unbind by setting the consuming control's image-list property to **Nothing**.
+When an **ImageList** is bound to a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView/) (through [**Icons**](/en/official/Reference/WinNativeCommonCtls/ListView/#icons), [**SmallIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#smallicons), or [**ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons)) or a [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView/) (through [**ImageList**](/en/official/Reference/WinNativeCommonCtls/TreeView/#imagelist)), the consuming control increments the **ImageList**'s internal bound-count. While the bound-count is non-zero, attempts to call [**ListImages.Clear**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages#clear) or [**ListImages.Remove**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages#remove) raise run-time error 35617 (*"ImageList cannot be modified while another control is bound to it"*). To modify the contents, first unbind by setting the consuming control's image-list property to **Nothing**.
 
 Properties
 ----------
@@ -99,7 +99,7 @@ Returns an **StdPicture** of type **vbPicTypeIcon** suitable for direct renderin
 
 ## ImageListColorDepth
 
-Determines the pixel depth of the bitmap storage in an [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList). Declared on the **ImageList** class.
+Determines the pixel depth of the bitmap storage in an [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/). Declared on the **ImageList** class.
 
 | Member                  | Value | Description                                                  |
 |-------------------------|-------|--------------------------------------------------------------|
@@ -114,6 +114,6 @@ Determines the pixel depth of the bitmap storage in an [**ImageList**](/en/offic
 - [ListImage](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImage) -- one picture in the list
 - [ListImages](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages) -- the collection holding the pictures
 - [ImlDrawConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants) -- the *Style* parameter for [**ListImage.Draw**](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImage#draw)
-- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView) -- a typical consumer through [**Icons**](/en/official/Reference/WinNativeCommonCtls/ListView#icons), [**SmallIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#smallicons), [**ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#columnheadericons)
-- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView) -- a typical consumer through [**ImageList**](/en/official/Reference/WinNativeCommonCtls/TreeView#imagelist)
+- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView/) -- a typical consumer through [**Icons**](/en/official/Reference/WinNativeCommonCtls/ListView/#icons), [**SmallIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#smallicons), [**ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons)
+- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView/) -- a typical consumer through [**ImageList**](/en/official/Reference/WinNativeCommonCtls/TreeView/#imagelist)
 - [ControlTypeConstants](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbImageList** lives

@@ -6,7 +6,7 @@ permalink: /tB/Packages/CustomControls/Enumerations/
 
 # Enumerations
 
-The enumerations used by the **CustomControls** package's properties and style objects. All live in `Module Constants` inside the **CustomControls DESIGNER** library, with the exception of the [**SliderDirection**](/en/official/Reference/CustomControls/WaynesSlider#sliderdirection) and [**SliderDisplayValueFormat**](/en/official/Reference/CustomControls/WaynesSlider#sliderdisplayvalueformat) enums nested inside the **WaynesSlider** control.
+The enumerations used by the **CustomControls** package's properties and style objects. All live in `Module Constants` inside the **CustomControls DESIGNER** library, with the exception of the [**SliderDirection**](/en/official/Reference/CustomControls/WaynesSlider/#sliderdirection) and [**SliderDisplayValueFormat**](/en/official/Reference/CustomControls/WaynesSlider/#sliderdisplayvalueformat) enums nested inside the **WaynesSlider** control.
 
 | Enumeration | Used by |
 |-------------|---------|

@@ -1,3 +1,47 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0abaf500-9380-4f24-a156-24728802fe39'
+  PropagateID: '0abaf500-9380-4f24-a156-24728802fe39'
+  ReservedCode1: '1217f2e1-1eab-4e31-aafc-32a4fb5a52a7'
+  ReservedCode2: '1217f2e1-1eab-4e31-aafc-32a4fb5a52a7'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
+  PropagateID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
+  ReservedCode1: '57360a3f-f666-473c-b69e-d0cd03fb315e'
+  ReservedCode2: '57360a3f-f666-473c-b69e-d0cd03fb315e'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
+  PropagateID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
+  ReservedCode1: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
+  ReservedCode2: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9a9bc399-d375-4810-9128-80db332db001'
+  PropagateID: '9a9bc399-d375-4810-9128-80db332db001'
+  ReservedCode1: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
+  ReservedCode2: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
+---
+
 ---
 title: HtmlElement
 parent: tbIDE Package
@@ -18,7 +62,7 @@ With myToolWindow.RootDomElement.ChildDomElements.Add("greeting", "h1")
 End With
 ```
 
-The element's *properties* --- every CSS-style property, every DOM attribute, every custom-widget extension --- live inside the [**Properties**](#properties) bag, accessed through a dynamic resolution mechanism. See [Dynamic DOM property resolution](/en/official/Reference/tbIDE#dynamic-dom-property-resolution) on the package overview for the underlying mechanism that makes `.style.textAlign = "center"` work without a statically-declared `style` member.
+The element's *properties* --- every CSS-style property, every DOM attribute, every custom-widget extension --- live inside the [**Properties**](#properties) bag, accessed through a dynamic resolution mechanism. See [Dynamic DOM property resolution](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution) on the package overview for the underlying mechanism that makes `.style.textAlign = "center"` work without a statically-declared `style` member.
 
 
 ## Properties
@@ -35,7 +79,7 @@ The unique ID assigned to the element when it was created via [**HtmlElements.Ad
 
 The element's dynamic property bag --- every DOM property, every CSS-style property, every custom-widget extension lives here. **As** [**HtmlElementProperties**](/en/official/Reference/tbIDE/HtmlElementProperties). **DefaultMember** --- so `element.<name>` is equivalent to `element.Properties.<name>`.
 
-The bag is [`[COMExtensible(True)]`](.#dynamic-dom-property-resolution): property names are resolved against the DOM element at run time, so the accepted set is everything the underlying tag supports --- refer to MDN for standard DOM properties, and to the custom-widget documentation (Chart.js, Monaco, …) for the widget-specific properties.
+The bag is [`[COMExtensible(True)]`](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution): property names are resolved against the DOM element at run time, so the accepted set is everything the underlying tag supports --- refer to MDN for standard DOM properties, and to the custom-widget documentation (Chart.js, Monaco, …) for the widget-specific properties.
 
 ## Methods
 
@@ -95,3 +139,11 @@ raiseEvent(eventName, event, stopPropagation, ...customData)
 Removes the element from the DOM. Any child elements are removed with it. Any event listeners registered on this element are released.
 
 Syntax: *element*.**Remove**
+
+> AI生成
+
+> AI生成
+
+> AI生成
+
+> AI生成

@@ -22,7 +22,7 @@ End With
 If InStr(Command, "-startService") > 0 Then Services.RunServiceDispatcher
 ```
 
-See the package [overview](/en/official/Reference/WinServicesLib) for the broader lifecycle, the [**two-thread split**](/en/official/Reference/WinServicesLib#two-thread-split), and the elevation rules around installation.
+See the package [overview](/en/official/Reference/WinServicesLib/) for the broader lifecycle, the [**two-thread split**](/en/official/Reference/WinServicesLib/#two-thread-split), and the elevation rules around installation.
 
 ## Methods
 
@@ -190,7 +190,7 @@ The enumeration order is insertion order --- services appear in the order they w
 
 ## See Also
 
-- [WinServicesLib package](/en/official/Reference/WinServicesLib) -- overview, lifecycle, two-thread split, integration with WinEventLogLib / WinNamedPipesLib
+- [WinServicesLib package](/en/official/Reference/WinServicesLib/) -- overview, lifecycle, two-thread split, integration with WinEventLogLib / WinNamedPipesLib
 - [ServiceManager class](/en/official/Reference/WinServicesLib/ServiceManager) -- the per-service configuration object **ConfigureNew** returns
 - [ServiceState class](/en/official/Reference/WinServicesLib/ServiceState) -- the state snapshot **QueryStateOfService** returns
 - [ServiceControlCodeConstants enum](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) -- the codes accepted by **ControlService**

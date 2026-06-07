@@ -35,7 +35,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 ```
 
-See the package [overview](/en/official/Reference/WinNamedPipesLib) for the IOCP / event-marshalling architecture, the cookie correlation pattern, and the transient lifetime of `Data() As Byte` inside events.
+See the package [overview](/en/official/Reference/WinNamedPipesLib/) for the IOCP / event-marshalling architecture, the cookie correlation pattern, and the transient lifetime of `Data() As Byte` inside events.
 
 ## Properties
 
@@ -75,7 +75,7 @@ Syntax: *connection*_**MessageReceived**(**ByRef** *Cookie* **As Variant**, **By
 : The opaque correlation value originally passed to the [**AsyncRead**](#asyncread) that produced this read --- or **Empty** if the read came from the auto-issued reads triggered by [**NamedPipeClientManager.ContinuouslyReadFromPipe**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager#continuouslyreadfrompipe).
 
 *Data*
-: The message payload. See [Working with `Data() As Byte` in events](/en/official/Reference/WinNamedPipesLib#working-with-data-as-byte-in-events) on the package overview for the transient-buffer lifetime caveat --- copy the bytes out before the handler returns if they are needed later. The [recommended capture mechanism](/en/official/Reference/WinNamedPipesLib#propertybag-carrier) is to assign *Data* to a fresh [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag)'s **Contents**, which deep-copies the bytes and provides typed multi-field access in one step.
+: The message payload. See [Working with `Data() As Byte` in events](/en/official/Reference/WinNamedPipesLib/#working-with-data-as-byte-in-events) on the package overview for the transient-buffer lifetime caveat --- copy the bytes out before the handler returns if they are needed later. The [recommended capture mechanism](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) is to assign *Data* to a fresh [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/)'s **Contents**, which deep-copies the bytes and provides typed multi-field access in one step.
 
 ### MessageSent
 
@@ -119,7 +119,7 @@ Sends a message to the server.
 Syntax: *connection*.**AsyncWrite** *Data*() [, *Cookie* ]
 
 *Data*
-: *required* A **Byte()** array containing the bytes to send. An uninitialised or zero-length array is a no-op. For typed multi-field payloads the recommended encoding is [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag) --- see [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib#propertybag-carrier) on the package overview.
+: *required* A **Byte()** array containing the bytes to send. An uninitialised or zero-length array is a no-op. For typed multi-field payloads the recommended encoding is [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) --- see [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) on the package overview.
 
 *Cookie*
 : *optional* A **Variant** correlation value, passed back as the *Cookie* parameter of the matching [**MessageSent**](#messagesent) event. Default **Empty**.
@@ -128,7 +128,7 @@ Returns immediately; the actual transmission runs through the IOCP loop. The com
 
 ## See Also
 
-- [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, the **AsyncClose** rule
-- [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib#propertybag-carrier) -- the deep-copy capture pattern for transient *Data* in events
+- [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib/) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, the **AsyncClose** rule
+- [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- the deep-copy capture pattern for transient *Data* in events
 - [NamedPipeClientManager class](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager) -- the manager that produced this connection
 - [NamedPipeServerConnection class](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) -- the server-side counterpart

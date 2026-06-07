@@ -34,4 +34,4 @@ The field's value, as a **Variant**. **DefaultMember** --- so `eventInfo.key` de
 
 Syntax: *property* **As Variant**
 
-The interface is **`[COMExtensible(True)]`** --- see [Dynamic DOM property resolution](/en/official/Reference/tbIDE#dynamic-dom-property-resolution) on the package overview. Field names that route through [**Properties**](#properties) are resolved against the live event object at run time, not declared statically.
+The interface is **`[COMExtensible(True)]`** --- see [Dynamic DOM property resolution](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution) on the package overview. Field names that route through [**Properties**](#properties) are resolved against the live event object at run time, not declared statically.

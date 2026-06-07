@@ -6,7 +6,7 @@ permalink: /tB/Packages/CEF/CefBrowser/
 
 # CefBrowser class
 
-A **CefBrowser** is a twinBASIC control that hosts the Chromium Embedded Framework --- drop one onto a [**Form**](/en/official/Reference/VB/Form) and Chromium renders web content inside its rectangle. Application code can navigate to URLs, run JavaScript, exchange messages with the loaded page, register virtual-host folders, and print the document to PDF.
+A **CefBrowser** is a twinBASIC control that hosts the Chromium Embedded Framework --- drop one onto a [**Form**](/en/official/Reference/VB/Form/) and Chromium renders web content inside its rectangle. Application code can navigate to URLs, run JavaScript, exchange messages with the loaded page, register virtual-host folders, and print the document to PDF.
 
 The control spawns a separate browser process the first time it is used in a session and communicates with it across an IPC channel; many properties and methods raise *"CefBrowser control is not ready"* (run-time error 5) when called before the [**Ready**](#ready) event has fired.
 
@@ -25,7 +25,7 @@ Private Sub CefBrowser1_NavigationComplete( _
 End Sub
 ```
 
-The control inherits the rect-dockable members (size, layout, **Anchors**, **Dock**) from `BaseControlRectDockable`. It does *not* inherit a focusable layer, so the keyboard / mouse / focus events available on [**WebView2**](/en/official/Reference/WebView2/WebView2) are not part of its API --- keystrokes go straight into the page once Chromium has focus.
+The control inherits the rect-dockable members (size, layout, **Anchors**, **Dock**) from `BaseControlRectDockable`. It does *not* inherit a focusable layer, so the keyboard / mouse / focus events available on [**WebView2**](/en/official/Reference/WebView2/WebView2/) are not part of its API --- keystrokes go straight into the page once Chromium has focus.
 
 
 ## Lifecycle
@@ -78,7 +78,7 @@ Whether the browsing history has an entry ahead of the current document. **Boole
 
 ### CefMajorVersion
 
-The CEF runtime major-version number selected at compile time (`49`, `109`, or `145`). **Long**. Read-only. Resolves from the `CEF_VERSION` conditional-compilation argument on the compiler-package reference --- see [Supported runtimes](/en/official/Reference/CEF#supported-runtimes).
+The CEF runtime major-version number selected at compile time (`49`, `109`, or `145`). **Long**. Read-only. Resolves from the `CEF_VERSION` conditional-compilation argument on the compiler-package reference --- see [Supported runtimes](/en/official/Reference/CEF/#supported-runtimes).
 
 ### Container
 
@@ -505,6 +505,6 @@ End Sub
 - [CefEnvironmentOptions](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions) -- pre-creation configuration exposed through [**EnvironmentOptions**](#environmentoptions)
 - [CefLogSeverity](/en/official/Reference/CEF/Enumerations/CefLogSeverity) -- the verbosity threshold for the CEF debug log
 - [cefPrintOrientation](/en/official/Reference/CEF/Enumerations/cefPrintOrientation) -- page orientation passed to [**PrintToPdf**](#printtopdf)
-- [WebView2](/en/official/Reference/WebView2/WebView2) -- the WebView2-runtime counterpart with a larger feature set
-- [WebView2 parity](/en/official/Reference/CEF#webview2-parity) -- features available on **WebView2** that are not yet exposed on **CefBrowser**
+- [WebView2](/en/official/Reference/WebView2/WebView2/) -- the WebView2-runtime counterpart with a larger feature set
+- [WebView2 parity](/en/official/Reference/CEF/#webview2-parity) -- features available on **WebView2** that are not yet exposed on **CefBrowser**
 - [ControlTypeConstants](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbCefBrowser** lives

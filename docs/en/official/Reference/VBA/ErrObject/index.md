@@ -28,7 +28,7 @@ The properties are reset to their zero values when the handler exits via **Resum
 
 ## Raising a custom error
 
-Code can generate its own run-time error by calling [**Raise**](/en/official/Reference/VBA/ErrObject/Raise). Custom error numbers should be biased by [**vbObjectError**](/en/official/Reference/VBA/Constants#vbObjectError) so that they don't collide with twinBASIC's built-in numbers. Setting [**Source**](/en/official/Reference/VBA/ErrObject/Source) and [**Description**](/en/official/Reference/VBA/ErrObject/Description) at the call site gives the error handler something useful to inspect or display.
+Code can generate its own run-time error by calling [**Raise**](/en/official/Reference/VBA/ErrObject/Raise). Custom error numbers should be biased by [**vbObjectError**](/en/official/Reference/VBA/Constants/#vbObjectError) so that they don't collide with twinBASIC's built-in numbers. Setting [**Source**](/en/official/Reference/VBA/ErrObject/Source) and [**Description**](/en/official/Reference/VBA/ErrObject/Description) at the call site gives the error handler something useful to inspect or display.
 
 ```vb
 Public Sub WithdrawCash(ByVal Amount As Currency)

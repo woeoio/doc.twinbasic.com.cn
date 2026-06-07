@@ -14,7 +14,7 @@ Syntax:
 *errorNumber*
 : A **Long** error code to assign to the **Err** object. When read, **Number** returns the current error code, or **0** if no error is active.
 
-When returning a user-defined error from an object, set **Err.Number** by adding the chosen error code to the [**vbObjectError**](/en/official/Reference/VBA/Constants#vbObjectError) constant. For example, the following code returns 1051 as an error code:
+When returning a user-defined error from an object, set **Err.Number** by adding the chosen error code to the [**vbObjectError**](/en/official/Reference/VBA/Constants/#vbObjectError) constant. For example, the following code returns 1051 as an error code:
 
 ```vb
 Err.Raise Number:=vbObjectError + 1051, Source:="SomeClass"

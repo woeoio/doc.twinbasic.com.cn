@@ -8,7 +8,7 @@ permalink: /tB/Packages/VB/QRCode/
 
 A **QRCode** is a windowless lightweight control that renders a QR code generated from its [**Payload**](#payload) --- a URL, plain text, or a raw byte array. The encoding is performed in-process by the embedded `qrcodegen` library and the resulting matrix is painted directly on the parent at design time and at run time. The picture is regenerated automatically whenever any of the encoding properties changes, so a QR control can be wired up declaratively to data bindings or to other UI state with no plumbing.
 
-Like [**Image**](/en/official/Reference/VB/Image), a QRCode has no `hWnd` and is not focusable. It is the right choice for embedding a scannable code in a form (login, payment, Wi-Fi credentials, contact card, app deep link, etc.) without paying for a heavy [**PictureBox**](/en/official/Reference/VB/PictureBox).
+Like [**Image**](/en/official/Reference/VB/Image/), a QRCode has no `hWnd` and is not focusable. It is the right choice for embedding a scannable code in a form (login, payment, Wi-Fi credentials, contact card, app deep link, etc.) without paying for a heavy [**PictureBox**](/en/official/Reference/VB/PictureBox/).
 
 The default property is [**Picture**](#picture) (the read-only generated image) and the default event is [**Click**](#click).
 
@@ -33,7 +33,7 @@ A **QRCode** has no `hWnd`. The framework paints it directly onto its parent's d
 - No `hWnd` to pass to API functions, and no `SetFocus`.
 - Cannot host child controls.
 
-For a QR code that needs any of those, host the **QRCode** inside a [**PictureBox**](/en/official/Reference/VB/PictureBox) or [**Frame**](/en/official/Reference/VB/Frame) and put the focusable controls next to it.
+For a QR code that needs any of those, host the **QRCode** inside a [**PictureBox**](/en/official/Reference/VB/PictureBox/) or [**Frame**](/en/official/Reference/VB/Frame/) and put the focusable controls next to it.
 
 ## Encoding the payload
 
@@ -81,7 +81,7 @@ A **QRCode** supports both ends of an OLE drag-drop operation:
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control to a field of a [**Data**](/en/official/Reference/VB/Data) control's recordset. Binding is asymmetric:
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control to a field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset. Binding is asymmetric:
 
 - *Inbound* (recordset → control): non-null, non-empty field values are interpreted as text and assigned to [**Payload**](#payload); the QR is then re-encoded and repainted. Null and empty values clear [**Picture**](#picture) to **Nothing**.
 - *Outbound* (control → recordset): the current QR [**Picture**](#picture) is serialised as a byte array and written back to the bound field --- useful for storing a snapshot of the rendered code, but note that what comes out of the binding is not the same as what went in.
@@ -102,11 +102,11 @@ The style of border drawn around the rectangle. A member of [**ControlBorderStyl
 
 ### Container
 
-The control that hosts this **QRCode** --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), a [**PictureBox**](/en/official/Reference/VB/PictureBox), or a **UserControl**. Read with **Get**, change with **Set**.
+The control that hosts this **QRCode** --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), a [**PictureBox**](/en/official/Reference/VB/PictureBox/), or a **UserControl**. Read with **Get**, change with **Set**.
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying the underlying control kind. Always **vbImage** --- the QRCode shares its control-type tag with [**Image**](/en/official/Reference/VB/Image).
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying the underlying control kind. Always **vbImage** --- the QRCode shares its control-type tag with [**Image**](/en/official/Reference/VB/Image/).
 
 ### DataChanged
 
@@ -126,7 +126,7 @@ When the [**DataSource**](#datasource) exposes more than one recordset, the name
 
 ### DataSource
 
-A reference to a [**Data**](/en/official/Reference/VB/Data) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### Dock
 
@@ -215,7 +215,7 @@ How the control responds to OLE drops arriving on it. A restricted member of [**
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains the control. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the control. Read-only.
 
 ### Payload
 

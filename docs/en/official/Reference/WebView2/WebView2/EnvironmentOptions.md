@@ -5,9 +5,9 @@ permalink: /tB/Packages/WebView2/WebView2/EnvironmentOptions
 ---
 
 # WebView2EnvironmentOptions class
-Holds the host's pre-creation configuration for the underlying WebView2 environment --- folder layout, additional command-line arguments, locale, and a few policy switches. Exposed on every [**WebView2**](/en/official/Reference/WebView2/WebView2) control as its **EnvironmentOptions** property; the control instantiates one automatically before raising the [**Create**](/en/official/Reference/WebView2/WebView2#create) event.
+Holds the host's pre-creation configuration for the underlying WebView2 environment --- folder layout, additional command-line arguments, locale, and a few policy switches. Exposed on every [**WebView2**](/en/official/Reference/WebView2/WebView2/) control as its **EnvironmentOptions** property; the control instantiates one automatically before raising the [**Create**](/en/official/Reference/WebView2/WebView2/#create) event.
 
-The fields below take effect only while the WebView2 environment is being constructed --- that is, *before or during* the control's [**Create**](/en/official/Reference/WebView2/WebView2#create) event. Assigning them after that point has no effect on the live environment.
+The fields below take effect only while the WebView2 environment is being constructed --- that is, *before or during* the control's [**Create**](/en/official/Reference/WebView2/WebView2/#create) event. Assigning them after that point has no effect on the live environment.
 
 ```vb
 Private Sub WebView21_Create()
@@ -57,6 +57,6 @@ Setting a writable user-data folder is the usual remedy for the *"Error occurred
 
 ### See Also
 
-- [WebView2 control class](/en/official/Reference/WebView2/WebView2)
-- [Create event](/en/official/Reference/WebView2/WebView2#create)
+- [WebView2 control class](/en/official/Reference/WebView2/WebView2/)
+- [Create event](/en/official/Reference/WebView2/WebView2/#create)
 - [Customizing the UserDataFolder tutorial](/en/official/Tutorials/WebView2/Customize-the-UserDataFolder)

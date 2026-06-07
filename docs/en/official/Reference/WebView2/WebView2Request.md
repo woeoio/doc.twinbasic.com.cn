@@ -5,9 +5,9 @@ permalink: /tB/Packages/WebView2/WebView2Request
 ---
 
 # WebView2Request class
-The request side of a [**WebResourceRequested**](/en/official/Reference/WebView2/WebView2#webresourcerequested) event. Exposes the HTTP method, target URI, request headers, and request body of a pending WebView2 request, and lets the event handler edit the body before the runtime sends it.
+The request side of a [**WebResourceRequested**](/en/official/Reference/WebView2/WebView2/#webresourcerequested) event. Exposes the HTTP method, target URI, request headers, and request body of a pending WebView2 request, and lets the event handler edit the body before the runtime sends it.
 
-To be notified, register a URL filter first with [**AddWebResourceRequestedFilter**](/en/official/Reference/WebView2/WebView2#addwebresourcerequestedfilter); only requests whose URI matches the filter raise the event.
+To be notified, register a URL filter first with [**AddWebResourceRequestedFilter**](/en/official/Reference/WebView2/WebView2/#addwebresourcerequestedfilter); only requests whose URI matches the filter raise the event.
 
 ```vb
 Private Sub Form_Load()

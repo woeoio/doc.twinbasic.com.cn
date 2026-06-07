@@ -5,7 +5,7 @@ permalink: /tB/Packages/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants
 ---
 
 # TreeLineStyleConstants
-Controls whether the [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView) draws tree lines from root nodes or only from child nodes. Used by [**TreeView.LineStyle**](/en/official/Reference/WinNativeCommonCtls/TreeView#linestyle). Only has visible effect when [**Style**](/en/official/Reference/WinNativeCommonCtls/TreeView#style) is one of the **tvwTreelines…** variants.
+Controls whether the [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView/) draws tree lines from root nodes or only from child nodes. Used by [**TreeView.LineStyle**](/en/official/Reference/WinNativeCommonCtls/TreeView/#linestyle). Only has visible effect when [**Style**](/en/official/Reference/WinNativeCommonCtls/TreeView/#style) is one of the **tvwTreelines…** variants.
 
 | Member                | Value | Description                                                                |
 |-----------------------|-------|----------------------------------------------------------------------------|
@@ -14,5 +14,5 @@ Controls whether the [**TreeView**](/en/official/Reference/WinNativeCommonCtls/T
 
 ## See Also
 
-- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView) -- consumer
+- [TreeView](/en/official/Reference/WinNativeCommonCtls/TreeView/) -- consumer
 - [TreeStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants) -- governs whether tree lines appear at all

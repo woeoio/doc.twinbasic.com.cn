@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Global/
 
 # Global class
 
-**Global** is the application's *app object* --- a singleton that the runtime instantiates on startup and whose members are accessible from any code in the project *without qualification*. Writing `App.Path` is in fact a call to `Global.App.Path`; the leading `Global.` is implicit. The class exists so that the language's built-in globals --- the singletons [**App**](/en/official/Reference/VB/App), [**Clipboard**](/en/official/Reference/VB/Clipboard), and [**Screen**](/en/official/Reference/VB/Screen), the [**Forms**](#forms) collection, the **Printer** and **Printers** objects, the resource loaders, and the `Load` / `Unload` form-lifetime helpers --- can be reached uniformly through the same name resolution path.
+**Global** is the application's *app object* --- a singleton that the runtime instantiates on startup and whose members are accessible from any code in the project *without qualification*. Writing `App.Path` is in fact a call to `Global.App.Path`; the leading `Global.` is implicit. The class exists so that the language's built-in globals --- the singletons [**App**](/en/official/Reference/VB/App/), [**Clipboard**](/en/official/Reference/VB/Clipboard/), and [**Screen**](/en/official/Reference/VB/Screen/), the [**Forms**](#forms) collection, the **Printer** and **Printers** objects, the resource loaders, and the `Load` / `Unload` form-lifetime helpers --- can be reached uniformly through the same name resolution path.
 
 There is exactly one **Global** per process and it is not creatable from user code: no `New Global`, no public coclass to instantiate. The runtime publishes it via the IDE's special `[AppObject]` mechanism, and the compiler maps unqualified references to its members.
 
@@ -25,19 +25,19 @@ Unload Form1
 
 [**App**](#app), [**Clipboard**](#clipboard), and [**Screen**](#screen) return the corresponding runtime singletons. Each is documented on its own page:
 
-- [**App**](/en/official/Reference/VB/App) -- application metadata, version info, and process state.
-- [**Clipboard**](/en/official/Reference/VB/Clipboard) -- system clipboard access.
-- [**Screen**](/en/official/Reference/VB/Screen) -- primary-display metrics, active form/control, application-wide mouse pointer.
+- [**App**](/en/official/Reference/VB/App/) -- application metadata, version info, and process state.
+- [**Clipboard**](/en/official/Reference/VB/Clipboard/) -- system clipboard access.
+- [**Screen**](/en/official/Reference/VB/Screen/) -- primary-display metrics, active form/control, application-wide mouse pointer.
 
 These properties are cached references --- repeated reads return the same object instance for the lifetime of the process.
 
 ## Forms collection
 
-[**Forms**](#forms) returns the application's collection of currently-loaded [**Form**](/en/official/Reference/VB/Form) instances --- every form that has been **Load**-ed or **Show**-n but not yet **Unload**-ed. The collection is live: it grows when a form is loaded and shrinks when one is unloaded. The collection supports three operations:
+[**Forms**](#forms) returns the application's collection of currently-loaded [**Form**](/en/official/Reference/VB/Form/) instances --- every form that has been **Load**-ed or **Show**-n but not yet **Unload**-ed. The collection is live: it grows when a form is loaded and shrinks when one is unloaded. The collection supports three operations:
 
 - **Forms.Count** --- a **Long** giving the number of currently-loaded forms.
-- **Forms.Item(** *Index* **)** --- the [**Form**](/en/official/Reference/VB/Form) at zero-based *Index*. **Item** is the default member, so `Forms(0)` and `Forms.Item(0)` are equivalent. Reading a negative or out-of-range index raises run-time error 9 (*Subscript out of range*).
-- **Forms.Add(** *Name* **)** --- creates a new instance of the form class named *Name*, adds it to the collection, and returns the new [**Form**](/en/official/Reference/VB/Form). The form is loaded but not shown.
+- **Forms.Item(** *Index* **)** --- the [**Form**](/en/official/Reference/VB/Form/) at zero-based *Index*. **Item** is the default member, so `Forms(0)` and `Forms.Item(0)` are equivalent. Reading a negative or out-of-range index raises run-time error 9 (*Subscript out of range*).
+- **Forms.Add(** *Name* **)** --- creates a new instance of the form class named *Name*, adds it to the collection, and returns the new [**Form**](/en/official/Reference/VB/Form/). The form is loaded but not shown.
 
 The collection also supports `For Each` enumeration:
 
@@ -70,43 +70,43 @@ twinBASIC compiles project-level resources (bitmaps, strings, raw byte blobs) in
 
 ## Form lifetime helpers
 
-[**Load**](#load) creates a form (or, for control arrays, a control instance) without showing it; [**Unload**](#unload) destroys it. Both are written without parentheses by convention --- `Load Form1`, `Unload Form1` --- and behave as statements, but they are in fact calls to **Global.Load** and **Global.Unload**. The corresponding form-lifecycle events ([**Initialize**](/en/official/Reference/VB/Form#initialize), [**Load**](/en/official/Reference/VB/Form#load), [**Unload**](/en/official/Reference/VB/Form#unload), [**Terminate**](/en/official/Reference/VB/Form#terminate)) fire at the expected points.
+[**Load**](#load) creates a form (or, for control arrays, a control instance) without showing it; [**Unload**](#unload) destroys it. Both are written without parentheses by convention --- `Load Form1`, `Unload Form1` --- and behave as statements, but they are in fact calls to **Global.Load** and **Global.Unload**. The corresponding form-lifecycle events ([**Initialize**](/en/official/Reference/VB/Form/#initialize), [**Load**](/en/official/Reference/VB/Form/#load), [**Unload**](/en/official/Reference/VB/Form/#unload), [**Terminate**](/en/official/Reference/VB/Form/#terminate)) fire at the expected points.
 
 ## Printer and Printers
 
-The compile-time `FEATURE_PRINTER` flag exposes the **Printer** and **Printers** members. [**Printer**](/en/official/Reference/VB/Printer) is the currently-selected printer, and [**Printers**](/en/official/Reference/VB/Printers) is the collection of all installed printers; assigning a different printer object to **Printer** switches the application's current printer.
+The compile-time `FEATURE_PRINTER` flag exposes the **Printer** and **Printers** members. [**Printer**](/en/official/Reference/VB/Printer/) is the currently-selected printer, and [**Printers**](/en/official/Reference/VB/Printers/) is the collection of all installed printers; assigning a different printer object to **Printer** switches the application's current printer.
 
 ## Properties
 
 ### App
 
-The application's singleton [**App**](/en/official/Reference/VB/App) instance --- its identity, version, and process-state metadata. Read-only.
+The application's singleton [**App**](/en/official/Reference/VB/App/) instance --- its identity, version, and process-state metadata. Read-only.
 
 ### Clipboard
 
-The application's singleton [**Clipboard**](/en/official/Reference/VB/Clipboard) instance --- the system clipboard wrapper. Read-only.
+The application's singleton [**Clipboard**](/en/official/Reference/VB/Clipboard/) instance --- the system clipboard wrapper. Read-only.
 
 ### Forms
 
-The application's live collection of currently-loaded [**Form**](/en/official/Reference/VB/Form) instances. Read-only. See [Forms collection](#forms-collection).
+The application's live collection of currently-loaded [**Form**](/en/official/Reference/VB/Form/) instances. Read-only. See [Forms collection](#forms-collection).
 
 ### Printer
 
-The currently-selected [**Printer**](/en/official/Reference/VB/Printer). Readable and assignable with `Set` --- assigning a different printer object switches the application's current printer.
+The currently-selected [**Printer**](/en/official/Reference/VB/Printer/). Readable and assignable with `Set` --- assigning a different printer object switches the application's current printer.
 
 ### Printers
 
-The [**Printers**](/en/official/Reference/VB/Printers) collection of all installed printers on the system. Read-only.
+The [**Printers**](/en/official/Reference/VB/Printers/) collection of all installed printers on the system. Read-only.
 
 ### Screen
 
-The application's singleton [**Screen**](/en/official/Reference/VB/Screen) instance --- primary-display metrics, active form/control, application-wide mouse pointer. Read-only.
+The application's singleton [**Screen**](/en/official/Reference/VB/Screen/) instance --- primary-display metrics, active form/control, application-wide mouse pointer. Read-only.
 
 ## Methods
 
 ### Load
 
-Creates an instance of the named form (or a new element of a control array) without showing it. The form's [**Initialize**](/en/official/Reference/VB/Form#initialize) and [**Load**](/en/official/Reference/VB/Form#load) events fire.
+Creates an instance of the named form (or a new element of a control array) without showing it. The form's [**Initialize**](/en/official/Reference/VB/Form/#initialize) and [**Load**](/en/official/Reference/VB/Form/#load) events fire.
 
 Syntax: **Load** *object*
 
@@ -125,7 +125,7 @@ Loads a picture from a file. Returns a **stdole.IPictureDisp**.
 Syntax: **LoadPicture**( [ *FileName* [, *Size* [, *ColorDepth* [, *X* [, *Y* ] ] ] ] ] )
 
 *FileName*
-: *optional* A **String** giving the path to a `.bmp`, `.dib`, `.gif`, `.jpg`, `.png`, `.wmf`, `.emf`, `.ico`, or `.cur` file. When omitted, returns an empty picture --- useful for clearing an [**Image**](/en/official/Reference/VB/Image) or [**PictureBox**](/en/official/Reference/VB/PictureBox)'s **Picture** property.
+: *optional* A **String** giving the path to a `.bmp`, `.dib`, `.gif`, `.jpg`, `.png`, `.wmf`, `.emf`, `.ico`, or `.cur` file. When omitted, returns an empty picture --- useful for clearing an [**Image**](/en/official/Reference/VB/Image/) or [**PictureBox**](/en/official/Reference/VB/PictureBox/)'s **Picture** property.
 
 *Size*
 : *optional* A member of [**LoadPictureSizeConstants**](/en/official/Reference/VBRUN/Constants/LoadPictureSizeConstants) --- meaningful only for icons and cursors, where it picks among the sizes stored in the file.
@@ -188,7 +188,7 @@ Syntax: **LoadResString**( *id* )
 
 ### Unload
 
-Destroys the form (or removes the control-array element). The form's [**QueryUnload**](/en/official/Reference/VB/Form#queryunload), [**Unload**](/en/official/Reference/VB/Form#unload), and [**Terminate**](/en/official/Reference/VB/Form#terminate) events fire in order. Either of the first two can set its *Cancel* argument non-zero to veto the unload, in which case the form remains loaded and visible.
+Destroys the form (or removes the control-array element). The form's [**QueryUnload**](/en/official/Reference/VB/Form/#queryunload), [**Unload**](/en/official/Reference/VB/Form/#unload), and [**Terminate**](/en/official/Reference/VB/Form/#terminate) events fire in order. Either of the first two can set its *Cancel* argument non-zero to veto the unload, in which case the form remains loaded and visible.
 
 Syntax: **Unload** *object*
 

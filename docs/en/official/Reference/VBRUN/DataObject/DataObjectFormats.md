@@ -5,7 +5,7 @@ permalink: /tB/Packages/VBRUN/DataObject/DataObjectFormats
 ---
 # DataObjectFormats
 
-A **DataObjectFormats** object is the read-only collection of [**DataObjectFormat**](/en/official/Reference/VBRUN/DataObject/DataObjectFormat) descriptors a [**DataObject**](/en/official/Reference/VBRUN/DataObject/.) currently exposes --- one element per clipboard format the object holds a value in. The collection is returned by the [**AvailableFormats**](/en/official/Reference/VBRUN/DataObject/AvailableFormats) method and is the only general way to discover, at run time, which formats a **DataObject** received from another application has on offer.
+A **DataObjectFormats** object is the read-only collection of [**DataObjectFormat**](/en/official/Reference/VBRUN/DataObject/DataObjectFormat) descriptors a [**DataObject**](/en/official/Reference/VBRUN/DataObject/) currently exposes --- one element per clipboard format the object holds a value in. The collection is returned by the [**AvailableFormats**](/en/official/Reference/VBRUN/DataObject/AvailableFormats) method and is the only general way to discover, at run time, which formats a **DataObject** received from another application has on offer.
 
 ## Members
 
@@ -58,6 +58,6 @@ Next fmt
 
 ## See Also
 
-- [DataObject](/en/official/Reference/VBRUN/DataObject/.)
+- [DataObject](/en/official/Reference/VBRUN/DataObject/)
 - [DataObjectFormat](/en/official/Reference/VBRUN/DataObject/DataObjectFormat)
 - [AvailableFormats](/en/official/Reference/VBRUN/DataObject/AvailableFormats) method

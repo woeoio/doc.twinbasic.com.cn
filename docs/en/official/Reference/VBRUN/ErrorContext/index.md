@@ -7,22 +7,22 @@ permalink: /tB/Packages/VBRUN/ErrorContext/
 
 # ErrorContext class
 
-An **ErrorContext** object captures everything the runtime knows about a run-time error: its identity ([**Number**](#number), [**Description**](#description), [**Source**](#source)), its help references ([**HelpFile**](#helpfile), [**HelpContext**](#helpcontext)), the operating-system error code at the time it was raised ([**LastDLLError**](#lastdllerror)), the [**State**](#state) of the error-handling machinery, and a snapshot of the [**Callstack**](#callstack) from the moment of the failure. It is twinBASIC's structured counterpart to the simpler [**Err**](/en/official/Reference/VBA/ErrObject) object.
+An **ErrorContext** object captures everything the runtime knows about a run-time error: its identity ([**Number**](#number), [**Description**](#description), [**Source**](#source)), its help references ([**HelpFile**](#helpfile), [**HelpContext**](#helpcontext)), the operating-system error code at the time it was raised ([**LastDLLError**](#lastdllerror)), the [**State**](#state) of the error-handling machinery, and a snapshot of the [**Callstack**](#callstack) from the moment of the failure. It is twinBASIC's structured counterpart to the simpler [**Err**](/en/official/Reference/VBA/ErrObject/) object.
 
-The error-identity properties (**Number**, **Description**, **Source**, **HelpFile**, **HelpContext**, **LastDLLError**) have the same meaning here as on the **Err** object --- see the [**ErrObject**](/en/official/Reference/VBA/ErrObject) module for a discussion of each. **State** and **Callstack** are unique to **ErrorContext** and reflect the structured error-handling machinery that has no equivalent on the legacy **Err** object.
+The error-identity properties (**Number**, **Description**, **Source**, **HelpFile**, **HelpContext**, **LastDLLError**) have the same meaning here as on the **Err** object --- see the [**ErrObject**](/en/official/Reference/VBA/ErrObject/) module for a discussion of each. **State** and **Callstack** are unique to **ErrorContext** and reflect the structured error-handling machinery that has no equivalent on the legacy **Err** object.
 
 ## Members
 
 ### Callstack
 
-Returns a snapshot of the call stack as it was when the error was raised, as an [**ErrorCallstack**](/en/official/Reference/VBRUN/ErrorCallstack).
+Returns a snapshot of the call stack as it was when the error was raised, as an [**ErrorCallstack**](/en/official/Reference/VBRUN/ErrorCallstack/).
 
 Syntax: *object*.**Callstack**
 
 *object*
 : *required* An object expression that evaluates to an **ErrorContext** object.
 
-The snapshot lists every active procedure outermost-first; the innermost frame is the procedure that raised the error. The collection is read-only --- see [**ErrorCallstack**](/en/official/Reference/VBRUN/ErrorCallstack) for how to iterate it.
+The snapshot lists every active procedure outermost-first; the innermost frame is the procedure that raised the error. The collection is read-only --- see [**ErrorCallstack**](/en/official/Reference/VBRUN/ErrorCallstack/) for how to iterate it.
 
 ### Description
 

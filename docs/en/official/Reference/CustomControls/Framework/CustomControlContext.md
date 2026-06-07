@@ -27,7 +27,7 @@ End Sub
 
 ### ChangeFocusedElement
 
-Asks the framework to move the keyboard focus to a particular `ElementTabIndex` value, as if the user had pressed **TAB** until reaching that point. Used by [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid) when a cell is selected programmatically --- the grid changes its **SelectedCellX** / **SelectedCellY** and then calls this method so that the form-level focus tracking matches.
+Asks the framework to move the keyboard focus to a particular `ElementTabIndex` value, as if the user had pressed **TAB** until reaching that point. Used by [**WaynesGrid**](/en/official/Reference/CustomControls/WaynesGrid/) when a cell is selected programmatically --- the grid changes its **SelectedCellX** / **SelectedCellY** and then calls this method so that the form-level focus tracking matches.
 
 Syntax: *object*.**ChangeFocusedElement** *ElementTabIndex*
 
@@ -40,7 +40,7 @@ Returns a new [**CustomControlTimer**](/en/official/Reference/CustomControls/Fra
 
 Syntax: *object*.**CreateTimer** ( ) **As stdole.IUnknown**
 
-The framework returns the timer typed as **stdole.IUnknown**; cast with `CType(Of CustomControlTimer)(…)` to get a strongly-typed reference. [**WaynesTimer**](/en/official/Reference/CustomControls/WaynesTimer) and [**WaynesSlider**](/en/official/Reference/CustomControls/WaynesSlider) both use this pattern.
+The framework returns the timer typed as **stdole.IUnknown**; cast with `CType(Of CustomControlTimer)(…)` to get a strongly-typed reference. [**WaynesTimer**](/en/official/Reference/CustomControls/WaynesTimer) and [**WaynesSlider**](/en/official/Reference/CustomControls/WaynesSlider/) both use this pattern.
 
 ### GetSerializer
 

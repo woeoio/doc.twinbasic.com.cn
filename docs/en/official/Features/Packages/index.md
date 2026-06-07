@@ -19,10 +19,10 @@ Please be aware that TWINPACK files currently contain the full source code of yo
 
 ## Topics
 
-- [Creating a TWINPACK Package](/en/official/Features/Packages/Creating-TWINPACK) -- packaging twinBASIC components into a distributable TWINPACK file.
-- [Importing a Package from TWINSERV](/en/official/Features/Packages/Importing-TWINSERV) -- browsing and installing packages from the TWINSERV online repository.
-- [Importing a Package from a TWINPACK File](/en/official/Features/Packages/Importing-TWINPACK) -- installing a package from a local TWINPACK file.
+- [Creating a TWINPACK Package](/en/official/Features/Packages/Creating-a-TWINPACK-package) -- packaging twinBASIC components into a distributable TWINPACK file.
+- [Importing a Package from TWINSERV](/en/official/Features/Packages/Importing-a-package-from-TWINSERV) -- browsing and installing packages from the TWINSERV online repository.
+- [Importing a Package from a TWINPACK File](/en/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file) -- installing a package from a local TWINPACK file.
 - [Linked Packages](/en/official/Features/Packages/Linked-Packages) -- storing a package in a shared location rather than embedding it in each project file.
-- [Updating a Package](/en/official/Features/Packages/Updating) -- removing an outdated package and installing a newer version from TWINSERV.
+- [Updating a Package](/en/official/Features/Packages/Updating-a-package) -- removing an outdated package and installing a newer version from TWINSERV.
 
 [^1]: A service of TWINBASIC LTD offered to the user community.

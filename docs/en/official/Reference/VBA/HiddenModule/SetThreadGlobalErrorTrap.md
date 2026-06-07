@@ -19,4 +19,4 @@ Only one trap is active per thread; setting a new one replaces the previous.
 ### See Also
 
 - [On Error](/en/official/Reference/Core/On-Error) statement
-- [Err object](/en/official/Reference/VBA/ErrObject)
+- [Err object](/en/official/Reference/VBA/ErrObject/)

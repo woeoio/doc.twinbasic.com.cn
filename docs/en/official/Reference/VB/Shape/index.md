@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Shape/
 
 # Shape class
 
-A **Shape** is a windowless lightweight control that draws one of a fixed set of geometric primitives --- rectangle, square, oval, circle, rounded rectangle, rounded square, five-pointed star, or an arrow pointing in any of the four cardinal directions --- directly on its container. It exists purely for visual presentation: backgrounds, decorative artwork, panel dividers, highlighting, and any other place where a heavy [**PictureBox**](/en/official/Reference/VB/PictureBox) would be overkill.
+A **Shape** is a windowless lightweight control that draws one of a fixed set of geometric primitives --- rectangle, square, oval, circle, rounded rectangle, rounded square, five-pointed star, or an arrow pointing in any of the four cardinal directions --- directly on its container. It exists purely for visual presentation: backgrounds, decorative artwork, panel dividers, highlighting, and any other place where a heavy [**PictureBox**](/en/official/Reference/VB/PictureBox/) would be overkill.
 
 A **Shape** has no interactive elements --- no focus, no caption, and no mouse, keyboard, or drag events. The shape kind and its appearance are chosen entirely through properties; the only event raised by the control is [**Initialize**](#initialize). The default property is [**Shape**](#shape) and the default event is [**Initialize**](#initialize).
 
@@ -27,11 +27,11 @@ End Sub
 A **Shape** has no `hWnd`. The framework paints it onto its parent's drawing surface during the parent's paint cycle, so the control is cheap --- no Win32 window is created on its behalf and no per-instance overhead beyond a small piece of state. The trade-offs are the same as for any windowless control:
 
 - No focus, no keyboard input, no `KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`.
-- No mouse events of any kind --- to make a region clickable, place a transparent [**Label**](/en/official/Reference/VB/Label) on top.
+- No mouse events of any kind --- to make a region clickable, place a transparent [**Label**](/en/official/Reference/VB/Label/) on top.
 - No `hWnd` to pass to API functions, and no `SetFocus`.
 - Cannot host child controls.
 
-For anything that needs those, use [**PictureBox**](/en/official/Reference/VB/PictureBox) or a custom **UserControl** instead.
+For anything that needs those, use [**PictureBox**](/en/official/Reference/VB/PictureBox/) or a custom **UserControl** instead.
 
 ## Shape kinds
 
@@ -103,7 +103,7 @@ The outline is drawn with a Win32 GDI pen:
 - [**BorderWidth**](#borderwidth) -- the pen width in pixels (default `1`).
 - [**BorderStyle**](#borderstyle) -- the pen pattern, as a member of [**BorderStyleConstants**](/en/official/Reference/VBRUN/Constants/BorderStyleConstants): **vbTransparent** (0 --- no outline), **vbBSSolid** (1, default), **vbBSDash** (2), **vbBSDot** (3), **vbBSDashDot** (4), **vbBSDashDotDot** (5), or **vbBSInsideSolid** (6).
 
-As with [**Line**](/en/official/Reference/VB/Line), GDI forces a solid pen whenever [**BorderWidth**](#borderwidth) is greater than `1` --- dashed and dotted patterns are only honoured at width `1`.
+As with [**Line**](/en/official/Reference/VB/Line/), GDI forces a solid pen whenever [**BorderWidth**](#borderwidth) is greater than `1` --- dashed and dotted patterns are only honoured at width `1`.
 
 ## Rotation
 
@@ -147,11 +147,11 @@ The outline pen width, in pixels. **Long**, default `1`. Widths greater than `1`
 
 ### Container
 
-The control that hosts this **Shape** --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), or a **UserControl**. Read with **Get**, change with **Set**.
+The control that hosts this **Shape** --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control. Always **vbShape**. This constant is shared with the [**Line**](/en/official/Reference/VB/Line) control --- both are windowless geometric primitives.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control. Always **vbShape**. This constant is shared with the [**Line**](/en/official/Reference/VB/Line/) control --- both are windowless geometric primitives.
 
 ### Dock
 
@@ -191,7 +191,7 @@ The unique design-time name of the **Shape** on its parent form. Read-only at ru
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains the **Shape**. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the **Shape**. Read-only.
 
 ### RoundedCornerSize
 

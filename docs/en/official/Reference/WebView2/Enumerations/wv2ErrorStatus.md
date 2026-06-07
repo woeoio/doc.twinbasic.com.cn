@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/WebView2/Enumerations/wv2ErrorStatus
 ---
 # wv2ErrorStatus
-The reason a navigation failed. Passed as the `WebErrorStatus` argument of the [**NavigationComplete**](/en/official/Reference/WebView2/WebView2#navigationcomplete) event --- only meaningful when its `IsSuccess` argument is **False**. Mirrors the `COREWEBVIEW2_WEB_ERROR_STATUS` enumeration.
+The reason a navigation failed. Passed as the `WebErrorStatus` argument of the [**NavigationComplete**](/en/official/Reference/WebView2/WebView2/#navigationcomplete) event --- only meaningful when its `IsSuccess` argument is **False**. Mirrors the `COREWEBVIEW2_WEB_ERROR_STATUS` enumeration.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

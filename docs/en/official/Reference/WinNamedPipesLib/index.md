@@ -33,7 +33,7 @@ The flag must be set before [**Start**](/en/official/Reference/WinNamedPipesLib/
 
 ## Hosting inside a Windows service
 
-Windows services hosted through the [**WinServicesLib**](/en/official/Reference/WinServicesLib) package run into the message-loop dependency described above when they also host a [**NamedPipeServer**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer): the [**ITbService.EntryPoint**](/en/official/Reference/WinServicesLib/ITbService#entrypoint) thread is not pumping messages by default, so the marshalled-event delivery has nothing to dispatch through. The package provides [**NamedPipeServer.ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) / [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) for exactly this case.
+Windows services hosted through the [**WinServicesLib**](/en/official/Reference/WinServicesLib/) package run into the message-loop dependency described above when they also host a [**NamedPipeServer**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer): the [**ITbService.EntryPoint**](/en/official/Reference/WinServicesLib/ITbService#entrypoint) thread is not pumping messages by default, so the marshalled-event delivery has nothing to dispatch through. The package provides [**NamedPipeServer.ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) / [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) for exactly this case.
 
 The canonical pattern: [**ITbService.EntryPoint**](/en/official/Reference/WinServicesLib/ITbService#entrypoint) opens the server, transitions the service to `Running`, blocks inside [**ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter), and only leaves the loop when [**ITbService.ChangeState**](/en/official/Reference/WinServicesLib/ITbService#changestate) --- running on the *other* (dispatcher) thread --- calls [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) on the same server instance.
 
@@ -110,7 +110,7 @@ For a text payload, `StrConv(Data, vbUnicode)` (UTF-8) or `CStr` over a `vbUnico
 
 ## Recommended payload encoding: `PropertyBag`
 
-The package transports raw bytes; it is agnostic about what is inside them. For non-trivial protocols the recommended carrier is [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag) --- twinBASIC's built-in keyed-property serialiser. Two reasons:
+The package transports raw bytes; it is agnostic about what is inside them. For non-trivial protocols the recommended carrier is [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) --- twinBASIC's built-in keyed-property serialiser. Two reasons:
 
 1. **`PropertyBag.Contents` deep-copies the bytes**, which is the simplest answer to the transient-`Data()` lifetime caveat above. Assigning *Data* to a fresh **PropertyBag**'s **Contents** captures the buffer in one step; the copy is safe to retain past the event handler.
 2. **`PropertyBag` provides typed multi-field payloads** without the consumer having to design a wire protocol. Both sides agree on property names (e.g. `"CommandID"`, `"ResponseCommandID"`, `"Data"`) and **PropertyBag** handles the byte-level encoding.
@@ -149,7 +149,7 @@ Either let the [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPi
 
 [**NamedPipeClientManager.FindNamedPipes**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager#findnamedpipes) enumerates the named pipes published on the local machine, returning a **Collection** of **String** names that match an optional `*`/`?` wildcard pattern. The implementation is `FindFirstFileW("\\.\pipe\<Pattern>")` --- the package strips the leading namespace itself, so pass just the pipe name (`"MyService*"`, not `"\\.\pipe\MyService*"`).
 
-Named pipes can appear and disappear at any time as their server processes start and stop, and the package does not publish an event for this. The canonical discovery loop is a low-frequency [**Timer**](/en/official/Reference/VB/Timer) that repopulates a list and preserves the user's current selection --- a few seconds between polls is the typical interval; the underlying `FindFirstFileW` is cheap enough that nothing finer is required:
+Named pipes can appear and disappear at any time as their server processes start and stop, and the package does not publish an event for this. The canonical discovery loop is a low-frequency [**Timer**](/en/official/Reference/VB/Timer/) that repopulates a list and preserves the user's current selection --- a few seconds between polls is the typical interval; the underlying `FindFirstFileW` is cheap enough that nothing finer is required:
 
 ```vb
 Private Sub timerRefreshNamedPipes_Timer()

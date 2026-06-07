@@ -5,7 +5,7 @@ permalink: /tB/Packages/WebView2/WebView2ResponseHeaders
 ---
 
 # WebView2ResponseHeaders class
-The HTTP-response-header collection for a web-resource response. Reached through [**WebView2Response.Headers**](/en/official/Reference/WebView2/WebView2Response#headers) inside a [**WebResourceRequested**](/en/official/Reference/WebView2/WebView2#webresourcerequested) event handler.
+The HTTP-response-header collection for a web-resource response. Reached through [**WebView2Response.Headers**](/en/official/Reference/WebView2/WebView2Response#headers) inside a [**WebResourceRequested**](/en/official/Reference/WebView2/WebView2/#webresourcerequested) event handler.
 
 The collection is enumerable --- `For Each` yields one [**WebView2Header**](/en/official/Reference/WebView2/WebView2Header) per entry. Unlike the request side, **AppendHeader** appends additional values rather than overwriting the existing one, matching HTTP's allowance of repeated response headers (e.g. multiple `Set-Cookie`).
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: EventLog
 parent: WinEventLogLib Package
 permalink: /tB/Packages/WinEventLogLib/EventLog
@@ -42,9 +42,9 @@ Dim Log As New EventLog(Of MyEventIds, MyCategories)("MyService")
 
 Both type arguments are required at instantiation --- twinBASIC does not deduce them from the *LogName* constructor argument. See the [Generics](/en/official/Features/Language/Generics) page for the general rules.
 
-A class that needs to expose [**LogSuccess**](#logsuccess) / [**LogFailure**](#logfailure) / [**Register**](#register) as if those methods were its own can mix the **EventLog** members in through [**Implements ... Via**](/en/official/Features/Language/Inheritance) composition --- see the [composition-delegation idiom](/en/official/Reference/WinEventLogLib#composition-delegation-idiom) section on the package overview for the canonical service-class pattern.
+A class that needs to expose [**LogSuccess**](#logsuccess) / [**LogFailure**](#logfailure) / [**Register**](#register) as if those methods were its own can mix the **EventLog** members in through [**Implements ... Via**](/en/official/Features/Language/Inheritance) composition --- see the [composition-delegation idiom](/en/official/Reference/WinEventLogLib/#composition-delegation-idiom) section on the package overview for the canonical service-class pattern.
 
-The package [overview](/en/official/Reference/WinEventLogLib) covers the install-then-log lifecycle, the [`[PopulateFrom("json", ...)]` message-resource convention](/en/official/Reference/WinEventLogLib#populatefrom-convention), registry layout, and the [composition-delegation idiom](/en/official/Reference/WinEventLogLib#composition-delegation-idiom).
+The package [overview](/en/official/Reference/WinEventLogLib/) covers the install-then-log lifecycle, the [`[PopulateFrom("json", ...)]` message-resource convention](/en/official/Reference/WinEventLogLib/#populatefrom-convention), registry layout, and the [composition-delegation idiom](/en/official/Reference/WinEventLogLib/#composition-delegation-idiom).
 
 ## Methods
 
@@ -115,7 +115,7 @@ Creates `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\<LogPath>` (prepending 
 **Register** requires administrator rights --- it writes to `HKEY_LOCAL_MACHINE`. The usual pattern is to call it once from an elevated installer, not from the application's normal startup path.
 :::
 
-The Event Viewer renders message strings by loading **EventMessageFile** and looking up the message resource keyed by *EventId*. Because **EventMessageFile** points at `App.ModulePath`, the same EXE that calls **Register** must be the one that later calls [**LogSuccess**](#logsuccess) / [**LogFailure**](#logfailure); otherwise the Event Viewer cannot find the message strings. See [Message resources](/en/official/Reference/WinEventLogLib#message-resources) and [The `[PopulateFrom("json", ...)]` convention](/en/official/Reference/WinEventLogLib#populatefrom-convention) on the package landing page for the recommended way to populate the resource.
+The Event Viewer renders message strings by loading **EventMessageFile** and looking up the message resource keyed by *EventId*. Because **EventMessageFile** points at `App.ModulePath`, the same EXE that calls **Register** must be the one that later calls [**LogSuccess**](#logsuccess) / [**LogFailure**](#logfailure); otherwise the Event Viewer cannot find the message strings. See [Message resources](/en/official/Reference/WinEventLogLib/#message-resources) and [The `[PopulateFrom("json", ...)]` convention](/en/official/Reference/WinEventLogLib/#populatefrom-convention) on the package landing page for the recommended way to populate the resource.
 
 If the registry key cannot be opened for write, **Register** raises run-time error 5 *"Failed to register event log source (``<LogName>``)"*. Typical causes are insufficient privileges and a *LogPath* that points at a non-existent parent log.
 
@@ -123,7 +123,7 @@ The lower-level [**EventLogHelperPublic.RegisterEventLogInternal**](/en/official
 
 ## See Also
 
-- [WinEventLogLib](/en/official/Reference/WinEventLogLib) package -- overview, lifecycle, message-resource generation
+- [WinEventLogLib](/en/official/Reference/WinEventLogLib/) package -- overview, lifecycle, message-resource generation
 - [EventLogHelperPublic](/en/official/Reference/WinEventLogLib/EventLogHelperPublic) module -- the lower-level registration helper
 - [Generics](/en/official/Features/Language/Generics) feature -- syntax rules for generic class instantiation
 

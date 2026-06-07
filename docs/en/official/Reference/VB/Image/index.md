@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Image/
 
 # Image class
 
-An **Image** is a windowless lightweight control for displaying a picture --- a bitmap, JPEG, GIF, PNG, icon, cursor, or Windows metafile. It is the small, efficient alternative to [**PictureBox**](/en/official/Reference/VB/PictureBox): no underlying Win32 window, no drawing surface, no child controls, no focus --- just a rectangle on the parent that paints whatever is in [**Picture**](#picture). Image controls are ideal for logos, decorative artwork, custom-drawn buttons, glyph rows, and any other place where a heavy **PictureBox** would be overkill.
+An **Image** is a windowless lightweight control for displaying a picture --- a bitmap, JPEG, GIF, PNG, icon, cursor, or Windows metafile. It is the small, efficient alternative to [**PictureBox**](/en/official/Reference/VB/PictureBox/): no underlying Win32 window, no drawing surface, no child controls, no focus --- just a rectangle on the parent that paints whatever is in [**Picture**](#picture). Image controls are ideal for logos, decorative artwork, custom-drawn buttons, glyph rows, and any other place where a heavy **PictureBox** would be overkill.
 
 The default property is [**Picture**](#picture) and the default event is [**Click**](#click).
 
@@ -25,13 +25,13 @@ End Sub
 
 ## Windowless rendering
 
-An **Image** has no `hWnd`. The framework paints it directly onto its parent's drawing surface during the parent's paint cycle, so the control is much cheaper than a [**PictureBox**](/en/official/Reference/VB/PictureBox) and adds no Win32 window of its own. The trade-offs are the same as for any windowless control:
+An **Image** has no `hWnd`. The framework paints it directly onto its parent's drawing surface during the parent's paint cycle, so the control is much cheaper than a [**PictureBox**](/en/official/Reference/VB/PictureBox/) and adds no Win32 window of its own. The trade-offs are the same as for any windowless control:
 
 - No focus, no keyboard input, no `KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`.
 - No `hWnd` to pass to API functions, and no `SetFocus`.
 - Cannot host child controls.
 
-For anything that needs those, use [**PictureBox**](/en/official/Reference/VB/PictureBox) instead.
+For anything that needs those, use [**PictureBox**](/en/official/Reference/VB/PictureBox/) instead.
 
 ## Stretch and auto-sizing
 
@@ -61,7 +61,7 @@ The **Image** control supports both ends of an OLE drag-drop operation:
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the [**Picture**](#picture) to a field of a [**Data**](/en/official/Reference/VB/Data) control's recordset. The bound field is read as binary picture data on each move; assigning **Nothing** to **Picture** writes a null-equivalent back to the recordset, and any other assignment serialises the picture's bytes back through the bound field.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the [**Picture**](#picture) to a field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset. The bound field is read as binary picture data on each move; assigning **Nothing** to **Picture** writes a null-equivalent back to the recordset, and any other assignment serialises the picture's bytes back through the bound field.
 
 ## Properties
 
@@ -83,7 +83,7 @@ The style of border drawn around the rectangle. A member of [**ControlBorderStyl
 
 ### Container
 
-The control that hosts this **Image** --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), or a **UserControl**. Read with **Get**, change with **Set**.
+The control that hosts this **Image** --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
 
 ### ControlType
 
@@ -111,7 +111,7 @@ Reserved for compatibility with VB6; not currently implemented in twinBASIC.
 
 ### DataSource
 
-A reference to a [**Data**](/en/official/Reference/VB/Data) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### Dock
 
@@ -163,7 +163,7 @@ How the **Image** responds to OLE drops arriving on it. A restricted member of [
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains the control. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the control. Read-only.
 
 ### Picture
 

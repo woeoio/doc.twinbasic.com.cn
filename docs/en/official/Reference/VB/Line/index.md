@@ -42,7 +42,7 @@ GDI applies a hard limitation here: when [**BorderWidth**](#borderwidth) is grea
 
 ## No interaction
 
-Unlike most other controls, a **Line** does not raise mouse, keyboard, or focus events of any kind, and has no [**Caption**](/en/official/Reference/VB/Label#caption), [**Enabled**](/en/official/Reference/VB/Label#enabled), or **ToolTipText**. To make a region clickable, place a transparent [**Label**](/en/official/Reference/VB/Label) on top.
+Unlike most other controls, a **Line** does not raise mouse, keyboard, or focus events of any kind, and has no [**Caption**](/en/official/Reference/VB/Label/#caption), [**Enabled**](/en/official/Reference/VB/Label/#enabled), or **ToolTipText**. To make a region clickable, place a transparent [**Label**](/en/official/Reference/VB/Label/) on top.
 
 ## Properties
 
@@ -60,11 +60,11 @@ The pen width, in pixels. **Long**, default `1`. Widths greater than `1` ignore 
 
 ### Container
 
-The control that hosts this line --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), or a **UserControl**. Read with **Get**, change with **Set**.
+The control that hosts this line --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control. The **Line** shares the **vbShape** constant with the [**Shape**](/en/official/Reference/VB/Shape) control --- both are windowless, points-based geometric primitives with no dedicated control-type identifier.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control. The **Line** shares the **vbShape** constant with the [**Shape**](/en/official/Reference/VB/Shape/) control --- both are windowless, points-based geometric primitives with no dedicated control-type identifier.
 
 ### DrawMode
 
@@ -80,7 +80,7 @@ The unique design-time name of the control on its parent. Read-only at run time.
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains the line. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the line. Read-only.
 
 ### Tag
 

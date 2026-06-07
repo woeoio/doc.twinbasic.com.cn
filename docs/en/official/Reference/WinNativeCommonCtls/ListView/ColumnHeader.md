@@ -5,9 +5,9 @@ permalink: /tB/Packages/WinNativeCommonCtls/ListView/ColumnHeader
 ---
 
 # ColumnHeader class
-A **ColumnHeader** represents a single column in a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView) running in **lvwReport** view. Returned from [**ColumnHeaders.Add**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders#add) and from [**ColumnHeaders.Item**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders#item).
+A **ColumnHeader** represents a single column in a [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView/) running in **lvwReport** view. Returned from [**ColumnHeaders.Add**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders#add) and from [**ColumnHeaders.Item**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders#item).
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ColumnHeader** instances through the parent [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView)'s [**ColumnHeaders**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) collection.
+The class is tagged `[COMCreatable(False)]` --- user code accesses **ColumnHeader** instances through the parent [**ListView**](/en/official/Reference/WinNativeCommonCtls/ListView/)'s [**ColumnHeaders**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) collection.
 
 ```vb
 With ListView1.ColumnHeaders
@@ -30,7 +30,7 @@ The first column in a ListView must be left-aligned. Attempting to add a non-lef
 
 ### Icon
 
-The icon rendered in the header. **Variant** --- either a 1-based **Long** index into [**ListView.ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView#columnheadericons), or a **String** key. Assignment validates against the bound image list.
+The icon rendered in the header. **Variant** --- either a 1-based **Long** index into [**ListView.ColumnHeaderIcons**](/en/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons), or a **String** key. Assignment validates against the bound image list.
 
 ### Index
 
@@ -46,7 +46,7 @@ The column's horizontal pixel position in the listview, computed as the sum of p
 
 ### Position
 
-The column's visual position. **Long**, read/write. Distinct from [**Index**](#index) --- when [**ListView.AllowColumnReorder**](/en/official/Reference/WinNativeCommonCtls/ListView#allowcolumnreorder) is **True**, the user can drag columns to reorder them, in which case **Index** stays fixed but **Position** changes.
+The column's visual position. **Long**, read/write. Distinct from [**Index**](#index) --- when [**ListView.AllowColumnReorder**](/en/official/Reference/WinNativeCommonCtls/ListView/#allowcolumnreorder) is **True**, the user can drag columns to reorder them, in which case **Index** stays fixed but **Position** changes.
 
 Assigning a value outside `1..Count` raises run-time error 380.
 
@@ -78,6 +78,6 @@ Determines the horizontal alignment of a column's text. Declared on the **Column
 
 ## See Also
 
-- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView) -- the parent control
+- [ListView](/en/official/Reference/WinNativeCommonCtls/ListView/) -- the parent control
 - [ColumnHeaders](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) -- the collection holding **ColumnHeader** instances
 - [ListItem](/en/official/Reference/WinNativeCommonCtls/ListView/ListItem) -- a row, whose [**SubItems**](/en/official/Reference/WinNativeCommonCtls/ListView/ListItem#subitemsindex) align with columns

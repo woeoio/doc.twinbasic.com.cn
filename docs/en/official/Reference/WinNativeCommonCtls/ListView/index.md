@@ -43,7 +43,7 @@ The control inherits the focusable rect-dockable members from `BaseControlFocusa
 
 ## Image lists
 
-A **ListView** can bind to three independent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) instances, one per role:
+A **ListView** can bind to three independent [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) instances, one per role:
 
 - **[Icons](#icons)** --- large icons rendered in **lvwIcon** view.
 - **[SmallIcons](#smallicons)** --- small icons rendered in **lvwSmallIcon**, **lvwList**, and **lvwReport** views.
@@ -90,7 +90,7 @@ The background color of the list area. **OLE_COLOR**. Default: **vbWindowBackgro
 
 ### BorderStyle
 
-The control's border style. A [**TreeBorderStyleConstants**](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) member: **ccNone** or **ccFixedSingle**. Default: **ccFixedSingle**. The enum is shared with [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView).
+The control's border style. A [**TreeBorderStyleConstants**](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) member: **ccNone** or **ccFixedSingle**. Default: **ccFixedSingle**. The enum is shared with [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView/).
 
 ### CheckBoxes
 
@@ -98,7 +98,7 @@ Whether each row has a leading checkbox. **Boolean**. Default: **False**. When *
 
 ### ColumnHeaderIcons
 
-The [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) used for column-header icons in **lvwReport** view. Individual columns reference an icon by setting [**ColumnHeader.Icon**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#icon).
+The [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) used for column-header icons in **lvwReport** view. Individual columns reference an icon by setting [**ColumnHeader.Icon**](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#icon).
 
 ### ColumnHeaders
 
@@ -138,7 +138,7 @@ The Win32 handle of the embedded column-header window (`SysHeader32`). **LongPtr
 
 ### Icons
 
-The [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) used for large icons in **lvwIcon** view. Assignment increments the bound-count on the **ImageList** (and decrements the previous one's); see the [bound-count caveat](/en/official/Reference/WinNativeCommonCtls/ImageList#binding-to-consumers).
+The [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) used for large icons in **lvwIcon** view. Assignment increments the bound-count on the **ImageList** (and decrements the previous one's); see the [bound-count caveat](/en/official/Reference/WinNativeCommonCtls/ImageList/#binding-to-consumers).
 
 ### LabelEdit
 
@@ -166,7 +166,7 @@ The 1-based index of the currently focused row, or `-1` if no row is focused. **
 
 ### SmallIcons
 
-The [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList) used for small icons in **lvwSmallIcon**, **lvwList**, and **lvwReport** views.
+The [**ImageList**](/en/official/Reference/WinNativeCommonCtls/ImageList/) used for small icons in **lvwSmallIcon**, **lvwList**, and **lvwReport** views.
 
 ### TextBackground
 
@@ -312,6 +312,6 @@ Determines when inline label editing is triggered. Declared on the **ListView** 
 - [ListItems](/en/official/Reference/WinNativeCommonCtls/ListView/ListItems) -- the collection of rows
 - [ColumnHeader](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) -- a single column header (Report view)
 - [ColumnHeaders](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) -- the column header collection
-- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList) -- the picture source for [**Icons**](#icons), [**SmallIcons**](#smallicons), and [**ColumnHeaderIcons**](#columnheadericons)
-- [TreeBorderStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) -- the [**BorderStyle**](#borderstyle) enum shared with [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView)
+- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList/) -- the picture source for [**Icons**](#icons), [**SmallIcons**](#smallicons), and [**ColumnHeaderIcons**](#columnheadericons)
+- [TreeBorderStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) -- the [**BorderStyle**](#borderstyle) enum shared with [**TreeView**](/en/official/Reference/WinNativeCommonCtls/TreeView/)
 - [ControlTypeConstants](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbListView** lives

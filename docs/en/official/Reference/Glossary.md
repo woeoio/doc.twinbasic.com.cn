@@ -133,7 +133,7 @@ See [standard module](#standard-module). *Code module* is the older term still u
 
 ## collection
 
-An object that contains a set of related objects. An object's position in the collection can change whenever a change occurs in the collection; therefore, the position of any specific object in the collection can vary. The [**Collection**](/en/official/Reference/VBA/Collection) class is the standard example; instances of the class are collections. Collections must implement a method called `NewEnum` that accepts no arguments, returns an appropriate **IUnknown** object, and has its [`VB_UserMemId`](#attribute) attribute set to `-4`.
+An object that contains a set of related objects. An object's position in the collection can change whenever a change occurs in the collection; therefore, the position of any specific object in the collection can vary. The [**Collection**](/en/official/Reference/VBA/Collection/) class is the standard example; instances of the class are collections. Collections must implement a method called `NewEnum` that accepts no arguments, returns an appropriate **IUnknown** object, and has its [`VB_UserMemId`](#attribute) attribute set to `-4`.
 
 ## command line
 
@@ -173,7 +173,7 @@ A unique number or string that corresponds to a specific object in an applicatio
 
 ## control
 
-An object placed on a form that has its own set of recognized properties, methods, and events. Controls are used to receive user input, display output, and trigger event procedures. Most controls can be manipulated using methods. Some controls are interactive (responsive to user actions), while others are static (accessible only through code). See the [VB package](/en/official/Reference/VB) for the standard set of controls.
+An object placed on a form that has its own set of recognized properties, methods, and events. Controls are used to receive user input, display output, and trigger event procedures. Most controls can be manipulated using methods. Some controls are interactive (responsive to user actions), while others are static (accessible only through code). See the [VB package](/en/official/Reference/VB/) for the standard set of controls.
 
 ## control array
 
@@ -507,7 +507,7 @@ A variable that contains a reference to an object.
 
 ## package
 
-A unit of distribution and reference for twinBASIC code. A package bundles modules, classes, types, enums, and other declarations together, and can be referenced from a project as a single dependency. The twinBASIC runtime libraries are delivered this way: the [VBA](/en/official/Reference/VBA) package mirrors classic VBA's runtime, the [VBRUN](/en/official/Reference/VBRUN) package provides VB6's runtime objects, and the [VB](/en/official/Reference/VB) package supplies the standard control classes. Developers can author and publish their own packages.
+A unit of distribution and reference for twinBASIC code. A package bundles modules, classes, types, enums, and other declarations together, and can be referenced from a project as a single dependency. The twinBASIC runtime libraries are delivered this way: the [VBA](/en/official/Reference/VBA/) package mirrors classic VBA's runtime, the [VBRUN](/en/official/Reference/VBRUN/) package provides VB6's runtime objects, and the [VB](/en/official/Reference/VB/) package supplies the standard control classes. Developers can author and publish their own packages.
 
 ## parameter
 

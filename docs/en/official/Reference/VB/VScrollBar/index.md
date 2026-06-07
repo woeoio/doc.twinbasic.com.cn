@@ -6,9 +6,9 @@ permalink: /tB/Packages/VB/VScrollBar/
 
 # VScrollBar class
 
-A **VScrollBar** is a Win32 native vertical scroll bar exposed as a stand-alone control. Unlike the scroll bars that automatically appear inside a [**ListBox**](/en/official/Reference/VB/ListBox), [**ComboBox**](/en/official/Reference/VB/ComboBox), or [**TextBox**](/en/official/Reference/VB/TextBox), a **VScrollBar** is independent of any other control --- its [**Value**](#value) is whatever code reads or writes. The typical use is to control a numeric setting (a scroll offset, a brightness or opacity level, a colour channel, the vertical position of a custom-drawn surface) by binding the **VScrollBar**'s [**Change**](#change) and [**Scroll**](#scroll) events to whatever the value represents.
+A **VScrollBar** is a Win32 native vertical scroll bar exposed as a stand-alone control. Unlike the scroll bars that automatically appear inside a [**ListBox**](/en/official/Reference/VB/ListBox/), [**ComboBox**](/en/official/Reference/VB/ComboBox/), or [**TextBox**](/en/official/Reference/VB/TextBox/), a **VScrollBar** is independent of any other control --- its [**Value**](#value) is whatever code reads or writes. The typical use is to control a numeric setting (a scroll offset, a brightness or opacity level, a colour channel, the vertical position of a custom-drawn surface) by binding the **VScrollBar**'s [**Change**](#change) and [**Scroll**](#scroll) events to whatever the value represents.
 
-[**HScrollBar**](/en/official/Reference/VB/HScrollBar) is the horizontal counterpart; the two classes are identical apart from orientation.
+[**HScrollBar**](/en/official/Reference/VB/HScrollBar/) is the horizontal counterpart; the two classes are identical apart from orientation.
 
 The default property is [**Value**](#value) and the default event is [**Change**](#change).
 
@@ -74,7 +74,7 @@ Determines whether the previously focused control's [**Validate**](#validate) ev
 
 ### Container
 
-The control that hosts this scroll bar --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), or a **UserControl**. Read with **Get**, change with **Set**.
+The control that hosts this scroll bar --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
 
 ### ControlType
 
@@ -154,7 +154,7 @@ The control's opacity as a percentage (0--100, default 100). Values outside the 
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains this scroll bar. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this scroll bar. Read-only.
 
 ### RightToLeft
 

@@ -4,7 +4,7 @@ parent: Enumerations
 permalink: /tB/Packages/WebView2/Enumerations/wv2KeyEventKind
 ---
 # wv2KeyEventKind
-The kind of accelerator-key keyboard message that fired the [**AcceleratorKeyPressed**](/en/official/Reference/WebView2/WebView2#acceleratorkeypressed) event, passed as its **ByRef** `KeyState` argument. Mirrors the `COREWEBVIEW2_KEY_EVENT_KIND` enumeration.
+The kind of accelerator-key keyboard message that fired the [**AcceleratorKeyPressed**](/en/official/Reference/WebView2/WebView2/#acceleratorkeypressed) event, passed as its **ByRef** `KeyState` argument. Mirrors the `COREWEBVIEW2_KEY_EVENT_KIND` enumeration.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

@@ -3,6 +3,7 @@ import { zhNav, zhSidebar, zhFooter, zhDocFooter } from './nav/zh.mts'
 import { enNav, enSidebar, enFooter } from './nav/en.mts'
 import navRedirectPlugin from './plugins/navRedirect'
 import llmstxtQuiet from './plugins/llmstxt-quiet'
+import markdownItDeflist from 'markdown-it-deflist'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -134,6 +135,12 @@ export default defineConfig({
   },
 
   lastUpdated: true,
+
+  markdown: {
+    config: (md) => {
+      md.use(markdownItDeflist)
+    }
+  },
 
   vite: {
     plugins: [

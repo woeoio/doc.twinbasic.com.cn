@@ -279,7 +279,7 @@ The maximum width of the form's *client area*, in twips. **Double**, default `0`
 
 ### MDIChild
 
-When **True**, the form is hosted as a child inside an [**MDIForm**](/en/official/Reference/VB/MDIForm). **Boolean**, read-only --- set at design time. An MDI child form cannot be shown modally.
+When **True**, the form is hosted as a child inside an [**MDIForm**](/en/official/Reference/VB/MDIForm/). **Boolean**, read-only --- set at design time. An MDI child form cannot be shown modally.
 
 ### MinButton
 
@@ -379,7 +379,7 @@ How the form's initial position is determined the first time it is shown. A memb
 
 ### TabFocusAutoSelect
 
-When **True**, a [**TextBox**](/en/official/Reference/VB/TextBox) on this form whose own **TabFocusAutoSelect** is also **True** auto-selects its content when the focus enters it via the **TAB** key. **Boolean**, default **False**.
+When **True**, a [**TextBox**](/en/official/Reference/VB/TextBox/) on this form whose own **TabFocusAutoSelect** is also **True** auto-selects its content when the focus enters it via the **TAB** key. **Boolean**, default **False**.
 
 ### Tag
 
@@ -523,7 +523,7 @@ Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1*
 
 ### PopUpMenu
 
-Displays a [**Menu**](/en/official/Reference/VB/Menu) as a context-menu pop-up at the specified location.
+Displays a [**Menu**](/en/official/Reference/VB/Menu/) as a context-menu pop-up at the specified location.
 
 Syntax: *object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
 
@@ -564,7 +564,7 @@ Me.Print "Total: " & Format$(Total, "0.00")
 
 ### PrintForm
 
-Sends a screen-shot of the form's current visual state to the default printer through the [**Printer**](/en/official/Reference/VB/Printer) object.
+Sends a screen-shot of the form's current visual state to the default printer through the [**Printer**](/en/official/Reference/VB/Printer/) object.
 
 Syntax: *object*.**PrintForm** [ *ImplicitEndDoc* [, *OutputAtCurrentPosition* ] ]
 
@@ -630,7 +630,7 @@ Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
 
 ### SetFocus
 
-Activates the form and gives input focus to the control whose [**TabIndex**](/en/official/Reference/VB/TextBox#tabindex) is `0` (or to whichever control last held focus on this form).
+Activates the form and gives input focus to the control whose [**TabIndex**](/en/official/Reference/VB/TextBox/#tabindex) is `0` (or to whichever control last held focus on this form).
 
 Syntax: *object*.**SetFocus**
 

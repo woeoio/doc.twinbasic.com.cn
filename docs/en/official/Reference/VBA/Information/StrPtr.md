@@ -34,4 +34,4 @@ Debug.Print Chr$(ch)             ' "H"
 
 - [ObjPtr](/en/official/Reference/VBA/Information/ObjPtr) function
 - [VarPtr](/en/official/Reference/VBA/Information/VarPtr) function
-- [vbNullString](/en/official/Reference/VBA/Constants#vbNullString)
+- [vbNullString](/en/official/Reference/VBA/Constants/#vbNullString)

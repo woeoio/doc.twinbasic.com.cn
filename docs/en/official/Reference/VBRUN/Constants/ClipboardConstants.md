@@ -1,11 +1,11 @@
-﻿---
+---
 title: ClipboardConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/ClipboardConstants
 ---
 # ClipboardConstants
 
-Standard clipboard format identifiers used by the [**DataObject**](/en/official/Reference/VBRUN/DataObject) and **Clipboard** objects to choose how a value is stored or retrieved.
+Standard clipboard format identifiers used by the [**DataObject**](/en/official/Reference/VBRUN/DataObject/) and **Clipboard** objects to choose how a value is stored or retrieved.
 
 | Constant | Value | Description |
 |----------|-------|-------------|

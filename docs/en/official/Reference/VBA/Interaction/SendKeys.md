@@ -1,4 +1,15 @@
 ---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '47a01f60-c504-47a0-9a46-4022f35618ee'
+  PropagateID: '47a01f60-c504-47a0-9a46-4022f35618ee'
+  ReservedCode1: 'db04dfe2-ff15-4406-b95d-13bf84b959d8'
+  ReservedCode2: 'db04dfe2-ff15-4406-b95d-13bf84b959d8'
+---
+
+---
 title: SendKeys
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/SendKeys
@@ -17,7 +28,7 @@ Syntax: **SendKeys** *string* [ **,** *wait* ]
 
 Each key is represented by one or more characters. To specify a single keyboard character, use the character itself --- for example, `"A"` for the letter A, or `"ABC"` for A, B, then C in sequence.
 
-The plus sign (`+`), caret (`^`), percent sign (`%`), tilde (`~`), and parentheses `( )` have special meanings to **SendKeys**. To send one of these characters as itself, enclose it in braces: for example, `"{+}"` for the plus sign. Brackets `[ ]` have no special meaning to **SendKeys** itself, but they must be enclosed in braces because other applications may treat them specially during dynamic data exchange (DDE). To send brace characters, use `"{{}"` and `"{}}"`.
+The plus sign (`+`), caret (`^`), percent sign (`%`), tilde (`~`), and parentheses `( )` have special meanings to **SendKeys**. To send one of these characters as itself, enclose it in braces: for example, `"{+}"` for the plus sign. Brackets `[ ]` have no special meaning to **SendKeys** itself, but they must be enclosed in braces because other applications may treat them specially during dynamic data exchange (DDE). To send brace characters, use `"{&#8203;{}"` and `"{}&#8203;}"`.
 
 To send keys that don't correspond to a printable character, use the codes in the following table:
 
@@ -82,3 +93,5 @@ SendKeys "%{F4}", True
 
 - [AppActivate](/en/official/Reference/VBA/Interaction/AppActivate) statement
 - [Shell](/en/official/Reference/VBA/Interaction/Shell) function
+
+> AI生成

@@ -34,7 +34,7 @@ The control inherits the focusable rect-dockable members from `BaseControlFocusa
 
 ## Multi-month layout
 
-A **MonthView** can display more than one calendar panel at once. [**MonthColumns**](#monthcolumns) and [**MonthRows**](#monthrows) set the panel grid (default 1 × 1); when [**ResizeToFit**](#resizetofit) is **True** (the default), the control auto-sizes its **Width** and **Height** to fit the requested grid using the current [**Font**](/en/official/Reference/VB/CheckBox#font) and the [**ShowToday**](#showtoday) / [**ShowWeekNumbers**](#showweeknumbers) options. Setting **ResizeToFit** to **False** allows the application to size the control freely, with the calendar panels arranged to fit whatever space is available.
+A **MonthView** can display more than one calendar panel at once. [**MonthColumns**](#monthcolumns) and [**MonthRows**](#monthrows) set the panel grid (default 1 × 1); when [**ResizeToFit**](#resizetofit) is **True** (the default), the control auto-sizes its **Width** and **Height** to fit the requested grid using the current [**Font**](/en/official/Reference/VB/CheckBox/#font) and the [**ShowToday**](#showtoday) / [**ShowWeekNumbers**](#showweeknumbers) options. Setting **ResizeToFit** to **False** allows the application to size the control freely, with the calendar panels arranged to fit whatever space is available.
 
 [**GetMonthRange**](#getmonthrange) returns the span of dates currently visible across all panels --- useful inside [**GetDayBold**](#getdaybold) to know which days to populate.
 
@@ -126,7 +126,7 @@ Whether the user can select a contiguous range of days. **Boolean**. Default: **
 
 ### ResizeToFit
 
-Whether the control auto-resizes to fit the requested [**MonthColumns**](#monthcolumns) × [**MonthRows**](#monthrows) grid using the current [**Font**](/en/official/Reference/VB/CheckBox#font). **Boolean**. Default: **True**.
+Whether the control auto-resizes to fit the requested [**MonthColumns**](#monthcolumns) × [**MonthRows**](#monthrows) grid using the current [**Font**](/en/official/Reference/VB/CheckBox/#font). **Boolean**. Default: **True**.
 
 ### RightToLeft
 

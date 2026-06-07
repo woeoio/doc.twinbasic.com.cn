@@ -24,5 +24,5 @@ ImageList1.ListImages("doc").Draw _
 
 ## See Also
 
-- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList) -- the parent control
+- [ImageList](/en/official/Reference/WinNativeCommonCtls/ImageList/) -- the parent control
 - [ListImage.Draw](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImage#draw) -- the consuming method

@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Menu/
 
 # Menu class
 
-A **Menu** is an item in a Win32 native menu --- either a top-level entry on a [**Form**](/en/official/Reference/VB/Form)'s or [**MDIForm**](/en/official/Reference/VB/MDIForm)'s menu bar, an entry in a drop-down sub-menu, or a separator bar between groups of related commands. Menus are a non-windowed control: they have no [**Left**](#) / [**Top**](#) / [**Width**](#) / [**Height**](#), no font, and no mouse or keyboard events of their own --- they are populated, structured, and bound to handlers at design time through the form's menu editor.
+A **Menu** is an item in a Win32 native menu --- either a top-level entry on a [**Form**](/en/official/Reference/VB/Form/)'s or [**MDIForm**](/en/official/Reference/VB/MDIForm/)'s menu bar, an entry in a drop-down sub-menu, or a separator bar between groups of related commands. Menus are a non-windowed control: they have no [**Left**](#) / [**Top**](#) / [**Width**](#) / [**Height**](#), no font, and no mouse or keyboard events of their own --- they are populated, structured, and bound to handlers at design time through the form's menu editor.
 
 The default property is [**Enabled**](#enabled) and the default event is [**Click**](#click).
 
@@ -76,7 +76,7 @@ End Sub
 
 ## Window list (MDI)
 
-When the form hosting the menu is an [**MDIForm**](/en/official/Reference/VB/MDIForm), setting [**WindowList**](#windowlist) to **True** at design time turns this menu into the application's *Window* sub-menu --- the runtime auto-populates it with one entry per open MDI child, marks the active child with a checkmark, and routes a click on any of those entries to **SetFocus** on the corresponding child. The application typically combines this with an explicit *Cascade* / *Tile* sub-menu that calls [**Arrange**](/en/official/Reference/VB/MDIForm#arrange) on the parent.
+When the form hosting the menu is an [**MDIForm**](/en/official/Reference/VB/MDIForm/), setting [**WindowList**](#windowlist) to **True** at design time turns this menu into the application's *Window* sub-menu --- the runtime auto-populates it with one entry per open MDI child, marks the active child with a checkmark, and routes a click on any of those entries to **SetFocus** on the corresponding child. The application typically combines this with an explicit *Cascade* / *Tile* sub-menu that calls [**Arrange**](/en/official/Reference/VB/MDIForm/#arrange) on the parent.
 
 ## Properties
 
@@ -138,7 +138,7 @@ Typed as [**NegotiatePositionConstants**](/en/official/Reference/VBRUN/Constants
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or [**MDIForm**](/en/official/Reference/VB/MDIForm) / **UserControl**) that contains this menu. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or [**MDIForm**](/en/official/Reference/VB/MDIForm/) / **UserControl**) that contains this menu. Read-only.
 
 ### Picture
 
@@ -172,13 +172,13 @@ Syntax: *object*.**Visible** [ = *boolean* ]
 
 ### WindowList
 
-When **True** on a menu hosted by an [**MDIForm**](/en/official/Reference/VB/MDIForm), turns this menu into the application's *Window* sub-menu --- the runtime auto-populates it with one entry per open MDI child and routes the resulting click to **SetFocus** on the corresponding child. **Boolean**, read-only at run time --- set at design time. At most one menu per MDI form should have **WindowList** set.
+When **True** on a menu hosted by an [**MDIForm**](/en/official/Reference/VB/MDIForm/), turns this menu into the application's *Window* sub-menu --- the runtime auto-populates it with one entry per open MDI child and routes the resulting click to **SetFocus** on the corresponding child. **Boolean**, read-only at run time --- set at design time. At most one menu per MDI form should have **WindowList** set.
 
 ## Methods
 
 ### Container
 
-Returns a reference to the **Control** that hosts this menu --- typically the [**Form**](/en/official/Reference/VB/Form) or [**MDIForm**](/en/official/Reference/VB/MDIForm) that owns the menu structure. Equivalent to traversing [**Parent**](#parent) for a top-level menu, but defined on every menu (including sub-items) so it can be called uniformly.
+Returns a reference to the **Control** that hosts this menu --- typically the [**Form**](/en/official/Reference/VB/Form/) or [**MDIForm**](/en/official/Reference/VB/MDIForm/) that owns the menu structure. Equivalent to traversing [**Parent**](#parent) for a top-level menu, but defined on every menu (including sub-items) so it can be called uniformly.
 
 Syntax: *object*.**Container**
 
@@ -186,7 +186,7 @@ Syntax: *object*.**Container**
 
 ### Click
 
-Raised when the user picks the menu item --- by clicking it, pressing its mnemonic while the menu is open, or pressing its [**ShortcutId**](#shortcutid) accelerator. Also raised when [**PopUpMenu**](/en/official/Reference/VB/Form#popupmenu) selects an item. **Default event.**
+Raised when the user picks the menu item --- by clicking it, pressing its mnemonic while the menu is open, or pressing its [**ShortcutId**](#shortcutid) accelerator. Also raised when [**PopUpMenu**](/en/official/Reference/VB/Form/#popupmenu) selects an item. **Default event.**
 
 Syntax: *object*\_**Click**( )
 

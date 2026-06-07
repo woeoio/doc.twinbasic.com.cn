@@ -175,7 +175,7 @@ The number of pixels of empty space inserted between the picture and the caption
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that contains this control. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that contains this control. Read-only.
 
 ### Picture
 

@@ -8,7 +8,7 @@ permalink: /tB/Packages/VB/Clipboard/
 
 The **Clipboard** class wraps the system clipboard --- the Win32 inter-application copy-and-paste API --- and exposes it as a singleton object. Code reads and writes text, queries which formats are currently available, and (eventually --- see [the picture caveat](#picture-data)) reads and writes pictures.
 
-**Clipboard** is not creatable: there is exactly one instance per process, owned by the runtime and exposed through the [**Clipboard**](/en/official/Reference/VB/Global#clipboard) property on the [**Global**](/en/official/Reference/VB/Global) app-object. Code reaches it without qualification:
+**Clipboard** is not creatable: there is exactly one instance per process, owned by the runtime and exposed through the [**Clipboard**](/en/official/Reference/VB/Global/#clipboard) property on the [**Global**](/en/official/Reference/VB/Global/) app-object. Code reaches it without qualification:
 
 ```vb
 ' Copy

@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/DirListBox/
 
 # DirListBox class
 
-A **DirListBox** is a Win32 native list control that displays the directory tree for a single path: the ancestors of the current folder are shown above (each with a closed-folder icon, indented by depth), and the immediate subdirectories of the current folder appear below (each with an open-folder icon at full indent). Double-clicking an entry navigates into it, raising a [**Change**](#change) event. The control is normally placed on a **Form** or **UserControl** at design time alongside a [**DriveListBox**](/en/official/Reference/VB/DriveListBox) and a [**FileListBox**](/en/official/Reference/VB/FileListBox), connecting their **Change** events together to build a complete file picker. The default property is [**Path**](#path) and the default event is [**Change**](#change).
+A **DirListBox** is a Win32 native list control that displays the directory tree for a single path: the ancestors of the current folder are shown above (each with a closed-folder icon, indented by depth), and the immediate subdirectories of the current folder appear below (each with an open-folder icon at full indent). Double-clicking an entry navigates into it, raising a [**Change**](#change) event. The control is normally placed on a **Form** or **UserControl** at design time alongside a [**DriveListBox**](/en/official/Reference/VB/DriveListBox/) and a [**FileListBox**](/en/official/Reference/VB/FileListBox/), connecting their **Change** events together to build a complete file picker. The default property is [**Path**](#path) and the default event is [**Change**](#change).
 
 ```vb
 Private Sub Form_Load()
@@ -29,7 +29,7 @@ End Sub
 
 The control is built around three closely-related properties:
 
-- [**Path**](#path) -- the absolute path of the *current* directory. Set it from code (or by double-clicking an entry) to navigate the list. Defaults to [**App.Path**](/en/official/Reference/VB/App#path) when the control is first created.
+- [**Path**](#path) -- the absolute path of the *current* directory. Set it from code (or by double-clicking an entry) to navigate the list. Defaults to [**App.Path**](/en/official/Reference/VB/App/#path) when the control is first created.
 - [**ListIndex**](#listindex) -- which entry the user has *selected*. `-1` selects the current folder itself (the deepest of the ancestor entries); `0` and up select successive subdirectories. Selecting an entry is independent of navigating to it --- the selection just moves the highlight.
 - [**PathSelected**](#pathselected) -- the absolute path that would become **Path** if the selected entry were activated. For an ancestor entry it traverses back up the tree; for a subdirectory it concatenates **Path** and the entry's name.
 
@@ -319,7 +319,7 @@ Syntax: *object*\_**GotFocus**( )
 
 ### Initialize
 
-Raised once, immediately after the underlying window is created and the initial path ([**App.Path**](/en/official/Reference/VB/App#path)) has been loaded. New in twinBASIC --- VB6 had no equivalent on this control.
+Raised once, immediately after the underlying window is created and the initial path ([**App.Path**](/en/official/Reference/VB/App/#path)) has been loaded. New in twinBASIC --- VB6 had no equivalent on this control.
 
 Syntax: *object*\_**Initialize**( )
 

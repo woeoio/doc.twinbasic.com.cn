@@ -13,7 +13,7 @@ AIGC:
 ---
 
 # BorderStyle
-The Win32 frame style used by a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm) window. Determines whether the window has a thick or thin border, whether it can be resized by dragging an edge, and whether it shows a normal title bar or the smaller tool-window title bar. Used by [**WindowsFormOptions.BorderStyle**](/en/official/Reference/CustomControls/WaynesForm/WindowsFormOptions#borderstyle).
+The Win32 frame style used by a [**WaynesForm**](/en/official/Reference/CustomControls/WaynesForm/) window. Determines whether the window has a thick or thin border, whether it can be resized by dragging an edge, and whether it shows a normal title bar or the smaller tool-window title bar. Used by [**WindowsFormOptions.BorderStyle**](/en/official/Reference/CustomControls/WaynesForm/WindowsFormOptions#borderstyle).
 
 | Constant | Value | Description |
 |----------|-------|-------------|

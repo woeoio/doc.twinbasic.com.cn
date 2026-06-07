@@ -1,11 +1,11 @@
-﻿---
+---
 title: ParentControlsType
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/ParentControlsType
 ---
 # ParentControlsType
 
-Wrapping mode for the [**ParentControls**](/en/official/Reference/VBRUN/ParentControls) collection, controlling whether each item is returned wrapped in its host **Extender** or as the bare control.
+Wrapping mode for the [**ParentControls**](/en/official/Reference/VBRUN/ParentControls/) collection, controlling whether each item is returned wrapped in its host **Extender** or as the bare control.
 
 | Constant | Value | Description |
 |----------|-------|-------------|
@@ -14,4 +14,4 @@ Wrapping mode for the [**ParentControls**](/en/official/Reference/VBRUN/ParentCo
 
 ### See Also
 
-- [ParentControls](/en/official/Reference/VBRUN/ParentControls) module
+- [ParentControls](/en/official/Reference/VBRUN/ParentControls/) module

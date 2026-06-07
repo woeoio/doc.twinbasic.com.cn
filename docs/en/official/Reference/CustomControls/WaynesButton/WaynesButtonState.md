@@ -5,7 +5,7 @@ permalink: /tB/Packages/CustomControls/WaynesButton/WaynesButtonState
 ---
 
 # WaynesButtonState class
-A bundle of the four style objects that describe a single visual state of a [**WaynesButton**](/en/official/Reference/CustomControls/WaynesButton) --- its corners, background fill, borders, and text rendering. Each button has four parallel instances accessed as [**NormalState**](/en/official/Reference/CustomControls/WaynesButton#normalstate), [**HoverState**](/en/official/Reference/CustomControls/WaynesButton#hoverstate), [**FocusedState**](/en/official/Reference/CustomControls/WaynesButton#focusedstate), and [**PressedState**](/en/official/Reference/CustomControls/WaynesButton#pressedstate); the button picks one at each repaint depending on the mouse / focus state.
+A bundle of the four style objects that describe a single visual state of a [**WaynesButton**](/en/official/Reference/CustomControls/WaynesButton/) --- its corners, background fill, borders, and text rendering. Each button has four parallel instances accessed as [**NormalState**](/en/official/Reference/CustomControls/WaynesButton/#normalstate), [**HoverState**](/en/official/Reference/CustomControls/WaynesButton/#hoverstate), [**FocusedState**](/en/official/Reference/CustomControls/WaynesButton/#focusedstate), and [**PressedState**](/en/official/Reference/CustomControls/WaynesButton/#pressedstate); the button picks one at each repaint depending on the mouse / focus state.
 
 Newly-constructed **WaynesButtonState** objects pre-set their **BackgroundFill** to a solid mid-blue and all four corners to a 15-pixel curve. Override per-state to give the button a different look in each state.
 
@@ -40,7 +40,7 @@ The [**Corners**](/en/official/Reference/CustomControls/Styles/Corners) that con
 
 ### TextRendering
 
-The [**TextRendering**](/en/official/Reference/CustomControls/Styles/TextRendering) that controls how the button's [**Caption**](/en/official/Reference/CustomControls/WaynesButton#caption) is drawn.
+The [**TextRendering**](/en/official/Reference/CustomControls/Styles/TextRendering) that controls how the button's [**Caption**](/en/official/Reference/CustomControls/WaynesButton/#caption) is drawn.
 
 ## Methods
 
@@ -54,4 +54,4 @@ Syntax: *object*.**InitializeDefaults**
 
 ### OnChanged
 
-Raised whenever any of the four contained style objects raises its own **OnChanged**. The parent [**WaynesButton**](/en/official/Reference/CustomControls/WaynesButton) listens for this and requests a repaint.
+Raised whenever any of the four contained style objects raises its own **OnChanged**. The parent [**WaynesButton**](/en/official/Reference/CustomControls/WaynesButton/) listens for this and requests a repaint.

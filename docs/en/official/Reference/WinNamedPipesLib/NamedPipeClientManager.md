@@ -5,7 +5,7 @@ permalink: /tB/Packages/WinNamedPipesLib/NamedPipeClientManager
 ---
 
 # NamedPipeClientManager class
-The client-side coordinator. Owns a Windows I/O Completion Port and a pool of worker threads shared by every [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) it produces, and returns them through [**Connect**](#connect). One [**NamedPipeClientManager**](/en/official/Reference/WinNamedPipesLib) typically lives for the lifetime of the consuming process and manages many connections --- to one or several servers --- through that shared IOCP infrastructure. Instantiate with **New**.
+The client-side coordinator. Owns a Windows I/O Completion Port and a pool of worker threads shared by every [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) it produces, and returns them through [**Connect**](#connect). One [**NamedPipeClientManager**](/en/official/Reference/WinNamedPipesLib/) typically lives for the lifetime of the consuming process and manages many connections --- to one or several servers --- through that shared IOCP infrastructure. Instantiate with **New**.
 
 Configure the public fields (all four have reasonable defaults), call [**Connect**](#connect) for each pipe the application wants to dial, and respond to the [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) events. The first [**Connect**](#connect) lazily creates the completion port and starts the worker threads; subsequent calls reuse them.
 
@@ -29,7 +29,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 ```
 
-See the package [overview](/en/official/Reference/WinNamedPipesLib) for the IOCP / event-marshalling architecture, the cookie correlation pattern, the transient lifetime of `Data() As Byte` inside events, and the mandatory `AsyncClose` rule for client connections.
+See the package [overview](/en/official/Reference/WinNamedPipesLib/) for the IOCP / event-marshalling architecture, the cookie correlation pattern, the transient lifetime of `Data() As Byte` inside events, and the mandatory `AsyncClose` rule for client connections.
 
 ## Properties
 
@@ -85,7 +85,7 @@ For Each name In names
 Next
 ```
 
-The package does not publish an event when pipes appear or disappear, so dynamic UIs that list available servers typically refresh the list from a low-frequency [**Timer**](/en/official/Reference/VB/Timer) --- see [Discovering pipes](/en/official/Reference/WinNamedPipesLib#discovering-pipes) on the package overview for the polling-loop pattern that preserves the user's current selection across refreshes.
+The package does not publish an event when pipes appear or disappear, so dynamic UIs that list available servers typically refresh the list from a low-frequency [**Timer**](/en/official/Reference/VB/Timer/) --- see [Discovering pipes](/en/official/Reference/WinNamedPipesLib/#discovering-pipes) on the package overview for the polling-loop pattern that preserves the user's current selection across refreshes.
 
 ### Stop
 
@@ -103,7 +103,7 @@ Syntax: **New NamedPipeClientManager**
 
 ## See Also
 
-- [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, **AsyncClose** rule
-- [Discovering pipes](/en/official/Reference/WinNamedPipesLib#discovering-pipes) -- the **Timer**-driven polling loop that powers dynamic pipe-listing UIs
+- [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib/) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, **AsyncClose** rule
+- [Discovering pipes](/en/official/Reference/WinNamedPipesLib/#discovering-pipes) -- the **Timer**-driven polling loop that powers dynamic pipe-listing UIs
 - [NamedPipeClientConnection class](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) -- the per-connection object returned by [**Connect**](#connect)
 - [NamedPipeServer class](/en/official/Reference/WinNamedPipesLib/NamedPipeServer) -- the server-side counterpart

@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/MDIForm/
 
 # MDIForm class
 
-An **MDIForm** is a top-level Win32 window that hosts an *MDI client area* --- a recessed working surface in which one or more [**Form**](/en/official/Reference/VB/Form) instances marked as MDI children appear, each with its own caption bar inside the parent. A twinBASIC project may contain at most one MDI form. Unlike an ordinary [**Form**](/en/official/Reference/VB/Form), an MDIForm has no drawing surface, no font properties, and no graphics primitives --- it is purely a frame for its children, plus a host for menus, toolbars, and (optionally) a single background [**Picture**](#picture) drawn behind the children.
+An **MDIForm** is a top-level Win32 window that hosts an *MDI client area* --- a recessed working surface in which one or more [**Form**](/en/official/Reference/VB/Form/) instances marked as MDI children appear, each with its own caption bar inside the parent. A twinBASIC project may contain at most one MDI form. Unlike an ordinary [**Form**](/en/official/Reference/VB/Form/), an MDIForm has no drawing surface, no font properties, and no graphics primitives --- it is purely a frame for its children, plus a host for menus, toolbars, and (optionally) a single background [**Picture**](#picture) drawn behind the children.
 
 The default property is [**Controls**](#controls) and the default event is [**Load**](#load).
 
@@ -36,7 +36,7 @@ End Sub
 
 ## Lifecycle
 
-The MDIForm goes through the same six events as a regular [**Form**](/en/official/Reference/VB/Form) from creation to destruction:
+The MDIForm goes through the same six events as a regular [**Form**](/en/official/Reference/VB/Form/) from creation to destruction:
 
 | Event                            | When                                                                                |
 |----------------------------------|-------------------------------------------------------------------------------------|
@@ -50,7 +50,7 @@ The MDIForm goes through the same six events as a regular [**Form**](/en/officia
 
 ## MDI children
 
-An MDI child is any [**Form**](/en/official/Reference/VB/Form) whose **MDIChild** property is **True** (set at design time). Showing or unhiding such a form parents it to the MDI client area: its [**Left**](/en/official/Reference/VB/Form#left) and [**Top**](/en/official/Reference/VB/Form#top) become relative to the client area's upper-left corner, its title bar is drawn inside the parent rather than on the desktop, and maximising it merges its system menu and minimise/maximise buttons into the parent's title bar.
+An MDI child is any [**Form**](/en/official/Reference/VB/Form/) whose **MDIChild** property is **True** (set at design time). Showing or unhiding such a form parents it to the MDI client area: its [**Left**](/en/official/Reference/VB/Form/#left) and [**Top**](/en/official/Reference/VB/Form/#top) become relative to the client area's upper-left corner, its title bar is drawn inside the parent rather than on the desktop, and maximising it merges its system menu and minimise/maximise buttons into the parent's title bar.
 
 [**ActiveForm**](#activeform) returns the currently focused child, or **Nothing** when no child is open. [**Activate**](#activate) and [**Deactivate**](#deactivate) on the MDI parent fire only when activation crosses the MDI group's outer boundary; activation moves *within* the group fire **Activate** / **Deactivate** on the affected child forms instead.
 
@@ -67,19 +67,19 @@ mnuWindowArrangeIcons.Click  => Me.Arrange vbArrangeIcons
 
 ## Window appearance
 
-An MDIForm always uses the sizable border style --- there is no [**BorderStyle**](/en/official/Reference/VB/Form#borderstyle) property, the title bar is always present, the system menu and minimise / maximise buttons are always shown, and the form always appears in the taskbar. [**Caption**](#caption) sets the title-bar text. [**Icon**](#icon) supplies the small/large icon used by the system menu, the taskbar, and Alt-Tab. [**WindowState**](#windowstate) ([**FormWindowStateConstants**](/en/official/Reference/VBRUN/Constants/FormWindowStateConstants)) reads or sets normal / minimised / maximised state at run time.
+An MDIForm always uses the sizable border style --- there is no [**BorderStyle**](/en/official/Reference/VB/Form/#borderstyle) property, the title bar is always present, the system menu and minimise / maximise buttons are always shown, and the form always appears in the taskbar. [**Caption**](#caption) sets the title-bar text. [**Icon**](#icon) supplies the small/large icon used by the system menu, the taskbar, and Alt-Tab. [**WindowState**](#windowstate) ([**FormWindowStateConstants**](/en/official/Reference/VBRUN/Constants/FormWindowStateConstants)) reads or sets normal / minimised / maximised state at run time.
 
 [**MinWidth**](#minwidth), [**MinHeight**](#minheight), [**MaxWidth**](#maxwidth), and [**MaxHeight**](#maxheight) constrain the *client area* in twips during interactive resizing. [**Moveable**](#moveable) decides whether the user can drag the form by its title bar.
 
 [**Opacity**](#opacity) and [**TransparencyKey**](#transparencykey) enable Windows' layered-window features for translucent forms and cut-out shapes.
 
-[**BackColor**](#backcolor) paints the MDI client area's background --- defaults to the system **vbApplicationWorkspace** colour rather than 3-D face. [**Picture**](#picture), when set, is drawn over **BackColor** as the client-area backdrop, scaled to fill the area for metafiles and centred at its natural size for bitmaps. [**PictureDpiScaling**](#picturedpiscaling) scales bitmaps by the current DPI factor before drawing. There is no on-screen drawing API on an MDIForm --- the [**Cls**](/en/official/Reference/VB/Form#cls), [**Circle**](/en/official/Reference/VB/Form#circle), [**Line**](/en/official/Reference/VB/Form#line), [**PSet**](/en/official/Reference/VB/Form#pset), [**PaintPicture**](/en/official/Reference/VB/Form#paintpicture), and **Print** members of the **Form** interface raise run-time error 438 (*Object doesn't support this property or method*) when called on an MDIForm.
+[**BackColor**](#backcolor) paints the MDI client area's background --- defaults to the system **vbApplicationWorkspace** colour rather than 3-D face. [**Picture**](#picture), when set, is drawn over **BackColor** as the client-area backdrop, scaled to fill the area for metafiles and centred at its natural size for bitmaps. [**PictureDpiScaling**](#picturedpiscaling) scales bitmaps by the current DPI factor before drawing. There is no on-screen drawing API on an MDIForm --- the [**Cls**](/en/official/Reference/VB/Form/#cls), [**Circle**](/en/official/Reference/VB/Form/#circle), [**Line**](/en/official/Reference/VB/Form/#line), [**PSet**](/en/official/Reference/VB/Form/#pset), [**PaintPicture**](/en/official/Reference/VB/Form/#paintpicture), and **Print** members of the **Form** interface raise run-time error 438 (*Object doesn't support this property or method*) when called on an MDIForm.
 
 A vertical and a horizontal scroll bar appear automatically when an MDI child is moved or sized so that its rectangle extends beyond the visible client area; this is fixed at design time through the **ScrollBars** property of the MDI parent and is not exposed at run time.
 
 ## Menus and pop-ups
 
-Menu structures designed at form-design time appear automatically in the MDIForm's title bar. When an MDI child is maximised, the child's own menu (if any) is merged into the parent's menu bar, replacing it for as long as the child stays maximised. The classic VB6 *window-list* feature --- a menu sub-tree that lists every open MDI child for quick switching --- is supported automatically when a [**Menu**](/en/official/Reference/VB/Menu) on the MDIForm has its **WindowList** property set.
+Menu structures designed at form-design time appear automatically in the MDIForm's title bar. When an MDI child is maximised, the child's own menu (if any) is merged into the parent's menu bar, replacing it for as long as the child stays maximised. The classic VB6 *window-list* feature --- a menu sub-tree that lists every open MDI child for quick switching --- is supported automatically when a [**Menu**](/en/official/Reference/VB/Menu/) on the MDIForm has its **WindowList** property set.
 
 [**PopUpMenu**](#popupmenu) displays one of the form's menus as a context-menu pop-up at a specified location, raising the menu's **Click** event when the user picks an item.
 
@@ -99,7 +99,7 @@ Because the MDIForm is a frame, not a drawing surface, the following members of 
 | Font                         | **Font**, **FontName**, **FontSize**, **FontBold**, **FontItalic**, **FontStrikethru**, **FontUnderline**, **TextWidth** |
 | Geometry                     | **ScaleLeft**, **ScaleTop**, **ScaleMode**, **Scale**, **ScaleX**, **ScaleY** ([**ScaleWidth**](#scalewidth) and [**ScaleHeight**](#scaleheight) are supported but read-only) |
 | Window chrome                | **BorderStyle**, **ControlBox**, **MaxButton**, **MinButton**, **ShowInTaskbar**, **WhatsThisButton** |
-| Other                        | **KeyPreview** (and the [**Form**](/en/official/Reference/VB/Form)'s **KeyDown** / **KeyUp** / **KeyPress** events do not exist on **MDIForm**), **MDIChild**, **NegotiateMenus**, **Palette**, **PaletteMode**, **PrintForm**, **Point**, **Refresh** (raises 438 on an MDIForm even though it works on a regular Form) |
+| Other                        | **KeyPreview** (and the [**Form**](/en/official/Reference/VB/Form/)'s **KeyDown** / **KeyUp** / **KeyPress** events do not exist on **MDIForm**), **MDIChild**, **NegotiateMenus**, **Palette**, **PaletteMode**, **PrintForm**, **Point**, **Refresh** (raises 438 on an MDIForm even though it works on a regular Form) |
 | Behaviour quirk              | **TextHeight** returns `0` instead of raising. (VB6 bug retained for compatibility.) |
 
 ## Properties
@@ -270,7 +270,7 @@ How the form's initial position is determined the first time it is shown. A memb
 
 ### TabFocusAutoSelect
 
-When **True**, a [**TextBox**](/en/official/Reference/VB/TextBox) on this form (or on any of its MDI children) whose own **TabFocusAutoSelect** is also **True** auto-selects its content when the focus enters it via the **TAB** key. **Boolean**, default **False**.
+When **True**, a [**TextBox**](/en/official/Reference/VB/TextBox/) on this form (or on any of its MDI children) whose own **TabFocusAutoSelect** is also **True** auto-selects its content when the focus enters it via the **TAB** key. **Boolean**, default **False**.
 
 ### Tag
 
@@ -347,7 +347,7 @@ Syntax: *object*.**OLEDrag**
 
 ### PopUpMenu
 
-Displays a [**Menu**](/en/official/Reference/VB/Menu) as a context-menu pop-up at the specified location.
+Displays a [**Menu**](/en/official/Reference/VB/Menu/) as a context-menu pop-up at the specified location.
 
 Syntax: *object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
 

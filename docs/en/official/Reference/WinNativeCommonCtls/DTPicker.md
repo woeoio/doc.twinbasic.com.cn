@@ -212,7 +212,7 @@ Syntax: *object*\_**DblClick**( )
 
 ### DragDrop
 
-Inherited drag-drop event. See [**DragMode**](/en/official/Reference/VB/CheckBox#dragmode).
+Inherited drag-drop event. See [**DragMode**](/en/official/Reference/VB/CheckBox/#dragmode).
 
 ### DragOver
 
@@ -238,7 +238,7 @@ Syntax: *object*\_**Format**( **ByVal** *CallbackField* **As String**, *Formatte
 
 ### FormatSize
 
-Raised before [**Format**](#format-event) to ask how many character cells to reserve for the callback field. The picker uses the current [**Font**](/en/official/Reference/VB/CheckBox#font) to measure the rendered width.
+Raised before [**Format**](#format-event) to ask how many character cells to reserve for the callback field. The picker uses the current [**Font**](/en/official/Reference/VB/CheckBox/#font) to measure the rendered width.
 
 Syntax: *object*\_**FormatSize**( **ByVal** *CallbackField* **As String**, *Size* **As Integer** )
 

@@ -5,7 +5,7 @@ permalink: /tB/Modules/Information/Err
 ---
 # Err
 
-Returns or sets the [**ErrObject**](/en/official/Reference/VBA/ErrObject) describing the current run-time error state.
+Returns or sets the [**ErrObject**](/en/official/Reference/VBA/ErrObject/) describing the current run-time error state.
 
 Syntax:
 - **Err** [ **()** ]
@@ -36,6 +36,6 @@ End If
 
 ### See Also
 
-- [ErrObject](/en/official/Reference/VBA/ErrObject) module
+- [ErrObject](/en/official/Reference/VBA/ErrObject/) module
 - [Erl](/en/official/Reference/VBA/Information/Erl) function
 - [On Error](/en/official/Reference/Core/On-Error) statement

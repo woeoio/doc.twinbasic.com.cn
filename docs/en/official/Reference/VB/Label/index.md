@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Label/
 
 # Label class
 
-A **Label** is a windowless lightweight control for displaying read-only text. Labels are typically used as static captions next to input controls ("Name:", "Email:"), as status displays that code keeps up to date, or as keyboard-mnemonic anchors that route **Alt+** keystrokes to the next focusable control. Because the **Label** has no `hWnd` of its own, it is much cheaper than a [**TextBox**](/en/official/Reference/VB/TextBox) configured to be read-only --- but it is also non-interactive in the keyboard sense: it cannot take focus, raise key events, or be selected with the **TAB** key.
+A **Label** is a windowless lightweight control for displaying read-only text. Labels are typically used as static captions next to input controls ("Name:", "Email:"), as status displays that code keeps up to date, or as keyboard-mnemonic anchors that route **Alt+** keystrokes to the next focusable control. Because the **Label** has no `hWnd` of its own, it is much cheaper than a [**TextBox**](/en/official/Reference/VB/TextBox/) configured to be read-only --- but it is also non-interactive in the keyboard sense: it cannot take focus, raise key events, or be selected with the **TAB** key.
 
 The default property is [**Caption**](#caption) and the default event is [**Click**](#click).
 
@@ -25,13 +25,13 @@ End Sub
 
 ## Windowless rendering
 
-Like [**Image**](/en/official/Reference/VB/Image), a **Label** has no `hWnd`. The framework paints it directly onto its parent's drawing surface during the parent's paint cycle. The trade-offs are the same:
+Like [**Image**](/en/official/Reference/VB/Image/), a **Label** has no `hWnd`. The framework paints it directly onto its parent's drawing surface during the parent's paint cycle. The trade-offs are the same:
 
 - No focus, no keyboard input, no `KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`.
 - No `hWnd` to pass to API functions, and no `SetFocus`.
 - Cannot host child controls.
 
-For text the user can edit (or that needs to take focus), use [**TextBox**](/en/official/Reference/VB/TextBox) with `Locked = True` instead.
+For text the user can edit (or that needs to take focus), use [**TextBox**](/en/official/Reference/VB/TextBox/) with `Locked = True` instead.
 
 ## Mnemonics and access keys
 
@@ -83,11 +83,11 @@ End With
 
 ## Background
 
-[**BackStyle**](#backstyle) chooses between **vbBFOpaque** (default --- paint [**BackColor**](#backcolor) under the caption) and **vbBFTransparent** (don't paint a background --- whatever the parent has drawn shows through). Transparent labels are essential when overlaying captions on a [**PictureBox**](/en/official/Reference/VB/PictureBox), an [**Image**](/en/official/Reference/VB/Image), or a custom-painted form background. New labels created in *report mode* default to **vbBFTransparent**.
+[**BackStyle**](#backstyle) chooses between **vbBFOpaque** (default --- paint [**BackColor**](#backcolor) under the caption) and **vbBFTransparent** (don't paint a background --- whatever the parent has drawn shows through). Transparent labels are essential when overlaying captions on a [**PictureBox**](/en/official/Reference/VB/PictureBox/), an [**Image**](/en/official/Reference/VB/Image/), or a custom-painted form background. New labels created in *report mode* default to **vbBFTransparent**.
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects [**Caption**](#caption) to a field of a [**Data**](/en/official/Reference/VB/Data) control's recordset. The bound field is read as a string on each move, and assigning to [**Caption**](#caption) marks the recordset as dirty. [**DataFieldAggregate**](#datafieldaggregate) and [**DataFieldAggregateValue**](#datafieldaggregatevalue) are used by the report engine to display running totals.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects [**Caption**](#caption) to a field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset. The bound field is read as a string on each move, and assigning to [**Caption**](#caption) marks the recordset as dirty. [**DataFieldAggregate**](#datafieldaggregate) and [**DataFieldAggregateValue**](#datafieldaggregatevalue) are used by the report engine to display running totals.
 
 ## Properties
 
@@ -137,7 +137,7 @@ An ampersand marks the next character as a mnemonic when [**UseMnemonic**](#usem
 
 ### Container
 
-The control that hosts this label --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame), or a **UserControl**. Read with **Get**, change with **Set**.
+The control that hosts this label --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
 
 ### ControlType
 
@@ -160,7 +160,7 @@ The kind of running aggregate the report engine should accumulate into [**DataFi
 | **vbAggregateNone** | 0     | No aggregation (default).                                            |
 | **vbAggregateSum**  | 1     | Sum the bound numeric value across the rows visited by the report.   |
 
-Used only when the label is rendered inside a [**Report**](/en/official/Reference/VB/Report) section.
+Used only when the label is rendered inside a [**Report**](/en/official/Reference/VB/Report/) section.
 
 ### DataFieldAggregateValue
 
@@ -180,7 +180,7 @@ Reserved for compatibility with VB6; not currently implemented in twinBASIC.
 
 ### DataSource
 
-A reference to a [**Data**](/en/official/Reference/VB/Data) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### Dock
 
@@ -288,7 +288,7 @@ How the label responds to OLE drops. A restricted member of [**OLEDropConstants*
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form) (or **UserControl**) that ultimately contains the control. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the control. Read-only.
 
 ### RightToLeft
 

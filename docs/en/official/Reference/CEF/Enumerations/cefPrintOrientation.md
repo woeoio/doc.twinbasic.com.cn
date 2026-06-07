@@ -5,7 +5,7 @@ permalink: /tB/Packages/CEF/Enumerations/cefPrintOrientation
 ---
 # cefPrintOrientation
 
-Page orientation passed to [**PrintToPdf**](/en/official/Reference/CEF/CefBrowser#printtopdf) when writing the current document to a PDF file.
+Page orientation passed to [**PrintToPdf**](/en/official/Reference/CEF/CefBrowser/#printtopdf) when writing the current document to a PDF file.
 
 | Constant | Value | Description |
 |----------|-------|-------------|
