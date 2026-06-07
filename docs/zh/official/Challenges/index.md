@@ -1,0 +1,25 @@
+﻿---
+title: Challenges
+nav_order: 12
+permalink: /Challenges
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'abe22774-5624-4afa-add4-e9538da5c11c'
+  PropagateID: 'abe22774-5624-4afa-add4-e9538da5c11c'
+  ReservedCode1: 'dd31a00c-2c4b-4eb4-808a-4e71f9d80f9b'
+  ReservedCode2: 'dd31a00c-2c4b-4eb4-808a-4e71f9d80f9b'
+---
+
+# Challenges
+
+From **#general** on Discord:
+
+[From Wayne](https://discord.com/channels/927638153546829845/927638154192748606/1457062373465788671) in Discord:
+
+> As we start 2026, we're introducing monthly twinBASIC challenges, giving you the chance to win a £100 account credit redeemable against future twinBASIC licences.
+
+See this on [twinBASIC Update: January 6, 2026](https://nolongerset.com/twinbasic-update-january-6-2026/) from Mike Wolfe.
+
+> AI生成

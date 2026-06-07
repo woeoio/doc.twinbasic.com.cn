@@ -1,0 +1,41 @@
+---
+title: Str
+parent: Conversion Module
+permalink: /tB/Modules/Conversion/Str
+---
+# Str, Str$
+
+Returns a string representation of a number.
+
+Syntax:
+
+- **Str$(** *number* **)**
+- **Str(** *number* **)**
+
+*number*
+: *required* Any valid numeric expression.
+
+The `$`-suffixed form returns a **String**; the unsuffixed form returns a **Variant** (**String**).
+
+When numbers are converted to strings, a leading space is always reserved for the sign of *number*. If *number* is positive, the returned string contains a leading space and the plus sign is implied.
+
+Use the [**Format**](/official/Reference/VBA/Strings/Format) function to convert numeric values to be formatted as dates, times, or currency, or in other user-defined formats. Unlike **Str**, the **Format** function doesn't include a leading space for the sign of *number*.
+
+::: info
+The **Str** function recognizes only the period (`.`) as a valid decimal separator. When different decimal separators may be used (for example, in international applications), use [**CStr**](/official/Reference/VBA/Conversion/CStr) to convert a number to a string.
+:::
+
+### Example
+
+This example uses the **Str** function to return a string representation of a number. When a number is converted to a string, a leading space is always reserved for its sign.
+
+```vb
+Dim MyString
+MyString = Str(459)         ' Returns " 459".
+MyString = Str(-459.65)     ' Returns "-459.65".
+MyString = Str(459.001)     ' Returns " 459.001".
+```
+
+### See Also
+
+- [CStr](/official/Reference/VBA/Conversion/CStr), [Format](/official/Reference/VBA/Strings/Format), [Hex](/official/Reference/VBA/Conversion/Hex), [Oct](/official/Reference/VBA/Conversion/Oct), [Val](/official/Reference/VBA/Conversion/Val) functions

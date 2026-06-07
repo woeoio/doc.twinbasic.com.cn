@@ -1,0 +1,149 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0abaf500-9380-4f24-a156-24728802fe39'
+  PropagateID: '0abaf500-9380-4f24-a156-24728802fe39'
+  ReservedCode1: '1217f2e1-1eab-4e31-aafc-32a4fb5a52a7'
+  ReservedCode2: '1217f2e1-1eab-4e31-aafc-32a4fb5a52a7'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
+  PropagateID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
+  ReservedCode1: '57360a3f-f666-473c-b69e-d0cd03fb315e'
+  ReservedCode2: '57360a3f-f666-473c-b69e-d0cd03fb315e'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
+  PropagateID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
+  ReservedCode1: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
+  ReservedCode2: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
+---
+
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9a9bc399-d375-4810-9128-80db332db001'
+  PropagateID: '9a9bc399-d375-4810-9128-80db332db001'
+  ReservedCode1: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
+  ReservedCode2: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
+---
+
+---
+title: HtmlElement
+parent: tbIDE Package
+permalink: /tB/Packages/tbIDE/HtmlElement
+---
+
+# HtmlElement class
+
+One DOM element inside a tool window --- every node in the rendered HTML tree is reachable as an **HtmlElement**, starting from [**ToolWindow.RootDomElement**](/official/Reference/tbIDE/ToolWindow#rootdomelement) and traversing down through [**ChildDomElements**](#childdomelements). Inline overlays inside a code pane (created with [**CodeEditor.AddMonacoWidget**](/official/Reference/tbIDE/CodeEditor#addmonacowidget)) also appear as **HtmlElement** instances and behave identically.
+
+```vb
+With myToolWindow.RootDomElement.ChildDomElements.Add("greeting", "h1")
+    With .Properties
+        .style.textAlign = "center"
+        .style.color     = "white"
+        .innerText       = "Hello, world!"
+    End With
+End With
+```
+
+The element's *properties* --- every CSS-style property, every DOM attribute, every custom-widget extension --- live inside the [**Properties**](#properties) bag, accessed through a dynamic resolution mechanism. See [Dynamic DOM property resolution](/official/Reference/tbIDE/#dynamic-dom-property-resolution) on the package overview for the underlying mechanism that makes `.style.textAlign = "center"` work without a statically-declared `style` member.
+
+
+## Properties
+
+### ChildDomElements
+
+The element's child-element collection. Call [**HtmlElements.Add**](/official/Reference/tbIDE/HtmlElements#add) to add new children, [**Item**](/official/Reference/tbIDE/HtmlElements#item) to look one up by ID. **As** [**HtmlElements**](/official/Reference/tbIDE/HtmlElements). Read-only.
+
+### Name
+
+The unique ID assigned to the element when it was created via [**HtmlElements.Add**](/official/Reference/tbIDE/HtmlElements#add). **String**, read-only.
+
+### Properties
+
+The element's dynamic property bag --- every DOM property, every CSS-style property, every custom-widget extension lives here. **As** [**HtmlElementProperties**](/official/Reference/tbIDE/HtmlElementProperties). **DefaultMember** --- so `element.<name>` is equivalent to `element.Properties.<name>`.
+
+The bag is [`[COMExtensible(True)]`](/official/Reference/tbIDE/#dynamic-dom-property-resolution): property names are resolved against the DOM element at run time, so the accepted set is everything the underlying tag supports --- refer to MDN for standard DOM properties, and to the custom-widget documentation (Chart.js, Monaco, …) for the widget-specific properties.
+
+## Methods
+
+### AddEventListener
+
+Registers a callback to be invoked when a DOM event fires on the element.
+
+Syntax: *element*.**AddEventListener** *DomEventName*, *CallbackFunc* [, *Data* ]
+
+*DomEventName*
+: *required* The DOM event name. **String**. Standard names (`"click"`, `"keyup"`, `"input"`, `"change"`, `"mouseenter"`, …) and custom event names raised by inline HTML (see below) both work.
+
+*CallbackFunc*
+: *required* The callback. Pass `AddressOf` a sub of signature `Sub(ByVal eventInfo As HtmlEventProperties)`. **LongPtr**.
+
+*Data*
+: *optional* An opaque value to associate with the registration. **Variant**.
+
+```vb
+With .ChildDomElements.Add("myButton", "div")
+    .Properties.innerText = "Click me"
+    .AddEventListener("click", AddressOf MyButtonClicked)
+End With
+
+' …
+Private Sub MyButtonClicked(ByVal eventInfo As HtmlEventProperties)
+    Host.DebugConsole.PrintText "clicked: " & eventInfo.target.id
+End Sub
+```
+
+::: important
+For the four custom-widget tags (`"chartjs"`, `"monaco"`, `"listview"`, `"virtuallistview"`), the widget-specific events (e.g. Monaco's `onDidChangeModelContent`, the listview's `onClickItem`) are registered on the **widget object**, not on the DOM element. So:
+
+```vb
+' WRONG --- listener is never reached:
+monacoDivElement.AddEventListener("onDidChangeModelContent", AddressOf Handler)
+
+' CORRECT --- register on .editor (or .listview / .chart for the other widgets):
+monacoDivElement.Properties.editor.AddEventListener("onDidChangeModelContent", AddressOf Handler)
+```
+
+Standard DOM events (`"click"`, `"keyup"`, …) still attach directly to the DOM element through this method.
+:::
+
+#### Custom event names from inline HTML
+
+Inline HTML rendered inside a tool window can raise arbitrary event names back to the addin through the IDE-side `raiseEvent()` JavaScript helper. The function signature on the JavaScript side is:
+
+```js
+raiseEvent(eventName, event, stopPropagation, ...customData)
+```
+
+--- pass an event name (any string), the DOM `event` object, a boolean controlling propagation, and any number of trailing custom-data values. The addin then registers a listener with the same event name through **AddEventListener**, and the custom-data values arrive on the [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties) as `eventInfo.customData0`, `eventInfo.customData1`, … (numerically indexed from zero). This pattern is used heavily in sample 13 (listview) and sample 15 (Global Search) to attach handlers to per-item buttons rendered inside a listview's HTML.
+
+### Remove
+
+Removes the element from the DOM. Any child elements are removed with it. Any event listeners registered on this element are released.
+
+Syntax: *element*.**Remove**
+
+> AI生成
+
+> AI生成
+
+> AI生成
+
+> AI生成
