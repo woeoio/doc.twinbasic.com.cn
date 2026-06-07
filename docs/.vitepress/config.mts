@@ -1,14 +1,8 @@
 import { defineConfig } from 'vitepress'
-import path from 'path'
 import { zhNav, zhSidebar, zhFooter, zhDocFooter } from './nav/zh.mts'
 import { enNav, enSidebar, enFooter } from './nav/en.mts'
-import clearDieLinkPlugin from './plugins/clearDieLink'
-import jekyllPlugin from './plugins/jekyll'
 import navRedirectPlugin from './plugins/navRedirect'
-import rewrites from './plugins/rewrites'
 import llmstxtQuiet from './plugins/llmstxt-quiet'
-import { renameBuildFiles } from './plugins/renameBuildFiles'
-import { generateSpaceRedirects } from './plugins/spaceRedirect'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -16,19 +10,8 @@ export default defineConfig({
   title: "Twinbasic Document",
   description: "an new vb6",
 
-  // 忽略死链接检查（插件 clearDieLinkPlugin 会在构建时替换死链为纯文本）
-  // ignoreDeadLinks: true,
-
-  // 重定向默认语言目录
-  rewrites,
-
-  async buildEnd(siteConfig) {
-    const outDir = siteConfig.outDir || path.resolve(__dirname, '../../dist')
-    // 1. 重命名文件（空格 -> 连字符）并修复内部链接
-    renameBuildFiles(outDir)
-    // 2. 为带连字符的文件生成带空格的重定向文件
-    generateSpaceRedirects(outDir)
-  },
+  // 死链接检查：永远不要设为 true，不允许任何死链存在
+  ignoreDeadLinks: false,
 
   sitemap: {
     hostname: 'https://doc.twinbasic.com.cn',
@@ -154,10 +137,8 @@ export default defineConfig({
 
   vite: {
     plugins: [
-      llmstxtQuiet(), 
-      clearDieLinkPlugin(),
-      jekyllPlugin() as any,
-      navRedirectPlugin()
+      llmstxtQuiet() as any, 
+      navRedirectPlugin() as any
     ]
   }
 })
