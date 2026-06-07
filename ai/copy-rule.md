@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '67ddc076-c31e-4158-b07d-3776a0820316'
-  PropagateID: '67ddc076-c31e-4158-b07d-3776a0820316'
-  ReservedCode1: 'b871f922-68c8-47a6-822e-9b5166fe4d3a'
-  ReservedCode2: 'b871f922-68c8-47a6-822e-9b5166fe4d3a'
+  ProduceID: 'c703000a-af62-49b8-a3d3-129b7b47e43a'
+  PropagateID: 'c703000a-af62-49b8-a3d3-129b7b47e43a'
+  ReservedCode1: '2b5dd516-6b00-4404-9115-8340a5ef5c24'
+  ReservedCode2: '2b5dd516-6b00-4404-9115-8340a5ef5c24'
 ---
 
 # Jekyll → VitePress 文档迁移规则
@@ -541,5 +541,49 @@ Content here
    - 无残留 `../` 相对路径链接
    - 无残留 AIGC 水印
 4. 所有子代理的死链记录汇总写入 `ai/dielink.md`
+
+---
+
+## 11. 中文翻译规则
+
+### 11.1 目标
+
+将 `docs/en/official/` 的英文文档翻译为中文，输出到 `docs/zh/official/`。
+
+### 11.2 文件复制
+
+1. 复制 `docs/en/official/` 全部文件到 `docs/zh/official/`（保持目录结构）
+2. 图片文件直接复制，不需要翻译
+
+### 11.3 链接替换
+
+中文版文件中所有 `/en/official/` 链接替换为 `/official/`。
+
+**不需要替换为 `/zh/official/`**。因为 VitePress 配置了 rewrites：
+
+```typescript
+rewrites: {
+  'zh/:path*': ':path*'
+}
+```
+
+`docs/zh/official/` 下的文件构建后的 URL 就是 `/official/xxx`，与 `docs/zh/` 下的其他目录（`packages/`、`tbman/`、`challenge/` 等）保持一致。
+
+### 11.4 翻译原则
+
+- **代码块**：不翻译（VB/VBA 代码保持英文）
+- **front matter**：`title` 字段翻译为中文，`parent`、`nav_order`、`permalink` 保留英文
+- **markdown 正文**：翻译为中文
+- **专有名词**保持英文：twinBASIC、VB6、VBA、COM、OOP、IDE、MsgBox、CStr、Format 等
+- **API/函数/语句名**保持英文：`Dim`、`ReDim`、`Sub`、`Function`、`Property` 等
+- **目录节点标签**（侧边栏 text）：翻译为中文，参见 zh.mts 翻译对照表
+
+### 11.5 侧边栏配置
+
+中文侧边栏在 `docs/.vitepress/nav/zh.mts` 的 `'/official/': [...]` 中配置，结构与 `en.mts` 的 `'/en/official/'` 对应，链接路径从 `/en/official/xxx` 改为 `/official/xxx`，text 翻译为中文。
+
+### 11.6 SEO 兼容
+
+由于已有 SEO 收录了 `/official/` 路径，中文版的 URL 必须保持在 `/official/xxx`，不能变成 `/zh/official/xxx`。这就是 rewrites 配置存在的原因。
 
 > AI生成
