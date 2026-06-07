@@ -1,7 +1,15 @@
----
+﻿---
 title: EventLog
 parent: WinEventLogLib Package
 permalink: /tB/Packages/WinEventLogLib/EventLog
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '48a39de8-7232-4f8f-aecd-2358454264a3'
+  PropagateID: '48a39de8-7232-4f8f-aecd-2358454264a3'
+  ReservedCode1: '2b13a4b9-3fe4-44f6-8b46-d8768f39bed6'
+  ReservedCode2: '2b13a4b9-3fe4-44f6-8b46-d8768f39bed6'
 ---
 
 # EventLog class
@@ -109,7 +117,7 @@ Creates `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\<LogPath>` (prepending 
 
 The Event Viewer renders message strings by loading **EventMessageFile** and looking up the message resource keyed by *EventId*. Because **EventMessageFile** points at `App.ModulePath`, the same EXE that calls **Register** must be the one that later calls [**LogSuccess**](#logsuccess) / [**LogFailure**](#logfailure); otherwise the Event Viewer cannot find the message strings. See [Message resources](/en/official/Reference/WinEventLogLib#message-resources) and [The `[PopulateFrom("json", ...)]` convention](/en/official/Reference/WinEventLogLib#populatefrom-convention) on the package landing page for the recommended way to populate the resource.
 
-If the registry key cannot be opened for write, **Register** raises run-time error 5 *"Failed to register event log source (\<LogName\>)"*. Typical causes are insufficient privileges and a *LogPath* that points at a non-existent parent log.
+If the registry key cannot be opened for write, **Register** raises run-time error 5 *"Failed to register event log source (``<LogName>``)"*. Typical causes are insufficient privileges and a *LogPath* that points at a non-existent parent log.
 
 The lower-level [**EventLogHelperPublic.RegisterEventLogInternal**](/en/official/Reference/WinEventLogLib/EventLogHelperPublic#registereventloginternal) is what **Register** delegates to; use it directly only when registering a source without binding it to a generic *T2* (and so without using **GetDeclaredMaxEnumValue** to derive the category count).
 
@@ -118,3 +126,5 @@ The lower-level [**EventLogHelperPublic.RegisterEventLogInternal**](/en/official
 - [WinEventLogLib](/en/official/Reference/WinEventLogLib) package -- overview, lifecycle, message-resource generation
 - [EventLogHelperPublic](/en/official/Reference/WinEventLogLib/EventLogHelperPublic) module -- the lower-level registration helper
 - [Generics](/en/official/Features/Language/Generics) feature -- syntax rules for generic class instantiation
+
+> AI生成

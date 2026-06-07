@@ -1,7 +1,15 @@
----
+﻿---
 title: EventLogHelperPublic
 parent: WinEventLogLib Package
 permalink: /tB/Packages/WinEventLogLib/EventLogHelperPublic
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '475a309e-b509-4dd4-8210-30dc25ff2750'
+  PropagateID: '475a309e-b509-4dd4-8210-30dc25ff2750'
+  ReservedCode1: '8dddc733-c401-41aa-8fdf-535fe2dd9c49'
+  ReservedCode2: '8dddc733-c401-41aa-8fdf-535fe2dd9c49'
 ---
 
 # EventLogHelperPublic module
@@ -29,9 +37,11 @@ Creates `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\<LogPath>` and writes:
 **RegisterEventLogInternal** writes under `HKEY_LOCAL_MACHINE` and requires administrator rights. The usual pattern is to call it once from an elevated installer, not from the application's normal startup path.
 :::
 
-If the registry key cannot be opened for write, **RegisterEventLogInternal** raises run-time error 5 with the message *"Failed to register event log source (\<LogName\>)"*, where `<LogName>` is the trailing segment of *LogPath*. Typical causes are insufficient privileges and a *LogPath* whose parent log (e.g. `"Application"`, `"System"`) does not exist.
+If the registry key cannot be opened for write, **RegisterEventLogInternal** raises run-time error 5 with the message *"Failed to register event log source (``<LogName>``)"*, where `<LogName>` is the trailing segment of *LogPath*. Typical causes are insufficient privileges and a *LogPath* whose parent log (e.g. `"Application"`, `"System"`) does not exist.
 
 ## See Also
 
 - [WinEventLogLib](/en/official/Reference/WinEventLogLib) package -- overview, lifecycle, message-resource generation
 - [EventLog](/en/official/Reference/WinEventLogLib/EventLog) class -- the generic class whose [**Register**](/en/official/Reference/WinEventLogLib/EventLog#register) method wraps this helper
+
+> AI生成

@@ -1,8 +1,16 @@
----
+﻿---
 title: Enhanced Pointer Functionality
 parent: Language Syntax
 nav_order: 10
 permalink: /Features/Language/Pointers
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '54ec66d5-f385-45c0-9347-5aa600b1a7f4'
+  PropagateID: '54ec66d5-f385-45c0-9347-5aa600b1a7f4'
+  ReservedCode1: '5ca639b2-3e1d-4a3d-8ed2-78af510d659c'
+  ReservedCode2: '5ca639b2-3e1d-4a3d-8ed2-78af510d659c'
 ---
 
 # Enhanced Pointer Functionality
@@ -44,7 +52,7 @@ Dim lPtr As LongPtr = VarPtr(pSec)
 hFile = CreateFileW(StrPtr("name"), 0, 0, ByVal lPtr, '...)
 ```
 
-## CType(Of \<type\>)
+## CType(Of ``<type>``)
 
 The `CType(Of <type>)` operator specifies an explicit intent to cast one type to another. This can be used for casting `LongPtr` (or `Long` on 32bit/`LongLong` on 64bit) to a custom user-defined type, with or without making a copy of it, depending on the usage. This allows not just for casting directly without a `CopyMemory` call, but also, setting the members of a UDT represented only by a pointer, without copying memory back and forth.
 
@@ -119,7 +127,7 @@ End Sub
 
 This will print `4`. Free standing use and nesting is also allowed; the above will print `4`. While the examples here are local code only, this is particularly useful for APIs, where you're forced to work with pointers extensively.
 
-## Len/LenB(Of \<type\>) Support
+## Len/LenB(Of ``<type>``) Support
 
 The classic `Len` and `LenB` functions can now be used to directly get the length/size of a type, both intrinsic and user-defined, without needing have declared a variable of that type. For instance, to know the pointer size, you can use `LenB(Of LongPtr)`.
 
@@ -131,3 +139,5 @@ The classic `Len` and `LenB` functions can now be used to directly get the lengt
 Dim foo1 As New CFoo
 Dim lpfn As LongPtr = AddressOf foo1.bar
 ```
+
+> AI生成

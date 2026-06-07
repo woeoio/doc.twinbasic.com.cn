@@ -6,10 +6,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '17d17953-f936-44af-9621-9a258dac7405'
-  PropagateID: '17d17953-f936-44af-9621-9a258dac7405'
-  ReservedCode1: 'f25e821f-5260-435a-8d78-94214535dfd8'
-  ReservedCode2: 'f25e821f-5260-435a-8d78-94214535dfd8'
+  ProduceID: '0d95279a-4d85-4d29-bfe6-a5707c28f374'
+  PropagateID: '0d95279a-4d85-4d29-bfe6-a5707c28f374'
+  ReservedCode1: 'be3c7a5d-268e-4e58-b1af-2049883be640'
+  ReservedCode2: 'be3c7a5d-268e-4e58-b1af-2049883be640'
 ---
 
 # Frequently Asked Questions
@@ -284,7 +284,7 @@ twinBASIC supports **creating** addins for VBA. It's currently the only tool tha
 There are two locations that the addins can be installed to:
 
 1. `%appdata%\twinBASIC\addins\` - that's the preferred location as the TwinBasic distribution itself is not modified, and the addins won't get lost when upgrading to a newer version.
-2. `<twinbasic unzip folder>\addins\` - if you want to modify your TwinBasic installation. This is not generally recommended.
+2. `&lt;twinbasic unzip folder&gt;\addins` - if you want to modify your TwinBasic installation. This is not generally recommended.
 
 </details>
 
