@@ -1,0 +1,45 @@
+---
+title: Keys
+parent: Collection
+permalink: /tB/Modules/Collection/Keys
+---
+# Keys
+
+Returns a **String** array containing all the keys associated with items in a **Collection** object.
+
+Syntax: *object*.**Keys()**
+
+*object*
+: *required* An object expression that evaluates to a **Collection** object.
+
+::: info
+
+**Keys** is a twinBASIC extension; the classic VBA **Collection** object has no **Keys** method.
+:::
+
+Only items that were added with a **Key** argument appear in the returned array. If no items have keys, the array is empty.
+
+### Example
+
+```vb
+Dim col As New Collection
+col.Add "Athens",   Key:="a"
+col.Add "Belgrade", Key:="b"
+col.Add "Cairo",    Key:="c"
+
+Dim k() As String
+k = col.Keys
+
+Dim i As Long
+For i = LBound(k) To UBound(k)
+    Debug.Print k(i), col(k(i))
+Next i
+```
+
+### See Also
+
+- [Add](/en/official/Reference/VBA/Collection/Add) method
+- [Exists](/en/official/Reference/VBA/Collection/Exists) method
+- [Item](/en/official/Reference/VBA/Collection/Item) method
+- [Items](/en/official/Reference/VBA/Collection/Items) method
+- [Count](/en/official/Reference/VBA/Collection/Count) property

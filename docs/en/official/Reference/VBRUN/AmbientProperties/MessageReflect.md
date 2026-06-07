@@ -1,0 +1,35 @@
+---
+title: MessageReflect
+parent: AmbientProperties
+permalink: /tB/Packages/VBRUN/AmbientProperties/MessageReflect
+---
+# MessageReflect
+
+Returns whether the container reflects window messages back to the control, as a **Boolean**. Read-only.
+
+Syntax: *object*.**MessageReflect**
+
+*object*
+: *required* An object expression that evaluates to an **AmbientProperties** object.
+
+Some Windows notification messages --- such as **WM_COMMAND**, **WM_NOTIFY**, and the **WM_CTLCOLOR\*** family --- are by default delivered to the parent window of the control that produced them. When **MessageReflect** is **True**, the container reflects those notifications back to the control's own window procedure as **OCM_\*** messages, so the control can handle them itself; when **False**, the container handles them and the control will not see them.
+
+### Example
+
+This example caches the ambient **MessageReflect** flag so the control knows whether to handle reflected messages.
+
+```vb
+Private mMessageReflect As Boolean
+
+Private Sub UserControl_AmbientChanged(PropertyName As String)
+    Select Case PropertyName
+        Case "MessageReflect"
+            mMessageReflect = Ambient.MessageReflect
+    End Select
+End Sub
+```
+
+### See Also
+
+- [SupportsMnemonics](/en/official/Reference/VBRUN/AmbientProperties/SupportsMnemonics) property
+- [UserMode](/en/official/Reference/VBRUN/AmbientProperties/UserMode) property

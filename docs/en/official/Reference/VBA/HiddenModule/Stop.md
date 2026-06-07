@@ -1,0 +1,25 @@
+---
+title: Stop (IGetMessageHook)
+parent: (Default) Module
+permalink: /tB/Modules/HiddenModule/Stop
+---
+# Stop
+
+Deactivates every registered subscription on a message hook so that matching messages are no longer forwarded to their callbacks.
+
+Syntax: *hook*.**Stop**
+
+*hook*
+: *required* An [**IGetMessageHook**](./#igetmessagehook-interface) instance.
+
+Subscriptions remain registered after **Stop** --- call [**Start**](/en/official/Reference/VBA/HiddenModule/Start) again to resume delivery without re-registering. Calling **Stop** on a hook that is already stopped has no effect.
+
+::: info
+This is the **Stop** method of the [**IGetMessageHook**](./#igetmessagehook-interface) interface. The unrelated [**Stop**](/en/official/Reference/Core/Stop) statement is a language keyword that suspends execution and breaks into the debugger.
+:::
+
+### See Also
+
+- [Start](/en/official/Reference/VBA/HiddenModule/Start) method
+- [RegisterMessage](/en/official/Reference/VBA/HiddenModule/RegisterMessage) method
+- [Stop](/en/official/Reference/Core/Stop) statement (the language keyword)

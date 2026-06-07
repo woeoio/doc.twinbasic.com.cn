@@ -1,0 +1,38 @@
+---
+title: PutMem8
+parent: (Default) Module
+permalink: /tB/Modules/HiddenModule/PutMem8
+---
+# PutMem8
+
+Writes eight bytes to a memory address.
+
+Syntax: **PutMem8** *Address* **,** *Value*
+
+*Address*
+: *required* **LongPtr**. The address to write to.
+
+*Value*
+: *required* **Currency**. A **Currency** carrier whose underlying eight bytes are stored at *Address*.
+
+**Currency** is used as the eight-byte carrier --- its in-memory representation is a raw 64-bit pattern, scaled by the type's fixed factor of 10000 only at the point of arithmetic. To pack an arbitrary 64-bit integer, [**LSet**](/en/official/Reference/Core/LSet) it into a **Currency** before calling **PutMem8**.
+
+The address is written directly with no bounds or alignment check.
+
+### Example
+
+This example writes an 8-byte value to a buffer and reads it back.
+
+```vb
+Dim buf As LongPtr = AllocMem(8)
+Dim src As Currency = 1000000@
+PutMem8 buf, src
+Dim dst As Currency
+GetMem8 buf, dst        ' dst = src (same raw 8-byte pattern)
+FreeMem buf
+```
+
+### See Also
+
+- [PutMem1](/en/official/Reference/VBA/HiddenModule/PutMem1), [PutMem2](/en/official/Reference/VBA/HiddenModule/PutMem2), [PutMem4](/en/official/Reference/VBA/HiddenModule/PutMem4), [PutMemPtr](/en/official/Reference/VBA/HiddenModule/PutMemPtr) procedures
+- [GetMem8](/en/official/Reference/VBA/HiddenModule/GetMem8) procedure
