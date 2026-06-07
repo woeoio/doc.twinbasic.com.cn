@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '39983ec8-b5f4-475f-b268-aa0891cfde81'
-  PropagateID: '39983ec8-b5f4-475f-b268-aa0891cfde81'
-  ReservedCode1: '50bb1572-b0b5-41cf-9dc0-98b160d91881'
-  ReservedCode2: '50bb1572-b0b5-41cf-9dc0-98b160d91881'
+  ProduceID: '67ddc076-c31e-4158-b07d-3776a0820316'
+  PropagateID: '67ddc076-c31e-4158-b07d-3776a0820316'
+  ReservedCode1: 'b871f922-68c8-47a6-822e-9b5166fe4d3a'
+  ReservedCode2: 'b871f922-68c8-47a6-822e-9b5166fe4d3a'
 ---
 
 # Jekyll → VitePress 文档迁移规则
@@ -15,11 +15,13 @@ AIGC:
 
 将 `D:\code\tb\docs.twinbasic.com\docs` 下的 Jekyll 文档迁移到 `D:\code\vi\twinbasic\docs\doc.twinbasic.com.cn\docs\en\official` 目录。
 
-### 需要复制的子目录（8个）
+### 需要复制的子目录（8个）+ 根 index.md
 
 ```
-Challenges, Features, IDE, Miscellaneous, Reference, Tutorials, Videos, Documentation
+index.md, Challenges, Features, IDE, Miscellaneous, Reference, Tutorials, Videos, Documentation
 ```
+
+> `index.md` 是 Jekyll 站点根目录的首页，需迁移为 `en/official/index.md`。
 
 ### 数据规模
 
@@ -394,7 +396,142 @@ IDE 子目录的 permalink 使用了 `tB/IDE/Project/` 前缀，映射关系：
 
 ---
 
-## 9. 执行策略
+## 9. VitePress / Vue 编译陷阱
+
+以下陷阱会导致 VitePress 构建失败（Vue 编译错误或死链），迁移时必须处理。
+
+### 9.1 `<details>/<summary>` 嵌套复杂 Markdown
+
+**问题**：`<details>` 块内包含 Markdown 扩展语法（`::: info` 容器、Kramdown 图片属性 `{style="..."}`、复杂行内格式）会导致 Vue "Element is missing end tag" 错误。
+
+**修复**：将所有 `<details>/<summary>` 转换为 VitePress `::: details Title` 自定义容器语法：
+
+```markdown
+<!-- 源 -->
+<details>
+<summary markdown="span">Click to expand</summary>
+Content here
+</details>
+
+<!-- 目标 -->
+::: details Click to expand
+Content here
+:::
+```
+
+注意事项：
+- `<summary markdown="span">` 中的 `markdown=span` 是 Kramdown 特有属性，转换时删除
+- `<summary>` 内的文本成为 `::: details` 后面的标题
+
+### 9.2 `::: info` 嵌套在 `::: details` 中
+
+**问题**：VitePress 自定义容器不能嵌套同类型容器，`::: info` 在 `::: details` 内会导致解析冲突。
+
+**修复**：将内层 `::: info` 转为 blockquote：
+
+```markdown
+<!-- 目标 -->
+::: details Click to expand
+> **Info**: 原来的 info 容器内容
+:::
+```
+
+### 9.3 Vue 插值冲突 `{{ }}`
+
+**问题**：VB/VBA 代码中的双花括号（如 SendKeys `"{{}"`、`"{}}"`）被 Vue 解析为模板插值表达式，导致构建失败。
+
+**修复**：用 `<span v-pre>...</span>` 包裹包含 `{{ }}` 的段落/元素：
+
+```markdown
+<span v-pre>SendKeys "{{}"</span>
+```
+
+### 9.4 Kramdown 反斜杠转义尖括号 `\<word\>`
+
+**问题**：Kramdown 语法 `\<word\>` 在 VitePress/markdown-it 中不被识别，被解析为裸 `<word>` 后，Vue 编译器将其视为未闭合 HTML 标签。
+
+**修复**：替换为反引号包裹的行内代码：
+
+```markdown
+<!-- 源 -->
+\<MyTag\>
+
+<!-- 目标 -->
+`<MyTag>`
+```
+
+### 9.5 裸 `<word>` 在非代码上下文中
+
+**问题**：非代码部分的 `<word>` 格式文本（如 `<twinbasic unzip folder>`）被 Vue 编译器视为未闭合 HTML 标签。
+
+**修复**：使用 HTML 实体或反引号：
+
+```markdown
+<!-- 方案 A：HTML 实体 -->
+`&lt;twinbasic unzip folder&gt;`
+
+<!-- 方案 B：反引号（如果语义上是代码/占位符） -->
+`<twinbasic unzip folder>`
+```
+
+### 9.6 Kramdown 图片属性 `{style="..."}`
+
+**问题**：`![img](x.png){style="width:80%; height:auto;"}` 中的 `{style="..."}` 是 Kramdown IAL 语法，VitePress 不支持。
+
+**修复**：删除 `{style="..."}` 属性：
+
+```markdown
+<!-- 源 -->
+![img](x.png){style="width:80%; height:auto;"}
+
+<!-- 目标 -->
+![img](x.png)
+```
+
+- 已批量清理的 849 处 `{: #xxx}` IAL 属性也属于此类
+
+### 9.7 目录链接需要尾部 `/`
+
+**问题**：在 VitePress 中，链接到目录的 index 页（如 `/en/official/Reference/VB` 不带尾部斜杠）会 404 死链。必须使用 `/en/official/Reference/VB/`（带尾部斜杠）。
+
+**这是造成 431+ 死链的根因。**
+
+### 9.8 缺少 `index.md` 落地页
+
+**问题**：某些目录被链接到但没有 `index.md`，导致死链。
+
+**修复**：创建缺失的 `index.md` 落地页。已创建：
+- `en/official/index.md` — 站点根首页
+- 28 个 Core 语句 stub 文件（`Reference/Core/` 下）
+
+### 9.9 `./.#anchor` 相对锚点链接
+
+**问题**：如 `](.#dynamic-dom-property-resolution)` 这种写法，VitePress 无法解析。
+
+**修复**：转为绝对路径 + 锚点：
+
+```markdown
+<!-- 源 -->
+](.#dynamic-dom-property-resolution)
+
+<!-- 目标 -->
+](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution)
+```
+
+### 9.10 迁移检查清单
+
+迁移每个文件时，除了常规规则，还需额外检查：
+
+1. 是否包含 `<details>/<summary>` → 转为 `::: details`
+2. 是否包含 `{{ }}` → 加 `v-pre`
+3. 是否包含 `\<word\>` → 转反引号
+4. 是否包含裸 `<word>` → 转实体或反引号
+5. 是否包含 `{style="..."}` → 删除
+6. 链接到目录的 → 加尾部 `/`
+
+---
+
+## 10. 执行策略
 
 1. 按 8 个源目录分配子代理并行处理
 2. 每个子代理加载 `ai/permalink-map.json` 作为链接修正的依据
