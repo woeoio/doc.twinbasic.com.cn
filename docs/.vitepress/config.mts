@@ -14,6 +14,12 @@ export default defineConfig({
   // 死链接检查：永远不要设为 true，不允许任何死链存在
   ignoreDeadLinks: false,
 
+  // 重写路由：zh/ 下的文件去掉 zh/ 前缀，URL 为 /xxx 而非 /zh/xxx
+  // 源文件在 docs/zh/ 下保持目录整洁，URL 与目录结构一致，兼容 SEO 已收录路径
+  rewrites: {
+    'zh/:path*': ':path*'
+  },
+
   sitemap: {
     hostname: 'https://doc.twinbasic.com.cn',
   },
