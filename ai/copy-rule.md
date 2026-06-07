@@ -1,12 +1,12 @@
 ---
 AIGC:
-  ContentProducer: "001191110102MAD55U9H0F10002"
-  ContentPropagator: "001191110102MAD55U9H0F10002"
-  Label: "1"
-  ProduceID: "815a6a6d-cd83-4a21-9acb-d205f8bda35f"
-  PropagateID: "815a6a6d-cd83-4a21-9acb-d205f8bda35f"
-  ReservedCode1: "695fc4a2-51e7-4322-9cd2-72b0189f6f83"
-  ReservedCode2: "695fc4a2-51e7-4322-9cd2-72b0189f6f83"
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '39983ec8-b5f4-475f-b268-aa0891cfde81'
+  PropagateID: '39983ec8-b5f4-475f-b268-aa0891cfde81'
+  ReservedCode1: '50bb1572-b0b5-41cf-9dc0-98b160d91881'
+  ReservedCode2: '50bb1572-b0b5-41cf-9dc0-98b160d91881'
 ---
 
 # Jekyll → VitePress 文档迁移规则
@@ -288,11 +288,10 @@ More text
 #### (6) 图片链接
 
 图片链接 `![alt](path)` 特殊处理：
-
 - 同目录下的 `Images/xxx.png` → 保留相对路径，不做修改
 - `../Images/xxx.png` → 保留相对路径（图片目录结构不变）
 - `../_Images/xxx.png` → 改为 `../Images/xxx.png`（去掉下划线前缀）
-- `/assets/images/xxx` → 引用的是 Jekyll 全局资源，需确认是否在项目 `public/` 下有对应文件；如果没有，转为纯文本标注
+- `/assets/images/xxx` → 引用的是 Jekyll 全局资源，需确认是否在项目 `public/` 下有对应文件；如果没有，从源目录 `D:\code\tb\docs.twinbasic.com\docs\assets\` 复制到项目 `D:\code\vi\twinbasic\docs\doc.twinbasic.com.cn\docs\public\` 下同路径
 
 ### 5.3 链接修正流程总结
 
@@ -374,11 +373,28 @@ IDE 子目录的 permalink 使用了 `tB/IDE/Project/` 前缀，映射关系：
 ## 7. 辅助文件
 
 - **映射表**：`ai/permalink-map.json` — 完整的 376 条 Jekyll permalink → 实际文件路径映射
-- **死链列表**：`docs/.vitepress/plugins/clearDieLink.ts` 中的 `deadLinks` 数组 — 记录了已知的无法修复的死链路径（供参考，实际处理时以映射表为准）
 
 ---
 
-## 8. 执行策略
+## 8. 死链记录
+
+处理过程中，所有无法修正的死链（即被替换为纯文本的链接），必须记录到 `ai/dielink.md` 文件中，格式如下：
+
+```markdown
+| 文件路径 | 行号 | 原超链接内容 |
+|---------|------|------------|
+| en/official/IDE/Editor.md | 42 | `[Settings](./tB/IDE/Project/Settings)` |
+| en/official/Features/Language/Operators.md | 15 | `[xxx](../../NonExist/Page)` |
+```
+
+记录内容：
+- **文件路径**：相对于项目根目录的目标文件路径
+- **行号**：死链在目标文件中的行号
+- **原超链接内容**：未修改前的原始链接 markdown 语法
+
+---
+
+## 9. 执行策略
 
 1. 按 8 个源目录分配子代理并行处理
 2. 每个子代理加载 `ai/permalink-map.json` 作为链接修正的依据
@@ -387,5 +403,6 @@ IDE 子目录的 permalink 使用了 `tB/IDE/Project/` 前缀，映射关系：
    - 无残留 `tB/` 链接
    - 无残留 `../` 相对路径链接
    - 无残留 AIGC 水印
+4. 所有子代理的死链记录汇总写入 `ai/dielink.md`
 
 > AI生成
