@@ -37,7 +37,7 @@ export default defineConfig({
       themeConfig: {
         nav: zhNav, 
         outline: { 
-          // level: [2, 3], 
+          level: [2, 3], 
           label: '页内目录' 
         },          
         sidebar: zhSidebar,
@@ -62,9 +62,11 @@ export default defineConfig({
       link: '/en/',
       themeConfig: {
         nav: enNav,
-
+        outline: { 
+          level: [2, 3], 
+          label: 'On this page' 
+        },
         sidebar: enSidebar,
-
         footer: enFooter
       }
     }
