@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'c3e4e1c0-66ba-4cc3-929f-d1f870a20bf5'
-  PropagateID: 'c3e4e1c0-66ba-4cc3-929f-d1f870a20bf5'
-  ReservedCode1: 'be1d25d3-2c13-45ee-98a3-9805cbe84988'
-  ReservedCode2: 'be1d25d3-2c13-45ee-98a3-9805cbe84988'
----
-
----
 title: AvailableFormats
 parent: DataObject
 permalink: /tB/Packages/VBRUN/DataObject/AvailableFormats

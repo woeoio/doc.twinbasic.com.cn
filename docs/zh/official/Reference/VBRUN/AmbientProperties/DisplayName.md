@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '636d33b5-f08d-4587-a48a-27ac5fb0b5aa'
-  PropagateID: '636d33b5-f08d-4587-a48a-27ac5fb0b5aa'
-  ReservedCode1: '31bee10a-13da-4a4a-858b-310a58bb3289'
-  ReservedCode2: '31bee10a-13da-4a4a-858b-310a58bb3289'
----
-
----
 title: DisplayName
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/DisplayName

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'b94907fa-a358-4b0f-b61b-3a3703345c22'
-  PropagateID: 'b94907fa-a358-4b0f-b61b-3a3703345c22'
-  ReservedCode1: '50fc42f7-d32d-4993-827c-23e9f944c816'
-  ReservedCode2: '50fc42f7-d32d-4993-827c-23e9f944c816'
----
-
----
 title: Printers
 parent: VB Package
 permalink: /tB/Packages/VB/Printers/

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'dbeefaca-fcee-480f-a96e-e59fd4be3b5d'
-  PropagateID: 'dbeefaca-fcee-480f-a96e-e59fd4be3b5d'
-  ReservedCode1: '89aeb36b-0d84-4f05-9b90-f71447325e7a'
-  ReservedCode2: '89aeb36b-0d84-4f05-9b90-f71447325e7a'
----
-
----
 title: CheckMark
 parent: VB Package
 permalink: /tB/Packages/VB/CheckMark/

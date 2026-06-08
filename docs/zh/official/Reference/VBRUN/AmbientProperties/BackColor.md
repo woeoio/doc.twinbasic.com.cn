@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '26d5242c-89dd-4025-b482-67fc10882eff'
-  PropagateID: '26d5242c-89dd-4025-b482-67fc10882eff'
-  ReservedCode1: 'bf571b76-e2c6-447b-bb48-8facaef3fd43'
-  ReservedCode2: 'bf571b76-e2c6-447b-bb48-8facaef3fd43'
----
-
----
 title: BackColor
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/BackColor

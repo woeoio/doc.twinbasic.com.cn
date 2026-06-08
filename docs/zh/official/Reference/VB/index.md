@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '520cc939-e532-4a61-a255-8efd7df5ffd7'
-  PropagateID: '520cc939-e532-4a61-a255-8efd7df5ffd7'
-  ReservedCode1: 'df6d65b5-bd63-4c64-a075-83939fa6bed7'
-  ReservedCode2: 'df6d65b5-bd63-4c64-a075-83939fa6bed7'
----
-
----
 title: VB Package
 parent: Packages
 nav_order: 1

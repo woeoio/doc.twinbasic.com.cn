@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '0233f5a7-2ef9-443e-9aca-564f8ac02b2d'
-  PropagateID: '0233f5a7-2ef9-443e-9aca-564f8ac02b2d'
-  ReservedCode1: 'd6c4d3ef-6d1c-4233-ab35-06e367b0d192'
-  ReservedCode2: 'd6c4d3ef-6d1c-4233-ab35-06e367b0d192'
----
-
----
 title: Files
 parent: DataObject
 permalink: /tB/Packages/VBRUN/DataObject/Files

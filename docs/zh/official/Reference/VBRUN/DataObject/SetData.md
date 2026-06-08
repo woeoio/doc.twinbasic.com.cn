@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '7c7ffa6d-bdb0-45aa-8e10-8683434beb36'
-  PropagateID: '7c7ffa6d-bdb0-45aa-8e10-8683434beb36'
-  ReservedCode1: '6e8a4ebb-34a5-45fd-85d4-3c6fe64f60f6'
-  ReservedCode2: '6e8a4ebb-34a5-45fd-85d4-3c6fe64f60f6'
----
-
----
 title: SetData
 parent: DataObject
 permalink: /tB/Packages/VBRUN/DataObject/SetData

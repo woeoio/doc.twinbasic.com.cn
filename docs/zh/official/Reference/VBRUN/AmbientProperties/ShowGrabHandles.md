@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '9871cf2e-ebdd-4e8f-b6e4-0cb45c4e47cc'
-  PropagateID: '9871cf2e-ebdd-4e8f-b6e4-0cb45c4e47cc'
-  ReservedCode1: '0863bf72-a900-422a-890e-af154f6c8e8b'
-  ReservedCode2: '0863bf72-a900-422a-890e-af154f6c8e8b'
----
-
----
 title: ShowGrabHandles
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/ShowGrabHandles

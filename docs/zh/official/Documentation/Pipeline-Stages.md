@@ -1,27 +1,8 @@
 ---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '80be37ff-1274-469e-8d18-2cff14700cc3'
-  PropagateID: '80be37ff-1274-469e-8d18-2cff14700cc3'
-  ReservedCode1: '85fd4246-d0dd-4825-9520-033616d18809'
-  ReservedCode2: '85fd4246-d0dd-4825-9520-033616d18809'
----
-
----
 title: "管线阶段"
 parent: tbdocs Builder
 nav_order: 1
 permalink: /Documentation/Development/Pipeline-Stages
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '2d4bc025-2b28-49c3-bc14-7294d62bf9f4'
-  PropagateID: '2d4bc025-2b28-49c3-bc14-7294d62bf9f4'
-  ReservedCode1: 'b8bf2da6-ff77-40f6-91e1-6aec70fac1e8'
-  ReservedCode2: 'b8bf2da6-ff77-40f6-91e1-6aec70fac1e8'
 ---
 
 # 管线阶段

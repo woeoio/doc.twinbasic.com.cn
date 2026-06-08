@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '7b22bea2-0ddd-4602-bb1f-7ecd96a6e329'
-  PropagateID: '7b22bea2-0ddd-4602-bb1f-7ecd96a6e329'
-  ReservedCode1: '7557c95f-45be-49a2-a78e-23e3cbc3c46c'
-  ReservedCode2: '7557c95f-45be-49a2-a78e-23e3cbc3c46c'
----
-
----
 title: QRCode
 parent: VB Package
 permalink: /tB/Packages/VB/QRCode/

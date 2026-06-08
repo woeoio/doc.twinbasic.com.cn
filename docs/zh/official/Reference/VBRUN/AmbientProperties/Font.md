@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '25468d6b-a1c4-4f96-967b-0cd175d64cde'
-  PropagateID: '25468d6b-a1c4-4f96-967b-0cd175d64cde'
-  ReservedCode1: '2724292d-0579-449d-92e3-a585bf31022c'
-  ReservedCode2: '2724292d-0579-449d-92e3-a585bf31022c'
----
-
----
 title: Font
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/Font

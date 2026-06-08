@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'd7de1c57-d678-4616-a807-e9bbf455ccf7'
-  PropagateID: 'd7de1c57-d678-4616-a807-e9bbf455ccf7'
-  ReservedCode1: '72a2cb91-0363-49f2-aec1-1bc3695d3de7'
-  ReservedCode2: '72a2cb91-0363-49f2-aec1-1bc3695d3de7'
----
-
----
 title: Global
 parent: VB Package
 permalink: /tB/Packages/VB/Global/

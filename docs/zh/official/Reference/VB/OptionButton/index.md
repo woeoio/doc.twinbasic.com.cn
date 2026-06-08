@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '4ac6c990-b6b5-4907-8df7-21c47b18dfbc'
-  PropagateID: '4ac6c990-b6b5-4907-8df7-21c47b18dfbc'
-  ReservedCode1: '22e935a0-ec24-46ce-868d-dcd32e35acf9'
-  ReservedCode2: '22e935a0-ec24-46ce-868d-dcd32e35acf9'
----
-
----
 title: "OptionButton 选项按钮"
 parent: VB Package
 permalink: /tB/Packages/VB/OptionButton/

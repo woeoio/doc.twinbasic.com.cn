@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'fedca902-bf94-4ffe-a6bf-2e721e875093'
-  PropagateID: 'fedca902-bf94-4ffe-a6bf-2e721e875093'
-  ReservedCode1: '3243158b-0af4-407a-a83b-1f495ce72a38'
-  ReservedCode2: '3243158b-0af4-407a-a83b-1f495ce72a38'
----
-
----
 title: Menu
 parent: VB Package
 permalink: /tB/Packages/VB/Menu/

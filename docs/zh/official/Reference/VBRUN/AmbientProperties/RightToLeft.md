@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'd93dc7e9-2580-4b0e-b724-17a5267bf13b'
-  PropagateID: 'd93dc7e9-2580-4b0e-b724-17a5267bf13b'
-  ReservedCode1: '1dc57ee9-8f77-44e3-a620-af3ef3039cb9'
-  ReservedCode2: '1dc57ee9-8f77-44e3-a620-af3ef3039cb9'
----
-
----
 title: RightToLeft
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/RightToLeft

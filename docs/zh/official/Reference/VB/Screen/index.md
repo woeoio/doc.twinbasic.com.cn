@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '6e9fee87-27a6-47c9-a2be-1a5f4e83ec40'
-  PropagateID: '6e9fee87-27a6-47c9-a2be-1a5f4e83ec40'
-  ReservedCode1: '5b1454fb-79a4-417a-a7dc-e1522244f7c4'
-  ReservedCode2: '5b1454fb-79a4-417a-a7dc-e1522244f7c4'
----
-
----
 title: Screen
 parent: VB Package
 permalink: /tB/Packages/VB/Screen/

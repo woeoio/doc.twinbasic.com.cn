@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '4f95127f-e7ad-40f3-8749-0410d3a0a3ae'
-  PropagateID: '4f95127f-e7ad-40f3-8749-0410d3a0a3ae'
-  ReservedCode1: 'fa7510ee-3677-40ad-b240-7ba38ad7727a'
-  ReservedCode2: 'fa7510ee-3677-40ad-b240-7ba38ad7727a'
----
-
----
 title: Clipboard
 parent: VB Package
 permalink: /tB/Packages/VB/Clipboard/

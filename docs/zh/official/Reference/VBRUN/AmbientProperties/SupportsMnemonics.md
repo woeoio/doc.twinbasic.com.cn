@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f52595c5-72ab-4239-ba86-e68185008190'
-  PropagateID: 'f52595c5-72ab-4239-ba86-e68185008190'
-  ReservedCode1: 'bc72b29b-20d1-41d3-a835-ffa757e234fd'
-  ReservedCode2: 'bc72b29b-20d1-41d3-a835-ffa757e234fd'
----
-
----
 title: SupportsMnemonics
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/SupportsMnemonics

@@ -1,28 +1,4 @@
 ---
-AIGC:
-  ContentProducer: "001191110102MAD55U9H0F10002"
-  ContentPropagator: "001191110102MAD55U9H0F10002"
-  Label: "1"
-  ProduceID: "f1eb40eb-d7fc-41f9-8942-ea5ac98c2571"
-  PropagateID: "f1eb40eb-d7fc-41f9-8942-ea5ac98c2571"
-  ReservedCode1: "66bf97b7-6ca4-430d-bc67-a83b74d94eaa"
-  ReservedCode2: "66bf97b7-6ca4-430d-bc67-a83b74d94eaa"
----
-
----
-
-AIGC:
-ContentProducer: '001191110102MAD55U9H0F10002'
-ContentPropagator: '001191110102MAD55U9H0F10002'
-Label: '1'
-ProduceID: '13605a79-c393-496f-9c3a-f8f6ab13a73f'
-PropagateID: '13605a79-c393-496f-9c3a-f8f6ab13a73f'
-ReservedCode1: '99077cb7-777d-4d81-b8dc-ab23cac9c135'
-ReservedCode2: '99077cb7-777d-4d81-b8dc-ab23cac9c135'
-
----
-
----
 
 title: Permanent Links
 parent: Documentation Development

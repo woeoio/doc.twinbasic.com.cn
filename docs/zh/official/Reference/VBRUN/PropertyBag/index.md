@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'd8557781-7f5a-4cb5-a1fe-c77799eaa7f9'
-  PropagateID: 'd8557781-7f5a-4cb5-a1fe-c77799eaa7f9'
-  ReservedCode1: '54ec1a10-e8c9-47f1-8938-48ddbff4b1a7'
-  ReservedCode2: '54ec1a10-e8c9-47f1-8938-48ddbff4b1a7'
----
-
----
 title: PropertyBag
 parent: VBRUN Package
 nav_order: 18

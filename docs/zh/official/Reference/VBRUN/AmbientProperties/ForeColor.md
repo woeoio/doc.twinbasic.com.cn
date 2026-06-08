@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '6ecdcb34-bd99-4359-8dda-1e5309cdb41c'
-  PropagateID: '6ecdcb34-bd99-4359-8dda-1e5309cdb41c'
-  ReservedCode1: '04a0c493-944b-47a7-911a-684a303d51a8'
-  ReservedCode2: '04a0c493-944b-47a7-911a-684a303d51a8'
----
-
----
 title: ForeColor
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/ForeColor

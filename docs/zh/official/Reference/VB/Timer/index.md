@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'e3f00a39-89bb-4979-83f9-7b2cf8c796c2'
-  PropagateID: 'e3f00a39-89bb-4979-83f9-7b2cf8c796c2'
-  ReservedCode1: '323ee2fa-d0bd-414c-b7fe-4065e5cb1a28'
-  ReservedCode2: '323ee2fa-d0bd-414c-b7fe-4065e5cb1a28'
----
-
----
 title: Timer
 parent: VB Package
 permalink: /tB/Packages/VB/Timer/

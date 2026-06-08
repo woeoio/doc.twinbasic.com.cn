@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '205f5baa-786f-4038-9ccf-47efcdffca0b'
-  PropagateID: '205f5baa-786f-4038-9ccf-47efcdffca0b'
-  ReservedCode1: 'f7aa8fd8-a85a-484d-bb88-235682333a88'
-  ReservedCode2: 'f7aa8fd8-a85a-484d-bb88-235682333a88'
----
-
----
 title: "ListBox 列表框"
 parent: VB Package
 permalink: /tB/Packages/VB/ListBox/

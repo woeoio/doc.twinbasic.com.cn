@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'd05702b1-4cd3-4067-a979-adf7b1aff51a'
-  PropagateID: 'd05702b1-4cd3-4067-a979-adf7b1aff51a'
-  ReservedCode1: 'b0d15769-ad23-4c59-b9bf-786a1782af3c'
-  ReservedCode2: 'b0d15769-ad23-4c59-b9bf-786a1782af3c'
----
-
----
 title: ScaleUnits
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/ScaleUnits

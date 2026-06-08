@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'b73ad82c-4ed6-4860-a093-602fa7aa4925'
-  PropagateID: 'b73ad82c-4ed6-4860-a093-602fa7aa4925'
-  ReservedCode1: '9a68cc06-8192-44e1-80d7-4228ab09be67'
-  ReservedCode2: '9a68cc06-8192-44e1-80d7-4228ab09be67'
----
-
----
 title: TextAlign
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/TextAlign

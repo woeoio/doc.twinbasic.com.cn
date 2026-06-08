@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '04b6c26a-762b-4694-9c95-afbc422f0dd1'
-  PropagateID: '04b6c26a-762b-4694-9c95-afbc422f0dd1'
-  ReservedCode1: '6a9b75a2-9716-4ef8-8974-5d15fc9b6831'
-  ReservedCode2: '6a9b75a2-9716-4ef8-8974-5d15fc9b6831'
----
-
----
 title: Line
 parent: VB Package
 permalink: /tB/Packages/VB/Line/

@@ -1,27 +1,8 @@
 ---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '92b92e99-4f3d-493c-94fd-5eabf0cc2b5a'
-  PropagateID: '92b92e99-4f3d-493c-94fd-5eabf0cc2b5a'
-  ReservedCode1: '70f7ca1c-b244-4e20-853a-4b04ee472856'
-  ReservedCode2: '70f7ca1c-b244-4e20-853a-4b04ee472856'
----
-
----
 title: "PDF 生成"
 parent: Documentation Development
 nav_order: 8
 permalink: /Documentation/Development/PDF-Generation
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '839fbbc9-617d-4734-a10b-63d336e95024'
-  PropagateID: '839fbbc9-617d-4734-a10b-63d336e95024'
-  ReservedCode1: '4843e98d-9db0-4c5c-b7c7-0f4b6eb20b42'
-  ReservedCode2: '4843e98d-9db0-4c5c-b7c7-0f4b6eb20b42'
 ---
 
 # PDF 生成

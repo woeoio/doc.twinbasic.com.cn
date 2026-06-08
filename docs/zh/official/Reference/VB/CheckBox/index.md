@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '9835fb96-979d-4b56-b685-fbfde9761bf4'
-  PropagateID: '9835fb96-979d-4b56-b685-fbfde9761bf4'
-  ReservedCode1: 'e28cc916-a8fb-4b41-bce3-2cfb7f6a8860'
-  ReservedCode2: 'e28cc916-a8fb-4b41-bce3-2cfb7f6a8860'
----
-
----
 title: CheckBox
 parent: VB Package
 permalink: /tB/Packages/VB/CheckBox/

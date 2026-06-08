@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '9f86c5bd-0e37-48dc-ab3b-c8de2df319f6'
-  PropagateID: '9f86c5bd-0e37-48dc-ab3b-c8de2df319f6'
-  ReservedCode1: '0694a4be-2745-4b9e-8396-f4cda7d5c615'
-  ReservedCode2: '0694a4be-2745-4b9e-8396-f4cda7d5c615'
----
-
----
 title: StatusCode
 parent: AsyncProperty
 permalink: /tB/Packages/VBRUN/AsyncProperty/StatusCode

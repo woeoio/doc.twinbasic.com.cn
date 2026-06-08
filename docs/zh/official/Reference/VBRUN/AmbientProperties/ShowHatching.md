@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '01bb83e3-ceca-498d-a0d0-9ce6f3c1d946'
-  PropagateID: '01bb83e3-ceca-498d-a0d0-9ce6f3c1d946'
-  ReservedCode1: '4c78b6d5-1c8b-4fe2-9303-dd995d17fde9'
-  ReservedCode2: '4c78b6d5-1c8b-4fe2-9303-dd995d17fde9'
----
-
----
 title: ShowHatching
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/ShowHatching

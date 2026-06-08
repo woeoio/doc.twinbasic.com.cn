@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '3b326d16-2d38-414f-8d27-f7c366684e1b'
-  PropagateID: '3b326d16-2d38-414f-8d27-f7c366684e1b'
-  ReservedCode1: '8a46a569-87bc-4028-b29b-5c34460b9d38'
-  ReservedCode2: '8a46a569-87bc-4028-b29b-5c34460b9d38'
----
-
----
 title: Shape
 parent: VB Package
 permalink: /tB/Packages/VB/Shape/

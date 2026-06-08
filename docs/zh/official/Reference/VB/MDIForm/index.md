@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '41a2256c-2478-49ed-bebf-15a740667729'
-  PropagateID: '41a2256c-2478-49ed-bebf-15a740667729'
-  ReservedCode1: 'ba8041e8-a6ef-49a4-b9d5-3b2545ea9b38'
-  ReservedCode2: 'ba8041e8-a6ef-49a4-b9d5-3b2545ea9b38'
----
-
----
 title: "MDIForm MDI窗体"
 parent: VB Package
 permalink: /tB/Packages/VB/MDIForm/

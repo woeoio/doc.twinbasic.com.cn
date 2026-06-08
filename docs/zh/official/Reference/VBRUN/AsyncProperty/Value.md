@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '6b3baa4d-8403-46e3-ba74-3c06a566aac8'
-  PropagateID: '6b3baa4d-8403-46e3-ba74-3c06a566aac8'
-  ReservedCode1: '656e6452-a7f7-441a-85dc-16fe64995b7b'
-  ReservedCode2: '656e6452-a7f7-441a-85dc-16fe64995b7b'
----
-
----
 title: Value
 parent: AsyncProperty
 permalink: /tB/Packages/VBRUN/AsyncProperty/Value

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '18702383-c384-4eed-8016-04677dc4983d'
-  PropagateID: '18702383-c384-4eed-8016-04677dc4983d'
-  ReservedCode1: '363e69bb-0a2b-474e-ad41-09142fb0a3e3'
-  ReservedCode2: '363e69bb-0a2b-474e-ad41-09142fb0a3e3'
----
-
----
 title: GetDataByName
 parent: DataObject
 permalink: /tB/Packages/VBRUN/DataObject/GetDataByName

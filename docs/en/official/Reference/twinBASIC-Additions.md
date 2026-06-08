@@ -1,15 +1,4 @@
 ---
-AIGC:
-  ContentProducer: "001191110102MAD55U9H0F10002"
-  ContentPropagator: "001191110102MAD55U9H0F10002"
-  Label: "1"
-  ProduceID: "bcce87f5-595d-4492-8545-b02e4c267343"
-  PropagateID: "bcce87f5-595d-4492-8545-b02e4c267343"
-  ReservedCode1: "ba6b1555-9c01-47ac-9d5c-bd9b2eaf4697"
-  ReservedCode2: "ba6b1555-9c01-47ac-9d5c-bd9b2eaf4697"
----
-
----
 
 title: twinBASIC Additions
 parent: Reference Section

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '729296c5-928c-4f6a-b82f-c8ae1d6322bc'
-  PropagateID: '729296c5-928c-4f6a-b82f-c8ae1d6322bc'
-  ReservedCode1: 'e89439a7-1634-4887-9557-ebcd2ee2edc6'
-  ReservedCode2: 'e89439a7-1634-4887-9557-ebcd2ee2edc6'
----
-
----
 title: BytesMax
 parent: AsyncProperty
 permalink: /tB/Packages/VBRUN/AsyncProperty/BytesMax

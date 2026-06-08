@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'b5c860a6-717f-4a20-a6fb-af66dab7de0b'
-  PropagateID: 'b5c860a6-717f-4a20-a6fb-af66dab7de0b'
-  ReservedCode1: '2aaa4517-4292-4c35-9b24-56a542e5f5ca'
-  ReservedCode2: '2aaa4517-4292-4c35-9b24-56a542e5f5ca'
----
-
----
 title: VBRUN Package
 parent: Packages
 nav_order: 3

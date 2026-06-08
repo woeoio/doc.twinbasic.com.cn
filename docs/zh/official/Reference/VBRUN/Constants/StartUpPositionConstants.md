@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '861bd0be-6f21-4ba5-8101-9fb6c918c022'
-  PropagateID: '861bd0be-6f21-4ba5-8101-9fb6c918c022'
-  ReservedCode1: '49340d7e-3bf4-4e53-b6a9-94f19b012ac6'
-  ReservedCode2: '49340d7e-3bf4-4e53-b6a9-94f19b012ac6'
----
-
----
 title: StartUpPositionConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/StartUpPositionConstants

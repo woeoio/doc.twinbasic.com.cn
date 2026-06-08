@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'a1f6c4a6-a4a8-4d39-83ce-dff84e428aa0'
-  PropagateID: 'a1f6c4a6-a4a8-4d39-83ce-dff84e428aa0'
-  ReservedCode1: 'a9a4d6da-1e8b-4484-b96b-12aaecb3c330'
-  ReservedCode2: 'a9a4d6da-1e8b-4484-b96b-12aaecb3c330'
----
-
----
 title: CommandButton
 parent: VB Package
 permalink: /tB/Packages/VB/CommandButton/

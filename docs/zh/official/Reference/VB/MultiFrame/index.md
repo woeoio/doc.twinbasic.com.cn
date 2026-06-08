@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'ed50fbce-3715-455f-a5e2-a5095ce4f586'
-  PropagateID: 'ed50fbce-3715-455f-a5e2-a5095ce4f586'
-  ReservedCode1: 'd91a965e-9b3a-4de4-b748-23e80d4f9673'
-  ReservedCode2: 'd91a965e-9b3a-4de4-b748-23e80d4f9673'
----
-
----
 title: MultiFrame
 parent: VB Package
 permalink: /tB/Packages/VB/MultiFrame/

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'df121c35-3fa4-49e9-9b64-2463d641b96a'
-  PropagateID: 'df121c35-3fa4-49e9-9b64-2463d641b96a'
-  ReservedCode1: '02e6690f-59ab-4f7a-8622-c90b54835569'
-  ReservedCode2: '02e6690f-59ab-4f7a-8622-c90b54835569'
----
-
----
 title: Palette
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/Palette

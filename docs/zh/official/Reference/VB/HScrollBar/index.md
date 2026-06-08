@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '3934b5da-6c7a-4b39-94f7-c4d30f85a182'
-  PropagateID: '3934b5da-6c7a-4b39-94f7-c4d30f85a182'
-  ReservedCode1: '71701f12-e0cd-4b27-ac7b-a1eeecd065a1'
-  ReservedCode2: '71701f12-e0cd-4b27-ac7b-a1eeecd065a1'
----
-
----
 title: HScrollBar
 parent: VB Package
 permalink: /tB/Packages/VB/HScrollBar/

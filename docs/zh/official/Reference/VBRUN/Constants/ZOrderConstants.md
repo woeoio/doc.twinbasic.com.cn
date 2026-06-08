@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '358fbf79-4d1e-4109-b812-5bca6d4503d9'
-  PropagateID: '358fbf79-4d1e-4109-b812-5bca6d4503d9'
-  ReservedCode1: '62cc0c2b-ae6a-4198-a421-50bdf86f8f84'
-  ReservedCode2: '62cc0c2b-ae6a-4198-a421-50bdf86f8f84'
----
-
----
 title: ZOrderConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/ZOrderConstants

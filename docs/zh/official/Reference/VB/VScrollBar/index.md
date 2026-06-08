@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '0d1b6385-4bdd-4872-ae6b-3ad82cb2ef16'
-  PropagateID: '0d1b6385-4bdd-4872-ae6b-3ad82cb2ef16'
-  ReservedCode1: '8e97c75e-51ec-490c-8d92-621b16a5a4c2'
-  ReservedCode2: '8e97c75e-51ec-490c-8d92-621b16a5a4c2'
----
-
----
 title: VScrollBar
 parent: VB Package
 permalink: /tB/Packages/VB/VScrollBar/

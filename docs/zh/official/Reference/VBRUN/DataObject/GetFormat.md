@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f47a9525-a7dc-4317-b500-321c44dde4ad'
-  PropagateID: 'f47a9525-a7dc-4317-b500-321c44dde4ad'
-  ReservedCode1: '7132d602-6740-4df4-bb98-da90687aeecd'
-  ReservedCode2: '7132d602-6740-4df4-bb98-da90687aeecd'
----
-
----
 title: GetFormat
 parent: DataObject
 permalink: /tB/Packages/VBRUN/DataObject/GetFormat

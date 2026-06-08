@@ -1,15 +1,4 @@
 ---
-AIGC:
-  ContentProducer: "001191110102MAD55U9H0F10002"
-  ContentPropagator: "001191110102MAD55U9H0F10002"
-  Label: "1"
-  ProduceID: "47a01f60-c504-47a0-9a46-4022f35618ee"
-  PropagateID: "47a01f60-c504-47a0-9a46-4022f35618ee"
-  ReservedCode1: "db04dfe2-ff15-4406-b95d-13bf84b959d8"
-  ReservedCode2: "db04dfe2-ff15-4406-b95d-13bf84b959d8"
----
-
----
 
 title: SendKeys
 parent: Interaction Module

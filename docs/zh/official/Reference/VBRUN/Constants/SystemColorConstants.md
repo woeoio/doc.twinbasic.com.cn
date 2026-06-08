@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '536ce40e-b850-4d9c-815f-87acb8b89abc'
-  PropagateID: '536ce40e-b850-4d9c-815f-87acb8b89abc'
-  ReservedCode1: 'edb7e184-398d-40f8-a4a4-37470f165f1a'
-  ReservedCode2: 'edb7e184-398d-40f8-a4a4-37470f165f1a'
----
-
----
 title: SystemColorConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/SystemColorConstants

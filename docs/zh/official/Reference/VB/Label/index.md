@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '9cddc0d5-0082-4872-b29d-c7109f4b043e'
-  PropagateID: '9cddc0d5-0082-4872-b29d-c7109f4b043e'
-  ReservedCode1: '4f023289-bdf9-4939-ba1d-5943ce0287b4'
-  ReservedCode2: '4f023289-bdf9-4939-ba1d-5943ce0287b4'
----
-
----
 title: "Label 标签"
 parent: VB Package
 permalink: /tB/Packages/VB/Label/

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'a46ed0be-65f9-488e-b72c-da8ff2d54302'
-  PropagateID: 'a46ed0be-65f9-488e-b72c-da8ff2d54302'
-  ReservedCode1: '58e5d9d9-769d-40ee-a4e1-31d8ed248bb2'
-  ReservedCode2: '58e5d9d9-769d-40ee-a4e1-31d8ed248bb2'
----
-
----
 title: "DirListBox 目录列表框"
 parent: VB Package
 permalink: /tB/Packages/VB/DirListBox/

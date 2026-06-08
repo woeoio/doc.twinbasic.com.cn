@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '9a961419-b110-4a82-b9bb-cbc83bed7a32'
-  PropagateID: '9a961419-b110-4a82-b9bb-cbc83bed7a32'
-  ReservedCode1: '338535d4-5d4d-4e4b-93f7-f197ea8df2c9'
-  ReservedCode2: '338535d4-5d4d-4e4b-93f7-f197ea8df2c9'
----
-
----
 title: "Printer 打印机"
 parent: VB Package
 permalink: /tB/Packages/VB/Printer/

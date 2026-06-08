@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'db6ee4ed-b437-4c26-be57-d1782d9ac2b1'
-  PropagateID: 'db6ee4ed-b437-4c26-be57-d1782d9ac2b1'
-  ReservedCode1: 'e69cc9a1-abe3-428c-9106-54f73d7dabe0'
-  ReservedCode2: 'e69cc9a1-abe3-428c-9106-54f73d7dabe0'
----
-
----
 title: "Data 数据控件"
 parent: VB Package
 permalink: /tB/Packages/VB/Data/

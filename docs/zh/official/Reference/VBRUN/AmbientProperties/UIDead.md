@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '4650b289-8f29-497c-a5f5-d2224c6490a4'
-  PropagateID: '4650b289-8f29-497c-a5f5-d2224c6490a4'
-  ReservedCode1: '946a6553-09ab-4fe9-a7da-9a6157d4e1e2'
-  ReservedCode2: '946a6553-09ab-4fe9-a7da-9a6157d4e1e2'
----
-
----
 title: UIDead
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/UIDead

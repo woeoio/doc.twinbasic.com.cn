@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '596200fa-4b41-4bc7-89a1-0623993a3ff4'
-  PropagateID: '596200fa-4b41-4bc7-89a1-0623993a3ff4'
-  ReservedCode1: 'b9e17a7a-5355-4c53-91e0-23101180f98a'
-  ReservedCode2: 'b9e17a7a-5355-4c53-91e0-23101180f98a'
----
-
----
 title: "FileListBox 文件列表框"
 parent: VB Package
 permalink: /tB/Packages/VB/FileListBox/

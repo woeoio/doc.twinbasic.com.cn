@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'b6366ffe-3cfb-48ae-aa38-b5a38519ac6a'
-  PropagateID: 'b6366ffe-3cfb-48ae-aa38-b5a38519ac6a'
-  ReservedCode1: '7ea506df-ec77-45df-8312-c6d6439eeafb'
-  ReservedCode2: '7ea506df-ec77-45df-8312-c6d6439eeafb'
----
-
----
 title: "ComboBox 组合框"
 parent: VB Package
 permalink: /tB/Packages/VB/ComboBox/

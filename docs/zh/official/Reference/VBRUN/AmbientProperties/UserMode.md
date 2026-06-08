@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '478bb500-3cd6-4dd8-b609-996b27fac24c'
-  PropagateID: '478bb500-3cd6-4dd8-b609-996b27fac24c'
-  ReservedCode1: 'b445d39e-9b87-4937-8b04-b61f1bef801e'
-  ReservedCode2: 'b445d39e-9b87-4937-8b04-b61f1bef801e'
----
-
----
 title: UserMode
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/UserMode

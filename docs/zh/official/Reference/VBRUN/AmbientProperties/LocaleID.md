@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '05b18f66-9c19-4c2b-8033-4e77c17309d2'
-  PropagateID: '05b18f66-9c19-4c2b-8033-4e77c17309d2'
-  ReservedCode1: '7049cf6e-abdb-47d5-a791-20689d0670f2'
-  ReservedCode2: '7049cf6e-abdb-47d5-a791-20689d0670f2'
----
-
----
 title: LocaleID
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/LocaleID

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'd58f5b48-a519-4454-9cc8-9b14324344b3'
-  PropagateID: 'd58f5b48-a519-4454-9cc8-9b14324344b3'
-  ReservedCode1: '007590cd-6061-4e93-aae6-debeb3866cbb'
-  ReservedCode2: '007590cd-6061-4e93-aae6-debeb3866cbb'
----
-
----
 title: BytesRead
 parent: AsyncProperty
 permalink: /tB/Packages/VBRUN/AsyncProperty/BytesRead

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'b3cfb3d9-145b-4b62-8159-9b1c6780b1dc'
-  PropagateID: 'b3cfb3d9-145b-4b62-8159-9b1c6780b1dc'
-  ReservedCode1: 'f930ba63-f0ee-4094-8d09-0cc633f2d285'
-  ReservedCode2: 'f930ba63-f0ee-4094-8d09-0cc633f2d285'
----
-
----
 title: Frame
 parent: VB Package
 permalink: /tB/Packages/VB/Frame/

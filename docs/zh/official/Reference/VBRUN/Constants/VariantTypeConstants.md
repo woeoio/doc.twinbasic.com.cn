@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '5a7c9d0d-8424-4c24-bd3c-bb0b6e24f036'
-  PropagateID: '5a7c9d0d-8424-4c24-bd3c-bb0b6e24f036'
-  ReservedCode1: '3bafb0cb-a510-423d-90a6-87fcb18e77c9'
-  ReservedCode2: '3bafb0cb-a510-423d-90a6-87fcb18e77c9'
----
-
----
 title: VariantTypeConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/VariantTypeConstants

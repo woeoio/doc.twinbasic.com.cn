@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '337e1ecd-9692-4ae3-aa76-abfd51f63ef2'
-  PropagateID: '337e1ecd-9692-4ae3-aa76-abfd51f63ef2'
-  ReservedCode1: '59e92a73-b107-4000-9a4b-f84eeedf44f0'
-  ReservedCode2: '59e92a73-b107-4000-9a4b-f84eeedf44f0'
----
-
----
 title: MessageReflect
 parent: AmbientProperties
 permalink: /tB/Packages/VBRUN/AmbientProperties/MessageReflect

@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'fc4cc3ce-968a-4d3a-8e2e-f8e10e748fdb'
-  PropagateID: 'fc4cc3ce-968a-4d3a-8e2e-f8e10e748fdb'
-  ReservedCode1: '601d18d6-ef7a-47e2-939d-9116b8f3386f'
-  ReservedCode2: '601d18d6-ef7a-47e2-939d-9116b8f3386f'
----
-
----
 title: Clear
 parent: DataObject
 permalink: /tB/Packages/VBRUN/DataObject/Clear

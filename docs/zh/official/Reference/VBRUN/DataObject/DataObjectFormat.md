@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '05ed4527-ac0f-40bc-8112-1c1b4cf3be96'
-  PropagateID: '05ed4527-ac0f-40bc-8112-1c1b4cf3be96'
-  ReservedCode1: 'af6d226a-54e4-460c-81e9-af81421a8fbe'
-  ReservedCode2: 'af6d226a-54e4-460c-81e9-af81421a8fbe'
----
-
----
 title: DataObjectFormat
 parent: DataObject
 permalink: /tB/Packages/VBRUN/DataObject/DataObjectFormat

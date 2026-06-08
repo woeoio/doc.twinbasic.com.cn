@@ -1,15 +1,4 @@
 ﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '6d84b8db-484e-4e4d-ae91-1da4b9ab81c4'
-  PropagateID: '6d84b8db-484e-4e4d-ae91-1da4b9ab81c4'
-  ReservedCode1: '713cc1aa-3b57-4312-81dd-1f705a2d04a5'
-  ReservedCode2: '713cc1aa-3b57-4312-81dd-1f705a2d04a5'
----
-
----
 title: StorageTypeContants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/StorageTypeContants
