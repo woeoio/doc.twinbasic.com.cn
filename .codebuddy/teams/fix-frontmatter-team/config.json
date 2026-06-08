@@ -37,6 +37,16 @@
       "memberId": "checker-5@fix-frontmatter-team",
       "name": "checker-5",
       "role": "检查组5并修复多层frontmatter"
+    },
+    {
+      "memberId": "vb-fixer@fix-frontmatter-team",
+      "name": "vb-fixer",
+      "role": "修复VB目录剩余文件"
+    },
+    {
+      "memberId": "constants-fixer@fix-frontmatter-team",
+      "name": "constants-fixer",
+      "role": "修复VBRUN Constants剩余文件"
     }
   ],
   "isAutoTeam": false
