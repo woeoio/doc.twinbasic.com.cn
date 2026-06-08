@@ -1,7 +1,7 @@
 export const zhNav = [
   { text: '首页', link: '/' },
   { text: 'TBMAN', link: '/tbman' },
-  { text: '官方', link: '/official/' },
+  { text: '官方文档', link: '/official/' },
   { text: '挑战', link: '/challenge/2026/202601' },
   { text: 'VB6.PRO', link: 'https://vb6.pro/' },
   { text: '捐赠', link: 'https://doc.vb6.pro/donate/' },
@@ -12,15 +12,21 @@ export const zhSidebar = {
   '/': [],
   '/official/': [
     {
-      text: '挑战赛',
+      text: 'Twinbasic 官方文档',
+      items: [
+        { text: '概览', link: '/official/' }
+      ]
+    },
+    {
+      text: 'Challenges 挑战赛',
       items: [
         { text: '概览', link: '/official/Challenges/' },
         { text: '创建游戏', link: '/official/Challenges/create-a-game' },
         { text: '自包含诊断工具', link: '/official/Challenges/self-contained_diagnostic_tool' }
       ]
-    },
+    },    
     {
-      text: '文档开发',
+      text: 'Documentation 文档构建',
       items: [
         { text: '文档开发', link: '/official/Documentation/' },
         { text: '书籍配置', link: '/official/Documentation/Book-Configuration' },
@@ -38,7 +44,7 @@ export const zhSidebar = {
       ]
     },
     {
-      text: '功能特性',
+      text: 'Features 功能特性',
       items: [
         { text: '概览', link: '/official/Features/' },
         { text: '64位编译', link: '/official/Features/64bit' },
@@ -135,7 +141,7 @@ export const zhSidebar = {
       ]
     },
     {
-      text: '集成开发环境',
+      text: 'IDE 开发环境',
       items: [
         { text: '概览', link: '/official/IDE/' },
         { text: '调用堆栈', link: '/official/IDE/Call-Stack' },
@@ -189,13 +195,13 @@ export const zhSidebar = {
       ]
     },
     {
-      text: '杂项',
+      text: 'Miscellaneous 其他',
       items: [
         { text: '常见问题', link: '/official/Miscellaneous/FAQs' }
       ]
     },
     {
-      text: '参考',
+      text: 'Reference API参考',
       items: [
         { text: '概览', link: '/official/Reference/' },
         { text: '属性', link: '/official/Reference/Attributes' },
@@ -582,7 +588,7 @@ export const zhSidebar = {
       ]
     },
     {
-      text: '教程',
+      text: 'Tutorials 教程',
       items: [
         { text: '概览', link: '/official/Tutorials/' },
         { text: '数组', link: '/official/Tutorials/Arrays' },
@@ -629,7 +635,7 @@ export const zhSidebar = {
       ]
     },
     {
-      text: '视频',
+      text: 'Videos 视频',
       items: [
         { text: '概览', link: '/official/Videos/' },
         { text: 'Access DevCon 视频', link: '/official/Videos/AccessDevCon' },
