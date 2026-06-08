@@ -1,19 +1,21 @@
 ---
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'bcce87f5-595d-4492-8545-b02e4c267343'
-  PropagateID: 'bcce87f5-595d-4492-8545-b02e4c267343'
-  ReservedCode1: 'ba6b1555-9c01-47ac-9d5c-bd9b2eaf4697'
-  ReservedCode2: 'ba6b1555-9c01-47ac-9d5c-bd9b2eaf4697'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "bcce87f5-595d-4492-8545-b02e4c267343"
+  PropagateID: "bcce87f5-595d-4492-8545-b02e4c267343"
+  ReservedCode1: "ba6b1555-9c01-47ac-9d5c-bd9b2eaf4697"
+  ReservedCode2: "ba6b1555-9c01-47ac-9d5c-bd9b2eaf4697"
 ---
 
 ---
+
 title: twinBASIC Additions
 parent: Reference Section
 nav_order: 11
 permalink: /Reference/twinBASIC-Additions
+
 ---
 
 # twinBASIC Additions
@@ -26,11 +28,11 @@ For a broader overview aimed at developers coming from VBA or VB6, see the [welc
 
 ## New data types
 
-| Type | Description | Notes |
-|------|-------------|-------|
-| **LongLong** | 8-byte signed integer | Available in both 32-bit and 64-bit builds; VBA restricts it to 64-bit |
-| **LongPtr** | Pointer-width signed integer | 4 bytes in 32-bit, 8 bytes in 64-bit; use in `Declare` statements |
-| **Decimal** | 128-bit fixed-decimal type | Available as a standalone declared type, not only as a **Variant** subtype |
+| Type         | Description                  | Notes                                                                      |
+| ------------ | ---------------------------- | -------------------------------------------------------------------------- |
+| **LongLong** | 8-byte signed integer        | Available in both 32-bit and 64-bit builds; VBA restricts it to 64-bit     |
+| **LongPtr**  | Pointer-width signed integer | 4 bytes in 32-bit, 8 bytes in 64-bit; use in `Declare` statements          |
+| **Decimal**  | 128-bit fixed-decimal type   | Available as a standalone declared type, not only as a **Variant** subtype |
 
 See [Data Types](/en/official/Reference/Data-Types) for the full type table, and [Features → New Data Types](/en/official/Features/Language/Data-Types) for more detail on these three.
 
@@ -98,13 +100,13 @@ See [Features → New](/en/official/Features/GUI-Components/New).
 
 ## New operators
 
-| Operator | Description |
-|----------|-------------|
-| [**AndAlso**](/en/official/Reference/Core/AndAlso) | Short-circuit logical AND --- the right operand is not evaluated if the left is `False` |
-| [**OrElse**](/en/official/Reference/Core/OrElse) | Short-circuit logical OR --- the right operand is not evaluated if the left is `True` |
-| [**IsNot**](/en/official/Reference/Core/IsNot) | Logical inverse of `Is`; `a IsNot b` is equivalent to `Not (a Is b)` |
-| [**LeftShift**](/en/official/Reference/Core/LeftShift) | Bitwise left shift; `x LeftShift n` shifts x left by n bits |
-| [**RightShift**](/en/official/Reference/Core/RightShift) | Bitwise right shift; `x RightShift n` shifts x right by n bits |
+| Operator                                                 | Description                                                                             |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [**AndAlso**](/en/official/Reference/Core/AndAlso)       | Short-circuit logical AND --- the right operand is not evaluated if the left is `False` |
+| [**OrElse**](/en/official/Reference/Core/OrElse)         | Short-circuit logical OR --- the right operand is not evaluated if the left is `True`   |
+| [**IsNot**](/en/official/Reference/Core/IsNot)           | Logical inverse of `Is`; `a IsNot b` is equivalent to `Not (a Is b)`                    |
+| [**LeftShift**](/en/official/Reference/Core/LeftShift)   | Bitwise left shift; `x LeftShift n` shifts x left by n bits                             |
+| [**RightShift**](/en/official/Reference/Core/RightShift) | Bitwise right shift; `x RightShift n` shifts x right by n bits                          |
 
 ---
 
@@ -112,18 +114,18 @@ See [Features → New](/en/official/Features/GUI-Components/New).
 
 These functions exist in the VBA package but have no equivalent in standard VBA --- they are twinBASIC additions:
 
-| Function | Module | Description |
-|----------|--------|-------------|
-| [**CType**](/en/official/Reference/VBA/Conversion/CType) | Conversion | Explicit cast to a caller-supplied type; syntax `CType(expr, TypeName)` |
-| [**If**](/en/official/Reference/VBA/Interaction/If) | Interaction | Ternary --- evaluates to one of two values; only the chosen branch is evaluated |
-| [**CallByDispId**](/en/official/Reference/VBA/Interaction/CallByDispId) | Interaction | Invokes a method or property by its IDispatch dispatch ID |
-| [**RaiseEventByName**](/en/official/Reference/VBA/Interaction/RaiseEventByName) | Interaction | Raises an event by name, passing arguments as a **Variant** array |
-| [**RaiseEventByName2**](/en/official/Reference/VBA/Interaction/RaiseEventByName2) | Interaction | Raises an event by name with a variable-length argument list |
-| [**ObjPtr**](/en/official/Reference/VBA/Information/ObjPtr) | Information | Returns the COM-identity address of an object |
-| [**VarPtr**](/en/official/Reference/VBA/Information/VarPtr) | Information | Returns the address of a variable |
-| [**StrPtr**](/en/official/Reference/VBA/Information/StrPtr) | Information | Returns the address of a **String**'s underlying character buffer |
-| [**IsArrayInitialized**](/en/official/Reference/VBA/Information/IsArrayInitialized) | Information | Returns whether a dynamic array has been dimensioned |
-| [**TranslateColor**](/en/official/Reference/VBA/Information/TranslateColor) | Information | Translates an OLE colour to a plain RGB value |
+| Function                                                                            | Module      | Description                                                                     |
+| ----------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------- |
+| [**CType**](/en/official/Reference/VBA/Conversion/CType)                            | Conversion  | Explicit cast to a caller-supplied type; syntax `CType(expr, TypeName)`         |
+| [**If**](/en/official/Reference/VBA/Interaction/If)                                 | Interaction | Ternary --- evaluates to one of two values; only the chosen branch is evaluated |
+| [**CallByDispId**](/en/official/Reference/VBA/Interaction/CallByDispId)             | Interaction | Invokes a method or property by its IDispatch dispatch ID                       |
+| [**RaiseEventByName**](/en/official/Reference/VBA/Interaction/RaiseEventByName)     | Interaction | Raises an event by name, passing arguments as a **Variant** array               |
+| [**RaiseEventByName2**](/en/official/Reference/VBA/Interaction/RaiseEventByName2)   | Interaction | Raises an event by name with a variable-length argument list                    |
+| [**ObjPtr**](/en/official/Reference/VBA/Information/ObjPtr)                         | Information | Returns the COM-identity address of an object                                   |
+| [**VarPtr**](/en/official/Reference/VBA/Information/VarPtr)                         | Information | Returns the address of a variable                                               |
+| [**StrPtr**](/en/official/Reference/VBA/Information/StrPtr)                         | Information | Returns the address of a **String**'s underlying character buffer               |
+| [**IsArrayInitialized**](/en/official/Reference/VBA/Information/IsArrayInitialized) | Information | Returns whether a dynamic array has been dimensioned                            |
+| [**TranslateColor**](/en/official/Reference/VBA/Information/TranslateColor)         | Information | Translates an OLE colour to a plain RGB value                                   |
 
 Additional low-level memory, threading, and introspection functions are documented in the [HiddenModule](/en/official/Reference/VBA/HiddenModule/) section.
 
@@ -174,5 +176,3 @@ See [Features → Enhanced API Declarations](/en/official/Features/Advanced/API-
 - [Data Types](/en/official/Reference/Data-Types) -- storage sizes and ranges for all intrinsic types
 - [Features](/en/official/Features/) -- in-depth coverage of every twinBASIC feature
 - [Categories](/en/official/Reference/Categories) -- statements and procedures grouped by purpose
-
-> AI生成

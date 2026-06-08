@@ -3,16 +3,17 @@ title: Access DevCon Videos
 parent: Videos
 permalink: /Videos/AccessDevCon
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '4fc55dac-fd83-48d2-a388-efee7d4e0293'
-  PropagateID: '4fc55dac-fd83-48d2-a388-efee7d4e0293'
-  ReservedCode1: '636616a9-7d60-44e3-b67f-c8a9178d7dbe'
-  ReservedCode2: '636616a9-7d60-44e3-b67f-c8a9178d7dbe'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "4fc55dac-fd83-48d2-a388-efee7d4e0293"
+  PropagateID: "4fc55dac-fd83-48d2-a388-efee7d4e0293"
+  ReservedCode1: "636616a9-7d60-44e3-b67f-c8a9178d7dbe"
+  ReservedCode2: "636616a9-7d60-44e3-b67f-c8a9178d7dbe"
 ---
 
 # Access DevCon - Videos
+
 To learn more about the conference: [https://www.donkarl.com/devcon][2].
 
 ### Access DevCon 2025 - twinBASIC Update
@@ -25,7 +26,8 @@ To learn more about the conference: [https://www.donkarl.com/devcon][2].
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Access MVP Mike Wolfe presents a twinBASIC project update. 
+Access MVP Mike Wolfe presents a twinBASIC project update.
+
 - For the slide deck and more information see: [https://nolongerset.com/devcon-2025][1].
 
 [1]: https://nolongerset.com/devcon-2025
@@ -45,7 +47,8 @@ Add-In creation with twinBASIC
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Mike Wolfe presents a twinBASIC project update and how to create add-ins for Access with twinBASIC. 
+Mike Wolfe presents a twinBASIC project update and how to create add-ins for Access with twinBASIC.
+
 - For more information see: [https://nolongerset.com/tag/twinbasic-weekly-update/][3].
 
 [3]: https://nolongerset.com/tag/twinbasic-weekly-update/
@@ -62,7 +65,8 @@ Mike Wolfe presents a twinBASIC project update and how to create add-ins for Acc
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Mike Wolfe presents a session on twinBASIC covering a brief project overview, progress, roadmap, demos and Access integration plans. 
+Mike Wolfe presents a session on twinBASIC covering a brief project overview, progress, roadmap, demos and Access integration plans.
+
 - For more information see [https://nolongerset.com/tag/twinbasic][5].
 
 [5]: https://nolongerset.com/tag/twinbasic
@@ -80,6 +84,7 @@ Mike Wolfe presents a session on twinBASIC covering a brief project overview, pr
 </iframe>
 
 Mike Wolfe presents the current state of twinBASIC focussing on the practical use and usefulness for Access developers.
+
 - For more information, see [https://nolongerset.com/tag/twinbasic][5]
 
 ---
@@ -96,4 +101,3 @@ Mike Wolfe presents the current state of twinBASIC focussing on the practical us
 
 Mike Wolfe presents: The world premier of twinBasic, a new flavour of VB(A).
 
-> AI生成

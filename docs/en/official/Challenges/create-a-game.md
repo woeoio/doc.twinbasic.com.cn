@@ -4,13 +4,13 @@ parent: Challenges
 nav_order: 2
 permalink: /Challenges/2
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'b2aaa5a3-6294-4661-86de-28d437466356'
-  PropagateID: 'b2aaa5a3-6294-4661-86de-28d437466356'
-  ReservedCode1: 'd92885fe-66ca-4755-bc3d-7029019730ab'
-  ReservedCode2: 'd92885fe-66ca-4755-bc3d-7029019730ab'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "b2aaa5a3-6294-4661-86de-28d437466356"
+  PropagateID: "b2aaa5a3-6294-4661-86de-28d437466356"
+  ReservedCode1: "d92885fe-66ca-4755-bc3d-7029019730ab"
+  ReservedCode2: "d92885fe-66ca-4755-bc3d-7029019730ab"
 ---
 
 # 🎮 twinBASIC Monthly Challenge #2 - February
@@ -19,13 +19,13 @@ AIGC:
 
 Build **any game you like** using twinBASIC.
 
-This can be a simple card game, arcade game, puzzle, or something more experimental.  Creativity is encouraged - there is no "right" genre or style.
+This can be a simple card game, arcade game, puzzle, or something more experimental. Creativity is encouraged - there is no "right" genre or style.
 
 ## 📦 Submission Rules
 
 - Built using twinBASIC
 - Full source code must be provided, but licence choice is unrestricted
-- Submission must be a *single* `.twinproj` file (external image and music resource files allowed if necessary)
+- Submission must be a _single_ `.twinproj` file (external image and music resource files allowed if necessary)
 - Produces a **single Windows EXE**
 - Runs on **Windows 10 and later**
 - Game may be windowed or fullscreen
@@ -77,4 +77,3 @@ Submissions will be locked after the deadline.
 
 🔗: [https://discord.com/channels/927638153546829845/1467429513456783498](https://discord.com/channels/927638153546829845/1467429513456783498)
 
-> AI生成

@@ -4,13 +4,13 @@ parent: Documentation Development
 nav_order: 2
 permalink: /Documentation/Development/Building
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '4df6c716-d6dc-4127-a1a6-df6011438ddb'
-  PropagateID: '4df6c716-d6dc-4127-a1a6-df6011438ddb'
-  ReservedCode1: '7c43789c-e087-4385-8e94-4286dc4e9b80'
-  ReservedCode2: '7c43789c-e087-4385-8e94-4286dc4e9b80'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "4df6c716-d6dc-4127-a1a6-df6011438ddb"
+  PropagateID: "4df6c716-d6dc-4127-a1a6-df6011438ddb"
+  ReservedCode1: "7c43789c-e087-4385-8e94-4286dc4e9b80"
+  ReservedCode2: "7c43789c-e087-4385-8e94-4286dc4e9b80"
 ---
 
 # Building and Deployment
@@ -150,4 +150,3 @@ It is a convention to put the `.af` ("source") files in the `_Images` folder, an
 [hash-docs]: https://discord.com/channels/927638153546829845/1021635324809596988
 [hash-github-docs]: https://discord.com/channels/927638153546829845/1111554338221989908
 
-> AI生成

@@ -4,13 +4,13 @@ parent: tbdocs Builder
 nav_order: 3
 permalink: /Documentation/Development/Extending
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'dd5e786b-4d6a-4b2f-ab60-3c695fbacf5d'
-  PropagateID: 'dd5e786b-4d6a-4b2f-ab60-3c695fbacf5d'
-  ReservedCode1: '429080ce-7f79-49e4-9aee-12e760ad1391'
-  ReservedCode2: '429080ce-7f79-49e4-9aee-12e760ad1391'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "dd5e786b-4d6a-4b2f-ab60-3c695fbacf5d"
+  PropagateID: "dd5e786b-4d6a-4b2f-ab60-3c695fbacf5d"
+  ReservedCode1: "429080ce-7f79-49e4-9aee-12e760ad1391"
+  ReservedCode2: "429080ce-7f79-49e4-9aee-12e760ad1391"
 ---
 
 # Extending the Builder
@@ -40,7 +40,7 @@ import { writeFileMkdirp } from "./write.mjs";
 import path from "node:path";
 
 export async function myStage(pages, site, destRoot) {
-  const manifest = pages.map(p => ({
+  const manifest = pages.map((p) => ({
     url: p.permalink,
     title: p.frontmatter.title ?? null,
   }));
@@ -86,7 +86,10 @@ When `dryRun` is `true`, the stage should log what it would do without touching 
 
 ```js
 export async function myStage(pages, site, destRoot, { dryRun = false } = {}) {
-  const manifest = pages.map(p => ({ url: p.permalink, title: p.frontmatter.title ?? null }));
+  const manifest = pages.map((p) => ({
+    url: p.permalink,
+    title: p.frontmatter.title ?? null,
+  }));
 
   if (dryRun) {
     console.log(`[dry-run] my-stage: would write ${manifest.length} entries`);
@@ -121,14 +124,19 @@ A markdown-it plugin is a function that receives the `md` instance (and an optio
 
 ```js
 export function tableWrapPlugin(md) {
-  const originalOpen = md.renderer.rules.table_open
-    ?? ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
+  const originalOpen =
+    md.renderer.rules.table_open ??
+    ((tokens, idx, options, _env, self) =>
+      self.renderToken(tokens, idx, options));
 
-  const originalClose = md.renderer.rules.table_close
-    ?? ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
+  const originalClose =
+    md.renderer.rules.table_close ??
+    ((tokens, idx, options, _env, self) =>
+      self.renderToken(tokens, idx, options));
 
   md.renderer.rules.table_open = (tokens, idx, options, env, self) =>
-    "<div class=\"table-wrapper\">" + originalOpen(tokens, idx, options, env, self);
+    '<div class="table-wrapper">' +
+    originalOpen(tokens, idx, options, env, self);
 
   md.renderer.rules.table_close = (tokens, idx, options, env, self) =>
     originalClose(tokens, idx, options, env, self) + "</div>";
@@ -139,26 +147,37 @@ export function tableWrapPlugin(md) {
 
 ```js
 export function calloutPlugin(md) {
-  md.block.ruler.before("fence", "callout", (state, startLine, endLine, silent) => {
-    const pos = state.bMarks[startLine] + state.tShift[startLine];
-    const max = state.eMarks[startLine];
-    if (state.src.slice(pos, pos + 3) !== ":::") return false;
-    if (silent) return true;
+  md.block.ruler.before(
+    "fence",
+    "callout",
+    (state, startLine, endLine, silent) => {
+      const pos = state.bMarks[startLine] + state.tShift[startLine];
+      const max = state.eMarks[startLine];
+      if (state.src.slice(pos, pos + 3) !== ":::") return false;
+      if (silent) return true;
 
-    const label = state.src.slice(pos + 3, max).trim();
-    state.push("callout_open", "div", 1).attrSet("class", `callout callout-${label}`);
-    state.line = startLine + 1;
+      const label = state.src.slice(pos + 3, max).trim();
+      state
+        .push("callout_open", "div", 1)
+        .attrSet("class", `callout callout-${label}`);
+      state.line = startLine + 1;
 
-    while (state.line < endLine) {
-      if (state.src.slice(state.bMarks[state.line] + state.tShift[state.line], state.eMarks[state.line]) === ":::") {
+      while (state.line < endLine) {
+        if (
+          state.src.slice(
+            state.bMarks[state.line] + state.tShift[state.line],
+            state.eMarks[state.line],
+          ) === ":::"
+        ) {
+          state.line++;
+          break;
+        }
         state.line++;
-        break;
       }
-      state.line++;
-    }
-    state.push("callout_close", "div", -1);
-    return true;
-  });
+      state.push("callout_close", "div", -1);
+      return true;
+    },
+  );
 }
 ```
 
@@ -213,4 +232,3 @@ A clean run of all four is the bar for "ready to commit".
 - [tbdocs Builder](/en/official/Documentation/Builder) -- narrative design rationale for the pipeline.
 - [Building and Deployment](/en/official/Documentation/Building) -- the day-to-day build workflow for content contributors.
 
-> AI生成

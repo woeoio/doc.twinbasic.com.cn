@@ -2,13 +2,13 @@
 title: Welcome
 nav_order: 1
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '1b0501b2-d844-452d-9717-7548b2697c10'
-  PropagateID: '1b0501b2-d844-452d-9717-7548b2697c10'
-  ReservedCode1: 'd0b74fed-e7e8-464d-a5ac-1de4dc5d5fe0'
-  ReservedCode2: 'd0b74fed-e7e8-464d-a5ac-1de4dc5d5fe0'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "1b0501b2-d844-452d-9717-7548b2697c10"
+  PropagateID: "1b0501b2-d844-452d-9717-7548b2697c10"
+  ReservedCode1: "d0b74fed-e7e8-464d-a5ac-1de4dc5d5fe0"
+  ReservedCode2: "d0b74fed-e7e8-464d-a5ac-1de4dc5d5fe0"
 ---
 
 # Welcome to twinBASIC
@@ -38,7 +38,7 @@ The reference section is split into language constructs (the things the compiler
 
 ## Built-in packages
 
-A *package* groups related code under one namespace and is referenced from a project as a single dependency. The [Packages page](/en/official/Reference/Packages) lists every built-in package with a one-line description; the headings below group them by what they are for.
+A _package_ groups related code under one namespace and is referenced from a project as a single dependency. The [Packages page](/en/official/Reference/Packages) lists every built-in package with a one-line description; the headings below group them by what they are for.
 
 **Default packages** --- referenced in every project automatically:
 
@@ -90,4 +90,3 @@ The [**IDE section**](/en/official/IDE/) documents the editor, project explorer,
 
 These docs are open source. See [**Documentation Development**](/en/official/Documentation/) for the build and preview workflow plus the contribution conventions.
 
-> AI生成

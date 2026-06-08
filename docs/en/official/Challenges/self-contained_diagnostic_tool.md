@@ -4,13 +4,13 @@ parent: Challenges
 nav_order: 1
 permalink: /Challenges/1
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '8348a0a3-7073-477b-a979-052fa19f729d'
-  PropagateID: '8348a0a3-7073-477b-a979-052fa19f729d'
-  ReservedCode1: '1c7331ef-de96-484e-838d-e323d466861f'
-  ReservedCode2: '1c7331ef-de96-484e-838d-e323d466861f'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "8348a0a3-7073-477b-a979-052fa19f729d"
+  PropagateID: "8348a0a3-7073-477b-a979-052fa19f729d"
+  ReservedCode1: "1c7331ef-de96-484e-838d-e323d466861f"
+  ReservedCode2: "1c7331ef-de96-484e-838d-e323d466861f"
 ---
 
 # twinBASIC Monthly Challenge #1
@@ -83,4 +83,3 @@ Submissions will be locked after the deadline.
 
 🔗: https://discord.com/channels/927638153546829845/1457060903332614357/1457060903332614357
 
-> AI生成

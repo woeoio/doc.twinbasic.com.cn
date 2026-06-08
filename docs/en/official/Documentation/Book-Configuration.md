@@ -4,13 +4,13 @@ parent: tbdocs Builder
 nav_order: 2
 permalink: /Documentation/Development/Book-Configuration
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '347a9b60-c20d-4b5e-a246-3e24ca52e4cc'
-  PropagateID: '347a9b60-c20d-4b5e-a246-3e24ca52e4cc'
-  ReservedCode1: '9ea990f1-5139-4c0a-91a9-f27051a5062f'
-  ReservedCode2: '9ea990f1-5139-4c0a-91a9-f27051a5062f'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "347a9b60-c20d-4b5e-a246-3e24ca52e4cc"
+  PropagateID: "347a9b60-c20d-4b5e-a246-3e24ca52e4cc"
+  ReservedCode1: "9ea990f1-5139-4c0a-91a9-f27051a5062f"
+  ReservedCode2: "9ea990f1-5139-4c0a-91a9-f27051a5062f"
 ---
 
 # Book Configuration
@@ -29,11 +29,11 @@ Run `build.bat` then `book.bat` to see the effect of changes. The `check.bat` in
 
 ```yaml
 front_matter:
-  - <entry>      # zero or more entries, emitted before the first Part
+  - <entry> # zero or more entries, emitted before the first Part
   - ...
 
 parts:
-  - <part>       # one or more numbered Parts
+  - <part> # one or more numbered Parts
   - ...
 ```
 
@@ -47,13 +47,13 @@ Both `front_matter` entries and parts (and their chapters) share the [selector s
 
 Every entry may combine any of these keys to select the pages it contributes to the book. All matches are `contains` by default --- the page's URL or nav-path must contain the prefix string. Set `no_descent: true` on the entry to switch all its matches to exact equality.
 
-| Key | Type | Description |
-|---|---|---|
-| `page` | `string` | Single URL prefix. Shorthand for a one-element `pages:` list. |
-| `pages` | `string[]` | List of URL prefixes. Each prefix is tested against the page's `permalink` field. |
-| `nav_page` | `string` | Single nav-path prefix. Shorthand for a one-element `nav_pages:` list. A page's nav-path is its slash-joined `grand_parent / parent / title` chain, as populated by `nav.mjs`. |
-| `nav_pages` | `string[]` | List of nav-path prefixes, tested against each page's `navPath` field. |
-| `no_descent` | `boolean` | When `true`, switches every match on this entry from `contains` to exact equality. Use this when a prefix like `/Foo/` should match only the index page and not its sub-pages, or when `page: /` would otherwise sweep in every page on the site. |
+| Key          | Type       | Description                                                                                                                                                                                                                                       |
+| ------------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `page`       | `string`   | Single URL prefix. Shorthand for a one-element `pages:` list.                                                                                                                                                                                     |
+| `pages`      | `string[]` | List of URL prefixes. Each prefix is tested against the page's `permalink` field.                                                                                                                                                                 |
+| `nav_page`   | `string`   | Single nav-path prefix. Shorthand for a one-element `nav_pages:` list. A page's nav-path is its slash-joined `grand_parent / parent / title` chain, as populated by `nav.mjs`.                                                                    |
+| `nav_pages`  | `string[]` | List of nav-path prefixes, tested against each page's `navPath` field.                                                                                                                                                                            |
+| `no_descent` | `boolean`  | When `true`, switches every match on this entry from `contains` to exact equality. Use this when a prefix like `/Foo/` should match only the index page and not its sub-pages, or when `page: /` would otherwise sweep in every page on the site. |
 
 All selector keys are combinable within one entry. An entry with both `page` and `nav_page` collects the union of both selections. Selectors on a chapter entry are independent of the selectors on the containing part --- a chapter collects its own pages; the part does not automatically inherit them.
 
@@ -251,4 +251,3 @@ What this produces:
 - [Pipeline Stages](/en/official/Documentation/Pipeline-Stages) -- the `book.mjs` interface contracts.
 - [tbdocs Builder](/en/official/Documentation/Builder) -- design rationale for `book.mjs`.
 
-> AI生成

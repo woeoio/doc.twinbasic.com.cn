@@ -4,16 +4,17 @@ parent: Packages
 nav_order: 8
 permalink: /tB/Packages/WinEventLogLib/
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'cc81060f-6a8b-4ed7-9bfa-c1c40ef93312'
-  PropagateID: 'cc81060f-6a8b-4ed7-9bfa-c1c40ef93312'
-  ReservedCode1: 'bc1b23aa-da40-4c75-b908-ddcb6145d94f'
-  ReservedCode2: 'bc1b23aa-da40-4c75-b908-ddcb6145d94f'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "cc81060f-6a8b-4ed7-9bfa-c1c40ef93312"
+  PropagateID: "cc81060f-6a8b-4ed7-9bfa-c1c40ef93312"
+  ReservedCode1: "bc1b23aa-da40-4c75-b908-ddcb6145d94f"
+  ReservedCode2: "bc1b23aa-da40-4c75-b908-ddcb6145d94f"
 ---
 
 # WinEventLogLib Package
+
 The **WinEventLogLib** built-in package writes entries to the Windows Event Log from twinBASIC. Define two enumerations --- one naming the event IDs the application can report, one naming the categories those events belong to --- and the generic [**EventLog**](/en/official/Reference/WinEventLogLib/EventLog) class handles registration, registry setup, and the per-event `ReportEventW` call.
 
 The package is a built-in package shipped with twinBASIC. Add it through Project → References (**Ctrl-T**) → Available Packages.
@@ -23,8 +24,8 @@ The package is a built-in package shipped with twinBASIC. Add it through Project
 A typical use has three stages:
 
 1. **Declare** two enumerations --- the event IDs and the categories --- anywhere in the project. The assigned values become the numeric **Event ID** and **Category** columns visible in `eventvwr.msc`.
-2. **Register** once, with administrator rights, at install time. Construct an [**EventLog**](/en/official/Reference/WinEventLogLib/EventLog) instance and call [**Register**](/en/official/Reference/WinEventLogLib/EventLog#register); this writes the source key under `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\<LogName>` and points the registry's **EventMessageFile** and **CategoryMessageFile** entries at the running EXE. Without this step, the Event Viewer shows *"The description for Event ID X cannot be found"* for every entry.
-3. **Log** at runtime, without elevation. Construct the same [**EventLog**](/en/official/Reference/WinEventLogLib/EventLog) with the same *LogName* and call [**LogSuccess**](/en/official/Reference/WinEventLogLib/EventLog#logsuccess) or [**LogFailure**](/en/official/Reference/WinEventLogLib/EventLog#logfailure) whenever the application has something to report.
+2. **Register** once, with administrator rights, at install time. Construct an [**EventLog**](/en/official/Reference/WinEventLogLib/EventLog) instance and call [**Register**](/en/official/Reference/WinEventLogLib/EventLog#register); this writes the source key under `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\<LogName>` and points the registry's **EventMessageFile** and **CategoryMessageFile** entries at the running EXE. Without this step, the Event Viewer shows _"The description for Event ID X cannot be found"_ for every entry.
+3. **Log** at runtime, without elevation. Construct the same [**EventLog**](/en/official/Reference/WinEventLogLib/EventLog) with the same _LogName_ and call [**LogSuccess**](/en/official/Reference/WinEventLogLib/EventLog#logsuccess) or [**LogFailure**](/en/official/Reference/WinEventLogLib/EventLog#logfailure) whenever the application has something to report.
 
 ```vb
 Public Enum MyEventIds
@@ -76,8 +77,8 @@ The `Implements <Class> Via <field> = <expression>` clause declares a private fi
 
 Two things to remember:
 
-- The *T1* / *T2* type arguments must match between the `Implements` declaration and the constructor expression --- the compiler enforces this.
-- Using `"Application\" & CurrentComponentName` as the *LogName* makes the log path automatically track the class name at compile time; renaming the class renames the source it logs to.
+- The _T1_ / _T2_ type arguments must match between the `Implements` declaration and the constructor expression --- the compiler enforces this.
+- Using `"Application\" & CurrentComponentName` as the _LogName_ makes the log path automatically track the class name at compile time; renaming the class renames the source it logs to.
 
 This is the canonical mix-in pattern for [**WinServicesLib**](/en/official/Reference/WinServicesLib/) service classes (every service class in a project that shares one set of event IDs inherits logging methods without per-class boilerplate). The same pattern works for any class that wants the [**EventLog**](/en/official/Reference/WinEventLogLib/EventLog) members available directly.
 
@@ -85,9 +86,9 @@ A class can use `Implements ... Via` on [**EventLog**](/en/official/Reference/Wi
 
 ## Message resources
 
-The Windows Event Log stores only numeric **Event ID** and **Category** values; the human-readable strings live in a message-table resource embedded in the EXE pointed to by the registered **EventMessageFile** / **CategoryMessageFile** entries. Without this resource the Event Viewer cannot render entries and instead shows *"The description for Event ID X cannot be found"*.
+The Windows Event Log stores only numeric **Event ID** and **Category** values; the human-readable strings live in a message-table resource embedded in the EXE pointed to by the registered **EventMessageFile** / **CategoryMessageFile** entries. Without this resource the Event Viewer cannot render entries and instead shows _"The description for Event ID X cannot be found"_.
 
-For the generic [**EventLog**](/en/official/Reference/WinEventLogLib/EventLog)`(Of T1, T2)` class, the *T1* (event IDs) and *T2* (categories) enum declarations are the source of those strings --- the class points the registry at the running EXE and the Event Viewer looks for a message-table resource keyed by the enum member values. Authoring the resource directly (a `.mc` file fed to `mc.exe`, embedded as a resource section) is one route; the convention shown below keeps the enums, the message strings, and the resource emission in lockstep from a single JSON file using twinBASIC's [`[PopulateFrom]`](/en/official/Reference/Attributes#populatefrom) enum-population attribute.
+For the generic [**EventLog**](/en/official/Reference/WinEventLogLib/EventLog)`(Of T1, T2)` class, the _T1_ (event IDs) and _T2_ (categories) enum declarations are the source of those strings --- the class points the registry at the running EXE and the Event Viewer looks for a message-table resource keyed by the enum member values. Authoring the resource directly (a `.mc` file fed to `mc.exe`, embedded as a resource section) is one route; the convention shown below keeps the enums, the message strings, and the resource emission in lockstep from a single JSON file using twinBASIC's [`[PopulateFrom]`](/en/official/Reference/Attributes#populatefrom) enum-population attribute.
 
 ### The `[PopulateFrom("json", ...)]` convention
 
@@ -111,14 +112,26 @@ The five [`[PopulateFrom]`](/en/official/Reference/Attributes#populatefrom) argu
 
 ```json
 {
-    "events": [
-        { "id": -1073610751, "name": "service_started",        "LCID_0000": "%1 service started" },
-        { "id": -1073610750, "name": "service_startup_failed", "LCID_0000": "%1 service startup failed" },
-        { "id": -1073610749, "name": "service_ended",          "LCID_0000": "%1 service ended" }
-    ],
-    "categories": [
-        { "id": 1, "name": "status_changed", "LCID_0000": "Status Changed" }
-    ]
+  "events": [
+    {
+      "id": -1073610751,
+      "name": "service_started",
+      "LCID_0000": "%1 service started"
+    },
+    {
+      "id": -1073610750,
+      "name": "service_startup_failed",
+      "LCID_0000": "%1 service startup failed"
+    },
+    {
+      "id": -1073610749,
+      "name": "service_ended",
+      "LCID_0000": "%1 service ended"
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "status_changed", "LCID_0000": "Status Changed" }
+  ]
 }
 ```
 
@@ -131,13 +144,13 @@ Dim Log As New EventLog(Of MESSAGETABLE.EVENTS, MESSAGETABLE.CATEGORIES)("Applic
 Log.LogSuccess service_started, status_changed, "MyService"
 ```
 
-writes an event the Event Viewer renders as *"MyService service started"* --- the `%1` placeholder filled from the [**LogSuccess**](/en/official/Reference/WinEventLogLib/EventLog#logsuccess) *AdditionalStrings* `ParamArray`, the `status_changed` category resolved against the message table, both keyed by the numeric values the enums define.
+writes an event the Event Viewer renders as _"MyService service started"_ --- the `%1` placeholder filled from the [**LogSuccess**](/en/official/Reference/WinEventLogLib/EventLog#logsuccess) _AdditionalStrings_ `ParamArray`, the `status_changed` category resolved against the message table, both keyed by the numeric values the enums define.
 
-The negative event-ID values in the JSON (`-1073610751` etc.) follow the Win32 documented event-ID bit layout --- the high bits encode severity, facility, and customer-defined flags. See Microsoft's *"Event Identifiers"* reference for the encoding; pick fresh IDs for new events and don't reuse identifiers across products.
+The negative event-ID values in the JSON (`-1073610751` etc.) follow the Win32 documented event-ID bit layout --- the high bits encode severity, facility, and customer-defined flags. See Microsoft's _"Event Identifiers"_ reference for the encoding; pick fresh IDs for new events and don't reuse identifiers across products.
 
 ## Log Type
 
-[**LogSuccess**](/en/official/Reference/WinEventLogLib/EventLog#logsuccess) and [**LogFailure**](/en/official/Reference/WinEventLogLib/EventLog#logfailure) are the only entry points currently exposed; they write **Information**-type and **Error**-type entries respectively. The names follow the Win32 SDK's `EVENTLOG_SUCCESS` (= 0, the *information* event type) and `EVENTLOG_ERROR_TYPE` (= 1) constants verbatim --- *not* the Audit Success / Audit Failure event types familiar from the Security log.
+[**LogSuccess**](/en/official/Reference/WinEventLogLib/EventLog#logsuccess) and [**LogFailure**](/en/official/Reference/WinEventLogLib/EventLog#logfailure) are the only entry points currently exposed; they write **Information**-type and **Error**-type entries respectively. The names follow the Win32 SDK's `EVENTLOG_SUCCESS` (= 0, the _information_ event type) and `EVENTLOG_ERROR_TYPE` (= 1) constants verbatim --- _not_ the Audit Success / Audit Failure event types familiar from the Security log.
 
 The three other Windows Event Log entry types --- **Warning**, **Audit Success**, and **Audit Failure** --- are not yet reachable through the public API.
 
@@ -148,5 +161,3 @@ The three other Windows Event Log entry types --- **Warning**, **Audit Success**
 ## Modules
 
 - [EventLogHelperPublic](/en/official/Reference/WinEventLogLib/EventLogHelperPublic) -- the low-level registry helper underlying [**EventLog.Register**](/en/official/Reference/WinEventLogLib/EventLog#register); call it directly only when a category count must be supplied without using the generic class
-
-> AI生成

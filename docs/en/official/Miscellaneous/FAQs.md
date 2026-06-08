@@ -324,5 +324,3 @@ Everything should also work under WINE and ReactOS, but testing, while successfu
 The large majority of functionality, including major pieces like the Forms engine, is provided in VB6 applications/components by the msvbvm60.dll runtime, a 1.4MB file. twinBASIC applications/components have no such outside dependency; the Forms engine and all other functionality is included in the single exe, so the combined size isn't too far off. EXE size is expected to be reduced significantly with the introduction of LLVM-optimized compilation, coming soon.
 
 :::
-
-> AI生成

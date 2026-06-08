@@ -5,13 +5,13 @@ grand_parent: Documentation Development
 nav_order: 3
 permalink: /Documentation/Development/Fixes/Dagre
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'e8e9930f-a112-42d7-97c0-0c227a005f97'
-  PropagateID: 'e8e9930f-a112-42d7-97c0-0c227a005f97'
-  ReservedCode1: '13bfeb1e-91a6-42f0-b521-1da1059dbef3'
-  ReservedCode2: '13bfeb1e-91a6-42f0-b521-1da1059dbef3'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "e8e9930f-a112-42d7-97c0-0c227a005f97"
+  PropagateID: "e8e9930f-a112-42d7-97c0-0c227a005f97"
+  ReservedCode1: "13bfeb1e-91a6-42f0-b521-1da1059dbef3"
+  ReservedCode2: "13bfeb1e-91a6-42f0-b521-1da1059dbef3"
 ---
 
 # Mermaid Dagre Patches
@@ -51,38 +51,42 @@ After the rerouting, the parent graph's cross-cluster edge is `Cluster → Exter
 **Fix.** Inside `recursiveRender()`, after the parent-graph layout positions the cluster boxes, the cross-cluster edge's waypoints are replaced with an L-shape routing computed from the original endpoint nodes' actual rendered positions:
 
 ```js
-const _sx = (_srcC.x - _srcC.width / 2 - _srcMx) + _srcN.x;
-const _dx = (_dstC.x - _dstC.width / 2 - _dstMx) + _dstN.x;
-const _srcEdgeY = (_srcC.y - _srcC.height / 2 - _srcMy) + _srcN.y + _srcN.height / 2;
-const _dstEdgeY = (_dstC.y - _dstC.height / 2 - _dstMy) + _dstN.y - _dstN.height / 2;
+const _sx = _srcC.x - _srcC.width / 2 - _srcMx + _srcN.x;
+const _dx = _dstC.x - _dstC.width / 2 - _dstMx + _dstN.x;
+const _srcEdgeY =
+  _srcC.y - _srcC.height / 2 - _srcMy + _srcN.y + _srcN.height / 2;
+const _dstEdgeY =
+  _dstC.y - _dstC.height / 2 - _dstMy + _dstN.y - _dstN.height / 2;
 const _srcBot = _srcC.y + _srcC.height / 2;
 const _dstTop = _dstC.y - _dstC.height / 2;
 const _gapY = (_srcBot + _dstTop) / 2;
 edge.points = [
-  { x: _sx, y: _srcEdgeY },   // exit source on its bottom edge
-  { x: _sx, y: _srcBot },     // straight down past the source cluster rect
-  { x: _sx, y: _gapY },       // into the gap between cluster rows
-  { x: _dx, y: _gapY },       // across the gap to the destination column
-  { x: _dx, y: _dstTop },     // down to the destination cluster rect
-  { x: _dx, y: _dstEdgeY }    // enter destination on its top edge
+  { x: _sx, y: _srcEdgeY }, // exit source on its bottom edge
+  { x: _sx, y: _srcBot }, // straight down past the source cluster rect
+  { x: _sx, y: _gapY }, // into the gap between cluster rows
+  { x: _dx, y: _gapY }, // across the gap to the destination column
+  { x: _dx, y: _dstTop }, // down to the destination cluster rect
+  { x: _dx, y: _dstEdgeY }, // enter destination on its top edge
 ];
 ```
 
-The `_Mx` / `_My` subtractions account for a subtle bookkeeping difference in mermaid's `updateNodeBounds`: it stores the cluster node's `x`/`y` as the bounding-box centre but `width`/`height` as the cluster *rect* dimensions (i.e. without the sub-graph's `marginx`/`marginy`), so `(_srcC.x - _srcC.width/2)` gives the rect left edge, not the SVG group origin. Subtracting the sub-graph margins recovers the true group origin so the absolute coordinate maps back correctly.
+The `_Mx` / `_My` subtractions account for a subtle bookkeeping difference in mermaid's `updateNodeBounds`: it stores the cluster node's `x`/`y` as the bounding-box centre but `width`/`height` as the cluster _rect_ dimensions (i.e. without the sub-graph's `marginx`/`marginy`), so `(_srcC.x - _srcC.width/2)` gives the rect left edge, not the SVG group origin. Subtracting the sub-graph margins recovers the true group origin so the absolute coordinate maps back correctly.
 
 With mermaid's default `curveBasis` interpolator, the six waypoints render as a smooth curve that exits the source node's bottom edge, sweeps across the gap between the two cluster rows, and enters the destination node's top edge.
 
 ## Cross-cluster arrow z-order (Patch C)
 
-**Problem.** Mermaid renders the top-level SVG children in fixed declaration order: `clusters`, `edgePaths`, `edgeLabels`, `nodes`. The cross-cluster edge's path lives in the top-level `edgePaths` group, rendered *before* `nodes`. The cluster sub-graphs (with their cluster rects) live inside `nodes`. So the cluster rect is painted on top of the cross-cluster arrow.
+**Problem.** Mermaid renders the top-level SVG children in fixed declaration order: `clusters`, `edgePaths`, `edgeLabels`, `nodes`. The cross-cluster edge's path lives in the top-level `edgePaths` group, rendered _before_ `nodes`. The cluster sub-graphs (with their cluster rects) live inside `nodes`. So the cluster rect is painted on top of the cross-cluster arrow.
 
 **Fix.** After `recursiveRender` finishes inserting all edges in the parent graph, if any of those edges is a cross-cluster edge (carries `_patchOrigV`/`_patchOrigW` from Patch A), the entire top-level `edgePaths` group is moved to the end of the parent via d3's `selection.raise()`:
 
 ```js
-if (graph.edges().some(_re => {
-  const _red = graph.edge(_re);
-  return _red && _red._patchOrigV && _red._patchOrigW;
-})) {
+if (
+  graph.edges().some((_re) => {
+    const _red = graph.edge(_re);
+    return _red && _red._patchOrigV && _red._patchOrigW;
+  })
+) {
   edgePaths.raise();
 }
 ```
@@ -95,7 +99,7 @@ Internal edges inside cluster sub-graphs are inside their own SVG groups, so the
 
 The [`pdf-render-pipeline.mmd` PHASE8 subgraph](/assets/images/mmd/pdf-render-pipeline.svg) runs into this: it lists three sibling functions called from `pdf.mjs`, not a sequence, so there are no arrows between `ASM`, `CSS`, and `IMG`. Without the patch they render in a vertical column.
 
-**Fix.** Immediately before `layout(graph)` runs inside `recursiveRender`, group every node by its parent and inject layout-only chain edges between consecutive *isolated* siblings --- pairs where neither side has any sibling-to-sibling edge:
+**Fix.** Immediately before `layout(graph)` runs inside `recursiveRender`, group every node by its parent and inject layout-only chain edges between consecutive _isolated_ siblings --- pairs where neither side has any sibling-to-sibling edge:
 
 ```js
 const _patchSiblingMap = new Map();
@@ -113,7 +117,10 @@ for (const _siblings of _patchSiblingMap.values()) {
     const _ne = graph.nodeEdges(_s) || [];
     for (const _e of _ne) {
       const _other = _e.v === _s ? _e.w : _e.v;
-      if (_siblingSet.has(_other)) { _hasSiblingEdge = true; break; }
+      if (_siblingSet.has(_other)) {
+        _hasSiblingEdge = true;
+        break;
+      }
     }
     if (!_hasSiblingEdge) _isolated.add(_s);
   }
@@ -130,15 +137,15 @@ for (const _siblings of _patchSiblingMap.values()) {
 Two design choices worth calling out:
 
 - **Group by parent, not by leaf filter.** When `recursiveRender` recurses into a sub-graph it re-adds the parent cluster as a node and reparents the children to it, so `graph.nodes()` at this point returns `[ASM, CSS, IMG, PHASE8]`. Grouping by `graph.parent()` puts the leaves into the `"PHASE8"` group and `PHASE8` itself into the `"__root__"` group, so a child can never get chained to its own parent. (An earlier version used a `children().length === 0` leaf filter; that broke dagre's rank step the moment two compound siblings needed chaining inside a nested subgraph.)
-- **Isolated pairs only.** A sibling is "isolated" when none of its edges go to another sibling in the same group. Only pairs where *both* siblings are isolated get a chain edge. This preserves fan-out topologies: in `build-phases.mmd` row3, `P7` and `P8` both have an incoming edge from sibling `P6`, so neither is isolated and `P7 → P8` is not added --- the fan-out stays a fan-out.
+- **Isolated pairs only.** A sibling is "isolated" when none of its edges go to another sibling in the same group. Only pairs where _both_ siblings are isolated get a chain edge. This preserves fan-out topologies: in `build-phases.mmd` row3, `P7` and `P8` both have an incoming edge from sibling `P6`, so neither is isolated and `P7 → P8` is not added --- the fan-out stays a fan-out.
 
 **Behaviour by example.**
 
-| Subgraph (`direction LR`) | What dagre does without Patch D | What Patch D adds | Result |
-|---|---|---|---|
-| `A; B; C` (no edges) | All rank 0, single column | `A → B`, `B → C` | Three columns, declaration order |
-| `A → B; C; D` | A, C, D in rank 0; B in rank 1 | `C → D` only (A and B are not isolated) | A and B in their own row, C and D in the row below, in two columns |
-| `P6 → P7; P6 → P8` | P6 in rank 0; P7, P8 share rank 1 | Nothing (P7 and P8 each have a sibling edge from P6) | Fan-out: P6 in column 0, P7 above P8 in column 1 |
+| Subgraph (`direction LR`) | What dagre does without Patch D   | What Patch D adds                                    | Result                                                             |
+| ------------------------- | --------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
+| `A; B; C` (no edges)      | All rank 0, single column         | `A → B`, `B → C`                                     | Three columns, declaration order                                   |
+| `A → B; C; D`             | A, C, D in rank 0; B in rank 1    | `C → D` only (A and B are not isolated)              | A and B in their own row, C and D in the row below, in two columns |
+| `P6 → P7; P6 → P8`        | P6 in rank 0; P7, P8 share rank 1 | Nothing (P7 and P8 each have a sibling edge from P6) | Fan-out: P6 in column 0, P7 above P8 in column 1                   |
 
 ::: info
 The chain reflects the order mermaid parsed the children in. For fine-grained control or complex topologies the author should still write explicit `-->` edges (or `~~~` invisible edges); Patch D only auto-orders strictly-orphan adjacent siblings.
@@ -160,7 +167,7 @@ graph.edges().forEach(function(e) {
 });
 ```
 
-`processEdges()` runs *before* `layout()` in `recursiveRender`, so the invisible edges injected by Patch D are not yet in the graph when `insertEdgeLabel` iterates --- they only exist between Patch D's setEdge calls and Patch E's skip, with `layout()` in the middle. Patches D and E together detect a topology dagre would mishandle and patch the layout without altering the user's visible diagram.
+`processEdges()` runs _before_ `layout()` in `recursiveRender`, so the invisible edges injected by Patch D are not yet in the graph when `insertEdgeLabel` iterates --- they only exist between Patch D's setEdge calls and Patch E's skip, with `layout()` in the middle. Patches D and E together detect a topology dagre would mishandle and patch the layout without altering the user's visible diagram.
 
 ## Patch application
 
@@ -170,4 +177,3 @@ The exact-pin on `mermaid` in the root `package.json` keeps the `ZXKKJJHT` finge
 
 If mermaid is upgraded to a release that changes the structure of `dagre-ZXKKJJHT.mjs`, the script will fail loudly with `target not found` and the patch text in `patch-dagre.mjs` needs to be regenerated against the new source --- the patches are precise string replacements, not regex matches.
 
-> AI生成

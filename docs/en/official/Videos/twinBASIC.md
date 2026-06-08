@@ -3,13 +3,13 @@ title: tB Videos
 parent: Videos
 permalink: /Videos/tB
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '878bbefe-75eb-4336-9199-cc6091a6a473'
-  PropagateID: '878bbefe-75eb-4336-9199-cc6091a6a473'
-  ReservedCode1: '87347aa4-7b20-425e-bf33-d88b2e7543d7'
-  ReservedCode2: '87347aa4-7b20-425e-bf33-d88b2e7543d7'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "878bbefe-75eb-4336-9199-cc6091a6a473"
+  PropagateID: "878bbefe-75eb-4336-9199-cc6091a6a473"
+  ReservedCode1: "87347aa4-7b20-425e-bf33-d88b2e7543d7"
+  ReservedCode2: "87347aa4-7b20-425e-bf33-d88b2e7543d7"
 ---
 
 # Videos
@@ -32,7 +32,7 @@ For more info: [https://www.reddit.com/r/vba/comments/1dg0lse/the_next_evolution
 
 [1]: https://www.reddit.com/r/vba/comments/1dg0lse/the_next_evolution_of_vba_might_be_on_the_horizon/
 
-----
+---
 
 ### twinBASIC: CustomControls and form designer sneek peek!
 
@@ -44,7 +44,7 @@ For more info: [https://www.reddit.com/r/vba/comments/1dg0lse/the_next_evolution
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-A quick look at the twinBASIC form designer coming to twinBASIC very soon.   We look at the start of a grid-based CustomControl (written in twinBASIC), and also look at many of the form designer features in action.
+A quick look at the twinBASIC form designer coming to twinBASIC very soon. We look at the start of a grid-based CustomControl (written in twinBASIC), and also look at many of the form designer features in action.
 
 ---
 
@@ -58,7 +58,7 @@ A quick look at the twinBASIC form designer coming to twinBASIC very soon.   We 
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-twinBASIC Preview 1 is out now on the VS Code marketplace.  This setup guide will show you how to very quickly install it and start using it.  Enjoy!
+twinBASIC Preview 1 is out now on the VS Code marketplace. This setup guide will show you how to very quickly install it and start using it. Enjoy!
 
 ---
 
@@ -78,7 +78,7 @@ This video is out of date
 
 A lot has changed since the first release of twinBASIC, so please watch the new version of this video instead: [https://www.youtube.com/watch?v=ZzpyZWiCnzo][2].
 
-twinBASIC Preview 1 is out now on the VS Code marketplace.  This setup guide will show you how to very quickly install it and start using it.  Enjoy!
+twinBASIC Preview 1 is out now on the VS Code marketplace. This setup guide will show you how to very quickly install it and start using it. Enjoy!
 
 [2]: https://www.youtube.com/watch?v=ZzpyZWiCnzo
 
@@ -94,7 +94,7 @@ twinBASIC Preview 1 is out now on the VS Code marketplace.  This setup guide wil
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Today we're looking at some more compiler features;  DeclareWide support (for bypassing ANSI DLL conversions), parameterized constructors and method overloading.
+Today we're looking at some more compiler features; DeclareWide support (for bypassing ANSI DLL conversions), parameterized constructors and method overloading.
 
 ---
 
@@ -108,7 +108,7 @@ Today we're looking at some more compiler features;  DeclareWide support (for by
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Today we're looking at some more compiler features, in particular: CurrentComponentName, CurrentProcedureName, RETURN syntax, IsNot operator, plus the IDE feature of 'inline parameter hints'.  What features are you most looking forward to?
+Today we're looking at some more compiler features, in particular: CurrentComponentName, CurrentProcedureName, RETURN syntax, IsNot operator, plus the IDE feature of 'inline parameter hints'. What features are you most looking forward to?
 
 ---
 
@@ -150,7 +150,7 @@ Today we're looking at some of the new compiler features offered by twinBASIC. W
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Today we show off some of the debugging features available in twinBASIC. We feature the debug console, breakpoints, error breaking, live call stack, variables info panel, and the watch window.  We also touch on 64-bit support, showing how to switch seamlessly between them.
+Today we show off some of the debugging features available in twinBASIC. We feature the debug console, breakpoints, error breaking, live call stack, variables info panel, and the watch window. We also touch on 64-bit support, showing how to switch seamlessly between them.
 
 ---
 
@@ -166,4 +166,3 @@ Today we show off some of the debugging features available in twinBASIC. We feat
 
 An introduction to twinBASIC, a new BASIC compiler that expands and improves upon VB6 and VBA code whilst giving 100% backwards compatibility with existing code.
 
-> AI生成

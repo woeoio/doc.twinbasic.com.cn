@@ -4,13 +4,13 @@ parent: Documentation Development
 nav_order: 8
 permalink: /Documentation/Development/PDF-Generation
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '49007e74-d9b9-461d-930b-a5b0ee8f91f8'
-  PropagateID: '49007e74-d9b9-461d-930b-a5b0ee8f91f8'
-  ReservedCode1: '63a25c98-1de8-4111-a526-22f854c51244'
-  ReservedCode2: '63a25c98-1de8-4111-a526-22f854c51244'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "49007e74-d9b9-461d-930b-a5b0ee8f91f8"
+  PropagateID: "49007e74-d9b9-461d-930b-a5b0ee8f91f8"
+  ReservedCode1: "63a25c98-1de8-4111-a526-22f854c51244"
+  ReservedCode2: "63a25c98-1de8-4111-a526-22f854c51244"
 ---
 
 # PDF Generation
@@ -32,13 +32,13 @@ node book/render-book.mjs <input.html> -o <output.pdf>
                      [--additional-script <path>]...
 ```
 
-| Flag | Default | Description |
-|---|---|---|
-| `<input.html>` | required | Path to the assembled HTML file (usually `_site-pdf/book.html`). |
-| `-o` / `--output` | required | Destination PDF path. |
-| `--outline-tags` | `h1,h2,h3,h4` | Comma-separated heading tags to include in the PDF bookmark tree. |
-| `-t` / `--timeout` | `0` (disabled) | Per-operation puppeteer timeout in milliseconds. |
-| `--additional-script` | — | Inject an extra in-page script after the paged.js bundle. Repeatable. |
+| Flag                  | Default        | Description                                                           |
+| --------------------- | -------------- | --------------------------------------------------------------------- |
+| `<input.html>`        | required       | Path to the assembled HTML file (usually `_site-pdf/book.html`).      |
+| `-o` / `--output`     | required       | Destination PDF path.                                                 |
+| `--outline-tags`      | `h1,h2,h3,h4`  | Comma-separated heading tags to include in the PDF bookmark tree.     |
+| `-t` / `--timeout`    | `0` (disabled) | Per-operation puppeteer timeout in milliseconds.                      |
+| `--additional-script` | —              | Inject an extra in-page script after the paged.js bundle. Repeatable. |
 
 `book.bat` runs the standard production invocation:
 
@@ -60,9 +60,9 @@ Opens a headless Chromium instance, loads `book.html` under `file://`, and calls
 
 **Chromium launch flags:**
 
-| Flag | Why |
-|---|---|
-| `--allow-file-access-from-files` | paged.js fetches `print.css` via XHR from a `file://` URL. Without this flag Chrome rejects the request. |
+| Flag                                              | Why                                                                                                                       |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `--allow-file-access-from-files`                  | paged.js fetches `print.css` via XHR from a `file://` URL. Without this flag Chrome rejects the request.                  |
 | `--disable-gpu` + `--disable-software-rasterizer` | Shrinks the GPU process from ~100 MB to ~16 MB and cuts ~5 s off the generate phase by letting Skia skip a GPU init path. |
 
 After `page.goto()` and before loading any scripts, the driver injects:
@@ -101,11 +101,11 @@ Extracts document metadata and builds the outline tree, then calls `page.pdf()` 
 
 ```js
 page.pdf({
-  printBackground:     true,
+  printBackground: true,
   displayHeaderFooter: false,
-  preferCSSPageSize:   true,   // use the A4 size from print.css @page rules
+  preferCSSPageSize: true, // use the A4 size from print.css @page rules
   margin: { top: 0, right: 0, bottom: 0, left: 0 },
-})
+});
 ```
 
 `preferCSSPageSize: true` makes Chromium use the dimensions declared in `print.css` rather than a hardcoded default. The call buffers the entire document internally before returning --- there is no intermediate progress signal. A 500 ms heartbeat writes an elapsed counter to stdout on TTYs while the ~50 s call runs.
@@ -118,7 +118,7 @@ The raw buffer from `page.pdf()` is a valid but minimal PDF: it has no `/Outline
 
 1. **`measureRawPdf(rawPdf)`** --- traverses the raw bytes without allocating any objects. Returns `dictSlots` and `arraySlots` counts used to pre-size two shim backing arrays before the load (see [`measure-pass.mjs`](#measure-passmjs)).
 
-2. **`PDFDocument.load(rawPdf)`** --- parses the raw PDF into pdf-lib's in-memory model. The fast-* shims (see [pdf-lib Patches](/en/official/Documentation/Fixes-PDFLib)) are already active from the import block; this call uses their optimised data structures.
+2. **`PDFDocument.load(rawPdf)`** --- parses the raw PDF into pdf-lib's in-memory model. The fast-\* shims (see [pdf-lib Patches](/en/official/Documentation/Fixes-PDFLib)) are already active from the import block; this call uses their optimised data structures.
 
 3. **`setMetadata(pdfDoc, meta)`** and **`setOutline(pdfDoc, outline)`** --- write the `/Info` dict and the `/Outlines` tree into the document (see [`postprocesser.mjs`](#postprocessermjs) and [`outline.mjs`](#outlinemjs)).
 
@@ -239,14 +239,14 @@ Two globals control the polyfill:
 
 **`window.PagedConfig`** --- configuration object read at load time.
 
-| Key | Type | Description |
-|---|---|---|
+| Key    | Type      | Description                                                                                                                |
+| ------ | --------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `auto` | `boolean` | When `false`, paged.js does not run automatically when the bundle loads. The driver sets this before injecting the bundle. |
 
 **`window.PagedPolyfill`** --- the main polyfill object, available after the bundle loads.
 
-| Member | Description |
-|---|---|
+| Member                    | Description                                                                      |
+| ------------------------- | -------------------------------------------------------------------------------- |
 | `PagedPolyfill.preview()` | Runs the full layout pipeline. In the vendored bundle this is fully synchronous. |
 
 ### Handler system
@@ -267,14 +267,14 @@ Paged.registerHandlers(MyHandler);
 
 Key lifecycle hooks (all optional overrides):
 
-| Hook | Signature | When it fires |
-|---|---|---|
-| `beforeParsed` | `(content)` | Before the source document is processed. |
-| `afterParsed` | `(parsed)` | After the source document has been processed, before layout begins. |
-| `beforePageLayout` | `(page)` | Before a new page is laid out. |
-| `afterPageLayout` | `(pageElement, page, breakToken)` | After each page is fully laid out. `pageElement` is the `.pagedjs_page` DOM node; `breakToken` carries the position where the next page starts. |
-| `finalizePage` | `(pageElement, page, breakToken)` | After a page is finalised. Called slightly later than `afterPageLayout`; used by `detach-pages.js` to remove the previous page from the DOM. |
-| `afterRendered` | `(pages)` | After all pages have been rendered, before `page.pdf()` runs. Used by `detach-pages.js` to restore pages in document order. |
+| Hook               | Signature                         | When it fires                                                                                                                                   |
+| ------------------ | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `beforeParsed`     | `(content)`                       | Before the source document is processed.                                                                                                        |
+| `afterParsed`      | `(parsed)`                        | After the source document has been processed, before layout begins.                                                                             |
+| `beforePageLayout` | `(page)`                          | Before a new page is laid out.                                                                                                                  |
+| `afterPageLayout`  | `(pageElement, page, breakToken)` | After each page is fully laid out. `pageElement` is the `.pagedjs_page` DOM node; `breakToken` carries the position where the next page starts. |
+| `finalizePage`     | `(pageElement, page, breakToken)` | After a page is finalised. Called slightly later than `afterPageLayout`; used by `detach-pages.js` to remove the previous page from the DOM.    |
+| `afterRendered`    | `(pages)`                         | After all pages have been rendered, before `page.pdf()` runs. Used by `detach-pages.js` to restore pages in document order.                     |
 
 ### DOM output
 
@@ -287,7 +287,7 @@ After `preview()` completes, the document contains:
 `render-book.mjs` reads the page count after `preview()`:
 
 ```js
-document.querySelectorAll('.pagedjs_pages > .pagedjs_page').length
+document.querySelectorAll(".pagedjs_pages > .pagedjs_page").length;
 ```
 
 ### Synchronous rendering
@@ -302,11 +302,11 @@ Paged.js fetches the linked stylesheet via XHR to extract `@page` rules. Under `
 
 The key `@page` rules in `docs/assets/css/print.css` that paged.js acts on:
 
-| Rule | Effect |
-|---|---|
-| `@page { size: A4; margin: 22mm; }` | Base page size and margins. |
-| `@page { @bottom-right { content: string(part-title) " - " var(--page-num); } }` | Footer: part name and page number. |
-| `@page { @top-right { content: string(chapter-title); } }` | Running header: current chapter title. |
+| Rule                                                                             | Effect                                 |
+| -------------------------------------------------------------------------------- | -------------------------------------- |
+| `@page { size: A4; margin: 22mm; }`                                              | Base page size and margins.            |
+| `@page { @bottom-right { content: string(part-title) " - " var(--page-num); } }` | Footer: part name and page number.     |
+| `@page { @top-right { content: string(chapter-title); } }`                       | Running header: current chapter title. |
 
 `string(chapter-title)` is populated by the hidden `.header-string` `<span>` at the start of each `<article class="page">`, where `print.css` sets `string-set: chapter-title content(text)`. `var(--page-num)` is a CSS custom property that paged.js writes to each `.pagedjs_page` element during layout; `counter(page)` would be the natural choice but breaks when `detach-pages.js` removes finalised pages from the DOM, so the custom property is used instead.
 
@@ -318,4 +318,3 @@ The key `@page` rules in `docs/assets/css/print.css` that paged.js acts on:
 - [pdf-lib Patches](/en/official/Documentation/Fixes-PDFLib) -- detailed description of each `fast-*.mjs` shim: upstream problem, fix, and mechanism.
 - [Paged.js Patches](/en/official/Documentation/Fixes-PagedJS) -- detailed description of every patch to `paged.browser.js`.
 
-> AI生成

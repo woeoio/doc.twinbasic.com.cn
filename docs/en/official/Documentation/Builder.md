@@ -4,13 +4,13 @@ parent: Documentation Development
 nav_order: 4
 permalink: /Documentation/Development/Builder
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '88b4ce02-fe50-42a1-8983-76971a68a186'
-  PropagateID: '88b4ce02-fe50-42a1-8983-76971a68a186'
-  ReservedCode1: '3b4baa19-f50d-4c04-9716-733d953ecf0d'
-  ReservedCode2: '3b4baa19-f50d-4c04-9716-733d953ecf0d'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "88b4ce02-fe50-42a1-8983-76971a68a186"
+  PropagateID: "88b4ce02-fe50-42a1-8983-76971a68a186"
+  ReservedCode1: "3b4baa19-f50d-4c04-9716-733d953ecf0d"
+  ReservedCode2: "3b4baa19-f50d-4c04-9716-733d953ecf0d"
 ---
 
 # tbdocs Builder
@@ -38,45 +38,45 @@ The site was originally built with **Jekyll** + the **just-the-docs** theme. The
 
 One entry point, ~17 production modules. The content model is fixed (markdown + YAML frontmatter), the output structure is fixed (three trees), the template is one layout with variations.
 
-| File | Role |
-|---|---|
-| [`tbdocs.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/tbdocs.mjs) | Entry point. Parses CLI flags, dispatches to `runBuild` or `runServe`, prints per-phase timings. |
-| [`serve.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/serve.mjs) | Phase 12 dev server: HTTP static file server + recursive watcher + SSE live-reload. |
-| [`discover.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/discover.mjs) | Phase 1. Traverses `docs/`, parses frontmatter, classifies each file as a page or a static file. |
-| [`nav.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/nav.mjs) | Phase 2 nav substeps: nav-path, integrity check, nav tree, nav levels, breadcrumbs, children. |
-| [`seo.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/seo.mjs) | Phase 2 SEO precompute: per-page title / canonical / og: tags. |
-| [`book.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/book.mjs) | Phase 2 book chapter resolution + Phase 8 book.html assembly. |
-| [`build-info.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/build-info.mjs) | Phase 2 git commit hash + commit date capture. |
-| [`data.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/data.mjs) | Phase 2 `_book.yml` loader. |
-| [`mermaid.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/mermaid.mjs) | Phase 11 (B1) preprocess: `.mmd` → `.svg` regeneration. |
-| [`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs) | Phase 11 (B3) preprocess: compiles `docs/assets/css/just-the-docs-combined.scss` via Dart Sass into the just-the-docs stylesheet. |
-| [`render.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/render.mjs) | Phase 3 markdown-it pipeline: GFM admonitions, kramdown-style attributes, deflist, footnotes, header IDs, TOC, relative-link rewriting. |
-| [`highlight.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight.mjs) | Phase 3 Shiki bootstrap plus the twinBASIC grammar. Emits the just-the-docs wrapper structure. |
-| [`highlight-theme.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight-theme.mjs) | Phase 11 (B2) theme loader: reads `themes/*.theme`, derives the palette, emits `tb-highlight.css` and the scope-to-class lookup. |
-| [`template.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/template.mjs) | Phase 4 layout. Replaces ~13 Liquid includes with direct JS string concatenation. |
-| [`compress.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/compress.mjs) | Phase 4 HTML whitespace compression. |
-| [`write.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/write.mjs) | Phase 5 online tree writer. |
-| [`paths.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/paths.mjs) | Shared permalink-to-destination-path helper. |
-| [`redirects.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/redirects.mjs) | Phase 6 redirect-stub generator. |
-| [`sitemap.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/sitemap.mjs) | Phase 6 sitemap.xml + robots.txt. |
-| [`search.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/search.mjs) | Phase 6 Lunr index emitter (`search-data.json`). |
-| [`offline.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/offline.mjs) | Phase 7 offline tree: URL rewriting, JS patching for `file://` browsing. |
-| [`pdf.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/pdf.mjs) | Phase 8 sparse PDF source tree. |
+| File                                                                                                      | Role                                                                                                                                    |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [`tbdocs.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/tbdocs.mjs)                   | Entry point. Parses CLI flags, dispatches to `runBuild` or `runServe`, prints per-phase timings.                                        |
+| [`serve.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/serve.mjs)                     | Phase 12 dev server: HTTP static file server + recursive watcher + SSE live-reload.                                                     |
+| [`discover.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/discover.mjs)               | Phase 1. Traverses `docs/`, parses frontmatter, classifies each file as a page or a static file.                                        |
+| [`nav.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/nav.mjs)                         | Phase 2 nav substeps: nav-path, integrity check, nav tree, nav levels, breadcrumbs, children.                                           |
+| [`seo.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/seo.mjs)                         | Phase 2 SEO precompute: per-page title / canonical / og: tags.                                                                          |
+| [`book.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/book.mjs)                       | Phase 2 book chapter resolution + Phase 8 book.html assembly.                                                                           |
+| [`build-info.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/build-info.mjs)           | Phase 2 git commit hash + commit date capture.                                                                                          |
+| [`data.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/data.mjs)                       | Phase 2 `_book.yml` loader.                                                                                                             |
+| [`mermaid.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/mermaid.mjs)                 | Phase 11 (B1) preprocess: `.mmd` → `.svg` regeneration.                                                                                 |
+| [`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs)                       | Phase 11 (B3) preprocess: compiles `docs/assets/css/just-the-docs-combined.scss` via Dart Sass into the just-the-docs stylesheet.       |
+| [`render.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/render.mjs)                   | Phase 3 markdown-it pipeline: GFM admonitions, kramdown-style attributes, deflist, footnotes, header IDs, TOC, relative-link rewriting. |
+| [`highlight.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight.mjs)             | Phase 3 Shiki bootstrap plus the twinBASIC grammar. Emits the just-the-docs wrapper structure.                                          |
+| [`highlight-theme.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight-theme.mjs) | Phase 11 (B2) theme loader: reads `themes/*.theme`, derives the palette, emits `tb-highlight.css` and the scope-to-class lookup.        |
+| [`template.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/template.mjs)               | Phase 4 layout. Replaces ~13 Liquid includes with direct JS string concatenation.                                                       |
+| [`compress.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/compress.mjs)               | Phase 4 HTML whitespace compression.                                                                                                    |
+| [`write.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/write.mjs)                     | Phase 5 online tree writer.                                                                                                             |
+| [`paths.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/paths.mjs)                     | Shared permalink-to-destination-path helper.                                                                                            |
+| [`redirects.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/redirects.mjs)             | Phase 6 redirect-stub generator.                                                                                                        |
+| [`sitemap.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/sitemap.mjs)                 | Phase 6 sitemap.xml + robots.txt.                                                                                                       |
+| [`search.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/search.mjs)                   | Phase 6 Lunr index emitter (`search-data.json`).                                                                                        |
+| [`offline.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/offline.mjs)                 | Phase 7 offline tree: URL rewriting, JS patching for `file://` browsing.                                                                |
+| [`pdf.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/pdf.mjs)                         | Phase 8 sparse PDF source tree.                                                                                                         |
 
 `builder/` lives at the repo root (not under `docs/`) so it is not part of the Jekyll source tree the legacy renderer reads. The `build.bat` path writes to `docs/_site/`, `docs/_site-offline/`, and `docs/_site-pdf/` --- the same destinations Jekyll used, so deployment tooling stays unchanged. The `serve.bat` path writes to a separate `docs/_serve/` tree so a one-off `build.bat` run (refreshing the PDF, for example) never clobbers a running serve session's output.
 
 ## Build phases
 
-| Phase | Module(s) | Job | Time |
-|---|---|---|---|
-| 1 | `discover.mjs` | Read `.md` / `.html` with frontmatter; enumerate static files | ~120 ms |
-| 2 | `nav.mjs` / `seo.mjs` / `book.mjs` / `build-info.mjs` / `data.mjs` | Compute nav tree, SEO, book chapters, git commit info, `_book.yml` | ~60 ms |
-| 3 | `render.mjs` + `highlight.mjs` | Markdown → HTML body | ~1-2 s |
-| 4 | `template.mjs` + `compress.mjs` | Wrap in layout, anchor headings, compress whitespace | ~200 ms |
-| 5 | `write.mjs` | Write `_site/` | ~400 ms |
-| 6 | `redirects.mjs` / `sitemap.mjs` / `search.mjs` | Redirect stubs, sitemap.xml, search-data.json, robots.txt | ~100 ms |
-| 7 | `offline.mjs` | URL-rewritten copy to `_site-offline/` | ~1,000 ms |
-| 8 | `pdf.mjs` + `book.mjs` | Sparse `_site-pdf/` tree (book.html + CSS + images) | ~150 ms |
+| Phase | Module(s)                                                          | Job                                                                | Time      |
+| ----- | ------------------------------------------------------------------ | ------------------------------------------------------------------ | --------- |
+| 1     | `discover.mjs`                                                     | Read `.md` / `.html` with frontmatter; enumerate static files      | ~120 ms   |
+| 2     | `nav.mjs` / `seo.mjs` / `book.mjs` / `build-info.mjs` / `data.mjs` | Compute nav tree, SEO, book chapters, git commit info, `_book.yml` | ~60 ms    |
+| 3     | `render.mjs` + `highlight.mjs`                                     | Markdown → HTML body                                               | ~1-2 s    |
+| 4     | `template.mjs` + `compress.mjs`                                    | Wrap in layout, anchor headings, compress whitespace               | ~200 ms   |
+| 5     | `write.mjs`                                                        | Write `_site/`                                                     | ~400 ms   |
+| 6     | `redirects.mjs` / `sitemap.mjs` / `search.mjs`                     | Redirect stubs, sitemap.xml, search-data.json, robots.txt          | ~100 ms   |
+| 7     | `offline.mjs`                                                      | URL-rewritten copy to `_site-offline/`                             | ~1,000 ms |
+| 8     | `pdf.mjs` + `book.mjs`                                             | Sparse `_site-pdf/` tree (book.html + CSS + images)                | ~150 ms   |
 
 Phases 9, 10, and 11 are historical: Phase 9 was a no-output QoL pass, Phase 10 retired Jekyll, Phase 11 introduces the output-changing parity updates. None adds a runtime step. Phase 12 adds the `--serve` dev-server mode (a separate lifecycle, not a build phase; writes to `docs/_serve/` and skips the offline + PDF passes by default so the rebuild loop stays under one second). The per-phase `PLAN-N.md` files retain the implementation history.
 
@@ -269,7 +269,7 @@ Absolute URLs are sorted alphabetically so re-runs produce byte-identical output
 
 ### [search.mjs](https://github.com/twinbasic/documentation/blob/main/builder/search.mjs) --- Phase 6 Lunr index emitter
 
-`sanitiseContent` is the kramdown-parity content normaliser --- 14 string replaces insert ` . ` / ` | ` separators between block boundaries (so the search snippet shows logical breaks instead of glued-together prose), then `stripHtml`, then a "Table of contents" removal, then a collapse-runs-of-ASCII-whitespace pass (narrow set, mirroring Ruby's `String#strip` semantics so `&nbsp;`-based indentation isn't destroyed --- the same issue the [`compress.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/compress.mjs) compress pass guards against). The order is essential for byte parity with the just-the-docs Liquid template; rearranging the steps would change the output.
+`sanitiseContent` is the kramdown-parity content normaliser --- 14 string replaces insert `.` / `|` separators between block boundaries (so the search snippet shows logical breaks instead of glued-together prose), then `stripHtml`, then a "Table of contents" removal, then a collapse-runs-of-ASCII-whitespace pass (narrow set, mirroring Ruby's `String#strip` semantics so `&nbsp;`-based indentation isn't destroyed --- the same issue the [`compress.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/compress.mjs) compress pass guards against). The order is essential for byte parity with the just-the-docs Liquid template; rearranging the steps would change the output.
 
 ### [offline.mjs](https://github.com/twinbasic/documentation/blob/main/builder/offline.mjs) --- Phase 7 offline mirror
 
@@ -293,11 +293,11 @@ The image-path collector folds into `assembleBook`'s per-chapter emit (Phase 9 �
 
 The site's `/assets/` tree at deploy time is assembled from three sources:
 
-| Source on disk | What lives there | Phase that delivers it |
-|---|---|---|
-| `docs/assets/` | Project-owned content: the SCSS entry point, project JS (`theme-switch.js`), hand-written stylesheets (`print.css`, `just-the-docs-head-nav.css`), Mermaid diagrams (`.mmd` sources + `.svg` renders), and any content images contributors add. | Discovered by [`discover.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/discover.mjs), copied by [`write.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/write.mjs)'s `copyStaticFiles`. |
-| `builder/vendor/just-the-docs/` | Vendored from the just-the-docs gem (v0.10.1): `_sass/` (the theme's SCSS sources, fed into the compilation) and `assets/js/just-the-docs.js` + `assets/js/vendor/lunr.min.js` (the chrome runtime, copied verbatim). See [`builder/vendor/just-the-docs/README.md`](https://github.com/twinbasic/documentation/blob/main/builder/vendor/just-the-docs/README.md) for the inventory, re-vendoring procedure, and the in-tree patches applied to `just-the-docs.js`. | `_sass/` consumed by [`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs); `assets/` copied by `write.mjs`'s `copyTheme`. |
-| Generated in-process | `just-the-docs-combined.css` (from [`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs)) and `tb-highlight.css` (from [`highlight-theme.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight-theme.mjs)). Neither is committed; both are rebuilt every run. | Pushed onto `generatedAssets` in [`tbdocs.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/tbdocs.mjs); written by `write.mjs`'s `writeGeneratedAssets` after `copyTheme` so the generated content wins any collision. |
+| Source on disk                  | What lives there                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Phase that delivers it                                                                                                                                                                                                                   |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `docs/assets/`                  | Project-owned content: the SCSS entry point, project JS (`theme-switch.js`), hand-written stylesheets (`print.css`, `just-the-docs-head-nav.css`), Mermaid diagrams (`.mmd` sources + `.svg` renders), and any content images contributors add.                                                                                                                                                                                                                     | Discovered by [`discover.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/discover.mjs), copied by [`write.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/write.mjs)'s `copyStaticFiles`.          |
+| `builder/vendor/just-the-docs/` | Vendored from the just-the-docs gem (v0.10.1): `_sass/` (the theme's SCSS sources, fed into the compilation) and `assets/js/just-the-docs.js` + `assets/js/vendor/lunr.min.js` (the chrome runtime, copied verbatim). See [`builder/vendor/just-the-docs/README.md`](https://github.com/twinbasic/documentation/blob/main/builder/vendor/just-the-docs/README.md) for the inventory, re-vendoring procedure, and the in-tree patches applied to `just-the-docs.js`. | `_sass/` consumed by [`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs); `assets/` copied by `write.mjs`'s `copyTheme`.                                                                                 |
+| Generated in-process            | `just-the-docs-combined.css` (from [`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs)) and `tb-highlight.css` (from [`highlight-theme.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight-theme.mjs)). Neither is committed; both are rebuilt every run.                                                                                                                                                  | Pushed onto `generatedAssets` in [`tbdocs.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/tbdocs.mjs); written by `write.mjs`'s `writeGeneratedAssets` after `copyTheme` so the generated content wins any collision. |
 
 CSS files in either copy path get a baseurl rewrite (`url("/path")` → `url("<baseurl>/path")`) when the deployment baseurl is non-empty; the same transform applies to generated CSS, so the `url("/favicon.png")` the SCSS entry point emits resolves correctly under sub-path deployments.
 
@@ -327,4 +327,3 @@ Some build-adjacent code lives at the repo root rather than under `builder/`:
 - **External link crawling** --- `scripts/crawl_check.mjs` reads from HTTP; not part of the generator.
 - **Mermaid source files** --- `docs/assets/images/mmd/*.mmd` are source, `*.svg` are build artifacts that `tbdocs` regenerates as needed.
 
-> AI生成

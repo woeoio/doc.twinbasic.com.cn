@@ -4,13 +4,13 @@ parent: tbdocs Builder
 nav_order: 1
 permalink: /Documentation/Development/Pipeline-Stages
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '3d6dfd5c-9f9e-4ef3-a292-c624cea59008'
-  PropagateID: '3d6dfd5c-9f9e-4ef3-a292-c624cea59008'
-  ReservedCode1: '8cfc54c4-947a-4533-a9bb-c8e0541adef1'
-  ReservedCode2: '8cfc54c4-947a-4533-a9bb-c8e0541adef1'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "3d6dfd5c-9f9e-4ef3-a292-c624cea59008"
+  PropagateID: "3d6dfd5c-9f9e-4ef3-a292-c624cea59008"
+  ReservedCode1: "8cfc54c4-947a-4533-a9bb-c8e0541adef1"
+  ReservedCode2: "8cfc54c4-947a-4533-a9bb-c8e0541adef1"
 ---
 
 # Pipeline Stages
@@ -27,53 +27,53 @@ The pipeline passes two mutable data structures through every stage.
 
 `discover` creates one page object per `.md` or `.html` source file with parseable YAML frontmatter. Subsequent stages add new fields; no stage removes or renames a field set by an earlier one. Later stages can safely assume all fields from earlier stages are present.
 
-| Field | Added by | Type | Description |
-|---|---|---|---|
-| `srcPath` | Phase 1 | `string` | Absolute filesystem path of the source file. |
-| `srcRel` | Phase 1 | `string` | POSIX-style path relative to `srcRoot`, e.g. `Reference/Core/Dim.md`. |
-| `ext` | Phase 1 | `string` | Lowercase file extension: `.md` or `.html`. |
-| `frontmatter` | Phase 1 | `object` | Parsed YAML frontmatter. All frontmatter keys are accessible here (e.g. `frontmatter.title`, `frontmatter.parent`, `frontmatter.nav_order`). |
-| `rawContent` | Phase 1 | `string` | Body text after the frontmatter block. |
-| `permalink` | Phase 1 | `string` | URL path, taken from `frontmatter.permalink` or derived from `srcRel`. |
-| `destPath` | Phase 1 | `string` | Filesystem path within the output root, e.g. `Reference/Core/Dim.html`. |
-| `layoutDefault` | Phase 1 | `boolean` | `true` when frontmatter has no explicit `layout:` key. |
-| `imageScope` | Phase 1 | `boolean` | `true` when `srcRel` contains an `Images/` segment. Phase 3 uses this to validate image paths. |
-| `navPath` | Phase 2 (nav) | `string` | Slash-joined nav chain: `grand_parent / parent / title`. Set only on pages with a non-empty `title`. |
-| `navLevels` | Phase 2 (nav) | `object` | Positional indices in the sidebar tree. Phase 4 uses this to generate the per-page activation CSS. |
-| `breadcrumbs` | Phase 2 (nav) | `Page[]` | Ancestor chain from the root to the current page, nearest-first. |
-| `children` | Phase 2 (nav) | `Page[]` | Immediate child pages in nav order. |
-| `seoTitle` | Phase 2 (seo) | `string` | HTML-stripped, whitespace-collapsed page title for `<title>` and `og:title`. |
-| `seoFullTitle` | Phase 2 (seo) | `string` | `"<seoTitle> -- <siteTitle>"` for non-home pages; equals `seoTitle` on the home page. |
-| `seoCanonical` | Phase 2 (seo) | `string` | Absolute canonical URL (scheme + host + baseurl + permalink). |
-| `seoIsHome` | Phase 2 (seo) | `boolean` | `true` when the page's permalink is a known home-page URL (e.g. `/`). |
-| `renderedContent` | Phase 3 | `string` | HTML body produced by markdown-it. Not yet wrapped in the site layout. |
-| `html` | Phase 4 | `string` | Complete HTML document, ready to write to disk. Absent on `layout: book-combined` pages, which Phase 8 owns. |
+| Field             | Added by      | Type      | Description                                                                                                                                  |
+| ----------------- | ------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `srcPath`         | Phase 1       | `string`  | Absolute filesystem path of the source file.                                                                                                 |
+| `srcRel`          | Phase 1       | `string`  | POSIX-style path relative to `srcRoot`, e.g. `Reference/Core/Dim.md`.                                                                        |
+| `ext`             | Phase 1       | `string`  | Lowercase file extension: `.md` or `.html`.                                                                                                  |
+| `frontmatter`     | Phase 1       | `object`  | Parsed YAML frontmatter. All frontmatter keys are accessible here (e.g. `frontmatter.title`, `frontmatter.parent`, `frontmatter.nav_order`). |
+| `rawContent`      | Phase 1       | `string`  | Body text after the frontmatter block.                                                                                                       |
+| `permalink`       | Phase 1       | `string`  | URL path, taken from `frontmatter.permalink` or derived from `srcRel`.                                                                       |
+| `destPath`        | Phase 1       | `string`  | Filesystem path within the output root, e.g. `Reference/Core/Dim.html`.                                                                      |
+| `layoutDefault`   | Phase 1       | `boolean` | `true` when frontmatter has no explicit `layout:` key.                                                                                       |
+| `imageScope`      | Phase 1       | `boolean` | `true` when `srcRel` contains an `Images/` segment. Phase 3 uses this to validate image paths.                                               |
+| `navPath`         | Phase 2 (nav) | `string`  | Slash-joined nav chain: `grand_parent / parent / title`. Set only on pages with a non-empty `title`.                                         |
+| `navLevels`       | Phase 2 (nav) | `object`  | Positional indices in the sidebar tree. Phase 4 uses this to generate the per-page activation CSS.                                           |
+| `breadcrumbs`     | Phase 2 (nav) | `Page[]`  | Ancestor chain from the root to the current page, nearest-first.                                                                             |
+| `children`        | Phase 2 (nav) | `Page[]`  | Immediate child pages in nav order.                                                                                                          |
+| `seoTitle`        | Phase 2 (seo) | `string`  | HTML-stripped, whitespace-collapsed page title for `<title>` and `og:title`.                                                                 |
+| `seoFullTitle`    | Phase 2 (seo) | `string`  | `"<seoTitle> -- <siteTitle>"` for non-home pages; equals `seoTitle` on the home page.                                                        |
+| `seoCanonical`    | Phase 2 (seo) | `string`  | Absolute canonical URL (scheme + host + baseurl + permalink).                                                                                |
+| `seoIsHome`       | Phase 2 (seo) | `boolean` | `true` when the page's permalink is a known home-page URL (e.g. `/`).                                                                        |
+| `renderedContent` | Phase 3       | `string`  | HTML body produced by markdown-it. Not yet wrapped in the site layout.                                                                       |
+| `html`            | Phase 4       | `string`  | Complete HTML document, ready to write to disk. Absent on `layout: book-combined` pages, which Phase 8 owns.                                 |
 
 ### Site object (`site`)
 
 Built at the end of Phase 2 and passed unchanged to every subsequent phase.
 
-| Field | Type | Description |
-|---|---|---|
-| `config` | `object` | Parsed `_config.yml`, with CLI overrides (`--baseurl`, `--url`) already applied. |
-| `navTree` | `object` | Top-level nav hierarchy produced by `nav.mjs`. |
-| `seoSiteTitle` | `string` | Rendered site title from `config.title`. |
-| `seoLogoUrl` | `string` | Absolute URL of the site logo. |
-| `buildInfo` | `object` | `{ commit: string, commitDate: string }` from git. Both fall back to `"unknown"` outside a git repository. |
-| `bookData` | `object\|null` | Parsed `_book.yml` with chapter selectors resolved to `Page` references. `null` when the file is absent. See [Book Configuration](/en/official/Documentation/Book-Configuration). |
-| `data` | `object` | `_book.yml` loaded as `{ book: … }`, or `{}` when absent. |
-| `markdown` | `MarkdownIt` | Shared markdown-it instance, built once during Phase 2 setup and reused by Phase 2's SEO pass and Phase 3's render pass. |
+| Field          | Type           | Description                                                                                                                                                                       |
+| -------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `config`       | `object`       | Parsed `_config.yml`, with CLI overrides (`--baseurl`, `--url`) already applied.                                                                                                  |
+| `navTree`      | `object`       | Top-level nav hierarchy produced by `nav.mjs`.                                                                                                                                    |
+| `seoSiteTitle` | `string`       | Rendered site title from `config.title`.                                                                                                                                          |
+| `seoLogoUrl`   | `string`       | Absolute URL of the site logo.                                                                                                                                                    |
+| `buildInfo`    | `object`       | `{ commit: string, commitDate: string }` from git. Both fall back to `"unknown"` outside a git repository.                                                                        |
+| `bookData`     | `object\|null` | Parsed `_book.yml` with chapter selectors resolved to `Page` references. `null` when the file is absent. See [Book Configuration](/en/official/Documentation/Book-Configuration). |
+| `data`         | `object`       | `_book.yml` loaded as `{ book: … }`, or `{}` when absent.                                                                                                                         |
+| `markdown`     | `MarkdownIt`   | Shared markdown-it instance, built once during Phase 2 setup and reused by Phase 2's SEO pass and Phase 3's render pass.                                                          |
 
 ### Static files (`staticFiles[]`)
 
 Also produced by Phase 1. Every file that is not a page --- images, fonts, prebuilt CSS/JS, and any `.md`/`.html` file without frontmatter --- becomes a static file object. This array does not grow after Phase 1.
 
-| Field | Type | Description |
-|---|---|---|
-| `srcPath` | `string` | Absolute source path. |
-| `srcRel` | `string` | POSIX path relative to `srcRoot`. |
+| Field     | Type     | Description                                                            |
+| --------- | -------- | ---------------------------------------------------------------------- |
+| `srcPath` | `string` | Absolute source path.                                                  |
+| `srcRel`  | `string` | POSIX path relative to `srcRoot`.                                      |
 | `destRel` | `string` | Relative path within the output root (currently the same as `srcRel`). |
-| `size` | `number` | File size in bytes at discovery time. |
+| `size`    | `number` | File size in bytes at discovery time.                                  |
 
 ---
 
@@ -106,8 +106,8 @@ Two failure-mode distinctions:
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol              | Signature                                                                | Description       |
+| ------------------- | ------------------------------------------------------------------------ | ----------------- |
 | `regenerateMermaid` | `(srcRoot) → Promise<{ processed, regenerated, failed, setupSkipped? }>` | Main entry point. |
 
 ---
@@ -129,8 +129,8 @@ Runs a single `fast-glob` call over `srcRoot` with the `exclude:` list read from
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol     | Signature                                             | Description       |
+| ---------- | ----------------------------------------------------- | ----------------- |
 | `discover` | `(srcRoot, ignore) → Promise<{ pages, staticFiles }>` | Main entry point. |
 
 ---
@@ -156,8 +156,8 @@ Runs six substeps in sequence: nav-path, nav-integrity check, shared-state build
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol       | Signature                       | Description       |
+| ------------ | ------------------------------- | ----------------- |
 | `computeNav` | `(pages, config) → { navTree }` | Main entry point. |
 
 ---
@@ -179,13 +179,13 @@ For each page, runs the title through `renderTitle` (markdown-it render → stri
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `precomputeSeo` | `(pages, config, markdown) → { seoSiteTitle, seoLogoUrl }` | Main entry point. |
-| `renderTitle` | `(text: string, markdown: MarkdownIt) → string` | Runs one title string through the full markdown-it + strip-HTML pipeline. |
-| `stripHtml` | `(s: string) → string` | Strips all HTML tags from a string. Re-exported for `search.mjs`. |
-| `absoluteUrl` | `(input: string, config: object) → string` | Resolves a root-relative path to an absolute URL using `config.url` and `config.baseurl`. Re-exported for `sitemap.mjs` and `redirects.mjs`. |
-| `relativeUrl` | `(input: string, config: object) → string` | Prepends `config.baseurl` to a root-relative path. |
+| Symbol          | Signature                                                  | Description                                                                                                                                  |
+| --------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `precomputeSeo` | `(pages, config, markdown) → { seoSiteTitle, seoLogoUrl }` | Main entry point.                                                                                                                            |
+| `renderTitle`   | `(text: string, markdown: MarkdownIt) → string`            | Runs one title string through the full markdown-it + strip-HTML pipeline.                                                                    |
+| `stripHtml`     | `(s: string) → string`                                     | Strips all HTML tags from a string. Re-exported for `search.mjs`.                                                                            |
+| `absoluteUrl`   | `(input: string, config: object) → string`                 | Resolves a root-relative path to an absolute URL using `config.url` and `config.baseurl`. Re-exported for `sitemap.mjs` and `redirects.mjs`. |
+| `relativeUrl`   | `(input: string, config: object) → string`                 | Prepends `config.baseurl` to a root-relative path.                                                                                           |
 
 ---
 
@@ -208,15 +208,15 @@ Phase 8's `assembleBook` lives in the same module; see [Phase 8](#phase-8-pdfmjs
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `loadBookData` | `(srcRoot: string) → Promise<object\|null>` | Back-compat wrapper that loads `_book.yml` directly. Prefer `data.mjs` instead. |
-| `resolveBookChapters` | `(bookData, pages) → void` | Phase 2 entry point. |
-| `sortByNavOrder` | `(input: Page[]) → Page[]` | Sorts a page array: index pages (URLs ending in `/`) first, then by `nav_order` ascending with title as tie-breaker, then alphabetically by title. |
-| `chapterAnchorFromUrl` | `(url: string, fallbackTitle?: string) → string` | Converts a page URL to the `ch-…` anchor slug used for in-book cross-references. |
+| Symbol                 | Signature                                                                                | Description                                                                                                                                                                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `loadBookData`         | `(srcRoot: string) → Promise<object\|null>`                                              | Back-compat wrapper that loads `_book.yml` directly. Prefer `data.mjs` instead.                                                                                                                                                    |
+| `resolveBookChapters`  | `(bookData, pages) → void`                                                               | Phase 2 entry point.                                                                                                                                                                                                               |
+| `sortByNavOrder`       | `(input: Page[]) → Page[]`                                                               | Sorts a page array: index pages (URLs ending in `/`) first, then by `nav_order` ascending with title as tie-breaker, then alphabetically by title.                                                                                 |
+| `chapterAnchorFromUrl` | `(url: string, fallbackTitle?: string) → string`                                         | Converts a page URL to the `ch-…` anchor slug used for in-book cross-references.                                                                                                                                                   |
 | `bookChapterTransform` | `(body: string, baseurl: string, headingShiftN: number, chapterAnchor: string) → string` | Applies all per-chapter body transforms to a rendered HTML string: baseurl-prefix stripping, `<details>` / `<summary>` unwrapping, whitespace wrapping for pagedjs page breaks, heading-level shift, and chapter-anchor prefixing. |
-| `assembleBook` | `(site: object, pages: Page[]) → string` | Phase 8 entry point. Returns the assembled `book.html` string. |
-| `rewriteBookHrefs` | `(html: string, site: object, pages: Page[]) → string` | Rewrites intra-book absolute `href="/X"` references to in-page `href="#ch-X"` fragment anchors. |
+| `assembleBook`         | `(site: object, pages: Page[]) → string`                                                 | Phase 8 entry point. Returns the assembled `book.html` string.                                                                                                                                                                     |
+| `rewriteBookHrefs`     | `(html: string, site: object, pages: Page[]) → string`                                   | Rewrites intra-book absolute `href="/X"` references to in-page `href="#ch-X"` fragment anchors.                                                                                                                                    |
 
 ---
 
@@ -237,8 +237,8 @@ Issues two parallel `git` shell-outs (`rev-parse --short HEAD` and `log -1 --for
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol             | Signature                              | Description       |
+| ------------------ | -------------------------------------- | ----------------- |
 | `captureBuildInfo` | `() → Promise<{ commit, commitDate }>` | Main entry point. |
 
 ---
@@ -260,8 +260,8 @@ Returns `{ book: <parsed YAML> }`, or `{}` when the file is absent. The orchestr
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol     | Signature                             | Description       |
+| ---------- | ------------------------------------- | ----------------- |
 | `loadData` | `(srcRoot: string) → Promise<object>` | Main entry point. |
 
 ---
@@ -272,8 +272,13 @@ Before Phase 2 completes, the orchestrator builds the shared markdown-it instanc
 
 ```js
 const highlighter = await initHighlighter();
-const linkTables  = buildLinkTables(pages);
-const markdown    = createMarkdownIt({ highlighter, linkTables, baseurl, staticFiles });
+const linkTables = buildLinkTables(pages);
+const markdown = createMarkdownIt({
+  highlighter,
+  linkTables,
+  baseurl,
+  staticFiles,
+});
 ```
 
 These functions are documented under [Phase 3](#phase-3-rendermjs) below since they are defined in `render.mjs`. They are called here during Phase 2 only to allow the SEO pass to share the same configured pipeline.
@@ -297,14 +302,14 @@ Renders each page's `rawContent` to `page.renderedContent` using the shared `sit
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `renderPhase` | `(pages, site, staticFiles?) → Promise<void>` | Main entry point. |
-| `createMarkdownIt` | `({ highlighter, linkTables, baseurl, staticFiles }) → MarkdownIt` | Configures and returns a markdown-it instance with all plugins and render-rule overrides applied. See [Extending the Builder](/en/official/Documentation/Extending) for how to add a plugin here. |
-| `initHighlighter` | `() → Promise<{ render, themeCss }>` | Initialises Shiki with the bundled twinBASIC grammar (delegates to `highlight.mjs` internally). `render(code, lang)` returns highlighted HTML; `themeCss` is the generated `tb-highlight.css` string or `null` when no theme was loaded. |
-| `buildLinkTables` | `(pages: Page[]) → { byPath, byUrl, byRedirect }` | Builds lookup tables keyed by `srcRel`, `permalink`, and `redirect_from` entries. Used by the relative-links plugin to resolve in-source `[X](Y.md)` links to absolute URLs at render time. |
-| `kramdownSlug` | `(text: string) → string` | Converts heading text to a kramdown-compatible anchor slug: lowercase, strip non-word characters, deduplicate with `-1`, `-2`, and so on. |
-| `rewriteAdmonitions` | `(src: string) → string` | Pre-render text pass: converts GFM `> [!NOTE]` / `[!IMPORTANT]` / `[!WARNING]` / `[!TIP]` / `[!CAUTION]` blocks to the `markdown-alert markdown-alert-<type>` class structure. |
+| Symbol               | Signature                                                          | Description                                                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `renderPhase`        | `(pages, site, staticFiles?) → Promise<void>`                      | Main entry point.                                                                                                                                                                                                                        |
+| `createMarkdownIt`   | `({ highlighter, linkTables, baseurl, staticFiles }) → MarkdownIt` | Configures and returns a markdown-it instance with all plugins and render-rule overrides applied. See [Extending the Builder](/en/official/Documentation/Extending) for how to add a plugin here.                                        |
+| `initHighlighter`    | `() → Promise<{ render, themeCss }>`                               | Initialises Shiki with the bundled twinBASIC grammar (delegates to `highlight.mjs` internally). `render(code, lang)` returns highlighted HTML; `themeCss` is the generated `tb-highlight.css` string or `null` when no theme was loaded. |
+| `buildLinkTables`    | `(pages: Page[]) → { byPath, byUrl, byRedirect }`                  | Builds lookup tables keyed by `srcRel`, `permalink`, and `redirect_from` entries. Used by the relative-links plugin to resolve in-source `[X](Y.md)` links to absolute URLs at render time.                                              |
+| `kramdownSlug`       | `(text: string) → string`                                          | Converts heading text to a kramdown-compatible anchor slug: lowercase, strip non-word characters, deduplicate with `-1`, `-2`, and so on.                                                                                                |
+| `rewriteAdmonitions` | `(src: string) → string`                                           | Pre-render text pass: converts GFM `> [!NOTE]` / `[!IMPORTANT]` / `[!WARNING]` / `[!TIP]` / `[!CAUTION]` blocks to the `markdown-alert markdown-alert-<type>` class structure.                                                           |
 
 ---
 
@@ -327,11 +332,11 @@ Pre-computes the per-build static sidebar HTML once, then wraps each page's `ren
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `templatePhase` | `(pages, site) → Promise<void>` | Main entry point. |
-| `navActivationCss` | `(page: Page) → string` | Generates the per-page `<style id="jtd-nav-activation">` block from `page.navLevels`. Phase 12's dev server calls this when patching in the SSE reload script. |
-| `injectAnchorHeadings` | `(html: string) → string` | Adds `<a class="anchor-heading">` next to every heading that has an `id` attribute. |
+| Symbol                 | Signature                       | Description                                                                                                                                                    |
+| ---------------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `templatePhase`        | `(pages, site) → Promise<void>` | Main entry point.                                                                                                                                              |
+| `navActivationCss`     | `(page: Page) → string`         | Generates the per-page `<style id="jtd-nav-activation">` block from `page.navLevels`. Phase 12's dev server calls this when patching in the SSE reload script. |
+| `injectAnchorHeadings` | `(html: string) → string`       | Adds `<a class="anchor-heading">` next to every heading that has an `id` attribute.                                                                            |
 
 ---
 
@@ -349,8 +354,8 @@ Splits on `<pre>…</pre>` blocks, collapses ASCII whitespace in the non-`<pre>`
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol         | Signature                 | Description                                   |
+| -------------- | ------------------------- | --------------------------------------------- |
 | `compressHtml` | `(html: string) → string` | Compresses whitespace outside `<pre>` blocks. |
 
 ---
@@ -381,15 +386,15 @@ Clears then recreates `destRoot`, then runs three operations in parallel: writes
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `writePhase` | `(pages, staticFiles, opts) → Promise<stats>` | Main entry point. |
-| `WRITE_LIMIT` | `64` | Concurrency ceiling for `runLimited`. Phases 6, 7, and 8 pass this value to their own `runLimited` calls for consistent I/O throttling. |
-| `isUnderProject` | `(destRoot: string) → boolean` | Returns `true` only when `destRoot` is a descendant of the project root. Used by Phases 7 and 8 as a guard against destructive `--dest` values. |
-| `mkdirRec` | `(dir: string) → Promise<void>` | Recursive `mkdir` with an in-flight deduplication cache. Shared by Phases 6, 7, and 8. |
-| `runLimited` | `<T>(items: T[], limit: number, fn: (T) → Promise<any>) → Promise<void>` | Runs `fn` on each item with at most `limit` concurrent operations. |
-| `writeFileMkdirp` | `(filePath: string, content: string\|Buffer) → Promise<void>` | Writes `content` to `filePath`, creating parent directories as needed. |
-| `safeWrite` | `(dest: string, fn: () → Promise<any>) → Promise<void>` | Wraps a write callback and re-throws with `dest` in the error message if the callback throws. |
+| Symbol            | Signature                                                                | Description                                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `writePhase`      | `(pages, staticFiles, opts) → Promise<stats>`                            | Main entry point.                                                                                                                               |
+| `WRITE_LIMIT`     | `64`                                                                     | Concurrency ceiling for `runLimited`. Phases 6, 7, and 8 pass this value to their own `runLimited` calls for consistent I/O throttling.         |
+| `isUnderProject`  | `(destRoot: string) → boolean`                                           | Returns `true` only when `destRoot` is a descendant of the project root. Used by Phases 7 and 8 as a guard against destructive `--dest` values. |
+| `mkdirRec`        | `(dir: string) → Promise<void>`                                          | Recursive `mkdir` with an in-flight deduplication cache. Shared by Phases 6, 7, and 8.                                                          |
+| `runLimited`      | `<T>(items: T[], limit: number, fn: (T) → Promise<any>) → Promise<void>` | Runs `fn` on each item with at most `limit` concurrent operations.                                                                              |
+| `writeFileMkdirp` | `(filePath: string, content: string\|Buffer) → Promise<void>`            | Writes `content` to `filePath`, creating parent directories as needed.                                                                          |
+| `safeWrite`       | `(dest: string, fn: () → Promise<any>) → Promise<void>`                  | Wraps a write callback and re-throws with `dest` in the error message if the callback throws.                                                   |
 
 ---
 
@@ -412,10 +417,10 @@ For each page with a `redirect_from:` frontmatter entry, writes one HTML stub pe
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `writeRedirects` | `(pages, site, destRoot) → Promise<{ written }>` | Main entry point. |
-| `deriveRedirectStubs` | `(pages, site) → Array<{ from, to, destPath }>` | Pure derivation of the stub list without writing to disk. Exported so `offline.mjs` can read the list without re-running the derivation. |
+| Symbol                | Signature                                        | Description                                                                                                                              |
+| --------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `writeRedirects`      | `(pages, site, destRoot) → Promise<{ written }>` | Main entry point.                                                                                                                        |
+| `deriveRedirectStubs` | `(pages, site) → Array<{ from, to, destPath }>`  | Pure derivation of the stub list without writing to disk. Exported so `offline.mjs` can read the list without re-running the derivation. |
 
 ---
 
@@ -434,12 +439,12 @@ Filters pages by jekyll-sitemap rules (drops `sitemap: false` and `/404.html`), 
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `writeSitemap` | `(pages, site, destRoot) → Promise<{ entries }>` | Main entry point. |
-| `deriveSitemapUrls` | `(pages, site) → string[]` | Returns the sorted list of absolute URLs that would appear in the sitemap, without writing to disk. |
-| `extractSitemapUrls` | `(xml: string) → string[]` | Parses an existing `sitemap.xml` string and extracts its `<loc>` values. Useful for diffing two builds. |
-| `renderRobotsTxt` | `(config: object) → string` | Produces the `robots.txt` content string. |
+| Symbol               | Signature                                        | Description                                                                                             |
+| -------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `writeSitemap`       | `(pages, site, destRoot) → Promise<{ entries }>` | Main entry point.                                                                                       |
+| `deriveSitemapUrls`  | `(pages, site) → string[]`                       | Returns the sorted list of absolute URLs that would appear in the sitemap, without writing to disk.     |
+| `extractSitemapUrls` | `(xml: string) → string[]`                       | Parses an existing `sitemap.xml` string and extracts its `<loc>` values. Useful for diffing two builds. |
+| `renderRobotsTxt`    | `(config: object) → string`                      | Produces the `robots.txt` content string.                                                               |
 
 ---
 
@@ -458,10 +463,10 @@ Splits each titled, non-`search_exclude` page by headings, emits one search-inde
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `writeSearchData` | `(pages, site, destRoot) → Promise<{ entries }>` | Main entry point. |
-| `deriveSearchEntries` | `(pages, site) → object[]` | Returns the search-index entry array without writing to disk. |
+| Symbol                | Signature                                        | Description                                                   |
+| --------------------- | ------------------------------------------------ | ------------------------------------------------------------- |
+| `writeSearchData`     | `(pages, site, destRoot) → Promise<{ entries }>` | Main entry point.                                             |
+| `deriveSearchEntries` | `(pages, site) → object[]`                       | Returns the search-index entry array without writing to disk. |
 
 ---
 
@@ -488,15 +493,15 @@ Reads every file written by Phases 5 and 6, rewrites absolute URLs to relative p
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `writeOffline` | `(pages, staticFiles, site, destRoot, opts) → Promise<stats>` | Main entry point. |
-| `buildOfflineState` | `(pages, staticFiles, site, destRoot, { stubs? }) → Promise<OfflineState>` | Constructs the state object (site-path set, resolution caches, per-directory nav caches) used by all offline derivation functions. |
-| `deriveOfflinePage` | `(page: Page, state: OfflineState) → string` | Rewrites one page's HTML for offline use. |
-| `deriveOfflineRedirect` | `(stub, state: OfflineState) → string` | Rewrites a redirect stub's HTML for offline use. |
-| `deriveOfflineCss` | `(cssIn: string, themeRel: string, state: OfflineState) → string` | Rewrites `url()` references in a CSS file to page-relative paths. |
-| `deriveOfflineJtdJs` | `(src: string) → string` | Patches `just-the-docs.js` via AST: replaces `navLink` and `initSearch` with offline-compatible implementations. A parse failure at build time is a signal that re-extraction produced unreadable source. |
-| `deriveOfflineSearchDataJs` | `(jsonBytes: Buffer) → string` | Wraps `search-data.json` as `window.SEARCH_DATA = …` and minifies it. |
+| Symbol                      | Signature                                                                  | Description                                                                                                                                                                                               |
+| --------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `writeOffline`              | `(pages, staticFiles, site, destRoot, opts) → Promise<stats>`              | Main entry point.                                                                                                                                                                                         |
+| `buildOfflineState`         | `(pages, staticFiles, site, destRoot, { stubs? }) → Promise<OfflineState>` | Constructs the state object (site-path set, resolution caches, per-directory nav caches) used by all offline derivation functions.                                                                        |
+| `deriveOfflinePage`         | `(page: Page, state: OfflineState) → string`                               | Rewrites one page's HTML for offline use.                                                                                                                                                                 |
+| `deriveOfflineRedirect`     | `(stub, state: OfflineState) → string`                                     | Rewrites a redirect stub's HTML for offline use.                                                                                                                                                          |
+| `deriveOfflineCss`          | `(cssIn: string, themeRel: string, state: OfflineState) → string`          | Rewrites `url()` references in a CSS file to page-relative paths.                                                                                                                                         |
+| `deriveOfflineJtdJs`        | `(src: string) → string`                                                   | Patches `just-the-docs.js` via AST: replaces `navLink` and `initSearch` with offline-compatible implementations. A parse failure at build time is a signal that re-extraction produced unreadable source. |
+| `deriveOfflineSearchDataJs` | `(jsonBytes: Buffer) → string`                                             | Wraps `search-data.json` as `window.SEARCH_DATA = …` and minifies it.                                                                                                                                     |
 
 ---
 
@@ -531,11 +536,11 @@ Traverses `site.bookData`, emits a title page, then iterates over `front_matter`
 
 **All exports (`pdf.mjs`)**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `writePdf` | `(pages, staticFiles, site, destRoot, opts) → Promise<stats>` | Main entry point. |
-| `deriveBookOutputs` | `(pages, site) → { bookHtml: string, images: string[] }` | Pure-compute version: returns the assembled HTML and image-path list without writing to disk. |
-| `extractImagePaths` | `(html: string) → string[]` | Extracts all image `src` / `href` paths from an HTML string. |
+| Symbol              | Signature                                                     | Description                                                                                   |
+| ------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `writePdf`          | `(pages, staticFiles, site, destRoot, opts) → Promise<stats>` | Main entry point.                                                                             |
+| `deriveBookOutputs` | `(pages, site) → { bookHtml: string, images: string[] }`      | Pure-compute version: returns the assembled HTML and image-path list without writing to disk. |
+| `extractImagePaths` | `(html: string) → string[]`                                   | Extracts all image `src` / `href` paths from an HTML string.                                  |
 
 For `book.mjs` exports, see [Phase 2 `book.mjs`](#bookmjs--phase-2-half) above.
 
@@ -555,8 +560,8 @@ Runs an initial one-shot online build (Phases pre, 1--5), then starts an HTTP se
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol     | Signature                           | Description                                                              |
+| ---------- | ----------------------------------- | ------------------------------------------------------------------------ |
 | `runServe` | `(opts: BuildOpts) → Promise<void>` | Main entry point. `BuildOpts` is the same object accepted by `runBuild`. |
 
 ---
@@ -567,8 +572,8 @@ Runs an initial one-shot online build (Phases pre, 1--5), then starts an HTTP se
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol                | Signature                      | Description                                                                                                                                                                                                                              |
+| --------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `permalinkToDestPath` | `(permalink: string) → string` | Converts a permalink URL to a destination file path. `/` → `index.html`; `/foo/` → `foo/index.html`; paths with `.html`, `.htm`, or `.xml` extensions are kept as-is; all other paths get `.html` appended. Used by Phase 1 and Phase 6. |
 
 ---
@@ -579,8 +584,8 @@ Called internally by `initHighlighter` in `highlight.mjs`; not normally called d
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
+| Symbol               | Signature                                               | Description                                                                                                                                                                                                                            |
+| -------------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `loadHighlightTheme` | `(themesDir?: string) → Promise<{ scopeToClass, css }>` | Reads `Light.theme` and `Dark.theme`, groups TextMate-scope tokens by their (light-props, dark-props) pair, assigns one CSS class per unique pair, and returns the scope-to-class lookup and the generated `tb-highlight.css` content. |
 
 ---
@@ -591,26 +596,26 @@ The orchestrator sequences all stages and assembles the `site` object. It is not
 
 **All exports**
 
-| Symbol | Signature | Description |
-|---|---|---|
-| `runBuild` | `(opts: BuildOpts) → Promise<{ pages, staticFiles, site, destRoot }>` | Runs the full pipeline (pre-phase, Phases 1--8). Returns the final state so external harnesses can chain additional work. |
-| `makeTimer` | `() → { lap(label: string): void, summary(): string }` | Lightweight lap timer. `lap(label)` records elapsed milliseconds since the last lap; `summary()` returns all laps as a `"label=Nms …"` string. |
+| Symbol      | Signature                                                             | Description                                                                                                                                    |
+| ----------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `runBuild`  | `(opts: BuildOpts) → Promise<{ pages, staticFiles, site, destRoot }>` | Runs the full pipeline (pre-phase, Phases 1--8). Returns the final state so external harnesses can chain additional work.                      |
+| `makeTimer` | `() → { lap(label: string): void, summary(): string }`                | Lightweight lap timer. `lap(label)` records elapsed milliseconds since the last lap; `summary()` returns all laps as a `"label=Nms …"` string. |
 
 `BuildOpts` fields:
 
-| Field | Default | Description |
-|---|---|---|
-| `src` | `"docs"` | Source root, relative to `cwd`. |
-| `dest` | `null` | Destination root. Defaults to `<src>/_site`. |
-| `baseurl` | `null` | Overrides `config.baseurl`. |
-| `url` | `null` | Overrides `config.url`. |
-| `dryRun` | `false` | Skip all filesystem writes. |
-| `skipOffline` | `null` | Skip Phase 7. `null` reads `also_build_offline` from `_config.yml`. |
-| `skipPdf` | `null` | Skip Phase 8. `null` reads `also_build_pdf` from `_config.yml`. |
-| `tolerateMissingImages` | `false` | Downgrade missing-image errors to warnings in Phase 8. |
-| `profileOffline` | `false` | Emit per-substep timings for Phase 7 in the console output. |
-| `serve` | `false` | Start Phase 12 instead of the one-shot build. |
-| `port` | `4000` | HTTP port for Phase 12. |
+| Field                   | Default  | Description                                                         |
+| ----------------------- | -------- | ------------------------------------------------------------------- |
+| `src`                   | `"docs"` | Source root, relative to `cwd`.                                     |
+| `dest`                  | `null`   | Destination root. Defaults to `<src>/_site`.                        |
+| `baseurl`               | `null`   | Overrides `config.baseurl`.                                         |
+| `url`                   | `null`   | Overrides `config.url`.                                             |
+| `dryRun`                | `false`  | Skip all filesystem writes.                                         |
+| `skipOffline`           | `null`   | Skip Phase 7. `null` reads `also_build_offline` from `_config.yml`. |
+| `skipPdf`               | `null`   | Skip Phase 8. `null` reads `also_build_pdf` from `_config.yml`.     |
+| `tolerateMissingImages` | `false`  | Downgrade missing-image errors to warnings in Phase 8.              |
+| `profileOffline`        | `false`  | Emit per-substep timings for Phase 7 in the console output.         |
+| `serve`                 | `false`  | Start Phase 12 instead of the one-shot build.                       |
+| `port`                  | `4000`   | HTTP port for Phase 12.                                             |
 
 ## See Also
 
@@ -618,4 +623,3 @@ The orchestrator sequences all stages and assembles the `site` object. It is not
 - [Book Configuration](/en/official/Documentation/Book-Configuration) -- `_book.yml` key reference.
 - [Extending the Builder](/en/official/Documentation/Extending) -- tutorial for adding a new stage or markdown-it plugin.
 
-> AI生成

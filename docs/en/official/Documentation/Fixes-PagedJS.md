@@ -5,13 +5,13 @@ grand_parent: Documentation Development
 nav_order: 1
 permalink: /Documentation/Development/Fixes/PagedJS
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '15605745-3d5b-4ca6-a096-c5d7870d84b5'
-  PropagateID: '15605745-3d5b-4ca6-a096-c5d7870d84b5'
-  ReservedCode1: '61e98166-c008-4f59-b21a-52ae7a7af725'
-  ReservedCode2: '61e98166-c008-4f59-b21a-52ae7a7af725'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "15605745-3d5b-4ca6-a096-c5d7870d84b5"
+  PropagateID: "15605745-3d5b-4ca6-a096-c5d7870d84b5"
+  ReservedCode1: "61e98166-c008-4f59-b21a-52ae7a7af725"
+  ReservedCode2: "61e98166-c008-4f59-b21a-52ae7a7af725"
 ---
 
 # Paged.js Patches
@@ -26,21 +26,21 @@ In headless Chromium the event loop is not shared with any user-facing interacti
 
 **Fix.** Fourteen methods were rewritten as synchronous equivalents, marked `[PATCH: sync-chain]` throughout the file.
 
-| Method | Change |
-|---|---|
-| `*layout()` | Sync generator; `renderer.next()` returns synchronously. |
-| `render()` | Plain sync; no more per-page async state machine. |
-| `renderTo()` | `async` removed; `renderTo` returns synchronously. |
-| `layout()` | `async` removed; calls `renderTo` and `handleBreaks` synchronously. |
-| `handleBreaks()` | No longer awaits hook triggers; `Hook.trigger()` returns `undefined` on the all-sync path. |
-| `flow()` | All five `await` sites removed; `beforeParsed`/`afterParsed`/`afterRendered` hooks are called synchronously and guarded by `_assertSync`. |
-| `renderOnIdle()` / `renderAsync()` | Removed entirely; both wrapped `renderer.next()` in unnecessary async machinery. |
-| `clonePage()` | `async` removed; only reachable via the `Footnotes` handler, which self-disables when the document has no footnotes. |
-| `loadFonts()` | Rewritten as a synchronous assertion. `waitUntil: "load"` in `render-book.mjs` guarantees every `FontFace` is loaded before paged.js runs. |
-| `parse()` | `async` removed; no registered handler in this pipeline is async for the hooks it fires. |
-| `request()` | Replaced with synchronous XHR (`XMLHttpRequest` with `async=false`), returning `responseText` directly. |
-| `add()` | `async` removed; all inputs are inline `{url: text}` objects requiring no fetch. |
-| `convertViaSheet()` | `async` removed; `request()` now returns text directly. |
+| Method                             | Change                                                                                                                                     |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `*layout()`                        | Sync generator; `renderer.next()` returns synchronously.                                                                                   |
+| `render()`                         | Plain sync; no more per-page async state machine.                                                                                          |
+| `renderTo()`                       | `async` removed; `renderTo` returns synchronously.                                                                                         |
+| `layout()`                         | `async` removed; calls `renderTo` and `handleBreaks` synchronously.                                                                        |
+| `handleBreaks()`                   | No longer awaits hook triggers; `Hook.trigger()` returns `undefined` on the all-sync path.                                                 |
+| `flow()`                           | All five `await` sites removed; `beforeParsed`/`afterParsed`/`afterRendered` hooks are called synchronously and guarded by `_assertSync`.  |
+| `renderOnIdle()` / `renderAsync()` | Removed entirely; both wrapped `renderer.next()` in unnecessary async machinery.                                                           |
+| `clonePage()`                      | `async` removed; only reachable via the `Footnotes` handler, which self-disables when the document has no footnotes.                       |
+| `loadFonts()`                      | Rewritten as a synchronous assertion. `waitUntil: "load"` in `render-book.mjs` guarantees every `FontFace` is loaded before paged.js runs. |
+| `parse()`                          | `async` removed; no registered handler in this pipeline is async for the hooks it fires.                                                   |
+| `request()`                        | Replaced with synchronous XHR (`XMLHttpRequest` with `async=false`), returning `responseText` directly.                                    |
+| `add()`                            | `async` removed; all inputs are inline `{url: text}` objects requiring no fetch.                                                           |
+| `convertViaSheet()`                | `async` removed; `request()` now returns text directly.                                                                                    |
 
 A guard function `_assertSync(triggerResult, hookName)` is added at each call site that receives the sync sentinel from `Hook.trigger()`. If a handler returns a thenable, `_assertSync` throws immediately with the hook name rather than silently discarding the async work.
 
@@ -160,4 +160,3 @@ The related `[PATCH: extract-vs-delete]` guards `removed` access in the `Footnot
 - [pdf-lib Patches](/en/official/Documentation/Fixes-PDFLib) -- the pdf-lib shims applied during the process phase.
 - [PDF Generation](/en/official/Documentation/PDF-Generation) -- how the paged.js bundle fits into the three-phase render pipeline.
 
-> AI生成

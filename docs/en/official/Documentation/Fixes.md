@@ -4,13 +4,13 @@ parent: Documentation Development
 nav_order: 9
 permalink: /Documentation/Development/Fixes
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'e533fa10-0051-4664-bddc-2ed97aff273e'
-  PropagateID: 'e533fa10-0051-4664-bddc-2ed97aff273e'
-  ReservedCode1: '85b84980-0458-4b64-a35c-c4163a2c316b'
-  ReservedCode2: '85b84980-0458-4b64-a35c-c4163a2c316b'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "e533fa10-0051-4664-bddc-2ed97aff273e"
+  PropagateID: "e533fa10-0051-4664-bddc-2ed97aff273e"
+  ReservedCode1: "85b84980-0458-4b64-a35c-c4163a2c316b"
+  ReservedCode2: "85b84980-0458-4b64-a35c-c4163a2c316b"
 ---
 
 # Library Patches
@@ -23,4 +23,3 @@ Several third-party libraries carry in-tree modifications. `book/lib/paged.brows
 - [pdf-lib Patches](/en/official/Documentation/Fixes-PDFLib) --- the thirteen `fast-*.mjs` shims and `parallel-deflate.mjs` that retune pdf-lib's parser, object model, and serializer for the process phase.
 - [Mermaid Dagre Patches](/en/official/Documentation/Fixes-Dagre) --- five patches to `node_modules/mermaid/dist/chunks/mermaid.esm/dagre-ZXKKJJHT.mjs` that make `direction LR` subgraphs work correctly when they have cross-cluster edges or no internal edges at all.
 
-> AI生成

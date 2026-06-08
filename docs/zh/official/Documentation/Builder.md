@@ -1,27 +1,16 @@
 ---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '31d5dcbd-8818-40e1-a99f-12e5b2ce974e'
-  PropagateID: '31d5dcbd-8818-40e1-a99f-12e5b2ce974e'
-  ReservedCode1: '989a4377-503b-4275-b9f2-82ed6e79f267'
-  ReservedCode2: '989a4377-503b-4275-b9f2-82ed6e79f267'
----
-
----
 title: "tbdocs 构建器"
 parent: Documentation Development
 nav_order: 4
 permalink: /Documentation/Development/Builder
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'e72f6c74-68e0-4642-be3d-7b7308d48f61'
-  PropagateID: 'e72f6c74-68e0-4642-be3d-7b7308d48f61'
-  ReservedCode1: '1c3ea464-6010-4131-aa40-c0ff8993cfae'
-  ReservedCode2: '1c3ea464-6010-4131-aa40-c0ff8993cfae'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "e72f6c74-68e0-4642-be3d-7b7308d48f61"
+  PropagateID: "e72f6c74-68e0-4642-be3d-7b7308d48f61"
+  ReservedCode1: "1c3ea464-6010-4131-aa40-c0ff8993cfae"
+  ReservedCode2: "1c3ea464-6010-4131-aa40-c0ff8993cfae"
 ---
 
 # tbdocs 构建器
@@ -49,45 +38,45 @@ AIGC:
 
 一个入口点，约17个生产模块。内容模型是固定的（markdown + YAML frontmatter），输出结构是固定的（三个树），模板是一个带变体的布局。
 
-| 文件 | 角色 |
-|---|---|
-| [`tbdocs.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/tbdocs.mjs) | 入口点。解析CLI标志，分发到`runBuild`或`runServe`，打印每阶段计时。 |
-| [`serve.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/serve.mjs) | 阶段12开发服务器：HTTP静态文件服务器 + 递归监视器 + SSE实时重载。 |
-| [`discover.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/discover.mjs) | 阶段1。遍历`docs/`，解析frontmatter，将每个文件分类为页面或静态文件。 |
-| [`nav.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/nav.mjs) | 阶段2导航子步骤：导航路径、完整性检查、导航树、导航级别、面包屑、子页面。 |
-| [`seo.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/seo.mjs) | 阶段2 SEO预计算：每页标题/规范URL/og:标签。 |
-| [`book.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/book.mjs) | 阶段2书籍章节解析 + 阶段8 book.html组装。 |
-| [`build-info.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/build-info.mjs) | 阶段2 git提交哈希 + 提交日期捕获。 |
-| [`data.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/data.mjs) | 阶段2 `_book.yml`加载器。 |
-| [`mermaid.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/mermaid.mjs) | 阶段11（B1）预处理：`.mmd` → `.svg`重新生成。 |
-| [`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs) | 阶段11（B3）预处理：通过Dart Sass编译`docs/assets/css/just-the-docs-combined.scss`为just-the-docs样式表。 |
-| [`render.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/render.mjs) | 阶段3 markdown-it管线：GFM admonitions、kramdown风格属性、deflist、脚注、标题ID、TOC、相对链接重写。 |
-| [`highlight.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight.mjs) | 阶段3 Shiki引导加twinBASIC语法。发出just-the-docs包装结构。 |
-| [`highlight-theme.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight-theme.mjs) | 阶段11（B2）主题加载器：读取`themes/*.theme`，派生调色板，发出`tb-highlight.css`和作用域到类的查找。 |
-| [`template.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/template.mjs) | 阶段4布局。用直接JS字符串拼接替代约13个Liquid include。 |
-| [`compress.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/compress.mjs) | 阶段4 HTML空白压缩。 |
-| [`write.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/write.mjs) | 阶段5在线树写入器。 |
-| [`paths.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/paths.mjs) | 共享的permalink到目标路径辅助模块。 |
-| [`redirects.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/redirects.mjs) | 阶段6重定向存根生成器。 |
-| [`sitemap.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/sitemap.mjs) | 阶段6 sitemap.xml + robots.txt。 |
-| [`search.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/search.mjs) | 阶段6 Lunr索引发射器（`search-data.json`）。 |
-| [`offline.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/offline.mjs) | 阶段7离线树：URL重写、`file://`浏览的JS修补。 |
-| [`pdf.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/pdf.mjs) | 阶段8稀疏PDF源树。 |
+| 文件                                                                                                      | 角色                                                                                                      |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| [`tbdocs.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/tbdocs.mjs)                   | 入口点。解析CLI标志，分发到`runBuild`或`runServe`，打印每阶段计时。                                       |
+| [`serve.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/serve.mjs)                     | 阶段12开发服务器：HTTP静态文件服务器 + 递归监视器 + SSE实时重载。                                         |
+| [`discover.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/discover.mjs)               | 阶段1。遍历`docs/`，解析frontmatter，将每个文件分类为页面或静态文件。                                     |
+| [`nav.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/nav.mjs)                         | 阶段2导航子步骤：导航路径、完整性检查、导航树、导航级别、面包屑、子页面。                                 |
+| [`seo.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/seo.mjs)                         | 阶段2 SEO预计算：每页标题/规范URL/og:标签。                                                               |
+| [`book.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/book.mjs)                       | 阶段2书籍章节解析 + 阶段8 book.html组装。                                                                 |
+| [`build-info.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/build-info.mjs)           | 阶段2 git提交哈希 + 提交日期捕获。                                                                        |
+| [`data.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/data.mjs)                       | 阶段2 `_book.yml`加载器。                                                                                 |
+| [`mermaid.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/mermaid.mjs)                 | 阶段11（B1）预处理：`.mmd` → `.svg`重新生成。                                                             |
+| [`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs)                       | 阶段11（B3）预处理：通过Dart Sass编译`docs/assets/css/just-the-docs-combined.scss`为just-the-docs样式表。 |
+| [`render.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/render.mjs)                   | 阶段3 markdown-it管线：GFM admonitions、kramdown风格属性、deflist、脚注、标题ID、TOC、相对链接重写。      |
+| [`highlight.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight.mjs)             | 阶段3 Shiki引导加twinBASIC语法。发出just-the-docs包装结构。                                               |
+| [`highlight-theme.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight-theme.mjs) | 阶段11（B2）主题加载器：读取`themes/*.theme`，派生调色板，发出`tb-highlight.css`和作用域到类的查找。      |
+| [`template.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/template.mjs)               | 阶段4布局。用直接JS字符串拼接替代约13个Liquid include。                                                   |
+| [`compress.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/compress.mjs)               | 阶段4 HTML空白压缩。                                                                                      |
+| [`write.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/write.mjs)                     | 阶段5在线树写入器。                                                                                       |
+| [`paths.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/paths.mjs)                     | 共享的permalink到目标路径辅助模块。                                                                       |
+| [`redirects.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/redirects.mjs)             | 阶段6重定向存根生成器。                                                                                   |
+| [`sitemap.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/sitemap.mjs)                 | 阶段6 sitemap.xml + robots.txt。                                                                          |
+| [`search.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/search.mjs)                   | 阶段6 Lunr索引发射器（`search-data.json`）。                                                              |
+| [`offline.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/offline.mjs)                 | 阶段7离线树：URL重写、`file://`浏览的JS修补。                                                             |
+| [`pdf.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/pdf.mjs)                         | 阶段8稀疏PDF源树。                                                                                        |
 
 `builder/`位于仓库根目录（不在`docs/`下），因此它不属于旧版渲染器读取的Jekyll源树。`build.bat`路径写入`docs/_site/`、`docs/_site-offline/`和`docs/_site-pdf/`——与Jekyll使用的目标相同，因此部署工具保持不变。`serve.bat`路径写入单独的`docs/_serve/`树，这样一次性`build.bat`运行（例如刷新PDF）永远不会覆盖运行中的服务会话输出。
 
 ## 构建阶段
 
-| 阶段 | 模块 | 任务 | 时间 |
-|---|---|---|---|
-| 1 | `discover.mjs` | 读取带frontmatter的`.md` / `.html`；枚举静态文件 | 约120毫秒 |
-| 2 | `nav.mjs` / `seo.mjs` / `book.mjs` / `build-info.mjs` / `data.mjs` | 计算导航树、SEO、书籍章节、git提交信息、`_book.yml` | 约60毫秒 |
-| 3 | `render.mjs` + `highlight.mjs` | Markdown → HTML正文 | 约1-2秒 |
-| 4 | `template.mjs` + `compress.mjs` | 包裹布局、锚点标题、压缩空白 | 约200毫秒 |
-| 5 | `write.mjs` | 写入`_site/` | 约400毫秒 |
-| 6 | `redirects.mjs` / `sitemap.mjs` / `search.mjs` | 重定向存根、sitemap.xml、search-data.json、robots.txt | 约100毫秒 |
-| 7 | `offline.mjs` | URL重写副本到`_site-offline/` | 约1,000毫秒 |
-| 8 | `pdf.mjs` + `book.mjs` | 稀疏`_site-pdf/`树（book.html + CSS + 图片） | 约150毫秒 |
+| 阶段 | 模块                                                               | 任务                                                  | 时间        |
+| ---- | ------------------------------------------------------------------ | ----------------------------------------------------- | ----------- |
+| 1    | `discover.mjs`                                                     | 读取带frontmatter的`.md` / `.html`；枚举静态文件      | 约120毫秒   |
+| 2    | `nav.mjs` / `seo.mjs` / `book.mjs` / `build-info.mjs` / `data.mjs` | 计算导航树、SEO、书籍章节、git提交信息、`_book.yml`   | 约60毫秒    |
+| 3    | `render.mjs` + `highlight.mjs`                                     | Markdown → HTML正文                                   | 约1-2秒     |
+| 4    | `template.mjs` + `compress.mjs`                                    | 包裹布局、锚点标题、压缩空白                          | 约200毫秒   |
+| 5    | `write.mjs`                                                        | 写入`_site/`                                          | 约400毫秒   |
+| 6    | `redirects.mjs` / `sitemap.mjs` / `search.mjs`                     | 重定向存根、sitemap.xml、search-data.json、robots.txt | 约100毫秒   |
+| 7    | `offline.mjs`                                                      | URL重写副本到`_site-offline/`                         | 约1,000毫秒 |
+| 8    | `pdf.mjs` + `book.mjs`                                             | 稀疏`_site-pdf/`树（book.html + CSS + 图片）          | 约150毫秒   |
 
 阶段9、10和11是历史性的：阶段9是无输出的QoL步骤，阶段10退役了Jekyll，阶段11引入了改变输出的奇偶校验更新。都不增加运行时步骤。阶段12添加了`--serve`开发服务器模式（独立的生命周期，非构建阶段；写入`docs/_serve/`并默认跳过离线+PDF传递，使重建循环保持在一秒以内）。每阶段的`PLAN-N.md`文件保留了实现历史。
 
@@ -280,7 +269,7 @@ AIGC:
 
 ### [search.mjs](https://github.com/twinbasic/documentation/blob/main/builder/search.mjs) --- 阶段6 Lunr索引发射器
 
-`sanitiseContent`是kramdown奇偶校验的内容规范化器——14个字符串替换在块边界间插入` . ` / ` | `分隔符（使搜索片段显示逻辑断裂而非粘合的散文），然后`stripHtml`，然后"Table of contents"移除，然后折叠连续ASCII空白遍（窄集，镜像Ruby的`String#strip`语义使`&nbsp;`缩进不被破坏——与[`compress.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/compress.mjs)压缩遍防范的相同问题）。顺序对与just-the-docs Liquid模板的字节奇偶校验至关重要；重新排列步骤会改变输出。
+`sanitiseContent`是kramdown奇偶校验的内容规范化器——14个字符串替换在块边界间插入`.` / `|`分隔符（使搜索片段显示逻辑断裂而非粘合的散文），然后`stripHtml`，然后"Table of contents"移除，然后折叠连续ASCII空白遍（窄集，镜像Ruby的`String#strip`语义使`&nbsp;`缩进不被破坏——与[`compress.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/compress.mjs)压缩遍防范的相同问题）。顺序对与just-the-docs Liquid模板的字节奇偶校验至关重要；重新排列步骤会改变输出。
 
 ### [offline.mjs](https://github.com/twinbasic/documentation/blob/main/builder/offline.mjs) --- 阶段7离线镜像
 
@@ -304,11 +293,11 @@ just-the-docs.js修补器从阶段11（B11）开始基于AST：`deriveOfflineJtd
 
 站点部署时的`/assets/`树由三个来源组装：
 
-| 磁盘上的来源 | 存放内容 | 交付阶段 |
-|---|---|---|
-| `docs/assets/` | 项目自有内容：SCSS入口点、项目JS（`theme-switch.js`）、手写样式表（`print.css`、`just-the-docs-head-nav.css`）、Mermaid图表（`.mmd`源 + `.svg`渲染），以及贡献者添加的任何内容图片。 | 由[`discover.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/discover.mjs)发现，由[`write.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/write.mjs)的`copyStaticFiles`复制。 |
-| `builder/vendor/just-the-docs/` | 从just-the-docs gem（v0.10.1）vendor：`_sass/`（主题的SCSS源，馈入编译）和`assets/js/just-the-docs.js` + `assets/js/vendor/lunr.min.js`（chrome运行时，原样复制）。参见[`builder/vendor/just-the-docs/README.md`](https://github.com/twinbasic/documentation/blob/main/builder/vendor/just-the-docs/README.md)了解清单、重新vendor程序和对`just-the-docs.js`应用的树内补丁。 | `_sass/`由[`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs)消费；`assets/`由`write.mjs`的`copyTheme`复制。 |
-| 进程内生成 | `just-the-docs-combined.css`（来自[`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs)）和`tb-highlight.css`（来自[`highlight-theme.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight-theme.mjs)）。两者都不提交；每次运行都重建。 | 推送到[`tbdocs.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/tbdocs.mjs)中的`generatedAssets`；由`write.mjs`的`writeGeneratedAssets`在`copyTheme`之后写入，使生成内容在冲突时获胜。 |
+| 磁盘上的来源                    | 存放内容                                                                                                                                                                                                                                                                                                                                                                     | 交付阶段                                                                                                                                                                                                            |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `docs/assets/`                  | 项目自有内容：SCSS入口点、项目JS（`theme-switch.js`）、手写样式表（`print.css`、`just-the-docs-head-nav.css`）、Mermaid图表（`.mmd`源 + `.svg`渲染），以及贡献者添加的任何内容图片。                                                                                                                                                                                         | 由[`discover.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/discover.mjs)发现，由[`write.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/write.mjs)的`copyStaticFiles`复制。 |
+| `builder/vendor/just-the-docs/` | 从just-the-docs gem（v0.10.1）vendor：`_sass/`（主题的SCSS源，馈入编译）和`assets/js/just-the-docs.js` + `assets/js/vendor/lunr.min.js`（chrome运行时，原样复制）。参见[`builder/vendor/just-the-docs/README.md`](https://github.com/twinbasic/documentation/blob/main/builder/vendor/just-the-docs/README.md)了解清单、重新vendor程序和对`just-the-docs.js`应用的树内补丁。 | `_sass/`由[`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs)消费；`assets/`由`write.mjs`的`copyTheme`复制。                                                                        |
+| 进程内生成                      | `just-the-docs-combined.css`（来自[`scss.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/scss.mjs)）和`tb-highlight.css`（来自[`highlight-theme.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/highlight-theme.mjs)）。两者都不提交；每次运行都重建。                                                                                 | 推送到[`tbdocs.mjs`](https://github.com/twinbasic/documentation/blob/main/builder/tbdocs.mjs)中的`generatedAssets`；由`write.mjs`的`writeGeneratedAssets`在`copyTheme`之后写入，使生成内容在冲突时获胜。            |
 
 任一复制路径中的CSS文件在部署baseurl非空时获得baseurl重写（`url("/path")` → `url("<baseurl>/path")`）；相同转换应用于生成的CSS，使SCSS入口点发出的`url("/favicon.png")`在子路径部署下正确解析。
 

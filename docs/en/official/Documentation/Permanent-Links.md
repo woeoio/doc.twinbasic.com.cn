@@ -1,37 +1,41 @@
 ---
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f1eb40eb-d7fc-41f9-8942-ea5ac98c2571'
-  PropagateID: 'f1eb40eb-d7fc-41f9-8942-ea5ac98c2571'
-  ReservedCode1: '66bf97b7-6ca4-430d-bc67-a83b74d94eaa'
-  ReservedCode2: '66bf97b7-6ca4-430d-bc67-a83b74d94eaa'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "f1eb40eb-d7fc-41f9-8942-ea5ac98c2571"
+  PropagateID: "f1eb40eb-d7fc-41f9-8942-ea5ac98c2571"
+  ReservedCode1: "66bf97b7-6ca4-430d-bc67-a83b74d94eaa"
+  ReservedCode2: "66bf97b7-6ca4-430d-bc67-a83b74d94eaa"
 ---
 
 ---
+
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '13605a79-c393-496f-9c3a-f8f6ab13a73f'
-  PropagateID: '13605a79-c393-496f-9c3a-f8f6ab13a73f'
-  ReservedCode1: '99077cb7-777d-4d81-b8dc-ab23cac9c135'
-  ReservedCode2: '99077cb7-777d-4d81-b8dc-ab23cac9c135'
+ContentProducer: '001191110102MAD55U9H0F10002'
+ContentPropagator: '001191110102MAD55U9H0F10002'
+Label: '1'
+ProduceID: '13605a79-c393-496f-9c3a-f8f6ab13a73f'
+PropagateID: '13605a79-c393-496f-9c3a-f8f6ab13a73f'
+ReservedCode1: '99077cb7-777d-4d81-b8dc-ab23cac9c135'
+ReservedCode2: '99077cb7-777d-4d81-b8dc-ab23cac9c135'
+
 ---
 
 ---
+
 title: Permanent Links
 parent: Documentation Development
 nav_order: 1
 permalink: /Documentation/Development/Permanent-Links
+
 ---
 
 # Permanent Links
 
 The stable, or machine-accessible, part of the documentation tree is rooted on the `/tB/` prefix. URLs with this prefix --- and the internal links that target them, e.g. [`docs.twinbasic.com/tB/Modules/Math/Round`](/en/official/Reference/VBA/Math/Round) --- are guaranteed not to move. This is the contract the IDE help system, `[Documentation(...)]` attribute references, and external links rely on; anything documented below should be treated as essential.
 
-## /tB/Core/``<Statement>``
+## /tB/Core/`<Statement>`
 
 - [AppActivate](/en/official/Reference/Core/AppActivate)
 - [Beep](/en/official/Reference/Core/Beep)
@@ -53,7 +57,7 @@ The stable, or machine-accessible, part of the documentation tree is rooted on t
 - [Unload](/en/official/Reference/Core/Unload), [Unlock](/en/official/Reference/Core/Unlock)
 - [While-Wend](/en/official/Reference/Core/While-Wend), [Width](/en/official/Reference/Core/Width), [With](/en/official/Reference/Core/With), [Write](/en/official/Reference/Core/Write)
 
-## /tB/Modules/``<ModuleName>``/``<Symbol>``
+## /tB/Modules/`<ModuleName>`/`<Symbol>`
 
 Within each VBA module, each procedure, property, or statement has its own stand-alone page, e.g. [**LenB**: /tB/Modules/Strings/Len](/en/official/Reference/VBA/Strings/Len). The `$`-suffixed and `B`/`W` variants are documented on the same page as the base symbol (so `LenB`, `Len$`, etc. all share the [`Len`](/en/official/Reference/VBA/Strings/Len) page).
 
@@ -70,13 +74,13 @@ Within each VBA module, each procedure, property, or statement has its own stand
 - [Interaction](/en/official/Reference/VBA/Interaction/)
 - [Math](/en/official/Reference/VBA/Math/)
 - [Strings](/en/official/Reference/VBA/Strings/)
-- Internal [_HiddenModule](/en/official/Reference/VBA/HiddenModule/)
+- Internal [\_HiddenModule](/en/official/Reference/VBA/HiddenModule/)
 
-## /tB/Packages/``<Package>``/...
+## /tB/Packages/`<Package>`/...
 
 Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on the package: modules, classes, enumerations, and sub-objects each have their own page.
 
-### VBRUN -- /tB/Packages/VBRUN/``<Module>``/
+### VBRUN -- /tB/Packages/VBRUN/`<Module>`/
 
 - [AmbientProperties](/en/official/Reference/VBRUN/AmbientProperties/)
 - [AsyncProperty](/en/official/Reference/VBRUN/AsyncProperty/)
@@ -91,7 +95,7 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 - [ParentControls](/en/official/Reference/VBRUN/ParentControls/)
 - [PropertyBag](/en/official/Reference/VBRUN/PropertyBag/)
 
-### VB -- /tB/Packages/VB/``<Class>``/
+### VB -- /tB/Packages/VB/`<Class>`/
 
 - [App](/en/official/Reference/VB/App/), [CheckBox](/en/official/Reference/VB/CheckBox/), [CheckMark](/en/official/Reference/VB/CheckMark/), [Clipboard](/en/official/Reference/VB/Clipboard/), [ComboBox](/en/official/Reference/VB/ComboBox/), [CommandButton](/en/official/Reference/VB/CommandButton/)
 - [Data](/en/official/Reference/VB/Data/), [DirListBox](/en/official/Reference/VB/DirListBox/), [DriveListBox](/en/official/Reference/VB/DriveListBox/)
@@ -113,7 +117,7 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 - Enumerations: [wv2DefaultDownloadCornerAlign](/en/official/Reference/WebView2/Enumerations/wv2DefaultDownloadCornerAlign), [wv2ErrorStatus](/en/official/Reference/WebView2/Enumerations/wv2ErrorStatus), [wv2HostResourceAccessKind](/en/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind), [wv2KeyEventKind](/en/official/Reference/WebView2/Enumerations/wv2KeyEventKind), [wv2PermissionKind](/en/official/Reference/WebView2/Enumerations/wv2PermissionKind), [wv2PermissionState](/en/official/Reference/WebView2/Enumerations/wv2PermissionState), [wv2PrintOrientation](/en/official/Reference/WebView2/Enumerations/wv2PrintOrientation), [wv2ProcessFailedKind](/en/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind), [wv2ScriptDialogKind](/en/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind), [wv2WebResourceContext](/en/official/Reference/WebView2/Enumerations/wv2WebResourceContext)
 - Types: [COREWEBVIEW2_PHYSICAL_KEY_STATUS](/en/official/Reference/WebView2/Types/COREWEBVIEW2_PHYSICAL_KEY_STATUS)
 
-### Assert -- /tB/Packages/Assert/``<Module>``
+### Assert -- /tB/Packages/Assert/`<Module>`
 
 - [Exact](/en/official/Reference/Assert/Exact), [Strict](/en/official/Reference/Assert/Strict), [Permissive](/en/official/Reference/Assert/Permissive)
 
@@ -129,11 +133,11 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 - [CefBrowser](/en/official/Reference/CEF/CefBrowser/) (control class, with [EnvironmentOptions](/en/official/Reference/CEF/CefBrowser/EnvironmentOptions) sub-page)
 - Enumerations: [CefLogSeverity](/en/official/Reference/CEF/Enumerations/CefLogSeverity), [cefPrintOrientation](/en/official/Reference/CEF/Enumerations/cefPrintOrientation)
 
-### WinEventLogLib -- /tB/Packages/WinEventLogLib/``<Class>``
+### WinEventLogLib -- /tB/Packages/WinEventLogLib/`<Class>`
 
 - [EventLog](/en/official/Reference/WinEventLogLib/EventLog), [EventLogHelperPublic](/en/official/Reference/WinEventLogLib/EventLogHelperPublic)
 
-### WinNamedPipesLib -- /tB/Packages/WinNamedPipesLib/``<Class>``
+### WinNamedPipesLib -- /tB/Packages/WinNamedPipesLib/`<Class>`
 
 - [NamedPipeClientConnection](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection), [NamedPipeClientManager](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager), [NamedPipeServer](/en/official/Reference/WinNamedPipesLib/NamedPipeServer), [NamedPipeServerConnection](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection)
 
@@ -142,7 +146,7 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 - [ITbService](/en/official/Reference/WinServicesLib/ITbService), [ServiceCreator](/en/official/Reference/WinServicesLib/ServiceCreator), [ServiceManager](/en/official/Reference/WinServicesLib/ServiceManager), [Services](/en/official/Reference/WinServicesLib/Services), [ServiceState](/en/official/Reference/WinServicesLib/ServiceState)
 - Enumerations: [ServiceControlCodeConstants](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants), [ServiceStartConstants](/en/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants), [ServiceStatusConstants](/en/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants), [ServiceTypeConstants](/en/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants)
 
-### tbIDE -- /tB/Packages/tbIDE/``<Class>``
+### tbIDE -- /tB/Packages/tbIDE/`<Class>`
 
 - [AddIn](/en/official/Reference/tbIDE/AddIn), [AddinTimer](/en/official/Reference/tbIDE/AddinTimer), [Button](/en/official/Reference/tbIDE/Button), [CodeEditor](/en/official/Reference/tbIDE/CodeEditor), [DebugConsole](/en/official/Reference/tbIDE/DebugConsole), [Editor](/en/official/Reference/tbIDE/Editor), [Editors](/en/official/Reference/tbIDE/Editors)
 - [File](/en/official/Reference/tbIDE/File), [FileSystem](/en/official/Reference/tbIDE/FileSystem), [FileSystemItem](/en/official/Reference/tbIDE/FileSystemItem), [Folder](/en/official/Reference/tbIDE/Folder)
@@ -155,7 +159,7 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 - Sub-objects: [ListImages](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImages), [ListImage](/en/official/Reference/WinNativeCommonCtls/ImageList/ListImage), [ListItems](/en/official/Reference/WinNativeCommonCtls/ListView/ListItems), [ListItem](/en/official/Reference/WinNativeCommonCtls/ListView/ListItem), [ColumnHeaders](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders), [ColumnHeader](/en/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader), [Nodes](/en/official/Reference/WinNativeCommonCtls/TreeView/Nodes), [Node](/en/official/Reference/WinNativeCommonCtls/TreeView/Node)
 - Enumerations: [DTPickerFormatConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants), [ImlDrawConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants), [OrientationConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants), [TreeBorderStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants), [TreeLabelEditConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants), [TreeLineStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants), [TreeRelationshipConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants), [TreeSortOrderConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants), [TreeSortTypeConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants), [TreeStyleConstants](/en/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants)
 
-## /tB/Core/Attributes#``<attribute>``
+## /tB/Core/Attributes#`<attribute>`
 
 ::: info
 
@@ -177,7 +181,3 @@ All non-alphabetic characters, as well as parameters, are removed from the links
 - [TestCase](/en/official/Reference/Attributes#testcase), [TestFixture](/en/official/Reference/Attributes#testfixture), [TypeHint](/en/official/Reference/Attributes#typehint)
 - [Unimplemented](/en/official/Reference/Attributes#unimplemented), [UseGetLastError](/en/official/Reference/Attributes#usegetlasterror), [UserDefinedTypeIsAnAlias](/en/official/Reference/Attributes#userdefinedtypeisanalias)
 - [WindowsControl](/en/official/Reference/Attributes#windowscontrol)
-
-> AI生成
-
-> AI生成

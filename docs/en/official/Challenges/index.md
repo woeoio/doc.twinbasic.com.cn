@@ -3,13 +3,13 @@ title: Challenges
 nav_order: 12
 permalink: /Challenges
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'abe22774-5624-4afa-add4-e9538da5c11c'
-  PropagateID: 'abe22774-5624-4afa-add4-e9538da5c11c'
-  ReservedCode1: 'dd31a00c-2c4b-4eb4-808a-4e71f9d80f9b'
-  ReservedCode2: 'dd31a00c-2c4b-4eb4-808a-4e71f9d80f9b'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "abe22774-5624-4afa-add4-e9538da5c11c"
+  PropagateID: "abe22774-5624-4afa-add4-e9538da5c11c"
+  ReservedCode1: "dd31a00c-2c4b-4eb4-808a-4e71f9d80f9b"
+  ReservedCode2: "dd31a00c-2c4b-4eb4-808a-4e71f9d80f9b"
 ---
 
 # Challenges
@@ -22,4 +22,3 @@ From **#general** on Discord:
 
 See this on [twinBASIC Update: January 6, 2026](https://nolongerset.com/twinbasic-update-january-6-2026/) from Mike Wolfe.
 
-> AI生成

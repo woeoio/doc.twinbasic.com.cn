@@ -4,13 +4,13 @@ parent: Packages
 nav_order: 7
 permalink: /tB/Packages/WebView2/
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '542788de-f9ef-466a-81a5-5c013a6a9103'
-  PropagateID: '542788de-f9ef-466a-81a5-5c013a6a9103'
-  ReservedCode1: 'cd6e0d69-158d-4f2e-a0eb-cbfd41ae8b0b'
-  ReservedCode2: 'cd6e0d69-158d-4f2e-a0eb-cbfd41ae8b0b'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "542788de-f9ef-466a-81a5-5c013a6a9103"
+  PropagateID: "542788de-f9ef-466a-81a5-5c013a6a9103"
+  ReservedCode1: "cd6e0d69-158d-4f2e-a0eb-cbfd41ae8b0b"
+  ReservedCode2: "cd6e0d69-158d-4f2e-a0eb-cbfd41ae8b0b"
 ---
 
 # WebView2 Package
@@ -58,5 +58,3 @@ Beyond the control itself, the package exposes a small set of wrapper objects th
 - [Hosting local web assets](/en/official/Tutorials/WebView2/Hosting-local-web-assets) -- serve HTML / JS / CSS from a project resource folder, without an HTTP server
 - [JavaScript interop](/en/official/Tutorials/WebView2/JavaScript-interop) -- the three bridges between BASIC and the page: host objects, messages, and scripted calls
 - [Driving Monaco from twinBASIC](/en/official/Tutorials/WebView2/Driving-Monaco) -- case study combining everything above
-
-> AI生成

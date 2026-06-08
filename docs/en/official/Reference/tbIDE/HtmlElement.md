@@ -1,51 +1,59 @@
 ﻿---
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '0abaf500-9380-4f24-a156-24728802fe39'
-  PropagateID: '0abaf500-9380-4f24-a156-24728802fe39'
-  ReservedCode1: '1217f2e1-1eab-4e31-aafc-32a4fb5a52a7'
-  ReservedCode2: '1217f2e1-1eab-4e31-aafc-32a4fb5a52a7'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "0abaf500-9380-4f24-a156-24728802fe39"
+  PropagateID: "0abaf500-9380-4f24-a156-24728802fe39"
+  ReservedCode1: "1217f2e1-1eab-4e31-aafc-32a4fb5a52a7"
+  ReservedCode2: "1217f2e1-1eab-4e31-aafc-32a4fb5a52a7"
 ---
 
 ---
+
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
-  PropagateID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
-  ReservedCode1: '57360a3f-f666-473c-b69e-d0cd03fb315e'
-  ReservedCode2: '57360a3f-f666-473c-b69e-d0cd03fb315e'
+ContentProducer: '001191110102MAD55U9H0F10002'
+ContentPropagator: '001191110102MAD55U9H0F10002'
+Label: '1'
+ProduceID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
+PropagateID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
+ReservedCode1: '57360a3f-f666-473c-b69e-d0cd03fb315e'
+ReservedCode2: '57360a3f-f666-473c-b69e-d0cd03fb315e'
+
 ---
 
 ---
+
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
-  PropagateID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
-  ReservedCode1: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
-  ReservedCode2: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
+ContentProducer: '001191110102MAD55U9H0F10002'
+ContentPropagator: '001191110102MAD55U9H0F10002'
+Label: '1'
+ProduceID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
+PropagateID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
+ReservedCode1: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
+ReservedCode2: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
+
 ---
 
 ---
+
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '9a9bc399-d375-4810-9128-80db332db001'
-  PropagateID: '9a9bc399-d375-4810-9128-80db332db001'
-  ReservedCode1: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
-  ReservedCode2: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
+ContentProducer: '001191110102MAD55U9H0F10002'
+ContentPropagator: '001191110102MAD55U9H0F10002'
+Label: '1'
+ProduceID: '9a9bc399-d375-4810-9128-80db332db001'
+PropagateID: '9a9bc399-d375-4810-9128-80db332db001'
+ReservedCode1: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
+ReservedCode2: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
+
 ---
 
 ---
+
 title: HtmlElement
 parent: tbIDE Package
 permalink: /tB/Packages/tbIDE/HtmlElement
+
 ---
 
 # HtmlElement class
@@ -62,8 +70,7 @@ With myToolWindow.RootDomElement.ChildDomElements.Add("greeting", "h1")
 End With
 ```
 
-The element's *properties* --- every CSS-style property, every DOM attribute, every custom-widget extension --- live inside the [**Properties**](#properties) bag, accessed through a dynamic resolution mechanism. See [Dynamic DOM property resolution](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution) on the package overview for the underlying mechanism that makes `.style.textAlign = "center"` work without a statically-declared `style` member.
-
+The element's _properties_ --- every CSS-style property, every DOM attribute, every custom-widget extension --- live inside the [**Properties**](#properties) bag, accessed through a dynamic resolution mechanism. See [Dynamic DOM property resolution](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution) on the package overview for the underlying mechanism that makes `.style.textAlign = "center"` work without a statically-declared `style` member.
 
 ## Properties
 
@@ -87,16 +94,16 @@ The bag is [`[COMExtensible(True)]`](/en/official/Reference/tbIDE/#dynamic-dom-p
 
 Registers a callback to be invoked when a DOM event fires on the element.
 
-Syntax: *element*.**AddEventListener** *DomEventName*, *CallbackFunc* [, *Data* ]
+Syntax: _element_.**AddEventListener** _DomEventName_, _CallbackFunc_ [, *Data* ]
 
-*DomEventName*
-: *required* The DOM event name. **String**. Standard names (`"click"`, `"keyup"`, `"input"`, `"change"`, `"mouseenter"`, …) and custom event names raised by inline HTML (see below) both work.
+_DomEventName_
+: _required_ The DOM event name. **String**. Standard names (`"click"`, `"keyup"`, `"input"`, `"change"`, `"mouseenter"`, …) and custom event names raised by inline HTML (see below) both work.
 
-*CallbackFunc*
-: *required* The callback. Pass `AddressOf` a sub of signature `Sub(ByVal eventInfo As HtmlEventProperties)`. **LongPtr**.
+_CallbackFunc_
+: _required_ The callback. Pass `AddressOf` a sub of signature `Sub(ByVal eventInfo As HtmlEventProperties)`. **LongPtr**.
 
-*Data*
-: *optional* An opaque value to associate with the registration. **Variant**.
+_Data_
+: _optional_ An opaque value to associate with the registration. **Variant**.
 
 ```vb
 With .ChildDomElements.Add("myButton", "div")
@@ -129,7 +136,7 @@ Standard DOM events (`"click"`, `"keyup"`, …) still attach directly to the DOM
 Inline HTML rendered inside a tool window can raise arbitrary event names back to the addin through the IDE-side `raiseEvent()` JavaScript helper. The function signature on the JavaScript side is:
 
 ```js
-raiseEvent(eventName, event, stopPropagation, ...customData)
+raiseEvent(eventName, event, stopPropagation, ...customData);
 ```
 
 --- pass an event name (any string), the DOM `event` object, a boolean controlling propagation, and any number of trailing custom-data values. The addin then registers a listener with the same event name through **AddEventListener**, and the custom-data values arrive on the [**HtmlEventProperties**](/en/official/Reference/tbIDE/HtmlEventProperties) as `eventInfo.customData0`, `eventInfo.customData1`, … (numerically indexed from zero). This pattern is used heavily in sample 13 (listview) and sample 15 (Global Search) to attach handlers to per-item buttons rendered inside a listview's HTML.
@@ -138,12 +145,4 @@ raiseEvent(eventName, event, stopPropagation, ...customData)
 
 Removes the element from the DOM. Any child elements are removed with it. Any event listeners registered on this element are released.
 
-Syntax: *element*.**Remove**
-
-> AI生成
-
-> AI生成
-
-> AI生成
-
-> AI生成
+Syntax: _element_.**Remove**

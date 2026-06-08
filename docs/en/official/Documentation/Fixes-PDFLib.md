@@ -5,13 +5,13 @@ grand_parent: Documentation Development
 nav_order: 2
 permalink: /Documentation/Development/Fixes/PDFLib
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '2c13813c-1297-41a8-ae5f-0c0e19c30b1a'
-  PropagateID: '2c13813c-1297-41a8-ae5f-0c0e19c30b1a'
-  ReservedCode1: '5acd74e1-d41c-4f5b-a818-6473effb59eb'
-  ReservedCode2: '5acd74e1-d41c-4f5b-a818-6473effb59eb'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "2c13813c-1297-41a8-ae5f-0c0e19c30b1a"
+  PropagateID: "2c13813c-1297-41a8-ae5f-0c0e19c30b1a"
+  ReservedCode1: "5acd74e1-d41c-4f5b-a818-6473effb59eb"
+  ReservedCode2: "5acd74e1-d41c-4f5b-a818-6473effb59eb"
 ---
 
 # pdf-lib Patches
@@ -63,9 +63,9 @@ The root cause of the need for all these patches is the same: pdf-lib is designe
 **Fix.** A non-allocating short-circuit ladder:
 
 ```js
-if (n < 0x100)       return 1;
-if (n < 0x10000)     return 2;
-if (n < 0x1000000)   return 3;
+if (n < 0x100) return 1;
+if (n < 0x10000) return 2;
+if (n < 0x1000000) return 3;
 if (n < 0x100000000) return 4;
 return 4 + Math.ceil((32 - Math.clz32(Math.floor(n / 0x100000000))) / 8);
 ```
@@ -105,11 +105,13 @@ Both caches converge on the same `PDFName` instance per logical name. Direct `PD
 **Fix.** Eight methods are replaced with plain synchronous equivalents.
 
 Load side:
+
 - `PDFParser.parseDocument`, `parseDocumentSection`, `parseIndirectObjects`, `parseIndirectObject`
 - `PDFObjectStreamParser.parseIntoContext`
 - `PDFDocument.load` (static factory)
 
 Save side:
+
 - `PDFWriter.serializeToBuffer` (kept `async` because `ParallelStreamWriter.computeBufferSize` is genuinely async via `Promise.all` over libuv)
 - `PDFWriter.computeBufferSize` and `PDFStreamWriter.computeBufferSize`
 
@@ -158,4 +160,3 @@ The cross-reference stream's contents depend on byte offsets fixed in phase 3, s
 - [Paged.js Patches](/en/official/Documentation/Fixes-PagedJS) -- patches to the vendored paged.js bundle.
 - [PDF Generation](/en/official/Documentation/PDF-Generation) -- how these shims fit into the three-phase render pipeline and the overall data flow.
 
-> AI生成

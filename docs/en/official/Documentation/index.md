@@ -3,13 +3,13 @@ title: Documentation Development
 nav_order: 9
 permalink: /Documentation/Development/
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'eddfae78-b2f3-4098-a6a4-75fc157a3336'
-  PropagateID: 'eddfae78-b2f3-4098-a6a4-75fc157a3336'
-  ReservedCode1: '6eb77f2c-0a24-4ce4-a787-32661f2beb28'
-  ReservedCode2: '6eb77f2c-0a24-4ce4-a787-32661f2beb28'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "eddfae78-b2f3-4098-a6a4-75fc157a3336"
+  PropagateID: "eddfae78-b2f3-4098-a6a4-75fc157a3336"
+  ReservedCode1: "6eb77f2c-0a24-4ce4-a787-32661f2beb28"
+  ReservedCode2: "6eb77f2c-0a24-4ce4-a787-32661f2beb28"
 ---
 
 # Documentation Development
@@ -38,10 +38,9 @@ Phases 1--6 produce the online tree (`_site/`). Phase 7 mirrors it into a `file:
 - [Building and Deployment](/en/official/Documentation/Building) --- the day-to-day workflow for editing content: requirements, building, serving locally, link checking, Mermaid diagrams, screenshots, and the GitHub Pages deployment.
 - [Tools and Scripts](/en/official/Documentation/Tools) --- one-line-per-tool reference for every script, batch file, and CLI flag exposed by the documentation toolchain (intended audience: doc contributors).
 - [tbdocs Builder](/en/official/Documentation/Builder) --- detailed technical documentation for the `tbdocs` static site generator that lives under [`builder/`](https://github.com/twinbasic/documentation/tree/main/builder). Read this when modifying the build pipeline itself. Sub-pages:
-    - [Pipeline Stages](/en/official/Documentation/Pipeline-Stages) --- per-stage interface reference: function signatures, reads/writes, and every exported symbol.
-    - [Book Configuration](/en/official/Documentation/Book-Configuration) --- `_book.yml` key reference for the PDF chapter manifest.
-    - [Extending the Builder](/en/official/Documentation/Extending) --- tutorial for adding a new pipeline stage or a markdown-it plugin.
+  - [Pipeline Stages](/en/official/Documentation/Pipeline-Stages) --- per-stage interface reference: function signatures, reads/writes, and every exported symbol.
+  - [Book Configuration](/en/official/Documentation/Book-Configuration) --- `_book.yml` key reference for the PDF chapter manifest.
+  - [Extending the Builder](/en/official/Documentation/Extending) --- tutorial for adding a new pipeline stage or a markdown-it plugin.
 - [PDF Generation](/en/official/Documentation/PDF-Generation) --- internals of the PDF renderer: `render-book.mjs`, paged.browser.js, and the pdf-lib shims.
 - [Library Patches](/en/official/Documentation/Fixes) --- every modification to `paged.browser.js` and the `fast-*.mjs` pdf-lib shims: upstream problem, applied fix, and mechanism.
 
-> AI生成
