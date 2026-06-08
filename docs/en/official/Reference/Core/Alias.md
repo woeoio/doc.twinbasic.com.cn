@@ -3,6 +3,7 @@ title: Alias
 parent: Statements
 permalink: /tB/Core/Alias
 ---
+
 # Alias
 
 Declares an alternative name for an intrinsic type, user-defined [**Type**](/en/official/Reference/Core/Type), [**Interface**](/en/official/Reference/Core/Interface), or another **Alias**. The alias and the original type are interchangeable --- assigning between them is not a type mismatch. Comparable to `typedef` in C/C++.
@@ -12,18 +13,19 @@ The **Alias** statement is a twinBASIC extension. It has no equivalent in classi
 :::
 
 Syntax:
-> [ **Public** \| **Private** ] **Alias** *aliasname* **As** *type*
+
+> [ **Public** \| **Private** ] **Alias** _aliasname_ **As** _type_
 
 **Public**
-: *optional* The alias is exported to the type library of an ActiveX DLL or control, so consumers in other projects see *aliasname* itself.
+: _optional_ The alias is exported to the type library of an ActiveX DLL or control, so consumers in other projects see _aliasname_ itself.
 
 **Private**
-: *optional* The alias is visible only within the project. Usages of a **Private** alias are replaced with the underlying *type* during compilation, so *aliasname* never appears in the project's type library.
+: _optional_ The alias is visible only within the project. Usages of a **Private** alias are replaced with the underlying _type_ during compilation, so _aliasname_ never appears in the project's type library.
 
-*aliasname*
+_aliasname_
 : The name of the alias. Must be a valid twinBASIC identifier.
 
-*type*
+_type_
 : The original type. May be an intrinsic type, a user-defined [**Type**](/en/official/Reference/Core/Type), an [**Interface**](/en/official/Reference/Core/Interface), or another **Alias**.
 
 **Alias** statements are valid only in `.twin` source files (not legacy `.bas` or `.cls` files), and must appear at file scope --- outside of [**Module**](/en/official/Reference/Core/Module) and [**Class**](/en/official/Reference/Core/Class) blocks, alongside [**Interface**](/en/official/Reference/Core/Interface) and [**CoClass**](/en/official/Reference/Core/CoClass) declarations.

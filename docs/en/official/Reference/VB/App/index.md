@@ -22,7 +22,6 @@ App.HelpFile = App.Path & "\help.chm"
 
 Most properties are read-only and are populated from the project settings (compiled into the executable's Win32 `VERSIONINFO` resource) at build time. The few read/write properties --- [**Title**](#title) and [**HelpFile**](#helpfile) --- let code change a small amount of run-time state that other parts of the runtime (notably the form caption defaults and the **F1** help dispatcher) consult.
 
-
 ## Singleton and access
 
 **App** is not creatable: there is no `New App` and no public coclass to instantiate. The runtime exposes the singleton through the [**App**](/en/official/Reference/VB/Global/#app) property on the [**Global**](/en/official/Reference/VB/Global/) app-object, which is itself accessible without qualification. References returned by **App** are cached and stable for the lifetime of the process.
@@ -35,7 +34,7 @@ Most properties are read-only and are populated from the project settings (compi
 - [**ModulePath**](#modulepath) returns the full path to the EXE itself (e.g. `"C:\Program Files\MyApp\MyApp.exe"`).
 - [**EXEName**](#exename) returns the EXE's base name without the extension (e.g. `"MyApp"`).
 
-When the project is running inside the twinBASIC IDE --- `App.IsInIDE` is **True** --- [**Path**](#path) is the folder of the *project file* rather than of a compiled EXE, so it remains useful as a "where the application is" anchor for opening relative resources at design time.
+When the project is running inside the twinBASIC IDE --- `App.IsInIDE` is **True** --- [**Path**](#path) is the folder of the _project file_ rather than of a compiled EXE, so it remains useful as a "where the application is" anchor for opening relative resources at design time.
 
 [**LastBuildPath**](#lastbuildpath) is a twinBASIC-specific extension that records the path the most recent IDE build wrote its EXE to --- useful for build scripts that need to chain steps after an IDE build.
 
@@ -43,7 +42,7 @@ When the project is running inside the twinBASIC IDE --- `App.IsInIDE` is **True
 
 The version-info properties read straight from the EXE's `VERSIONINFO` resource:
 
-- [**Major**](#major), [**Minor**](#minor), [**Revision**](#revision), and [**Build**](#build) -- the four parts of the four-part version number set in the project's *Make* tab.
+- [**Major**](#major), [**Minor**](#minor), [**Revision**](#revision), and [**Build**](#build) -- the four parts of the four-part version number set in the project's _Make_ tab.
 - [**Comments**](#comments), [**CompanyName**](#companyname), [**FileDescription**](#filedescription), [**LegalCopyright**](#legalcopyright), [**LegalTrademarks**](#legaltrademarks), and [**ProductName**](#productname) -- the standard text fields of the same resource.
 - [**Title**](#title) -- the friendly application title shown in tasklist and message-box defaults; readable and writable.
 
@@ -53,7 +52,7 @@ The version-info properties read straight from the EXE's `VERSIONINFO` resource:
 
 ### Build
 
-The **Build** component of the application's four-part version number, as set on the project's *Make* tab. **Integer**, read-only.
+The **Build** component of the application's four-part version number, as set on the project's _Make_ tab. **Integer**, read-only.
 
 ### Comments
 
@@ -229,7 +228,7 @@ Reserved for compatibility with VB6; not currently implemented in twinBASIC.
 Reserved for compatibility with VB6; not currently implemented in twinBASIC.
 :::
 
-Syntax: *object*.**LogEvent** *LogBuffer*, *EventType*
+Syntax: _object_.**LogEvent** _LogBuffer_, _EventType_
 
 ### StartLogging
 
@@ -237,4 +236,4 @@ Syntax: *object*.**LogEvent** *LogBuffer*, *EventType*
 Reserved for compatibility with VB6; not currently implemented in twinBASIC.
 :::
 
-Syntax: *object*.**StartLogging** *LogTarget*, *LogModes*
+Syntax: _object_.**StartLogging** _LogTarget_, _LogModes_
