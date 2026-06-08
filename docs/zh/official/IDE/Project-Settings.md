@@ -6,17 +6,17 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'a3d34879-6563-4227-a8c7-b67540bef851'
-  PropagateID: 'a3d34879-6563-4227-a8c7-b67540bef851'
-  ReservedCode1: 'f4bc4609-d61b-43ad-a19e-39f1c4fe72ed'
-  ReservedCode2: 'f4bc4609-d61b-43ad-a19e-39f1c4fe72ed'
+  ProduceID: 'ef1b8f9d-f4cf-441e-bc94-6563f8902dd2'
+  PropagateID: 'ef1b8f9d-f4cf-441e-bc94-6563f8902dd2'
+  ReservedCode1: '3a136cdd-adf3-42a6-9f95-6cb5165926a4'
+  ReservedCode2: '3a136cdd-adf3-42a6-9f95-6cb5165926a4'
 ---
 
 # 项目设置
 
 以下列出了项目设置，顺序与项目设置对话框中显示的相同。各设置说明将在后续补充。目前请参考项目设置对话框中内置的描述：
 
-![A fragment of the Project Settings dialog, indicating a description of a setting](Images/project settings description text.png)
+![项目设置对话框片段，指示设置的描述信息](Images/project settings description text.png)
 ## 项目名称
 
 ## 项目描述
@@ -31,9 +31,9 @@ AIGC:
 
 ## 库引用
 
-![Library References - Project Settings](Images/ProjectSettings_LibraryReferences.png "Library References - Project Settings")
+![库引用 - 项目设置](Images/ProjectSettings_LibraryReferences.png "库引用 - 项目设置")
 
-![Available COM References - Project Settings](Images/ProjectSettings_AvailableCOMReferences.png "Available COM References - Project Settings")
+![可用 COM 引用 - 项目设置](Images/ProjectSettings_AvailableCOMReferences.png "可用 COM 引用 - 项目设置")
 
 参见[包](/official/Features/Packages/)
 

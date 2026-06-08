@@ -6,27 +6,27 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '401ec886-c346-4cd1-ac7a-53c40334ba14'
-  PropagateID: '401ec886-c346-4cd1-ac7a-53c40334ba14'
-  ReservedCode1: '8a9d783b-520f-4abd-8fab-e8c8a4bf7c18'
-  ReservedCode2: '8a9d783b-520f-4abd-8fab-e8c8a4bf7c18'
+  ProduceID: '318b5ecc-7503-49d8-8b52-d410ecc3a4ab'
+  PropagateID: '318b5ecc-7503-49d8-8b52-d410ecc3a4ab'
+  ReservedCode1: 'aa82672c-89ac-4145-af59-c4f064057f92'
+  ReservedCode2: 'aa82672c-89ac-4145-af59-c4f064057f92'
 ---
 
 # 项目资源管理器
 
-![Project Explorer](Images/ProjectExplorer.png "Project Explorer")
-![Project Explorer Sample](Images/ProjectExplorer_Sample.png "Project Explorer Sample")
+![项目资源管理器](Images/ProjectExplorer.png "项目资源管理器")
+![项目资源管理器示例](Images/ProjectExplorer_Sample.png "项目资源管理器示例")
 
-![Folder](Images/Folder.png "Folder") ImportedTypeLibraries
-![Folder](Images/Folder.png "Folder") Miscellaneous
-![Folder](Images/Folder.png "Folder") Packages
-![Folder](Images/Folder.png "Folder") References
-![Folder](Images/Folder.png "Folder") Resources
-![Folder](Images/Folder.png "Folder") Sources
+![文件夹](Images/Folder.png "文件夹") 导入的类型库
+![文件夹](Images/Folder.png "文件夹") 杂项
+![文件夹](Images/Folder.png "文件夹") 包
+![文件夹](Images/Folder.png "文件夹") 引用
+![文件夹](Images/Folder.png "文件夹") 资源
+![文件夹](Images/Folder.png "文件夹") 源文件
 
 项目打开时会出现上下文图标。
 
-![Project Explorer Header](Images/ProjectExplorer_Header.png "Project Explorer Header")
+![项目资源管理器标题栏](Images/ProjectExplorer_Header.png "项目资源管理器标题栏")
 
 ## ![](Images/Settings.png) 项目设置
 
@@ -41,9 +41,9 @@ AIGC:
 
 ## 右键 - 添加
 
-![Right-Click Add](Images/RightClick-Add.png "Right-Click Add")
+![右键 - 添加](Images/RightClick-Add.png "右键 - 添加")
 
-- ![Folder](Images/Folder.png "Folder") 添加文件夹
+- ![文件夹](Images/Folder.png "文件夹") 添加文件夹
 - ![](Images/tB-Green.png) 添加 Windows 窗体
 - ![](Images/tB-Green.png) 添加 Windows MDI 窗体
 - ![](Images/tB-Green.png) 添加 Windows UserControl
@@ -56,21 +56,21 @@ AIGC:
 
 ---
 
-- ![Module](Images/tB-Red.png "Module") 添加模块 (.TWIN 支持 Unicode)
-- ![Class](Images/tB-Red.png "Class") 添加类 (.TWIN 支持 Unicode)
+- ![模块](Images/tB-Red.png "模块") 添加模块 (.TWIN 支持 Unicode)
+- ![类](Images/tB-Red.png "类") 添加类 (.TWIN 支持 Unicode)
 
 ---
 
-- ![Module](Images/tB-Blue.png "Module (BAS)") 添加模块 (.BAS)
-- ![Class](Images/tB-Orange.png "Class (CLS)") 添加类 (.CLS)
+- ![模块](Images/tB-Blue.png "模块 (BAS)") 添加模块 (.BAS)
+- ![类](Images/tB-Orange.png "类 (CLS)") 添加类 (.CLS)
 
 ---
 
-- ![File](Images/File-Green.png "File") 添加其他文件
+- ![文件](Images/File-Green.png "文件") 添加其他文件
 
 ---
 
-- ![File](Images/File-Green.png "File") 导入
+- ![文件](Images/File-Green.png "文件") 导入
 
 ---
 
@@ -89,7 +89,7 @@ AIGC:
 [tbReport](/official/IDE/tbReport)
 
 ## ![](Images/tB-Green.png) CustomControls 窗体
-![Add CustomControls Form Popup](Images/RightClick-Add-CustomControlsForm-Popup.png "Add CustomControls Form Popup")
+![添加 CustomControls 窗体弹窗](Images/RightClick-Add-CustomControlsForm-Popup.png "添加 CustomControls 窗体弹窗")
 
 ## ![](Images/tB-Red.png) 模块
 ## ![](Images/tB-Red.png) 类
@@ -97,7 +97,7 @@ AIGC:
 ## ![](Images/File-Green.png) 导入
 ## 资源：视觉样式清单
 
-参见 ![Folder](Images/Folder.png "Folder") `/.../Resources/MANIFEST/#1.xml`
+参见 ![文件夹](Images/Folder.png "文件夹") `/.../Resources/MANIFEST/#1.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -126,7 +126,7 @@ AIGC:
 
 ## 资源：字符串表
 
-参见 ![Folder](Images/Folder.png "Folder") `/.../Resources/STRING/Strings.json`
+参见 ![文件夹](Images/Folder.png "文件夹") `/.../Resources/STRING/Strings.json`
 
 ```json
 [
@@ -151,7 +151,7 @@ AIGC:
 
 ## 资源：MESSAGETABLE
 
-参见 ![Folder](Images/Folder.png "Folder") `/.../Resources/MESSAGETABLE/Strings.json`
+参见 ![文件夹](Images/Folder.png "文件夹") `/.../Resources/MESSAGETABLE/Strings.json`
 
 ```json
 {

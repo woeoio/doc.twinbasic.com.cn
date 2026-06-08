@@ -6,29 +6,29 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '3669f67b-e92c-4be2-bc68-1e4d27a55b59'
-  PropagateID: '3669f67b-e92c-4be2-bc68-1e4d27a55b59'
-  ReservedCode1: '7b4e04d8-6f84-4014-a51f-8a42eef7e6b2'
-  ReservedCode2: '7b4e04d8-6f84-4014-a51f-8a42eef7e6b2'
+  ProduceID: '8e292b47-0658-403a-908e-da210629887b'
+  PropagateID: '8e292b47-0658-403a-908e-da210629887b'
+  ReservedCode1: '6acc9563-c4b7-4a1f-a52a-98704a1fe7fc'
+  ReservedCode2: '6acc9563-c4b7-4a1f-a52a-98704a1fe7fc'
 ---
 
 # 状态栏
 
-![Status Bar](Images/StatusBar.png "Status Bar")
+![状态栏](Images/StatusBar.png "状态栏")
 
 状态栏位于 IDE 窗口底部，显示后端服务健康状态、活跃许可证层级和社区资源快速访问链接的一目了然的信息。
 
 ## 服务
 
-![Services Unavailable](Images/Services_Unavailable.png "Services Unavailable")
+![服务不可用](Images/Services_Unavailable.png "服务不可用")
 
-![Services](Images/Services_Unavailable_Tooltip.png "Services Unavailable Tooltip")
+![服务不可用提示](Images/Services_Unavailable_Tooltip.png "服务不可用提示")
 
-![Services Limited](Images/Services_Limited.png "Services Limited")
+![服务受限](Images/Services_Limited.png "服务受限")
 
-![Services Operational](Images/Services_Operational.png "Services Operational")
+![服务正常](Images/Services_Operational.png "服务正常")
 
-![Services](Images/Services_Operational_Tooltip.png "Services Operational Tooltip")
+![服务正常提示](Images/Services_Operational_Tooltip.png "服务正常提示")
 
 编译器：已断开/运行中
 
@@ -44,7 +44,7 @@ LSP：已断开/运行中
 
 - [预购](https://twinbasic.com/preorder.html)
 
-![Licence - Community Edition](Images/Licence_CommunityEdition.png "Licence - Community Edition")
+![许可证 - 社区版](Images/Licence_CommunityEdition.png "许可证 - 社区版")
 
 - 社区版
 - 专业版
@@ -52,7 +52,7 @@ LSP：已断开/运行中
 
 ## 链接
 
-![Links](Images/Links.png "Links")
+![链接](Images/Links.png "链接")
 
 - https://ko-fi.com/twinbasic
 - https://discord.com/invite/UaW9GgKKuE

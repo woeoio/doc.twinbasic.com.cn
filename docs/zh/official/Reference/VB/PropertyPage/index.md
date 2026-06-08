@@ -2,35 +2,43 @@
 title: PropertyPage
 parent: VB Package
 permalink: /tB/Packages/VB/PropertyPage/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '356a828a-f986-47dd-9627-167453522d7e'
+  PropagateID: '356a828a-f986-47dd-9627-167453522d7e'
+  ReservedCode1: 'a1e5f9a1-fd53-40f8-8feb-5ad2d34d3125'
+  ReservedCode2: 'a1e5f9a1-fd53-40f8-8feb-5ad2d34d3125'
 ---
 
-# PropertyPage class
+# PropertyPage 类
 
-A **PropertyPage** is a container that backs a single tab of a COM property-page dialog --- the popup invoked from the **(Custom)** entry on an ActiveX control's property browser. It exposes the **IPropertyPage2** COM interface so that any host that supports ActiveX property pages (the twinBASIC IDE, classic VB6, Office, …) can place it inside its own property-sheet frame, give it the controls the user is editing, and apply the page's changes back to them.
+**PropertyPage**是一个容器，支撑COM属性页对话框的单个标签页——从ActiveX控件属性浏览器上的**(Custom)**条目调用的弹出窗口。它暴露**IPropertyPage2** COM接口，以便任何支持ActiveX属性页的主机（twinBASIC IDE、经典VB6、Office等）可以将其放置在自己的属性表框架内，将要编辑的控件传递给它，并将页面的更改应用回它们。
 
-Designing a property page is much like designing a small dialog [**Form**](/en/official/Reference/VB/Form/): drop child controls onto it, write event handlers, and use its drawing surface freely. What sets it apart is the lifecycle, which is controlled by the host rather than by the application:
+设计属性页与设计小型对话框[**Form**](/official/Reference/VB/Form/)非常相似：将子控件放到上面，编写事件处理程序，自由使用其绘图表面。它与众不同之处在于生命周期，由主机而非应用程序控制：
 
-1. The host instantiates the property-page class once per dialog.
-2. The host calls **IPropertyPage2.SetObjects** to pass the selected ActiveX controls. The framework stores them in [**SelectedControls**](#selectedcontrols) and raises [**SelectionChanged**](#selectionchanged).
-3. As the user edits values, the page handler sets [**Changed**](#changed) = **True** to enable the dialog's *Apply* button.
-4. When the user clicks *OK* or *Apply*, the host raises [**ApplyChanges**](#applychanges) so the page can write the new values back to [**SelectedControls**](#selectedcontrols).
-5. On dialog close the framework raises [**Terminate**](#terminate) and releases the class instance.
+1. 主机每个对话框实例化一次属性页类。
+2. 主机调用**IPropertyPage2.SetObjects**传递选定的ActiveX控件。框架将其存储在[**SelectedControls**](#selectedcontrols)中并引发[**SelectionChanged**](#selectionchanged)。
+3. 当用户编辑值时，页面处理程序设置[**Changed**](#changed) = **True**以启用对话框的*Apply*按钮。
+4. 当用户点击*OK*或*Apply*时，主机引发[**ApplyChanges**](#applychanges)，以便页面可以将新值写回到[**SelectedControls**](#selectedcontrols)。
+5. 对话框关闭时，框架引发[**Terminate**](#terminate)并释放类实例。
 
-The default property is [**Controls**](#controls); the default-designer event is [**SelectionChanged**](#selectionchanged).
+默认属性为[**Controls**](#controls)；默认设计器事件为[**SelectionChanged**](#selectionchanged)。
 
 ```vb
 Private Sub PropertyPage_SelectionChanged()
-    ' Mirror the first selected control's properties into the editor controls.
+    ' 将第一个选定控件的属性镜像到编辑器控件中。
     txtCaption.Text = SelectedControls(0).Caption
 End Sub
 
 Private Sub txtCaption_Change()
-    ' Any user edit marks the page dirty so the host enables Apply.
+    ' 任何用户编辑都将页面标记为脏，使主机启用Apply。
     Me.Changed = True
 End Sub
 
 Private Sub PropertyPage_ApplyChanges()
-    ' Write the editor values back to every selected control.
+    ' 将编辑器值写回到每个选定控件。
     Dim ctl As Object
     For Each ctl In SelectedControls
         ctl.Caption = txtCaption.Text
@@ -39,77 +47,77 @@ End Sub
 ```
 
 
-## Communicating with the host
+## 与主机通信
 
-[**SelectedControls**](#selectedcontrols) is a read-only collection of the controls the host wants this tab to edit. The host populates it before raising [**SelectionChanged**](#selectionchanged); the page keeps the references for as long as it is alive. The collection supports indexed access (`SelectedControls(0)`), enumeration (`For Each ctl In SelectedControls`), and a **Count** member.
+[**SelectedControls**](#selectedcontrols)是主机希望此标签页编辑的控件的只读集合。主机在引发[**SelectionChanged**](#selectionchanged)之前填充它；页面在其存活期间保持这些引用。集合支持索引访问（`SelectedControls(0)`）、枚举（`For Each ctl In SelectedControls`）和**Count**成员。
 
-[**Changed**](#changed) is a two-way flag the page uses to talk to the host. Setting it to **True** enables the host's *Apply* button; the framework notifies the host immediately through **IPropertyPageSite.OnStatusChange**. Setting it to **False** clears the flag --- the framework does this automatically after raising [**ApplyChanges**](#applychanges).
+[**Changed**](#changed)是页面用于与主机通信的双向标志。设置为**True**启用主机的*Apply*按钮；框架通过**IPropertyPageSite.OnStatusChange**立即通知主机。设置为**False**清除标志——框架在引发[**ApplyChanges**](#applychanges)之后自动执行此操作。
 
-[**EditProperty**](#editproperty) is declared for VB6 compatibility but is not currently raised by the runtime; pages that want to react to a per-property edit request from the host need to wait until that wiring lands.
+[**EditProperty**](#editproperty)声明用于VB6兼容性，但运行时当前未引发；希望对来自主机的按属性编辑请求做出反应的页面需要等待该连接实现。
 
-[**ValidateControls**](#validatecontrols) explicitly fires the focused child control's **Validate** event from code; it raises run-time error 380 if validation fails. Useful in [**ApplyChanges**](#applychanges) to refuse to apply when an editor's value is malformed.
+[**ValidateControls**](#validatecontrols)从代码显式触发焦点子控件的**Validate**事件；如果验证失败，会引发运行时错误380。在[**ApplyChanges**](#applychanges)中用于在编辑器值格式错误时拒绝应用时很有用。
 
-## Standard sizes
+## 标准大小
 
-The VB6 property-page dialog frame draws each tab at one of two standard sizes --- small (250 × 62 dialog units) or large (250 × 110 dialog units) --- chosen by the host based on the [**StandardSize**](#standardsize) of the largest page in the sheet. Assigning [**StandardSize**](#standardsize) at design time tells the host which size to request; reading it at run time returns the size the page is actually drawn at, or **StandardSizeCustom** when [**Width**](#width) and [**Height**](#height) have been changed away from either preset. The value is in **EnumStandardSize** units: **StandardSizeCustom** (0), **StandardSizeSmall** (1), or **StandardSizeLarge** (2).
+VB6属性页对话框框架以两种标准大小之一绘制每个标签页——小型（250 × 62对话框单位）或大型（250 × 110对话框单位）——由主机根据属性表中最大页面的[**StandardSize**](#standardsize)选择。在设计时赋值[**StandardSize**](#standardsize)告诉主机请求哪种大小；在运行时读取它返回页面实际绘制的大小，当[**Width**](#width)和[**Height**](#height)已从任一预设更改时返回**StandardSizeCustom**。值以**EnumStandardSize**单位表示：**StandardSizeCustom** (0)、**StandardSizeSmall** (1)或**StandardSizeLarge** (2)。
 
-## Drawing surface
+## 绘图表面
 
-A **PropertyPage** is a graphics surface in its own right. The full set of VB6 drawing primitives --- [**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and the [**Print**](#print) statement --- write to its device context, using [**ForeColor**](#forecolor), [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle), [**DrawWidth**](#drawwidth), [**DrawMode**](#drawmode), and [**DrawStyle**](#drawstyle) for the pen and fill, and [**Font**](#font) for text. The current pen position is tracked by [**CurrentX**](#currentx) and [**CurrentY**](#currenty); [**TextWidth**](#textwidth) and [**TextHeight**](#textheight) measure a string in the current font; [**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert single coordinates between scale modes.
+**PropertyPage**本身就是一个图形表面。完整的VB6绘图原语集——[**Cls**](#cls)、[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)和[**Print**](#print)语句——写入其设备上下文，使用[**ForeColor**](#forecolor)、[**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle)、[**DrawWidth**](#drawwidth)、[**DrawMode**](#drawmode)和[**DrawStyle**](#drawstyle)设置画笔和填充，使用[**Font**](#font)设置文本。当前画笔位置由[**CurrentX**](#currentx)和[**CurrentY**](#currenty)跟踪；[**TextWidth**](#textwidth)和[**TextHeight**](#textheight)以当前字体测量字符串；[**ScaleX**](#scalex)和[**ScaleY**](#scaley)在比例模式之间转换单个坐标。
 
-The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/en/official/Reference/VB/Form/). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the page keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
+坐标系由[**ScaleMode**](#scalemode)、[**ScaleLeft**](#scaleleft)、[**ScaleTop**](#scaletop)、[**ScaleWidth**](#scalewidth)和[**ScaleHeight**](#scaleheight)控制，与[**Form**](/official/Reference/VB/Form/)上的方式完全相同。[**AutoRedraw**](#autoredraw)控制绘制输出是否在重绘之间持久保存——当**False**（默认）时，[**Paint**](#paint)事件必须在每次失效时重绘；当**True**时，页面保持一个在失效期间存活的离屏缓冲区，**Paint**事件被禁止。
 
-## Controls and containers
+## 控件和容器
 
-[**Controls**](#controls) is the collection of every child control on this page, indexable by name or zero-based position. The page is enumerable directly (`For Each ctrl In Me`) --- the [**Count**](#count) and [**\_Default**](#controls) members forward to it.
+[**Controls**](#controls)是此页面上每个子控件的集合，可通过名称或从零开始的索引访问。页面可直接枚举（`For Each ctrl In Me`）——[**Count**](#count)和[**\_Default**](#controls)成员转发给它。
 
-[**ActiveControl**](#activecontrol) returns the focused child, or **Nothing** if no control on this page has the focus. [**SetFocus**](#setfocus) gives the focus to the page itself, which forwards it to the page's tab order. [**KeyPreview**](#keypreview) routes keystrokes through the page's [**KeyDown**](#keydown), [**KeyUp**](#keyup), and [**KeyPress**](#keypress) events *before* the focused control sees them --- useful for handling **Escape** or page-wide hotkeys.
+[**ActiveControl**](#activecontrol)返回获得焦点的子控件，如果此页面上没有控件获得焦点则为**Nothing**。[**SetFocus**](#setfocus)将焦点给予页面本身，然后转发到页面的Tab顺序。[**KeyPreview**](#keypreview)将按键通过页面的[**KeyDown**](#keydown)、[**KeyUp**](#keyup)和[**KeyPress**](#keypress)事件路由，在焦点控件看到它们*之前*——适用于处理**Escape**或页面级快捷键。
 
-## Properties
+## 属性
 
 ### ActiveControl
 
-The control on this page that currently has the input focus, as a **Control** object, or **Nothing** when no control on this page is focused. Read-only.
+此页面上当前具有输入焦点的控件，作为**Control**对象，当此页面上没有控件获得焦点时为**Nothing**。只读。
 
 ### Appearance
 
-A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。
 
 ::: info
-Retained for VB6 compatibility; the property has no observable effect on a property page.
+保留用于VB6兼容性；此属性对属性页没有可观察效果。
 :::
 
 ### AutoRedraw
 
-Whether drawing performed on the page persists across invalidations. **Boolean**, default **False**.
+在页面上执行的绘制是否在失效之间持久保存。**Boolean**，默认**False**。
 
-When **False**, drawing primitives --- [**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and [**Print**](#print) --- paint directly to the screen and the page must redraw them in its [**Paint**](#paint) event whenever the affected area is invalidated. When **True**, the page keeps an off-screen bitmap, drawing primitives paint into it (and immediately to the screen), the bitmap survives invalidations, and the **Paint** event is suppressed.
+当**False**时，绘图原语——[**Cls**](#cls)、[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)和[**Print**](#print)——直接绘制到屏幕，页面必须在其[**Paint**](#paint)事件中在受影响区域失效时重绘它们。当**True**时，页面保持一个离屏位图，绘图原语绘制到其中（并同时到屏幕），位图在失效期间存活，**Paint**事件被禁止。
 
 ### BackColor
 
-The background colour of the page's client area, as an **OLE_COLOR**. Defaults to the system 3-D face colour.
+页面客户区的背景颜色，作为**OLE_COLOR**。默认为系统3-D表面颜色。
 
 ### Caption
 
-The text the host displays on this page's tab in the property-sheet frame. **String**.
+主机在属性表框架中此页面标签上显示的文本。**String**。
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
-The framework reads the current value when the host calls **IPropertyPage2.GetPageInfo**, so changes made before the page is activated take effect; changes made afterwards are ignored by most hosts.
+框架在主机调用**IPropertyPage2.GetPageInfo**时读取当前值，因此在页面激活之前所做的更改会生效；之后所做的更改被大多数主机忽略。
 
 ### Changed
 
-Whether the page has unapplied edits. **Boolean**, default **False**.
+页面是否有未应用的编辑。**Boolean**，默认**False**。
 
-Setting **Changed** to **True** notifies the host through **IPropertyPageSite.OnStatusChange** that the page is dirty --- the host normally enables its *Apply* button as a result. The framework automatically clears the flag back to **False** before raising [**ApplyChanges**](#applychanges), so handlers do not need to reset it themselves.
+将**Changed**设置为**True**通过**IPropertyPageSite.OnStatusChange**通知主机页面为脏——主机通常会启用其*Apply*按钮。框架在引发[**ApplyChanges**](#applychanges)之前自动将标志清除回**False**，因此处理程序无需自行重置。
 
 ### ClipControls
 
-Whether child controls are clipped out of the page's drawing region during paint. **Boolean**, default **True**. Read-only at run time --- set at design time.
+在绘制期间是否将子控件从页面的绘图区域中裁剪出来。**Boolean**，默认**True**。运行时只读——在设计时设置。
 
 ### Controls
 
-The collection of every control hosted by this page, indexable by control name or zero-based position. **Default property.** Read-only --- controls are added to the collection by the runtime, not by user code.
+此页面承载的每个控件的集合，可通过控件名或从零开始的索引访问。**默认属性。**只读——控件由运行时添加到集合中，而非用户代码。
 
 ```vb
 Dim ctrl As Control
@@ -120,185 +128,185 @@ Next
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a property page. Always **vbPropertyPage**.
+标识此控件为属性页的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbPropertyPage**。
 
 ### Count
 
-The number of controls in [**Controls**](#controls), as a **Long**. Read-only. Equivalent to `Me.Controls.Count`.
+[**Controls**](#controls)中的控件数量，作为**Long**。只读。等同于`Me.Controls.Count`。
 
 ### CurrentX
 
-The horizontal pen position, in [**ScaleMode**](#scalemode) units, used by drawing primitives that omit a starting coordinate (for example, [**Print**](#print) and the rectangle form of [**Line**](#line)). **Double**.
+水平画笔位置，以[**ScaleMode**](#scalemode)单位，用于省略起始坐标的绘图原语（例如[**Print**](#print)和[**Line**](#line)的矩形形式）。**Double**。
 
 ### CurrentY
 
-The vertical pen position, in [**ScaleMode**](#scalemode) units, used by drawing primitives that omit a starting coordinate. **Double**.
+垂直画笔位置，以[**ScaleMode**](#scalemode)单位，用于省略起始坐标的绘图原语。**Double**。
 
 ### DpiScaleFactorX
 
-The horizontal DPI scale factor of the monitor the page is currently on, as a **Double**. `1.0` at 96 DPI, `1.25` at 120 DPI, `1.5` at 144 DPI, and so on. Read-only.
+页面当前所在显示器的水平DPI缩放因子，作为**Double**。96 DPI时为`1.0`，120 DPI时为`1.25`，144 DPI时为`1.5`，依此类推。只读。
 
 ### DpiScaleFactorY
 
-The vertical DPI scale factor of the monitor the page is currently on. Currently always equal to [**DpiScaleFactorX**](#dpiscalefactorx). Read-only.
+页面当前所在显示器的垂直DPI缩放因子。当前始终等于[**DpiScaleFactorX**](#dpiscalefactorx)。只读。
 
 ### DrawMode
 
-The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen**.
+绘图原语在将画笔与目标组合时应用的光栅操作。[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员，默认**vbCopyPen**。
 
 ### DrawStyle
 
-The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
+绘图原语使用的画笔线型。[**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants)的成员：**vbSolid**（默认）、**vbDash**、**vbDot**、**vbDashDot**、**vbDashDotDot**、**vbInvisible**或**vbInsideSolid**。
 
 ### DrawWidth
 
-The pen width in pixels for drawing primitives. **Long**, default `1`. Widths greater than 1 force [**DrawStyle**](#drawstyle) back to **vbSolid** (a Win32 GDI limitation).
+绘图原语的画笔宽度（以像素为单位）。**Long**，默认`1`。宽度大于1时强制[**DrawStyle**](#drawstyle)回到**vbSolid**（Win32 GDI限制）。
 
 ### FillColor
 
-The fill colour for closed shapes drawn by [**Circle**](#circle) and the rectangle form of [**Line**](#line). **OLE_COLOR**, default `0` (black). Used only when [**FillStyle**](#fillstyle) is not **vbFSTransparent**.
+由[**Circle**](#circle)和[**Line**](#line)的矩形形式绘制的闭合形状的填充颜色。**OLE_COLOR**，默认`0`（黑色）。仅在[**FillStyle**](#fillstyle)不为**vbFSTransparent**时使用。
 
 ### FillStyle
 
-The fill pattern for closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
+闭合形状的填充图案。[**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants)的成员：**vbFSSolid**、**vbFSTransparent**（默认）、**vbHorizontalLine**、**vbVerticalLine**、**vbUpwardDiagonal**、**vbDownwardDiagonal**、**vbCross**或**vbDiagonalCross**。
 
 ### Font
 
-The **StdFont** used by the [**Print**](#print) statement and other text drawing on this page. The convenience properties [**FontName**](#fontname), [**FontSize**](#fontsize), [**FontBold**](#fontbold), [**FontItalic**](#fontitalic), [**FontStrikethru**](#fontstrikethru), and [**FontUnderline**](#fontunderline) read or write the corresponding members of this object.
+此页面上[**Print**](#print)语句和其他文本绘制使用的**StdFont**。便捷属性[**FontName**](#fontname)、[**FontSize**](#fontsize)、[**FontBold**](#fontbold)、[**FontItalic**](#fontitalic)、[**FontStrikethru**](#fontstrikethru)和[**FontUnderline**](#fontunderline)读写此对象的相应成员。
 
 ### FontBold
 
-Shortcut for [**Font**](#font)`.Bold`. **Boolean**.
+[**Font**](#font)`.Bold`的快捷方式。**Boolean**。
 
 ### FontItalic
 
-Shortcut for [**Font**](#font)`.Italic`. **Boolean**.
+[**Font**](#font)`.Italic`的快捷方式。**Boolean**。
 
 ### FontName
 
-Shortcut for [**Font**](#font)`.Name`. **String**.
+[**Font**](#font)`.Name`的快捷方式。**String**。
 
 ### FontSize
 
-Shortcut for [**Font**](#font)`.Size` --- the point size. **Single**.
+[**Font**](#font)`.Size`的快捷方式——点大小。**Single**。
 
 ### FontStrikethru
 
-Shortcut for [**Font**](#font)`.Strikethrough`. **Boolean**.
+[**Font**](#font)`.Strikethrough`的快捷方式。**Boolean**。
 
 ### FontTransparent
 
-When **True** (default), text drawn on the page has a transparent background, leaving the underlying drawing visible behind it. When **False**, text is drawn over an opaque rectangle filled with [**BackColor**](#backcolor). **Boolean**.
+当**True**（默认）时，页面上绘制的文本具有透明背景，使底层绘制在文本后面可见。当**False**时，文本绘制在由[**BackColor**](#backcolor)填充的 opaque 矩形上。**Boolean**。
 
 ### FontUnderline
 
-Shortcut for [**Font**](#font)`.Underline`. **Boolean**.
+[**Font**](#font)`.Underline`的快捷方式。**Boolean**。
 
 ### ForeColor
 
-The pen colour used by [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), and the text drawn by [**Print**](#print). **OLE_COLOR**.
+[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)以及[**Print**](#print)绘制的文本使用的画笔颜色。**OLE_COLOR**。
 
 ### HasDC
 
-Whether the page keeps a private device context (`CS_OWNDC`) for its drawing surface. **Boolean**, always **True** on a property page. Read-only.
+页面是否为其绘图表面保持私有设备上下文（`CS_OWNDC`）。**Boolean**，在属性页上始终为**True**。只读。
 
 ### hDC
 
-The Win32 device context handle for the page, as a **LongPtr**. Read-only. Returns `0` when the underlying window has not yet been created. Useful for passing to GDI API calls.
+页面的Win32设备上下文句柄，作为**LongPtr**。只读。当底层窗口尚未创建时返回`0`。适用于传递给GDI API调用。
 
 ### Height
 
-The page's outer height, in twips by default (or in the calling code's **ScaleMode** units). **Double**. The host normally sizes the page itself based on [**StandardSize**](#standardsize); assigning **Height** explicitly switches to the custom size.
+页面的外部高度，默认以缇为单位（或以调用代码的**ScaleMode**单位）。**Double**。主机通常根据[**StandardSize**](#standardsize)设置页面大小；显式赋值**Height**切换到自定义大小。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the page has focus.
+标识应用程序帮助文件中主题的**Long**，当用户在页面具有焦点时按**F1**时检索。
 
 ### hWnd
 
-The Win32 window handle for the page, as a **LongPtr**. Read-only. Useful for passing to API functions.
+页面的Win32窗口句柄，作为**LongPtr**。只读。适用于传递给API函数。
 
 ### KeyPreview
 
-When **True**, the page's [**KeyDown**](#keydown), [**KeyUp**](#keyup), and [**KeyPress**](#keypress) events fire *before* the focused control receives the same keystroke. **Boolean**, default **False**. Useful for page-wide hotkeys; events still fire on the focused control afterwards.
+当**True**时，页面的[**KeyDown**](#keydown)、[**KeyUp**](#keyup)和[**KeyPress**](#keypress)事件在焦点控件收到相同按键*之前*触发。**Boolean**，默认**False**。适用于页面级快捷键；事件之后仍在焦点控件上触发。
 
 ### Left
 
-The horizontal position of the page's outer rectangle within the host's property-sheet frame, in twips. **Double**. Set by the host through **IPropertyPage2.Activate** and **Move**; rarely assigned from user code.
+页面外部矩形在主机属性表框架中的水平位置，以缇为单位。**Double**。由主机通过**IPropertyPage2.Activate**和**Move**设置；很少从用户代码赋值。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the page (and not over a child control with its own setting).
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针位于页面上（且不在有自己设置的子控件上）时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the page (and not over a child control with its own setting). A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
+当指针位于页面上（且不在有自己设置的子控件上）时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Name
 
-The unique design-time name of the property-page class. Read-only at run time. Also the class name of the generated property-page class.
+属性页类的唯一设计时名称。运行时只读。也是生成的属性页类的类名。
 
 ### OLEDropMode
 
-How the page responds to OLE drops. A restricted member of [**OLEDropConstants**](/en/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a property page.
+页面如何响应OLE放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants)的受限成员：**vbOLEDropNone**或**vbOLEDropManual**。属性页上不支持自动放置模式。
 
 ### Palette
 
 ::: info
-Reserved for compatibility with VB6's 256-colour palette feature; not currently implemented in twinBASIC.
+保留用于VB6的256色调色板功能的兼容性；twinBASIC中当前未实现。
 :::
 
 ### PaletteMode
 
 ::: info
-Reserved for compatibility with VB6's 256-colour palette feature; not currently implemented in twinBASIC.
+保留用于VB6的256色调色板功能的兼容性；twinBASIC中当前未实现。
 :::
 
 ### Picture
 
-A **StdPicture** drawn as the page's background. Painted before any drawing primitives or child controls. Assigning **Nothing** removes the background.
+作为页面背景绘制的**StdPicture**。在任何绘图原语或子控件之前绘制。赋值**Nothing**移除背景。
 
 ### PictureDpiScaling
 
-When **True**, [**Picture**](#picture) is scaled by the current DPI factor before drawing. **Boolean**, default **False**.
+当**True**时，[**Picture**](#picture)在绘制前按当前DPI因子缩放。**Boolean**，默认**False**。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
 ### ScaleHeight
 
-The height of the logical drawing rectangle, in [**ScaleMode**](#scalemode) units. **Double**. Setting it (or [**ScaleWidth**](#scalewidth), [**ScaleLeft**](#scaleleft), or [**ScaleTop**](#scaletop)) implicitly switches **ScaleMode** to **vbUser**.
+逻辑绘图矩形的高度，以[**ScaleMode**](#scalemode)单位。**Double**。设置它（或[**ScaleWidth**](#scalewidth)、[**ScaleLeft**](#scaleleft)或[**ScaleTop**](#scaletop)）会隐式将**ScaleMode**切换为**vbUser**。
 
 ### ScaleLeft
 
-The logical horizontal coordinate of the left edge of the page's client area, in [**ScaleMode**](#scalemode) units. **Double**. Default `0`.
+页面客户区左边缘的逻辑水平坐标，以[**ScaleMode**](#scalemode)单位。**Double**。默认`0`。
 
 ### ScaleMode
 
-The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser** (the four **Scale\*** properties define the rectangle).
+[**CurrentX**](#currentx)、[**CurrentY**](#currenty)、绘图原语、[**TextWidth**](#textwidth)和[**TextHeight**](#textheight)使用的度量单位。[**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员：**vbTwips**（默认）、**vbPoints**、**vbPixels**、**vbCharacters**、**vbInches**、**vbMillimeters**、**vbCentimeters**或**vbUser**（由四个**Scale\***属性定义矩形）。
 
 ### ScaleTop
 
-The logical vertical coordinate of the top edge of the page's client area, in [**ScaleMode**](#scalemode) units. **Double**. Default `0`.
+页面客户区顶边缘的逻辑垂直坐标，以[**ScaleMode**](#scalemode)单位。**Double**。默认`0`。
 
 ### ScaleWidth
 
-The width of the logical drawing rectangle, in [**ScaleMode**](#scalemode) units. **Double**. Setting it implicitly switches **ScaleMode** to **vbUser**.
+逻辑绘图矩形的宽度，以[**ScaleMode**](#scalemode)单位。**Double**。设置它会隐式将**ScaleMode**切换为**vbUser**。
 
 ### SelectedControls
 
-The collection of objects the host has asked this page to edit, as a **SelectedControls** instance. Read-only. The framework populates the collection before raising [**SelectionChanged**](#selectionchanged) and clears it on [**Terminate**](#terminate).
+主机要求此页面编辑的对象集合，作为**SelectedControls**实例。只读。框架在引发[**SelectionChanged**](#selectionchanged)之前填充集合，并在[**Terminate**](#terminate)时清除它。
 
-The returned object exposes three members:
+返回的对象暴露三个成员：
 
-- `Count` **As Long** --- the number of selected objects (`0` when the host has not yet called **SetObjects** or has cleared the selection).
-- `Item(`*Index*`)` **As Object** --- zero-based indexed access. **Default member**, so `SelectedControls(0)` returns the first object.
-- `_NewEnum` --- supports `For Each ctl In SelectedControls`.
+- `Count` **As Long**——选定对象的数量（当主机尚未调用**SetObjects**或已清除选择时为`0`）。
+- `Item(`*Index*`)` **As Object**——从零开始的索引访问。**默认成员**，因此`SelectedControls(0)`返回第一个对象。
+- `_NewEnum`——支持`For Each ctl In SelectedControls`。
 
-The items are returned as **Object**, so use **CallByName** or late-bound member access to read and write their properties.
+项目以**Object**形式返回，因此使用**CallByName**或后期绑定成员访问来读写其属性。
 
 ```vb
 For Each ctl In SelectedControls
@@ -308,359 +316,359 @@ Next
 
 ### StandardSize
 
-The standard size of the page in the host's property-sheet frame. A member of **EnumStandardSize**: **StandardSizeCustom** (0), **StandardSizeSmall** (1 --- 250 × 62 dialog units), or **StandardSizeLarge** (2 --- 250 × 110 dialog units).
+页面在主机属性表框架中的标准大小。**EnumStandardSize**的成员：**StandardSizeCustom** (0)、**StandardSizeSmall** (1——250 × 62对话框单位)或**StandardSizeLarge** (2——250 × 110对话框单位)。
 
-Syntax: *object*.**StandardSize** [ = *value* ]
+语法：*object*.**StandardSize** [ = *value* ]
 
-Reading **StandardSize** compares the page's current pixel size against the small/large presets and returns **StandardSizeCustom** when neither matches. Assigning **StandardSizeSmall** or **StandardSizeLarge** resizes the page accordingly; assigning **StandardSizeCustom** is a no-op (leave the size as it is). The property is exposed only in code --- VB6 exposed it on the design-time property sheet but never in the runtime object model.
+读取**StandardSize**将页面的当前像素大小与小型/大型预设进行比较，当两者都不匹配时返回**StandardSizeCustom**。赋值**StandardSizeSmall**或**StandardSizeLarge**相应地调整页面大小；赋值**StandardSizeCustom**是空操作（保持大小不变）。此属性仅在代码中暴露——VB6在设计时属性表上暴露了它，但从未在运行时对象模型中暴露。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the page. Ignored by the framework.
+应用程序可用于将自定义数据与页面关联的自由格式**String**。框架忽略此属性。
 
 ### Top
 
-The vertical position of the page's outer rectangle within the host's property-sheet frame, in twips. **Double**. Set by the host; rarely assigned from user code.
+页面外部矩形在主机属性表框架中的垂直位置，以缇为单位。**Double**。由主机设置；很少从用户代码赋值。
 
 ### Width
 
-The page's outer width, in twips by default (or in the calling code's **ScaleMode** units). **Double**. The host normally sizes the page itself based on [**StandardSize**](#standardsize); assigning **Width** explicitly switches to the custom size.
+页面的外部宽度，默认以缇为单位（或以调用代码的**ScaleMode**单位）。**Double**。主机通常根据[**StandardSize**](#standardsize)设置页面大小；显式赋值**Width**切换到自定义大小。
 
-## Methods
+## 方法
 
 ### Circle
 
-Draws a circle, ellipse, or arc on the page using [**ForeColor**](#forecolor) for the outline and [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle) for the interior.
+使用[**ForeColor**](#forecolor)绘制轮廓，[**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle)填充内部，在页面上绘制圆、椭圆或弧。
 
-Syntax: *object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, [ *Color* ] [, [ *Start* ] [, [ *End* ] [, *Aspect* ] ] ] ]
+语法：*object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, [ *Color* ] [, [ *Start* ] [, [ *End* ] [, *Aspect* ] ] ] ]
 
 *X*, *Y*
-: *required* The centre, in [**ScaleMode**](#scalemode) units. **Step** makes the centre relative to ([**CurrentX**](#currentx), [**CurrentY**](#currenty)).
+: *必需* 圆心，以[**ScaleMode**](#scalemode)单位。**Step**使圆心相对于([**CurrentX**](#currentx), [**CurrentY**](#currenty))。
 
 *Radius*
-: *required* A **Single** giving the radius in **ScaleMode** units.
+: *必需* 以**ScaleMode**单位给出半径的**Single**。
 
 *Color*
-: *optional* An **OLE_COLOR** for the outline; defaults to [**ForeColor**](#forecolor).
+: *可选* 轮廓的**OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
 *Start*, *End*
-: *optional* Angles in radians, used to draw an arc rather than a full circle.
+: *可选* 以弧度为单位的角，用于绘制弧而非完整圆。
 
 *Aspect*
-: *optional* Ratio of vertical to horizontal radius. `1.0` is circular; values away from `1.0` produce ellipses.
+: *可选* 垂直半径与水平半径的比率。`1.0`为圆形；偏离`1.0`的值产生椭圆。
 
 ### Cls
 
-Clears any drawing performed by [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and [**Print**](#print), repaints [**BackColor**](#backcolor), and resets [**CurrentX**](#currentx) / [**CurrentY**](#currenty) to `0`. Does not affect the [**Picture**](#picture) backdrop or child controls.
+清除由[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)和[**Print**](#print)执行的任何绘制，重新绘制[**BackColor**](#backcolor)，并将[**CurrentX**](#currentx) / [**CurrentY**](#currenty)重置为`0`。不影响[**Picture**](#picture)背景或子控件。
 
-Syntax: *object*.**Cls**
+语法：*object*.**Cls**
 
 ### Line
 
-Draws a line, or a rectangle, on the page using [**ForeColor**](#forecolor) (or an explicit colour) and [**DrawWidth**](#drawwidth)/[**DrawStyle**](#drawstyle).
+使用[**ForeColor**](#forecolor)（或显式颜色）和[**DrawWidth**](#drawwidth)/[**DrawStyle**](#drawstyle)在页面上绘制直线或矩形。
 
-Syntax: *object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] -[ **Step** ] ( *X2*, *Y2* ) [, [ *Color* ] [, **B** [ **F** ] ] ]
+语法：*object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] -[ **Step** ] ( *X2*, *Y2* ) [, [ *Color* ] [, **B** [ **F** ] ] ]
 
 *X1*, *Y1*
-: *optional* The start point, in [**ScaleMode**](#scalemode) units. **Step** makes the point relative to ([**CurrentX**](#currentx), [**CurrentY**](#currenty)). When omitted, drawing begins from the current pen position.
+: *可选* 起始点，以[**ScaleMode**](#scalemode)单位。**Step**使点相对于([**CurrentX**](#currentx), [**CurrentY**](#currenty))。省略时，从当前画笔位置开始绘制。
 
 *X2*, *Y2*
-: *required* The end point, in **ScaleMode** units. **Step** makes the point relative to (*X1*, *Y1*).
+: *必需* 终止点，以**ScaleMode**单位。**Step**使点相对于(*X1*, *Y1*)。
 
 *Color*
-: *optional* An **OLE_COLOR** for the line; defaults to [**ForeColor**](#forecolor).
+: *可选* 线条的**OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
 **B**
-: *optional* Draw a rectangle whose opposite corners are (*X1*, *Y1*) and (*X2*, *Y2*) instead of a line.
+: *可选* 绘制一个以(*X1*, *Y1*)和(*X2*, *Y2*)为对角的矩形，而非线条。
 
 **F**
-: *optional* When combined with **B**, fill the rectangle with [**ForeColor**](#forecolor) instead of [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle).
+: *可选* 与**B**组合时，用[**ForeColor**](#forecolor)而非[**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle)填充矩形。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the page, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject**.
+从页面发起OLE拖动操作，触发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### PaintPicture
 
-Draws a **StdPicture** onto the page, with optional scaling and raster operations.
+将**StdPicture**绘制到页面上，支持可选的缩放和光栅操作。
 
-Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* [, *StretchQuality* ] ] ] ] ] ] ] ]
+语法：*object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* [, *StretchQuality* ] ] ] ] ] ] ] ]
 
 *Picture*
-: *required* A **StdPicture** to draw.
+: *必需* 要绘制的**StdPicture**。
 
 *X1*, *Y1*
-: *required* The destination upper-left corner, in [**ScaleMode**](#scalemode) units.
+: *必需* 目标左上角，以[**ScaleMode**](#scalemode)单位。
 
 *Width1*, *Height1*
-: *optional* Destination size; defaults to the picture's natural size.
+: *可选* 目标大小；默认为图片的自然大小。
 
 *X2*, *Y2*, *Width2*, *Height2*
-: *optional* The source rectangle within the picture; defaults to the whole picture.
+: *可选* 图片内的源矩形；默认为整个图片。
 
 *Opcode*
-: *optional* A raster-operation code (member of [**RasterOpConstants**](/en/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
+: *可选* 光栅操作代码（[**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants)的成员）。默认为**vbSrcCopy**。
 
 *StretchQuality*
-: *optional* The interpolation method when scaling. Defaults to normal quality.
+: *可选* 缩放时的插值方法。默认为普通质量。
 
 ### Point
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC. In VB6 this returns the **OLE_COLOR** of a single pixel of the drawing surface.
+保留用于VB6兼容性；twinBASIC中当前未实现。在VB6中，此方法返回绘图表面单个像素的**OLE_COLOR**。
 :::
 
-Syntax: *object*.**Point**( *X*, *Y* )
+语法：*object*.**Point**( *X*, *Y* )
 
 ### Print
 
-Writes text to the page's drawing surface using [**Font**](#font), starting at [**CurrentX**](#currentx) / [**CurrentY**](#currenty) and advancing them as it goes. Dispatched through the VB6 **Print** statement so multiple expressions can be separated by `;` (no spacing) or `,` (tab to the next print zone). **Spc(n)** inserts *n* spaces and **Tab(n)** moves to print column *n*. Output honours [**Font**](#font), [**ForeColor**](#forecolor), and [**FontTransparent**](#fonttransparent), and --- when [**AutoRedraw**](#autoredraw) is **True** --- is recorded into the persistent off-screen bitmap so it survives invalidations.
+使用[**Font**](#font)将文本写入页面的绘图表面，从[**CurrentX**](#currentx) / [**CurrentY**](#currenty)开始并随之推进。通过VB6 **Print**语句分派，因此多个表达式可以用`;`（无间距）或`,`（跳到下一个打印区域）分隔。**Spc(n)**插入*n*个空格，**Tab(n)**移到打印列*n*。输出遵循[**Font**](#font)、[**ForeColor**](#forecolor)和[**FontTransparent**](#fonttransparent)，当[**AutoRedraw**](#autoredraw)为**True**时记录到持久离屏位图，从而在失效期间存活。
 
-Syntax: *object*.**Print** \[ *expressionlist* ] \[ **;** \| **,** ]
+语法：*object*.**Print** \[ *expressionlist* ] \[ **;** \| **,** ]
 
-A trailing `;` or `,` suppresses the newline so the next **Print** call continues on the same line.
+末尾的`;`或`,`抑制换行，使下一次**Print**调用在同一行继续。
 
 ### PSet
 
-Sets a single pixel on the page to a specified colour.
+将页面上的单个像素设置为指定颜色。
 
-Syntax: *object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
+语法：*object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
 
 *X*, *Y*
-: *required* The pixel position, in [**ScaleMode**](#scalemode) units. **Step** makes the position relative to ([**CurrentX**](#currentx), [**CurrentY**](#currenty)).
+: *必需* 像素位置，以[**ScaleMode**](#scalemode)单位。**Step**使位置相对于([**CurrentX**](#currentx), [**CurrentY**](#currenty))。
 
 *Color*
-: *optional* An **OLE_COLOR**; defaults to [**ForeColor**](#forecolor).
+: *可选* **OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
 ### Refresh
 
-Forces an immediate repaint of the page, raising [**Paint**](#paint) when [**AutoRedraw**](#autoredraw) is **False**.
+强制页面立即重绘，当[**AutoRedraw**](#autoredraw)为**False**时触发[**Paint**](#paint)。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### Scale
 
-Sets the page's logical drawing rectangle in a single call by assigning [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight). Switches [**ScaleMode**](#scalemode) to **vbUser**. Calling **Scale** with no arguments resets the rectangle to a 1-to-1 mapping with the client area in pixels.
+通过一次调用设置页面的逻辑绘图矩形——赋值[**ScaleLeft**](#scaleleft)、[**ScaleTop**](#scaletop)、[**ScaleWidth**](#scalewidth)和[**ScaleHeight**](#scaleheight)。将[**ScaleMode**](#scalemode)切换为**vbUser**。不带参数调用**Scale**会将矩形重置为与客户区1:1映射（以像素为单位）。
 
-Syntax: *object*.**Scale** [ ( *X1*, *Y1* )-( *X2*, *Y2* ) ]
+语法：*object*.**Scale** [ ( *X1*, *Y1* )-( *X2*, *Y2* ) ]
 
 *X1*, *Y1*
-: *optional* The logical coordinate at the top-left corner.
+: *可选* 左上角的逻辑坐标。
 
 *X2*, *Y2*
-: *optional* The logical coordinate at the bottom-right corner.
+: *可选* 右下角的逻辑坐标。
 
 ### ScaleX
 
-Converts a horizontal length from one [**ScaleMode**](#scalemode) to another.
+将水平长度从一种[**ScaleMode**](#scalemode)转换为另一种。
 
-Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
+语法：*object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
 
 *Width*
-: *required* A **Single** giving the source length.
+: *必需* 给出源长度的**Single**。
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *可选* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员。省略时默认为当前**ScaleMode**。
 
 ### ScaleY
 
-Converts a vertical length from one [**ScaleMode**](#scalemode) to another.
+将垂直长度从一种[**ScaleMode**](#scalemode)转换为另一种。
 
-Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
+语法：*object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
 
 *Height*
-: *required* A **Single** giving the source length.
+: *必需* 给出源长度的**Single**。
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *可选* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员。省略时默认为当前**ScaleMode**。
 
 ### SetFocus
 
-Activates the page and gives input focus to its first focusable child control (or to whichever control last held focus on this page).
+激活页面并将输入焦点给予其第一个可获得焦点的子控件（或此页面上最后持有焦点的控件）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### TextHeight
 
-Returns the height that the given string would occupy when drawn with the page's current [**Font**](#font), in [**ScaleMode**](#scalemode) units. Embedded line breaks are honoured.
+返回给定字符串使用页面当前[**Font**](#font)绘制时将占用的 height，以[**ScaleMode**](#scalemode)单位。嵌入式换行会被遵循。
 
-Syntax: *object*.**TextHeight**( *Str* )
+语法：*object*.**TextHeight**( *Str* )
 
 *Str*
-: *required* A **String** to measure.
+: *必需* 要测量的**String**。
 
 ### TextWidth
 
-Returns the width that the given string would occupy when drawn with the page's current [**Font**](#font), in [**ScaleMode**](#scalemode) units. Returns the longest line width when *Str* contains embedded line breaks.
+返回给定字符串使用页面当前[**Font**](#font)绘制时将占用的 width，以[**ScaleMode**](#scalemode)单位。当*Str*包含嵌入式换行时返回最长行的宽度。
 
-Syntax: *object*.**TextWidth**( *Str* )
+语法：*object*.**TextWidth**( *Str* )
 
 *Str*
-: *required* A **String** to measure.
+: *必需* 要测量的**String**。
 
 ### ValidateControls
 
-Fires the **Validate** event of the currently active control on this page. If the handler sets *Cancel* to **True**, **ValidateControls** raises run-time error 380 (*Invalid property value*); the caller can wrap this with `On Error` to detect a failed validation. Useful in [**ApplyChanges**](#applychanges) to refuse to apply when an editor's value is malformed.
+触发此页面上当前活动控件的**Validate**事件。如果处理程序将*Cancel*设置为**True**，**ValidateControls**会引发运行时错误380（*Invalid property value*）；调用者可以用`On Error`包装此调用以检测失败的验证。在[**ApplyChanges**](#applychanges)中用于在编辑器值格式错误时拒绝应用时很有用。
 
-Syntax: *object*.**ValidateControls**
+语法：*object*.**ValidateControls**
 
-## Events
+## 事件
 
 ### ApplyChanges
 
-Raised when the host calls **IPropertyPage2.Apply** --- typically because the user clicked *OK* or *Apply* on the property-sheet dialog. The handler should write the page's current editor values back to every object in [**SelectedControls**](#selectedcontrols). The framework clears [**Changed**](#changed) to **False** before the handler runs. Not raised when [**Changed**](#changed) is already **False** at the time of the apply.
+当主机调用**IPropertyPage2.Apply**时引发——通常是因为用户在属性表对话框上点击了*OK*或*Apply*。处理程序应将页面当前的编辑器值写回到[**SelectedControls**](#selectedcontrols)中的每个对象。框架在处理程序运行之前将[**Changed**](#changed)清除为**False**。当应用时[**Changed**](#changed)已经为**False**时不引发。
 
-Syntax: *object*\_**ApplyChanges**( )
+语法：*object*\_**ApplyChanges**( )
 
 ### Click
 
-Raised when the user single-clicks the page's client area (i.e. not over any child control).
+当用户单击页面的客户区时引发（即不在任何子控件上）。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks the page's client area.
+当用户双击页面的客户区时引发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DPIChange
 
-Raised when the page moves to a monitor with a different DPI scale, *but only* when the application is per-monitor DPI aware (`PROCESS_PER_MONITOR_DPI_AWARE`). The event's *NewDPI* argument gives the new effective DPI; child controls re-scale themselves automatically.
+当页面移动到具有不同DPI缩放的显示器时引发，*但仅当*应用程序是按显示器DPI感知的（`PROCESS_PER_MONITOR_DPI_AWARE`）。事件的*NewDPI*参数给出新的有效DPI；子控件会自动重新缩放。
 
-Syntax: *object*\_**DPIChange**( *NewDPI* **As Long** )
+语法：*object*\_**DPIChange**( *NewDPI* **As Long** )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+当手动拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+当手动拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### EditProperty
 
 ::: info
-Declared for VB6 compatibility; not currently raised in twinBASIC. The host's **IPropertyPage2.EditProperty** request is acknowledged but does not propagate to a managed event yet.
+声明用于VB6兼容性；twinBASIC中当前未引发。主机的**IPropertyPage2.EditProperty**请求已被确认但尚未传播到托管事件。
 :::
 
-When implemented, raised when the host asks the page to give focus to the editor that corresponds to the named property --- typically because the user double-clicked that property in the property browser.
+实现后，当主机要求页面将焦点给予与命名属性对应的编辑器时引发——通常是因为用户在属性浏览器中双击了该属性。
 
-Syntax: *object*\_**EditProperty**( *PropertyName* **As String** )
+语法：*object*\_**EditProperty**( *PropertyName* **As String** )
 
 *PropertyName*
-: The name of the property the host wants edited.
+: 主机希望编辑的属性名称。
 
 ### GotFocus
 
-Raised when the page receives the input focus and no enabled child control of the page is in a position to take it instead.
+当页面获得输入焦点且页面上没有启用的子控件可以代替获取焦点时引发。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### Initialize
 
-Raised once, after the page's window and all controls have been created and the page has been event-registered into its host's frame, before [**SelectionChanged**](#selectionchanged) is first raised. The classic place to populate editor controls with static data (lists of choices, default values, …) that doesn't depend on the selected objects.
+引发一次，在页面的窗口和所有控件创建之后且页面已注册到其主机的框架之后，在[**SelectionChanged**](#selectionchanged)首次引发之前。这是用不依赖于选定对象的静态数据（选择列表、默认值等）填充编辑器控件的经典位置。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### KeyDown
 
-Raised when the user presses any key. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the page first.
+当用户按下任意键时引发。默认在焦点控件上触发；[**KeyPreview**](#keypreview)为**True**时，首先在页面上触发。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
-Raised when the user types a character that produces an ANSI keystroke. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the page first.
+当用户输入产生ANSI按键的字符时引发。默认在焦点控件上触发；[**KeyPreview**](#keypreview)为**True**时，首先在页面上触发。
 
-Syntax: *object*\_**KeyPress**( *KeyAscii* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyAscii* **As Integer** )
 
 ### KeyUp
 
-Raised when the user releases a key. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the page first.
+当用户释放键时引发。默认在焦点控件上触发；[**KeyPreview**](#keypreview)为**True**时，首先在页面上触发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### LostFocus
 
-Raised when the page loses the input focus.
+当页面失去输入焦点时引发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the page's client area.
+当用户在页面的客户区按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the page's client area.
+当光标在页面的客户区上移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the page's client area.
+当用户在页面的客户区释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+当OLE拖动操作完成时在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+当用户将数据放到目标控件上时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+当OLE拖动经过目标控件时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+在拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标以已注册但尚未提供的格式请求数据时在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects.
+在OLE拖动开始时在源控件上引发，以便应用程序填充**DataObject**并选择允许的效果。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
 
 ### Paint
 
-Raised when an invalidated portion of the page needs to be redrawn. Suppressed when [**AutoRedraw**](#autoredraw) is **True** --- the page's persistent off-screen buffer is blitted to the screen instead.
+当页面的失效部分需要重绘时引发。当[**AutoRedraw**](#autoredraw)为**True**时被禁止——页面的持久离屏缓冲区被位块传输到屏幕。
 
-Syntax: *object*\_**Paint**( )
+语法：*object*\_**Paint**( )
 
 ### SelectionChanged
 
-Raised after the host has called **IPropertyPage2.SetObjects** to give the page a new set of objects to edit, or to clear the selection. The handler should read [**SelectedControls**](#selectedcontrols) and mirror the common state of those objects into the page's editor controls. **Default-designer event.**
+在主机调用**IPropertyPage2.SetObjects**给页面一组新的编辑对象或清除选择之后引发。处理程序应读取[**SelectedControls**](#selectedcontrols)并将这些对象的共同状态镜像到页面的编辑器控件中。**默认设计器事件。**
 
-Syntax: *object*\_**SelectionChanged**( )
+语法：*object*\_**SelectionChanged**( )
 
 ### Terminate
 
-Raised when the page is being destroyed --- once when its window is unhooked from the host's property-sheet frame, and again when the class instance's last reference is released. The handler runs while [**SelectedControls**](#selectedcontrols) is still populated, giving it a final chance to read state from the edited objects before they are released.
+当页面正在被销毁时引发——一次在其窗口从主机的属性表框架上取消挂钩时，另一次在类实例的最后一个引用被释放时。处理程序在[**SelectedControls**](#selectedcontrols)仍然填充时运行，给它最后的机会在被编辑对象释放之前从中读取状态。
 
-Syntax: *object*\_**Terminate**( )
+语法：*object*\_**Terminate**( )

@@ -7,10 +7,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '702add10-cd54-475a-aae7-6d7d7a099eb7'
-  PropagateID: '702add10-cd54-475a-aae7-6d7d7a099eb7'
-  ReservedCode1: '8c39141a-c6ef-4401-85ee-11d30d11f325'
-  ReservedCode2: '8c39141a-c6ef-4401-85ee-11d30d11f325'
+  ProduceID: '670a1597-05d8-458c-82b0-1721f278a81d'
+  PropagateID: '670a1597-05d8-458c-82b0-1721f278a81d'
+  ReservedCode1: '872234eb-db7d-4a06-90d1-4866508b29c2'
+  ReservedCode2: '872234eb-db7d-4a06-90d1-4866508b29c2'
 ---
 
 ## 全局搜索
@@ -25,9 +25,9 @@ AIGC:
 
 全局搜索外接程序将包含一个[工具栏](/official/IDE/Toolbar)项。
 
-![Global Search (Toolbar)](Images/Toolbar_GlobalSearch.png "Global Search (Toolbar)")
+![全局搜索（工具栏）](Images/Toolbar_GlobalSearch.png "全局搜索（工具栏）")
 
-![Global Search](Images/GlobalSearch.png "Global Search")
+![全局搜索](Images/GlobalSearch.png "全局搜索")
 
 选项
 
@@ -38,7 +38,7 @@ AIGC:
 
 在文本字段中输入搜索词（如 Button1），将返回匹配结果列表。
 
-![Global Search](Images/GlobalSearch_2.png "Global Search")
+![全局搜索](Images/GlobalSearch_2.png "全局搜索")
 
 ## 下载
 

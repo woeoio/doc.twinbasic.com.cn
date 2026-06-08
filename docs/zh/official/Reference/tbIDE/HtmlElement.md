@@ -1,51 +1,15 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'ecd72592-5dcc-41f0-89ea-2bf3410554c2'
-  PropagateID: 'ecd72592-5dcc-41f0-89ea-2bf3410554c2'
-  ReservedCode1: 'ce3aa725-7249-4e95-a5c3-c820b948996b'
-  ReservedCode2: 'ce3aa725-7249-4e95-a5c3-c820b948996b'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
-  PropagateID: '0082496b-cd8c-40a1-b974-52f5d63317d5'
-  ReservedCode1: '57360a3f-f666-473c-b69e-d0cd03fb315e'
-  ReservedCode2: '57360a3f-f666-473c-b69e-d0cd03fb315e'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
-  PropagateID: 'cc4ac51b-a3ed-4eea-899c-96abcf3d2925'
-  ReservedCode1: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
-  ReservedCode2: '52cd8c98-38c2-4bfd-8c41-89923823cfb1'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '9a9bc399-d375-4810-9128-80db332db001'
-  PropagateID: '9a9bc399-d375-4810-9128-80db332db001'
-  ReservedCode1: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
-  ReservedCode2: 'd7cd19cf-2f28-4fc9-ae76-47c623134597'
----
-
 ---
 title: HtmlElement
 parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/HtmlElement
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3d829252-00ca-41fb-8a2f-5b1c5f8a6ba1'
+  PropagateID: '3d829252-00ca-41fb-8a2f-5b1c5f8a6ba1'
+  ReservedCode1: '6451ece0-f37c-42ed-ad7d-cbdbba599be6'
+  ReservedCode2: '6451ece0-f37c-42ed-ad7d-cbdbba599be6'
 ---
 
 # HtmlElement 类
@@ -139,11 +103,3 @@ raiseEvent(eventName, event, stopPropagation, ...customData)
 从 DOM 中移除元素。任何子元素随之移除。在此元素上注册的任何事件监听器被释放。
 
 语法：*element*.**Remove**
-
-> AI生成
-
-> AI生成
-
-> AI生成
-
-> AI生成

@@ -7,15 +7,15 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'df9f36f7-3345-451b-956f-35c9395e3d71'
-  PropagateID: 'df9f36f7-3345-451b-956f-35c9395e3d71'
-  ReservedCode1: 'aee2b296-e33a-47fb-aa2f-234cac237f3e'
-  ReservedCode2: 'aee2b296-e33a-47fb-aa2f-234cac237f3e'
+  ProduceID: '834e8395-7e53-4bc8-a07d-56c982355358'
+  PropagateID: '834e8395-7e53-4bc8-a07d-56c982355358'
+  ReservedCode1: '33e6a581-22fb-4613-b1cf-3c6d2f77b091'
+  ReservedCode2: '33e6a581-22fb-4613-b1cf-3c6d2f77b091'
 ---
 
 # 项目菜单
 
-![Project Menu](Images/Menu_Project.png "Project Menu")
+![项目菜单](Images/Menu_Project.png "项目菜单")
 
 - 添加
 ---
@@ -29,13 +29,13 @@ AIGC:
 
 **添加**与在[项目资源管理器](/official/IDE/Project-Explorer)中右键添加的功能相同。
 
-![Right-Click Add](../Images/RightClick-Add.png "Right-Click Add")
+![右键 - 添加](../Images/RightClick-Add.png "右键 - 添加")
 
 ## 引用
 
 参见按"project.references"筛选的[项目设置](/official/IDE/Project-Settings)。
 
-![Library References - Project Settings](../Images/ProjectSettings_LibraryReferences.png "Library References - Project Settings")
+![库引用 - 项目设置](../Images/ProjectSettings_LibraryReferences.png "库引用 - 项目设置")
 
 ## 项目设置
 

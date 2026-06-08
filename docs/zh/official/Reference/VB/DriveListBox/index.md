@@ -2,11 +2,19 @@
 title: DriveListBox
 parent: VB Package
 permalink: /tB/Packages/VB/DriveListBox/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c1b63425-fa79-4f64-9616-8399287e38c7'
+  PropagateID: 'c1b63425-fa79-4f64-9616-8399287e38c7'
+  ReservedCode1: 'c9b33f53-3d80-4a8b-a4d3-fb0318db3250'
+  ReservedCode2: 'c9b33f53-3d80-4a8b-a4d3-fb0318db3250'
 ---
 
-# DriveListBox class
+# DriveListBox 类
 
-A **DriveListBox** is a Win32 native drop-down combo control that auto-populates with the drives reported by the operating system. The user picks one from the list; code reads the chosen drive through [**Drive**](#drive) and typically forwards it to a [**DirListBox**](/en/official/Reference/VB/DirListBox/) (whose [**Path**](/en/official/Reference/VB/DirListBox/#path) it can be assigned to directly) to build a file picker alongside a [**FileListBox**](/en/official/Reference/VB/FileListBox/). The control is normally placed on a **Form** or **UserControl** at design time. The default property is [**Drive**](#drive) and the default event is [**Change**](#change).
+**DriveListBox** 是一个 Win32 原生下拉组合框控件，自动填充操作系统报告的驱动器列表。用户从列表中选择一个驱动器；代码通过 [**Drive**](#drive) 读取所选驱动器，通常将其传递给 [**DirListBox**](/official/Reference/VB/DirListBox/)（可直接赋值给其 [**Path**](/official/Reference/VB/DirListBox/#path) 属性），并与 [**FileListBox**](/official/Reference/VB/FileListBox/) 一起构建文件选择器。该控件通常在设计时放置在 **Form** 或 **UserControl** 上。默认属性为 [**Drive**](#drive)，默认事件为 [**Change**](#change)。
 
 ```vb
 Private Sub Form_Load()
@@ -21,362 +29,362 @@ End Sub
 ```
 
 
-## Drive list
+## 驱动器列表
 
-The list is populated automatically when the underlying window is created, by asking the OS for every currently-attached drive. Each entry combines the drive letter with the volume label, or --- for a network drive --- the UNC path the drive is mapped to:
+当底层窗口创建时，列表通过向操作系统查询所有当前连接的驱动器自动填充。每个条目将驱动器字母与卷标组合，或者---对于网络驱动器---与驱动器映射到的 UNC 路径组合：
 
-| Entry shape          | Meaning                                                          |
+| 条目格式          | 含义                                                          |
 |----------------------|------------------------------------------------------------------|
-| `c: [Windows]`       | Fixed or removable disk; volume label in brackets.               |
-| `d:` (no brackets)   | Drive present but no volume label (unformatted, or empty CD-ROM).|
-| `z: [\\srv\share]`   | Network drive; UNC path in brackets.                             |
+| `c: [Windows]`       | 固定或可移动磁盘；方括号中为卷标。               |
+| `d:`（无方括号）   | 驱动器存在但无卷标（未格式化，或空 CD-ROM）。|
+| `z: [\\srv\share]`   | 网络驱动器；方括号中为 UNC 路径。                             |
 
-Each entry is owner-drawn with an icon chosen from the drive type --- closed disk, removable, fixed, CD-ROM, network, or RAM disk. The list cannot be edited from code: [**AddItem**](/en/official/Reference/VB/ComboBox/#additem), [**RemoveItem**](/en/official/Reference/VB/ComboBox/#removeitem), and [**Clear**](/en/official/Reference/VB/ComboBox/#clear) are present in the type library for VB6 source compatibility but raise run-time error 438 (*Object doesn't support this property or method*) when called. Call [**Refresh**](#refresh) to re-read the drive set from the OS --- useful after a removable medium is inserted or a network drive is mapped.
+每个条目为自绘模式，图标根据驱动器类型选择---关闭的磁盘、可移动、固定、CD-ROM、网络或 RAM 磁盘。列表不能通过代码编辑：[**AddItem**](/official/Reference/VB/ComboBox/#additem)、[**RemoveItem**](/official/Reference/VB/ComboBox/#removeitem) 和 [**Clear**](/official/Reference/VB/ComboBox/#clear) 存在于类型库中仅为了 VB6 源代码兼容性，但调用时会引发运行时错误 438（*对象不支持此属性或方法*）。调用 [**Refresh**](#refresh) 可从操作系统重新读取驱动器集合---在插入可移动介质或映射网络驱动器后很有用。
 
-[**ListCount**](#listcount) is the number of entries, [**List**](#list) returns the text of any entry by zero-based index, and [**TopIndex**](#topindex) controls vertical scrolling within the drop-down portion when it is open. [**NewIndex**](#newindex) reports the position of the last entry added during population (useful only when re-reading the list from code).
+[**ListCount**](#listcount) 是条目数，[**List**](#list) 通过从零开始的索引返回任意条目的文本，[**TopIndex**](#topindex) 控制下拉部分打开时的垂直滚动。[**NewIndex**](#newindex) 报告列表填充期间最后添加的条目位置（仅在从代码重新读取列表时有意义）。
 
-## Drive property semantics
+## Drive 属性语义
 
-Reading [**Drive**](#drive) returns the *displayed text* of the currently selected entry --- drive letter, colon, and (where applicable) the bracketed volume label or UNC path, exactly as shown in the combo.
+读取 [**Drive**](#drive) 返回当前选中条目的*显示文本*---驱动器字母、冒号以及（如适用）方括号中的卷标或 UNC 路径，与组合框中显示的完全一致。
 
-Assigning to [**Drive**](#drive) looks only at the **first character** of the value and selects the entry whose drive letter matches (case-insensitively, by prefix). Anything after the first character is ignored, so `"C"`, `"C:"`, and `"C:\Windows"` all select the **C:** drive. If no entry matches the letter --- e.g. when the requested drive is not currently attached --- the assignment is silently ignored, leaving the previous selection in place. Assigning a value that matches the current selection does not raise [**Change**](#change); assigning a different value does.
+对 [**Drive**](#drive) 赋值仅检查值的**第一个字符**，并选择驱动器字母匹配的条目（不区分大小写，按前缀匹配）。第一个字符之后的任何内容都被忽略，因此 `"C"`、`"C:"` 和 `"C:\Windows"` 都会选择 **C:** 驱动器。如果没有条目与该字母匹配（例如，请求的驱动器当前未连接），赋值将被静默忽略，保持先前的选择不变。赋值与当前选择相同的值不会引发 [**Change**](#change)；赋值不同的值则会引发。
 
 ```vb
-Drive1.Drive = "D"          ' select drive D if present, else no-op
-Debug.Print Drive1.Drive    ' "d: [Backup]"  (the displayed text)
+Drive1.Drive = "D"          ' 如果驱动器 D 存在则选择，否则无操作
+Debug.Print Drive1.Drive    ' "d: [Backup]"（显示文本）
 ```
 
-## OLE drag and drop
+## OLE 拖放
 
-[**OLEDropMode**](#oledropmode) lets the control act as a drop target (restricted to **vbOLEDropNone** or **vbOLEDropManual**). Source-side automatic OLE drag is not supported on this control --- VB6's `OLEDragMode` property was non-functional here and is omitted in twinBASIC. Call [**OLEDrag**](#oledrag) from code if a manual drag is needed.
+[**OLEDropMode**](#oledropmode) 允许控件作为放置目标（仅限 **vbOLEDropNone** 或 **vbOLEDropManual**）。此控件不支持源端自动 OLE 拖动---VB6 的 `OLEDragMode` 属性在此控件上无效，在 twinBASIC 中已省略。如果需要手动拖动，可从代码调用 [**OLEDrag**](#oledrag)。
 
-## Properties
+## 属性
 
 ### Appearance
 
-Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+确定操作系统如何绘制控件边框。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) 的成员：**vbAppearFlat** 或 **vbAppear3d**（默认）。
 
 ### BackColor
 
-The background colour of the drop-down list entries, as an **OLE_COLOR**. Defaults to the system window-background colour. Selected entries paint with the system highlight colour regardless of this setting. Changing this calls [**Refresh**](#refresh) so the new colour takes effect immediately.
+下拉列表条目的背景色，类型为 **OLE_COLOR**。默认为系统窗口背景色。选中的条目使用系统高亮色绘制，不受此设置影响。更改此属性会调用 [**Refresh**](#refresh)，使新颜色立即生效。
 
 ### CausesValidation
 
-Determines whether the previously focused control's [**Validate**](#validate) event runs before this control receives the focus. **Boolean**, default **True**.
+确定在此控件获得焦点之前，先前聚焦控件的 [**Validate**](#validate) 事件是否运行。**Boolean**，默认 **True**。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a drive list box. Always **vbDriveListBox**.
+只读的 [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) 值，将此控件标识为驱动器列表框。始终为 **vbDriveListBox**。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the control is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+在控件被拖放时用作鼠标光标的 **StdPicture**（参见 [**Drag**](#drag) 和 [**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/en/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+控件是否应在用户按住鼠标时自动拖动。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants) 的成员：**vbManual**（0，默认---从代码调用 [**Drag**](#drag)）或 **vbAutomatic**（1）。
 
 ### Drive
 
-The currently selected drive. **Default property.**
+当前选中的驱动器。**默认属性。**
 
-Syntax: *object*.**Drive** [ = *string* ]
+语法：*object*.**Drive** [ = *string* ]
 
-Reading returns the displayed text of the selected entry --- drive letter, colon, and (where applicable) the bracketed volume label or UNC path. Writing examines only the first character of *string* and selects the entry whose drive letter matches; values that do not match any present drive are silently ignored. Assigning a value that changes the selection raises [**Change**](#change). See [Drive property semantics](#drive-property-semantics) above for details.
+读取时返回选中条目的显示文本---驱动器字母、冒号以及（如适用）方括号中的卷标或 UNC 路径。写入时仅检查 *string* 的第一个字符并选择驱动器字母匹配的条目；与任何现有驱动器不匹配的值将被静默忽略。赋值更改选择时会引发 [**Change**](#change)。详见上文的 [Drive 属性语义](#drive-property-semantics)。
 
 ### Enabled
 
-Determines whether the control accepts user input. A disabled drive list box still shows its current selection but is dimmed and ignores keyboard and mouse interaction. **Boolean**, default **True**.
+确定控件是否接受用户输入。禁用的驱动器列表框仍显示当前选择，但变灰并忽略键盘和鼠标交互。**Boolean**，默认 **True**。
 
 ### Font
 
-The **StdFont** used to render the drive entries. The convenience properties **FontName**, **FontSize**, **FontBold**, **FontItalic**, **FontStrikethru**, and **FontUnderline** read or write the corresponding members of this object.
+用于渲染驱动器条目的 **StdFont**。便捷属性 **FontName**、**FontSize**、**FontBold**、**FontItalic**、**FontStrikethru** 和 **FontUnderline** 读取或写入此对象的相应成员。
 
 ### ForeColor
 
-The text colour for entries that are not currently selected, as an **OLE_COLOR**. Defaults to the system window-text colour. Disabled entries draw in the system grey-text colour, and selected entries draw in the system highlight-text colour, regardless of this setting. Changing this calls [**Refresh**](#refresh).
+未选中条目的文本颜色，类型为 **OLE_COLOR**。默认为系统窗口文本色。禁用的条目使用系统灰色文本色绘制，选中的条目使用系统高亮文本色绘制，不受此设置影响。更改此属性会调用 [**Refresh**](#refresh)。
 
 ### Height
 
-The control's height when the drop-down is closed, in twips by default (or in the container's **ScaleMode** units). **Single**. The drop-down portion is sized by the OS.
+下拉框关闭时控件的高度，默认以缇为单位（或使用容器的 **ScaleMode** 单位）。**Single**。下拉部分的大小由操作系统决定。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the control has focus.
+一个 **Long**，标识应用程序帮助文件中的主题，当控件有焦点时用户按 **F1** 会检索此值。
 
 ### hWnd
 
-The Win32 window handle for the underlying combo box, as a **LongPtr**. Read-only. Useful for passing to API functions.
+底层组合框的 Win32 窗口句柄，类型为 **LongPtr**。只读。适用于传递给 API 函数。
 
 ### Index
 
-When the control is part of a control array, the **Long** zero-based index of this instance within the array. Read-only at run time.
+当控件是控件数组的一部分时，此实例在数组中的 **Long** 类型从零开始的索引。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the control. **Single**.
+从容器的左边缘到控件左边缘的水平距离。**Single**。
 
 ### List
 
-The displayed text of the drive entry at the given index. Read-only.
+指定索引处驱动器条目的显示文本。只读。
 
-Syntax: *object*.**List**( *Index* )
+语法：*object*.**List**( *Index* )
 
 *Index*
-: *required* A **Long** zero-based item position, from `0` to `ListCount - 1`.
+: *必需* 一个 **Long** 类型的从零开始的条目位置，从 `0` 到 `ListCount - 1`。
 
 ### ListCount
 
-The number of drive entries currently in the list, as a **Long**. Read-only.
+列表中当前驱动器条目的数量，类型为 **Long**。只读。
 
 ### ListIndex
 
-The zero-based index of the selected entry, or `-1` if nothing is selected. **Long**. Assigning a value that differs from the current one selects that entry and raises [**Change**](#change).
+选中条目的从零开始的索引，如果未选中任何条目则为 `-1`。**Long**。赋值与当前值不同的值会选中该条目并引发 [**Change**](#change)。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the control.
+当 [**MousePointer**](#mousepointer) 为 **vbCustom** 且指针位于控件上方时用作鼠标光标的 **StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
+指针位于控件上方时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants) 的成员。
 
 ### Name
 
-The unique design-time name of the control on its parent form. Read-only at run time.
+控件在其父窗体上的唯一设计时名称。运行时只读。
 
 ### NewIndex
 
-The zero-based index at which the most recent list-population step inserted an entry, or `-1` if the list is empty. **Long**. Updated while the list is being filled (during [**Initialize**](#initialize) and after [**Refresh**](#refresh)); rarely useful at run time but read by some VB6-compatibility code.
+最近一次列表填充步骤插入条目的从零开始的索引，如果列表为空则为 `-1`。**Long**。在列表填充期间更新（[**Initialize**](#initialize) 期间和 [**Refresh**](#refresh) 之后）；运行时很少使用，但某些 VB6 兼容代码会读取此值。
 
 ### OLEDropMode
 
-How the control responds to OLE drops. A restricted member of [**OLEDropConstants**](/en/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a DriveListBox.
+控件如何响应 OLE 放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants) 的受限成员：**vbOLEDropNone** 或 **vbOLEDropManual**。DriveListBox 不支持自动放置模式。
 
 ### Opacity
 
-The control's opacity as a percentage (0--100, default 100). Values outside the range are clamped on **Initialize**. Requires Windows 8 or later for child controls.
+控件的不透明度百分比（0--100，默认 100）。范围外的值在 **Initialize** 时被钳位。子控件需要 Windows 8 或更高版本。
 
 ### Parent
 
-A reference to the **Form** (or **UserControl**) that contains this control. Read-only.
+对包含此控件的 **Form**（或 **UserControl**）的引用。只读。
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**.
+控件在窗体 TAB 键导航顺序中的位置。**Long**。
 
 ### TabStop
 
-Whether the user can reach the control by pressing the **TAB** key. **Boolean**, default **True**. A disabled control is skipped regardless of this setting.
+用户是否可以通过按 **TAB** 键到达此控件。**Boolean**，默认 **True**。禁用的控件无论此设置如何都会被跳过。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the control. Ignored by the framework.
+一个自由格式的 **String**，应用程序可用于将自定义数据与控件关联。框架忽略此属性。
 
 ### ToolTipText
 
-A multi-line **String** displayed as a tooltip when the user hovers over the control.
+当用户将鼠标悬停在控件上方时作为工具提示显示的多行 **String**。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the control. **Single**.
+从容器顶部到控件顶部的垂直距离。**Single**。
 
 ### TopIndex
 
-The zero-based index of the entry shown at the top of the drop-down portion. Assigning a value scrolls the list so that entry is at the top, and raises [**Scroll**](#scroll) when the value actually changes. **Long**.
+下拉部分顶部显示的条目的从零开始的索引。赋值会滚动列表使该条目位于顶部，并在值实际更改时引发 [**Scroll**](#scroll)。**Long**。
 
 ### TransparencyKey
 
-An **OLE_COLOR** that, when set, becomes fully transparent in the rendered control. Default `-1` disables the effect. Requires Windows 8 or later for child controls.
+一个 **OLE_COLOR**，设置后在渲染的控件中变为完全透明。默认 `-1` 禁用此效果。子控件需要 Windows 8 或更高版本。
 
 ### Visible
 
-Whether the control is shown. **Boolean**, default **True**.
+控件是否显示。**Boolean**，默认 **True**。
 
 ### VisualStyles
 
-Whether the OS theme engine should be used when drawing the control. **Boolean**.
+绘制控件时是否使用操作系统主题引擎。**Boolean**。
 
 ### WhatsThisHelpID
 
-A **Long** identifying a "What's This?" help-pop-up topic in the application's help file. See [**ShowWhatsThis**](#showwhatsthis).
+一个 **Long**，标识应用程序帮助文件中的"这是什么？"帮助弹出主题。参见 [**ShowWhatsThis**](#showwhatsthis)。
 
 ### WheelScrollEvent
 
-When **True** (default), mouse-wheel notifications over the drop-down list raise the [**Scroll**](#scroll) event; when **False**, the wheel still scrolls the list but [**Scroll**](#scroll) is suppressed. **Boolean**. VB6 never raised **Scroll** for wheel events; set this to **False** to match that behaviour exactly.
+当为 **True**（默认）时，下拉列表上的鼠标滚轮通知会引发 [**Scroll**](#scroll) 事件；当为 **False** 时，滚轮仍会滚动列表但 [**Scroll**](#scroll) 被抑制。**Boolean**。VB6 从未为滚轮事件引发 **Scroll**；将此设置为 **False** 可完全匹配该行为。
 
 ### Width
 
-The control's width. **Single**.
+控件的宽度。**Single**。
 
-## Methods
+## 方法
 
 ### Drag
 
-Begins, completes, or cancels a manual drag-and-drop operation when [**DragMode**](#dragmode) is **vbManual**. DriveListBox does not raise mouse events itself, so the call typically lives in a parent **Form** or container's mouse handler.
+当 [**DragMode**](#dragmode) 为 **vbManual** 时，开始、完成或取消手动拖放操作。DriveListBox 本身不引发鼠标事件，因此调用通常位于父 **Form** 或容器的鼠标处理程序中。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/en/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants) 的成员：**vbCancel**（0）、**vbBeginDrag**（1，默认）或 **vbEndDrag**（2）。
 
 ### Move
 
-Repositions and optionally resizes the control in a single call.
+在单次调用中重新定位并可选地调整控件大小。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 一个 **Single**，给出新的水平位置。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the control, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject**.
+从控件发起 OLE 拖动操作，引发 [**OLEStartDrag**](#olestartdrag) 事件以便应用程序填充 **DataObject**。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### Refresh
 
-Re-reads the set of currently-attached drives from the operating system and repopulates the list, then redraws the control. Useful after a removable medium is inserted or a network drive is mapped or disconnected --- the control does not watch for these events on its own. Does not raise [**Change**](#change), even if the previously-selected drive is no longer present (the selection moves to entry `0`).
+从操作系统重新读取当前连接的驱动器集合，重新填充列表，然后重绘控件。在插入可移动介质或映射/断开网络驱动器后很有用---控件本身不会监视这些事件。不会引发 [**Change**](#change)，即使先前选中的驱动器不再存在（选择会移到条目 `0`）。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### SetFocus
 
-Moves the input focus to the control. The control must be both [**Visible**](#visible) and [**Enabled**](#enabled), or run-time error 5 (*Invalid procedure call or argument*) is raised.
+将输入焦点移至控件。控件必须同时 [**Visible**](#visible) 和 [**Enabled**](#enabled)，否则引发运行时错误 5（*无效的过程调用或参数*）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### ShowWhatsThis
 
-Displays the topic identified by [**WhatsThisHelpID**](#whatsthishelpid) as a "What's This?" pop-up.
+以"这是什么？"弹出窗口的形式显示由 [**WhatsThisHelpID**](#whatsthishelpid) 标识的主题。
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### ZOrder
 
-Brings the control to the front or back of its sibling stack.
+将控件置于其同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants) 的成员：**vbBringToFront**（0，默认）或 **vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Change
 
-Raised after the selected drive changes --- whether the user picked a different entry from the drop-down or code assigned a different value to [**Drive**](#drive) or [**ListIndex**](#listindex). Not raised for assignments that match the current selection, nor during [**Refresh**](#refresh) or the initial population that occurs before [**Initialize**](#initialize). **Default event.**
+在选中的驱动器更改后引发---无论是用户从下拉列表中选择了不同的条目，还是代码向 [**Drive**](#drive) 或 [**ListIndex**](#listindex) 赋了不同的值。与当前选择匹配的赋值不会引发此事件，[**Refresh**](#refresh) 或 [**Initialize**](#initialize) 之前的初始填充期间也不会引发。**默认事件。**
 
-Syntax: *object*\_**Change**( )
+语法：*object*\_**Change**( )
 
 ### CloseUp
 
-Raised when the drop-down portion closes --- either because the user picked an entry, clicked elsewhere, or pressed **Esc**.
+当下拉部分关闭时引发---可能是因为用户选择了条目、点击了其他位置或按了 **Esc**。
 
-Syntax: *object*\_**CloseUp**( )
+语法：*object*\_**CloseUp**( )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+当手动拖动操作在目标控件上结束时，在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+当手动拖动操作进行时，在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### DropDown
 
-Raised when the user opens the drop-down portion.
+当用户打开下拉部分时引发。
 
-Syntax: *object*\_**DropDown**( )
+语法：*object*\_**DropDown**( )
 
 ### GotFocus
 
-Raised when the control receives the input focus.
+当控件获得输入焦点时引发。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### Initialize
 
-Raised once, immediately after the underlying window is created and the initial list of drives has been loaded. New in twinBASIC --- VB6 had no equivalent on this control.
+在底层窗口创建且初始驱动器列表已加载后立即引发一次。twinBASIC 新增---VB6 在此控件上没有等效事件。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### KeyDown
 
-Raised when the user presses any key while the control has focus.
+当控件有焦点时用户按下任意键引发。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
-Raised when the user types a character that produces an ANSI keystroke.
+当用户输入产生 ANSI 按键的字符时引发。
 
-Syntax: *object*\_**KeyPress**( *KeyAscii* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyAscii* **As Integer** )
 
 ### KeyUp
 
-Raised when the user releases a key while the control has focus.
+当控件有焦点时用户释放按键引发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### LostFocus
 
-Raised when the control loses the input focus.
+当控件失去输入焦点时引发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+当 OLE 拖动操作完成时，在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+当用户在目标控件上放置数据时，在目标控件上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+当 OLE 拖动经过目标控件时，在目标控件上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+在拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标请求已注册但尚未提供的数据格式时，在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects.
+在 OLE 拖动开始时在源控件上引发，以便应用程序填充 **DataObject** 并选择允许的效果。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
 
 ### Scroll
 
-Raised when the drop-down list is scrolled --- by the scroll bar, the keyboard, or (when [**WheelScrollEvent**](#wheelscrollevent) is **True**) the mouse wheel. The new offset can be read from [**TopIndex**](#topindex).
+当下拉列表被滚动时引发---通过滚动条、键盘或（当 [**WheelScrollEvent**](#wheelscrollevent) 为 **True** 时）鼠标滚轮。新的偏移可从 [**TopIndex**](#topindex) 读取。
 
-Syntax: *object*\_**Scroll**( )
+语法：*object*\_**Scroll**( )
 
 ### Validate
 
-Raised when the focus is moving to another control whose [**CausesValidation**](#causesvalidation) is **True**. Setting *Cancel* to **True** keeps the focus on this control.
+当焦点正在移动到另一个 [**CausesValidation**](#causesvalidation) 为 **True** 的控件时引发。将 *Cancel* 设置为 **True** 可使焦点保持在此控件上。
 
-Syntax: *object*\_**Validate**( *Cancel* **As Boolean** )
+语法：*object*\_**Validate**( *Cancel* **As Boolean** )

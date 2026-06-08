@@ -6,19 +6,19 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '932f59d9-ecc9-4970-9630-295d9774350e'
-  PropagateID: '932f59d9-ecc9-4970-9630-295d9774350e'
-  ReservedCode1: 'acaa4c3b-eb22-4376-8417-45adc4e12c62'
-  ReservedCode2: 'acaa4c3b-eb22-4376-8417-45adc4e12c62'
+  ProduceID: 'bbdd0f2f-1592-4724-b638-8d79dc25edb6'
+  PropagateID: 'bbdd0f2f-1592-4724-b638-8d79dc25edb6'
+  ReservedCode1: '7c7386af-569a-465d-8313-5ab01417b3bd'
+  ReservedCode2: '7c7386af-569a-465d-8313-5ab01417b3bd'
 ---
 
 # 诊断
 
-![Diagnostics](Images/Diagnostics.png)
+![诊断](Images/Diagnostics.png)
 
-![Diagnostics](Images/Diagnostics_Toggles.png)
+![诊断开关](Images/Diagnostics_Toggles.png)
 
-![Diagnostics](Images/Diagnostics_Totals.png)
+![诊断汇总](Images/Diagnostics_Totals.png)
 
 
 

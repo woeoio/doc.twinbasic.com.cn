@@ -2,17 +2,25 @@
 title: PictureBox
 parent: VB Package
 permalink: /tB/Packages/VB/PictureBox/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '768fa9e5-8e91-430c-8785-cd0c79cbc174'
+  PropagateID: '768fa9e5-8e91-430c-8785-cd0c79cbc174'
+  ReservedCode1: '44bd2266-e79a-412d-bcd6-2ccff5a44896'
+  ReservedCode2: '44bd2266-e79a-412d-bcd6-2ccff5a44896'
 ---
 
-# PictureBox class
+# PictureBox 类
 
-A **PictureBox** is a Win32 native control that combines three roles in one:
+**PictureBox**是一个Win32原生控件，将三种角色合为一体：
 
-1. A **picture display** --- it can show a bitmap, GIF, JPEG, icon, cursor, or metafile loaded into its [**Picture**](#picture) property.
-2. A **drawing surface** --- it exposes the VB6 graphics methods ([**Line**](#line), [**Circle**](#circle), [**PSet**](#pset), [**Print**](#print), [**PaintPicture**](#paintpicture), …) that write into the control's device context.
-3. A **container** --- it can host child controls dropped onto it at design time, much like a [**Frame**](/en/official/Reference/VB/Frame/), and can be docked or aligned within its parent.
+1. **图片显示**——可以显示加载到其[**Picture**](#picture)属性中的位图、GIF、JPEG、图标、光标或图元文件。
+2. **绘图表面**——暴露VB6图形方法（[**Line**](#line)、[**Circle**](#circle)、[**PSet**](#pset)、[**Print**](#print)、[**PaintPicture**](#paintpicture)等），写入控件的设备上下文。
+3. **容器**——可以承载在设计时放置在其上的子控件，类似于[**Frame**](/official/Reference/VB/Frame/)，并可以在其父级内停靠或对齐。
 
-The control is normally placed on a [**Form**](/en/official/Reference/VB/Form/), [**Frame**](/en/official/Reference/VB/Frame/), or **UserControl** at design time. The default property is [**Picture**](#picture); the default-designer event is [**Click**](#click).
+控件通常在设计时放置在[**Form**](/official/Reference/VB/Form/)、[**Frame**](/official/Reference/VB/Frame/)或**UserControl**上。默认属性为[**Picture**](#picture)；默认设计器事件为[**Click**](#click)。
 
 ```vb
 Private Sub Form_Load()
@@ -27,757 +35,757 @@ End Sub
 ```
 
 
-## Picture display
+## 图片显示
 
-Setting [**Picture**](#picture) assigns a **StdPicture** to the control. When [**AutoSize**](#autosize) is **True** the control resizes itself in its container's **ScaleMode** units to fit the picture exactly (plus a 1- or 2-pixel border, depending on [**Appearance**](#appearance)); otherwise the picture is drawn at its natural size, anchored at the top-left, and clipped to the control's bounds. Assigning **Nothing** to **Picture** clears the displayed image but does not erase anything drawn through the graphics methods.
+设置[**Picture**](#picture)将**StdPicture**赋值给控件。当[**AutoSize**](#autosize)为**True**时，控件以容器的**ScaleMode**单位调整自身大小以精确适配图片（加上1或2像素的边框，取决于[**Appearance**](#appearance)）；否则图片以其自然大小绘制，锚定在左上角，并被裁剪到控件的边界。将**Nothing**赋值给**Picture**会清除显示的图像，但不会擦除通过图形方法绘制的任何内容。
 
-The picture is read directly from the file passed to **LoadPicture**, or --- when [**DataField**](#datafield) / [**DataSource**](#datasource) are set --- from the bound recordset field. Anything assigned to **\_Default** (the control's default property) is forwarded to **Picture**.
+图片直接从传递给**LoadPicture**的文件中读取，或者——当设置了[**DataField**](#datafield) / [**DataSource**](#datasource)时——从绑定的记录集字段读取。任何赋值给**\_Default**（控件的默认属性）的内容都会转发到**Picture**。
 
-## Drawing surface
+## 绘图表面
 
-A **PictureBox** owns its own device context, addressable through [**hDC**](#hdc), and supports the full VB6 vector-drawing surface: [**Cls**](#cls), [**Line**](#line), [**Circle**](#circle), [**PSet**](#pset), [**Print**](#print), and [**PaintPicture**](#paintpicture). Pen and brush attributes come from [**ForeColor**](#forecolor), [**BackColor**](#backcolor), [**FillColor**](#fillcolor), [**FillStyle**](#fillstyle), [**DrawWidth**](#drawwidth), [**DrawMode**](#drawmode), and [**DrawStyle**](#drawstyle). [**CurrentX**](#currentx) and [**CurrentY**](#currenty) track the current "graphics pen" position so that subsequent calls can omit the starting coordinates.
+**PictureBox**拥有自己的设备上下文，可通过[**hDC**](#hdc)寻址，并支持完整的VB6矢量绘图表面：[**Cls**](#cls)、[**Line**](#line)、[**Circle**](#circle)、[**PSet**](#pset)、[**Print**](#print)和[**PaintPicture**](#paintpicture)。画笔和画刷属性来自[**ForeColor**](#forecolor)、[**BackColor**](#backcolor)、[**FillColor**](#fillcolor)、[**FillStyle**](#fillstyle)、[**DrawWidth**](#drawwidth)、[**DrawMode**](#drawmode)和[**DrawStyle**](#drawstyle)。[**CurrentX**](#currentx)和[**CurrentY**](#currenty)跟踪当前的"图形画笔"位置，以便后续调用可以省略起始坐标。
 
 ```vb
-picCanvas.Line (10, 10)-Step(100, 50), vbBlue, BF   ' filled rectangle
-picCanvas.Circle (200, 100), 40, vbGreen            ' circle
+picCanvas.Line (10, 10)-Step(100, 50), vbBlue, BF   ' 填充矩形
+picCanvas.Circle (200, 100), 40, vbGreen            ' 圆
 picCanvas.CurrentX = 10 : picCanvas.CurrentY = 100
-picCanvas.Print "Drawn over a Picture"              ' text at the pen
+picCanvas.Print "Drawn over a Picture"              ' 画笔位置的文本
 ```
 
-[**Print**](#print) is dispatched through the IDispatch interface using the VB6 *Print* statement syntax (`pic.Print expr [, ;] expr …`), with **Spc(n)** and **Tab(n)** for whitespace and column control. Calls advance [**CurrentX**](#currentx) / [**CurrentY**](#currenty) and honour [**Font**](#font), [**ForeColor**](#forecolor), and [**FontTransparent**](#fonttransparent).
+[**Print**](#print)通过IDispatch接口使用VB6 *Print*语句语法（`pic.Print expr [, ;] expr …`）分派，支持**Spc(n)**和**Tab(n)**控制空白和列。调用会推进[**CurrentX**](#currentx) / [**CurrentY**](#currenty)并遵循[**Font**](#font)、[**ForeColor**](#forecolor)和[**FontTransparent**](#fonttransparent)。
 
-## AutoRedraw and the persistent image
+## AutoRedraw和持久图像
 
-When [**AutoRedraw**](#autoredraw) is **False** (default) the graphics methods write directly into the visible device context, and the OS may erase that drawing whenever the control is uncovered, resized, or redrawn --- typically the application redraws it from a [**Paint**](#paint) handler.
+当[**AutoRedraw**](#autoredraw)为**False**（默认）时，图形方法直接写入可见的设备上下文，当控件被揭开、调整大小或重绘时操作系统可能会擦除该绘制——通常应用程序从[**Paint**](#paint)处理程序中重绘。
 
-When [**AutoRedraw**](#autoredraw) is **True**, the graphics methods are recorded into an off-screen persistent bitmap that is automatically blitted onto the control whenever it needs repainting. The control no longer raises [**Paint**](#paint) events; the bitmap is exposed read-only through [**Image**](#image), suitable for saving with **SavePicture** or for assigning to another **PictureBox** or [**Image**](/en/official/Reference/VB/Image/) control. Toggling **AutoRedraw** from **False** to **True** preserves the current contents; toggling it back to **False** discards the persistent bitmap.
+当[**AutoRedraw**](#autoredraw)为**True**时，图形方法被记录到一个离屏持久位图中，每当控件需要重绘时自动位块传输到控件上。控件不再触发[**Paint**](#paint)事件；位图通过[**Image**](#image)以只读方式暴露，适合用**SavePicture**保存或赋值给另一个**PictureBox**或[**Image**](/official/Reference/VB/Image/)控件。将**AutoRedraw**从**False**切换到**True**保留当前内容；将其切换回**False**则丢弃持久位图。
 
-## Coordinate system
+## 坐标系
 
-A **PictureBox** has its own coordinate system, independent of its parent. [**ScaleMode**](#scalemode) selects a built-in unit ([**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants) --- **vbTwips**, **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**); assigning [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), or [**ScaleHeight**](#scaleheight) (or calling [**Scale**](#scale) with two corner points) switches to **vbUser** and remaps the surface so the assigned values address the corners directly --- useful for mathematical plots where the natural axes don't match pixel coordinates.
+**PictureBox**有自己的坐标系，独立于其父级。[**ScaleMode**](#scalemode)选择内置单位（[**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)——**vbTwips**、**vbPoints**、**vbPixels**、**vbCharacters**、**vbInches**、**vbMillimeters**、**vbCentimeters**）；赋值[**ScaleLeft**](#scaleleft)、[**ScaleTop**](#scaletop)、[**ScaleWidth**](#scalewidth)或[**ScaleHeight**](#scaleheight)（或使用两个对角点调用[**Scale**](#scale)）切换到**vbUser**并重新映射表面，使赋值值直接寻址角——适用于自然轴不匹配像素坐标的数学绘图。
 
-[**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert distances between any two scale modes without changing the active one.
+[**ScaleX**](#scalex)和[**ScaleY**](#scaley)在任意两种比例模式之间转换距离，而不改变活动模式。
 
-## Container behaviour
+## 容器行为
 
-Controls dropped onto a **PictureBox** at design time become its children: their coordinates are relative to its client area, and they move and hide with it. [**Container**](#container) returns the immediate parent (a form, frame, or another picture box); [**Parent**](#parent) returns the form that ultimately hosts it. [**ClipControls**](#clipcontrols) decides whether child controls are clipped out of paint regions before the [**Paint**](#paint) handler runs; turning it off can speed up graphics-heavy paint code that touches only areas the child controls don't cover.
+在设计时放置到**PictureBox**上的控件成为其子控件：它们的坐标相对于其客户区，并随其一起移动和隐藏。[**Container**](#container)返回直接父级（窗体、框架或另一个图片框）；[**Parent**](#parent)返回最终承载它的窗体。[**ClipControls**](#clipcontrols)决定在[**Paint**](#paint)处理程序运行之前是否将子控件从绘制区域中裁剪出来；关闭它可以加速只触及子控件未覆盖区域的图形密集型绘制代码。
 
-## Data binding
+## 数据绑定
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) binds the control's [**Picture**](#picture) to a binary field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset: the field is read on each row change and **LoadPicture** is called on it, and the round-trip byte representation of the current **Picture** is written back when the row is saved. [**DataChanged**](#datachanged) is set whenever the user modifies the displayed picture.
+设置[**DataSource**](#datasource)和[**DataField**](#datafield)将控件的[**Picture**](#picture)绑定到[**Data**](/official/Reference/VB/Data/)控件记录集的二进制字段：每次行更改时读取字段并对其调用**LoadPicture**，行保存时将当前**Picture**的往返字节表示写回。[**DataChanged**](#datachanged)在用户修改显示的图片时被设置。
 
-## Properties
+## 属性
 
 ### Align
 
 ::: info
-Hidden. Provided for compatibility with VB6 forms that anchored a picture box to one edge of the form. Use [**Dock**](#dock) and [**Anchors**](#anchors) instead.
+隐藏。为与VB6窗体中将图片框锚定到窗体一边的做法兼容而提供。请改用[**Dock**](#dock)和[**Anchors**](#anchors)。
 :::
 
 ### Anchors
 
-The set of edges of the parent that the picture box's corresponding edges follow when the parent resizes. Read-only --- assign individual `.Left`, `.Top`, `.Right`, `.Bottom` flags through the returned **Anchors** object.
+父级的边缘集合，图片框的对应边缘在父级调整大小时跟随。只读——通过返回的**Anchors**对象分配单独的`.Left`、`.Top`、`.Right`、`.Bottom`标志。
 
 ### Appearance
 
-Determines how the border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder**.
+决定操作系统如何绘制边框。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。仅在[**BorderStyle**](#borderstyle)为**vbFixedSingleBorder**时有意义。
 
 ### AutoRedraw
 
-Controls whether graphics output is recorded into a persistent bitmap. **Boolean**, default **False**. See [AutoRedraw and the persistent image](#autoredraw-and-the-persistent-image).
+控制图形输出是否记录到持久位图。**Boolean**，默认**False**。参见[AutoRedraw和持久图像](#autoredraw和持久图像)。
 
 ### AutoSize
 
-When **True**, the control resizes itself to fit the assigned [**Picture**](#picture). **Boolean**, default **False**. Has no effect when [**Picture**](#picture) is **Nothing**.
+当**True**时，控件调整自身大小以适配赋值的[**Picture**](#picture)。**Boolean**，默认**False**。当[**Picture**](#picture)为**Nothing**时无效。
 
 ### BackColor
 
-The background colour of the control's drawing surface, as an **OLE_COLOR**. Defaults to the system 3-D face colour. Assigning a new value invalidates the surface and triggers a repaint.
+控件绘图表面的背景颜色，作为**OLE_COLOR**。默认为系统3-D表面颜色。赋新值会使表面失效并触发重绘。
 
 ### BorderStyle
 
-Whether the picture box is drawn with a border. A member of [**ControlBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0) or **vbFixedSingleBorder** (1, default). The exact appearance of the border depends on [**Appearance**](#appearance).
+图片框是否绘有边框。[**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants)的成员：**vbNoBorder** (0)或**vbFixedSingleBorder** (1, 默认)。边框的精确外观取决于[**Appearance**](#appearance)。
 
 ### CausesValidation
 
-Determines whether the previously focused control's [**Validate**](#validate) event runs before this control receives the focus. **Boolean**, default **True**.
+决定之前焦点控件的[**Validate**](#validate)事件是否在此控件获得焦点之前运行。**Boolean**，默认**True**。
 
 ### ClipControls
 
-When **True** (default), child controls are clipped out of the picture box's painting region before the [**Paint**](#paint) event fires, so drawing commands cannot overpaint them. Setting **False** allows the [**Paint**](#paint) handler to draw across the entire client area, which is faster when the application knows the contained controls do not overlap the drawn region.
+当**True**（默认）时，在[**Paint**](#paint)事件触发之前，子控件被从图片框的绘制区域中裁剪出来，因此绘制命令不能覆盖它们。设置为**False**允许[**Paint**](#paint)处理程序在整个客户区绘制，当应用程序知道所包含的控件不与绘制区域重叠时速度更快。
 
 ### Container
 
-The control that hosts this picture box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or another picture box. Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the picture box.
+承载此图片框的控件——通常是窗体、[**Frame**](/official/Reference/VB/Frame/)或另一个图片框。使用**Get**读取，使用**Set**更改。在运行时设置**Container**会将图片框重新父级化。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a picture box. Always **vbPictureBox**.
+标识此控件为图片框的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbPictureBox**。
 
 ### CurrentX
 
-The horizontal coordinate, in [**ScaleMode**](#scalemode) units, at which the next graphics call will start unless it overrides it. **Single**. Updated automatically by [**Line**](#line), [**Circle**](#circle), [**PSet**](#pset), [**Print**](#print), and [**Cls**](#cls) (which resets it to 0).
+下一次图形调用将开始的水平坐标（以[**ScaleMode**](#scalemode)单位），除非它覆盖此值。**Single**。由[**Line**](#line)、[**Circle**](#circle)、[**PSet**](#pset)、[**Print**](#print)和[**Cls**](#cls)（将其重置为0）自动更新。
 
 ### CurrentY
 
-The vertical coordinate, in [**ScaleMode**](#scalemode) units, at which the next graphics call will start. **Single**. See [**CurrentX**](#currentx).
+下一次图形调用将开始的垂直坐标（以[**ScaleMode**](#scalemode)单位）。**Single**。参见[**CurrentX**](#currentx)。
 
 ### DataChanged
 
-A run-time-only **Boolean** that becomes **True** when the bound picture has been modified since the last save, and is cleared once the change has been written back to the recordset.
+运行时专用的**Boolean**，当绑定的图片自上次保存以来已被修改时变为**True**，当更改已写回记录集时被清除。
 
 ### DataField
 
-The name of the binary field, in the recordset of the bound [**DataSource**](#datasource), whose contents are loaded into [**Picture**](#picture). **String**.
+在绑定的[**DataSource**](#datasource)的记录集中，其内容被加载到[**Picture**](#picture)的二进制字段的名称。**String**。
 
 ### DataFormat
 
-A **StdDataFormat** that converts between the raw recordset value and the displayed picture, when the application needs custom handling. **Object**. Set with **Set**.
+当应用程序需要自定义处理时，在原始记录集值和显示的图片之间转换的**StdDataFormat**。**Object**。使用**Set**设置。
 
 ### DataMember
 
-When the [**DataSource**](#datasource) exposes more than one recordset, the name of the member to bind to. **String**.
+当[**DataSource**](#datasource)暴露多个记录集时，要绑定的成员名称。**String**。
 
 ### DataSource
 
-A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+引用[**Data**](/official/Reference/VB/Data/)控件（或其他**DataSource**提供者），其记录集为[**DataField**](#datafield)提供值。使用**Set**设置。
 
 ### Dock
 
-Where the picture box is docked within its container. A member of [**DockModeConstants**](/en/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked picture boxes ignore [**Anchors**](#anchors).
+图片框在其容器中停靠的位置。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants)的成员：**vbDockNone**（默认）、**vbDockLeft**、**vbDockTop**、**vbDockRight**、**vbDockBottom**或**vbDockFill**。停靠的图片框忽略[**Anchors**](#anchors)。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the control is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+在控件被拖放时用作鼠标光标的**StdPicture**（参见[**Drag**](#drag)和[**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/en/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+控件是否应在用户按住鼠标时拖动自身。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants)的成员：**vbManual** (0, 默认——从代码调用[**Drag**](#drag))或**vbAutomatic** (1)。
 
 ### DrawMode
 
-The raster operation used when drawing through the graphics methods. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen** (13 --- opaque overwrite).
+通过图形方法绘制时使用的光栅操作。[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员，默认**vbCopyPen** (13—— opacity 覆写)。
 
 ### DrawStyle
 
-The pen style used for line-drawing methods. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (0, default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**. Solid is forced when [**DrawWidth**](#drawwidth) is greater than 1.
+线条绘制方法使用的画笔样式。[**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants)的成员：**vbSolid** (0, 默认)、**vbDash**、**vbDot**、**vbDashDot**、**vbDashDotDot**、**vbInvisible**或**vbInsideSolid**。当[**DrawWidth**](#drawwidth)大于1时强制为实线。
 
 ### DrawWidth
 
-The thickness, in pixels, of the pen used by [**Line**](#line), [**Circle**](#circle), and [**PSet**](#pset). **Long**, default 1. Values greater than 1 force [**DrawStyle**](#drawstyle) to **vbSolid**.
+[**Line**](#line)、[**Circle**](#circle)和[**PSet**](#pset)使用的画笔厚度（以像素为单位）。**Long**，默认1。大于1的值强制[**DrawStyle**](#drawstyle)为**vbSolid**。
 
 ### Enabled
 
-Determines whether the control accepts user input. **Boolean**, default **True**. Disabled picture boxes still draw and display their picture, but do not raise mouse, keyboard, or focus events.
+决定控件是否接受用户输入。**Boolean**，默认**True**。禁用的图片框仍会绘制和显示其图片，但不引发鼠标、键盘或焦点事件。
 
 ### FillColor
 
-The colour used to fill closed shapes drawn by [**Line**](#line) (with the `F` flag) and [**Circle**](#circle), as an **OLE_COLOR**. Default **0** (black). Honoured only when [**FillStyle**](#fillstyle) is not **vbFSTransparent**.
+由[**Line**](#line)（带`F`标志）和[**Circle**](#circle)绘制的闭合形状使用的填充颜色，作为**OLE_COLOR**。默认**0**（黑色）。仅在[**FillStyle**](#fillstyle)不为**vbFSTransparent**时生效。
 
 ### FillStyle
 
-The pattern used to fill closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSTransparent** (1, default), **vbFSSolid** (0), or one of the hatched styles. **Transparent** suppresses fill entirely, so only the outline is drawn.
+用于填充闭合形状的图案。[**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants)的成员：**vbFSTransparent** (1, 默认)、**vbFSSolid** (0)或一种阴影样式。**Transparent**完全抑制填充，因此只绘制轮廓。
 
 ### Font
 
-The **StdFont** used to render text drawn by [**Print**](#print) and measured by [**TextWidth**](#textwidth) / [**TextHeight**](#textheight). The convenience properties [**FontName**](#fontname), [**FontSize**](#fontsize), [**FontBold**](#fontbold), [**FontItalic**](#fontitalic), [**FontStrikethru**](#fontstrikethru), and [**FontUnderline**](#fontunderline) read or write the corresponding members of this object.
+用于渲染由[**Print**](#print)绘制的文本并由[**TextWidth**](#textwidth) / [**TextHeight**](#textheight)测量的**StdFont**。便捷属性[**FontName**](#fontname)、[**FontSize**](#fontsize)、[**FontBold**](#fontbold)、[**FontItalic**](#fontitalic)、[**FontStrikethru**](#fontstrikethru)和[**FontUnderline**](#fontunderline)读写此对象的相应成员。
 
 ### FontBold
 
-Shortcut for [**Font**](#font)`.Bold`. **Boolean**.
+[**Font**](#font)`.Bold`的快捷方式。**Boolean**。
 
 ### FontItalic
 
-Shortcut for [**Font**](#font)`.Italic`. **Boolean**.
+[**Font**](#font)`.Italic`的快捷方式。**Boolean**。
 
 ### FontName
 
-Shortcut for [**Font**](#font)`.Name`. **String**.
+[**Font**](#font)`.Name`的快捷方式。**String**。
 
 ### FontSize
 
-Shortcut for [**Font**](#font)`.Size` --- the point size. **Single**.
+[**Font**](#font)`.Size`的快捷方式——点大小。**Single**。
 
 ### FontStrikethru
 
-Shortcut for [**Font**](#font)`.Strikethrough`. **Boolean**.
+[**Font**](#font)`.Strikethrough`的快捷方式。**Boolean**。
 
 ### FontTransparent
 
-When **True** (default), text drawn by [**Print**](#print) leaves the background pixels untouched between glyphs; when **False**, the glyphs' background is filled with [**BackColor**](#backcolor). **Boolean**.
+当**True**（默认）时，[**Print**](#print)绘制的文本使字形之间的背景像素保持不变；当**False**时，字形的背景用[**BackColor**](#backcolor)填充。**Boolean**。
 
 ### FontUnderline
 
-Shortcut for [**Font**](#font)`.Underline`. **Boolean**.
+[**Font**](#font)`.Underline`的快捷方式。**Boolean**。
 
 ### ForeColor
 
-The colour used by the graphics-method pen (lines, circles, points) and by [**Print**](#print) text, as an **OLE_COLOR**. Defaults to the system button-text colour.
+图形方法画笔（线条、圆、点）和[**Print**](#print)文本使用的颜色，作为**OLE_COLOR**。默认为系统按钮文本颜色。
 
 ### HasDC
 
-When **True** (default), the control owns a persistent device context that survives between paints, making [**hDC**](#hdc) stable across calls. When **False**, the device context is fetched on demand and released after each operation; this is more memory-efficient but precludes drawing methods that rely on a stable [**hDC**](#hdc) value.
+当**True**（默认）时，控件拥有在绘制之间存活的持久设备上下文，使[**hDC**](#hdc)在调用之间保持稳定。当**False**时，设备上下文按需获取并在每次操作后释放；这更节省内存，但排除了依赖稳定[**hDC**](#hdc)值的绘制方法。
 
 ### hDC
 
-A **LongPtr** giving the Win32 device-context handle for the picture box's drawing surface. Read-only. Suitable for passing to GDI API calls.
+给出图片框绘图表面的Win32设备上下文句柄的**LongPtr**。只读。适用于传递给GDI API调用。
 
 ### Height
 
-The control's height, in twips by default (or in the container's **ScaleMode** units). **Single**.
+控件的高度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Single**。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the control has focus.
+标识应用程序帮助文件中主题的**Long**，当用户在控件具有焦点时按**F1**时检索。
 
 ### hWnd
 
-The Win32 window handle for the picture box, as a **LongPtr**. Read-only. Useful for passing to API functions.
+图片框的Win32窗口句柄，作为**LongPtr**。只读。适用于传递给API函数。
 
 ### Image
 
-A read-only **StdPicture** giving the current contents of the picture box --- both the assigned [**Picture**](#picture) *and* anything drawn into the surface --- as a single bitmap, suitable for saving with **SavePicture**, copying to the clipboard, or assigning to another picture display. Available only when [**AutoRedraw**](#autoredraw) is **True**, or when the persistent bitmap is otherwise present.
+给出图片框当前内容的只读**StdPicture**——包括分配的[**Picture**](#picture)*和*绘制到表面上的任何内容——作为单个位图，适合用**SavePicture**保存、复制到剪贴板或赋值给另一个图片显示。仅在[**AutoRedraw**](#autoredraw)为**True**或持久位图以其他方式存在时可用。
 
 ### Index
 
-When the control is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当控件是控件数组的一部分时，此实例在数组中从零开始的**Long**索引。在非数组实例上读取**Index**会引发运行时错误343（*Object not an array*）。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the control. **Single**.
+从容器的左边缘到控件左边缘的水平距离。**Single**。
 
 ### LinkItem
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LinkMode
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
-A member of [**LinkModeConstants**](/en/official/Reference/VBRUN/Constants/LinkModeConstants).
+[**LinkModeConstants**](/official/Reference/VBRUN/Constants/LinkModeConstants)的成员。
 
 ### LinkTimeout
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LinkTopic
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the control.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针位于控件上时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
+当指针位于控件上时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Name
 
-The unique design-time name of the control on its parent form. Read-only at run time.
+控件在其父窗体上的唯一设计时名称。运行时只读。
 
 ### Negotiate
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
 ### OLEDragMode
 
-How the picture box initiates OLE drag operations. A member of [**OLEDragConstants**](/en/official/Reference/VBRUN/Constants/OLEDragConstants): **vbOLEDragManual** (0, default --- call [**OLEDrag**](#oledrag) from code) or **vbOLEDragAutomatic** (1, which starts a drag with the current [**Picture**](#picture) as the payload as soon as the user begins a drag with the mouse).
+图片框如何发起OLE拖动操作。[**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants)的成员：**vbOLEDragManual** (0, 默认——从代码调用[**OLEDrag**](#oledrag))或**vbOLEDragAutomatic** (1，当用户开始鼠标拖动时，以当前[**Picture**](#picture)作为载荷启动拖动)。
 
 ### Opacity
 
-The control's opacity as a percentage (0--100, default 100). Values outside the range are clamped on **Initialize**. Requires Windows 8 or later for child controls.
+控件的 opacity 百分比（0--100，默认100）。超出范围的值在**Initialize**时被钳制。子控件需要Windows 8或更高版本。
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
+引用最终包含此控件的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）。只读。与[**Container**](#container)不同，后者返回直接父级。
 
 ### Picture
 
-The picture displayed in the control's client area. **StdPicture**. **Default property.** Use **Set** to assign a new picture, **Nothing** to clear it. Assigning when [**AutoSize**](#autosize) is **True** resizes the control to fit.
+在控件客户区中显示的图片。**StdPicture**。**默认属性。**使用**Set**赋值新图片，**Nothing**清除。当[**AutoSize**](#autosize)为**True**时赋值会调整控件大小以适配。
 
 ### PictureDpiScaling
 
-When **True**, [**Picture**](#picture) and the graphics-method outputs are scaled by the current DPI factor before drawing, so a 96-dpi-authored picture is presented at its physical size on high-DPI monitors. **Boolean**, default **False**.
+当**True**时，[**Picture**](#picture)和图形方法输出在绘制前按当前DPI因子缩放，使以96-dpi创作的图片在高DPI显示器上以物理大小呈现。**Boolean**，默认**False**。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
 ### ScaleHeight
 
-The height of the drawing surface in [**ScaleMode**](#scalemode) units. **Double**. Read-write --- assigning a value switches [**ScaleMode**](#scalemode) to **vbUser** and rescales the vertical axis so the control's client area spans the new value.
+以[**ScaleMode**](#scalemode)单位表示的绘图表面的高度。**Double**。读写——赋值会将[**ScaleMode**](#scalemode)切换为**vbUser**并重新缩放垂直轴，使控件的客户区跨越新值。
 
 ### ScaleLeft
 
-The X coordinate that maps to the left edge of the drawing surface. **Double**, default 0. Assigning switches [**ScaleMode**](#scalemode) to **vbUser**.
+映射到绘图表面左边缘的X坐标。**Double**，默认0。赋值会将[**ScaleMode**](#scalemode)切换为**vbUser**。
 
 ### ScaleMode
 
-The unit used by [**Left**](#left), [**Top**](#top), [**Width**](#width), [**Height**](#height), [**CurrentX**](#currentx), [**CurrentY**](#currenty), and every graphics method. A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbUser** (0), **vbTwips** (1, default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, or **vbCentimeters**.
+[**Left**](#left)、[**Top**](#top)、[**Width**](#width)、[**Height**](#height)、[**CurrentX**](#currentx)、[**CurrentY**](#currenty)和每个图形方法使用的单位。[**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员：**vbUser** (0)、**vbTwips** (1, 默认)、**vbPoints**、**vbPixels**、**vbCharacters**、**vbInches**、**vbMillimeters**或**vbCentimeters**。
 
 ### ScaleTop
 
-The Y coordinate that maps to the top edge of the drawing surface. **Double**, default 0. Assigning switches [**ScaleMode**](#scalemode) to **vbUser**.
+映射到绘图表面顶边缘的Y坐标。**Double**，默认0。赋值会将[**ScaleMode**](#scalemode)切换为**vbUser**。
 
 ### ScaleWidth
 
-The width of the drawing surface in [**ScaleMode**](#scalemode) units. **Double**. Read-write --- assigning a value switches [**ScaleMode**](#scalemode) to **vbUser**.
+以[**ScaleMode**](#scalemode)单位表示的绘图表面的宽度。**Double**。读写——赋值会将[**ScaleMode**](#scalemode)切换为**vbUser**。
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**.
+控件在窗体TAB键导航顺序中的位置。**Long**。
 
 ### TabStop
 
-Whether the user can reach the control by pressing the **TAB** key. **Boolean**, default **True**. A disabled control is skipped regardless of this setting.
+用户是否可以通过按**TAB**键到达控件。**Boolean**，默认**True**。禁用的控件无论此设置如何都会被跳过。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the control. Ignored by the framework.
+应用程序可用于将自定义数据与控件关联的自由格式**String**。框架忽略此属性。
 
 ### ToolTipText
 
-A multi-line **String** displayed as a tooltip when the user hovers over the control.
+当用户将鼠标悬停在控件上时作为工具提示显示的多行**String**。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the control. **Single**.
+从容器的顶部到控件顶部的垂直距离。**Single**。
 
 ### TransparencyKey
 
-An **OLE_COLOR** that, when set, becomes fully transparent in the rendered control. Default `-1` disables the effect. Requires Windows 8 or later for child controls.
+设置后变为完全透明的**OLE_COLOR**。默认`-1`禁用此效果。子控件需要Windows 8或更高版本。
 
 ### Visible
 
-Whether the control is shown. **Boolean**, default **True**.
+控件是否显示。**Boolean**，默认**True**。
 
 ### WhatsThisHelpID
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A **Long** identifying a "What's This?" help-pop-up topic. See [**ShowWhatsThis**](#showwhatsthis).
+标识"What's This?"帮助弹出主题的**Long**。参见[**ShowWhatsThis**](#showwhatsthis)。
 
 ### Width
 
-The control's width. **Single**.
+控件的宽度。**Single**。
 
-## Methods
+## 方法
 
 ### Circle
 
-Draws a circle, ellipse, or elliptical arc on the drawing surface.
+在绘图表面上绘制圆、椭圆或椭圆弧。
 
-Syntax: *object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, *Color* [, *Start* [, *End* [, *Aspect* ] ] ] ]
+语法：*object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, *Color* [, *Start* [, *End* [, *Aspect* ] ] ] ]
 
 *X*, *Y*
-: *required* Coordinates of the centre in [**ScaleMode**](#scalemode) units. **Single**. When prefixed with **Step**, they are interpreted relative to [**CurrentX**](#currentx) / [**CurrentY**](#currenty).
+: *必需* 以[**ScaleMode**](#scalemode)单位表示的圆心坐标。**Single**。以**Step**为前缀时，解释为相对于[**CurrentX**](#currentx) / [**CurrentY**](#currenty)。
 
 *Radius*
-: *required* The radius along the X axis. **Single**.
+: *必需* 沿X轴的半径。**Single**。
 
 *Color*
-: *optional* An **OLE_COLOR** for the outline. Defaults to [**ForeColor**](#forecolor).
+: *可选* 轮廓的**OLE_COLOR**。默认为[**ForeColor**](#forecolor)。
 
 *Start*, *End*
-: *optional* Start and end angles in radians (0 to 2π). Negative values are interpreted as full radians and connect the arc end-point to the centre with a chord. Omitted draws a full circle.
+: *可选* 以弧度为单位的起始和结束角（0到2π）。负值被解释为完整弧度并将弧端点与圆心用弦连接。省略则绘制完整圆。
 
 *Aspect*
-: *optional* The Y/X aspect ratio. **1.0** for a circle (default); other values give an ellipse.
+: *可选* Y/X纵横比。**1.0**为圆（默认）；其他值为椭圆。
 
-[**CurrentX**](#currentx) and [**CurrentY**](#currenty) are left at the centre.
+[**CurrentX**](#currentx)和[**CurrentY**](#currenty)留在圆心处。
 
 ### Cls
 
-Clears the drawing surface to [**BackColor**](#backcolor), discards everything drawn through the graphics methods (and the persistent bitmap if [**AutoRedraw**](#autoredraw) is **True**), and resets [**CurrentX**](#currentx) / [**CurrentY**](#currenty) to **0**. The assigned [**Picture**](#picture) is not affected.
+将绘图表面清除为[**BackColor**](#backcolor)，丢弃通过图形方法绘制的所有内容（如果[**AutoRedraw**](#autoredraw)为**True**则包括持久位图），并将[**CurrentX**](#currentx) / [**CurrentY**](#currenty)重置为**0**。分配的[**Picture**](#picture)不受影响。
 
-Syntax: *object*.**Cls**
+语法：*object*.**Cls**
 
 ### Drag
 
-Begins, completes, or cancels a manual drag-and-drop operation. Typically called from a [**MouseDown**](#mousedown) handler when [**DragMode**](#dragmode) is **vbManual**.
+开始、完成或取消手动拖放操作。通常在[**DragMode**](#dragmode)为**vbManual**时从[**MouseDown**](#mousedown)处理程序调用。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/en/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants)的成员：**vbCancel** (0)、**vbBeginDrag** (1, 默认)或**vbEndDrag** (2)。
 
 ### Line
 
-Draws a straight line, a rectangle outline, or a filled rectangle.
+绘制直线、矩形轮廓或填充矩形。
 
-Syntax: *object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] **-** [ **Step** ] ( *X2*, *Y2* ) [, *Color* [, **B** [**F**] ] ]
+语法：*object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] **-** [ **Step** ] ( *X2*, *Y2* ) [, *Color* [, **B** [**F**] ] ]
 
 *X1*, *Y1*
-: *optional* Start coordinates. **Single**. If omitted, the line starts at [**CurrentX**](#currentx) / [**CurrentY**](#currenty). **Step** makes them relative to the current pen position.
+: *可选* 起始坐标。**Single**。省略时，线条从[**CurrentX**](#currentx) / [**CurrentY**](#currenty)开始。**Step**使它们相对于当前画笔位置。
 
 *X2*, *Y2*
-: *required* End coordinates. **Single**. **Step** makes them relative to the start point.
+: *必需* 终止坐标。**Single**。**Step**使它们相对于起始点。
 
 *Color*
-: *optional* An **OLE_COLOR** for the line. Defaults to [**ForeColor**](#forecolor).
+: *可选* 线条的**OLE_COLOR**。默认为[**ForeColor**](#forecolor)。
 
 *B*
-: *optional* When present, draws a rectangle whose opposite corners are *(X1, Y1)* and *(X2, Y2)* instead of a line.
+: *可选* 存在时，绘制以*(X1, Y1)*和*(X2, Y2)*为对角的矩形，而非线条。
 
 *F*
-: *optional* Only valid with **B**. Fills the rectangle with [**FillColor**](#fillcolor) at the current [**FillStyle**](#fillstyle).
+: *可选* 仅在**B**有效时使用。以当前[**FillStyle**](#fillstyle)用[**FillColor**](#fillcolor)填充矩形。
 
-[**CurrentX**](#currentx) / [**CurrentY**](#currenty) are left at *(X2, Y2)*.
+[**CurrentX**](#currentx) / [**CurrentY**](#currenty)留在*(X2, Y2)*处。
 
 ### Move
 
-Repositions and optionally resizes the control in a single call.
+通过一次调用重新定位并可选地调整控件大小。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
 *Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+: *可选* 相应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the control, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject**.
+从控件发起OLE拖动操作，触发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### PaintPicture
 
-Draws a picture onto the surface, optionally scaling, clipping, or applying a raster operation.
+将图片绘制到表面上，可选缩放、裁剪或应用光栅操作。
 
-Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* [, *StretchQuality* ] ] ] ] ] ] ] ]
+语法：*object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* [, *StretchQuality* ] ] ] ] ] ] ] ]
 
 *Picture*
-: *required* An **IPictureDisp** to paint --- typically the [**Picture**](#picture) or [**Image**](#image) of another picture display.
+: *必需* 要绘制的**IPictureDisp**——通常是另一个图片显示的[**Picture**](#picture)或[**Image**](#image)。
 
 *X1*, *Y1*
-: *required* Destination top-left in [**ScaleMode**](#scalemode) units.
+: *必需* 以[**ScaleMode**](#scalemode)单位表示的目标左上角。
 
 *Width1*, *Height1*
-: *optional* Destination size. Defaults to the picture's natural size.
+: *可选* 目标大小。默认为图片的自然大小。
 
 *X2*, *Y2*, *Width2*, *Height2*
-: *optional* Source rectangle within *Picture*. Defaults to the whole picture.
+: *可选* *Picture*内的源矩形。默认为整个图片。
 
 *Opcode*
-: *optional* A raster-operation code passed through to **BitBlt** --- for example **&HCC0020** (`vbSrcCopy`, default) or **&H660046** (`vbSrcInvert`).
+: *可选* 传递给**BitBlt**的光栅操作代码——例如**&HCC0020**（`vbSrcCopy`，默认）或**&H660046**（`vbSrcInvert`）。
 
 *StretchQuality*
-: *optional* `vbStretchQuality` value: **vbQualityNormal** (default) or **vbQualityHigh** (uses half-tone stretching for nicer downscales).
+: *可选* `vbStretchQuality`值：**vbQualityNormal**（默认）或**vbQualityHigh**（使用半色调拉伸以获得更好的缩小效果）。
 
 ### Point
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-In VB6, returns the colour of the pixel at the given coordinates as a **Long**, or **-1** if the point is outside the drawing surface.
+在VB6中，返回给定坐标处像素的颜色作为**Long**，如果点在绘图表面之外则返回**-1**。
 
-Syntax: *object*.**Point**( *X* **As Single**, *Y* **As Single** ) **As Long**
+语法：*object*.**Point**( *X* **As Single**, *Y* **As Single** ) **As Long**
 
 ### Print
 
-Writes text to the drawing surface using [**Font**](#font), starting at [**CurrentX**](#currentx) / [**CurrentY**](#currenty) and advancing them as it goes. Dispatched through the **Print** statement so multiple expressions can be separated by `;` (no spacing) or `,` (tab to next print zone). **Spc(n)** inserts *n* spaces and **Tab(n)** moves to print column *n*.
+使用[**Font**](#font)将文本写入绘图表面，从[**CurrentX**](#currentx) / [**CurrentY**](#currenty)开始并随之推进。通过**Print**语句分派，因此多个表达式可以用`;`（无间距）或`,`（跳到下一个打印区域）分隔。**Spc(n)**插入*n*个空格，**Tab(n)**移到打印列*n*。
 
-Syntax: *object*.**Print** \[ *expressionlist* ] \[ **;** \| **,** ]
+语法：*object*.**Print** \[ *expressionlist* ] \[ **;** \| **,** ]
 
-A trailing `;` or `,` suppresses the newline so the next [**Print**](#print) call continues on the same line.
+末尾的`;`或`,`抑制换行，使下一次[**Print**](#print)调用在同一行继续。
 
 ### PSet
 
-Sets a single pixel.
+设置单个像素。
 
-Syntax: *object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
+语法：*object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
 
 *X*, *Y*
-: *required* Coordinates in [**ScaleMode**](#scalemode) units. **Step** makes them relative to [**CurrentX**](#currentx) / [**CurrentY**](#currenty).
+: *必需* 以[**ScaleMode**](#scalemode)单位表示的坐标。**Step**使它们相对于[**CurrentX**](#currentx) / [**CurrentY**](#currenty)。
 
 *Color*
-: *optional* An **OLE_COLOR**. Defaults to [**ForeColor**](#forecolor).
+: *可选* **OLE_COLOR**。默认为[**ForeColor**](#forecolor)。
 
-[**CurrentX**](#currentx) / [**CurrentY**](#currenty) are left at the set point.
+[**CurrentX**](#currentx) / [**CurrentY**](#currenty)留在设置的点处。
 
 ### Refresh
 
-Forces an immediate repaint. When [**AutoRedraw**](#autoredraw) is **True**, copies the persistent bitmap to the visible surface; otherwise invalidates the control and triggers a [**Paint**](#paint) event.
+强制立即重绘。当[**AutoRedraw**](#autoredraw)为**True**时，将持久位图复制到可见表面；否则使控件失效并触发[**Paint**](#paint)事件。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### Scale
 
-Defines a user coordinate system for the surface. Calling **Scale** with no arguments resets [**ScaleMode**](#scalemode) to **vbTwips**.
+为表面定义用户坐标系。不带参数调用**Scale**会将[**ScaleMode**](#scalemode)重置为**vbTwips**。
 
-Syntax: *object*.**Scale** [ ( *X1*, *Y1* ) **-** ( *X2*, *Y2* ) ]
+语法：*object*.**Scale** [ ( *X1*, *Y1* ) **-** ( *X2*, *Y2* ) ]
 
 *X1*, *Y1*
-: *required* (with the second pair) The coordinate that maps to the top-left corner --- sets [**ScaleLeft**](#scaleleft) and [**ScaleTop**](#scaletop).
+: *必需*（与第二对一起）映射到左上角的坐标——设置[**ScaleLeft**](#scaleleft)和[**ScaleTop**](#scaletop)。
 
 *X2*, *Y2*
-: *required* The coordinate that maps to the bottom-right corner --- sets [**ScaleWidth**](#scalewidth) = `X2 - X1` and [**ScaleHeight**](#scaleheight) = `Y2 - Y1`. [**ScaleMode**](#scalemode) is switched to **vbUser**.
+: *必需* 映射到右下角的坐标——设置[**ScaleWidth**](#scalewidth) = `X2 - X1`和[**ScaleHeight**](#scaleheight) = `Y2 - Y1`。[**ScaleMode**](#scalemode)切换为**vbUser**。
 
 ### ScaleX
 
-Converts a horizontal distance from one scale mode to another without changing [**ScaleMode**](#scalemode).
+将水平距离从一种比例模式转换为另一种，而不改变[**ScaleMode**](#scalemode)。
 
-Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] ) **As Single**
+语法：*object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] ) **As Single**
 
 *Width*
-: *required* The value to convert. **Single**.
+: *必需* 要转换的值。**Single**。
 
 *FromScale*, *ToScale*
-: *optional* [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants) members. *FromScale* defaults to the control's current [**ScaleMode**](#scalemode); *ToScale* defaults to **vbTwips**.
+: *可选* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员。*FromScale*默认为控件的当前[**ScaleMode**](#scalemode)；*ToScale*默认为**vbTwips**。
 
 ### ScaleY
 
-The vertical counterpart of [**ScaleX**](#scalex), for converting heights.
+[**ScaleX**](#scalex)的垂直对应，用于转换高度。
 
-Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] ) **As Single**
+语法：*object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] ) **As Single**
 
 ### SetFocus
 
-Moves the input focus to the control. The control must be both [**Visible**](#visible) and [**Enabled**](#enabled), or run-time error 5 (*Invalid procedure call or argument*) is raised.
+将输入焦点移到控件。控件必须同时[**Visible**](#visible)和[**Enabled**](#enabled)，否则会引发运行时错误5（*Invalid procedure call or argument*）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### ShowWhatsThis
 
-Displays the topic identified by [**WhatsThisHelpID**](#whatsthishelpid) as a "What's This?" pop-up.
+将以[**WhatsThisHelpID**](#whatsthishelpid)标识的主题显示为"What's This?"弹出窗口。
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### TextHeight
 
-Measures the height, in [**ScaleMode**](#scalemode) units, of the given string when rendered in the current [**Font**](#font) --- including the line-spacing leading, so the result is suitable for advancing [**CurrentY**](#currenty) between rows of text. Embedded line breaks are honoured.
+以[**ScaleMode**](#scalemode)单位测量给定字符串以当前[**Font**](#font)渲染时的高度——包括行间距前导，因此结果适合在文本行之间推进[**CurrentY**](#currenty)。嵌入式换行会被遵循。
 
-Syntax: *object*.**TextHeight**( *Str* **As String** ) **As Single**
+语法：*object*.**TextHeight**( *Str* **As String** ) **As Single**
 
 ### TextWidth
 
-Measures the width, in [**ScaleMode**](#scalemode) units, of the given string when rendered in the current [**Font**](#font). Returns the longest line width when *Str* contains embedded line breaks.
+以[**ScaleMode**](#scalemode)单位测量给定字符串以当前[**Font**](#font)渲染时的宽度。当*Str*包含嵌入式换行时返回最长行的宽度。
 
-Syntax: *object*.**TextWidth**( *Str* **As String** ) **As Single**
+语法：*object*.**TextWidth**( *Str* **As String** ) **As Single**
 
 ### ZOrder
 
-Brings the control to the front or back of its sibling stack.
+将控件带到其同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront** (0, 默认)或**vbSendToBack** (1)。
 
 ### LinkExecute
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LinkPoke
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LinkRequest
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LinkSend
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
-## Events
+## 事件
 
 ### Change
 
-Raised when [**Picture**](#picture) is assigned a new value --- either from code or from the bound recordset.
+当[**Picture**](#picture)被赋新值时引发——无论是从代码还是从绑定的记录集。
 
-Syntax: *object*\_**Change**( )
+语法：*object*\_**Change**( )
 
 ### Click
 
-Raised when the user clicks the control with any mouse button. **Default-designer event.**
+当用户用任意鼠标按钮点击控件时引发。**默认设计器事件。**
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks the control.
+当用户双击控件时引发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+当手动拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+当手动拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### GotFocus
 
-Raised when the control receives the input focus.
+当控件获得输入焦点时引发。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### Initialize
 
-Raised once, after the underlying window has been created and [**Picture**](#picture) has been loaded from the serialized data.
+在底层窗口创建且[**Picture**](#picture)从序列化数据加载之后引发一次。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### KeyDown
 
-Raised when the user presses any key while the control has focus.
+当控件具有焦点时用户按下任意键引发。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
-Raised when the user types a character that produces an ANSI keystroke.
+当用户输入产生ANSI按键的字符时引发。
 
-Syntax: *object*\_**KeyPress**( *KeyAscii* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyAscii* **As Integer** )
 
 ### KeyUp
 
-Raised when the user releases a key while the control has focus.
+当控件具有焦点时用户释放键引发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### LinkClose
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LinkError
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LinkNotify
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LinkOpen
 
 ::: info
-Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
+保留用于VB6 DDE兼容性；twinBASIC中当前未实现。
 :::
 
 ### LostFocus
 
-Raised when the control loses the input focus.
+当控件失去输入焦点时引发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the control.
+当用户在控件上按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the control.
+当光标在控件上移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the control.
+当用户在控件上释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseWheel
 
-Raised when the user rotates the mouse wheel while the control has focus or the cursor is over it. New in twinBASIC --- there is no equivalent VB6 event.
+当控件具有焦点或光标在其上时用户旋转鼠标滚轮引发。twinBASIC新增——无等效的VB6事件。
 
-Syntax: *object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
+语法：*object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
 
 *Delta*
-: A positive or negative scroll delta in units of `WHEEL_DELTA` (120).
+: 以`WHEEL_DELTA` (120)为单位的正或负滚动增量。
 
 *Horizontal*
-: **True** for a horizontal-wheel rotation, **False** for the standard vertical wheel.
+: 水平滚轮旋转为**True**，标准垂直滚轮为**False**。
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+当OLE拖动操作完成时在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+当用户将数据放到目标控件上时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+当OLE拖动经过目标控件时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+在拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标以已注册但尚未提供的格式请求数据时在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects. Also raised automatically when [**OLEDragMode**](#oledragmode) is **vbOLEDragAutomatic** and the user begins a drag.
+在OLE拖动开始时在源控件上引发，以便应用程序填充**DataObject**并选择允许的效果。当[**OLEDragMode**](#oledragmode)为**vbOLEDragAutomatic**且用户开始拖动时也会自动引发。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
 
 ### Paint
 
-Raised when the control needs to redraw its client area --- typically because it was uncovered, resized, or [**Refresh**](#refresh) was called. Not raised while [**AutoRedraw**](#autoredraw) is **True**; the persistent bitmap is blitted instead.
+当控件需要重绘其客户区时引发——通常是因为被揭开、调整大小或调用了[**Refresh**](#refresh)。当[**AutoRedraw**](#autoredraw)为**True**时不引发；改为位块传输持久位图。
 
-Syntax: *object*\_**Paint**( )
+语法：*object*\_**Paint**( )
 
 ### Resize
 
-Raised after the control's [**Height**](#height) or [**Width**](#width) changes. Useful for re-flowing child controls or rescaling drawn content.
+在控件的[**Height**](#height)或[**Width**](#width)更改后引发。适用于重新排列子控件或重新缩放绘制内容。
 
-Syntax: *object*\_**Resize**( )
+语法：*object*\_**Resize**( )
 
 ### Validate
 
-Raised when the focus is moving to another control whose [**CausesValidation**](#causesvalidation) is **True**. Setting *Cancel* to **True** keeps the focus on this control.
+当焦点移向另一个[**CausesValidation**](#causesvalidation)为**True**的控件时引发。将*Cancel*设置为**True**使焦点保持在此控件上。
 
-Syntax: *object*\_**Validate**( *Cancel* **As Boolean** )
+语法：*object*\_**Validate**( *Cancel* **As Boolean** )

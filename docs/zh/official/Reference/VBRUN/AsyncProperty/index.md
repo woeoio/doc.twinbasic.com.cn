@@ -1,19 +1,16 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '4c7d48b3-e21f-4c70-bb03-6098b4876266'
-  PropagateID: '4c7d48b3-e21f-4c70-bb03-6098b4876266'
-  ReservedCode1: '9298ef35-17a4-4f17-a9f2-9de7539f5d28'
-  ReservedCode2: '9298ef35-17a4-4f17-a9f2-9de7539f5d28'
----
-
 ---
 title: AsyncProperty
 parent: VBRUN Package
 nav_order: 20
 permalink: /tB/Packages/VBRUN/AsyncProperty/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9c3f69b1-1490-4ff9-851f-4f80430df64a'
+  PropagateID: '9c3f69b1-1490-4ff9-851f-4f80430df64a'
+  ReservedCode1: 'c90bc32c-9608-4a63-871a-1f27ae3b77ca'
+  ReservedCode2: 'c90bc32c-9608-4a63-871a-1f27ae3b77ca'
 ---
 
 # AsyncProperty 类
@@ -24,7 +21,7 @@ permalink: /tB/Packages/VBRUN/AsyncProperty/
 
 用户控件可能同时有多个未完成的异步读取，因此传递给每个事件的**AsyncProperty**必须标识该事件对应的读取。[**PropertyName**](/official/Reference/VBRUN/AsyncProperty/PropertyName)返回启动请求时提供给**AsyncRead**的名称——通常是控件将要赋值的属性名称。[**Target**](/official/Reference/VBRUN/AsyncProperty/Target)返回正在下载的URL或文件路径。[**AsyncType**](/official/Reference/VBRUN/AsyncProperty/AsyncType)返回**AsyncTypeConstants**值，标识数据的传递方式——图片、文件或字节数组。
 
-``vb
+```vb
 Private Sub UserControl_AsyncReadComplete(ByVal Prop As AsyncProperty)
     Select Case Prop.PropertyName
         Case "Picture"
@@ -33,7 +30,7 @@ Private Sub UserControl_AsyncReadComplete(ByVal Prop As AsyncProperty)
             ' Prop.Value是下载的临时文件路径。
     End Select
 End Sub
-``
+```
 
 ## 下载的值
 

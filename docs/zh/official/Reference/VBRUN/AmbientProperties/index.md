@@ -1,19 +1,16 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'fe89b4b9-4456-49b5-a377-6c43fdc9c29b'
-  PropagateID: 'fe89b4b9-4456-49b5-a377-6c43fdc9c29b'
-  ReservedCode1: '97dbc616-4b9e-4505-99de-918881490109'
-  ReservedCode2: '97dbc616-4b9e-4505-99de-918881490109'
----
-
 ---
 title: AmbientProperties
 parent: VBRUN Package
 nav_order: 19
 permalink: /tB/Packages/VBRUN/AmbientProperties/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7a493905-b909-41fb-b24f-c8dacdf44481'
+  PropagateID: '7a493905-b909-41fb-b24f-c8dacdf44481'
+  ReservedCode1: 'c602cfa6-8f5f-4483-a494-1077b3ffcb4e'
+  ReservedCode2: 'c602cfa6-8f5f-4483-a494-1077b3ffcb4e'
 ---
 
 # AmbientProperties 类
@@ -24,7 +21,7 @@ permalink: /tB/Packages/VBRUN/AmbientProperties/
 
 控件在设计器表面上放置时通常需要与在应用程序中实际运行时表现不同。[**UserMode**](/official/Reference/VBRUN/AmbientProperties/UserMode)在IDE设计器中返回**False**，在运行时返回**True**；[**UIDead**](/official/Reference/VBRUN/AmbientProperties/UIDead)在调试器暂停执行时变为**True**，使控件知道不要重绘或响应输入。[**ShowGrabHandles**](/official/Reference/VBRUN/AmbientProperties/ShowGrabHandles)和[**ShowHatching**](/official/Reference/VBRUN/AmbientProperties/ShowHatching)告诉控件容器是否希望它在被编辑时绘制常规的选择装饰。
 
-``vb
+```vb
 Sub AdaptToHost(ByVal Host As AmbientProperties)
     If Host.UserMode Then
         ' 在宿主应用程序中运行——正常渲染。
@@ -32,7 +29,7 @@ Sub AdaptToHost(ByVal Host As AmbientProperties)
         ' 嵌入在设计器中——改为显示编辑时装饰。
     End If
 End Sub
-``
+```
 
 ## 容器的视觉默认值
 

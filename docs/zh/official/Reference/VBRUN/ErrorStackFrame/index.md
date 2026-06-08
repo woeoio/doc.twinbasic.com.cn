@@ -1,63 +1,16 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'a9c4b125-01bf-443e-b534-bc9d47791bdd'
-  PropagateID: 'a9c4b125-01bf-443e-b534-bc9d47791bdd'
-  ReservedCode1: 'f23a6a80-db2e-46ab-b569-ee544a244214'
-  ReservedCode2: 'f23a6a80-db2e-46ab-b569-ee544a244214'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '509ccf9e-fe2c-413d-a5fb-44051dc7c635'
-  PropagateID: '509ccf9e-fe2c-413d-a5fb-44051dc7c635'
-  ReservedCode1: '5fd0b4e6-c1d2-415a-ba4a-7b212c2220ec'
-  ReservedCode2: '5fd0b4e6-c1d2-415a-ba4a-7b212c2220ec'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '902e49ce-b07b-4683-95e6-6d6fdbe2bf92'
-  PropagateID: '902e49ce-b07b-4683-95e6-6d6fdbe2bf92'
-  ReservedCode1: '7cabcb69-7298-4c31-8e93-86982f34afe2'
-  ReservedCode2: '7cabcb69-7298-4c31-8e93-86982f34afe2'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'e69884b9-927f-492d-b256-86effe027fad'
-  PropagateID: 'e69884b9-927f-492d-b256-86effe027fad'
-  ReservedCode1: '12abe529-c73d-49f7-a08b-f84a02794913'
-  ReservedCode2: '12abe529-c73d-49f7-a08b-f84a02794913'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '786974eb-78ea-4273-8b51-84be106ac955'
-  PropagateID: '786974eb-78ea-4273-8b51-84be106ac955'
-  ReservedCode1: '3318a211-d090-4c60-aa06-fa879c56c4cc'
-  ReservedCode2: '3318a211-d090-4c60-aa06-fa879c56c4cc'
----
-
 ---
 title: ErrorStackFrame
 parent: VBRUN Package
 nav_order: 15
 permalink: /tB/Packages/VBRUN/ErrorStackFrame/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c9f657e4-80af-4471-8166-cafa83a178a7'
+  PropagateID: 'c9f657e4-80af-4471-8166-cafa83a178a7'
+  ReservedCode1: '073918cf-62cd-4a06-bbec-0682418c2dce'
+  ReservedCode2: '073918cf-62cd-4a06-bbec-0682418c2dce'
 ---
 
 # ErrorStackFrame 类

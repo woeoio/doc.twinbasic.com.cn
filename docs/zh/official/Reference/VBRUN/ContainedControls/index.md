@@ -1,19 +1,16 @@
-﻿---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f9ff6cce-8549-42d8-bcbe-e77cd5790925'
-  PropagateID: 'f9ff6cce-8549-42d8-bcbe-e77cd5790925'
-  ReservedCode1: '84f04caa-d686-48b9-b058-6d6b2b405a28'
-  ReservedCode2: '84f04caa-d686-48b9-b058-6d6b2b405a28'
----
-
 ---
 title: ContainedControls
 parent: VBRUN Package
 nav_order: 10
 permalink: /tB/Packages/VBRUN/ContainedControls/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7434cccd-a595-4a2c-a303-4f7ace04c161'
+  PropagateID: '7434cccd-a595-4a2c-a303-4f7ace04c161'
+  ReservedCode1: 'e4fbdf14-1673-4a6b-bc9a-b1298726f235'
+  ReservedCode2: 'e4fbdf14-1673-4a6b-bc9a-b1298726f235'
 ---
 
 # ContainedControls 类
@@ -22,7 +19,7 @@ permalink: /tB/Packages/VBRUN/ContainedControls/
 
 此集合为只读：不能通过它添加或移除项，索引器仅返回现有控件。要使用它，**UserControl**的**ControlContainer**属性必须已设计时设置为**True**。
 
-``vb
+```vb
 ' 在承载其他控件的UserControl内部。
 Private Sub UserControl_Resize()
     Dim ctl As Object
@@ -30,7 +27,7 @@ Private Sub UserControl_Resize()
         ' 在UserControl中布局每个消费者放置的控件。
     Next ctl
 End Sub
-``
+```
 
 ## 成员
 
@@ -59,10 +56,10 @@ End Sub
 
 **Item**是**ContainedControls**的默认成员，因此以下两行等效：
 
-``vb
+```vb
 Set ctl = UserControl.ContainedControls.Item(1)
 Set ctl = UserControl.ContainedControls(1)
-``
+```
 
 结果类型为**Object**，因为消费者可能放置了任何类型的控件。使用[**TypeName**](/official/Reference/VBA/Information/TypeName)或**TypeOf**在绑定到特定控件属性前发现具体类型。
 
@@ -70,9 +67,9 @@ Set ctl = UserControl.ContainedControls(1)
 
 **ContainedControls**对象可以使用[**For Each...Next**](/official/Reference/Core/For-Each-Next)语句进行迭代，按消费者添加的顺序依次产生每个控件。隐藏的_NewEnum成员提供枚举器，不从用户代码直接调用。
 
-``vb
+```vb
 Dim ctl As Object
 For Each ctl In UserControl.ContainedControls
     Debug.Print TypeName(ctl)
 Next ctl
-``
+```

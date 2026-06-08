@@ -6,15 +6,15 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'aa3e16b4-d3df-4f22-bc5e-0317ed8b596a'
-  PropagateID: 'aa3e16b4-d3df-4f22-bc5e-0317ed8b596a'
-  ReservedCode1: '193b7894-4533-4b0f-a68f-6ba2e23f880e'
-  ReservedCode2: '193b7894-4533-4b0f-a68f-6ba2e23f880e'
+  ProduceID: '2bf1323c-9e3d-48df-b656-79b1431f6ff7'
+  PropagateID: '2bf1323c-9e3d-48df-b656-79b1431f6ff7'
+  ReservedCode1: 'd4fb47b7-e7ce-4bd1-a163-58215136932e'
+  ReservedCode2: 'd4fb47b7-e7ce-4bd1-a163-58215136932e'
 ---
 
 # 编辑器
 
-![Editor](Images/Editor.png "Editor")
+![编辑器](Images/Editor.png "编辑器")
 
 ## 选项
 
@@ -54,12 +54,12 @@ AIGC:
 
 当文件在*编辑器*中打开时，它会列在*标签页列表*中，你可以在此之间跳转。
 
-![Editor Tabs List (Example)](Images/Editor_TabsList_Example.png "Editor Tabs List (Example)")
+![编辑器标签页列表示例](Images/Editor_TabsList_Example.png "编辑器标签页列表示例")
 
 _最近关闭_。
 
-![Editor Tabs List Recently Closed](Images/Editor_TabsList_RecentlyClosed.png "Editor Tabs List Recently Closed")
+![编辑器标签页列表 - 最近关闭](Images/Editor_TabsList_RecentlyClosed.png "编辑器标签页列表 - 最近关闭")
 
 _最近关闭 - 列表_
 
-![Editor Tabs List Recently Closed Examples](Images/Editor_TabsList_RecentlyClosed_Example.png "Editor Tabs List Recently Closed Examples")
+![编辑器标签页列表 - 最近关闭示例](Images/Editor_TabsList_RecentlyClosed_Example.png "编辑器标签页列表 - 最近关闭示例")

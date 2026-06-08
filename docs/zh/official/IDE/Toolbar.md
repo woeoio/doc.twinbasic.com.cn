@@ -6,18 +6,18 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '2a140e33-6e03-47db-ba42-826c1b5c3420'
-  PropagateID: '2a140e33-6e03-47db-ba42-826c1b5c3420'
-  ReservedCode1: '4cf7d3e8-4619-46b0-83ae-0431e6316056'
-  ReservedCode2: '4cf7d3e8-4619-46b0-83ae-0431e6316056'
+  ProduceID: 'bd9ea0f2-27eb-48bc-a5db-2386178a180d'
+  PropagateID: 'bd9ea0f2-27eb-48bc-a5db-2386178a180d'
+  ReservedCode1: 'd89e0b5a-2d80-47f6-a55d-fcde11140466'
+  ReservedCode2: 'd89e0b5a-2d80-47f6-a55d-fcde11140466'
 ---
 
 # 工具栏
 
-![Toolbar](Images/Toolbar_1.png "Toolbar")
-![Toolbar](Images/Toolbar_2.png "Toolbar")
-![Toolbar](Images/Toolbar_3.png "Toolbar")
-![Toolbar](Images/Toolbar_4.png "Toolbar")
+![工具栏](Images/Toolbar_1.png "工具栏")
+![工具栏](Images/Toolbar_2.png "工具栏")
+![工具栏](Images/Toolbar_3.png "工具栏")
+![工具栏](Images/Toolbar_4.png "工具栏")
 
 - 全部保存 (<kbd>CTRL</kbd> + <kbd>S</kbd>)
 - 在项目中查找... (<kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>F</kbd>) (<kbd>CTRL</kbd> + <kbd>⇧</kbd> + <kbd>F</kbd>)

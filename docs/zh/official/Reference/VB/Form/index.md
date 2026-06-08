@@ -2,17 +2,25 @@
 title: Form
 parent: VB Package
 permalink: /tB/Packages/VB/Form/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '413cebf1-c105-49fd-9ade-65d1c8fce68a'
+  PropagateID: '413cebf1-c105-49fd-9ade-65d1c8fce68a'
+  ReservedCode1: '558953d8-40f3-465e-8e68-3a255d56fa93'
+  ReservedCode2: '558953d8-40f3-465e-8e68-3a255d56fa93'
 ---
 
-# Form class
+# Form 类
 
-A **Form** is a top-level Win32 window that hosts the controls, menus, and drawing surface of a single twinBASIC user interface. Each form designed in the IDE becomes its own class derived from **Form** --- its controls become members of that class, its event handlers become methods on it, and the file's name becomes the class name. Code outside the form normally instantiates it implicitly through the global default-instance reference (`MyForm.Show`) or explicitly with `New MyForm`. The default property is [**Controls**](#controls) and the default event is [**Load**](#load).
+**Form** 是一个顶级 Win32 窗口，承载单个 twinBASIC 用户界面的控件、菜单和绘图表面。在 IDE 中设计的每个窗体都成为派生自**Form**的自身类——其控件成为该类的成员，其事件处理程序成为其上的方法，文件名成为类名。窗体外的代码通常通过全局默认实例引用（`MyForm.Show`）隐式实例化它，或使用`New MyForm`显式实例化。默认属性为[**Controls**](#controls)，默认事件为[**Load**](#load)。
 
 ```vb
-' In Form1's code-behind:
+' 在 Form1 的代码隐藏中：
 Private Sub Form_Load()
     Caption = "Welcome"
-    Me.MinWidth = 4000          ' twips, ≈ 2 inches
+    Me.MinWidth = 4000          ' 缇，≈ 2 英寸
     Me.MinHeight = 3000
 End Sub
 
@@ -20,77 +28,77 @@ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
     If MsgBox("Quit?", vbYesNo) = vbNo Then Cancel = 1
 End Sub
 
-' In a startup module:
+' 在启动模块中：
 Sub Main()
     Form1.Show vbModal
 End Sub
 ```
 
 
-## Lifecycle
+## 生命周期
 
-A form goes through six distinct events from creation to destruction:
+窗体从创建到销毁经历六个不同事件：
 
-| Event                            | When                                                                                |
+| 事件                            | 时机                                                                                |
 |----------------------------------|-------------------------------------------------------------------------------------|
-| [**Initialize**](#initialize)    | Before the underlying window exists. The form's controls are not yet created.       |
-| [**Load**](#load)                | After the window and all controls have been created, before the form first appears. |
-| [**Activate**](#activate)        | When the form becomes the active window in the application.                         |
-| [**Deactivate**](#deactivate)    | When another form (or another application's window) takes activation away.          |
-| [**QueryUnload**](#queryunload)  | Before unload. Setting *Cancel* to non-zero keeps the form open.                    |
-| [**Unload**](#unload)            | After **QueryUnload** approves. Setting *Cancel* to non-zero keeps the form open.   |
-| [**Terminate**](#terminate)      | After the window has been destroyed and the class instance is released.             |
+| [**Initialize**](#initialize)    | 底层窗口存在之前。窗体的控件尚未创建。       |
+| [**Load**](#load)                | 窗口和所有控件创建之后，窗体首次显示之前。 |
+| [**Activate**](#activate)        | 窗体成为应用程序中的活动窗口时。                         |
+| [**Deactivate**](#deactivate)    | 另一个窗体（或另一个应用程序的窗口）夺取激活时。          |
+| [**QueryUnload**](#queryunload)  | 卸载之前。将*Cancel*设置为非零可保持窗体打开。                    |
+| [**Unload**](#unload)            | **QueryUnload**通过之后。将*Cancel*设置为非零可保持窗体打开。   |
+| [**Terminate**](#terminate)      | 窗口销毁且类实例释放之后。             |
 
-Closing a form goes through both **QueryUnload** *and* **Unload**, so either can veto. The *UnloadMode* argument of **QueryUnload** ([**QueryUnloadConstants**](/en/official/Reference/VBRUN/Constants/QueryUnloadConstants)) reports whether the user clicked the close button, code called **Unload**, Windows is shutting down, the MDI parent is closing, and so on.
+关闭窗体经过**QueryUnload**_和_**Unload**两者，因此任一都可以否决。**QueryUnload**的*UnloadMode*参数（[**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants)）报告用户是点击了关闭按钮、代码调用了**Unload**、Windows 正在关机、MDI 父窗体正在关闭等。
 
-## Showing the form
+## 显示窗体
 
-[**Show**](#show) makes the form visible. It accepts an optional [**FormShowConstants**](/en/official/Reference/VBRUN/Constants/FormShowConstants) argument: **vbModeless** (default --- the call returns immediately and the user can interact with other forms) or **vbModal** (the call blocks until the form is closed, and other forms in the application become unresponsive). MDI child forms cannot be shown modally; attempting to do so raises run-time error 404.
+[**Show**](#show)使窗体可见。它接受一个可选的[**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants)参数：**vbModeless**（默认——调用立即返回，用户可与其他窗体交互）或**vbModal**（调用阻塞直到窗体关闭，应用程序中的其他窗体变得不可响应）。MDI 子窗体不能以模态方式显示；尝试这样做会引发运行时错误 404。
 
 ```vb
-dlgOptions.Show vbModal, Me      ' modal, owned by the calling form
+dlgOptions.Show vbModal, Me      ' 模态，由调用窗体拥有
 ```
 
-[**Hide**](#hide) and [**Close**](#close) reverse the effect: **Hide** just clears [**Visible**](#visible); **Close** runs the full unload sequence (**QueryUnload** then **Unload** then **Terminate**). The classic `Unload <FormName>` statement is the language-level equivalent of **Close**.
+[**Hide**](#hide)和[**Close**](#close)反转效果：**Hide**仅清除[**Visible**](#visible)；**Close**运行完整的卸载序列（**QueryUnload**然后**Unload**然后**Terminate**）。经典的`Unload <FormName>`语句在语言层面等同于**Close**。
 
-[**StartUpPosition**](#startupposition) ([**StartUpPositionConstants**](/en/official/Reference/VBRUN/Constants/StartUpPositionConstants)) is read at the first **Show** to decide where the form is placed; afterwards the user (or code through [**Move**](#move) and [**WindowState**](#windowstate)) controls position.
+[**StartUpPosition**](#startupposition)（[**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants)）在首次**Show**时读取以决定窗体放置位置；之后由用户（或代码通过[**Move**](#move)和[**WindowState**](#windowstate)）控制位置。
 
-## Window appearance
+## 窗口外观
 
-[**BorderStyle**](#borderstyle) ([**FormBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/FormBorderStyleConstants)) chooses between sizable, fixed, dialog, tool, and borderless frames. [**Caption**](#caption) is the title-bar text. [**ControlBox**](#controlbox), [**MaxButton**](#maxbutton), and [**MinButton**](#minbutton) toggle the system menu and resize buttons. [**Icon**](#icon) supplies the small/large icon used by the system menu, the taskbar, and Alt-Tab. [**WindowState**](#windowstate) ([**FormWindowStateConstants**](/en/official/Reference/VBRUN/Constants/FormWindowStateConstants)) reads or sets normal / minimised / maximised state at run time.
+[**BorderStyle**](#borderstyle)（[**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants)）在可调整大小、固定、对话框、工具和无边框框架之间选择。[**Caption**](#caption)是标题栏文本。[**ControlBox**](#controlbox)、[**MaxButton**](#maxbutton)和[**MinButton**](#minbutton)切换系统菜单和调整大小按钮。[**Icon**](#icon)提供系统菜单、任务栏和 Alt-Tab 使用的小/大图标。[**WindowState**](#windowstate)（[**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants)）在运行时读取或设置正常/最小化/最大化状态。
 
-[**MinWidth**](#minwidth), [**MinHeight**](#minheight), [**MaxWidth**](#maxwidth), and [**MaxHeight**](#maxheight) constrain the *client area* in twips during interactive resizing. [**Moveable**](#moveable) decides whether the user can drag the form by its title bar; [**ShowInTaskbar**](#showintaskbar) decides whether the form shows up in the taskbar and Alt-Tab list.
+[**MinWidth**](#minwidth)、[**MinHeight**](#minheight)、[**MaxWidth**](#maxwidth)和[**MaxHeight**](#maxheight)在交互式调整大小期间以缇为单位约束*客户区*。[**Moveable**](#moveable)决定用户是否可以通过标题栏拖动窗体；[**ShowInTaskbar**](#showintaskbar)决定窗体是否出现在任务栏和 Alt-Tab 列表中。
 
-[**Opacity**](#opacity) and [**TransparencyKey**](#transparencykey) enable Windows' layered-window features for translucent forms and cut-out shapes.
+[**Opacity**](#opacity)和[**TransparencyKey**](#transparencykey)启用 Windows 的分层窗口功能，实现半透明窗体和镂空形状。
 
-## Drawing surface
+## 绘图表面
 
-A **Form** is itself a graphics surface --- code can draw lines, shapes, and text directly on it. The coordinate system is governed by [**ScaleMode**](#scalemode) (default **vbTwips** --- the classic VB6 behaviour) and the [**ScaleLeft**](#scaleleft) / [**ScaleTop**](#scaletop) / [**ScaleWidth**](#scalewidth) / [**ScaleHeight**](#scaleheight) properties, which together describe the form's logical drawing rectangle. Setting **ScaleMode** to **vbUser** lets the four **Scale\*** properties define an arbitrary rectangle; the [**Scale**](#scale) method does this in a single call.
+**Form** 本身是一个图形表面——代码可以直接在其上绘制线条、形状和文本。坐标系由[**ScaleMode**](#scalemode)（默认**vbTwips**——经典 VB6 行为）和[**ScaleLeft**](#scaleleft) / [**ScaleTop**](#scaletop) / [**ScaleWidth**](#scalewidth) / [**ScaleHeight**](#scaleheight)属性控制，它们共同描述窗体的逻辑绘图矩形。将**ScaleMode**设置为**vbUser**允许四个**Scale\***属性定义任意矩形；[**Scale**](#scale)方法在单次调用中完成此操作。
 
-The drawing primitives are [**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and the [**Print**](#print) statement (`Form1.Print "Hello"`) --- all use [**ForeColor**](#forecolor), [**FillColor**](#fillcolor), [**FillStyle**](#fillstyle), [**DrawWidth**](#drawwidth), [**DrawMode**](#drawmode), and [**DrawStyle**](#drawstyle) for their pen and fill, and the form's [**Font**](#font) for text. The current pen position is tracked by [**CurrentX**](#currentx) and [**CurrentY**](#currenty); [**TextWidth**](#textwidth) and [**TextHeight**](#textheight) measure a string in the current font. [**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert single coordinates between scale modes.
+绘图原语为[**Cls**](#cls)、[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)和[**Print**](#print)语句（`Form1.Print "Hello"`）——均使用[**ForeColor**](#forecolor)、[**FillColor**](#fillcolor)、[**FillStyle**](#fillstyle)、[**DrawWidth**](#drawwidth)、[**DrawMode**](#drawmode)和[**DrawStyle**](#drawstyle)作为画笔和填充，并使用窗体的[**Font**](#font)绘制文本。当前画笔位置由[**CurrentX**](#currentx)和[**CurrentY**](#currenty)跟踪；[**TextWidth**](#textwidth)和[**TextHeight**](#textheight)以当前字体测量字符串。[**ScaleX**](#scalex)和[**ScaleY**](#scaley)在比例模式之间转换单个坐标。
 
-[**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints: when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the form keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed. Setting [**Picture**](#picture) puts a bitmap behind the drawing layer; [**Image**](#image) returns the rendered combined surface as a **StdPicture**.
+[**AutoRedraw**](#autoredraw)控制绘图输出是否在重绘时持久保留：当**False**（默认）时，[**Paint**](#paint)事件必须在每次失效时重绘；当**True**时，窗体保持一个在失效时存活的离屏缓冲区，**Paint**事件被抑制。设置[**Picture**](#picture)在绘图层后面放置位图；[**Image**](#image)以**StdPicture**形式返回渲染的组合表面。
 
 ```vb
 Private Sub Form_Paint()
     Me.ScaleMode = vbPixels
     Me.ForeColor = vbBlue
     Me.DrawWidth = 3
-    Me.Line (10, 10)-(120, 80), , B          ' rectangle
+    Me.Line (10, 10)-(120, 80), , B          ' 矩形
     Me.CurrentX = 16 : Me.CurrentY = 16
     Me.Print "Hello, twinBASIC"
 End Sub
 ```
 
-## Controls and validation
+## 控件和验证
 
-[**Controls**](#controls) is a collection of every control on the form, indexable by name or zero-based position. **Form** is also enumerable directly --- `For Each ctrl In Form1` yields the same items as `For Each ctrl In Form1.Controls`. [**Count**](#count) is shorthand for `Controls.Count`. [**ActiveControl**](#activecontrol) returns the currently focused child, or **Nothing** when no control on this form has the focus.
+[**Controls**](#controls)是窗体上每个控件的集合，可按名称或零基位置索引。**Form** 也可直接枚举——`For Each ctrl In Form1`产生与`For Each ctrl In Form1.Controls`相同的项。[**Count**](#count)是`Controls.Count`的简写。[**ActiveControl**](#activecontrol)返回当前获得焦点的子控件，或当此窗体上没有控件获得焦点时返回**Nothing**。
 
-[**KeyPreview**](#keypreview) routes keystrokes to the form's [**KeyDown**](#keydown), [**KeyUp**](#keyup), and [**KeyPress**](#keypress) events *before* the focused control sees them --- useful for application-wide hotkey handling. [**ValidateControls**](#validatecontrols) explicitly fires the active control's **Validate** event from code; it raises run-time error 380 if the validation handler sets *Cancel*.
+[**KeyPreview**](#keypreview)将击键路由到窗体的[**KeyDown**](#keydown)、[**KeyUp**](#keyup)和[**KeyPress**](#keypress)事件，*在*焦点控件看到它们*之前*——适用于应用程序级热键处理。[**ValidateControls**](#validatecontrols)从代码显式触发活动控件的**Validate**事件；如果验证处理程序设置*Cancel*，则引发运行时错误 380。
 
-## Menus and pop-ups
+## 菜单和弹出菜单
 
-Menu structures designed at form-design time appear automatically in the form's title bar. [**PopUpMenu**](#popupmenu) displays one of those menus as a context-menu pop-up at a specified location, raising the menu's **Click** event when the user picks an item.
+在窗体设计时设计的菜单结构自动出现在窗体的标题栏中。[**PopUpMenu**](#popupmenu)将其中一个菜单作为上下文菜单弹出显示在指定位置，当用户选择项目时触发菜单的**Click**事件。
 
 ```vb
 Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -98,57 +106,57 @@ Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y A
 End Sub
 ```
 
-## Properties
+## 属性
 
 ### ActiveControl
 
-The control on this form that currently has the input focus, as a **Control** object, or **Nothing** when no control on this form is focused. Read-only.
+此窗体上当前获得输入焦点的控件，为**Control**对象，或当此窗体上没有控件获得焦点时为**Nothing**。只读。
 
 ### AlwaysShowKeyboardCues
 
-When **True**, the form always shows underlines on access-key characters in [**Caption**](#caption)s and menu items, instead of only displaying them after the user presses **Alt**. **Boolean**, read-only at run time. Set at design time.
+当**True**时，窗体始终显示[**Caption**](#caption)和菜单项中访问键字符的下划线，而不是仅在用户按**Alt**后显示。**Boolean**，运行时只读。在设计时设置。
 
 ### Appearance
 
-Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+决定操作系统如何绘制控件边框。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。
 
 ::: info
-Retained for VB6 compatibility; the property has no observable effect on a form.
+保留用于 VB6 兼容性；该属性在窗体上没有可观察效果。
 :::
 
 ### AutoRedraw
 
-Whether drawing performed on the form persists across invalidations. **Boolean**, default **False**.
+在窗体上执行的绘图是否在失效时持久保留。**Boolean**，默认**False**。
 
-When **False**, drawing primitives --- [**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and [**Print**](#print) --- paint directly to the screen and the form must redraw them in its [**Paint**](#paint) event whenever the affected area is invalidated. When **True**, the form keeps an off-screen bitmap, drawing primitives paint into it (and immediately to the screen), the bitmap survives invalidations, and the **Paint** event is suppressed. Reading [**Image**](#image) returns this bitmap.
+当**False**时，绘图原语——[**Cls**](#cls)、[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)和[**Print**](#print)——直接绘制到屏幕，窗体必须在[**Paint**](#paint)事件中在受影响区域失效时重绘它们。当**True**时，窗体保持一个离屏位图，绘图原语绘制到其中（并立即到屏幕），位图在失效时存活，**Paint**事件被抑制。读取[**Image**](#image)返回此位图。
 
 ### BackColor
 
-The background colour of the form's client area, as an **OLE_COLOR**. Defaults to the system 3-D face colour. Used as the fill colour for [**Cls**](#cls) and as the canvas behind [**Picture**](#picture).
+窗体客户区的背景色，为**OLE_COLOR**。默认为系统 3D 面颜色。用作[**Cls**](#cls)的填充色和[**Picture**](#picture)后面的画布。
 
 ### BorderStyle
 
-The window-frame style. A member of [**FormBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/FormBorderStyleConstants): **vbBSNone**, **vbFixedSingle**, **vbSizable** (default), **vbFixedDialog**, **vbFixedToolWindow**, **vbSizableToolWindow**, **vbSizableNoTitleBar** (new in twinBASIC), or **vbSizableToolWindowNoTitleBar** (new in twinBASIC). Run-time changes are accepted but only take effect after another change to the window --- typically reassigning [**Caption**](#caption).
+窗口框架样式。[**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants)的成员：**vbBSNone**、**vbFixedSingle**、**vbSizable**（默认）、**vbFixedDialog**、**vbFixedToolWindow**、**vbSizableToolWindow**、**vbSizableNoTitleBar**（twinBASIC 新增）或**vbSizableToolWindowNoTitleBar**（twinBASIC 新增）。运行时更改被接受，但仅在窗口发生另一次更改后生效——通常是重新赋值[**Caption**](#caption)。
 
 ### Caption
 
-The title-bar text. **String**.
+标题栏文本。**String**。
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
-Setting **Caption** updates the title bar immediately and re-syncs the title-bar style flags (so it can revive a title bar that was hidden because the previous **Caption** was empty).
+设置**Caption**会立即更新标题栏并重新同步标题栏样式标志（因此它可以恢复因前一个**Caption**为空而隐藏的标题栏）。
 
 ### ClipControls
 
-Whether child controls are clipped out of the form's drawing region during paint. **Boolean**, default **True**. Read-only at run time --- set at design time.
+在绘制期间子控件是否从窗体的绘图区域中裁剪出去。**Boolean**，默认**True**。运行时只读——在设计时设置。
 
 ### ControlBox
 
-Whether the form's title bar shows the system menu (and, with it, the close button). **Boolean**, default **True**. Setting it at run time re-syncs the title-bar style flags.
+窗体标题栏是否显示系统菜单（以及关闭按钮）。**Boolean**，默认**True**。在运行时设置会重新同步标题栏样式标志。
 
 ### Controls
 
-The collection of every control hosted by this form, indexable by control name or zero-based position. **Default property.** Read-only --- controls are added to the collection by the runtime, not by user code.
+此窗体承载的每个控件的集合，可按控件名称或零基位置索引。**默认属性。**只读——控件由运行时添加到集合中，而非用户代码。
 
 ```vb
 Dim ctrl As Control
@@ -159,737 +167,737 @@ Next
 
 ### Count
 
-The number of controls in [**Controls**](#controls), as a **Long**. Read-only. Equivalent to `Me.Controls.Count`.
+[**Controls**](#controls)中的控件数量，为**Long**。只读。等效于`Me.Controls.Count`。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a form. Always **vbForm**.
+标识此控件为窗体的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbForm**。
 
 ### CurrentX
 
-The horizontal pen position, in [**ScaleMode**](#scalemode) units, used by drawing primitives that omit a starting coordinate (for example, [**Print**](#print) and the rectangle form of [**Line**](#line)). **Double**.
+水平画笔位置，以[**ScaleMode**](#scalemode)单位表示，由省略起始坐标的绘图原语使用（例如[**Print**](#print)和[**Line**](#line)的矩形形式）。**Double**。
 
 ### CurrentY
 
-The vertical pen position, in [**ScaleMode**](#scalemode) units, used by drawing primitives that omit a starting coordinate. **Double**.
+垂直画笔位置，以[**ScaleMode**](#scalemode)单位表示，由省略起始坐标的绘图原语使用。**Double**。
 
 ### DpiScaleFactorX
 
-The horizontal DPI scale factor of the monitor the form is currently on, as a **Double**. `1.0` at 96 DPI, `1.25` at 120 DPI, `1.5` at 144 DPI, and so on. Read-only.
+窗体当前所在显示器的水平 DPI 缩放因子，为**Double**。96 DPI 时为`1.0`，120 DPI 时为`1.25`，144 DPI 时为`1.5`，以此类推。只读。
 
 ### DpiScaleFactorY
 
-The vertical DPI scale factor of the monitor the form is currently on. Currently always equal to [**DpiScaleFactorX**](#dpiscalefactorx). Read-only.
+窗体当前所在显示器的垂直 DPI 缩放因子。当前始终等于[**DpiScaleFactorX**](#dpiscalefactorx)。只读。
 
 ### DrawMode
 
-The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default) is normal opaque drawing; other values produce XOR, AND, NOT, and other pixel-mixing effects.
+绘图原语在将画笔与目标组合时应用的光栅操作。[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员：**vbCopyPen**（默认）是正常不透明绘制；其他值产生 XOR、AND、NOT 和其他像素混合效果。
 
 ### DrawStyle
 
-The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
+绘图原语使用的画笔线型。[**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants)的成员：**vbSolid**（默认）、**vbDash**、**vbDot**、**vbDashDot**、**vbDashDotDot**、**vbInvisible**或**vbInsideSolid**。
 
 ### DrawWidth
 
-The pen width in pixels for drawing primitives. **Long**, default `1`. Widths greater than 1 force [**DrawStyle**](#drawstyle) back to **vbSolid** (a Win32 GDI limitation).
+绘图原语的画笔宽度，以像素为单位。**Long**，默认`1`。宽度大于 1 会强制[**DrawStyle**](#drawstyle)回到**vbSolid**（Win32 GDI 限制）。
 
 ### Enabled
 
-Determines whether the form accepts user input. A disabled form ignores keyboard and mouse input and dims its controls. **Boolean**, default **True**.
+决定窗体是否接受用户输入。禁用的窗体忽略键盘和鼠标输入并使其控件变暗。**Boolean**，默认**True**。
 
 ### FillColor
 
-The fill colour for closed shapes drawn by [**Circle**](#circle) and the rectangle form of [**Line**](#line). **OLE_COLOR**, default `0` (black). Used only when [**FillStyle**](#fillstyle) is not **vbFSTransparent**.
+由[**Circle**](#circle)和[**Line**](#line)矩形形式绘制的封闭形状的填充色。**OLE_COLOR**，默认`0`（黑色）。仅在[**FillStyle**](#fillstyle)不为**vbFSTransparent**时使用。
 
 ### FillStyle
 
-The fill pattern for closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
+封闭形状的填充图案。[**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants)的成员：**vbFSSolid**、**vbFSTransparent**（默认）、**vbHorizontalLine**、**vbVerticalLine**、**vbUpwardDiagonal**、**vbDownwardDiagonal**、**vbCross**或**vbDiagonalCross**。
 
 ### Font
 
-The **StdFont** used by the [**Print**](#print) statement and other text drawing on this form. The convenience properties **FontName**, **FontSize**, **FontBold**, **FontItalic**, **FontStrikethru**, and **FontUnderline** read or write the corresponding members of this object.
+本窗体上[**Print**](#print)语句和其他文本绘制使用的**StdFont**。便利属性**FontName**、**FontSize**、**FontBold**、**FontItalic**、**FontStrikethru**和**FontUnderline**读取或写入此对象的相应成员。
 
 ### FontTransparent
 
-When **True** (default), text drawn on the form has a transparent background, leaving the underlying drawing visible behind it. When **False**, text is drawn over an opaque rectangle filled with [**BackColor**](#backcolor). **Boolean**.
+当**True**（默认）时，在窗体上绘制的文本具有透明背景，底层绘图在文本后面可见。当**False**时，文本绘制在以[**BackColor**](#backcolor)填充的不透明矩形上。**Boolean**。
 
 ### ForeColor
 
-The pen colour used by [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), and the text drawn by [**Print**](#print). **OLE_COLOR**.
+由[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)使用的画笔颜色和[**Print**](#print)绘制的文本颜色。**OLE_COLOR**。
 
 ### hDC
 
-The Win32 device context handle for the form, as a **LongPtr**. Read-only. Returns `0` when the underlying window has not yet been created. Useful for passing to GDI API calls.
+窗体的 Win32 设备上下文句柄，为**LongPtr**。只读。当底层窗口尚未创建时返回`0`。适用于传递给 GDI API 调用。
 
 ### HasDC
 
-Whether the form keeps a private device context (`CS_OWNDC`) for its drawing surface. **Boolean**, default **True**. Read-only at run time --- set at design time.
+窗体是否为其绘图表面保持专用设备上下文（`CS_OWNDC`）。**Boolean**，默认**True**。运行时只读——在设计时设置。
 
 ### Height
 
-The form's outer height, in twips by default (or in the container's **ScaleMode** units). **Double**. Setting it resizes the window. Constrained at run time by [**MinHeight**](#minheight) and [**MaxHeight**](#maxheight) when those are non-zero.
+窗体的外部高度，默认以缇为单位（或容器**ScaleMode**单位）。**Double**。设置它会调整窗口大小。运行时受[**MinHeight**](#minheight)和[**MaxHeight**](#maxheight)约束（非零时）。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the form has focus.
+标识应用程序帮助文件中主题的**Long**，当用户在窗体获得焦点时按**F1**时检索。
 
 ### hWnd
 
-The Win32 window handle for the form, as a **LongPtr**. Read-only. Useful for passing to API functions.
+窗体的 Win32 窗口句柄，为**LongPtr**。只读。适用于传递给 API 函数。
 
 ### Icon
 
-The icon shown on the title bar, in the taskbar, and in Alt-Tab. A **StdPicture** of type **vbPicTypeIcon**. Assigning a non-icon picture clears the icon to the default Windows application icon.
+标题栏、任务栏和 Alt-Tab 中显示的图标。**vbPicTypeIcon**类型的**StdPicture**。赋值非图标图片会将图标清除为默认 Windows 应用程序图标。
 
 ### Image
 
-Returns the rendered drawing surface as a **StdPicture**. Read-only. Most useful when [**AutoRedraw**](#autoredraw) is **True** --- the returned picture is the persistent off-screen buffer.
+以**StdPicture**形式返回渲染的绘图表面。只读。当[**AutoRedraw**](#autoredraw)为**True**时最有用——返回的图片是持久的离屏缓冲区。
 
 ### KeyPreview
 
-When **True**, the form's [**KeyDown**](#keydown), [**KeyUp**](#keyup), and [**KeyPress**](#keypress) events fire *before* the focused control receives the same keystroke. **Boolean**, default **False**. Useful for application-wide hotkeys; events still fire on the focused control afterwards.
+当**True**时，窗体的[**KeyDown**](#keydown)、[**KeyUp**](#keyup)和[**KeyPress**](#keypress)事件在焦点控件接收相同击键*之前*触发。**Boolean**，默认**False**。适用于应用程序级热键；事件之后仍在焦点控件上触发。
 
 ### Left
 
-The horizontal position of the form's outer rectangle, in twips (or the calling code's **ScaleMode** units), measured from the left edge of the screen --- or, for an MDI child, from the left edge of the MDI parent's client area. **Double**.
+窗体外部矩形的水平位置，以缇为单位（或调用代码的**ScaleMode**单位），从屏幕左边缘测量——或对于 MDI 子窗体，从 MDI 父窗体客户区的左边缘测量。**Double**。
 
 ### LinkMode
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently implemented in twinBASIC.
+保留用于 VB6 DDE 功能兼容性；twinBASIC 中当前未实现。
 :::
 
 ### LinkTopic
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently implemented in twinBASIC.
+保留用于 VB6 DDE 功能兼容性；twinBASIC 中当前未实现。
 :::
 
 ### MaxButton
 
-Whether the title bar shows the maximise button. **Boolean**, default **True**, read-only at run time. Set at design time.
+标题栏是否显示最大化按钮。**Boolean**，默认**True**，运行时只读。在设计时设置。
 
 ### MaxHeight
 
-The maximum height of the form's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+窗体*客户区*的最大高度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时生效。
 
 ### MaxWidth
 
-The maximum width of the form's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+窗体*客户区*的最大宽度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时生效。
 
 ### MDIChild
 
-When **True**, the form is hosted as a child inside an [**MDIForm**](/en/official/Reference/VB/MDIForm/). **Boolean**, read-only --- set at design time. An MDI child form cannot be shown modally.
+当**True**时，窗体作为子窗体承载在[**MDIForm**](/official/Reference/VB/MDIForm/)中。**Boolean**，只读——在设计时设置。MDI 子窗体不能以模态方式显示。
 
 ### MinButton
 
-Whether the title bar shows the minimise button. **Boolean**, default **True**, read-only at run time. Set at design time.
+标题栏是否显示最小化按钮。**Boolean**，默认**True**，运行时只读。在设计时设置。
 
 ### MinHeight
 
-The minimum height of the form's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+窗体*客户区*的最小高度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时生效。
 
 ### MinWidth
 
-The minimum width of the form's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+窗体*客户区*的最小宽度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时生效。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the form (and not over a child control with its own setting).
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针位于窗体上方（且不在有自身设置的子控件上）时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the form (and not over a child control with its own setting). A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
+当指针位于窗体上方（且不在有自身设置的子控件上）时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Moveable
 
-Whether the user can drag the form by its title bar. **Boolean**, default **True**.
+用户是否可以通过标题栏拖动窗体。**Boolean**，默认**True**。
 
 ### Name
 
-The unique design-time name of the form. Read-only at run time. Also the class name of the generated form class.
+窗体的唯一设计时名称。运行时只读。也是生成的窗体类的类名。
 
 ### NegotiateMenus
 
 ::: info
-Reserved for compatibility with VB6's ActiveX-document menu negotiation feature; not currently implemented in twinBASIC.
+保留用于 VB6 ActiveX 文档菜单协商功能兼容性；twinBASIC 中当前未实现。
 :::
 
 ### OLEDropMode
 
-How the form responds to OLE drops. A restricted member of [**OLEDropConstants**](/en/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a Form.
+窗体如何响应 OLE 放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants)的受限成员：**vbOLEDropNone**或**vbOLEDropManual**。Form 不支持自动放置模式。
 
 ### Opacity
 
-The form's opacity as a percentage (0--100, default 100). Values outside the range are clamped on **Initialize**. Values below 100 cause the form to become a layered window.
+窗体的不透明度百分比（0--100，默认 100）。超出范围的值在**Initialize**时被钳制。低于 100 的值会使窗体成为分层窗口。
 
 ### Palette
 
 ::: info
-Reserved for compatibility with VB6's 256-colour palette feature; not currently implemented in twinBASIC.
+保留用于 VB6 256 色调色板功能兼容性；twinBASIC 中当前未实现。
 :::
 
 ### PaletteMode
 
 ::: info
-Reserved for compatibility with VB6's 256-colour palette feature; not currently implemented in twinBASIC.
+保留用于 VB6 256 色调色板功能兼容性；twinBASIC 中当前未实现。
 :::
 
 ### Picture
 
-A **StdPicture** drawn as the form's background. Painted before any drawing primitives or child controls. Assigning **Nothing** removes the background.
+作为窗体背景绘制的**StdPicture**。在任何绘图原语或子控件之前绘制。赋值**Nothing**移除背景。
 
 ### PictureDpiScaling
 
-When **True**, [**Picture**](#picture) is scaled by the current DPI factor before drawing. **Boolean**, default **False**.
+当**True**时，[**Picture**](#picture)在绘制前按当前 DPI 因子缩放。**Boolean**，默认**False**。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于 VB6 兼容性；twinBASIC 中当前未实现。
 :::
 
 ### ScaleHeight
 
-The height of the logical drawing rectangle, in [**ScaleMode**](#scalemode) units. **Double**. Setting it (or [**ScaleWidth**](#scalewidth), [**ScaleLeft**](#scaleleft), or [**ScaleTop**](#scaletop)) implicitly switches **ScaleMode** to **vbUser**.
+逻辑绘图矩形的高度，以[**ScaleMode**](#scalemode)单位表示。**Double**。设置它（或[**ScaleWidth**](#scalewidth)、[**ScaleLeft**](#scaleleft)或[**ScaleTop**](#scaletop)）会隐式将**ScaleMode**切换为**vbUser**。
 
 ### ScaleLeft
 
-The logical horizontal coordinate of the left edge of the form's client area, in [**ScaleMode**](#scalemode) units. **Double**. Default `0`.
+窗体客户区左边缘的逻辑水平坐标，以[**ScaleMode**](#scalemode)单位表示。**Double**。默认`0`。
 
 ### ScaleMode
 
-The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser** (the four **Scale\*** properties define the rectangle).
+由[**CurrentX**](#currentx)、[**CurrentY**](#currenty)、绘图原语、[**TextWidth**](#textwidth)和[**TextHeight**](#textheight)使用的度量单位。[**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员：**vbTwips**（默认）、**vbPoints**、**vbPixels**、**vbCharacters**、**vbInches**、**vbMillimeters**、**vbCentimeters**或**vbUser**（四个**Scale\***属性定义矩形）。
 
 ### ScaleTop
 
-The logical vertical coordinate of the top edge of the form's client area, in [**ScaleMode**](#scalemode) units. **Double**. Default `0`.
+窗体客户区顶边缘的逻辑垂直坐标，以[**ScaleMode**](#scalemode)单位表示。**Double**。默认`0`。
 
 ### ScaleWidth
 
-The width of the logical drawing rectangle, in [**ScaleMode**](#scalemode) units. **Double**. Setting it implicitly switches **ScaleMode** to **vbUser**.
+逻辑绘图矩形的宽度，以[**ScaleMode**](#scalemode)单位表示。**Double**。设置它会隐式将**ScaleMode**切换为**vbUser**。
 
 ### ShowInTaskbar
 
-Whether the form appears in the Windows taskbar and Alt-Tab list. **Boolean**, default **True**. Read-only at run time --- set at design time.
+窗体是否出现在 Windows 任务栏和 Alt-Tab 列表中。**Boolean**，默认**True**。运行时只读——在设计时设置。
 
 ### StartUpPosition
 
-How the form's initial position is determined the first time it is shown. A member of [**StartUpPositionConstants**](/en/official/Reference/VBRUN/Constants/StartUpPositionConstants): **vbStartUpManual**, **vbStartUpOwner**, **vbStartUpScreen**, or **vbStartUpWindowsDefault** (default). Read-only at run time --- set at design time.
+窗体首次显示时如何确定初始位置。[**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants)的成员：**vbStartUpManual**、**vbStartUpOwner**、**vbStartUpScreen**或**vbStartUpWindowsDefault**（默认）。运行时只读——在设计时设置。
 
 ### TabFocusAutoSelect
 
-When **True**, a [**TextBox**](/en/official/Reference/VB/TextBox/) on this form whose own **TabFocusAutoSelect** is also **True** auto-selects its content when the focus enters it via the **TAB** key. **Boolean**, default **False**.
+当**True**时，此窗体上自身**TabFocusAutoSelect**也为**True**的[**TextBox**](/official/Reference/VB/TextBox/)在通过**TAB**键进入焦点时自动选中其内容。**Boolean**，默认**False**。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the form. Ignored by the framework.
+应用程序可用于将自定义数据与窗体关联的自由格式**String**。框架不使用此属性。
 
 ### Top
 
-The vertical position of the form's outer rectangle, in twips (or the calling code's **ScaleMode** units), measured from the top edge of the screen --- or, for an MDI child, from the top edge of the MDI parent's client area. **Double**.
+窗体外部矩形的垂直位置，以缇为单位（或调用代码的**ScaleMode**单位），从屏幕顶边缘测量——或对于 MDI 子窗体，从 MDI 父窗体客户区的顶边缘测量。**Double**。
 
 ### TopMost
 
-Whether the form sits in the always-on-top z-order layer. **Boolean**, read-only at run time. Set at design time.
+窗体是否位于置顶层 z 顺序层。**Boolean**，运行时只读。在设计时设置。
 
 ### TransparencyKey
 
-An **OLE_COLOR** that, when set, becomes fully transparent in the rendered form --- clicks pass through to whatever is underneath, and the corresponding pixels do not paint. Default `-1` disables the effect.
+一个**OLE_COLOR**，设置后在渲染的窗体中变为完全透明——点击穿透到下方内容，相应像素不绘制。默认`-1`禁用效果。
 
 ### Visible
 
-Whether the form is shown. **Boolean**, default **True**. Setting **Visible** to **True** when the form was hidden is equivalent to calling [**Show**](#show) **vbModeless**; setting it to **False** is equivalent to calling [**Hide**](#hide).
+窗体是否可见。**Boolean**，默认**True**。在窗体隐藏时将**Visible**设置为**True**等效于调用[**Show**](#show) **vbModeless**；设置为**False**等效于调用[**Hide**](#hide)。
 
 ### WhatsThisButton
 
-When **True**, the title bar shows a "?" help button --- but only when [**MinButton**](#minbutton) is **False**, [**MaxButton**](#maxbutton) is **False**, [**ControlBox**](#controlbox) is **True**, and [**BorderStyle**](#borderstyle) is not a tool-window style. **Boolean**.
+当**True**时，标题栏显示"?"帮助按钮——但仅当[**MinButton**](#minbutton)为**False**、[**MaxButton**](#maxbutton)为**False**、[**ControlBox**](#controlbox)为**True**且[**BorderStyle**](#borderstyle)不是工具窗口样式时。**Boolean**。
 
 ### WhatsThisHelp
 
-When **True**, [**WhatsThisMode**](#whatsthismode) and the title-bar help button enter Windows' "What's This?" cursor mode. **Boolean**, default **False**.
+当**True**时，[**WhatsThisMode**](#whatsthismode)和标题栏帮助按钮进入 Windows 的"这是什么？"光标模式。**Boolean**，默认**False**。
 
 ### Width
 
-The form's outer width, in twips by default (or in the container's **ScaleMode** units). **Double**. Setting it resizes the window. Constrained at run time by [**MinWidth**](#minwidth) and [**MaxWidth**](#maxwidth) when those are non-zero.
+窗体的外部宽度，默认以缇为单位（或容器**ScaleMode**单位）。**Double**。设置它会调整窗口大小。运行时受[**MinWidth**](#minwidth)和[**MaxWidth**](#maxwidth)约束（非零时）。
 
 ### WindowState
 
-The window's normal/minimised/maximised state. A member of [**FormWindowStateConstants**](/en/official/Reference/VBRUN/Constants/FormWindowStateConstants): **vbNormal** (0, default), **vbMinimized** (1), or **vbMaximized** (2). Setting it at run time updates the window placement immediately if the form is visible.
+窗口的正常/最小化/最大化状态。[**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants)的成员：**vbNormal**（0，默认）、**vbMinimized**（1）或**vbMaximized**（2）。在运行时设置会立即更新窗口位置（如果窗体可见）。
 
-## Methods
+## 方法
 
 ### Circle
 
-Draws a circle, ellipse, or arc on the form using [**ForeColor**](#forecolor) for the outline and [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle) for the interior.
+使用[**ForeColor**](#forecolor)绘制轮廓，使用[**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle)填充内部，在窗体上绘制圆、椭圆或弧。
 
-Syntax: *object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, [ *Color* ] [, [ *Start* ] [, [ *End* ] [, *Aspect* ] ] ] ]
+语法：*object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, [ *Color* ] [, [ *Start* ] [, [ *End* ] [, *Aspect* ] ] ] ]
 
 *X*, *Y*
-: *required* The centre, in [**ScaleMode**](#scalemode) units. **Step** makes the centre relative to ([**CurrentX**](#currentx), [**CurrentY**](#currenty)).
+: *必需* 圆心，以[**ScaleMode**](#scalemode)单位表示。**Step**使圆心相对于（[**CurrentX**](#currentx)，[**CurrentY**](#currenty)）。
 
 *Radius*
-: *required* A **Single** giving the radius in **ScaleMode** units.
+: *必需* 以**ScaleMode**单位给出半径的**Single**。
 
 *Color*
-: *optional* An **OLE_COLOR** for the outline; defaults to [**ForeColor**](#forecolor).
+: *可选* 轮廓的**OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
-*Start*, *End*
-: *optional* Angles in radians, used to draw an arc rather than a full circle.
+*Start*、*End*
+: *可选* 以弧度为单位的角，用于绘制弧而非完整圆。
 
 *Aspect*
-: *optional* Ratio of vertical to horizontal radius. `1.0` is circular; values away from `1.0` produce ellipses.
+: *可选* 垂直与水平半径的比率。`1.0`为圆形；偏离`1.0`的值产生椭圆。
 
 ### Cls
 
-Clears any drawing performed by [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and [**Print**](#print), repaints [**BackColor**](#backcolor), and resets [**CurrentX**](#currentx) / [**CurrentY**](#currenty) to `0`. Does not affect the [**Picture**](#picture) backdrop or child controls.
+清除由[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)和[**Print**](#print)执行的任何绘图，以[**BackColor**](#backcolor)重绘，并将[**CurrentX**](#currentx) / [**CurrentY**](#currenty)重置为`0`。不影响[**Picture**](#picture)背景或子控件。
 
-Syntax: *object*.**Cls**
+语法：*object*.**Cls**
 
 ### Close
 
-Initiates the form's unload sequence --- [**QueryUnload**](#queryunload), then [**Unload**](#unload), then [**Terminate**](#terminate). Either of the first two events can cancel the close by setting *Cancel* to non-zero. Equivalent to the language statement `Unload Me`.
+启动窗体的卸载序列——[**QueryUnload**](#queryunload)，然后[**Unload**](#unload)，然后[**Terminate**](#terminate)。前两个事件中的任一都可以通过将*Cancel*设置为非零来取消关闭。等效于语言语句`Unload Me`。
 
-Syntax: *object*.**Close**
+语法：*object*.**Close**
 
 ### Hide
 
-Hides the form without unloading it. The class instance and its controls are preserved; calling [**Show**](#show) (or assigning [**Visible**](#visible) = **True**) brings it back. Equivalent to assigning **Visible** = **False**.
+隐藏窗体而不卸载它。类实例及其控件被保留；调用[**Show**](#show)（或赋值[**Visible**](#visible) = **True**）可再次显示。等效于赋值**Visible** = **False**。
 
-Syntax: *object*.**Hide**
+语法：*object*.**Hide**
 
 ### Line
 
-Draws a line, or a rectangle, on the form using [**ForeColor**](#forecolor) (or an explicit colour) and [**DrawWidth**](#drawwidth)/[**DrawStyle**](#drawstyle).
+使用[**ForeColor**](#forecolor)（或显式颜色）和[**DrawWidth**](#drawwidth)/[**DrawStyle**](#drawstyle)在窗体上绘制直线或矩形。
 
-Syntax: *object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] -[ **Step** ] ( *X2*, *Y2* ) [, [ *Color* ] [, **B** [ **F** ] ] ]
+语法：*object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] -[ **Step** ] ( *X2*, *Y2* ) [, [ *Color* ] [, **B** [ **F** ] ] ]
 
 *X1*, *Y1*
-: *optional* The start point, in [**ScaleMode**](#scalemode) units. **Step** makes the point relative to ([**CurrentX**](#currentx), [**CurrentY**](#currenty)). When omitted, drawing begins from the current pen position.
+: *可选* 起点，以[**ScaleMode**](#scalemode)单位表示。**Step**使点相对于（[**CurrentX**](#currentx)，[**CurrentY**](#currenty)）。省略时，从当前画笔位置开始绘制。
 
 *X2*, *Y2*
-: *required* The end point, in **ScaleMode** units. **Step** makes the point relative to (*X1*, *Y1*).
+: *必需* 终点，以**ScaleMode**单位表示。**Step**使点相对于（*X1*，*Y1*）。
 
 *Color*
-: *optional* An **OLE_COLOR** for the line; defaults to [**ForeColor**](#forecolor).
+: *可选* 线条的**OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
 **B**
-: *optional* Draw a rectangle whose opposite corners are (*X1*, *Y1*) and (*X2*, *Y2*) instead of a line.
+: *可选* 绘制以（*X1*，*Y1*）和（*X2*，*Y2*）为对角的矩形而非线条。
 
 **F**
-: *optional* When combined with **B**, fill the rectangle with [**ForeColor**](#forecolor) instead of [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle).
+: *可选* 与**B**组合时，使用[**ForeColor**](#forecolor)而非[**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle)填充矩形。
 
 ### Move
 
-Repositions and optionally resizes the form in a single call.
+在单次调用中重新定位并可选地调整窗体大小。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the form, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject**.
+从窗体启动 OLE 拖动操作，触发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### PaintPicture
 
-Draws a **StdPicture** onto the form, with optional scaling and raster operations.
+将**StdPicture**绘制到窗体上，支持可选缩放和光栅操作。
 
-Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* [, *StretchQuality* ] ] ] ] ] ] ] ]
+语法：*object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* [, *StretchQuality* ] ] ] ] ] ] ] ]
 
 *Picture*
-: *required* A **StdPicture** to draw.
+: *必需* 要绘制的**StdPicture**。
 
 *X1*, *Y1*
-: *required* The destination upper-left corner, in [**ScaleMode**](#scalemode) units.
+: *必需* 目标左上角，以[**ScaleMode**](#scalemode)单位表示。
 
 *Width1*, *Height1*
-: *optional* Destination size; defaults to the picture's natural size.
+: *可选* 目标尺寸；默认为图片的自然尺寸。
 
 *X2*, *Y2*, *Width2*, *Height2*
-: *optional* The source rectangle within the picture; defaults to the whole picture.
+: *可选* 图片内的源矩形；默认为整个图片。
 
 *Opcode*
-: *optional* A raster-operation code (member of [**RasterOpConstants**](/en/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
+: *可选* 光栅操作代码（[**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants)的成员）。默认为**vbSrcCopy**。
 
 *StretchQuality*
-: *optional* The interpolation method when scaling. Defaults to normal quality.
+: *可选* 缩放时的插值方法。默认为正常质量。
 
 ### PopUpMenu
 
-Displays a [**Menu**](/en/official/Reference/VB/Menu/) as a context-menu pop-up at the specified location.
+将[**Menu**](/official/Reference/VB/Menu/)作为上下文菜单弹出显示在指定位置。
 
-Syntax: *object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
+语法：*object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
 
 *Menu*
-: *required* The **Menu** control to display. The menu must already exist on the form (or its MDI parent).
+: *必需* 要显示的**Menu**控件。菜单必须已存在于窗体上（或其 MDI 父窗体上）。
 
 *Flags*
-: *optional* A combination of [**MenuControlConstants**](/en/official/Reference/VBRUN/Constants/MenuControlConstants) controlling alignment and which mouse buttons trigger the menu items.
+: *可选* [**MenuControlConstants**](/official/Reference/VBRUN/Constants/MenuControlConstants)的组合，控制对齐方式和哪些鼠标按钮触发菜单项。
 
 *X*, *Y*
-: *optional* The screen-relative position to anchor the menu at, in [**ScaleMode**](#scalemode) units. Defaults to the current mouse position.
+: *可选* 锚定菜单的屏幕相对位置，以[**ScaleMode**](#scalemode)单位表示。默认为当前鼠标位置。
 
 *DefaultMenu*
-: *optional* The **Menu** sub-item to render in bold as the default action.
+: *可选* 以粗体渲染为默认操作的**Menu**子项。
 
 ### Point
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC. In VB6 this returns the **OLE_COLOR** of a single pixel of the drawing surface.
+保留用于 VB6 兼容性；twinBASIC 中当前未实现。在 VB6 中此方法返回绘图表面单个像素的**OLE_COLOR**。
 :::
 
-Syntax: *object*.**Point**( *X*, *Y* )
+语法：*object*.**Point**( *X*, *Y* )
 
 ### Print
 
-Writes text to the form's drawing surface using [**Font**](#font), starting at [**CurrentX**](#currentx) / [**CurrentY**](#currenty) and advancing them as it goes. Dispatched through the VB6 **Print** statement so multiple expressions can be separated by `;` (no spacing) or `,` (tab to the next print zone). **Spc(n)** inserts *n* spaces and **Tab(n)** moves to print column *n*. Output honours [**Font**](#font), [**ForeColor**](#forecolor), and [**FontTransparent**](#fonttransparent), and --- when [**AutoRedraw**](#autoredraw) is **True** --- is recorded into the persistent off-screen bitmap so it survives invalidations.
+使用[**Font**](#font)将文本写入窗体的绘图表面，从[**CurrentX**](#currentx) / [**CurrentY**](#currenty)开始并随着输出推进。通过 VB6 **Print**语句分派，因此多个表达式可以用`;`（无间距）或`,`（跳到下一个打印区）分隔。**Spc(n)**插入*n*个空格，**Tab(n)**移到打印列*n*。输出遵循[**Font**](#font)、[**ForeColor**](#forecolor)和[**FontTransparent**](#fonttransparent)，当[**AutoRedraw**](#autoredraw)为**True**时，记录到持久离屏位图中以在失效时存活。
 
-Syntax: *object*.**Print** \[ *expressionlist* ] \[ **;** \| **,** ]
+语法：*object*.**Print** \[ *expressionlist* ] \[ **;** \| **,** ]
 
-A trailing `;` or `,` suppresses the newline so the next **Print** call continues on the same line; without a trailing separator, the pen advances to the start of the next line.
+末尾的`;`或`,`抑制换行，使下一个**Print**调用继续在同一行；没有末尾分隔符时，画笔推进到下一行的开头。
 
 ```vb
 Me.CurrentX = 10 : Me.CurrentY = 10
-Me.Print "Name: "; sName, "Age: "; nAge      ' two fields, tab-separated
-Me.Print                                     ' blank line
+Me.Print "Name: "; sName, "Age: "; nAge      ' 两个字段，制表符分隔
+Me.Print                                     ' 空行
 Me.Print "Total: " & Format$(Total, "0.00")
 ```
 
 ### PrintForm
 
-Sends a screen-shot of the form's current visual state to the default printer through the [**Printer**](/en/official/Reference/VB/Printer/) object.
+通过[**Printer**](/official/Reference/VB/Printer/)对象将窗体当前视觉状态的屏幕截图发送到默认打印机。
 
-Syntax: *object*.**PrintForm** [ *ImplicitEndDoc* [, *OutputAtCurrentPosition* ] ]
+语法：*object*.**PrintForm** [ *ImplicitEndDoc* [, *OutputAtCurrentPosition* ] ]
 
 *ImplicitEndDoc*
-: *optional* When **True** (default), the print job is finalised before returning; when **False**, the form is sent as a page but the print job stays open for further output.
+: *可选* 当**True**（默认）时，打印作业在返回前完成；当**False**时，窗体作为页面发送但打印作业保持打开以供进一步输出。
 
 *OutputAtCurrentPosition*
-: *optional* When **True**, the form is rendered at the printer's current pen position rather than at the page origin. **Boolean**, default **False**.
+: *可选* 当**True**时，窗体在打印机当前画笔位置渲染而非页面原点。**Boolean**，默认**False**。
 
 ### PSet
 
-Sets a single pixel on the form to a specified colour.
+将窗体上的单个像素设置为指定颜色。
 
-Syntax: *object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
+语法：*object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
 
 *X*, *Y*
-: *required* The pixel position, in [**ScaleMode**](#scalemode) units. **Step** makes the position relative to ([**CurrentX**](#currentx), [**CurrentY**](#currenty)).
+: *必需* 像素位置，以[**ScaleMode**](#scalemode)单位表示。**Step**使位置相对于（[**CurrentX**](#currentx)，[**CurrentY**](#currenty)）。
 
 *Color*
-: *optional* An **OLE_COLOR**; defaults to [**ForeColor**](#forecolor).
+: *可选* **OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
 ### Refresh
 
-Forces an immediate repaint of the form, raising [**Paint**](#paint) when [**AutoRedraw**](#autoredraw) is **False**.
+强制窗体立即重绘，当[**AutoRedraw**](#autoredraw)为**False**时触发[**Paint**](#paint)。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### Scale
 
-Sets the form's logical drawing rectangle in a single call by assigning [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight). Switches [**ScaleMode**](#scalemode) to **vbUser**. Calling **Scale** with no arguments resets the rectangle to a 1-to-1 mapping with the client area in pixels.
+通过分配[**ScaleLeft**](#scaleleft)、[**ScaleTop**](#scaletop)、[**ScaleWidth**](#scalewidth)和[**ScaleHeight**](#scaleheight)在单次调用中设置窗体的逻辑绘图矩形。将[**ScaleMode**](#scalemode)切换为**vbUser**。不带参数调用**Scale**将矩形重置为与客户区以像素 1:1 映射。
 
-Syntax: *object*.**Scale** [ ( *X1*, *Y1* )-( *X2*, *Y2* ) ]
+语法：*object*.**Scale** [ ( *X1*, *Y1* )-( *X2*, *Y2* ) ]
 
 *X1*, *Y1*
-: *optional* The logical coordinate at the top-left corner.
+: *可选* 左上角的逻辑坐标。
 
 *X2*, *Y2*
-: *optional* The logical coordinate at the bottom-right corner.
+: *可选* 右下角的逻辑坐标。
 
 ### ScaleX
 
-Converts a horizontal length from one [**ScaleMode**](#scalemode) to another.
+将水平长度从一个[**ScaleMode**](#scalemode)转换为另一个。
 
-Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
+语法：*object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
 
 *Width*
-: *required* A **Single** giving the source length.
+: *必需* 给出源长度的**Single**。
 
-*FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+*FromScale*、*ToScale*
+: *可选* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员。省略时默认为当前**ScaleMode**。
 
 ### ScaleY
 
-Converts a vertical length from one [**ScaleMode**](#scalemode) to another.
+将垂直长度从一个[**ScaleMode**](#scalemode)转换为另一个。
 
-Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
+语法：*object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
 
 *Height*
-: *required* A **Single** giving the source length.
+: *必需* 给出源长度的**Single**。
 
-*FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+*FromScale*、*ToScale*
+: *可选* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员。省略时默认为当前**ScaleMode**。
 
 ### SetFocus
 
-Activates the form and gives input focus to the control whose [**TabIndex**](/en/official/Reference/VB/TextBox/#tabindex) is `0` (or to whichever control last held focus on this form).
+激活窗体并将输入焦点赋予[**TabIndex**](/official/Reference/VB/TextBox/#tabindex)为`0`的控件（或此窗体上最后持有焦点的控件）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### Show
 
-Makes the form visible. Triggers [**Load**](#load) on the first call.
+使窗体可见。在首次调用时触发[**Load**](#load)。
 
-Syntax: *object*.**Show** [ *Modal* [, *OwnerForm* ] ]
+语法：*object*.**Show** [ *Modal* [, *OwnerForm* ] ]
 
 *Modal*
-: *optional* A member of [**FormShowConstants**](/en/official/Reference/VBRUN/Constants/FormShowConstants): **vbModeless** (0, default --- the call returns immediately) or **vbModal** (1 --- the call blocks until the form is closed and the user cannot interact with other forms).
+: *可选* [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants)的成员：**vbModeless**（0，默认——调用立即返回）或**vbModal**（1——调用阻塞直到窗体关闭且用户无法与其他窗体交互）。
 
 *OwnerForm*
-: *optional* For modal shows, the form that is disabled while this form is up; defaults to the currently active form.
+: *可选* 对于模态显示，在此窗体打开期间被禁用的窗体；默认为当前活动窗体。
 
 ### TextHeight
 
-Returns the height that the given string would occupy when drawn with the form's current [**Font**](#font), in [**ScaleMode**](#scalemode) units.
+返回给定字符串使用窗体当前[**Font**](#font)绘制时将占用的宽度，以[**ScaleMode**](#scalemode)单位表示。
 
-Syntax: *object*.**TextHeight**( *Str* )
+语法：*object*.**TextHeight**( *Str* )
 
 *Str*
-: *required* A **String** to measure.
+: *必需* 要测量的**String**。
 
 ### TextWidth
 
-Returns the width that the given string would occupy when drawn with the form's current [**Font**](#font), in [**ScaleMode**](#scalemode) units.
+返回给定字符串使用窗体当前[**Font**](#font)绘制时将占用的宽度，以[**ScaleMode**](#scalemode)单位表示。
 
-Syntax: *object*.**TextWidth**( *Str* )
+语法：*object*.**TextWidth**( *Str* )
 
 *Str*
-: *required* A **String** to measure.
+: *必需* 要测量的**String**。
 
 ### ValidateControls
 
-Fires the **Validate** event of the currently active control on this form. If the handler sets *Cancel* to **True**, **ValidateControls** raises run-time error 380 (*Invalid property value*); the caller can wrap this with `On Error` to detect a failed validation. Useful for checking pending input before saving or closing.
+触发此窗体上当前活动控件的**Validate**事件。如果处理程序将*Cancel*设置为**True**，**ValidateControls**引发运行时错误 380（*Invalid property value*）；调用者可以用`On Error`包裹以检测失败的验证。适用于在保存或关闭之前检查待处理的输入。
 
-Syntax: *object*.**ValidateControls**
+语法：*object*.**ValidateControls**
 
 ### WhatsThisMode
 
-Enters Windows' "What's This?" cursor mode --- the next click on a control raises that control's help instead of activating it. [**WhatsThisHelp**](#whatsthishelp) must be **True**.
+进入 Windows 的"这是什么？"光标模式——下次点击控件会触发该控件的帮助而非激活它。[**WhatsThisHelp**](#whatsthishelp)必须为**True**。
 
-Syntax: *object*.**WhatsThisMode**
+语法：*object*.**WhatsThisMode**
 
 ### ZOrder
 
-Brings the form to the front or back of the top-level z-order.
+将窗体置于顶级 z 顺序的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront**（0，默认）或**vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Activate
 
-Raised when the form becomes the active window in the application --- either after [**Load**](#load) for the first show, or whenever it gains activation back from another window.
+当窗体成为应用程序中的活动窗口时触发——无论是[**Load**](#load)后首次显示，还是从另一个窗口重新获得激活时。
 
-Syntax: *object*\_**Activate**( )
+语法：*object*\_**Activate**( )
 
 ### Click
 
-Raised when the user single-clicks the form's client area (i.e. not over any child control).
+当用户单击窗体客户区（即不在任何子控件上）时触发。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks the form's client area.
+当用户双击窗体客户区时触发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### Deactivate
 
-Raised when another window in the application takes activation away from this form. Not raised when activation moves to a window in a different application.
+当应用程序中的另一个窗口从此窗体夺取激活时触发。当激活移到不同应用程序的窗口时不触发。
 
-Syntax: *object*\_**Deactivate**( )
+语法：*object*\_**Deactivate**( )
 
 ### DPIChange
 
-Raised when the form moves to a monitor with a different DPI scale, *but only* when the application is per-monitor DPI aware (`PROCESS_PER_MONITOR_DPI_AWARE`). The event's *NewDPI* argument gives the new effective DPI; child controls re-scale themselves automatically. New in twinBASIC.
+当窗体移动到具有不同 DPI 缩放的显示器时触发，*但仅当*应用程序是每显示器 DPI 感知的（`PROCESS_PER_MONITOR_DPI_AWARE`）。事件的*NewDPI*参数给出新的有效 DPI；子控件自动重新缩放。twinBASIC 新增。
 
-Syntax: *object*\_**DPIChange**( *NewDPI* **As Long** )
+语法：*object*\_**DPIChange**( *NewDPI* **As Long** )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+当手动拖动操作在目标控件上结束时在该控件上触发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+当手动拖动操作进行中时在光标下方的控件上触发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### GotFocus
 
-Raised when the form receives the input focus and no enabled child control of the form is in a position to take it instead. A form with no focusable child controls receives focus directly.
+当窗体获得输入焦点且没有启用的子控件可以代替它获得焦点时触发。没有可聚焦子控件的窗体直接获得焦点。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### Initialize
 
-Raised once, before the underlying window is created and before any of the form's child controls exist. Useful for setting initial values on form-level fields. The form's controls cannot be referenced from this event.
+触发一次，在底层窗口创建之前和窗体的任何子控件存在之前。适用于设置窗体级字段的初始值。不能从此事件引用窗体的控件。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### KeyDown
 
-Raised when the user presses any key. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the form first.
+当用户按下任何键时触发。默认在焦点控件上触发；当[**KeyPreview**](#keypreview)为**True**时，先在窗体上触发。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
-Raised when the user types a character that produces an ANSI keystroke. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the form first.
+当用户键入产生 ANSI 击键的字符时触发。默认在焦点控件上触发；当[**KeyPreview**](#keypreview)为**True**时，先在窗体上触发。
 
-Syntax: *object*\_**KeyPress**( *KeyAscii* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyAscii* **As Integer** )
 
 ### KeyUp
 
-Raised when the user releases a key. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the form first.
+当用户释放键时触发。默认在焦点控件上触发；当[**KeyPreview**](#keypreview)为**True**时，先在窗体上触发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### LinkClose
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently raised in twinBASIC.
+保留用于 VB6 DDE 功能兼容性；twinBASIC 中当前不触发。
 :::
 
 ### LinkError
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently raised in twinBASIC.
+保留用于 VB6 DDE 功能兼容性；twinBASIC 中当前不触发。
 :::
 
 ### LinkExecute
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently raised in twinBASIC.
+保留用于 VB6 DDE 功能兼容性；twinBASIC 中当前不触发。
 :::
 
 ### LinkOpen
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently raised in twinBASIC.
+保留用于 VB6 DDE 功能兼容性；twinBASIC 中当前不触发。
 :::
 
 ### Load
 
-Raised after the form's window and all controls have been created, just before the form first appears on screen. The classic place to populate controls, attach data sources, and perform any initialisation that needs the controls to exist. **Default event.**
+在窗体的窗口和所有控件创建之后，窗体首次显示在屏幕之前触发。经典的初始化位置——填充控件、附加数据源以及执行需要控件存在的任何初始化。**默认事件。**
 
-Syntax: *object*\_**Load**( )
+语法：*object*\_**Load**( )
 
 ### LostFocus
 
-Raised when the form loses the input focus.
+当窗体失去输入焦点时触发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the form's client area.
+当用户在窗体客户区上方按下任何鼠标按钮时触发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the form's client area.
+当光标在窗体客户区上方移动时触发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the form's client area.
+当用户在窗体客户区上方释放鼠标按钮时触发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseWheel
 
-Raised when the mouse wheel turns over the form. New in twinBASIC.
+当鼠标滚轮在窗体上方转动时触发。twinBASIC 新增。
 
-Syntax: *object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
+语法：*object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+当 OLE 拖动操作完成时在源控件上触发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+当用户将数据放置在目标控件上时触发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+当 OLE 拖动经过目标控件时在该控件上触发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+在拖动期间在源控件上触发，以便应用程序可以调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标请求已注册但尚未提供的数据格式的数据时在源控件上触发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects.
+在 OLE 拖动开始时在源控件上触发，以便应用程序可以填充**DataObject**并选择允许的效果。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
 
 ### Paint
 
-Raised when an invalidated portion of the form needs to be redrawn. Suppressed when [**AutoRedraw**](#autoredraw) is **True** --- the form's persistent off-screen buffer is blitted to the screen instead.
+当窗体的失效部分需要重绘时触发。当[**AutoRedraw**](#autoredraw)为**True**时被抑制——窗体的持久离屏缓冲区被位块传送到屏幕。
 
-Syntax: *object*\_**Paint**( )
+语法：*object*\_**Paint**( )
 
 ### QueryUnload
 
-Raised before the form unloads, giving the application a chance to confirm or cancel the close. Setting *Cancel* to non-zero keeps the form open. Always raised before [**Unload**](#unload).
+在窗体卸载之前触发，给应用程序确认或取消关闭的机会。将*Cancel*设置为非零可保持窗体打开。始终在[**Unload**](#unload)之前触发。
 
-Syntax: *object*\_**QueryUnload**( *Cancel* **As Integer**, *UnloadMode* **As Integer** )
+语法：*object*\_**QueryUnload**( *Cancel* **As Integer**, *UnloadMode* **As Integer** )
 
 *Cancel*
-: Set to non-zero (any non-zero value, conventionally **1**) to cancel the close.
+: 设置为非零（任何非零值，约定为**1**）以取消关闭。
 
 *UnloadMode*
-: A member of [**QueryUnloadConstants**](/en/official/Reference/VBRUN/Constants/QueryUnloadConstants) identifying what triggered the close --- the close button, code, Windows shutdown, the MDI parent, or the owner form.
+: [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants)的成员，标识触发关闭的原因——关闭按钮、代码、Windows 关机、MDI 父窗体或所有者窗体。
 
 ### Resize
 
-Raised when the form is resized --- by the user, by code, by the OS following a [**WindowState**](#windowstate) change, or by initial layout during the first show.
+当窗体调整大小时触发——由用户、代码、操作系统在[**WindowState**](#windowstate)更改后或首次显示期间的初始布局触发。
 
-Syntax: *object*\_**Resize**( )
+语法：*object*\_**Resize**( )
 
 ### Terminate
 
-Raised after the form's window has been destroyed and the class instance is about to be released. The controls are no longer accessible at this point.
+在窗体的窗口已销毁且类实例即将释放后触发。此时控件不再可访问。
 
-Syntax: *object*\_**Terminate**( )
+语法：*object*\_**Terminate**( )
 
 ### Unload
 
-Raised after [**QueryUnload**](#queryunload) approves and before the form's window is destroyed. Setting *Cancel* to non-zero keeps the form open and prevents the unload.
+在[**QueryUnload**](#queryunload)通过之后和窗体窗口销毁之前触发。将*Cancel*设置为非零可保持窗体打开并阻止卸载。
 
-Syntax: *object*\_**Unload**( *Cancel* **As Integer** )
+语法：*object*\_**Unload**( *Cancel* **As Integer** )
 
 *Cancel*
-: Set to non-zero (any non-zero value, conventionally **1**) to cancel the unload.
+: 设置为非零（任何非零值，约定为**1**）以取消卸载。

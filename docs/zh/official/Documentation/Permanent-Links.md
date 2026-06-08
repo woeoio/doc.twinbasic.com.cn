@@ -1,35 +1,21 @@
 ---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f1eb40eb-d7fc-41f9-8942-ea5ac98c2571'
-  PropagateID: 'f1eb40eb-d7fc-41f9-8942-ea5ac98c2571'
-  ReservedCode1: '66bf97b7-6ca4-430d-bc67-a83b74d94eaa'
-  ReservedCode2: '66bf97b7-6ca4-430d-bc67-a83b74d94eaa'
----
-
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '13605a79-c393-496f-9c3a-f8f6ab13a73f'
-  PropagateID: '13605a79-c393-496f-9c3a-f8f6ab13a73f'
-  ReservedCode1: '99077cb7-777d-4d81-b8dc-ab23cac9c135'
-  ReservedCode2: '99077cb7-777d-4d81-b8dc-ab23cac9c135'
----
-
----
 title: "永久链接"
 parent: Documentation Development
 nav_order: 1
 permalink: /Documentation/Development/Permanent-Links
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '5541f005-24f1-4511-8303-eafba4c3c9cc'
+  PropagateID: '5541f005-24f1-4511-8303-eafba4c3c9cc'
+  ReservedCode1: 'b14d365c-1db5-4c97-b469-65bf2a0f7f23'
+  ReservedCode2: 'b14d365c-1db5-4c97-b469-65bf2a0f7f23'
 ---
 
 # 永久链接
 
-The stable, or machine-accessible, part of the documentation tree is rooted on the `/tB/` prefix. URLs with this prefix --- and the internal links that target them, e.g. [`docs.twinbasic.com/tB/Modules/Math/Round`](/official/Reference/VBA/Math/Round) --- are guaranteed not to move. This is the contract the IDE help system, `[Documentation(...)]` attribute references, and external links rely on; anything documented below should be treated as essential.
+文档树中稳定的、可通过机器访问的部分以 `/tB/` 前缀为根。带有此前缀的URL——以及指向它们的内部链接，例如 [`docs.twinbasic.com/tB/Modules/Math/Round`](/official/Reference/VBA/Math/Round)——保证不会移动。这是IDE帮助系统、`[Documentation(...)]` 属性引用和外部链接所依赖的契约；以下记录的任何内容都应被视为必不可少的。
 
 ## /tB/Core/``<Statement>``
 
@@ -43,7 +29,7 @@ The stable, or machine-accessible, part of the documentation tree is rooted on t
 - [If-Then-Else](/official/Reference/Core/If-Then-Else), [Implements](/official/Reference/Core/Implements), [Input](/official/Reference/Core/Input), [Interface](/official/Reference/Core/Interface), [Is](/official/Reference/Core/Is)
 - [Kill](/official/Reference/Core/Kill)
 - [LBound](/official/Reference/Core/LBound), [Let](/official/Reference/Core/Let), [Line-Input](/official/Reference/Core/Line-Input), [Load](/official/Reference/Core/Load), [Lock](/official/Reference/Core/Lock), [LSet](/official/Reference/Core/LSet)
-- [Mid-equals](/official/Reference/Core/Mid-equals) for `Mid(...) = ...` , [MidB-equals](/official/Reference/Core/MidB-equals) for `MidB(...) = ...`, [MkDir](/official/Reference/Core/MkDir), [Module](/official/Reference/Core/Module)
+- [Mid-equals](/official/Reference/Core/Mid-equals) 用于 `Mid(...) = ...`，[MidB-equals](/official/Reference/Core/MidB-equals) 用于 `MidB(...) = ...`，[MkDir](/official/Reference/Core/MkDir)，[Module](/official/Reference/Core/Module)
 - [Name](/official/Reference/Core/Name), [New](/official/Reference/Core/New)
 - [Option](/official/Reference/Core/Option), [On-Error](/official/Reference/Core/On-Error), [On-GoSub](/official/Reference/Core/On-GoSub), [On-GoTo](/official/Reference/Core/On-GoTo), [Open](/official/Reference/Core/Open)
 - [ParamArray](/official/Reference/Core/ParamArray), [Print](/official/Reference/Core/Print), [Private](/official/Reference/Core/Private), [Property](/official/Reference/Core/Property), [Protected](/official/Reference/Core/Protected), [Public](/official/Reference/Core/Public), [Put](/official/Reference/Core/Put)
@@ -55,7 +41,7 @@ The stable, or machine-accessible, part of the documentation tree is rooted on t
 
 ## /tB/Modules/``<ModuleName>``/``<Symbol>``
 
-Within each VBA module, each procedure, property, or statement has its own stand-alone page, e.g. [**LenB**: /tB/Modules/Strings/Len](/official/Reference/VBA/Strings/Len). The `$`-suffixed and `B`/`W` variants are documented on the same page as the base symbol (so `LenB`, `Len$`, etc. all share the [`Len`](/official/Reference/VBA/Strings/Len) page).
+在每个VBA模块中，每个过程、属性或语句都有自己独立的页面，例如 [**LenB**: /tB/Modules/Strings/Len](/official/Reference/VBA/Strings/Len)。带 `$` 后缀和 `B`/`W` 变体的符号记录在与基础符号相同的页面上（因此 `LenB`、`Len$` 等都共享 [`Len`](/official/Reference/VBA/Strings/Len) 页面）。
 
 - [Collection](/official/Reference/VBA/Collection/)
 - [Compilation](/official/Reference/VBA/Compilation/)
@@ -70,11 +56,11 @@ Within each VBA module, each procedure, property, or statement has its own stand
 - [Interaction](/official/Reference/VBA/Interaction/)
 - [Math](/official/Reference/VBA/Math/)
 - [Strings](/official/Reference/VBA/Strings/)
-- Internal [_HiddenModule](/official/Reference/VBA/HiddenModule/)
+- 内部 [_HiddenModule](/official/Reference/VBA/HiddenModule/)
 
 ## /tB/Packages/``<Package>``/...
 
-Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on the package: modules, classes, enumerations, and sub-objects each have their own page.
+每个包位于 `/tB/Packages/<Package>/` 下。子结构取决于包：模块、类、枚举和子对象各有自己的页面。
 
 ### VBRUN -- /tB/Packages/VBRUN/`<Module>`/
 
@@ -108,7 +94,7 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 
 ### WebView2 -- /tB/Packages/WebView2/...
 
-- [WebView2](/official/Reference/WebView2/WebView2/) (control class, with [EnvironmentOptions](/official/Reference/WebView2/WebView2/EnvironmentOptions) sub-page)
+- [WebView2](/official/Reference/WebView2/WebView2/)（控件类，含 [EnvironmentOptions](/official/Reference/WebView2/WebView2/EnvironmentOptions) 子页面）
 - [WebView2Header](/official/Reference/WebView2/WebView2Header), [WebView2HeadersCollection](/official/Reference/WebView2/WebView2HeadersCollection), [WebView2Request](/official/Reference/WebView2/WebView2Request), [WebView2RequestHeaders](/official/Reference/WebView2/WebView2RequestHeaders), [WebView2Response](/official/Reference/WebView2/WebView2Response), [WebView2ResponseHeaders](/official/Reference/WebView2/WebView2ResponseHeaders)
 - 枚举：[wv2DefaultDownloadCornerAlign](/official/Reference/WebView2/Enumerations/wv2DefaultDownloadCornerAlign), [wv2ErrorStatus](/official/Reference/WebView2/Enumerations/wv2ErrorStatus), [wv2HostResourceAccessKind](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind), [wv2KeyEventKind](/official/Reference/WebView2/Enumerations/wv2KeyEventKind), [wv2PermissionKind](/official/Reference/WebView2/Enumerations/wv2PermissionKind), [wv2PermissionState](/official/Reference/WebView2/Enumerations/wv2PermissionState), [wv2PrintOrientation](/official/Reference/WebView2/Enumerations/wv2PrintOrientation), [wv2ProcessFailedKind](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind), [wv2ScriptDialogKind](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind), [wv2WebResourceContext](/official/Reference/WebView2/Enumerations/wv2WebResourceContext)
 - 类型：[COREWEBVIEW2_PHYSICAL_KEY_STATUS](/official/Reference/WebView2/Types/COREWEBVIEW2_PHYSICAL_KEY_STATUS)
@@ -119,14 +105,14 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 
 ### CustomControls -- /tB/Packages/CustomControls/...
 
-- 控件：[WaynesButton](/official/Reference/CustomControls/WaynesButton/) (with [WaynesButtonState](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)), [WaynesForm](/official/Reference/CustomControls/WaynesForm/) (with [WindowsFormOptions](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions)), [WaynesFrame](/official/Reference/CustomControls/WaynesFrame), [WaynesGrid](/official/Reference/CustomControls/WaynesGrid/) (with [CellRenderingOptions](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions), [Column](/official/Reference/CustomControls/WaynesGrid/Column)), [WaynesLabel](/official/Reference/CustomControls/WaynesLabel), [WaynesSlider](/official/Reference/CustomControls/WaynesSlider/) (with [WaynesSliderState](/official/Reference/CustomControls/WaynesSlider/WaynesSliderState)), [WaynesTextBox](/official/Reference/CustomControls/WaynesTextBox/) (with [WaynesTextBoxState](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState)), [WaynesTimer](/official/Reference/CustomControls/WaynesTimer)
+- 控件：[WaynesButton](/official/Reference/CustomControls/WaynesButton/)（含 [WaynesButtonState](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)），[WaynesForm](/official/Reference/CustomControls/WaynesForm/)（含 [WindowsFormOptions](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions)），[WaynesFrame](/official/Reference/CustomControls/WaynesFrame)，[WaynesGrid](/official/Reference/CustomControls/WaynesGrid/)（含 [CellRenderingOptions](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions), [Column](/official/Reference/CustomControls/WaynesGrid/Column)），[WaynesLabel](/official/Reference/CustomControls/WaynesLabel)，[WaynesSlider](/official/Reference/CustomControls/WaynesSlider/)（含 [WaynesSliderState](/official/Reference/CustomControls/WaynesSlider/WaynesSliderState)），[WaynesTextBox](/official/Reference/CustomControls/WaynesTextBox/)（含 [WaynesTextBoxState](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState)），[WaynesTimer](/official/Reference/CustomControls/WaynesTimer)
 - 样式：[Anchors](/official/Reference/CustomControls/Styles/Anchors), [Borders](/official/Reference/CustomControls/Styles/Borders), [Corners](/official/Reference/CustomControls/Styles/Corners), [Fill](/official/Reference/CustomControls/Styles/Fill), [Line](/official/Reference/CustomControls/Styles/Line), [Padding](/official/Reference/CustomControls/Styles/Padding), [TextRendering](/official/Reference/CustomControls/Styles/TextRendering)
 - 框架：[Canvas](/official/Reference/CustomControls/Framework/Canvas), [CustomControlContext](/official/Reference/CustomControls/Framework/CustomControlContext), [CustomControlsCollection](/official/Reference/CustomControls/Framework/CustomControlsCollection), [CustomControlTimer](/official/Reference/CustomControls/Framework/CustomControlTimer), [CustomFormContext](/official/Reference/CustomControls/Framework/CustomFormContext), [ICustomControl](/official/Reference/CustomControls/Framework/ICustomControl), [ICustomForm](/official/Reference/CustomControls/Framework/ICustomForm), [SerializeInfo](/official/Reference/CustomControls/Framework/SerializeInfo)
 - 枚举：[BorderStyle](/official/Reference/CustomControls/Enumerations/BorderStyle), [ColorRGBA](/official/Reference/CustomControls/Enumerations/ColorRGBA), [CornerShape](/official/Reference/CustomControls/Enumerations/CornerShape), [Customtate](/official/Reference/CustomControls/Enumerations/Customtate), [DockMode](/official/Reference/CustomControls/Enumerations/DockMode), [FillPattern](/official/Reference/CustomControls/Enumerations/FillPattern), [FontWeight](/official/Reference/CustomControls/Enumerations/FontWeight), [PixelCount](/official/Reference/CustomControls/Enumerations/PixelCount), [PointSize](/official/Reference/CustomControls/Enumerations/PointSize), [StartupPosition](/official/Reference/CustomControls/Enumerations/StartupPosition), [TextAlignment](/official/Reference/CustomControls/Enumerations/TextAlignment), [TextOverflowMode](/official/Reference/CustomControls/Enumerations/TextOverflowMode), [WindowState](/official/Reference/CustomControls/Enumerations/WindowState)
 
 ### CEF -- /tB/Packages/CEF/...
 
-- [CefBrowser](/official/Reference/CEF/CefBrowser/) (control class, with [EnvironmentOptions](/official/Reference/CEF/CefBrowser/EnvironmentOptions) sub-page)
+- [CefBrowser](/official/Reference/CEF/CefBrowser/)（控件类，含 [EnvironmentOptions](/official/Reference/CEF/CefBrowser/EnvironmentOptions) 子页面）
 - 枚举：[CefLogSeverity](/official/Reference/CEF/Enumerations/CefLogSeverity), [cefPrintOrientation](/official/Reference/CEF/Enumerations/cefPrintOrientation)
 
 ### WinEventLogLib -- /tB/Packages/WinEventLogLib/`<Class>`
@@ -159,7 +145,7 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 
 ::: info
 
-All non-alphabetic characters, as well as parameters, are removed from the links. All attribute names are in lowercase in the links. E.g. `ArrayBoundsChecks(Bool)` is referenced as `/tB/Core/Attributes#arrayboundschecks`.
+链接中会移除所有非字母字符以及参数。属性名称在链接中均为小写。例如 `ArrayBoundsChecks(Bool)` 引用为 `/tB/Core/Attributes#arrayboundschecks`。
 :::
 
 - [AppObject](/official/Reference/Attributes#appobject), [ArrayBoundsChecks](/official/Reference/Attributes#arrayboundschecks)
@@ -177,7 +163,3 @@ All non-alphabetic characters, as well as parameters, are removed from the links
 - [TestCase](/official/Reference/Attributes#testcase), [TestFixture](/official/Reference/Attributes#testfixture), [TypeHint](/official/Reference/Attributes#typehint)
 - [Unimplemented](/official/Reference/Attributes#unimplemented), [UseGetLastError](/official/Reference/Attributes#usegetlasterror), [UserDefinedTypeIsAnAlias](/official/Reference/Attributes#userdefinedtypeisanalias)
 - [WindowsControl](/official/Reference/Attributes#windowscontrol)
-
-> AI生成
-
-> AI生成

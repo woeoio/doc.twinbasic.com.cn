@@ -7,15 +7,15 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'd09274e7-4b16-46bc-82e9-24b3cc80c98b'
-  PropagateID: 'd09274e7-4b16-46bc-82e9-24b3cc80c98b'
-  ReservedCode1: '0fa2bbbe-a5c8-447e-b6fb-cc2037055fc0'
-  ReservedCode2: '0fa2bbbe-a5c8-447e-b6fb-cc2037055fc0'
+  ProduceID: '5c4b056c-1a6a-48c5-a90a-e545b2eb5ab3'
+  PropagateID: '5c4b056c-1a6a-48c5-a90a-e545b2eb5ab3'
+  ReservedCode1: '18a4db88-46ed-4901-a035-785a390bf3c3'
+  ReservedCode2: '18a4db88-46ed-4901-a035-785a390bf3c3'
 ---
 
 # 窗口菜单
 
-![Window Menu](Images/Menu_Window.png "Window Menu")
+![窗口菜单](Images/Menu_Window.png "窗口菜单")
 
 - 面板布局
 - 面板功能
@@ -26,7 +26,7 @@ AIGC:
 
 ## 面板布局
 
-![Window Panel Layouts Menu](Images/Menu_Window_PanelLayouts.png "Window Panel Layouts Menu")
+![窗口面板布局菜单](Images/Menu_Window_PanelLayouts.png "窗口面板布局菜单")
 
 - 默认内置布局 <kbd>CTRL</kbd> + <kbd>#</kbd>
 - 全屏编辑器布局
@@ -39,10 +39,10 @@ AIGC:
 
 ### 管理面板布局...
 
-![Window Panel Layouts Default Menu](Images/Menu_Window_PanelLayouts_ManagePanelLayouts_Default.png "Window Panel Layouts Default Menu")
+![窗口面板布局默认菜单](Images/Menu_Window_PanelLayouts_ManagePanelLayouts_Default.png "窗口面板布局默认菜单")
 
 <details>
-<summary markdown=span>&lt;DEFAULT&gt; (built-in)</summary>
+<summary markdown=span>&lt;DEFAULT&gt; （内置）</summary>
 
 ```json
 {
@@ -153,10 +153,10 @@ AIGC:
 
 </details>
 
-![Window Panel Layouts Fullscreen Menu](Images/Menu_Window_PanelLayouts_ManagePanelLayouts_Fullscreen.png "Window Panel Layouts Fullscreen Menu")
+![窗口面板布局全屏菜单](Images/Menu_Window_PanelLayouts_ManagePanelLayouts_Fullscreen.png "窗口面板布局全屏菜单")
 
 <details>
-<summary markdown=span>&lt;FULLSCREEN&gt; (built-in)</summary>
+<summary markdown=span>&lt;FULLSCREEN&gt; （内置）</summary>
 
 ```json
 {
@@ -209,7 +209,7 @@ AIGC:
 
 ## 面板功能
 
-![Window Panel Features Menu](Images/Menu_Window_PanelFeatures.png "Window Panel Features Menu")
+![窗口面板功能菜单](Images/Menu_Window_PanelFeatures.png "窗口面板功能菜单")
 
 - ✔ 允许调整停靠面板大小
 - ✔ 允许重新排列停靠面板
@@ -220,7 +220,7 @@ AIGC:
 
 ## 键盘快捷键
 
-![Window Keyboard Shortcuts Menu](Images/Menu_Window_KeyboardShortcuts.png "Window Keyboard Shortcuts Menu")
+![窗口键盘快捷键菜单](Images/Menu_Window_KeyboardShortcuts.png "窗口键盘快捷键菜单")
 
 - ✔ 默认内置键盘快捷键
 ---
@@ -228,9 +228,9 @@ AIGC:
 
 ### 管理键盘快捷键
 
-![Window Keyboard Shortcuts - Manage Keyboard Shortcuts Menu](Images/Menu_Window_KeyboardShortcuts_ManageKeyboardShortcuts.png "Window Keyboard Shortcuts - Manage Keyboard Shortcuts Menu")
+![窗口键盘快捷键 - 管理键盘快捷键菜单](Images/Menu_Window_KeyboardShortcuts_ManageKeyboardShortcuts.png "窗口键盘快捷键 - 管理键盘快捷键菜单")
 
-![Window Keyboard Shortcuts - Manage Keyboard Shortcuts Menu](Images/Menu_Window_KeyboardShortcuts_ManageKeyboardShortcuts_1.png "Window Keyboard Shortcuts - Manage Keyboard Shortcuts Menu")
+![窗口键盘快捷键 - 管理键盘快捷键菜单](Images/Menu_Window_KeyboardShortcuts_ManageKeyboardShortcuts_1.png "窗口键盘快捷键 - 管理键盘快捷键菜单")
 
 <details>
 <summary markdown=span>选项</summary>
@@ -961,7 +961,7 @@ AIGC:
 
 ## 主题
 
-![Window Theme Menu](Images/Menu_Window_Theme.png "Window Theme Menu")
+![窗口主题菜单](Images/Menu_Window_Theme.png "窗口主题菜单")
 
 - 经典（浅色）
 - ✔ 深色
@@ -971,7 +971,7 @@ AIGC:
 
 ## 语言
 
-![Window Language Menu](Images/Menu_Window_Language.png "Window Language Menu")
+![窗口语言菜单](Images/Menu_Window_Language.png "窗口语言菜单")
 
 - ...
 - 英语（英式英语）

@@ -2,93 +2,101 @@
 title: Report
 parent: VB Package
 permalink: /tB/Packages/VB/Report/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd593c2cb-8557-4037-8f9d-91a54646cbbe'
+  PropagateID: 'd593c2cb-8557-4037-8f9d-91a54646cbbe'
+  ReservedCode1: '14a78f88-5555-4104-baa7-a49636c3987f'
+  ReservedCode2: '14a78f88-5555-4104-baa7-a49636c3987f'
 ---
 
-# Report class
+# Report 类
 
-A **Report** is a top-level Win32 window --- much like a [**Form**](/en/official/Reference/VB/Form/) --- specialised for rendering the print preview of a banded report. Each report designed in the IDE becomes its own class derived from **Report**: its sections (report header / page header / detail / page footer / report footer) and the controls placed in them become members of that class. At run time, code assigns a recordset to [**Recordset**](#recordset), calls [**Show**](#show), and the framework iterates the recordset, evaluates expressions on the controls, and paints the resulting pages into a built-in preview window with a navigation toolbar at the bottom. [**PrintReport**](#printreport) sends the same pages to the printer. The default property is [**Controls**](#controls) and the default event is [**Load**](#load).
+**Report**是一个顶级Win32窗口——类似于[**Form**](/official/Reference/VB/Form/)——专门用于渲染带状报表的打印预览。在IDE中设计的每个报表都成为派生自**Report**的类：其节（报表头/页头/明细/页脚/报表尾）和放置在其中的控件成为该类的成员。在运行时，代码将记录集赋值给[**Recordset**](#recordset)，调用[**Show**](#show)，框架遍历记录集，计算控件上的表达式，并将结果页面绘制到内置预览窗口（底部带有导航工具栏）。[**PrintReport**](#printreport)将相同页面发送到打印机。默认属性为[**Controls**](#controls)，默认事件为[**Load**](#load)。
 
 ```vb
-' In the report's code-behind (rptSales):
+' 在报表的代码隐藏文件中 (rptSales)：
 Private Sub Report_Load()
     Set Me.Recordset = OpenSalesRecordset()
     Me.Caption = "Sales for " & FormatDateTime(Now, vbLongDate)
 End Sub
 
-' In a startup module:
+' 在启动模块中：
 Sub Main()
-    rptSales.Show vbModal       ' opens the preview window
+    rptSales.Show vbModal       ' 打开预览窗口
 End Sub
 ```
 
 
-## Sections
+## 节
 
-A report is composed of up to five sections, laid out vertically on each page:
+报表由最多五个节组成，在每个页面上垂直排列：
 
-| Section          | Painted                                                        |
+| 节          | 绘制时机                                                        |
 |------------------|----------------------------------------------------------------|
-| **ReportHeader** | Once, at the top of the first page.                            |
-| **PageHeader**   | At the top of every page that follows the report header.       |
-| **Detail**       | Once per record in [**Recordset**](#recordset).                |
-| **PageFooter**   | At the bottom of every page.                                   |
-| **ReportFooter** | Once, at the end of the last page after the final detail row.  |
+| **ReportHeader** | 仅一次，在第一页的顶部。                            |
+| **PageHeader**   | 在报表头之后的每个页面的顶部。       |
+| **Detail**       | [**Recordset**](#recordset)中的每条记录一次。                |
+| **PageFooter**   | 每个页面的底部。                                   |
+| **ReportFooter** | 仅一次，在最后一页的最后一个明细行之后。  |
 
-Sections are designed in the IDE --- each is a container that holds [**Label**](/en/official/Reference/VB/Label/), [**Image**](/en/official/Reference/VB/Image/), [**QRCode**](/en/official/Reference/VB/QRCode/), and other controls. A section's `KeepTogether` property prevents it from splitting across a page break; its `BackStyle` and back colour control the section background; the framework picks an alternating-row colour for the detail section automatically when the section requests it.
+节在IDE中设计——每个节是一个容器，持有[**Label**](/official/Reference/VB/Label/)、[**Image**](/official/Reference/VB/Image/)、[**QRCode**](/official/Reference/VB/QRCode/)等控件。节的`KeepTogether`属性防止它在分页符处被拆分；其`BackStyle`和背景色控制节的背景；当节请求时，框架会自动为明细节选择交替行颜色。
 
-## Recordset binding
+## 记录集绑定
 
-[**Recordset**](#recordset) accepts any object that exposes the classic ADO/DAO interface --- `EOF`, `MoveNext`, and a `Fields` collection indexable by name. The framework wraps non-tB recordsets transparently. `Recordset` may also be left **Nothing**, in which case the detail section is rendered exactly once with no field data.
+[**Recordset**](#recordset)接受任何暴露经典ADO/DAO接口的对象——`EOF`、`MoveNext`和一个可按名称索引的`Fields`集合。框架透明地包装非tB记录集。`Recordset`也可以保持**Nothing**，在这种情况下明细节仅渲染一次且没有字段数据。
 
-A control in a section opts into binding by setting its `DataField` to a recordset field name; the framework reads that field for each detail row and writes it back into the control's value (or [**Caption**](/en/official/Reference/VB/Label/#caption) for [**Label**](/en/official/Reference/VB/Label/)s, **Payload** for [**QRCode**](/en/official/Reference/VB/QRCode/)). For richer cases, prefix `DataField` with `=` to make it an *expression* --- any twinBASIC expression that mixes recordset fields, the report's own [**Page**](#page) / [**Pages**](#pages) / [**Caption**](#caption), and standard library calls. A label whose **DataField** is `="Page " & Report.Page & " of " & Report.Pages` updates itself as each page is rendered.
+节中的控件通过将其`DataField`设置为记录集字段名来选择绑定；框架为每个明细行读取该字段并将其写回控件的值（或[**Label**](/official/Reference/VB/Label/)的[**Caption**](/official/Reference/VB/Label/#caption)，[**QRCode**](/official/Reference/VB/QRCode/)的**Payload**）。对于更复杂的情况，在`DataField`前加`=`使其成为*表达式*——任何混合记录集字段、报表自身的[**Page**](#page) / [**Pages**](#pages) / [**Caption**](#caption)和标准库调用的twinBASIC表达式。一个**DataField**为`="Page " & Report.Page & " of " & Report.Pages`的标签会在每个页面渲染时更新自身。
 
-When **DataField** is empty and a [**Label**](/en/official/Reference/VB/Label/)'s [**Caption**](/en/official/Reference/VB/Label/#caption) contains `%`-placeholders, those placeholders are converted to an expression automatically --- see [Caption placeholders](#caption-placeholders) below. Setting `DataFieldAggregate` on a Label additionally accumulates the expression's value across rows for running totals.
+当**DataField**为空且[**Label**](/official/Reference/VB/Label/)的[**Caption**](/official/Reference/VB/Label/#caption)包含`%`占位符时，这些占位符会自动转换为表达式——参见下面的[标题占位符](#标题占位符)。在标签上设置`DataFieldAggregate`还可以跨行累加表达式的值以获得运行总计。
 
-## Caption placeholders
+## 标题占位符
 
-Inside a Label that has no **DataField**, the following `%` placeholders in the [**Caption**](/en/official/Reference/VB/Label/#caption) are recognised and replaced at render time:
+在没有**DataField**的标签内部，[**Caption**](/official/Reference/VB/Label/#caption)中的以下`%`占位符在渲染时被识别并替换：
 
-| Placeholder | Replaced with                                                          |
+| 占位符 | 替换为                                                          |
 |-------------|------------------------------------------------------------------------|
-| `%p`        | The current [**Page**](#page) number.                                  |
-| `%P`        | The total [**Pages**](#pages) count.                                   |
-| `%d`        | The current date, formatted as `vbShortDate`.                          |
-| `%D`        | The current date, formatted as `vbLongDate`.                           |
-| `%t`        | The current time, formatted as `vbShortTime`.                          |
-| `%T`        | The current time, formatted as `vbLongTime`.                           |
-| `%i`        | The report's [**Caption**](#caption).                                  |
+| `%p`        | 当前[**Page**](#page)页码。                                  |
+| `%P`        | 总[**Pages**](#pages)数。                                   |
+| `%d`        | 当前日期，格式为`vbShortDate`。                          |
+| `%D`        | 当前日期，格式为`vbLongDate`。                           |
+| `%t`        | 当前时间，格式为`vbShortTime`。                          |
+| `%T`        | 当前时间，格式为`vbLongTime`。                           |
+| `%i`        | 报表的[**Caption**](#caption)。                                  |
 
-Use `%%` to embed a literal `%`. A caption with no recognised placeholder is left untouched.
+使用`%%`嵌入字面`%`。没有识别占位符的标题保持不变。
 
-## Built-in preview toolbar
+## 内置预览工具栏
 
-The bottom strip of the report window is a fixed toolbar with three groups of controls:
+报表窗口的底部条是一个固定工具栏，包含三组控件：
 
-- **Record selectors** --- first / previous / next / last buttons around a page-number readout.
-- **Zoom controls** --- minus / plus buttons around a percentage readout.
-- **Print button** --- sends the report to the default printer (calls [**PrintReport**](#printreport) with `ShowDialog := False`).
+- **记录选择器**——首页/上一页/下一页/末页按钮，中间是页码显示。
+- **缩放控件**——减/加按钮，中间是百分比显示。
+- **打印按钮**——将报表发送到默认打印机（以`ShowDialog := False`调用[**PrintReport**](#printreport)）。
 
-The toolbar always paints; it cannot be hidden. The plus and minus buttons step [**ZoomPercent**](#zoompercent) by [**ZoomStep**](#zoomstep) (default `10`) and switch [**ZoomAutoFit**](#zoomautofit) to **vbZoomAutoFitNever**. Scroll bars appear automatically when the zoomed page does not fit the available area; the mouse wheel scrolls vertically and **Shift+Wheel** scrolls horizontally.
+工具栏始终显示，无法隐藏。加号和减号按钮以[**ZoomStep**](#zoomstep)（默认`10`）步进[**ZoomPercent**](#zoompercent)，并将[**ZoomAutoFit**](#zoomautofit)切换为**vbZoomAutoFitNever**。当缩放后的页面超出可用区域时自动出现滚动条；鼠标滚轮垂直滚动，**Shift+滚轮**水平滚动。
 
-## Zoom and page sizing
+## 缩放和页面大小
 
-[**PixelsReportWidth**](#pixelsreportwidth) and [**PixelsReportHeight**](#pixelsreportheight) define the page size *between the margins*; [**PixelsLeftMargin**](#pixelsleftmargin), [**PixelsRightMargin**](#pixelsrightmargin), [**PixelsTopMargin**](#pixelstopmargin), and [**PixelsBottomMargin**](#pixelsbottommargin) define the margins. All five values are in *scaled pixels* (1 px ≈ 1/96 inch at 100% DPI). The defaults --- `300` × `900` for the page and `96/2.54` (≈ 1 cm) for each margin --- are placeholders rather than a real paper size; the IDE designer's [**ChangePageSize**](#changepagesize) helper writes the values for the standard paper sizes.
+[**PixelsReportWidth**](#pixelsreportwidth)和[**PixelsReportHeight**](#pixelsreportheight)定义*页边距之间*的页面大小；[**PixelsLeftMargin**](#pixelsleftmargin)、[**PixelsRightMargin**](#pixelsrightmargin)、[**PixelsTopMargin**](#pixelstopmargin)和[**PixelsBottomMargin**](#pixelsbottommargin)定义页边距。所有五个值以*缩放像素*为单位（1 px ≈ 100% DPI下的1/96英寸）。默认值——页面为`300` × `900`，每个页边距为`96/2.54`（≈ 1厘米）——是占位值而非真正的纸张大小；IDE设计器的[**ChangePageSize**](#changepagesize)辅助工具会写入标准纸张大小的值。
 
 ### ZoomAutoFitConstants
 
-[**ZoomPercent**](#zoompercent) is the rendering zoom (`100` = 1 logical pixel per screen pixel). [**ZoomAutoFit**](#zoomautofit) ([**ZoomAutoFitConstants**](#zoomautofitconstants)) selects whether the framework also recomputes [**ZoomPercent**](#zoompercent) on every paint to fit the current window:
+[**ZoomPercent**](#zoompercent)是渲染缩放（`100` = 1个逻辑像素对应1个屏幕像素）。[**ZoomAutoFit**](#zoomautofit)（[**ZoomAutoFitConstants**](#zoomautofitconstants)）选择框架是否还在每次绘制时重新计算[**ZoomPercent**](#zoompercent)以适应当前窗口：
 
-| Constant                  | Value | Meaning                                                              |
+| 常量                  | 值 | 含义                                                              |
 |---------------------------|-------|----------------------------------------------------------------------|
-| **vbZoomAutoFit**         | 0     | Recalculate zoom on every paint to maximise the page in the window.  |
-| **vbZoomAutoFitOnce**     | 1     | Recalculate once, on the first paint, then leave [**ZoomPercent**](#zoompercent) alone. |
-| **vbZoomAutoFitNever**    | 2     | Honour whatever [**ZoomPercent**](#zoompercent) is currently set to. |
+| **vbZoomAutoFit**         | 0     | 每次绘制时重新计算缩放以在窗口中最大化页面。  |
+| **vbZoomAutoFitOnce**     | 1     | 在首次绘制时重新计算一次，然后不再修改[**ZoomPercent**](#zoompercent)。 |
+| **vbZoomAutoFitNever**    | 2     | 遵循[**ZoomPercent**](#zoompercent)的当前设置。 |
 
-Clicking the toolbar's plus or minus button automatically switches [**ZoomAutoFit**](#zoomautofit) to **vbZoomAutoFitNever** so the user's manual zoom is preserved.
+点击工具栏的加号或减号按钮会自动将[**ZoomAutoFit**](#zoomautofit)切换为**vbZoomAutoFitNever**，以保留用户的手动缩放。
 
-## Drawing inside sections
+## 在节内绘制
 
-Every section's repaint raises [**BeforePaintSection**](#beforepaintsection) on the report, with the [**Section**](#beforepaintsection) being drawn as the argument. During this event, [**hDC**](#hdc) returns the metafile device context that the section is being recorded into --- drawing primitives ([**Line**](#line), [**Circle**](#circle), [**PSet**](#pset), [**PaintPicture**](#paintpicture), [**Print**](#print), and direct GDI calls through [**hDC**](#hdc)) write straight into that section's image. Outside the event, [**hDC**](#hdc) returns the report window's own DC, suitable for screen drawing only.
+每个节的重绘都会在报表上触发[**BeforePaintSection**](#beforepaintsection)，以正在绘制的[**Section**](#beforepaintsection)作为参数。在此事件期间，[**hDC**](#hdc)返回正在记录的节的图元文件设备上下文——绘图原语（[**Line**](#line)、[**Circle**](#circle)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)、[**Print**](#print)和通过[**hDC**](#hdc)的直接GDI调用）直接写入该节的图像。在事件之外，[**hDC**](#hdc)返回报表窗口自身的DC，仅适用于屏幕绘制。
 
 ```vb
 Private Sub Report_BeforePaintSection(Section As ControlsSection)
@@ -98,711 +106,711 @@ Private Sub Report_BeforePaintSection(Section As ControlsSection)
 End Sub
 ```
 
-## Coordinate units
+## 坐标单位
 
-A report mixes three coordinate systems:
+报表混合三种坐标系：
 
-- **Window dimensions** --- [**Width**](#width), [**Height**](#height), [**Left**](#left), and [**Top**](#top) describe the report window itself, in twips (the size of the on-screen frame, including the toolbar).
-- **Client constraints** --- [**MinWidth**](#minwidth), [**MinHeight**](#minheight), [**MaxWidth**](#maxwidth), and [**MaxHeight**](#maxheight) constrain the *client area* of the window during interactive resize, in twips.
-- **Page dimensions** --- [**PixelsReportWidth**](#pixelsreportwidth), [**PixelsReportHeight**](#pixelsreportheight), and the margin properties describe the *printed page*, in scaled pixels.
+- **窗口尺寸**——[**Width**](#width)、[**Height**](#height)、[**Left**](#left)和[**Top**](#top)描述报表窗口本身，以缇为单位（屏幕框的大小，包括工具栏）。
+- **客户区约束**——[**MinWidth**](#minwidth)、[**MinHeight**](#minheight)、[**MaxWidth**](#maxwidth)和[**MaxHeight**](#maxheight)约束交互式调整大小时的窗口*客户区*，以缇为单位。
+- **页面尺寸**——[**PixelsReportWidth**](#pixelsreportwidth)、[**PixelsReportHeight**](#pixelsreportheight)和页边距属性描述*打印页面*，以缩放像素为单位。
 
-The graphics primitives inherited from the form-style drawing surface ([**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**Print**](#print), …) use the report's own [**ScaleMode**](#scalemode) and [**Scale\***](#scaleleft) properties for their coordinate inputs.
+继承自窗体式绘图表面的图形原语（[**Cls**](#cls)、[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)、[**Print**](#print)等）使用报表自身的[**ScaleMode**](#scalemode)和[**Scale\***](#scaleleft)属性作为其坐标输入。
 
-## Printing
+## 打印
 
-[**PrintReport**](#printreport) iterates from page 1 to the last page through the [**Printer**](/en/official/Reference/VB/Printer/) object, sending each cached metafile as one printed page.
+[**PrintReport**](#printreport)从第1页到最后一页遍历[**Printer**](/official/Reference/VB/Printer/)对象，将每个缓存的图元文件作为一页打印页发送。
 
 ```vb
 rptSales.PrintReport ShowDialog:=False
 ```
 
-The print dialog is not yet supported in this beta; calling **PrintReport** with **ShowDialog := True** raises run-time error 5. Paper size is currently locked to A4 --- a message box reminds the user of this on each print job.
+此测试版尚不支持打印对话框；以**ShowDialog := True**调用**PrintReport**会引发运行时错误5。纸张大小目前锁定为A4——每次打印作业会有消息框提醒用户。
 
-## Properties
+## 属性
 
 ### Appearance
 
-Determines how the report's border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+决定操作系统如何绘制报表的边框。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。
 
 ::: info
-Retained for VB6 compatibility; the property has no observable effect on a report window.
+保留用于VB6兼容性；此属性对报表窗口没有可观察效果。
 :::
 
 ### AutoRedraw
 
-Whether drawing performed on the report's window persists across invalidations. **Boolean**, default **False**. Reports normally rely on per-section painting through [**BeforePaintSection**](#beforepaintsection), so this property is rarely useful; it is provided for parity with [**Form**](/en/official/Reference/VB/Form/).
+在报表窗口上执行的绘制是否在失效之间持久保存。**Boolean**，默认**False**。报表通常依赖通过[**BeforePaintSection**](#beforepaintsection)的逐节绘制，因此此属性很少有用；它是为了与[**Form**](/official/Reference/VB/Form/)保持一致而提供的。
 
 ### BackColor
 
-The background colour of the report window's drawing surface, as an **OLE_COLOR**. Defaults to the system 3-D face colour. Most of the window is occupied by the page preview (which uses [**PaperColor**](#papercolor)) and the toolbar, so this colour is only visible briefly during paint.
+报表窗口绘图表面的背景颜色，作为**OLE_COLOR**。默认为系统3-D表面颜色。窗口大部分被页面预览（使用[**PaperColor**](#papercolor)）和工具栏占据，因此此颜色仅在绘制期间短暂可见。
 
 ### BorderStyle
 
-The window-frame style. A member of [**FormBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/FormBorderStyleConstants): **vbBSNone**, **vbFixedSingle**, **vbSizable** (default), **vbFixedDialog**, **vbFixedToolWindow**, **vbSizableToolWindow**, **vbSizableNoTitleBar**, or **vbSizableToolWindowNoTitleBar**.
+窗口框架样式。[**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants)的成员：**vbBSNone**、**vbFixedSingle**、**vbSizable**（默认）、**vbFixedDialog**、**vbFixedToolWindow**、**vbSizableToolWindow**、**vbSizableNoTitleBar**或**vbSizableToolWindowNoTitleBar**。
 
 ### Caption
 
-The title-bar text. **String**. Also returned by the `%i` [caption placeholder](#caption-placeholders) and reachable from a `=Report.Caption` expression in a label's `DataField`.
+标题栏文本。**String**。也由`%i`[标题占位符](#标题占位符)返回，并可从标签`DataField`中的`=Report.Caption`表达式访问。
 
 ### ChangePageSize
 
 ::: info
-Design-time helper. Selecting a value from the IDE property grid sets [**PixelsReportWidth**](#pixelsreportwidth) and [**PixelsReportHeight**](#pixelsreportheight) to the corresponding paper size; the property itself has no run-time effect and always reads back as blank.
+设计时辅助工具。从IDE属性网格中选择一个值会将[**PixelsReportWidth**](#pixelsreportwidth)和[**PixelsReportHeight**](#pixelsreportheight)设置为相应的纸张大小；此属性本身没有运行时效果，并且始终读回为空。
 :::
 
-A member of **ReportSizeConstants**: blank (default), **A4 Portrait**, **A4 Landscape**, **A3 Portrait**, **A3 Landscape**, **A5 Portrait**, **A5 Landscape**, **Letter Portrait**, **Letter Landscape**, **Tabloid Portrait**, **Tabloid Landscape**, **Legal Portrait**, **Legal Landscape**, **Statement Portrait**, **Statement Landscape**, **Executive Portrait**, **Executive Landscape**.
+**ReportSizeConstants**的成员：空（默认）、**A4 Portrait**、**A4 Landscape**、**A3 Portrait**、**A3 Landscape**、**A5 Portrait**、**A5 Landscape**、**Letter Portrait**、**Letter Landscape**、**Tabloid Portrait**、**Tabloid Landscape**、**Legal Portrait**、**Legal Landscape**、**Statement Portrait**、**Statement Landscape**、**Executive Portrait**、**Executive Landscape**。
 
 ### ClipControls
 
-Whether child controls are clipped out of the report window's drawing region during paint. **Boolean**, default **True**. Read-only at run time --- set at design time.
+在绘制期间是否将子控件从报表窗口的绘图区域中裁剪出来。**Boolean**，默认**True**。运行时只读——在设计时设置。
 
 ### ControlBox
 
-Whether the title bar shows the system menu (and, with it, the close button). **Boolean**, default **True**.
+标题栏是否显示系统菜单（以及其上的关闭按钮）。**Boolean**，默认**True**。
 
 ### Controls
 
-The collection of every control hosted by this report's sections, indexable by control name or zero-based position. **Default property.** Read-only --- controls are added to the collection by the runtime, not by user code.
+此报表节承载的每个控件的集合，可通过控件名或从零开始的索引访问。**默认属性。**只读——控件由运行时添加到集合中，而非用户代码。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this object as a report. Always **vbReport**.
+标识此对象为报表的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbReport**。
 
 ### Count
 
-The number of controls in [**Controls**](#controls), as a **Long**. Read-only. Equivalent to `Me.Controls.Count`.
+[**Controls**](#controls)中的控件数量，作为**Long**。只读。等同于`Me.Controls.Count`。
 
 ### CurrentX
 
-The horizontal pen position used by drawing primitives that omit a starting coordinate, in [**ScaleMode**](#scalemode) units. **Double**.
+省略起始坐标的绘图原语使用的水平画笔位置，以[**ScaleMode**](#scalemode)单位。**Double**。
 
 ### CurrentY
 
-The vertical pen position used by drawing primitives that omit a starting coordinate, in [**ScaleMode**](#scalemode) units. **Double**.
+省略起始坐标的绘图原语使用的垂直画笔位置，以[**ScaleMode**](#scalemode)单位。**Double**。
 
 ### DpiScaleFactorX
 
-The horizontal DPI scale factor of the monitor the report window is currently on, as a **Double**. `1.0` at 96 DPI, `1.25` at 120 DPI, and so on. Read-only.
+报表窗口当前所在显示器的水平DPI缩放因子，作为**Double**。96 DPI时为`1.0`，120 DPI时为`1.25`，依此类推。只读。
 
 ### DpiScaleFactorY
 
-The vertical DPI scale factor of the monitor the report window is currently on. Currently always equal to [**DpiScaleFactorX**](#dpiscalefactorx). Read-only.
+报表窗口当前所在显示器的垂直DPI缩放因子。当前始终等于[**DpiScaleFactorX**](#dpiscalefactorx)。只读。
 
 ### DrawMode
 
-The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default) is normal opaque drawing.
+绘图原语在将画笔与目标组合时应用的光栅操作。[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员：**vbCopyPen**（默认）为普通 opacity 绘制。
 
 ### DrawStyle
 
-The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
+绘图原语使用的画笔线型。[**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants)的成员：**vbSolid**（默认）、**vbDash**、**vbDot**、**vbDashDot**、**vbDashDotDot**、**vbInvisible**或**vbInsideSolid**。
 
 ### DrawWidth
 
-The pen width in pixels for drawing primitives. **Long**, default `1`. Widths greater than `1` force [**DrawStyle**](#drawstyle) back to **vbSolid** (a Win32 GDI limitation).
+绘图原语的画笔宽度（以像素为单位）。**Long**，默认`1`。宽度大于`1`时强制[**DrawStyle**](#drawstyle)回到**vbSolid**（Win32 GDI限制）。
 
 ### Enabled
 
-Determines whether the report window accepts user input. A disabled report ignores keyboard and mouse input --- including the toolbar buttons. **Boolean**, default **True**.
+决定报表窗口是否接受用户输入。禁用的报表忽略键盘和鼠标输入——包括工具栏按钮。**Boolean**，默认**True**。
 
 ### FillColor
 
-The fill colour for closed shapes drawn by [**Circle**](#circle) and the rectangle form of [**Line**](#line). **OLE_COLOR**, default `0` (black). Used only when [**FillStyle**](#fillstyle) is not **vbFSTransparent**.
+由[**Circle**](#circle)和[**Line**](#line)的矩形形式绘制的闭合形状的填充颜色。**OLE_COLOR**，默认`0`（黑色）。仅在[**FillStyle**](#fillstyle)不为**vbFSTransparent**时使用。
 
 ### FillStyle
 
-The fill pattern for closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
+闭合形状的填充图案。[**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants)的成员：**vbFSSolid**、**vbFSTransparent**（默认）、**vbHorizontalLine**、**vbVerticalLine**、**vbUpwardDiagonal**、**vbDownwardDiagonal**、**vbCross**或**vbDiagonalCross**。
 
 ### Font
 
-The **StdFont** used by the [**Print**](#print) statement and other text drawing on this report. The convenience properties **FontName**, **FontSize**, **FontBold**, **FontItalic**, **FontStrikethru**, and **FontUnderline** read or write the corresponding members of this object.
+此报表上[**Print**](#print)语句和其他文本绘制使用的**StdFont**。便捷属性**FontName**、**FontSize**、**FontBold**、**FontItalic**、**FontStrikethru**和**FontUnderline**读写此对象的相应成员。
 
 ### FontTransparent
 
-When **True** (default), text drawn on the report has a transparent background, leaving the underlying drawing visible behind it. When **False**, text is drawn over an opaque rectangle filled with [**BackColor**](#backcolor). **Boolean**.
+当**True**（默认）时，报表上绘制的文本具有透明背景，使底层绘制在文本后面可见。当**False**时，文本绘制在由[**BackColor**](#backcolor)填充的 opaque 矩形上。**Boolean**。
 
 ### ForeColor
 
-The pen colour used by [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), and the text drawn by [**Print**](#print). **OLE_COLOR**.
+[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)以及[**Print**](#print)绘制的文本使用的画笔颜色。**OLE_COLOR**。
 
 ### hDC
 
-The Win32 device context handle currently relevant to drawing, as a **LongPtr**. Read-only. Inside a [**BeforePaintSection**](#beforepaintsection) handler, returns the metafile DC that the section is being recorded into; outside the event, returns the report window's own DC. Returns `0` when the underlying window has not yet been created.
+当前与绘制相关的Win32设备上下文句柄，作为**LongPtr**。只读。在[**BeforePaintSection**](#beforepaintsection)处理程序内部，返回正在记录的节的图元文件DC；在事件之外，返回报表窗口自身的DC。当底层窗口尚未创建时返回`0`。
 
 ### HasDC
 
-Whether the report window keeps a private device context (`CS_OWNDC`) for its drawing surface. **Boolean**, default **True**. Read-only at run time --- set at design time.
+报表窗口是否为其绘图表面保持私有设备上下文（`CS_OWNDC`）。**Boolean**，默认**True**。运行时只读——在设计时设置。
 
 ### Height
 
-The report window's outer height, in twips. **Double**. Setting it resizes the window. Constrained at run time by [**MinHeight**](#minheight) and [**MaxHeight**](#maxheight) when those are non-zero.
+报表窗口的外部高度，以缇为单位。**Double**。设置它会调整窗口大小。运行时受[**MinHeight**](#minheight)和[**MaxHeight**](#maxheight)约束（当它们非零时）。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the report has focus.
+标识应用程序帮助文件中主题的**Long**，当用户在报表具有焦点时按**F1**时检索。
 
 ### hWnd
 
-The Win32 window handle for the report, as a **LongPtr**. Read-only. Useful for passing to API functions.
+报表的Win32窗口句柄，作为**LongPtr**。只读。适用于传递给API函数。
 
 ### Icon
 
-The icon shown on the title bar, in the taskbar, and in Alt-Tab. A **StdPicture** of type **vbPicTypeIcon**.
+在标题栏、任务栏和Alt-Tab中显示的图标。类型为**vbPicTypeIcon**的**StdPicture**。
 
 ### Image
 
-Returns the rendered drawing surface as a **StdPicture**. Read-only. Most useful when [**AutoRedraw**](#autoredraw) is **True**.
+将渲染的绘图表面作为**StdPicture**返回。只读。当[**AutoRedraw**](#autoredraw)为**True**时最有用。
 
 ### KeyPreview
 
-When **True**, the report's [**KeyDown**](#keydown), [**KeyUp**](#keyup), and [**KeyPress**](#keypress) events fire *before* the focused control receives the same keystroke. **Boolean**, default **False**.
+当**True**时，报表的[**KeyDown**](#keydown)、[**KeyUp**](#keyup)和[**KeyPress**](#keypress)事件在焦点控件收到相同按键*之前*触发。**Boolean**，默认**False**。
 
 ### Left
 
-The horizontal position of the report window's outer rectangle, in twips, measured from the left edge of the screen --- or, for an MDI child, from the left edge of the MDI parent's client area. **Double**.
+报表窗口外部矩形的水平位置，以缇为单位，从屏幕左边缘测量——对于MDI子窗口，从MDI父级客户区的左边缘测量。**Double**。
 
 ### MaxButton
 
-Whether the title bar shows the maximise button. **Boolean**, default **True**, read-only at run time. Set at design time.
+标题栏是否显示最大化按钮。**Boolean**，默认**True**，运行时只读。在设计时设置。
 
 ### MaxHeight
 
-The maximum height of the report window's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+报表窗口*客户区*的最大高度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时遵守。
 
 ### MaxWidth
 
-The maximum width of the report window's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+报表窗口*客户区*的最大宽度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时遵守。
 
 ### MDIChild
 
-When **True**, the report is hosted as a child inside an [**MDIForm**](/en/official/Reference/VB/MDIForm/). **Boolean**, read-only --- set at design time. An MDI child report cannot be shown modally.
+当**True**时，报表作为[**MDIForm**](/official/Reference/VB/MDIForm/)的子窗口承载。**Boolean**，只读——在设计时设置。MDI子报表不能以模态方式显示。
 
 ### MinButton
 
-Whether the title bar shows the minimise button. **Boolean**, default **True**, read-only at run time. Set at design time.
+标题栏是否显示最小化按钮。**Boolean**，默认**True**，运行时只读。在设计时设置。
 
 ### MinHeight
 
-The minimum height of the report window's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+报表窗口*客户区*的最小高度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时遵守。
 
 ### MinWidth
 
-The minimum width of the report window's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+报表窗口*客户区*的最小宽度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时遵守。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the report.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针位于报表上时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the report. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
+当指针位于报表上时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Moveable
 
-Whether the user can drag the report window by its title bar. **Boolean**, default **True**.
+用户是否可以通过标题栏拖动报表窗口。**Boolean**，默认**True**。
 
 ### Name
 
-The unique design-time name of the report. Read-only at run time. Also the class name of the generated report class.
+报表的唯一设计时名称。运行时只读。也是生成的报表类的类名。
 
 ### Opacity
 
-The report window's opacity as a percentage (0--100, default 100). Values outside the range are clamped on **Initialize**. Values below 100 cause the window to become a layered window.
+报表窗口的 opacity 百分比（0--100，默认100）。超出范围的值在**Initialize**时被钳制。低于100的值会使窗口成为分层窗口。
 
 ### Page
 
-The current page number being previewed (1-based). **Long**. Setting **Page** scrolls the preview to that page. Assigning `-1` jumps to the last page (rendering and caching all intermediate pages first). Reachable from a `=Report.Page` expression in a label's **DataField**, or via the `%p` [caption placeholder](#caption-placeholders).
+当前正在预览的页码（从1开始）。**Long**。设置**Page**会将预览滚动到该页。赋值`-1`跳到最后一页（首先渲染并缓存所有中间页面）。可从标签**DataField**中的`=Report.Page`表达式访问，或通过`%p`[标题占位符](#标题占位符)访问。
 
 ### Pages
 
-The total number of pages in the report. **Long**. Initialised to `999` and revised down once the framework has rendered enough pages to know the actual count. Reachable from a `=Report.Pages` expression in a label's **DataField**, or via the `%P` [caption placeholder](#caption-placeholders).
+报表的总页数。**Long**。初始化为`999`，在框架渲染了足够多的页面以知道实际计数后向下修正。可从标签**DataField**中的`=Report.Pages`表达式访问，或通过`%P`[标题占位符](#标题占位符)访问。
 
 ### PaperColor
 
-The colour of the simulated paper behind the rendered page in the preview. **OLE_COLOR**, default **vbWhite**.
+预览中渲染页面后面的模拟纸张颜色。**OLE_COLOR**，默认**vbWhite**。
 
 ::: info
-This affects the *preview* only --- it does not change the colour sent to the printer.
+此属性仅影响*预览*——它不会更改发送到打印机的颜色。
 :::
 
 ### Picture
 
-A **StdPicture** drawn as the report window's background. Painted before any drawing primitives or child controls. Assigning **Nothing** removes the background.
+作为报表窗口背景绘制的**StdPicture**。在任何绘图原语或子控件之前绘制。赋值**Nothing**移除背景。
 
 ### PictureDpiScaling
 
-When **True**, [**Picture**](#picture) is scaled by the current DPI factor before drawing. **Boolean**, default **False**.
+当**True**时，[**Picture**](#picture)在绘制前按当前DPI因子缩放。**Boolean**，默认**False**。
 
 ### PixelsBottomMargin
 
-The bottom page margin, in scaled pixels. **Double**, default `96 / 2.54` (≈ 1 cm). Stored in the form file as `BottomMargin`.
+底部页边距，以缩放像素为单位。**Double**，默认`96 / 2.54`（≈ 1厘米）。在窗体文件中存储为`BottomMargin`。
 
 ### PixelsLeftMargin
 
-The left page margin, in scaled pixels. **Double**, default `96 / 2.54` (≈ 1 cm). Stored in the form file as `LeftMargin`.
+左侧页边距，以缩放像素为单位。**Double**，默认`96 / 2.54`（≈ 1厘米）。在窗体文件中存储为`LeftMargin`。
 
 ### PixelsReportHeight
 
-The page content height (between the top and bottom margins), in scaled pixels. **Double**, default `900`. Stored in the form file as `ReportHeight`.
+页面内容高度（上下页边距之间），以缩放像素为单位。**Double**，默认`900`。在窗体文件中存储为`ReportHeight`。
 
 ### PixelsReportWidth
 
-The page content width (between the left and right margins), in scaled pixels. **Double**, default `300`. Stored in the form file as `ReportWidth`.
+页面内容宽度（左右页边距之间），以缩放像素为单位。**Double**，默认`300`。在窗体文件中存储为`ReportWidth`。
 
 ### PixelsRightMargin
 
-The right page margin, in scaled pixels. **Double**, default `96 / 2.54` (≈ 1 cm). Stored in the form file as `RightMargin`.
+右侧页边距，以缩放像素为单位。**Double**，默认`96 / 2.54`（≈ 1厘米）。在窗体文件中存储为`RightMargin`。
 
 ### PixelsTopMargin
 
-The top page margin, in scaled pixels. **Double**, default `96 / 2.54` (≈ 1 cm). Stored in the form file as `TopMargin`.
+顶部页边距，以缩放像素为单位。**Double**，默认`96 / 2.54`（≈ 1厘米）。在窗体文件中存储为`TopMargin`。
 
 ### Recordset
 
-The data source iterated for the detail section. Set with **Set**.
+为明细节迭代的数据源。使用**Set**设置。
 
-Syntax: **Set** *object*.**Recordset** = *value*
+语法：**Set** *object*.**Recordset** = *value*
 
 *value*
-: Any object with `EOF`, `MoveNext`, and a `Fields` collection (a tB **ITbRecordset** is used directly; other recordsets are wrapped transparently). May be **Nothing**, in which case the detail section is rendered exactly once with no field data.
+: 任何具有`EOF`、`MoveNext`和`Fields`集合的对象（tB **ITbRecordset**直接使用；其他记录集被透明包装）。可以为**Nothing**，在这种情况下明细节仅渲染一次且没有字段数据。
 
-Assigning **Recordset** does not by itself reset paging --- call `Page = 1` (or **Refresh**) to start the preview at the new first page.
+赋值**Recordset**本身不会重置分页——调用`Page = 1`（或**Refresh**）以从新的第一页开始预览。
 
 ### RecordNum
 
-The 1-based ordinal of the record currently being processed by the detail section. **Long**. Updated by the framework as it iterates the recordset; useful inside expressions and [**BeforePaintSection**](#beforepaintsection) handlers.
+明细节当前正在处理的记录的从1开始的序号。**Long**。由框架在遍历记录集时更新；在表达式和[**BeforePaintSection**](#beforepaintsection)处理程序中很有用。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
 ### ScaleHeight
 
-The height of the logical drawing rectangle, in [**ScaleMode**](#scalemode) units. **Double**. Setting it (or [**ScaleWidth**](#scalewidth), [**ScaleLeft**](#scaleleft), or [**ScaleTop**](#scaletop)) implicitly switches **ScaleMode** to **vbUser**.
+逻辑绘图矩形的高度，以[**ScaleMode**](#scalemode)单位。**Double**。设置它（或[**ScaleWidth**](#scalewidth)、[**ScaleLeft**](#scaleleft)或[**ScaleTop**](#scaletop)）会隐式将**ScaleMode**切换为**vbUser**。
 
 ### ScaleLeft
 
-The logical horizontal coordinate of the left edge of the report window's client area, in [**ScaleMode**](#scalemode) units. **Double**, default `0`.
+报表窗口客户区左边缘的逻辑水平坐标，以[**ScaleMode**](#scalemode)单位。**Double**，默认`0`。
 
 ### ScaleMode
 
-The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser**.
+[**CurrentX**](#currentx)、[**CurrentY**](#currenty)、绘图原语、[**TextWidth**](#textwidth)和[**TextHeight**](#textheight)使用的度量单位。[**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员：**vbTwips**（默认）、**vbPoints**、**vbPixels**、**vbCharacters**、**vbInches**、**vbMillimeters**、**vbCentimeters**或**vbUser**。
 
 ### ScaleTop
 
-The logical vertical coordinate of the top edge of the report window's client area, in [**ScaleMode**](#scalemode) units. **Double**, default `0`.
+报表窗口客户区顶边缘的逻辑垂直坐标，以[**ScaleMode**](#scalemode)单位。**Double**，默认`0`。
 
 ### ScaleWidth
 
-The width of the logical drawing rectangle, in [**ScaleMode**](#scalemode) units. **Double**.
+逻辑绘图矩形的宽度，以[**ScaleMode**](#scalemode)单位。**Double**。
 
 ### ShowInTaskbar
 
-Whether the report window appears in the Windows taskbar and Alt-Tab list. **Boolean**, default **True**. Read-only at run time --- set at design time.
+报表窗口是否出现在Windows任务栏和Alt-Tab列表中。**Boolean**，默认**True**。运行时只读——在设计时设置。
 
 ### StartUpPosition
 
-How the report window's initial position is determined the first time it is shown. A member of [**StartUpPositionConstants**](/en/official/Reference/VBRUN/Constants/StartUpPositionConstants): **vbStartUpManual**, **vbStartUpOwner**, **vbStartUpScreen**, or **vbStartUpWindowsDefault** (default). Read-only at run time --- set at design time.
+首次显示时报表窗口的初始位置如何确定。[**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants)的成员：**vbStartUpManual**、**vbStartUpOwner**、**vbStartUpScreen**或**vbStartUpWindowsDefault**（默认）。运行时只读——在设计时设置。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the report. Ignored by the framework.
+应用程序可用于将自定义数据与报表关联的自由格式**String**。框架忽略此属性。
 
 ### Top
 
-The vertical position of the report window's outer rectangle, in twips, measured from the top edge of the screen --- or, for an MDI child, from the top edge of the MDI parent's client area. **Double**.
+报表窗口外部矩形的垂直位置，以缇为单位，从屏幕顶边缘测量——对于MDI子窗口，从MDI父级客户区的顶边缘测量。**Double**。
 
 ### TopMost
 
-Whether the report window sits in the always-on-top z-order layer. **Boolean**, read-only.
+报表窗口是否位于始终置顶的z序层。**Boolean**，只读。
 
 ### TransparencyKey
 
-An **OLE_COLOR** that, when set, becomes fully transparent in the rendered report window --- clicks pass through to whatever is underneath, and the corresponding pixels do not paint. Default `-1` disables the effect.
+设置后变为完全透明的**OLE_COLOR**——点击穿透到下面的内容，相应的像素不绘制。默认`-1`禁用此效果。
 
 ### Visible
 
-Whether the report window is shown. **Boolean**, default **True**. Setting **Visible** to **True** when the report was hidden is equivalent to calling [**Show**](#show) **vbModeless**; setting it to **False** is equivalent to calling [**Hide**](#hide).
+报表窗口是否显示。**Boolean**，默认**True**。在报表隐藏时将**Visible**设置为**True**等同于调用[**Show**](#show) **vbModeless**；设置为**False**等同于调用[**Hide**](#hide)。
 
 ### Width
 
-The report window's outer width, in twips. **Double**. Setting it resizes the window. Constrained at run time by [**MinWidth**](#minwidth) and [**MaxWidth**](#maxwidth) when those are non-zero.
+报表窗口的外部宽度，以缇为单位。**Double**。设置它会调整窗口大小。运行时受[**MinWidth**](#minwidth)和[**MaxWidth**](#maxwidth)约束（当它们非零时）。
 
 ### WindowState
 
-The window's normal/minimised/maximised state. A member of [**FormWindowStateConstants**](/en/official/Reference/VBRUN/Constants/FormWindowStateConstants): **vbNormal** (0, default), **vbMinimized** (1), or **vbMaximized** (2). Setting it at run time updates the window placement immediately if the report is visible.
+窗口的正常/最小化/最大化状态。[**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants)的成员：**vbNormal** (0, 默认)、**vbMinimized** (1)或**vbMaximized** (2)。在运行时设置时，如果报表可见，会立即更新窗口位置。
 
 ### ZoomAutoFit
 
-Selects how [**ZoomPercent**](#zoompercent) is updated automatically. A member of **ZoomAutoFitConstants** (see [Zoom and page sizing](#zoom-and-page-sizing)): **vbZoomAutoFit** (0, default), **vbZoomAutoFitOnce** (1), or **vbZoomAutoFitNever** (2). The toolbar's plus and minus buttons switch this to **vbZoomAutoFitNever**.
+选择[**ZoomPercent**](#zoompercent)如何自动更新。**ZoomAutoFitConstants**的成员（参见[缩放和页面大小](#缩放和页面大小)）：**vbZoomAutoFit** (0, 默认)、**vbZoomAutoFitOnce** (1)或**vbZoomAutoFitNever** (2)。工具栏的加号和减号按钮将其切换为**vbZoomAutoFitNever**。
 
 ### ZoomPercent
 
-The current rendering zoom, as a percentage. **Double**, default `100`. When [**ZoomAutoFit**](#zoomautofit) is **vbZoomAutoFit** or **vbZoomAutoFitOnce**, the framework recomputes this value before painting; the toolbar's plus and minus buttons add or subtract [**ZoomStep**](#zoomstep).
+当前渲染缩放，以百分比表示。**Double**，默认`100`。当[**ZoomAutoFit**](#zoomautofit)为**vbZoomAutoFit**或**vbZoomAutoFitOnce**时，框架在绘制前重新计算此值；工具栏的加号和减号按钮增减[**ZoomStep**](#zoomstep)。
 
 ### ZoomStep
 
-The amount by which [**ZoomPercent**](#zoompercent) changes for each click of the toolbar's plus or minus button. **Long**, default `10`.
+每次点击工具栏加号或减号按钮时[**ZoomPercent**](#zoompercent)的变化量。**Long**，默认`10`。
 
-## Methods
+## 方法
 
 ### Circle
 
-Draws a circle, ellipse, or arc on the current drawing surface (see [**hDC**](#hdc)) using [**ForeColor**](#forecolor) for the outline and [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle) for the interior.
+使用[**ForeColor**](#forecolor)绘制轮廓，[**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle)填充内部，在当前绘图表面上绘制圆、椭圆或弧（参见[**hDC**](#hdc)）。
 
-Syntax: *object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, [ *Color* ] [, [ *Start* ] [, [ *End* ] [, *Aspect* ] ] ] ]
+语法：*object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, [ *Color* ] [, [ *Start* ] [, [ *End* ] [, *Aspect* ] ] ] ]
 
 *X*, *Y*
-: *required* The centre, in [**ScaleMode**](#scalemode) units. **Step** makes the centre relative to ([**CurrentX**](#currentx), [**CurrentY**](#currenty)).
+: *必需* 圆心，以[**ScaleMode**](#scalemode)单位。**Step**使圆心相对于([**CurrentX**](#currentx), [**CurrentY**](#currenty))。
 
 *Radius*
-: *required* A **Single** giving the radius in **ScaleMode** units.
+: *必需* 以**ScaleMode**单位给出半径的**Single**。
 
 *Color*
-: *optional* An **OLE_COLOR** for the outline; defaults to [**ForeColor**](#forecolor).
+: *可选* 轮廓的**OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
 *Start*, *End*
-: *optional* Angles in radians, used to draw an arc rather than a full circle.
+: *可选* 以弧度为单位的角，用于绘制弧而非完整圆。
 
 *Aspect*
-: *optional* Ratio of vertical to horizontal radius. `1.0` is circular; values away from `1.0` produce ellipses.
+: *可选* 垂直半径与水平半径的比率。`1.0`为圆形；偏离`1.0`的值产生椭圆。
 
 ### Close
 
-Initiates the report window's unload sequence --- [**QueryUnload**](#queryunload), then [**Unload**](#unload), then [**Terminate**](#terminate). Either of the first two events can cancel the close by setting *Cancel* to non-zero.
+启动报表窗口的卸载序列——[**QueryUnload**](#queryunload)，然后是[**Unload**](#unload)，然后是[**Terminate**](#terminate)。前两个事件中的任何一个都可以通过将*Cancel*设置为非零来取消关闭。
 
-Syntax: *object*.**Close**
+语法：*object*.**Close**
 
 ### Cls
 
-Clears any drawing performed by [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and [**Print**](#print) on the current drawing surface, repaints [**BackColor**](#backcolor), and resets [**CurrentX**](#currentx) / [**CurrentY**](#currenty) to `0`.
+清除在当前绘图表面上由[**Circle**](#circle)、[**Line**](#line)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)和[**Print**](#print)执行的任何绘制，重新绘制[**BackColor**](#backcolor)，并将[**CurrentX**](#currentx) / [**CurrentY**](#currenty)重置为`0`。
 
-Syntax: *object*.**Cls**
+语法：*object*.**Cls**
 
 ### Hide
 
-Hides the report window without unloading it. The class instance and its sections are preserved; calling [**Show**](#show) (or assigning [**Visible**](#visible) = **True**) brings it back. Equivalent to assigning **Visible** = **False**.
+隐藏报表窗口而不卸载它。类实例及其节被保留；调用[**Show**](#show)（或赋值[**Visible**](#visible) = **True**）将其带回。等同于赋值**Visible** = **False**。
 
-Syntax: *object*.**Hide**
+语法：*object*.**Hide**
 
 ### Line
 
-Draws a line, or a rectangle, on the current drawing surface (see [**hDC**](#hdc)) using [**ForeColor**](#forecolor) (or an explicit colour) and [**DrawWidth**](#drawwidth)/[**DrawStyle**](#drawstyle).
+使用[**ForeColor**](#forecolor)（或显式颜色）和[**DrawWidth**](#drawwidth)/[**DrawStyle**](#drawstyle)在当前绘图表面上绘制直线或矩形（参见[**hDC**](#hdc)）。
 
-Syntax: *object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] -[ **Step** ] ( *X2*, *Y2* ) [, [ *Color* ] [, **B** [ **F** ] ] ]
+语法：*object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] -[ **Step** ] ( *X2*, *Y2* ) [, [ *Color* ] [, **B** [ **F** ] ] ]
 
 *X1*, *Y1*
-: *optional* The start point, in [**ScaleMode**](#scalemode) units. When omitted, drawing begins from the current pen position.
+: *可选* 起始点，以[**ScaleMode**](#scalemode)单位。省略时，从当前画笔位置开始绘制。
 
 *X2*, *Y2*
-: *required* The end point, in **ScaleMode** units. **Step** makes the point relative to (*X1*, *Y1*).
+: *必需* 终止点，以**ScaleMode**单位。**Step**使点相对于(*X1*, *Y1*)。
 
 *Color*
-: *optional* An **OLE_COLOR** for the line; defaults to [**ForeColor**](#forecolor).
+: *可选* 线条的**OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
 **B**
-: *optional* Draw a rectangle whose opposite corners are (*X1*, *Y1*) and (*X2*, *Y2*).
+: *可选* 绘制一个以(*X1*, *Y1*)和(*X2*, *Y2*)为对角的矩形。
 
 **F**
-: *optional* When combined with **B**, fill the rectangle with [**ForeColor**](#forecolor) instead of [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle).
+: *可选* 与**B**组合时，用[**ForeColor**](#forecolor)而非[**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle)填充矩形。
 
 ### Move
 
-Repositions and optionally resizes the report window in a single call.
+通过一次调用重新定位并可选地调整报表窗口大小。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
 *Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+: *可选* 相应属性的新值。省略的值保持不变。
 
 ### PaintPicture
 
-Draws a **StdPicture** onto the current drawing surface, with optional scaling and raster operations.
+将**StdPicture**绘制到当前绘图表面上，支持可选的缩放和光栅操作。
 
-Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* [, *StretchQuality* ] ] ] ] ] ] ] ]
+语法：*object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* [, *StretchQuality* ] ] ] ] ] ] ] ]
 
 *Picture*
-: *required* A **StdPicture** to draw.
+: *必需* 要绘制的**StdPicture**。
 
 *X1*, *Y1*
-: *required* The destination upper-left corner, in [**ScaleMode**](#scalemode) units.
+: *必需* 目标左上角，以[**ScaleMode**](#scalemode)单位。
 
 *Width1*, *Height1*
-: *optional* Destination size; defaults to the picture's natural size.
+: *可选* 目标大小；默认为图片的自然大小。
 
 *X2*, *Y2*, *Width2*, *Height2*
-: *optional* The source rectangle within the picture; defaults to the whole picture.
+: *可选* 图片内的源矩形；默认为整个图片。
 
 *Opcode*
-: *optional* A raster-operation code (member of [**RasterOpConstants**](/en/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
+: *可选* 光栅操作代码（[**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants)的成员）。默认为**vbSrcCopy**。
 
 *StretchQuality*
-: *optional* The interpolation method when scaling. Defaults to normal quality.
+: *可选* 缩放时的插值方法。默认为普通质量。
 
 ### Print
 
-Writes text to the current drawing surface using [**Font**](#font), starting at [**CurrentX**](#currentx) / [**CurrentY**](#currenty) and advancing them as it goes. Inside a [**BeforePaintSection**](#beforepaintsection) handler the text appears on the section being painted; outside it, the text is drawn directly on the report window.
+使用[**Font**](#font)将文本写入当前绘图表面，从[**CurrentX**](#currentx) / [**CurrentY**](#currenty)开始并随之推进。在[**BeforePaintSection**](#beforepaintsection)处理程序内部，文本出现在正在绘制的节上；在处理程序之外，文本直接绘制在报表窗口上。
 
-Syntax: *object*.**Print** \[ *expressionlist* ] \[ **;** \| **,** ]
+语法：*object*.**Print** \[ *expressionlist* ] \[ **;** \| **,** ]
 
-A trailing `;` or `,` suppresses the newline so the next **Print** call continues on the same line. **Print** is the language-level statement, not a function call --- multiple expressions can be separated by `;` (no spacing) or `,` (tab to the next print zone), and **Spc(n)** / **Tab(n)** insert spaces or move to a column.
+末尾的`;`或`,`抑制换行，使下一次**Print**调用在同一行继续。**Print**是语言级语句，不是函数调用——多个表达式可以用`;`（无间距）或`,`（跳到下一个打印区域）分隔，**Spc(n)** / **Tab(n)**插入空格或移到列。
 
 ::: info
-To send a report to the printer, use [**PrintReport**](#printreport) --- not **Print**.
+要将报表发送到打印机，请使用[**PrintReport**](#printreport)——而非**Print**。
 :::
 
 ### PrintReport
 
-Sends every page of the report to the [**Printer**](/en/official/Reference/VB/Printer/) object. Iterates from page 1 to the last page, generating each cached metafile in turn.
+将报表的每一页发送到[**Printer**](/official/Reference/VB/Printer/)对象。从第1页遍历到最后一页，依次生成每个缓存的图元文件。
 
-Syntax: *object*.**PrintReport** [ *ShowDialog* [, *Range* [, *PageFrom* [, *PageTo* ] ] ] ]
+语法：*object*.**PrintReport** [ *ShowDialog* [, *Range* [, *PageFrom* [, *PageTo* ] ] ] ]
 
 *ShowDialog*
-: *optional* When **True** (default), display the standard print dialog before printing. **Not yet supported** --- calling **PrintReport** with **ShowDialog := True** raises run-time error 5.
+: *可选* 当**True**（默认）时，在打印前显示标准打印对话框。**尚不支持**——以**ShowDialog := True**调用**PrintReport**会引发运行时错误5。
 
 *Range*
-: *optional* A member of **PageRangeConstants**: **rptRangeAllPages** (0, default) or **rptRangeFromTo** (1).
+: *可选* **PageRangeConstants**的成员：**rptRangeAllPages** (0, 默认)或**rptRangeFromTo** (1)。
 
 *PageFrom*, *PageTo*
-: *optional* When *Range* is **rptRangeFromTo**, the inclusive page range to print.
+: *可选* 当*Range*为**rptRangeFromTo**时，要打印的包含范围。
 
 ::: info
-The printer paper size is currently locked to A4 in this beta.
+此测试版中打印机纸张大小目前锁定为A4。
 :::
 
 ### PSet
 
-Sets a single pixel on the current drawing surface to a specified colour.
+将当前绘图表面上的单个像素设置为指定颜色。
 
-Syntax: *object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
+语法：*object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
 
 *X*, *Y*
-: *required* The pixel position, in [**ScaleMode**](#scalemode) units. **Step** makes the position relative to ([**CurrentX**](#currentx), [**CurrentY**](#currenty)).
+: *必需* 像素位置，以[**ScaleMode**](#scalemode)单位。**Step**使位置相对于([**CurrentX**](#currentx), [**CurrentY**](#currenty))。
 
 *Color*
-: *optional* An **OLE_COLOR**; defaults to [**ForeColor**](#forecolor).
+: *可选* **OLE_COLOR**；默认为[**ForeColor**](#forecolor)。
 
 ### Refresh
 
-Forces an immediate repaint of the report window.
+强制报表窗口立即重绘。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### Scale
 
-Sets the report window's logical drawing rectangle in a single call by assigning [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight). Switches [**ScaleMode**](#scalemode) to **vbUser**. Calling **Scale** with no arguments resets the rectangle to a 1-to-1 mapping with the client area in pixels.
+通过一次调用设置报表窗口的逻辑绘图矩形——赋值[**ScaleLeft**](#scaleleft)、[**ScaleTop**](#scaletop)、[**ScaleWidth**](#scalewidth)和[**ScaleHeight**](#scaleheight)。将[**ScaleMode**](#scalemode)切换为**vbUser**。不带参数调用**Scale**会将矩形重置为与客户区1:1映射（以像素为单位）。
 
-Syntax: *object*.**Scale** [ ( *X1*, *Y1* )-( *X2*, *Y2* ) ]
+语法：*object*.**Scale** [ ( *X1*, *Y1* )-( *X2*, *Y2* ) ]
 
 *X1*, *Y1*
-: *optional* The logical coordinate at the top-left corner.
+: *可选* 左上角的逻辑坐标。
 
 *X2*, *Y2*
-: *optional* The logical coordinate at the bottom-right corner.
+: *可选* 右下角的逻辑坐标。
 
 ### ScaleX
 
-Converts a horizontal length from one [**ScaleMode**](#scalemode) to another.
+将水平长度从一种[**ScaleMode**](#scalemode)转换为另一种。
 
-Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
+语法：*object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
 
 *Width*
-: *required* A **Single** giving the source length.
+: *必需* 给出源长度的**Single**。
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *可选* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员。省略时默认为当前**ScaleMode**。
 
 ### ScaleY
 
-Converts a vertical length from one [**ScaleMode**](#scalemode) to another.
+将垂直长度从一种[**ScaleMode**](#scalemode)转换为另一种。
 
-Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
+语法：*object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
 
 *Height*
-: *required* A **Single** giving the source length.
+: *必需* 给出源长度的**Single**。
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *可选* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员。省略时默认为当前**ScaleMode**。
 
 ### SetFocus
 
-Activates the report window and gives input focus to the control whose **TabIndex** is `0` (or to whichever control last held focus).
+激活报表窗口并将输入焦点给予**TabIndex**为`0`的控件（或最后持有焦点的控件）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### Show
 
-Makes the report window visible. Triggers [**Load**](#load) on the first call.
+使报表窗口可见。首次调用时触发[**Load**](#load)。
 
-Syntax: *object*.**Show** [ *Modal* [, *OwnerForm* ] ]
+语法：*object*.**Show** [ *Modal* [, *OwnerForm* ] ]
 
 *Modal*
-: *optional* A member of [**FormShowConstants**](/en/official/Reference/VBRUN/Constants/FormShowConstants): **vbModeless** (0, default --- the call returns immediately) or **vbModal** (1 --- the call blocks until the report is closed).
+: *可选* [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants)的成员：**vbModeless** (0, 默认——调用立即返回)或**vbModal** (1——调用阻塞直到报表关闭)。
 
 *OwnerForm*
-: *optional* For modal shows, the form that is disabled while the report is up; defaults to the currently active form.
+: *可选* 对于模态显示，在报表打开期间被禁用的窗体；默认为当前活动窗体。
 
 ### TextHeight
 
-Returns the height that the given string would occupy when drawn with the report's current [**Font**](#font), in [**ScaleMode**](#scalemode) units.
+返回给定字符串使用报表当前[**Font**](#font)绘制时将占用的 height，以[**ScaleMode**](#scalemode)单位。
 
-Syntax: *object*.**TextHeight**( *Str* )
+语法：*object*.**TextHeight**( *Str* )
 
 *Str*
-: *required* A **String** to measure.
+: *必需* 要测量的**String**。
 
 ### TextWidth
 
-Returns the width that the given string would occupy when drawn with the report's current [**Font**](#font), in [**ScaleMode**](#scalemode) units.
+返回给定字符串使用报表当前[**Font**](#font)绘制时将占用的 width，以[**ScaleMode**](#scalemode)单位。
 
-Syntax: *object*.**TextWidth**( *Str* )
+语法：*object*.**TextWidth**( *Str* )
 
 *Str*
-: *required* A **String** to measure.
+: *必需* 要测量的**String**。
 
 ### ZOrder
 
-Brings the report window to the front or back of the top-level z-order.
+将报表窗口带到顶级z序的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront** (0, 默认)或**vbSendToBack** (1)。
 
-## Events
+## 事件
 
 ### Activate
 
-Raised when the report window becomes the active window in the application --- either after [**Load**](#load) for the first show, or whenever it gains activation back from another window.
+当报表窗口成为应用程序中的活动窗口时引发——要么是在[**Load**](#load)之后的首次显示，要么是它从另一个窗口重新获得激活时。
 
-Syntax: *object*\_**Activate**( )
+语法：*object*\_**Activate**( )
 
 ### BeforePaintSection
 
-Raised once for each section as it is rendered, before the framework draws the controls in that section. Inside the handler, [**hDC**](#hdc) returns the metafile device context the section is being recorded into, so any drawing primitives ([**Line**](#line), [**Circle**](#circle), [**Print**](#print), …) or direct GDI calls write straight into the section.
+每个节在渲染时引发一次，在框架绘制该节中的控件之前。在处理程序内部，[**hDC**](#hdc)返回正在记录该节的图元文件设备上下文，因此任何绘图原语（[**Line**](#line)、[**Circle**](#circle)、[**Print**](#print)等）或直接GDI调用直接写入该节。
 
-Syntax: *object*\_**BeforePaintSection**( *Section* **As ControlsSection** )
+语法：*object*\_**BeforePaintSection**( *Section* **As ControlsSection** )
 
 *Section*
-: The section currently being painted. Inspect *Section*`.SectionType` (**ReportHeader**, **PageHeader**, **Detail**, **PageFooter**, or **ReportFooter**) to discriminate.
+: 当前正在绘制的节。检查*Section*`.SectionType`（**ReportHeader**、**PageHeader**、**Detail**、**PageFooter**或**ReportFooter**）来区分。
 
 ### Click
 
-Raised when the user single-clicks the report window's client area (i.e. not over the toolbar or any child control).
+当用户单击报表窗口的客户区时引发（即不在工具栏或任何子控件上）。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks the report window's client area.
+当用户双击报表窗口的客户区时引发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### Deactivate
 
-Raised when another window in the application takes activation away from this report. Not raised when activation moves to a window in a different application.
+当应用程序中的另一个窗口从此报表夺走激活时引发。当激活移到不同应用程序的窗口时不引发。
 
-Syntax: *object*\_**Deactivate**( )
+语法：*object*\_**Deactivate**( )
 
 ### DPIChange
 
-Raised when the report window moves to a monitor with a different DPI scale, *but only* when the application is per-monitor DPI aware (`PROCESS_PER_MONITOR_DPI_AWARE`). The event's *NewDPI* argument gives the new effective DPI.
+当报表窗口移动到具有不同DPI缩放的显示器时引发，*但仅当*应用程序是按显示器DPI感知的（`PROCESS_PER_MONITOR_DPI_AWARE`）。事件的*NewDPI*参数给出新的有效DPI。
 
-Syntax: *object*\_**DPIChange**( *NewDPI* **As Long** )
+语法：*object*\_**DPIChange**( *NewDPI* **As Long** )
 
 ### GotFocus
 
-Raised when the report window receives the input focus and no enabled child control of the report is in a position to take it instead.
+当报表窗口获得输入焦点且报表没有启用的子控件可以代替获取焦点时引发。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### Initialize
 
-Raised once, before the underlying window is created and before any of the report's controls exist. Useful for setting initial values on report-level fields.
+引发一次，在底层窗口创建之前且报表的任何控件存在之前。适用于设置报表级字段的初始值。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### KeyDown
 
-Raised when the user presses any key. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the report first.
+当用户按下任意键时引发。默认在焦点控件上触发；[**KeyPreview**](#keypreview)为**True**时，首先在报表上触发。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
-Raised when the user types a character that produces an ANSI keystroke. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the report first.
+当用户输入产生ANSI按键的字符时引发。默认在焦点控件上触发；[**KeyPreview**](#keypreview)为**True**时，首先在报表上触发。
 
-Syntax: *object*\_**KeyPress**( *KeyAscii* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyAscii* **As Integer** )
 
 ### KeyUp
 
-Raised when the user releases a key. Fires on the focused control by default; with [**KeyPreview**](#keypreview) **True**, fires on the report first.
+当用户释放键时引发。默认在焦点控件上触发；[**KeyPreview**](#keypreview)为**True**时，首先在报表上触发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### Load
 
-Raised after the report's window and all section controls have been created, just before the report first appears on screen. The classic place to assign [**Recordset**](#recordset) and perform any initialisation that needs the controls to exist. **Default event.**
+在报表的窗口和所有节控件创建之后，报表首次出现在屏幕之前引发。这是分配[**Recordset**](#recordset)和执行需要控件存在的任何初始化的经典位置。**默认事件。**
 
-Syntax: *object*\_**Load**( )
+语法：*object*\_**Load**( )
 
 ### LostFocus
 
-Raised when the report window loses the input focus.
+当报表窗口失去输入焦点时引发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the report window's client area.
+当用户在报表窗口的客户区按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the report window's client area.
+当光标在报表窗口的客户区上移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the report window's client area.
+当用户在报表窗口的客户区释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### QueryUnload
 
-Raised before the report unloads, giving the application a chance to confirm or cancel the close. Setting *Cancel* to non-zero keeps the report open. Always raised before [**Unload**](#unload).
+在报表卸载之前引发，给应用程序确认或取消关闭的机会。将*Cancel*设置为非零保持报表打开。始终在[**Unload**](#unload)之前引发。
 
-Syntax: *object*\_**QueryUnload**( *Cancel* **As Integer**, *UnloadMode* **As Integer** )
+语法：*object*\_**QueryUnload**( *Cancel* **As Integer**, *UnloadMode* **As Integer** )
 
 *Cancel*
-: Set to non-zero (any non-zero value, conventionally **1**) to cancel the close.
+: 设置为非零（任何非零值，约定为**1**）以取消关闭。
 
 *UnloadMode*
-: A member of [**QueryUnloadConstants**](/en/official/Reference/VBRUN/Constants/QueryUnloadConstants) identifying what triggered the close.
+: 标识触发关闭原因的[**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants)成员。
 
 ### Resize
 
-Raised when the report window is resized --- by the user, by code, by the OS following a [**WindowState**](#windowstate) change, or by initial layout during the first show.
+当报表窗口被调整大小时引发——由用户、代码、操作系统在[**WindowState**](#windowstate)更改后、或首次显示时的初始布局。
 
-Syntax: *object*\_**Resize**( )
+语法：*object*\_**Resize**( )
 
 ### Terminate
 
-Raised after the report window has been destroyed and the class instance is about to be released. The controls are no longer accessible at this point.
+在报表窗口已销毁且类实例即将被释放之后引发。此时控件不再可访问。
 
-Syntax: *object*\_**Terminate**( )
+语法：*object*\_**Terminate**( )
 
 ### Unload
 
-Raised after [**QueryUnload**](#queryunload) approves and before the report window is destroyed. Setting *Cancel* to non-zero keeps the report open and prevents the unload.
+在[**QueryUnload**](#queryunload)批准之后且报表窗口被销毁之前引发。将*Cancel*设置为非零保持报表打开并阻止卸载。
 
-Syntax: *object*\_**Unload**( *Cancel* **As Integer** )
+语法：*object*\_**Unload**( *Cancel* **As Integer** )
 
 *Cancel*
-: Set to non-zero (any non-zero value, conventionally **1**) to cancel the unload.
+: 设置为非零（任何非零值，约定为**1**）以取消卸载。

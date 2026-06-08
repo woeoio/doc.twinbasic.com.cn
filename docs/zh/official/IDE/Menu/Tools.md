@@ -7,19 +7,19 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '2a79fef8-2fef-42a0-a6ac-8939c244895e'
-  PropagateID: '2a79fef8-2fef-42a0-a6ac-8939c244895e'
-  ReservedCode1: 'aaebccd8-2035-403e-95b4-ab4ba025d065'
-  ReservedCode2: 'aaebccd8-2035-403e-95b4-ab4ba025d065'
+  ProduceID: '0c7e5f45-56ce-4fc2-bf6e-8ae09c0b728e'
+  PropagateID: '0c7e5f45-56ce-4fc2-bf6e-8ae09c0b728e'
+  ReservedCode1: 'acca1078-6662-4182-bdfb-64f2f4d0b631'
+  ReservedCode2: 'acca1078-6662-4182-bdfb-64f2f4d0b631'
 ---
 
 # 工具菜单
 
-![Tools Menu](Images/Menu_Tools.png "Tools Menu")
+![工具菜单](Images/Menu_Tools.png "工具菜单")
 
 - IDE 选项...
 
-![IDE Options - Tools Menu](Images/Menu_Tools_IDEOptions.png "IDE Options - Tools Menu")
+![IDE 选项 - 工具菜单](Images/Menu_Tools_IDEOptions.png "IDE 选项 - 工具菜单")
 
 ::: info
 

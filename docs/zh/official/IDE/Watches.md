@@ -6,24 +6,24 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '475fa36c-255d-433a-b1ee-dbd35952829a'
-  PropagateID: '475fa36c-255d-433a-b1ee-dbd35952829a'
-  ReservedCode1: 'a7348c89-df0e-4e1c-b8d3-29c9726e2679'
-  ReservedCode2: 'a7348c89-df0e-4e1c-b8d3-29c9726e2679'
+  ProduceID: 'bd652892-dbdd-4430-8168-d81190745d0a'
+  PropagateID: 'bd652892-dbdd-4430-8168-d81190745d0a'
+  ReservedCode1: 'e3e63fac-f9a8-4831-b7b5-1dca090bb5f6'
+  ReservedCode2: 'e3e63fac-f9a8-4831-b7b5-1dca090bb5f6'
 ---
 
 # 监视
 
 未打开项目时此面板为空。
 
-![Watches](Images/Watches.png "Watches")
+![监视](Images/Watches.png "监视")
 
 打开项目后会有其他按钮可用。
 
-![Watches](Images/Watches_1.png "Watches")
+![监视](Images/Watches_1.png "监视")
 
-要添加新的监视，点击 ![Add](Images/Add.png "Add") 并输入要监视的"表达式"。
+要添加新的监视，点击 ![添加](Images/Add.png "添加") 并输入要监视的"表达式"。
 
-![Watches](Images/Watches_2.png "Watches")
+![监视](Images/Watches_2.png "监视")
 
-可以使用清除按钮 ![Clear](Images/Clear.png "Clear") 移除任意监视。
+可以使用清除按钮 ![清除](Images/Clear.png "清除") 移除任意监视。

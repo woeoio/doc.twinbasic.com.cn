@@ -1,53 +1,61 @@
 ---
 title: Exact
-parent: Assert Package
+parent: "Assert 包"
 permalink: /tB/Packages/Assert/Exact
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4665bcaf-4986-4bfe-b1b1-7c7a6c0bfafd'
+  PropagateID: '4665bcaf-4986-4bfe-b1b1-7c7a6c0bfafd'
+  ReservedCode1: '67f56b07-c1e2-4d3a-8f63-8a7b0da26381'
+  ReservedCode2: '67f56b07-c1e2-4d3a-8f63-8a7b0da26381'
 ---
 
-# Exact module
+# Exact 模块
 
-The **Exact** module of the [**Assert**](/en/official/Reference/Assert/) package supplies assertions with the strictest possible comparison semantics. String comparisons are case-sensitive; numeric values must match in datatype as well as value (so `5` is not equal to `5.0`); `vbNullString` is distinct from `""`; `Empty` is distinct from `0`, `False`, `""`, and `vbNullString`; and object default members are not evaluated. **Exact** flags any kind of implicit conversion or coercion in the values being tested.
+[**Assert**](/official/Reference/Assert/) 包的 **Exact** 模块提供具有最严格比较语义的断言。字符串比较区分大小写；数值必须在数据类型和值上都匹配（因此 `5` 不等于 `5.0`）；`vbNullString` 与 `""` 不同；`Empty` 与 `0`、`False`、`""` 和 `vbNullString` 不同；不评估对象默认成员。**Exact** 会标记被测试值中任何形式的隐式转换或强制转换。
 
 
-## Comparison semantics
+## 比较语义
 
-The four equality assertions in this module --- [**AreEqual**](#areequal), [**AreNotEqual**](#arenotequal), [**SequenceEquals**](#sequenceequals), and [**NotSequenceEquals**](#notsequenceequals) --- apply the rules listed below. The remaining assertions are unaffected.
+此模块中的四个相等性断言---[**AreEqual**](#areequal)、[**AreNotEqual**](#arenotequal)、[**SequenceEquals**](#sequenceequals) 和 [**NotSequenceEquals**](#notsequenceequals)---应用以下规则。其余断言不受影响。
 
-- *String* comparisons are case-sensitive (regardless of the project's `Option Compare` setting).
-- The datatype of the compared values must match exactly. `Long` and `Double`, `Long` and `Currency`, and `Integer` and `Long` are all considered different.
-- `vbNullString` and a zero-length **String** (`""`) are considered different.
-- `Empty` is considered different from `0`, `False`, `""`, and `vbNullString`.
-- Object references are compared by identity (the **Is** operator); default-member values are not retrieved.
-- `Null` is never equal to anything, not even to itself --- use [**IsNull**](#isnull) / [**IsNotNull**](#isnotnull) to test for it.
+- *字符串*比较区分大小写（无论项目的 `Option Compare` 设置如何）。
+- 被比较值的数据类型必须完全匹配。`Long` 和 `Double`、`Long` 和 `Currency`、`Integer` 和 `Long` 都被视为不同。
+- `vbNullString` 和零长度 **String**（`""`）被视为不同。
+- `Empty` 被视为与 `0`、`False`、`""` 和 `vbNullString` 不同。
+- 对象引用按标识（**Is** 运算符）比较；不检索默认成员值。
+- `Null` 永远不等于任何值，甚至不等于自身---使用 [**IsNull**](#isnull) / [**IsNotNull**](#isnotnull) 来测试它。
 
 ```vb
-' All of these fail under Exact:
-Exact.AreEqual 5, 5.0           ' Long vs Double — datatypes differ
-Exact.AreEqual vbNullString, "" ' the two empty-string forms are distinct
-Exact.AreEqual Empty, 0         ' Empty is distinct from 0
-Exact.AreEqual "Hello", "hello" ' case-sensitive
+' 在 Exact 下以下全部失败：
+Exact.AreEqual 5, 5.0           ' Long 对 Double — 数据类型不同
+Exact.AreEqual vbNullString, "" ' 两种空字符串形式是不同的
+Exact.AreEqual Empty, 0         ' Empty 与 0 不同
+Exact.AreEqual "Hello", "hello" ' 区分大小写
 ```
 
-## Diagnostic outcome
+## 诊断结果
 
 ### Succeed
 
-Records that the test reached this point without failure.
+记录测试已到达此点而未失败。
 
-Syntax: **Exact.Succeed**
+语法：**Exact.Succeed**
 
-A test procedure that returns without any assertion having failed is reported as passing implicitly, so calling **Succeed** explicitly is rarely necessary. It is occasionally useful in branches that would otherwise look ambiguous about their outcome --- for example, the body of a loop that should reach the end.
+返回时没有任何断言失败的测试过程隐式报告为通过，因此显式调用 **Succeed** 很少有必要。偶尔用于结果看起来可能模糊的分支---例如，应该到达末尾的循环体。
 
 ### Fail
 
-Unconditionally records a test failure.
+无条件记录测试失败。
 
-Syntax: **Exact.Fail** [ *Message* ]
+语法：**Exact.Fail** [ *Message* ]
 
 *Message*
-: *optional* A **String** describing the failure, recorded together with the source location of the call.
+: *可选* 一个 **String**，描述失败，与调用的源位置一起记录。
 
-**Fail** marks code paths that should be unreachable in a passing test --- most often after a call that is expected to raise an error, in a branch that runs when the call returned normally instead.
+**Fail** 标记在通过测试中不应可达的代码路径---最常见的是在预期引发错误的调用之后，在调用正常返回时运行的分支中。
 
 ```vb
 On Error Resume Next
@@ -57,203 +65,203 @@ If Err.Number = 0 Then Exact.Fail "expected an error, got success"
 
 ### Inconclusive
 
-Records the test as inconclusive --- neither a pass nor a failure.
+将测试记录为不确定---既非通过也非失败。
 
-Syntax: **Exact.Inconclusive** [ *Message* ]
+语法：**Exact.Inconclusive** [ *Message* ]
 
 *Message*
-: *optional* A **String** describing why the result is inconclusive.
+: *可选* 一个 **String**，描述结果不确定的原因。
 
-**Inconclusive** records that a precondition for the test could not be established and the assertion logic that follows would be meaningless. A common case is a setup step that failed to find a required external resource --- a test database, a configured network endpoint --- where the test itself is neither passing nor failing on its own merits.
+**Inconclusive** 记录测试的前提条件无法建立，后续的断言逻辑将没有意义。常见情况是设置步骤未能找到所需的外部资源---测试数据库、已配置的网络端点---此时测试本身既非凭自身优点通过也非失败。
 
-## Equality
+## 相等性
 
 ### AreEqual
 
-Asserts that *Actual* is equal to *Expected*.
+断言 *Actual* 等于 *Expected*。
 
-Syntax: **Exact.AreEqual** *Expected*, *Actual* [, *Message* ]
+语法：**Exact.AreEqual** *Expected*, *Actual* [, *Message* ]
 
 *Expected*
-: *required* A **Variant** holding the expected value.
+: *必需* 一个 **Variant**，持有预期值。
 
 *Actual*
-: *required* A **Variant** holding the value produced by the code under test.
+: *必需* 一个 **Variant**，持有被测代码产生的值。
 
 *Message*
-: *optional* A **String** included in the failure record if the comparison fails.
+: *可选* 一个 **String**，在比较失败时包含在失败记录中。
 
-The comparison follows this module's [comparison semantics](#comparison-semantics) --- *Expected* and *Actual* must have the same datatype, strings are compared case-sensitively, and `Empty`, `vbNullString`, and `""` are all distinct from one another. If either operand is **Null**, the assertion fails --- `Null` is never equal to anything; use [**IsNull**](#isnull) to test for **Null** explicitly.
+比较遵循此模块的[比较语义](#comparison-semantics)---*Expected* 和 *Actual* 必须具有相同的数据类型，字符串区分大小写比较，`Empty`、`vbNullString` 和 `""` 彼此不同。如果任一操作数为 **Null**，断言失败---`Null` 永远不等于任何值；使用 [**IsNull**](#isnull) 显式测试 **Null**。
 
 ### AreNotEqual
 
-Asserts that *Actual* is not equal to *Expected*.
+断言 *Actual* 不等于 *Expected*。
 
-Syntax: **Exact.AreNotEqual** *Expected*, *Actual* [, *Message* ]
+语法：**Exact.AreNotEqual** *Expected*, *Actual* [, *Message* ]
 
 *Expected*
-: *required* A **Variant** holding a value that *Actual* must differ from.
+: *必需* 一个 **Variant**，持有 *Actual* 必须与之不同的值。
 
 *Actual*
-: *required* A **Variant** holding the value produced by the code under test.
+: *必需* 一个 **Variant**，持有被测代码产生的值。
 
 *Message*
-: *optional* A **String** included in the failure record if the values are equal.
+: *可选* 一个 **String**，在值相等时包含在失败记录中。
 
-Comparison uses this module's [comparison semantics](#comparison-semantics). If either operand is **Null**, the assertion passes --- `Null` is never equal to anything.
+比较使用此模块的[比较语义](#comparison-semantics)。如果任一操作数为 **Null**，断言通过---`Null` 永远不等于任何值。
 
 ### AreSame
 
-Asserts that *Actual* and *Expected* refer to the *same* object --- equivalent to `Expected Is Actual`.
+断言 *Actual* 和 *Expected* 引用*同一*对象---等同于 `Expected Is Actual`。
 
-Syntax: **Exact.AreSame** *Expected*, *Actual* [, *Message* ]
+语法：**Exact.AreSame** *Expected*, *Actual* [, *Message* ]
 
 *Expected*
-: *required* A **Variant** holding the expected object reference.
+: *必需* 一个 **Variant**，持有预期的对象引用。
 
 *Actual*
-: *required* A **Variant** holding the reference produced by the code under test.
+: *必需* 一个 **Variant**，持有被测代码产生的引用。
 
 *Message*
-: *optional* A **String** included in the failure record if the references differ.
+: *可选* 一个 **String**，在引用不同时包含在失败记录中。
 
-Reference identity is independent of the module's other comparison rules --- **AreSame** always uses the **Is** operator, never default-member equality. To compare values rather than references, use [**AreEqual**](#areequal).
+引用标识与模块的其他比较规则无关---**AreSame** 始终使用 **Is** 运算符，从不使用默认成员相等性。要比较值而非引用，请使用 [**AreEqual**](#areequal)。
 
 ### AreNotSame
 
-Asserts that *Actual* and *Expected* refer to *different* objects --- equivalent to `Expected IsNot Actual`.
+断言 *Actual* 和 *Expected* 引用*不同*的对象---等同于 `Expected IsNot Actual`。
 
-Syntax: **Exact.AreNotSame** *Expected*, *Actual* [, *Message* ]
+语法：**Exact.AreNotSame** *Expected*, *Actual* [, *Message* ]
 
 *Expected*
-: *required* A **Variant** holding a reference that *Actual* must differ from.
+: *必需* 一个 **Variant**，持有 *Actual* 必须与之不同的引用。
 
 *Actual*
-: *required* A **Variant** holding the reference produced by the code under test.
+: *必需* 一个 **Variant**，持有被测代码产生的引用。
 
 *Message*
-: *optional* A **String** included in the failure record if the references are the same.
+: *可选* 一个 **String**，在引用相同时包含在失败记录中。
 
-## Boolean
+## 布尔
 
 ### IsTrue
 
-Asserts that *Condition* evaluates to **True**.
+断言 *Condition* 求值为 **True**。
 
-Syntax: **Exact.IsTrue** *Condition* [, *Message* ]
+语法：**Exact.IsTrue** *Condition* [, *Message* ]
 
 *Condition*
-: *required* A **Variant** holding the condition to test. The value is interpreted as a **Boolean** --- zero is **False**, any non-zero value is **True**.
+: *必需* 一个 **Variant**，持有要测试的条件。值被解释为 **Boolean**---零为 **False**，任何非零值为 **True**。
 
 *Message*
-: *optional* A **String** included in the failure record if the condition is **False**.
+: *可选* 一个 **String**，在条件为 **False** 时包含在失败记录中。
 
-If *Condition* is **Null**, the assertion fails.
+如果 *Condition* 为 **Null**，断言失败。
 
 ### IsFalse
 
-Asserts that *Condition* evaluates to **False**.
+断言 *Condition* 求值为 **False**。
 
-Syntax: **Exact.IsFalse** *Condition* [, *Message* ]
+语法：**Exact.IsFalse** *Condition* [, *Message* ]
 
 *Condition*
-: *required* A **Variant** holding the condition to test. Zero is **False**, any non-zero value is **True**.
+: *必需* 一个 **Variant**，持有要测试的条件。零为 **False**，任何非零值为 **True**。
 
 *Message*
-: *optional* A **String** included in the failure record if the condition is **True**.
+: *可选* 一个 **String**，在条件为 **True** 时包含在失败记录中。
 
-If *Condition* is **Null**, the assertion fails --- `Null` is neither **True** nor **False**.
+如果 *Condition* 为 **Null**，断言失败---`Null` 既非 **True** 也非 **False**。
 
-## Reference and value state
+## 引用和值状态
 
 ### IsNothing
 
-Asserts that *Value* is the **Nothing** object reference.
+断言 *Value* 是 **Nothing** 对象引用。
 
-Syntax: **Exact.IsNothing** *Value* [, *Message* ]
+语法：**Exact.IsNothing** *Value* [, *Message* ]
 
 *Value*
-: *required* A **Variant** holding the object reference to test.
+: *必需* 一个 **Variant**，持有要测试的对象引用。
 
 *Message*
-: *optional* A **String** included in the failure record if *Value* refers to an object.
+: *可选* 一个 **String**，在 *Value* 引用对象时包含在失败记录中。
 
-This is the object-reference test, equivalent to `Value Is Nothing`. To check for the **Null** value of a **Variant** instead, use [**IsNull**](#isnull).
+这是对象引用测试，等同于 `Value Is Nothing`。要改为检查 **Variant** 的 **Null** 值，请使用 [**IsNull**](#isnull)。
 
 ### IsNotNothing
 
-Asserts that *Value* refers to an object --- i.e. is *not* the **Nothing** reference.
+断言 *Value* 引用对象---即*不是* **Nothing** 引用。
 
-Syntax: **Exact.IsNotNothing** *Value* [, *Message* ]
+语法：**Exact.IsNotNothing** *Value* [, *Message* ]
 
 *Value*
-: *required* A **Variant** holding the object reference to test.
+: *必需* 一个 **Variant**，持有要测试的对象引用。
 
 *Message*
-: *optional* A **String** included in the failure record if *Value* is **Nothing**.
+: *可选* 一个 **String**，在 *Value* 为 **Nothing** 时包含在失败记录中。
 
 ### IsNull
 
-Asserts that *Value* is the **Null** value of a **Variant**.
+断言 *Value* 是 **Variant** 的 **Null** 值。
 
-Syntax: **Exact.IsNull** *Value* [, *Message* ]
+语法：**Exact.IsNull** *Value* [, *Message* ]
 
 *Value*
-: *required* A **Variant** holding the value to test.
+: *必需* 一个 **Variant**，持有要测试的值。
 
 *Message*
-: *optional* A **String** included in the failure record if *Value* is not **Null**.
+: *可选* 一个 **String**，在 *Value* 不是 **Null** 时包含在失败记录中。
 
-Equivalent to checking [**IsNull**](/en/official/Reference/VBA/Information/IsNull)`(Value) = True`. To check for the **Nothing** object reference instead, use [**IsNothing**](#isnothing).
+等同于检查 [**IsNull**](/official/Reference/VBA/Information/IsNull)`(Value) = True`。要改为检查 **Nothing** 对象引用，请使用 [**IsNothing**](#isnothing)。
 
 ### IsNotNull
 
-Asserts that *Value* is not the **Null** value of a **Variant**.
+断言 *Value* 不是 **Variant** 的 **Null** 值。
 
-Syntax: **Exact.IsNotNull** *Value* [, *Message* ]
+语法：**Exact.IsNotNull** *Value* [, *Message* ]
 
 *Value*
-: *required* A **Variant** holding the value to test.
+: *必需* 一个 **Variant**，持有要测试的值。
 
 *Message*
-: *optional* A **String** included in the failure record if *Value* is **Null**.
+: *可选* 一个 **String**，在 *Value* 为 **Null** 时包含在失败记录中。
 
-## Sequence
+## 序列
 
 ### SequenceEquals
 
-Asserts that *Actual* and *Expected* contain the same number of elements, in the same order, with each pair of elements equal under this module's [comparison semantics](#comparison-semantics).
+断言 *Actual* 和 *Expected* 包含相同数量的元素，顺序相同，且每对元素在此模块的[比较语义](#comparison-semantics)下相等。
 
-Syntax: **Exact.SequenceEquals** *Expected*, *Actual* [, *FailMessage* ]
+语法：**Exact.SequenceEquals** *Expected*, *Actual* [, *FailMessage* ]
 
 *Expected*
-: *required* A **Variant** holding an array, **Collection**, or other enumerable value.
+: *必需* 一个 **Variant**，持有数组、**Collection** 或其他可枚举值。
 
 *Actual*
-: *required* A **Variant** holding the sequence produced by the code under test.
+: *必需* 一个 **Variant**，持有被测代码产生的序列。
 
 *FailMessage*
-: *optional* A **String** included in the failure record if the sequences differ.
+: *可选* 一个 **String**，在序列不同时包含在失败记录中。
 
-Both arguments must support iteration via **For Each**. The assertion fails on the first mismatched pair, on a length difference, or if one side is empty while the other is not. Element comparison uses the same per-pair rules as [**AreEqual**](#areequal), so under **Exact** the elements must additionally match in datatype.
+两个参数都必须支持通过 **For Each** 迭代。断言在第一对不匹配时、长度不同时或一方为空而另一方不为空时失败。元素比较使用与 [**AreEqual**](#areequal) 相同的逐对规则，因此在 **Exact** 下元素还必须在数据类型上匹配。
 
 ### NotSequenceEquals
 
-Asserts that *Actual* and *Expected* differ --- they contain a different number of elements, or at least one pair of corresponding elements differs under this module's [comparison semantics](#comparison-semantics).
+断言 *Actual* 和 *Expected* 不同---它们包含不同数量的元素，或至少有一对对应元素在此模块的[比较语义](#comparison-semantics)下不同。
 
-Syntax: **Exact.NotSequenceEquals** *Expected*, *Actual* [, *FailMessage* ]
+语法：**Exact.NotSequenceEquals** *Expected*, *Actual* [, *FailMessage* ]
 
 *Expected*
-: *required* A **Variant** holding an array, **Collection**, or other enumerable value.
+: *必需* 一个 **Variant**，持有数组、**Collection** 或其他可枚举值。
 
 *Actual*
-: *required* A **Variant** holding the sequence produced by the code under test.
+: *必需* 一个 **Variant**，持有被测代码产生的序列。
 
 *FailMessage*
-: *optional* A **String** included in the failure record if the sequences are equal.
+: *可选* 一个 **String**，在序列相等时包含在失败记录中。
 
-## See Also
+## 另见
 
-- [Strict](/en/official/Reference/Assert/Strict) -- case-sensitive strings, but otherwise behaves like a direct comparison in twinBASIC code
-- [Permissive](/en/official/Reference/Assert/Permissive) -- case-insensitive strings; otherwise behaves like a direct comparison in twinBASIC code
-- [Assert package](/en/official/Reference/Assert/) -- overview of all three modules and the comparison-semantics table
+- [Strict](/official/Reference/Assert/Strict) -- 区分大小写字符串，但其他方面与 twinBASIC 代码中的直接比较行为一致
+- [Permissive](/official/Reference/Assert/Permissive) -- 不区分大小写字符串；其他方面与 twinBASIC 代码中的直接比较行为一致
+- [Assert 包](/official/Reference/Assert/) -- 所有三个模块的概述和比较语义表

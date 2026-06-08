@@ -1,12 +1,23 @@
-﻿---
+---
 title: WebView2
 parent: WebView2 Package
 permalink: /tB/Packages/WebView2/WebView2/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f614d137-5528-4809-8ecf-3acdfa5c4289'
+  PropagateID: 'f614d137-5528-4809-8ecf-3acdfa5c4289'
+  ReservedCode1: 'a37030da-2f56-4884-ad7f-6208bb5817a9'
+  ReservedCode2: 'a37030da-2f56-4884-ad7f-6208bb5817a9'
 ---
 
-# WebView2 绫?
-**WebView2** 鏄竴涓壙杞?Microsoft Edge **WebView2** 杩愯鏃剁殑 twinBASIC 鎺т欢 --- 灏嗗叾鎷栨斁鍒癧**Form**](/official/Reference/VB/Form/)涓婏紝杩愯涓殑 Edge 寮曟搸浼氬湪鍏剁煩褰㈠尯鍩熷唴娓叉煋 Web 鍐呭銆傚簲鐢ㄧ▼搴忎唬鐮佸彲浠ュ鑸埌 URL銆佽繍琛?JavaScript銆佹嫤鎴?HTTP 璇锋眰銆佷笌椤甸潰鍏变韩 BASIC 瀵硅薄銆佸弻鍚戜紶閫掓秷鎭紝浠ュ強灏嗘枃妗ｆ墦鍗颁负 PDF銆?
-璇ユ帶浠跺皝瑁呬簡搴曞眰 `ICoreWebView2*` COM 鎺ュ彛锛屽苟灏嗗叾鏆撮湶涓烘櫘閫氱殑 BASIC 灞炴€с€佹柟娉曞拰浜嬩欢銆傚ぇ閮ㄥ垎宸ヤ綔鍦ㄦ祻瑙堝櫒杩涚▼鍐呭紓姝ュ畬鎴?--- 鎺т欢鍦?WebView2 鐜鍜屾帶鍒跺櫒鍒涘缓瀹屾垚鍚庤Е鍙?[**Ready**](#ready) 浜嬩欢锛屽湪姝や箣鍓嶈皟鐢ㄥぇ澶氭暟鎴愬憳浼氬紩鍙?WebView2 control is not ready"锛堣繍琛屾椂閿欒 5锛夈€?
+# WebView2 类
+
+**WebView2** 是承载 Microsoft Edge **WebView2** 运行时的 twinBASIC 控件 --- 将其拖放到[**Form**](/official/Reference/VB/Form/)上，运行中的 Edge 引擎会在其矩形区域内渲染 Web 内容。应用程序代码可以导航到 URL、运行 JavaScript、拦截 HTTP 请求、与页面共享 BASIC 对象、双向传递消息，以及将文档打印为 PDF。
+
+该控件封装了底层 `ICoreWebView2*` COM 接口，并将其作为普通 BASIC 属性、方法和事件暴露。大部分工作在浏览器进程内异步完成 --- 控件在 WebView2 环境和控制器创建完成后触发[**Ready**](#ready)事件，在此之前调用大多数成员会引发*"WebView2 control is not ready"*（运行时错误 5）。
+
 ```vb
 Private Sub Form_Load()
     WebView21.Navigate "https://www.twinbasic.com"
@@ -24,239 +35,320 @@ Private Sub WebView21_NavigationComplete( _
 End Sub
 ```
 
-## 鐢熷懡鍛ㄦ湡
+## 生命周期
 
-WebView2 鎺т欢鍦ㄦ瀯寤轰笌浣跨敤涔嬮棿缁忓巻涓変釜涓嶅悓闃舵锛屾瘡涓樁娈电敱 Edge 杩愯鏃朵腑鐨勫紓姝ユ楠よЕ鍙戯細
+WebView2 控件在构建与使用之间经历三个不同阶段，每个阶段由 Edge 运行时中的异步步骤触发：
 
-| 浜嬩欢                                | 浣曟椂瑙﹀彂                                                                                                              |
+| 事件                                | 何时触发                                                                                                              |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| [**Create**](#create)                | 瀹瑰櫒绐楀彛宸插瓨鍦ㄤ箣鍚庯紝WebView2 鐜鏋勫缓涔嬪墠銆傝缃?[**EnvironmentOptions**](#environmentoptions) 鐨勬渶鍚庢満浼氥€?|
-| [**Error**](#error)                  | 鐜鎴栨帶鍒跺櫒鏃犳硶鍒涘缓 --- 閫氬父鏄洜涓虹己灏?WebView2 杩愯鏃躲€?           |
-| [**Ready**](#ready)                  | 鐜銆佹帶鍒跺櫒鍜屾牳蹇冭鍥惧潎宸插氨缁€傛帶浠剁幇鍦ㄥ畬鍏ㄥ彲鐢ㄣ€?                     |
+| [**Create**](#create)                | 容器窗口已存在之后，WebView2 环境构建之前。设置[**EnvironmentOptions**](#environmentoptions)的最后机会。 |
+| [**Error**](#error)                  | 环境或控制器无法创建 --- 通常是因为缺少 WebView2 运行时。            |
+| [**Ready**](#ready)                  | 环境、控制器和核心视图均已就绪。控件现在完全可用。                      |
 
-鍦?[**Ready**](#ready) 涔嬪墠璋冪敤瀵艰埅銆佽剼鏈垨璁剧疆璁块棶鍣ㄤ細寮曞彂杩愯鏃堕敊璇?5锛屾彁绀?WebView2 control is not ready"銆傚綋鏌愰」璁剧疆渚濊禆杈冩柊鐗堟湰鐨勮繍琛屾椂鎺ュ彛鏃讹紝鍚屾牱鐨勯敊璇細浠?The executing version of WebView2 does not support the requested feature"鐨勫舰寮忓嚭鐜?--- 璇峰厛鏌ヨ瀵瑰簲鐨?`Supports鈥eatures` 灞炴€с€?
-濡傛灉 [**DocumentURL**](#documenturl) 瀛楁鍦?[**Ready**](#ready) 瑙﹀彂鏃跺叿鏈夐潪绌哄€硷紙璁捐鏃堕粯璁や负 `https://www.twinbasic.com`锛夛紝鎺т欢浼氳嚜鍔ㄥ鑸埌璇?URL銆?
-## 寤惰繜浜嬩欢
+在[**Ready**](#ready)之前调用导航、脚本或设置访问器会引发运行时错误 5，提示*"WebView2 control is not ready"*。当某项设置依赖较新版本的运行时接口时，同样的错误会以*"The executing version of WebView2 does not support the requested feature"*的形式出现 --- 请先查询对应的 `Supports…Features` 属性。
 
-澶氫釜杩愯鏃跺洖璋?--- [**PermissionRequested**](#permissionrequested)銆乕**NavigationStarting**](#navigationstarting)銆乕**WebResourceRequested**](#webresourcerequested)銆乕**ScriptDialogOpening**](#scriptdialogopening)銆乕**DownloadStarting**](#downloadstarting) 鍜?[**NewWindowRequested**](#newwindowrequested) --- 鍦?Edge 渚ф槸鍙噸鍏ョ殑锛屾剰鍛崇潃瀹冧滑鍦?WebView2 绾跨▼涓婅Е鍙戯紝鍚屾椂鏈熸湜瀹夸富鍚屾杩斿洖鎴栨寔鏈?寤惰繜*锛坉eferral锛夌洿鍒板仛鍑哄喅瀹氥€傚湪鍚屾澶勭悊绋嬪簭鍐呭洖璋冩帶浠跺彲鑳藉鑷存祻瑙堝櫒杩涚▼姝婚攣銆?
-褰?[**UseDeferredEvents**](#usedeferredevents) 涓?**True**锛堥粯璁ゅ€硷級鏃讹紝鎺т欢浠ｈ〃瀹夸富鑾峰彇杩愯鏃剁殑寤惰繜锛屽皢浜嬩欢鎶曢€掑埌 BASIC 娑堟伅寰幆锛屽苟鍦ㄥ鐞嗙▼搴忚繑鍥炲悗瀹屾垚寤惰繜銆傚洜姝わ紝搴旂敤绋嬪簭浠ｇ爜鍦ㄨ繖浜涗簨浠朵腑鍙互瀹夊叏鍦拌皟鐢ㄤ换浣曞叾浠?**WebView2** 鏂规硶銆備粎褰撻渶瑕佸悓姝ヨ涔変笖瀹夸富宸茶嚜琛屽畨鎺掗噸鍏ヤ繚鎶ゆ椂锛屾墠灏?[**UseDeferredEvents**](#usedeferredevents) 璁句负 **False**銆?
-[**AcceleratorKeyPressed**](#acceleratorkeypressed) 濮嬬粓鏄悓姝ョ殑 --- 鍏惰繍琛屾椂鍙傛暟涓嶆毚闇插欢杩熴€?
-## JavaScript 浜掓搷浣?
-鎺т欢鎻愪緵涓夌被 BASIC 鈫?JavaScript 妗ユ帴锛?
-- **瀹夸富瀵硅薄鍏变韩** --- [**AddObject**](#addobject) 灏?COM 瀵硅薄浠?`chrome.webview.hostObjects.<Name>` 鐨勫悕绉板彂甯冨埌 JavaScript銆傞〉闈㈠彲浠ョ洿鎺ヨ皟鐢?BASIC 瀵硅薄鐨勬柟娉曞拰璇?鍐欏睘鎬с€傞渶瑕?[**AreHostObjectsAllowed**](#arehostobjectsallowed)锛堥粯璁?**True**锛夈€傚綋椤甸潰鍙兘鍦?BASIC 鎿嶄綔鏈熼棿鍥炶皟鏃讹紝浼犲叆 `UseDeferredInvoke:=True`锛涗娇鐢ㄥ欢杩熻皟鐢ㄦ椂锛屽涓绘棤娉曞悜椤甸潰杩斿洖鍊笺€?- **娑堟伅浼犻€?* --- [**PostWebMessage**](#postwebmessage) 鍚戦〉闈㈠彂閫佸€硷紝椤甸潰閫氳繃 `window.chrome.webview.addEventListener('message', 鈥?` 鎺ユ敹銆傞〉闈娇鐢?`window.chrome.webview.postMessage(鈥?` 鍥炲锛屼粠鑰岃Е鍙?[**JsMessage**](#jsmessage) 浜嬩欢銆傞渶瑕?[**IsWebMessageEnabled**](#iswebmessageenabled)锛堥粯璁?**True**锛夈€?- **鎵ц鑴氭湰** --- [**JsRun**](#jsrun) 璋冪敤鍛藉悕 JavaScript 鍑芥暟骞跺悓姝ョ瓑寰呯粨鏋滐紝[**JsRunAsync**](#jsrunasync) 寮傛璋冪敤骞跺湪缁撴灉鍒拌揪鏃惰Е鍙?[**JsAsyncResult**](#jsasyncresult)锛孾**JsProp**](#jsprop) 姹傚€煎 `document.title` 鐨勮〃杈惧紡锛孾**ExecuteScript**](#executescript) 瑙﹀彂鍚庡嵆蹇樿銆?
-## 鎷︽埅璇锋眰
+如果[**DocumentURL**](#documenturl)字段在[**Ready**](#ready)触发时具有非空值（设计时默认为 `https://www.twinbasic.com`），控件会自动导航到该 URL。
 
-瑕侀噸鍐欍€佹ā鎷熸垨浠呰瀵熼〉闈㈢殑 HTTP 娴侀噺锛岃浣跨敤 [**AddWebResourceRequestedFilter**](#addwebresourcerequestedfilter) 娉ㄥ唽 URL 杩囨护鍣紝骞跺鐞?[**WebResourceRequested**](#webresourcerequested) 浜嬩欢銆備簨浠跺弬鏁版毚闇?[**WebView2Request**](/official/Reference/WebView2/WebView2Request)锛堝彧璇诲厓鏁版嵁锛屽彲鍙樿姹備綋锛夊拰 [**WebView2Response**](/official/Reference/WebView2/WebView2Response) --- 鍚戝搷搴斿璞″垎閰?**StatusCode**銆?*ReasonPhrase**銆?*Headers** 鍜屽唴瀹瑰嵆鍙煭璺綉缁滆姹傦紱淇濇寔涓嶅彉鍒欒杩愯鏃舵甯稿鐞嗐€?
-灞炴€?----------
+## 延迟事件
 
-鎺т欢浠?`BaseControlFocusableNoFont` 缁ф壙鏍囧噯鐨勫ぇ灏忋€佸竷灞€鍜岀劍鐐规垚鍛樸€傚ぇ閮ㄥ垎 WebView2 鐗瑰畾鎴愬憳鍒嗕负涓夌被锛氭槧灏勫埌 Edge 杩愯鏃剁殑璁剧疆銆佹帰娴嬪凡鍔犺浇杩愯鏃剁増鏈殑鑳藉姏鏍囧織锛屼互鍙婅繍琛屾椂鍙鐘舵€併€?
+多个运行时回调 --- [**PermissionRequested**](#permissionrequested)、[**NavigationStarting**](#navigationstarting)、[**WebResourceRequested**](#webresourcerequested)、[**ScriptDialogOpening**](#scriptdialogopening)、[**DownloadStarting**](#downloadstarting) 和 [**NewWindowRequested**](#newwindowrequested) --- 在 Edge 侧是可重入的，意味着它们在 WebView2 线程上触发，同时期望宿主同步返回或持有*延迟*（deferral）直到做出决定。在同步处理程序内回调控件可能导致浏览器进程死锁。
+
+当[**UseDeferredEvents**](#usedeferredevents)为 **True**（默认值）时，控件代表宿主获取运行时的延迟，将事件投递到 BASIC 消息循环，并在处理程序返回后完成延迟。因此，应用程序代码在这些事件中可以安全地调用任何其他 **WebView2** 方法。仅当需要同步语义且宿主已自行安排重入保护时，才将[**UseDeferredEvents**](#usedeferredevents)设为 **False**。
+
+[**AcceleratorKeyPressed**](#acceleratorkeypressed)始终是同步的 --- 其运行时参数不暴露延迟。
+
+## JavaScript 互操作
+
+控件提供三类 BASIC ↔ JavaScript 桥接：
+
+- **宿主对象共享** --- [**AddObject**](#addobject) 将 COM 对象以 `chrome.webview.hostObjects.<Name>` 的名称发布到 JavaScript。页面可以直接调用 BASIC 对象的方法和读/写属性。需要[**AreHostObjectsAllowed**](#arehostobjectsallowed)（默认 **True**）。当页面可能在 BASIC 操作期间回调时，传入 `UseDeferredInvoke:=True`；使用延迟调用时宿主无法向页面返回值。
+- **消息传递** --- [**PostWebMessage**](#postwebmessage) 向页面发送值，页面通过 `window.chrome.webview.addEventListener('message', …)` 接收。页面使用 `window.chrome.webview.postMessage(…)` 回复，从而触发[**JsMessage**](#jsmessage)事件。需要[**IsWebMessageEnabled**](#iswebmessageenabled)（默认 **True**）。
+- **执行脚本** --- [**JsRun**](#jsrun) 调用命名 JavaScript 函数并同步等待结果，[**JsRunAsync**](#jsrunasync) 异步调用并在结果到达时触发[**JsAsyncResult**](#jsasyncresult)，[**JsProp**](#jsprop) 求值如 `document.title` 的表达式，[**ExecuteScript**](#executescript) 即发即忘。
+
+## 拦截请求
+
+要重写、模拟或仅观察页面的 HTTP 流量，请使用[**AddWebResourceRequestedFilter**](#addwebresourcerequestedfilter)注册 URL 过滤器，并处理[**WebResourceRequested**](#webresourcerequested)事件。事件参数暴露[**WebView2Request**](/official/Reference/WebView2/WebView2Request)（只读元数据，可变请求体）和[**WebView2Response**](/official/Reference/WebView2/WebView2Response) --- 向响应对象分配 **StatusCode**、**ReasonPhrase**、**Headers** 和内容即可短路网络请求；保持不变则让运行时正常处理。
+
+属性
+----------
+
+控件从 `BaseControlFocusableNoFont` 继承标准的大小、布局和焦点成员。大部分 WebView2 特定成员分为三类：映射到 Edge 运行时的设置、探测已加载运行时版本的能力标志，以及运行时只读状态。
+
 ### AdditionalAllowedFrameAncestors
 
-褰撴鎺т欢鎵胯浇椤甸潰鏃跺厑璁哥殑棰濆 `Content-Security-Policy: frame-ancestors` 鎸囦护銆?*String**銆傞粯璁わ細绌恒€傚湪涓嬫瀵艰埅鏃剁敓鏁堬紱浠呭湪瀹炵幇浜?`ICoreWebView2NavigationStartingEventArgs2` 鐨勮繍琛屾椂涓婃湁鏁堛€?
+当此控件承载页面时允许的额外 `Content-Security-Policy: frame-ancestors` 指令。**String**。默认：空。在下次导航时生效；仅在实现了 `ICoreWebView2NavigationStartingEventArgs2` 的运行时上有效。
+
 ### Anchors
 
-鎺у埗鐖剁骇 **Form** 璋冩暣澶у皬鏃惰嚜鍔ㄨ皟鏁村ぇ灏忕殑瀹瑰櫒杈圭紭閿氱偣銆傜户鎵胯嚜 `BaseControlRectDockable`銆?
+控制父级 **Form** 调整大小时自动调整大小的容器边缘锚点。继承自 `BaseControlRectDockable`。
+
 ### AreBrowserAcceleratorKeysEnabled
 
-Edge 鍐呯疆鐨勫姞閫熼敭鏄惁婵€娲?--- **F5** 鍒锋柊銆?*Ctrl+P** 鎵撳嵃銆?*Ctrl+F** 椤靛唴鏌ユ壘绛夈€?*Boolean**锛岄粯璁?**True**銆傞渶瑕?[**SupportsAcceleratorKeysFeatures**](#supportsacceleratorkeysfeatures)銆?
+Edge 内置的加速键是否激活 --- **F5** 刷新、**Ctrl+P** 打印、**Ctrl+F** 页内查找等。**Boolean**，默认 **True**。需要[**SupportsAcceleratorKeysFeatures**](#supportsacceleratorkeysfeatures)。
+
 ### AreDefaultContextMenusEnabled
 
-鏄惁鏄剧ず Edge 鐨勫彸閿笂涓嬫枃鑿滃崟銆?*Boolean**锛岄粯璁?**True**銆傝涓?**False** 骞跺鐞?[**UserContextMenu**](#usercontextmenu) 浠ョ粯鍒惰嚜瀹氫箟鑿滃崟銆?
+是否显示 Edge 的右键上下文菜单。**Boolean**，默认 **True**。设为 **False** 并处理[**UserContextMenu**](#usercontextmenu)以绘制自定义菜单。
+
 ### AreDefaultScriptDialogsEnabled
 
-Edge 鏄惁涓?`alert()`銆乣confirm()`銆乣prompt()` 鍜?`beforeunload` 纭妗嗘樉绀哄唴缃璇濇銆?*Boolean**锛岄粯璁?**True**銆傝涓?**False** 骞跺鐞?[**ScriptDialogOpening**](#scriptdialogopening) 浠ユ彁渚涜嚜瀹氫箟瀵硅瘽妗嗐€?
+Edge 是否为 `alert()`、`confirm()`、`prompt()` 和 `beforeunload` 确认框显示内置对话框。**Boolean**，默认 **True**。设为 **False** 并处理[**ScriptDialogOpening**](#scriptdialogopening)以提供自定义对话框。
+
 ### AreDevToolsEnabled
 
-鐢ㄦ埛鏄惁鍙互閫氳繃涓婁笅鏂囪彍鍗曟垨閿洏蹇嵎閿墦寮€ DevTools 绐楀彛銆?*Boolean**锛岄粯璁?**True**銆備笌 [**OpenDevToolsWindow**](#opendevtoolswindow) 鏃犲叧锛屽悗鑰呭缁堝彲鐢ㄣ€?
+用户是否可以通过上下文菜单或键盘快捷键打开 DevTools 窗口。**Boolean**，默认 **True**。与[**OpenDevToolsWindow**](#opendevtoolswindow)无关，后者始终可用。
+
 ### AreHostObjectsAllowed
 
-鏄惁鍏佽閫氳繃 [**AddObject**](#addobject) 灏嗗涓?BASIC 瀵硅薄鏆撮湶缁欓〉闈€?*Boolean**锛岄粯璁?**True**銆?
+是否允许通过[**AddObject**](#addobject)将宿主 BASIC 对象暴露给页面。**Boolean**，默认 **True**。
+
 ### BackColor
 
-鍦?WebView2 琛ㄩ潰浠嶅湪鍔犺浇鍜岃璁℃ā寮忎笅鏃剁粯鍒剁殑鑳屾櫙棰滆壊銆?*OLE_COLOR**锛岄粯璁?`&HA0BD95`锛堟祬缁胯壊锛夈€傞〉闈㈡覆鏌撳畬鎴愬悗锛孍dge 鎺у埗鍙鍍忕礌銆?
+在 WebView2 表面仍在加载和设计模式下时绘制的背景颜色。**OLE_COLOR**，默认 `&HA0BD95`（浅绿色）。页面渲染完成后，Edge 控制可见像素。
+
 ### BrowserProcessId
 
-澶栭儴 `msedgewebview2.exe` 瀹夸富杩涚▼鐨?Win32 杩涚▼ ID銆?*Long**銆傚彧璇汇€俒**Ready**](#ready) 鍚庡彲鐢ㄣ€?
+外部 `msedgewebview2.exe` 宿主进程的 Win32 进程 ID。**Long**。只读。[**Ready**](#ready)后可用。
+
 ### CanGoBack
 
-娴忚鍘嗗彶涓綋鍓嶆枃妗ｄ箣鍓嶆槸鍚︽湁鏉＄洰銆?*Boolean**銆傚彧璇汇€俒**Ready**](#ready) 鍚庡彲鐢ㄣ€?
+浏览历史中当前文档之前是否有条目。**Boolean**。只读。[**Ready**](#ready)后可用。
+
 ### CanGoForward
 
-娴忚鍘嗗彶涓綋鍓嶆枃妗ｄ箣鍚庢槸鍚︽湁鏉＄洰銆?*Boolean**銆傚彧璇汇€俒**Ready**](#ready) 鍚庡彲鐢ㄣ€?
+浏览历史中当前文档之后是否有条目。**Boolean**。只读。[**Ready**](#ready)后可用。
+
 ### CausesValidation
 
-鐒︾偣绉诲叆鎺т欢鏃舵槸鍚﹁Е鍙戝墠涓€涓劍鐐规帶浠剁殑 **Validate** 浜嬩欢銆?*Boolean**锛岄粯璁?**True**銆傜户鎵裤€?
+焦点移入控件时是否触发前一个焦点控件的 **Validate** 事件。**Boolean**，默认 **True**。继承。
+
 ### Container
 
-鎵胯浇姝ゆ帶浠剁殑鐖剁骇 **Form** / **Frame** / **PictureBox** / **UserControl**銆傜户鎵裤€?
+承载此控件的父级 **Form** / **Frame** / **PictureBox** / **UserControl**。继承。
+
 ### ControlType
 
-濮嬬粓涓?**vbWebView2**锛圼**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)锛夈€傚彧璇汇€傜户鎵裤€?
+始终为 **vbWebView2**（[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)）。只读。继承。
+
 ### DocumentTitle
 
-褰撳墠鏂囨。鐨?`<title>` 鏂囨湰銆?*String**銆傚彧璇汇€傛瘡娆￠〉闈㈡洿鏀规爣棰樻椂鏇存柊 --- 姣忔鏇存柊閮戒細瑙﹀彂 [**DocumentTitleChanged**](#documenttitlechanged) 浜嬩欢銆?
+当前文档的 `<title>` 文本。**String**。只读。每次页面更改标题时更新 --- 每次更新都会触发[**DocumentTitleChanged**](#documenttitlechanged)事件。
+
 ### DocumentURL
 
-褰撳墠鏂囨。鐨?URL銆?*String**銆傝鍙栨椂杩斿洖姣忔瀵艰埅鍚庣殑瀹炴椂 URL锛涜祴鍊肩瓑鍚屼簬璋冪敤 [**Navigate**](#navigate)銆傝璁℃椂榛樿涓?`https://www.twinbasic.com`锛岀敤浣?[**Ready**](#ready) 瑙﹀彂鏃剁殑鑷姩瀵艰埅鐩爣銆?
+当前文档的 URL。**String**。读取时返回每次导航后的实时 URL；赋值等同于调用[**Navigate**](#navigate)。设计时默认为 `https://www.twinbasic.com`，用作[**Ready**](#ready)触发时的自动导航目标。
+
 ### DragIcon
 
-浠庤鎺т欢鎵嬪姩鎷栧姩鏃剁敤浣滈紶鏍囧厜鏍囩殑 **StdPicture**銆傜户鎵裤€?
+从该控件手动拖动时用作鼠标光标的 **StdPicture**。继承。
+
 ### DragMode
 
-鎷栨斁鎿嶄綔濡備綍鍚姩銆俒**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants) 鐨勬垚鍛橈細**vbManual**锛?锛岄粯璁?--- 浠庝唬鐮佽皟鐢?[**Drag**](#drag)锛夋垨 **vbAutomatic**锛?锛夈€傜户鎵裤€?
+拖放操作如何启动。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants) 的成员：**vbManual**（0，默认 --- 从代码调用[**Drag**](#drag)）或 **vbAutomatic**（1）。继承。
+
 ### Enabled
 
-鎺т欢鏄惁鎺ュ彈鐢ㄦ埛杈撳叆銆?*Boolean**锛岄粯璁?**True**銆傜户鎵裤€?
+控件是否接受用户输入。**Boolean**，默认 **True**。继承。
+
 ### EnvironmentOptions
 
-閰嶇疆 WebView2 鐜鐨?[**WebView2EnvironmentOptions**](/official/Reference/WebView2/WebView2/EnvironmentOptions) 瀵硅薄 --- 鐢ㄦ埛鏁版嵁鏂囦欢澶广€佸彲鎵ц鏂囦欢鏂囦欢澶广€佸尯鍩熻缃€佽窡韪槻鎶ゃ€佸崟鐐圭櫥褰曞拰棰濆鐨勫懡浠よ鍙傛暟銆傛帶浠跺湪鍒濆鍖栨椂鑷姩鍒涘缓涓€涓紱鍦?[**Create**](#create) 浜嬩欢涔嬪墠鎴栨湡闂村鍏跺瓧娈佃祴鍊煎嵆鍙敓鏁堛€?
+配置 WebView2 环境的[**WebView2EnvironmentOptions**](/official/Reference/WebView2/WebView2/EnvironmentOptions)对象 --- 用户数据文件夹、可执行文件文件夹、区域设置、跟踪防护、单点登录和额外命令行参数。控件在初始化时自动创建一个；在[**Create**](#create)事件之前或期间对其字段赋值即可生效。
+
 ### Height
 
-鎺т欢鐨勯珮搴︺€?*Single**銆傜户鎵裤€?
+控件的高度。**Single**。继承。
+
 ### hWnd
 
-鎵胯浇 WebView2 琛ㄩ潰鐨?瀹瑰櫒*绐楀彛鐨?Win32 绐楀彛鍙ユ焺 --- 涓嶆槸 Edge 娴忚鍣ㄩ€夐」鍗℃湰韬殑 HWND锛屽悗鑰呭瓨鍦ㄤ簬鍗曠嫭鐨勮繘绋嬩腑銆?*LongPtr**銆傚彧璇汇€傝鐩栫户鎵跨殑瀹氫箟銆?
+承载 WebView2 表面的*容器*窗口的 Win32 窗口句柄 --- 不是 Edge 浏览器选项卡本身的 HWND，后者存在于单独的进程中。**LongPtr**。只读。覆盖继承的定义。
+
 ### Index
 
-鎺т欢涓烘暟缁勪竴閮ㄥ垎鏃剁殑鎺т欢鏁扮粍绱㈠紩銆?*Long**銆傚彧璇汇€傜户鎵裤€?
+控件为数组一部分时的控件数组索引。**Long**。只读。继承。
+
 ### IsBuiltInErrorPageEnabled
 
-鏄惁鏄剧ず Edge 鐨勯粯璁ら敊璇〉闈紙渚嬪"鍡紝鏃犳硶璁块棶姝ら〉闈?锛夈€?*Boolean**锛岄粯璁?**True**銆?
+是否显示 Edge 的默认错误页面（例如"嗯，无法访问此页面"）。**Boolean**，默认 **True**。
+
 ### IsDefaultDownloadDialogOpen
 
-鍐呯疆 Edge 涓嬭浇绠＄悊鍣ㄥ璇濇褰撳墠鏄惁鍙銆?*Boolean**銆傚彧璇汇€傞渶瑕?[**SupportsDownloadDialogFeatures**](#supportsdownloaddialogfeatures)銆?
+内置 Edge 下载管理器对话框当前是否可见。**Boolean**。只读。需要[**SupportsDownloadDialogFeatures**](#supportsdownloaddialogfeatures)。
+
 ### IsDocumentPlayingAudio
 
-褰撳墠鏂囨。鏄惁姝ｅ湪鎾斁闊抽銆?*Boolean**銆傚彧璇汇€傞渶瑕?[**SupportsAudioFeatures**](#supportsaudiofeatures)銆?
+当前文档是否正在播放音频。**Boolean**。只读。需要[**SupportsAudioFeatures**](#supportsaudiofeatures)。
+
 ### IsGeneralAutoFillEnabled
 
-Edge 鏄惁鎻愪緵淇濆瓨鍜岃嚜鍔ㄥ～鍏呴潪瀵嗙爜琛ㄥ崟鍊硷紙鍦板潃銆佺數璇濆彿鐮佺瓑锛夈€?*Boolean**锛岄粯璁?**True**銆傞渶瑕?[**SupportsAutoFillFeatures**](#supportsautofillfeatures)銆?
+Edge 是否提供保存和自动填充非密码表单值（地址、电话号码等）。**Boolean**，默认 **True**。需要[**SupportsAutoFillFeatures**](#supportsautofillfeatures)。
+
 ### IsMuted
 
-鏂囨。鐨勯煶棰戞槸鍚﹂潤闊炽€?*Boolean**锛岄粯璁?**False**銆傞渶瑕?[**SupportsAudioFeatures**](#supportsaudiofeatures)銆?
+文档的音频是否静音。**Boolean**，默认 **False**。需要[**SupportsAudioFeatures**](#supportsaudiofeatures)。
+
 ### IsPasswordAutoSaveEnabled
 
-Edge 鏄惁鎻愪緵淇濆瓨鍦ㄩ〉闈腑杈撳叆鐨勫瘑鐮併€?*Boolean**锛岄粯璁?**True**銆傞渶瑕?[**SupportsAutoFillFeatures**](#supportsautofillfeatures)銆?
+Edge 是否提供保存页面中输入的密码。**Boolean**，默认 **True**。需要[**SupportsAutoFillFeatures**](#supportsautofillfeatures)。
+
 ### IsPinchZoomEnabled
 
-瑙︽懜纭欢涓婄殑鎹忓悎鎵嬪娍鏄惁鏇存敼缂╂斁鍥犲瓙銆?*Boolean**锛岄粯璁?**True**銆傞渶瑕?[**SupportsPinchZoomFeatures**](#supportspinchzoomfeatures)銆?
+触摸硬件上的捏合手势是否更改缩放因子。**Boolean**，默认 **True**。需要[**SupportsPinchZoomFeatures**](#supportspinchzoomfeatures)。
+
 ### IsScriptEnabled
 
-椤甸潰涓槸鍚﹁繍琛?JavaScript銆?*Boolean**锛岄粯璁?**True**銆傜鐢ㄥ悗涔熶細绂佺敤鎺т欢涓婄殑鎵€鏈?JavaScript 浜掓搷浣滃姛鑳姐€?
+页面中是否运行 JavaScript。**Boolean**，默认 **True**。禁用后也会禁用控件上的所有 JavaScript 互操作功能。
+
 ### IsStatusBarEnabled
 
-Edge 鏄惁鏄剧ず鎮仠閾炬帴鐨勫唴缃姸鎬佹爮銆?*Boolean**锛岄粯璁?**True**銆?
+Edge 是否显示悬停链接的内置状态栏。**Boolean**，默认 **True**。
+
 ### IsSuspended
 
-WebView2 澶勭悊绠￠亾鏄惁宸茶 [**Suspend**](#suspend) 璋冪敤鏆傚仠銆?*Boolean**銆傚彧璇汇€傞渶瑕?[**SupportsSuspendResumeFeatures**](#supportssuspendresumefeatures)銆?
+WebView2 处理管道是否已被[**Suspend**](#suspend)调用暂停。**Boolean**。只读。需要[**SupportsSuspendResumeFeatures**](#supportssuspendresumefeatures)。
+
 ### IsSwipeNavigationEnabled
 
-瑙︽懜纭欢涓婄殑姘村钩婊戝姩鎵嬪娍鏄惁鍦ㄥ巻鍙茶褰曚腑鍓嶈繘/鍚庨€€銆?*Boolean**锛岄粯璁?**True**銆傞渶瑕?[**SupportsSwipeNavigationFeatures**](#supportsswipenavigationfeatures)銆?
+触摸硬件上的水平滑动手势是否在历史记录中前进/后退。**Boolean**，默认 **True**。需要[**SupportsSwipeNavigationFeatures**](#supportsswipenavigationfeatures)。
+
 ### IsWebMessageEnabled
 
-[**PostWebMessage**](#postwebmessage) 妗ユ帴鍜?[**JsMessage**](#jsmessage) 浜嬩欢鏄惁婵€娲汇€?*Boolean**锛岄粯璁?**True**銆?
+[**PostWebMessage**](#postwebmessage) 桥接和[**JsMessage**](#jsmessage)事件是否激活。**Boolean**，默认 **True**。
+
 ### IsZoomControlEnabled
 
-鐢ㄦ埛鏄惁鍙互閫氳繃 **Ctrl+** 榧犳爣婊氳疆鎴?**Ctrl+** 鍔?鍑忓彿鏇存敼缂╂斁鍥犲瓙銆?*Boolean**锛岄粯璁?**True**銆?
+用户是否可以通过 **Ctrl+** 鼠标滚轮或 **Ctrl+** 加/减号更改缩放因子。**Boolean**，默认 **True**。
+
 ### JsCallTimeOutSeconds
 
-[**JsRun**](#jsrun) 鍜?[**JsProp**](#jsprop) 鍦ㄥ紩鍙?`RPC_E_TIMEOUT` 涔嬪墠绛夊緟鍚屾 JavaScript 缁撴灉鐨勬椂闀裤€?*Double** 绉掞紱`0`锛堥粯璁わ級鏃犻檺绛夊緟銆?
+[**JsRun**](#jsrun) 和[**JsProp**](#jsprop) 在引发 `RPC_E_TIMEOUT` 之前等待同步 JavaScript 结果的时长。**Double** 秒；`0`（默认）无限等待。
+
 ### Left
 
-鎺т欢鍦ㄥ叾瀹瑰櫒鍐呯殑姘村钩浣嶇疆銆?*Double**銆傜户鎵裤€?
+控件在其容器内的水平位置。**Double**。继承。
+
 ### MouseIcon
 
-褰?[**MousePointer**](#mousepointer) 涓?**vbCustom** 鏃剁敤浣滈紶鏍囧厜鏍囩殑 **StdPicture**銆傜户鎵裤€?
+当[**MousePointer**](#mousepointer)为 **vbCustom** 时用作鼠标光标的 **StdPicture**。继承。
+
 ### MousePointer
 
-鎺т欢涓婄殑榧犳爣鍏夋爣銆俒**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants) 鐨勬垚鍛樸€傜户鎵裤€?
+控件上的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants) 的成员。继承。
+
 ### Name
 
-璁捐鏃跺悕绉般€?*String**銆傝繍琛屾椂鍙銆傜户鎵裤€?
+设计时名称。**String**。运行时只读。继承。
+
 ### SupportsAcceleratorKeysFeatures
 
-宸插姞杞界殑 WebView2 杩愯鏃舵槸鍚︽敮鎸佸姞閫熼敭璁剧疆 --- 鍗虫槸鍚︽毚闇?`ICoreWebView2Settings3`銆?*Boolean**銆傚彧璇汇€?
+已加载的 WebView2 运行时是否支持加速键设置 --- 即是否暴露 `ICoreWebView2Settings3`。**Boolean**。只读。
+
 ### SupportsAudioFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸侀煶棰戣缃?--- 鍗虫槸鍚︽毚闇?`ICoreWebView2_8`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持音频设置 --- 即是否暴露 `ICoreWebView2_8`。**Boolean**。只读。
+
 ### SupportsAutoFillFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸佽嚜鍔ㄥ～鍏呰缃?--- 鍗虫槸鍚︽毚闇?`ICoreWebView2Settings4`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持自动填充设置 --- 即是否暴露 `ICoreWebView2Settings4`。**Boolean**。只读。
+
 ### SupportsDownloadDialogFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸佹帶鍒朵笅杞藉璇濇 --- 鍗虫槸鍚︽毚闇?`ICoreWebView2_9`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持控制下载对话框 --- 即是否暴露 `ICoreWebView2_9`。**Boolean**。只读。
+
 ### SupportsFolderMappingFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸佽櫄鎷熶富鏈哄悕鍒版枃浠跺す鐨勬槧灏?--- 鍗虫槸鍚︽毚闇?`ICoreWebView2_5`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持虚拟主机名到文件夹的映射 --- 即是否暴露 `ICoreWebView2_5`。**Boolean**。只读。
+
 ### SupportsNavigateCustomFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸?[**NavigateCustom**](#navigatecustom) 浣跨敤鐨勮嚜瀹氫箟璇锋眰瀵艰埅鍔熻兘 --- 鍗虫槸鍚︽毚闇?`ICoreWebView2_2`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持[**NavigateCustom**](#navigatecustom)使用的自定义请求导航功能 --- 即是否暴露 `ICoreWebView2_2`。**Boolean**。只读。
+
 ### SupportsPdfFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸?[**PrintToPdf**](#printtopdf) --- 鍗虫槸鍚︽毚闇?`ICoreWebView2_7`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持[**PrintToPdf**](#printtopdf) --- 即是否暴露 `ICoreWebView2_7`。**Boolean**。只读。
+
 ### SupportsPinchZoomFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸佹崗鍚堢缉鏀捐缃?--- 鍗虫槸鍚︽毚闇?`ICoreWebView2Settings5`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持捏合缩放设置 --- 即是否暴露 `ICoreWebView2Settings5`。**Boolean**。只读。
+
 ### SupportsSuspendResumeFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸?[**Suspend**](#suspend) / [**Resume**](#resume) --- 鍗虫槸鍚︽毚闇?`ICoreWebView2_3`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持[**Suspend**](#suspend) / [**Resume**](#resume) --- 即是否暴露 `ICoreWebView2_3`。**Boolean**。只读。
+
 ### SupportsSwipeNavigationFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸佹粦鍔ㄥ鑸缃?--- 鍗虫槸鍚︽毚闇?`ICoreWebView2Settings6`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持滑动导航设置 --- 即是否暴露 `ICoreWebView2Settings6`。**Boolean**。只读。
+
 ### SupportsTaskManagerFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸?[**OpenTaskManagerWindow**](#opentaskmanagerwindow) --- 鍗虫槸鍚︽毚闇?`ICoreWebView2_6`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持[**OpenTaskManagerWindow**](#opentaskmanagerwindow) --- 即是否暴露 `ICoreWebView2_6`。**Boolean**。只读。
+
 ### SupportsUserAgentFeatures
 
-宸插姞杞界殑杩愯鏃舵槸鍚︽敮鎸?[**UserAgent**](#useragent) 璁剧疆 --- 鍗虫槸鍚︽毚闇?`ICoreWebView2Settings2`銆?*Boolean**銆傚彧璇汇€?
+已加载的运行时是否支持[**UserAgent**](#useragent)设置 --- 即是否暴露 `ICoreWebView2Settings2`。**Boolean**。只读。
+
 ### TabIndex
 
-鎺т欢鍦ㄧ獥浣?TAB 閿鑸『搴忎腑鐨勪綅缃€?*Long**銆傜户鎵裤€?
+控件在窗体 TAB 键导航顺序中的位置。**Long**。继承。
+
 ### TabStop
 
-鐢ㄦ埛鏄惁鍙互閫氳繃 **TAB** 閿埌杈炬帶浠躲€?*Boolean**锛岄粯璁?**True**銆傜户鎵裤€?
+用户是否可以通过 **TAB** 键到达控件。**Boolean**，默认 **True**。继承。
+
 ### Tag
 
-搴旂敤绋嬪簭鍙敤浜庡皢鑷畾涔夋暟鎹笌鎺т欢鍏宠仈鐨勮嚜鐢辨牸寮?**String**銆傜户鎵裤€?
+应用程序可用于将自定义数据与控件关联的自由格式 **String**。继承。
+
 ### Top
 
-鎺т欢鍦ㄥ叾瀹瑰櫒鍐呯殑鍨傜洿浣嶇疆銆?*Double**銆傜户鎵裤€?
+控件在其容器内的垂直位置。**Double**。继承。
+
 ### UseDeferredEvents
 
-鍙噸鍏ョ殑杩愯鏃朵簨浠讹紙[**PermissionRequested**](#permissionrequested)銆乕**NavigationStarting**](#navigationstarting)銆乕**WebResourceRequested**](#webresourcerequested)銆乕**ScriptDialogOpening**](#scriptdialogopening)銆乕**DownloadStarting**](#downloadstarting)銆乕**NewWindowRequested**](#newwindowrequested)锛夋槸鍚﹀湪瑙﹀彂鍓嶅欢杩熷埌 BASIC 娑堟伅寰幆銆?*Boolean**锛岄粯璁?**True**銆傚弬瑙乕寤惰繜浜嬩欢](#deferred-events)銆?
+可重入的运行时事件（[**PermissionRequested**](#permissionrequested)、[**NavigationStarting**](#navigationstarting)、[**WebResourceRequested**](#webresourcerequested)、[**ScriptDialogOpening**](#scriptdialogopening)、[**DownloadStarting**](#downloadstarting)、[**NewWindowRequested**](#newwindowrequested)）是否在触发前延迟到 BASIC 消息循环。**Boolean**，默认 **True**。参见[延迟事件](#deferred-events)。
+
 ### UserAgent
 
-Edge 鍦ㄦ瘡涓?HTTP 璇锋眰涓彂閫佺殑 `User-Agent` 瀛楃涓层€?*String**銆傝缃悗鍦ㄧ幆澧冪敓鍛藉懆鏈熷唴鎸佺画鏈夋晥銆傞渶瑕?[**SupportsUserAgentFeatures**](#supportsuseragentfeatures)銆?
+Edge 在每个 HTTP 请求中发送的 `User-Agent` 字符串。**String**。设置后在环境生命周期内持续有效。需要[**SupportsUserAgentFeatures**](#supportsuseragentfeatures)。
+
 ### Visible
 
-鎺т欢鏄惁鍙銆?*Boolean**锛岄粯璁?**True**銆傜户鎵裤€?
+控件是否可见。**Boolean**，默认 **True**。继承。
+
 ### Width
 
-鎺т欢鐨勫搴︺€?*Single**銆傜户鎵裤€?
+控件的宽度。**Single**。继承。
+
 ### ZoomFactor
 
-褰撳墠缂╂斁鍥犲瓙 --- `1.0` 涓?100%锛宍1.5` 涓?150%锛屼互姝ょ被鎺ㄣ€?*Double**銆傝璁℃椂榛樿涓?`0`锛岃〃绀?涓嶈鐩?Edge 鐨勯粯璁ゅ€?1.0"銆?
+当前缩放因子 --- `1.0` 为 100%，`1.5` 为 150%，以此类推。**Double**。设计时默认为 `0`，表示"不覆盖 Edge 的默认值 1.0"。
+
 ::: info
-鐢变簬璁捐鏃堕粯璁ゅ€间负 `0` 鑰岄潪 `1.0`锛屽褰撳墠鍊艰繘琛屼箻娉曡繍绠楁椂浼氶粯榛樹粠闆跺紑濮嬶紝闄ら潪瀹夸富鍏堝皢鍏堕挸浣嶅埌 `1`锛?
+由于设计时默认值为 `0` 而非 `1.0`，对当前值进行乘法运算时会默认从零开始，除非宿主先将其调整为 `1`：
+
 ```vb
 If WebView21.ZoomFactor = 0 Then WebView21.ZoomFactor = 1
-WebView21.ZoomFactor *= 1.1   ' 棣栨鐐瑰嚮 110%锛岀浜屾 121%锛屸€?```
+WebView21.ZoomFactor *= 1.1   ' 首次点击 110%，第二次 121%，…
+```
 :::
 
-鏂规硶
+方法
 -------
 
 ### AddObject
 
-灏?BASIC COM 瀵硅薄浠?`chrome.webview.hostObjects.<ObjName>` 鐨勫悕绉版毚闇茬粰椤甸潰銆傞〉闈㈠彲浠ヤ綔涓烘櫘閫?JavaScript 瀵硅薄璇诲啓鍏跺睘鎬у拰璋冪敤鍏舵柟娉曘€?
-璇硶锛?object*.**AddObject** *ObjName*, *Object* [, *UseDeferredInvoke* ]
+将 BASIC COM 对象以 `chrome.webview.hostObjects.<ObjName>` 的名称暴露给页面。页面可以作为普通 JavaScript 对象读写其属性和调用其方法。
+
+语法：*object*.**AddObject** *ObjName*, *Object* [, *UseDeferredInvoke* ]
 
 *ObjName*
-: *蹇呴渶* 涓€涓?**String** 鍚嶇О锛岄〉闈㈤€氳繃姝ゅ悕绉板紩鐢ㄥ璞°€?
+: *必需* 一个 **String** 名称，页面通过此名称引用对象。
+
 *Object*
-: *蹇呴渶* 瑕佸彂甯冪殑 **Object**銆?
+: *必需* 要发布的 **Object**。
+
 *UseDeferredInvoke*
-: *鍙€? 涓€涓?**Boolean**锛岄粯璁?**False**銆備负 **True** 鏃讹紝鏉ヨ嚜椤甸潰鐨勮皟鐢ㄨ寤惰繜鍒?BASIC 娑堟伅寰幆 --- 鍙互瀹夊叏鍦颁粠鍐呴儴鎺у埗閲嶅叆 WebView2 鎺т欢锛屼絾椤甸潰鏃犳硶璇诲彇杩斿洖鍊笺€傚綋椤甸潰闇€瑕佽鍙栬繑鍥炲€兼椂浣跨敤 **False**銆?
+: *可选* 一个 **Boolean**，默认 **False**。为 **True** 时，来自页面的调用被延迟到 BASIC 消息循环 --- 可以安全地从内部重入 WebView2 控件，但页面无法读取返回值。当页面需要读取返回值时使用 **False**。
+
 ```vb
 Private Sub WebView21_Ready()
     WebView21.AddObject "myCalculator", New MyCalculator
@@ -276,101 +368,131 @@ async function callHostCalculator() {
 }
 ```
 
-瀵瑰涓诲璞＄殑璋冪敤鍦?JavaScript 渚ф槸寮傛鐨勶紝蹇呴』鍦?`async` 鍑芥暟鍐?`await` --- 鍗充娇 *UseDeferredInvoke* 涓?**False**銆傚叧浜庝綍鏃朵紶鍏?**True**锛屽弬瑙乕閲嶅叆](/official/Tutorials/WebView2/Re-entrancy)鏁欑▼銆?
+对宿主对象的调用在 JavaScript 侧是异步的，必须在 `async` 函数内 `await` --- 即使 *UseDeferredInvoke* 为 **False**。关于何时传入 **True**，参见[重入](/official/Tutorials/WebView2/Re-entrancy)教程。
+
 ### AddScriptToExecuteOnDocumentCreated
 
-娉ㄥ唽涓€娈?JavaScript 浠ｇ爜锛屽湪 WebView2 瀵艰埅鍒扮殑姣忎釜鏂版枃妗ｉ《閮ㄨ嚜鍔ㄨ繍琛屻€傚湪*涓嬩竴娆?瀵艰埅鏃剁敓鏁?--- 涓嶅奖鍝嶅綋鍓嶅凡鍔犺浇鐨勯〉闈€?
-璇硶锛?object*.**AddScriptToExecuteOnDocumentCreated** *jsCode*
+注册一段 JavaScript 代码，在 WebView2 导航到的每个新文档顶部自动运行。在*下一次*导航时生效 --- 不影响当前已加载的页面。
+
+语法：*object*.**AddScriptToExecuteOnDocumentCreated** *jsCode*
 
 *jsCode*
-: *蹇呴渶* 涓€涓寘鍚娉ㄥ叆鐨?JavaScript 浠ｇ爜鐨?**String**銆?
+: *必需* 一个包含要注入的 JavaScript 代码的 **String**。
+
 ### AddWebResourceRequestedFilter
 
-娉ㄥ唽涓€涓?URL 妯″紡銆俇RI 鍖归厤璇ユā寮忕殑璇锋眰灏嗚Е鍙?[**WebResourceRequested**](#webresourcerequested) 浜嬩欢锛屼互渚垮涓昏瀵熸垨瑕嗙洊瀹冧滑銆?
-璇硶锛?object*.**AddWebResourceRequestedFilter** *sFilter*, *FilterContext*
+注册一个 URL 模式。URI 匹配该模式的请求将触发[**WebResourceRequested**](#webresourcerequested)事件，以便宿主观察或覆盖它们。
+
+语法：*object*.**AddWebResourceRequestedFilter** *sFilter*, *FilterContext*
 
 *sFilter*
-: *蹇呴渶* 涓€涓?**String** URL 妯″紡銆俙*` 鍜?`?` 涓洪€氶厤绗︺€?
+: *必需* 一个 **String** URL 模式。`*` 和 `?` 为通配符。
+
 *FilterContext*
-: *蹇呴渶* [**wv2WebResourceContext**](/official/Reference/WebView2/Enumerations/wv2WebResourceContext) 鐨勬垚鍛橈紝灏嗗尮閰嶉檺鍒朵负鐗瑰畾璧勬簮绫诲瀷銆?
+: *必需* [**wv2WebResourceContext**](/official/Reference/WebView2/Enumerations/wv2WebResourceContext) 的成员，将匹配限制为特定资源类型。
+
 ### CallDevToolsProtocolMethod
 
-鍚戣繍琛屼腑鐨?Edge 瀹炰緥鍙戦€?Chrome DevTools Protocol 娑堟伅銆傛彁渚?*CustomEventId* 鏃讹紝杩愯鏃剁殑鍥炲浼氫互鐩稿悓鐨?*CustomEventId* 鍜?JSON 鍝嶅簲瑙﹀彂 [**DevToolsProtocolResponse**](#devtoolsprotocolresponse) 浜嬩欢銆?
-璇硶锛?object*.**CallDevToolsProtocolMethod** *MethodName*, *ParamsAsJson* [, *CustomEventId* ]
+向运行中的 Edge 实例发送 Chrome DevTools Protocol 消息。提供 *CustomEventId* 时，运行时的回复会以相同的 *CustomEventId* 和 JSON 响应触发[**DevToolsProtocolResponse**](#devtoolsprotocolresponse)事件。
+
+语法：*object*.**CallDevToolsProtocolMethod** *MethodName*, *ParamsAsJson* [, *CustomEventId* ]
 
 *MethodName*
-: *蹇呴渶* 涓€涓?**String**锛屽 `"Emulation.setScriptExecutionDisabled"`銆?
+: *必需* 一个 **String**，如 `"Emulation.setScriptExecutionDisabled"`。
+
 *ParamsAsJson*
-: *蹇呴渶* 涓€涓寘鍚?JSON 缂栫爜鍙傛暟瀵硅薄鐨?**String**銆?
+: *必需* 一个包含 JSON 编码参数对象的 **String**。
+
 *CustomEventId*
-: *鍙€? 涓€涓湪 [**DevToolsProtocolResponse**](#devtoolsprotocolresponse) 涓洖浼犵殑 **Variant**銆傜渷鐣ユ椂锛屽洖澶嶈涓㈠純銆?
+: *可选* 一个在[**DevToolsProtocolResponse**](#devtoolsprotocolresponse)中回传的 **Variant**。省略时，回复被丢弃。
+
 ### ClearVirtualHostNameToFolderMapping
 
-绉婚櫎鍏堝墠鐢?[**SetVirtualHostNameToFolderMapping**](#setvirtualhostnametofoldermapping) 瀹夎鐨勮櫄鎷熶富鏈哄悕 鈫?鏈湴鏂囦欢澶规槧灏勩€?
-璇硶锛?object*.**ClearVirtualHostNameToFolderMapping** *hostName*
+移除先前通过[**SetVirtualHostNameToFolderMapping**](#setvirtualhostnametofoldermapping)安装的虚拟主机名 → 本地文件夹映射。
+
+语法：*object*.**ClearVirtualHostNameToFolderMapping** *hostName*
 
 *hostName*
-: *蹇呴渶* 涓€涓笌浼犲叆 **SetVirtualHostNameToFolderMapping** 鐨勪富鏈哄悕鍖归厤鐨?**String**銆?
-闇€瑕?[**SupportsFolderMappingFeatures**](#supportsfoldermappingfeatures)銆?
+: *必需* 一个与传入 **SetVirtualHostNameToFolderMapping** 的主机名匹配的 **String**。
+
+需要[**SupportsFolderMappingFeatures**](#supportsfoldermappingfeatures)。
+
 ### CloseDefaultDownloadDialog
 
-闅愯棌鍐呯疆鐨?Edge 涓嬭浇绠＄悊鍣ㄥ璇濇銆?
-璇硶锛?object*.**CloseDefaultDownloadDialog**
+隐藏内置的 Edge 下载管理器对话框。
 
-闇€瑕?[**SupportsDownloadDialogFeatures**](#supportsdownloaddialogfeatures)銆?
+语法：*object*.**CloseDefaultDownloadDialog**
+
+需要[**SupportsDownloadDialogFeatures**](#supportsdownloaddialogfeatures)。
+
 ### Drag
 
-寮€濮嬨€佸畬鎴愭垨鍙栨秷鎵嬪姩鎷栨斁鎿嶄綔銆傜户鎵裤€?
-璇硶锛?object*.**Drag** [ *Action* ]
+开始、完成或取消手动拖放操作。继承。
+
+语法：*object*.**Drag** [ *Action* ]
 
 ### ExecuteScript
 
-鍦ㄩ〉闈腑姹傚€?JavaScript锛屼笉绛夊緟瀹屾垚锛屼篃涓嶈繑鍥炵粨鏋溿€傞渶瑕佽繑鍥炲€兼椂璇蜂娇鐢?[**JsRun**](#jsrun) 鎴?[**JsRunAsync**](#jsrunasync)銆?
-璇硶锛?object*.**ExecuteScript** *jsCode*
+在页面中求值 JavaScript，不等待完成，也不返回结果。需要返回值时请使用[**JsRun**](#jsrun)或[**JsRunAsync**](#jsrunasync)。
+
+语法：*object*.**ExecuteScript** *jsCode*
 
 *jsCode*
-: *蹇呴渶* 涓€涓鍦ㄩ〉闈㈠叏灞€浣滅敤鍩熶腑姹傚€肩殑 **String** JavaScript 浠ｇ爜銆?
+: *必需* 一个要在页面全局作用域中求值的 **String** JavaScript 代码。
+
 ### GoBack
 
-鍦ㄦ祻瑙堝巻鍙蹭腑鍚庨€€涓€涓潯鐩€傚綋 [**CanGoBack**](#cangoback) 涓?**False** 鏃堕潤榛樻棤鎿嶄綔銆?
-璇硶锛?object*.**GoBack**
+在浏览历史中后退一个条目。当[**CanGoBack**](#cangoback)为 **False** 时静默无操作。
+
+语法：*object*.**GoBack**
 
 ### GoForward
 
-鍦ㄦ祻瑙堝巻鍙蹭腑鍓嶈繘涓€涓潯鐩€傚綋 [**CanGoForward**](#cangoforward) 涓?**False** 鏃堕潤榛樻棤鎿嶄綔銆?
-璇硶锛?object*.**GoForward**
+在浏览历史中前进一个条目。当[**CanGoForward**](#cangoforward)为 **False** 时静默无操作。
+
+语法：*object*.**GoForward**
 
 ### JsProp
 
-姹傚€?JavaScript 琛ㄨ揪寮忓苟鍚屾杩斿洖缁撴灉 --- 渚夸簬璇诲彇灞炴€у `document.title`銆傜瓑寰呯粨鏋滄渶澶?[**JsCallTimeOutSeconds**](#jscalltimeoutseconds) 绉掋€?
-璇硶锛?object*.**JsProp** ( *PropName* ) **As Variant**
+求值 JavaScript 表达式并同步返回结果 --- 便于读取属性如 `document.title`。等待结果最多[**JsCallTimeOutSeconds**](#jscalltimeoutseconds)秒。
+
+语法：*object*.**JsProp** ( *PropName* ) **As Variant**
 
 *PropName*
-: *蹇呴渶* 涓€涓寘鍚姹傚€艰〃杈惧紡鐨?**String**銆?
-杩斿洖浠庤繍琛屾椂杩斿洖鐨?JSON 瑙ｇ爜鐨勭粨鏋?--- **Boolean**銆?*Double**銆?*String**銆?*Null** 鎴?**Empty**锛堝搴?`undefined`锛夈€傚皻涓嶆敮鎸佸璞″拰鏁扮粍缁撴灉 --- 璁块棶瀹冧滑浼氬紩鍙戣繍琛屾椂閿欒 5銆?
+: *必需* 一个包含要求值表达式的 **String**。
+
+返回从运行时返回的 JSON 解码的结果 --- **Boolean**、**Double**、**String**、**Null** 或 **Empty**（对应 `undefined`）。尚不支持对象和数组结果 --- 访问它们会引发运行时错误 5。
+
 ### JsRun
 
-浣跨敤缁欏畾鍙傛暟璋冪敤鍛藉悕 JavaScript 鍑芥暟骞跺悓姝ヨ繑鍥炵粨鏋溿€傜瓑寰呯粨鏋滄渶澶?[**JsCallTimeOutSeconds**](#jscalltimeoutseconds) 绉掋€?
-璇硶锛?object*.**JsRun** ( *FuncName*, [ *args* ] ) **As Variant**
+使用给定参数调用命名 JavaScript 函数并同步返回结果。等待结果最多[**JsCallTimeOutSeconds**](#jscalltimeoutseconds)秒。
+
+语法：*object*.**JsRun** ( *FuncName*, [ *args* ] ) **As Variant**
 
 *FuncName*
-: *蹇呴渶* 涓€涓懡鍚?JavaScript 鍑芥暟鐨?**String** --- 濡?`"document.querySelector"`銆?
+: *必需* 一个命名 JavaScript 函数的 **String** --- 如 `"document.querySelector"`。
+
 *args*
-: *鍙€? 浠绘剰鏁伴噺鐨?**Variant** 鍙傛暟銆傛瘡涓弬鏁板湪浼犻€掔粰鍑芥暟鍓嶈繘琛?JSON 缂栫爜銆傛敮鎸?String銆佹暟鍊笺€?*Boolean**銆?*Null** 鍜?**Empty**銆?
+: *可选* 任意数量的 **Variant** 参数。每个参数在传递给函数前进行 JSON 编码。支持 String、数值、**Boolean**、**Null** 和 **Empty**。
+
 ```vb
-' 璋冪敤椤甸潰绔嚱鏁?`multiplyTheseNumbers(a, b)` 骞剁瓑寰呯粨鏋溿€?Dim product As Long = WebView21.JsRun("multiplyTheseNumbers", 5, 6)
+' 调用页面端函数 `multiplyTheseNumbers(a, b)` 并等待结果。
+Dim product As Long = WebView21.JsRun("multiplyTheseNumbers", 5, 6)
 Debug.Print product   ' 30
 ```
 
 ### JsRunAsync
 
-寮傛璋冪敤鍛藉悕 JavaScript 鍑芥暟骞剁珛鍗宠繑鍥炰竴涓护鐗屻€傜粨鏋滃埌杈炬椂锛孾**JsAsyncResult**](#jsasyncresult) 浼氫互鐩稿悓浠ょ墝瑙﹀彂銆?
-璇硶锛?object*.**JsRunAsync** ( *FuncName*, [ *args* ] ) **As LongLong**
+异步调用命名 JavaScript 函数并立即返回一个令牌。结果到达时，[**JsAsyncResult**](#jsasyncresult)会以相同令牌触发。
+
+语法：*object*.**JsRunAsync** ( *FuncName*, [ *args* ] ) **As LongLong**
 
 *FuncName*
-: *蹇呴渶* 涓€涓懡鍚?JavaScript 鍑芥暟鐨?**String**銆?
+: *必需* 一个命名 JavaScript 函数的 **String**。
+
 *args*
-: *鍙€? 浠绘剰鏁伴噺鐨?**Variant** 鍙傛暟锛孞SON 缂栫爜鏂瑰紡涓?[**JsRun**](#jsrun) 鐩稿悓銆?
+: *可选* 任意数量的 **Variant** 参数，JSON 编码方式与[**JsRun**](#jsrun)相同。
+
 ```vb
 Private Sub btnRun_Click()
     WebView21.JsRunAsync "multiplyTheseNumbers", 5, 6
@@ -388,21 +510,25 @@ End Sub
 
 ### Move
 
-鍦ㄥ崟娆¤皟鐢ㄤ腑閲嶆柊瀹氫綅鍜岃皟鏁存帶浠跺ぇ灏忋€傜户鎵裤€?
-璇硶锛?object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+在单次调用中重新定位和调整控件大小。继承。
+
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 ### MoveFocus
 
-灏嗛敭鐩樼劍鐐硅浆绉诲埌搴曞眰 WebView2 琛ㄩ潰锛屼娇鍚庣画鍑婚敭鍒嗗彂鍒伴〉闈腑銆備笌缁ф壙鐨?[**SetFocus**](#setfocus)锛堣仛鐒﹀涓绘帶浠剁獥鍙ｏ級涓嶅悓銆?
-璇硶锛?object*.**MoveFocus**
+将键盘焦点转移到底层 WebView2 表面，使后续击键分派到页面中。与继承的[**SetFocus**](#setfocus)（聚焦宿主控件窗口）不同。
+
+语法：*object*.**MoveFocus**
 
 ### Navigate
 
-灏?URL 鍔犺浇鍒?WebView2 涓€傝Е鍙?[**NavigationStarting**](#navigationstarting)锛岀劧鍚庤Е鍙?[**NavigationComplete**](#navigationcomplete)銆傚鏋?URI 娌℃湁鍗忚鍓嶇紑锛屼細鑷姩娣诲姞 `https://`銆?
-璇硶锛?object*.**Navigate** *uri*
+将 URL 加载到 WebView2 中。触发[**NavigationStarting**](#navigationstarting)，然后触发[**NavigationComplete**](#navigationcomplete)。如果 URI 没有协议前缀，会自动添加 `https://`。
+
+语法：*object*.**Navigate** *uri*
 
 *uri*
-: *蹇呴渶* 涓€涓?**String** URI锛屽 `"https://www.twinbasic.com"` 鎴?`"file:///C:/page.html"`銆?
+: *必需* 一个 **String** URI，如 `"https://www.twinbasic.com"` 或 `"file:///C:/page.html"`。
+
 ```vb
 Private Sub AddressBar_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeyReturn Then WebView21.Navigate AddressBar.Text
@@ -417,56 +543,73 @@ End Sub
 
 ### NavigateCustom
 
-浣跨敤浠绘剰 HTTP 鏂规硶銆佸彲閫夎姹傚ご鍜屽彲閫夎姹備綋瀵艰埅 --- 閫傜敤浜?POST 瀵艰埅鎴栭鍏堥檮鍔犳巿鏉冨ご銆傝Е鍙?[**NavigationStarting**](#navigationstarting) 鍜?[**NavigationComplete**](#navigationcomplete)銆?
-璇硶锛?object*.**NavigateCustom** *uri*, *method* [, *headers* [, *postData* [, *postDataAsUTF8* ] ] ]
+使用任意 HTTP 方法、可选请求头和可选请求体导航 --- 适用于 POST 导航或预先附加授权头。触发[**NavigationStarting**](#navigationstarting)和[**NavigationComplete**](#navigationcomplete)。
+
+语法：*object*.**NavigateCustom** *uri*, *method* [, *headers* [, *postData* [, *postDataAsUTF8* ] ] ]
 
 *uri*
-: *蹇呴渶* 涓€涓?**String** URI銆備笌 [**Navigate**](#navigate) 涓€鏍凤紝缂哄皯鍗忚鍓嶇紑鏃惰嚜鍔ㄨˉ涓?`https://`銆?
+: *必需* 一个 **String** URI。与[**Navigate**](#navigate)一样，缺少协议前缀时自动补上 `https://`。
+
 *method*
-: *蹇呴渶* 涓€涓?**String** HTTP 鏂规硶 --- `"GET"`銆乣"POST"` 绛夈€?
+: *必需* 一个 **String** HTTP 方法 --- `"GET"`、`"POST"` 等。
+
 *headers*
-: *鍙€? 涓€涓敱 `vbCrLf` 鍒嗛殧鐨?`Header: value` 琛岀粍鎴愮殑 **String**銆?
+: *可选* 一个由 `vbCrLf` 分隔的 `Header: value` 行组成的 **String**。
+
 *postData*
-: *鍙€? 涓€涓寘鍚姹備綋鐨?**Variant** --- **String**锛堟牴鎹?*postDataAsUTF8* 缂栫爜锛夋垨 **Byte()** 鏁扮粍锛堝師鏍蜂娇鐢級銆?
+: *可选* 一个包含请求体的 **Variant** --- **String**（根据 *postDataAsUTF8* 编码）或 **Byte()** 数组（原样使用）。
+
 *postDataAsUTF8*
-: *鍙€? 涓€涓?**Boolean**锛岄粯璁?**True**銆備负 **True** 涓?*postData* 涓?**String** 鏃讹紝瀛楃涓插湪鍙戦€佸墠杩涜 UTF-8 缂栫爜銆?
-闇€瑕?[**SupportsNavigateCustomFeatures**](#supportsnavigatecustomfeatures)銆?
+: *可选* 一个 **Boolean**，默认 **True**。为 **True** 且 *postData* 为 **String** 时，字符串在发送前进行 UTF-8 编码。
+
+需要[**SupportsNavigateCustomFeatures**](#supportsnavigatecustomfeatures)。
+
 ### NavigateToString
 
-灏?HTML 瀛楃涓茬洿鎺ュ姞杞藉埌 WebView2 涓紝濡傚悓 HTTP 鍝嶅簲鐨勬鏂?--- 閫傜敤浜庡惎鍔ㄧ敾闈€佺敓鎴愮殑鎶ュ憡鎴栧叧浜庨〉闈€傝Е鍙?[**NavigationStarting**](#navigationstarting) 鍜?[**NavigationComplete**](#navigationcomplete)銆?
-璇硶锛?object*.**NavigateToString** *htmlContent*
+将 HTML 字符串直接加载到 WebView2 中，如同 HTTP 响应的正文 --- 适用于启动画面、生成的报告或关于页面。触发[**NavigationStarting**](#navigationstarting)和[**NavigationComplete**](#navigationcomplete)。
+
+语法：*object*.**NavigateToString** *htmlContent*
 
 *htmlContent*
-: *蹇呴渶* 涓€涓寘鍚?HTML 婧愪唬鐮佺殑 **String**銆?
+: *必需* 一个包含 HTML 源代码的 **String**。
+
 ```vb
 WebView21.NavigateToString "<h1>Hello, world!</h1>"
 ```
 
 ### OpenDefaultDownloadDialog
 
-鏄剧ず鍐呯疆鐨?Edge 涓嬭浇绠＄悊鍣ㄥ璇濇銆?
-璇硶锛?object*.**OpenDefaultDownloadDialog**
+显示内置的 Edge 下载管理器对话框。
 
-闇€瑕?[**SupportsDownloadDialogFeatures**](#supportsdownloaddialogfeatures)銆?
+语法：*object*.**OpenDefaultDownloadDialog**
+
+需要[**SupportsDownloadDialogFeatures**](#supportsdownloaddialogfeatures)。
+
 ### OpenDevToolsWindow
 
-鍦ㄥ崟鐙殑 Edge 绐楀彛涓墦寮€椤甸潰鐨?DevTools 绐楀彛銆備笌 [**AreDevToolsEnabled**](#aredevtoolsenabled) 鏃犲叧锛屽悗鑰呬粎鎺у埗鐢ㄦ埛鍙戣捣鐨勮矾寰勩€?
-璇硶锛?object*.**OpenDevToolsWindow**
+在单独的 Edge 窗口中打开页面的 DevTools 窗口。与[**AreDevToolsEnabled**](#aredevtoolsenabled)无关，后者仅控制用户发起的路径。
+
+语法：*object*.**OpenDevToolsWindow**
 
 ### OpenTaskManagerWindow
 
-鎵撳紑 Edge 鐨勬祻瑙堝櫒浠诲姟绠＄悊鍣ㄧ獥鍙ｏ紝鍒楀嚭鎺т欢浣跨敤鐨勬覆鏌撳櫒杩涚▼銆?
-璇硶锛?object*.**OpenTaskManagerWindow**
+打开 Edge 的浏览器任务管理器窗口，列出控件使用的渲染器进程。
 
-闇€瑕?[**SupportsTaskManagerFeatures**](#supportstaskmanagerfeatures)銆?
+语法：*object*.**OpenTaskManagerWindow**
+
+需要[**SupportsTaskManagerFeatures**](#supportstaskmanagerfeatures)。
+
 ### PostWebMessage
 
-鍚戦〉闈㈠彂閫佸€笺€傞〉闈㈤€氳繃 `window.chrome.webview` 涓婄殑 `message` 浜嬩欢鎺ユ敹銆?*String** 浣滀负 JavaScript 瀛楃涓蹭紶閫掞紱鍏朵粬绫诲瀷鍦ㄥ彂閫佸墠杩涜 JSON 缂栫爜銆?
-璇硶锛?object*.**PostWebMessage** *Message*
+向页面发送值。页面通过 `window.chrome.webview` 上的 `message` 事件接收。**String** 作为 JavaScript 字符串传递；其他类型在发送前进行 JSON 编码。
+
+语法：*object*.**PostWebMessage** *Message*
 
 *Message*
-: *蹇呴渶* 涓€涓鍙戦€佺殑 **Variant** 鍊笺€?
-闇€瑕?[**IsWebMessageEnabled**](#iswebmessageenabled)銆?
+: *必需* 一个要发送的 **Variant** 值。
+
+需要[**IsWebMessageEnabled**](#iswebmessageenabled)。
+
 ```vb
 WebView21.PostWebMessage "Hello from twinBASIC!"
 
@@ -484,31 +627,42 @@ window.chrome.webview.addEventListener('message', (e) => {
 
 ### PostWebMessageJSON
 
-鍚戦〉闈㈠彂閫佸瓧闈?JSON 瀛楃涓茶€屼笉閲嶆柊缂栫爜 --- 閫傜敤浜庤皟鐢ㄦ柟宸叉湁搴忓垪鍖?JSON 鐨勬儏鍐点€?
-璇硶锛?object*.**PostWebMessageJSON** *jsonString*
+向页面发送字面 JSON 字符串而不重新编码 --- 适用于调用方已有序列化 JSON 的情况。
+
+语法：*object*.**PostWebMessageJSON** *jsonString*
 
 *jsonString*
-: *蹇呴渶* 涓€涓寘鍚湁鏁?JSON 鐨?**String**銆?
-闇€瑕?[**IsWebMessageEnabled**](#iswebmessageenabled)銆?
+: *必需* 一个包含有效 JSON 的 **String**。
+
+需要[**IsWebMessageEnabled**](#iswebmessageenabled)。
+
 ### PrintToPdf
 
-灏嗗綋鍓嶆枃妗ｄ繚瀛樹负 PDF 鏂囦欢銆傚伐浣滃紓姝ュ畬鎴?--- 缁撴灉閫氳繃 [**PrintToPdfCompleted**](#printtopdfcompleted) 鎴?[**PrintToPdfFailed**](#printtopdffailed) 鍒拌揪銆傞渶瑕?[**SupportsPdfFeatures**](#supportspdffeatures)銆?
-璇硶锛?object*.**PrintToPdf** *outputPath* [, *Orientation* [, *ScaleFactor* [, *PageWidth* [, *PageHeight* [, *MarginTop* [, *MarginBottom* [, *MarginLeft* [, *MarginRight* [, *ShouldPrintBackgrounds* [, *ShouldPrintSelectionOnly* [, *ShouldPrintHeaderAndFooter* [, *HeaderTitle* [, *FooterUri* ] ] ] ] ] ] ] ] ] ] ] ] ]
+将当前文档保存为 PDF 文件。工作异步完成 --- 结果通过[**PrintToPdfCompleted**](#printtopdfcompleted)或[**PrintToPdfFailed**](#printtopdffailed)到达。需要[**SupportsPdfFeatures**](#supportspdffeatures)。
+
+语法：*object*.**PrintToPdf** *outputPath* [, *Orientation* [, *ScaleFactor* [, *PageWidth* [, *PageHeight* [, *MarginTop* [, *MarginBottom* [, *MarginLeft* [, *MarginRight* [, *ShouldPrintBackgrounds* [, *ShouldPrintSelectionOnly* [, *ShouldPrintHeaderAndFooter* [, *HeaderTitle* [, *FooterUri* ] ] ] ] ] ] ] ] ] ] ] ] ]
 
 *outputPath*
-: *蹇呴渶* 涓€涓鍐欏叆鐨?PDF 鏂囦欢鐨勭粷瀵硅矾寰?**String**銆?
+: *必需* 一个要写入的 PDF 文件的绝对路径 **String**。
+
 *Orientation*
-: *鍙€? [**wv2PrintOrientation**](/official/Reference/WebView2/Enumerations/wv2PrintOrientation) 鐨勬垚鍛樸€傞粯璁?**wv2PrintPortrait**銆?
-*ScaleFactor*銆?PageWidth*銆?PageHeight*銆?MarginTop*銆?MarginBottom*銆?MarginLeft*銆?MarginRight*
-: *鍙€? 鎻忚堪椤甸潰甯冨眬鐨?**Double**銆傜渷鐣ヤ换涓€鍙傛暟浠ヤ娇鐢ㄨ繍琛屾椂榛樿鍊笺€?
+: *可选* [**wv2PrintOrientation**](/official/Reference/WebView2/Enumerations/wv2PrintOrientation) 的成员。默认 **wv2PrintPortrait**。
+
+*ScaleFactor*、*PageWidth*、*PageHeight*、*MarginTop*、*MarginBottom*、*MarginLeft*、*MarginRight*
+: *可选* 描述页面布局的 **Double**。省略任何参数以使用运行时默认值。
+
 *ShouldPrintBackgrounds*
-: *鍙€? 涓€涓?**Boolean**锛岄粯璁?**False**銆?
+: *可选* 一个 **Boolean**，默认 **False**。
+
 *ShouldPrintSelectionOnly*
-: *鍙€? 涓€涓?**Boolean**锛岄粯璁?**False**銆?
+: *可选* 一个 **Boolean**，默认 **False**。
+
 *ShouldPrintHeaderAndFooter*
-: *鍙€? 涓€涓?**Boolean**锛岄粯璁?**True**銆?
-*HeaderTitle*銆?FooterUri*
-: *鍙€? 瑕嗙洊榛樿椤电湁鏍囬鍜岄〉鑴?URI 鐨?**String**銆?
+: *可选* 一个 **Boolean**，默认 **True**。
+
+*HeaderTitle*、*FooterUri*
+: *可选* 覆盖默认页眉标题和页脚 URI 的 **String**。
+
 ```vb
 Private Sub btnSave_Click()
     WebView21.PrintToPdf Environ$("USERPROFILE") & "\Documents\page.pdf"
@@ -521,51 +675,66 @@ End Sub
 
 ### Reload
 
-閲嶆柊鍔犺浇褰撳墠鏂囨。 --- 绛夊悓浜庢寜涓?**F5**銆?
-璇硶锛?object*.**Reload**
+重新加载当前文档 --- 等同于按下 **F5**。
+
+语法：*object*.**Reload**
 
 ### RemoveObject
 
-绉婚櫎鍏堝墠閫氳繃 [**AddObject**](#addobject) 鍙戝竷鐨勫涓诲璞°€?
-璇硶锛?object*.**RemoveObject** *ObjName*
+移除先前通过[**AddObject**](#addobject)发布的宿主对象。
+
+语法：*object*.**RemoveObject** *ObjName*
 
 *ObjName*
-: *蹇呴渶* 涓€涓笌浼犲叆 **AddObject** 鐨勫悕绉板尮閰嶇殑 **String**銆?
+: *必需* 一个与传入 **AddObject** 的名称匹配的 **String**。
+
 ### RemoveWebResourceRequestedFilter
 
-绉婚櫎鍏堝墠閫氳繃 [**AddWebResourceRequestedFilter**](#addwebresourcerequestedfilter) 娉ㄥ唽鐨?URL 杩囨护鍣ㄣ€備紶鍏ユ敞鍐屾椂浣跨敤鐨勭浉鍚?*sFilter* 鍜?*FilterContext* 鍊笺€?
-璇硶锛?object*.**RemoveWebResourceRequestedFilter** *sFilter*, *FilterContext*
+移除先前通过[**AddWebResourceRequestedFilter**](#addwebresourcerequestedfilter)注册的 URL 过滤器。传入注册时使用的相同 *sFilter* 和 *FilterContext* 值。
+
+语法：*object*.**RemoveWebResourceRequestedFilter** *sFilter*, *FilterContext*
 
 *sFilter*
-: *蹇呴渶* 涓€涓?**String** URL 妯″紡銆?
+: *必需* 一个 **String** URL 模式。
+
 *FilterContext*
-: *蹇呴渶* [**wv2WebResourceContext**](/official/Reference/WebView2/Enumerations/wv2WebResourceContext) 鐨勬垚鍛樸€?
+: *必需* [**wv2WebResourceContext**](/official/Reference/WebView2/Enumerations/wv2WebResourceContext) 的成员。
+
 ### Resume
 
-鎭㈠鍏堝墠鏆傚仠鐨?WebView2 绠￠亾銆備笉瑙﹀彂浜嬩欢 --- 涔嬪悗璇诲彇 [**IsSuspended**](#issuspended) 浠ョ‘璁ゃ€?
-璇硶锛?object*.**Resume**
+恢复先前暂停的 WebView2 管道。不触发事件 --- 之后读取[**IsSuspended**](#issuspended)以确认。
 
-闇€瑕?[**SupportsSuspendResumeFeatures**](#supportssuspendresumefeatures)銆?
+语法：*object*.**Resume**
+
+需要[**SupportsSuspendResumeFeatures**](#supportssuspendresumefeatures)。
+
 ### SetFocus
 
-灏嗚緭鍏ョ劍鐐圭Щ鑷冲涓绘帶浠躲€傜户鎵裤€傝鑱氱劍*椤甸潰*琛ㄩ潰浣垮嚮閿埌杈?JavaScript锛岃鏀圭敤 [**MoveFocus**](#movefocus)銆?
-璇硶锛?object*.**SetFocus**
+将输入焦点移至宿主控件。继承。要聚焦*页面*表面使击键到达 JavaScript，请改用[**MoveFocus**](#movefocus)。
+
+语法：*object*.**SetFocus**
 
 ### SetVirtualHostNameToFolderMapping
 
-灏嗚櫄鎷熶富鏈哄悕鏄犲皠鍒版湰鍦版枃浠跺す锛屼娇椤甸潰鍙互閫氳繃 HTTPS URL 寮曠敤鏈湴鏂囦欢 --- 渚嬪 `https://app.local/index.html` 瑙ｆ瀽涓?`C:\MyApp\html\index.html`銆傞€傜敤浜庡湪鏃犻渶鎼缓 HTTP 鏈嶅姟鍣ㄧ殑鎯呭喌涓嬫壙杞芥湰鍦拌祫婧愩€?
-璇硶锛?object*.**SetVirtualHostNameToFolderMapping** *hostName*, *folderPath* [, *accessKind* ]
+将虚拟主机名映射到本地文件夹，使页面可以通过 HTTPS URL 引用本地文件 --- 例如 `https://app.local/index.html` 解析为 `C:\MyApp\html\index.html`。适用于在无需搭建 HTTP 服务器的情况下承载本地资源。
+
+语法：*object*.**SetVirtualHostNameToFolderMapping** *hostName*, *folderPath* [, *accessKind* ]
 
 *hostName*
-: *蹇呴渶* 涓€涓?**String** 铏氭嫙涓绘満鍚嶃€?
-*folderPath*
-: *蹇呴渶* 涓€涓?**String** 鏈湴鏂囦欢澶硅矾寰勩€?
-*accessKind*
-: *鍙€? [**wv2HostResourceAccessKind**](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind) 鐨勬垚鍛樸€傞粯璁?**wv2ResourceAllow**銆?
-::: info
-璋ㄦ厧閫夋嫨 *hostName* --- 鏌愪簺鍙?DNS 瑙ｆ瀽鐨勪富鏈哄悕浼氬鑷?2 绉掔殑瑙ｆ瀽寤惰繜锛岀劧鍚庢湰鍦拌鐩栨墠浼氱敓鏁堛€傚弬瑙?[WebView2Feedback#2381](https://github.com/MicrosoftEdge/WebView2Feedback/issues/2381)銆?:::
+: *必需* 一个 **String** 虚拟主机名。
 
-闇€瑕?[**SupportsFolderMappingFeatures**](#supportsfoldermappingfeatures)銆?
+*folderPath*
+: *必需* 一个 **String** 本地文件夹路径。
+
+*accessKind*
+: *可选* [**wv2HostResourceAccessKind**](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind) 的成员。默认 **wv2ResourceAllow**。
+
+::: info
+慎重选择 *hostName* --- 某些可 DNS 解析的主机名会导致 2 秒的解析延迟，然后本地覆盖才会生效。参见[WebView2Feedback#2381](https://github.com/MicrosoftEdge/WebView2Feedback/issues/2381)。
+:::
+
+需要[**SupportsFolderMappingFeatures**](#supportsfoldermappingfeatures)。
+
 ```vb
 Private Sub WebView21_Ready()
     Dim folderPath As String = Environ$("USERPROFILE") & "\Documents\MyApp"
@@ -575,59 +744,72 @@ Private Sub WebView21_Ready()
 End Sub
 ```
 
-鍏充簬閫氳繃椤圭洰鐨?`Resources` 鏂囦欢澶规墦鍖呰祫婧愮殑鍖归厤妯″紡锛屽弬瑙乕鎵胯浇鏈湴 Web 璧勬簮](/official/Tutorials/WebView2/Hosting-local-web-assets)鏁欑▼銆?
+关于通过项目的 `Resources` 文件夹打包资源的匹配模式，参见[承载本地 Web 资源](/official/Tutorials/WebView2/Hosting-local-web-assets)教程。
+
 ### Suspend
 
-鏆傚仠 WebView2 绠￠亾锛屼娇娴忚鍣ㄨ繘绋嬪彲浠ラ噴鏀惧唴瀛?--- 閫傜敤浜庡簲鐢ㄧ▼搴忓紡鐨勯€夐」鍗＄鐞嗐€備箣鍚庤鍙?[**IsSuspended**](#issuspended) 浠ョ‘璁わ紱杩愯鏃跺湪鏆傚仠鏈熼棿闅愯棌鎺т欢銆?
-璇硶锛?object*.**Suspend**
+暂停 WebView2 管道，使浏览器进程可以释放内存 --- 适用于应用程序式的选项卡管理。之后读取[**IsSuspended**](#issuspended)以确认；运行时在暂停期间隐藏控件。
 
-闇€瑕?[**SupportsSuspendResumeFeatures**](#supportssuspendresumefeatures)銆?
+语法：*object*.**Suspend**
+
+需要[**SupportsSuspendResumeFeatures**](#supportssuspendresumefeatures)。
+
 ### ZOrder
 
-灏嗘帶浠剁疆浜庡悓绾у爢鏍堢殑鍓嶉潰鎴栧悗闈€傜户鎵裤€?
-璇硶锛?object*.**ZOrder** [ *Position* ]
+将控件置于同级堆栈的前面或后面。继承。
 
-浜嬩欢
+语法：*object*.**ZOrder** [ *Position* ]
+
+事件
 ------
 
 ### AcceleratorKeyPressed
 
-褰?Edge 妫€娴嬪埌鍔犻€熼敭鍑婚敭鏃惰Е鍙?--- 渚嬪 **F1**銆?*Alt+**銆?*Ctrl+**銆傚皢 *IsHandled* 璁句负 **True** 浠ユ秷璐瑰嚮閿紝浣?Edge 涓嶅鍏舵墽琛屾搷浣溿€傚缁堝悓姝ワ細鏃犳硶寤惰繜銆?
-璇硶锛?object*\_**AcceleratorKeyPressed**( *KeyState* **As** [**wv2KeyEventKind**](/official/Reference/WebView2/Enumerations/wv2KeyEventKind), *IsExtendedKey* **As Boolean**, *WasKeyDown* **As Boolean**, *IsKeyReleased* **As Boolean**, *IsMenuKeyDown* **As Boolean**, *RepeatCount* **As Long**, *ScanCode* **As Long**, *IsHandled* **As Boolean** )
+当 Edge 检测到加速键击键时触发 --- 例如 **F1**、**Alt+**、**Ctrl+**。将 *IsHandled* 设为 **True** 以消费击键，使 Edge 不对其执行操作。始终同步：无法延迟。
 
-杩欎簺鏍囧織鏄?Win32 `WM_KEYDOWN` / `WM_KEYUP` *lParam* 鐨勫唴瀹?--- 璇﹁ [**COREWEBVIEW2_PHYSICAL_KEY_STATUS**](/official/Reference/WebView2/Types/COREWEBVIEW2_PHYSICAL_KEY_STATUS)銆?
+语法：*object*\_**AcceleratorKeyPressed**( *KeyState* **As** [**wv2KeyEventKind**](/official/Reference/WebView2/Enumerations/wv2KeyEventKind), *IsExtendedKey* **As Boolean**, *WasKeyDown* **As Boolean**, *IsKeyReleased* **As Boolean**, *IsMenuKeyDown* **As Boolean**, *RepeatCount* **As Long**, *ScanCode* **As Long**, *IsHandled* **As Boolean** )
+
+这些标志是 Win32 `WM_KEYDOWN` / `WM_KEYUP` *lParam* 的内容 --- 详见[**COREWEBVIEW2_PHYSICAL_KEY_STATUS**](/official/Reference/WebView2/Types/COREWEBVIEW2_PHYSICAL_KEY_STATUS)。
+
 ### Create
 
-鍦ㄥ鍣ㄧ獥鍙ｅ凡瀛樺湪浣?WebView2 鐜灏氭湭鏋勫缓涔嬪悗瑙﹀彂銆傚涓诲～鍏?[**EnvironmentOptions**](#environmentoptions) 鐨勬渶鍚庢満浼氥€?
-璇硶锛?object*\_**Create**( )
+在容器窗口已存在但 WebView2 环境尚未构建之后触发。宿主填充[**EnvironmentOptions**](#environmentoptions)的最后机会。
+
+语法：*object*\_**Create**( )
 
 ### DevToolsProtocolResponse
 
-鍏堝墠鍙戦€佺殑 [**CallDevToolsProtocolMethod**](#calldevtoolsprotocolmethod) 璋冪敤杩斿洖鏃惰Е鍙戙€傚寘鍚皟鐢ㄦ椂鎻愪緵鐨?*CustomEventId* 鍜?JSON 缂栫爜鐨勫搷搴斻€?
-璇硶锛?object*\_**DevToolsProtocolResponse**( *CustomEventId* **As Variant**, *JsonResponse* **As String** )
+当先前发送的[**CallDevToolsProtocolMethod**](#calldevtoolsprotocolmethod)调用返回时触发。包含调用时提供的 *CustomEventId* 和 JSON 编码的响应。
+
+语法：*object*\_**DevToolsProtocolResponse**( *CustomEventId* **As Variant**, *JsonResponse* **As String** )
 
 ### DocumentTitleChanged
 
-鏂囨。鏇存敼鏍囬鏃惰Е鍙?--- 閫氬父鍦ㄥ鑸箣鍚庯紝涔熷湪瀹㈡埛绔?JavaScript 鍐欏叆 `document.title` 鏃躲€傝鍙?[**DocumentTitle**](#documenttitle) 鑾峰彇鏂板€笺€?
-璇硶锛?object*\_**DocumentTitleChanged**( )
+当文档更改标题时触发 --- 通常在导航之后，也在客户端 JavaScript 写入 `document.title` 时。读取[**DocumentTitle**](#documenttitle)获取新值。
+
+语法：*object*\_**DocumentTitleChanged**( )
 
 ### DOMContentLoaded
 
-椤甸潰鍒拌揪 `DOMContentLoaded` 鐢熷懡鍛ㄦ湡浜嬩欢鏃惰Е鍙?--- DOM 鏍戝凡鏋勫缓锛孞avaScript 鍙互瀹夊叏閬嶅巻锛屼絾澶栭儴璧勬簮鍙兘浠嶅湪鍔犺浇銆?
-璇硶锛?object*\_**DOMContentLoaded**( )
+当页面到达 `DOMContentLoaded` 生命周期事件时触发 --- DOM 树已构建，JavaScript 可以安全遍历，但外部资源可能仍在加载。
+
+语法：*object*\_**DOMContentLoaded**( )
 
 ### DownloadStarting
 
-褰撶敤鎴凤紙鎴栭〉闈級寮€濮嬫枃浠朵笅杞芥椂瑙﹀彂銆傚皢 *Cancel* 璁句负 **True** 浠ュ彇娑堜笅杞斤紱灏?*Handled* 璁句负 **True** 浠ュ彇娑堣繍琛屾椂鐨勯粯璁や笅杞?UI锛屽綋搴旂敤绋嬪簭鎵撶畻鑷绠＄悊杩涘害鏃躲€備慨鏀?*ResultFilePath* 浠ュ皢涓嬭浇閲嶅畾鍚戝埌鍏朵粬璺緞銆傚彲浠ュ欢杩?--- 鍙傝[寤惰繜浜嬩欢](#deferred-events)銆?
-璇硶锛?object*\_**DownloadStarting**( *ResultFilePath* **As String**, *Cancel* **As Boolean**, *Handled* **As Boolean** )
+当用户（或页面）开始文件下载时触发。将 *Cancel* 设为 **True** 以取消下载；将 *Handled* 设为 **True** 以取消运行时的默认下载 UI，当应用程序打算自行管理进度时。修改 *ResultFilePath* 以将下载重定向到其他路径。可以延迟 --- 参见[延迟事件](#deferred-events)。
+
+语法：*object*\_**DownloadStarting**( *ResultFilePath* **As String**, *Cancel* **As Boolean**, *Handled* **As Boolean** )
 
 ### Error
 
-褰?WebView2 鐜鎴栨帶鍒跺櫒鍒濆鍖栧け璐ユ椂瑙﹀彂 --- 鏈€甯歌鐨勫師鍥犳槸鏈畨瑁?Edge WebView2 杩愯鏃躲€佺敤鎴锋暟鎹枃浠跺す涓嶅彲鍐欙紝鎴栧浐瀹氱増鏈枃浠跺す璺緞涓嶆纭€?
-璇硶锛?object*\_**Error**( *code* **As Long**, *msg* **As String** )
+当 WebView2 环境或控制器初始化失败时触发 --- 最常见的原因是 Edge WebView2 运行时未安装、用户数据文件夹不可写，或固定版本文件夹路径不正确。
+
+语法：*object*\_**Error**( *code* **As Long**, *msg* **As String** )
 
 ::: info
-浠ｇ爜 `&H80070002`锛坄ERROR_FILE_NOT_FOUND`锛夋槸 WebView2 Evergreen 杩愯鏃舵湭瀹夎鐨勫吀鍨嬩俊鍙?--- 鎻愮ず鐢ㄦ埛瀹夎鐨勯€傚綋鏃舵満銆?:::
+代码 `&H80070002`（`ERROR_FILE_NOT_FOUND`）是 WebView2 Evergreen 运行时未安装的典型信号 --- 提示用户安装的适当时机。
+:::
 
 ```vb
 Private Sub WebView21_Error(ByVal code As Long, ByVal msg As String)
@@ -644,26 +826,31 @@ End Sub
 
 ### JsAsyncResult
 
-鍏堝墠鐨?[**JsRunAsync**](#jsrunasync) 璋冪敤杩斿洖鏃惰Е鍙戙€?Token* 鏄?**JsRunAsync** 杩斿洖鐨勫€硷紝澶勭悊绋嬪簭鍙€熸灏嗗洖澶嶄笌璋冪敤閰嶅锛?ErrString* 涓鸿繍琛屾椂閿欒鎻忚堪锛屾垚鍔熸椂涓虹┖瀛楃涓层€?
-璇硶锛?object*\_**JsAsyncResult**( *Result* **As Variant**, *Token* **As LongLong**, *ErrString* **As String** )
+当先前的[**JsRunAsync**](#jsrunasync)调用返回时触发。*Token* 是 **JsRunAsync** 返回的值，处理程序可借此将回复与调用配对；*ErrString* 为运行时错误描述，成功时为空字符串。
+
+语法：*object*\_**JsAsyncResult**( *Result* **As Variant**, *Token* **As LongLong**, *ErrString* **As String** )
 
 ### JsMessage
 
-褰撻〉闈笂鐨?JavaScript 璋冪敤 `window.chrome.webview.postMessage(value)` 鏃惰Е鍙戙€傞渶瑕?[**IsWebMessageEnabled**](#iswebmessageenabled)銆?
-璇硶锛?object*\_**JsMessage**( *Message* **As Variant** )
+当页面上的 JavaScript 调用 `window.chrome.webview.postMessage(value)` 时触发。需要[**IsWebMessageEnabled**](#iswebmessageenabled)。
+
+语法：*object*\_**JsMessage**( *Message* **As Variant** )
 
 ### NavigationComplete
 
-瀵艰埅瀹屾垚鏃惰Е鍙?--- 鏃犺鎴愬姛涓庡惁銆傚厛妫€鏌?*IsSuccess*锛涘鏋滀负 **False**锛?WebErrorStatus* 涓?[**wv2ErrorStatus**](/official/Reference/WebView2/Enumerations/wv2ErrorStatus) 鐨勬垚鍛樸€?
-璇硶锛?object*\_**NavigationComplete**( *IsSuccess* **As Boolean**, *WebErrorStatus* **As Long** )
+当导航完成时触发 --- 无论成功与否。先检查 *IsSuccess*；如果为 **False**，*WebErrorStatus* 为[**wv2ErrorStatus**](/official/Reference/WebView2/Enumerations/wv2ErrorStatus)的成员。
+
+语法：*object*\_**NavigationComplete**( *IsSuccess* **As Boolean**, *WebErrorStatus* **As Long** )
 
 ### NavigationStarting
 
-姣忔瀵艰埅寮€濮嬩箣鍓嶈Е鍙戙€傚皢 *Cancel* 璁句负 **True** 浠ラ樆姝㈠鑸紱淇敼 *RequestHeaders* 浠ユ洿鏀硅繍琛屾椂鍗冲皢鍙戦€佺殑 HTTP 璇锋眰銆傚彲浠ュ欢杩?--- 鍙傝[寤惰繜浜嬩欢](#deferred-events)銆?
-璇硶锛?object*\_**NavigationStarting**( *Uri* **As String**, *IsUserInitiated* **As Boolean**, *IsRedirected* **As Boolean**, *RequestHeaders* **As** [**WebView2RequestHeaders**](/official/Reference/WebView2/WebView2RequestHeaders), *Cancel* **As Boolean** )
+每次导航开始之前触发。将 *Cancel* 设为 **True** 以阻止导航；修改 *RequestHeaders* 以更改运行时即将发送的 HTTP 请求。可以延迟 --- 参见[延迟事件](#deferred-events)。
+
+语法：*object*\_**NavigationStarting**( *Uri* **As String**, *IsUserInitiated* **As Boolean**, *IsRedirected* **As Boolean**, *RequestHeaders* **As** [**WebView2RequestHeaders**](/official/Reference/WebView2/WebView2RequestHeaders), *Cancel* **As Boolean** )
 
 ```vb
-' 闃绘浠讳綍瀵艰埅鍒版垜浠嚜宸辩殑铏氭嫙涓绘満涔嬪鐨?URL銆?Private Sub WebView21_NavigationStarting( _
+' 阻止任何导航到我们自己的虚拟主机之外的 URL。
+Private Sub WebView21_NavigationStarting( _
         ByVal Uri As String, ByVal IsUserInitiated As Boolean, _
         ByVal IsRedirected As Boolean, _
         ByVal RequestHeaders As WebView2RequestHeaders, _
@@ -677,66 +864,78 @@ End Sub
 
 ### NewWindowRequested
 
-褰撻〉闈㈠皾璇曟墦寮€鏂扮獥鍙ｆ椂瑙﹀彂 --- 閫氳繃 `window.open(鈥?`銆乣target="_blank"`銆?*Ctrl+** 鐐瑰嚮绛夈€傚皢 *IsHandled* 璁句负 **True** 浠ュ彇娑堥粯璁よ涓猴紙鎵撳紑鏂扮殑 Edge 绐楀彛锛夛紝浣垮簲鐢ㄧ▼搴忓彲浠ヨ嚜琛屾壙杞芥柊鍐呭銆傜獥鍙ｅ姛鑳藉弬鏁版弿杩颁簡椤甸潰鐨勮姹傘€傚彲浠ュ欢杩?--- 鍙傝[寤惰繜浜嬩欢](#deferred-events)銆?
-璇硶锛?object*\_**NewWindowRequested**( *IsUserInitiated* **As Boolean**, *IsHandled* **As Boolean**, *Uri* **As String**, *HasPosition* **As Long**, *HasSize* **As Long**, *Left* **As Long**, *Top* **As Long**, *Width* **As Long**, *Height* **As Long**, *ShouldDisplayMenuBar* **As Long**, *ShouldDisplayStatus* **As Long**, *ShouldDisplayToolbar* **As Long**, *ShouldDisplayScrollBars* **As Long** )
+当页面尝试打开新窗口时触发 --- 通过 `window.open(…)`、`target="_blank"`、**Ctrl+** 点击等。将 *IsHandled* 设为 **True** 以取消默认行为（打开新的 Edge 窗口），使应用程序可以自行承载新内容。窗口功能参数描述了页面的请求。可以延迟 --- 参见[延迟事件](#deferred-events)。
+
+语法：*object*\_**NewWindowRequested**( *IsUserInitiated* **As Boolean**, *IsHandled* **As Boolean**, *Uri* **As String**, *HasPosition* **As Long**, *HasSize* **As Long**, *Left* **As Long**, *Top* **As Long**, *Width* **As Long**, *Height* **As Long**, *ShouldDisplayMenuBar* **As Long**, *ShouldDisplayStatus* **As Long**, *ShouldDisplayToolbar* **As Long**, *ShouldDisplayScrollBars* **As Long** )
 
 ### PermissionRequested
 
-褰撻〉闈㈣姹備娇鐢ㄨ澶囨垨娴忚鍣ㄥ姛鑳芥潈闄愭椂瑙﹀彂 --- 鎽勫儚澶淬€侀害鍏嬮銆佸湴鐞嗕綅缃€侀€氱煡銆佸壀璐存澘銆傚皢 *State* 璧嬪€间负 [**wv2StateAllow**](/official/Reference/WebView2/Enumerations/wv2PermissionState#wv2StateAllow)锛堝厑璁革級鎴?[**wv2StateDeny**](/official/Reference/WebView2/Enumerations/wv2PermissionState#wv2StateDeny)锛堟嫆缁濓級锛涗繚鎸?**wv2StateDefault** 璁?Edge 鎻愮ず鐢ㄦ埛銆傚彲浠ュ欢杩?--- 鍙傝[寤惰繜浜嬩欢](#deferred-events)銆?
-璇硶锛?object*\_**PermissionRequested**( *IsUserInitiated* **As Boolean**, *State* **As** [**wv2PermissionState**](/official/Reference/WebView2/Enumerations/wv2PermissionState), *Uri* **As String**, *PermissionKind* **As** [**wv2PermissionKind**](/official/Reference/WebView2/Enumerations/wv2PermissionKind) )
+当页面请求使用设备或浏览器功能权限时触发 --- 摄像头、麦克风、地理位置、通知、剪贴板。将 *State* 赋值为[**wv2StateAllow**](/official/Reference/WebView2/Enumerations/wv2PermissionState#wv2StateAllow)（允许）或[**wv2StateDeny**](/official/Reference/WebView2/Enumerations/wv2PermissionState#wv2StateDeny)（拒绝）；保持 **wv2StateDefault** 让 Edge 提示用户。可以延迟 --- 参见[延迟事件](#deferred-events)。
+
+语法：*object*\_**PermissionRequested**( *IsUserInitiated* **As Boolean**, *State* **As** [**wv2PermissionState**](/official/Reference/WebView2/Enumerations/wv2PermissionState), *Uri* **As String**, *PermissionKind* **As** [**wv2PermissionKind**](/official/Reference/WebView2/Enumerations/wv2PermissionKind) )
 
 ### PrintToPdfCompleted
 
-[**PrintToPdf**](#printtopdf) 鎴愬姛瀹屾垚鏃惰Е鍙戙€?
-璇硶锛?object*\_**PrintToPdfCompleted**( )
+当[**PrintToPdf**](#printtopdf)成功完成时触发。
+
+语法：*object*\_**PrintToPdfCompleted**( )
 
 ### PrintToPdfFailed
 
-[**PrintToPdf**](#printtopdf) 澶辫触鏃惰Е鍙?--- 渚嬪杈撳嚭璺緞涓嶅彲鍐欍€?
-璇硶锛?object*\_**PrintToPdfFailed**( )
+当[**PrintToPdf**](#printtopdf)失败时触发 --- 例如输出路径不可写。
+
+语法：*object*\_**PrintToPdfFailed**( )
 
 ### ProcessFailed
 
-褰?WebView2 鐨勬煇涓閮ㄨ繘绋嬶紙娴忚鍣ㄣ€佹覆鏌撳櫒銆丟PU 绛夛級鎰忓閫€鍑烘椂瑙﹀彂銆傛鏌?*Kind* --- 涓€涓?[**wv2ProcessFailedKind**](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind) --- 浠ョ‘瀹氭槸鍝釜杩涚▼銆?
-璇硶锛?object*\_**ProcessFailed**( *Kind* **As** [**wv2ProcessFailedKind**](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind) )
+当 WebView2 的某个外部进程（浏览器、渲染器、GPU 等）意外退出时触发。检查 *Kind* --- 一个[**wv2ProcessFailedKind**](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind) --- 以确定是哪个进程。
+
+语法：*object*\_**ProcessFailed**( *Kind* **As** [**wv2ProcessFailedKind**](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind) )
 
 ### Ready
 
-褰?WebView2 鐜銆佹帶鍒跺櫒鍜屾牳蹇冭鍥惧潎宸插氨缁椂瑙﹀彂涓€娆°€傚湪姝や箣鍓嶏紝澶у鏁板睘鎬у拰鏂规硶浼氬紩鍙?WebView2 control is not ready"銆?
-璇硶锛?object*\_**Ready**( )
+当 WebView2 环境、控制器和核心视图均已就绪时触发一次。在此之前，大多数属性和方法会引发*"WebView2 control is not ready"*。
+
+语法：*object*\_**Ready**( )
 
 ### ScriptDialogOpening
 
-褰撻〉闈㈠皾璇曟墦寮€鑴氭湰瀵硅瘽妗嗘椂瑙﹀彂 --- `alert()`銆乣confirm()`銆乣prompt()` 鎴?`beforeunload`銆備粎鍦?[**AreDefaultScriptDialogsEnabled**](#aredefaultscriptdialogsenabled) 涓?**False** 鏃惰Е鍙戙€傚皢 *Accept* 璁句负 **True** 浠ユ帴鍙楀璇濇锛堢浉褰撲簬 JavaScript 渚х偣鍑?纭畾*锛夛紱瀵逛簬鎻愮ず妗嗭紝鏇存柊 *ResultText* 涓鸿杩斿洖鐨勬枃鏈€傚彲浠ュ欢杩?--- 鍙傝[寤惰繜浜嬩欢](#deferred-events)銆?
-璇硶锛?object*\_**ScriptDialogOpening**( *ScriptDialogKind* **As** [**wv2ScriptDialogKind**](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind), *Accept* **As Boolean**, *ResultText* **As String**, *URI* **As String**, *Message* **As String**, *DefaultText* **As String** )
+当页面尝试打开脚本对话框时触发 --- `alert()`、`confirm()`、`prompt()` 或 `beforeunload`。仅在[**AreDefaultScriptDialogsEnabled**](#aredefaultscriptdialogsenabled)为 **False** 时触发。将 *Accept* 设为 **True** 以接受对话框（相当于 JavaScript 侧点击*确定*）；对于提示框，更新 *ResultText* 为要返回的文本。可以延迟 --- 参见[延迟事件](#deferred-events)。
+
+语法：*object*\_**ScriptDialogOpening**( *ScriptDialogKind* **As** [**wv2ScriptDialogKind**](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind), *Accept* **As Boolean**, *ResultText* **As String**, *URI* **As String**, *Message* **As String**, *DefaultText* **As String** )
 
 ### SourceChanged
 
-褰?[**DocumentURL**](#documenturl) 鏇存敼鏃惰Е鍙?--- 閫氬父鍦ㄥ鑸箣鍚庯紝涔熷湪瀹㈡埛绔剼鏈皟鐢?`history.pushState(鈥?` 鏃躲€?IsNewDocument* 鍖哄垎鐪熸鐨勫鑸紙**True**锛夊拰鍚屾枃妗?URL 鏇存敼锛?*False**锛夈€?
-璇硶锛?object*\_**SourceChanged**( *IsNewDocument* **As Boolean** )
+当[**DocumentURL**](#documenturl)更改时触发 --- 通常在导航之后，也在客户端脚本调用 `history.pushState(…)` 时。*IsNewDocument* 区分真正的导航（**True**）和同文档 URL 更改（**False**）。
+
+语法：*object*\_**SourceChanged**( *IsNewDocument* **As Boolean** )
 
 ### SuspendCompleted
 
-褰?[**Suspend**](#suspend) 璇锋眰鎴愬姛瀹屾垚鏃惰Е鍙戙€?
-璇硶锛?object*\_**SuspendCompleted**( )
+当[**Suspend**](#suspend)请求成功完成时触发。
+
+语法：*object*\_**SuspendCompleted**( )
 
 ### SuspendFailed
 
-褰?[**Suspend**](#suspend) 璇锋眰澶辫触鏃惰Е鍙?--- 閫氬父鏄洜涓洪〉闈粛鍦ㄨ繘琛岃繍琛屾椂鏃犳硶鏆傚仠鐨勬搷浣溿€?
-璇硶锛?object*\_**SuspendFailed**( )
+当[**Suspend**](#suspend)请求失败时触发 --- 通常是因为页面仍在进行运行时无法暂停的操作。
+
+语法：*object*\_**SuspendFailed**( )
 
 ### UserContextMenu
 
-褰撶敤鎴峰湪鎺т欢鍐呭彸閿偣鍑讳笖 [**AreDefaultContextMenusEnabled**](#aredefaultcontextmenusenabled) 涓?**False** 鏃惰Е鍙戯紝浠ヤ究搴旂敤绋嬪簭鏄剧ず鑷畾涔変笂涓嬫枃鑿滃崟銆?
-璇硶锛?object*\_**UserContextMenu**( *X* **As Single**, *Y* **As Single** )
+当用户在控件内右键点击且[**AreDefaultContextMenusEnabled**](#aredefaultcontextmenusenabled)为 **False** 时触发，以便应用程序显示自己的上下文菜单。
+
+语法：*object*\_**UserContextMenu**( *X* **As Single**, *Y* **As Single** )
 
 ### WebResourceRequested
 
-褰撳緟澶勭悊鐨?HTTP 璇锋眰鍖归厤鍏堝墠閫氳繃 [**AddWebResourceRequestedFilter**](#addwebresourcerequestedfilter) 娉ㄥ唽鐨勮繃婊ゅ櫒鏃惰Е鍙戙€備慨鏀?*Response* 浠ユā鎷熸垨瑕嗙洊鍥炲锛涗繚鎸佷笉鍙樺垯璁╄繍琛屾椂姝ｅ父鑾峰彇銆傚彲浠ュ欢杩?--- 鍙傝[寤惰繜浜嬩欢](#deferred-events)銆?
-璇硶锛?object*\_**WebResourceRequested**( *Request* **As** [**WebView2Request**](/official/Reference/WebView2/WebView2Request), *Response* **As** [**WebView2Response**](/official/Reference/WebView2/WebView2Response) )
+当待处理的 HTTP 请求匹配先前通过[**AddWebResourceRequestedFilter**](#addwebresourcerequestedfilter)注册的过滤器时触发。修改 *Response* 以模拟或覆盖回复；保持不变则让运行时正常获取。可以延迟 --- 参见[延迟事件](#deferred-events)。
 
-## 鍙﹁
+语法：*object*\_**WebResourceRequested**( *Request* **As** [**WebView2Request**](/official/Reference/WebView2/WebView2Request), *Response* **As** [**WebView2Response**](/official/Reference/WebView2/WebView2Response) )
 
-- [WebView2EnvironmentOptions](/official/Reference/WebView2/WebView2/EnvironmentOptions) --- 閫氳繃 [**EnvironmentOptions**](#environmentoptions) 璁块棶鐨勯鍒涘缓鐜閰嶇疆
-- [WebView2 鏁欑▼](/official/Tutorials/WebView2/) --- 瀹夎銆侀噸鍏ュ拰 `UserDataFolder` 瀹炶返绀轰緥
-- [vbWebView2](/official/Reference/VBRUN/Constants/ControlTypeConstants#vbWebView2) --- [**ControlType**](#controltype) 杩斿洖鐨?**ControlTypeConstants** 鏉＄洰
+## 另见
+
+- [WebView2EnvironmentOptions](/official/Reference/WebView2/WebView2/EnvironmentOptions) --- 通过[**EnvironmentOptions**](#environmentoptions)访问的预创建环境配置
+- [WebView2 教程](/official/Tutorials/WebView2/) --- 安装、重入和 `UserDataFolder` 实践示例
+- [vbWebView2](/official/Reference/VBRUN/Constants/ControlTypeConstants#vbWebView2) --- [**ControlType**](#controltype)返回的 **ControlTypeConstants** 条目

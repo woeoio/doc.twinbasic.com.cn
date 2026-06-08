@@ -7,24 +7,24 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'e63dca6f-5d65-43c4-b7e7-82d8014fcf47'
-  PropagateID: 'e63dca6f-5d65-43c4-b7e7-82d8014fcf47'
-  ReservedCode1: '8fd1c6b2-1fd7-4bfa-9585-1168f728f60f'
-  ReservedCode2: '8fd1c6b2-1fd7-4bfa-9585-1168f728f60f'
+  ProduceID: 'e30421d8-4179-461f-a7f1-4a4dfb25708a'
+  PropagateID: 'e30421d8-4179-461f-a7f1-4a4dfb25708a'
+  ReservedCode1: '47c4a510-15c8-43a5-932c-e23b0abeb54e'
+  ReservedCode2: '47c4a510-15c8-43a5-932c-e23b0abeb54e'
 ---
 
 # 外接程序菜单
 
-![Add-Ins Menu](Images/Menu_Add-Ins.png "Add-Ins Menu")
+![外接程序菜单](Images/Menu_Add-Ins.png "外接程序菜单")
 
 {无外接程序加载}
 
 打开项目后：
 
-![Global Search - Add-Ins Menu](Images/Menu_Add-Ins_GlobalSearch.png "Global Search - Add-Ins Menu")
+![全局搜索 - 外接程序菜单](Images/Menu_Add-Ins_GlobalSearch.png "全局搜索 - 外接程序菜单")
 
 点击此菜单选项将显示
 
 > 🛈 抱歉，此菜单选项尚未实现
 
-![Global Search - Popup](Images/GlobalSearch-Popup.png "Global Search - Popup")
+![全局搜索 - 弹窗](Images/GlobalSearch-Popup.png "全局搜索 - 弹窗")

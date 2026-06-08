@@ -6,17 +6,17 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'f99a0988-79e3-4659-a246-c3eb823e0357'
-  PropagateID: 'f99a0988-79e3-4659-a246-c3eb823e0357'
-  ReservedCode1: 'c0033ef1-ec7b-4b03-9a3d-84f4a2d08b95'
-  ReservedCode2: 'c0033ef1-ec7b-4b03-9a3d-84f4a2d08b95'
+  ProduceID: '295b1d4c-2e19-4ac8-b4f8-9ce36619f12f'
+  PropagateID: '295b1d4c-2e19-4ac8-b4f8-9ce36619f12f'
+  ReservedCode1: '48f4b192-cc70-4d1a-bfc3-442d6f0df802'
+  ReservedCode2: '48f4b192-cc70-4d1a-bfc3-442d6f0df802'
 ---
 
 # 新建项目
 
-![New / Open Project](Images/New_Project.png "New / Open Project")
+![新建/打开项目](Images/New_Project.png "新建/打开项目")
 
-![File (Menu)](Menu/Images/Menu_File.png "File (Menu)")
+![文件（菜单）](Menu/Images/Menu_File.png "文件（菜单）")
 
 快捷键：<kbd>CTRL</kbd> + <kbd>N</kbd>
 
@@ -35,7 +35,7 @@ AIGC:
 
 # 示例
 
-![Samples](Images/New_Project_Samples.png "Samples")
+![示例](Images/New_Project_Samples.png "示例")
 
 0. 报表（实验性）
 1. WebView2 示例
@@ -66,11 +66,11 @@ AIGC:
 
 如果从未打开过项目，或已移除所有项目，此选项卡将为空白。
 
-![Recent](Images/New_Project_Recent_1.png "Recent")
+![最近](Images/New_Project_Recent_1.png "最近")
 
 将显示最近项目的列表，列表会根据项目数量自动调整大小。
 
-![Recent](Images/New_Project_Recent_2.png "Recent")
+![最近](Images/New_Project_Recent_2.png "最近")
 
 _移除路径_
 

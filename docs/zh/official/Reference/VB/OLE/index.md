@@ -2,831 +2,839 @@
 title: OLE
 parent: VB Package
 permalink: /tB/Packages/VB/OLE/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4ae84249-02ee-45b8-a301-3e364e28c3dd'
+  PropagateID: '4ae84249-02ee-45b8-a301-3e364e28c3dd'
+  ReservedCode1: 'bcff901c-5606-41d9-bdd8-b3a5ded26a7f'
+  ReservedCode2: 'bcff901c-5606-41d9-bdd8-b3a5ded26a7f'
 ---
 
-# OLE class
+# OLE 类
 
-An **OLE** *container* control hosts a linked or embedded OLE Automation object --- typically a Word document, an Excel spreadsheet, or any other registered OLE server --- directly on a form, and lets the user activate and edit the contained object in place via its registered verbs.
+**OLE** *容器*控件在窗体上承载链接或嵌入的OLE Automation对象——通常是Word文档、Excel电子表格或任何其他已注册的OLE服务器——并允许用户通过其注册的动词就地激活和编辑包含的对象。
 
 ::: info
-The OLE container control is a **VB6 compatibility stub** in twinBASIC. Almost every OLE-specific property, method, and event is currently unimplemented (each is flagged below). The inherited base-control members --- positioning, sizing, anchoring, focus, drag, mouse cursor --- do work normally, so a project ported from VB6 still parses and lays out the control on its form, but cannot create, embed, link, paste, save, or activate an actual OLE object through it.
+OLE容器控件在twinBASIC中是**VB6兼容性存根**。几乎所有OLE特有的属性、方法和事件当前均未实现（每个都在下方标注）。继承的基控件成员——定位、大小调整、锚定、焦点、拖动、鼠标光标——可以正常工作，因此从VB6移植的项目仍然可以解析控件并将其布局在窗体上，但无法通过它创建、嵌入、链接、粘贴、保存或激活实际的OLE对象。
 :::
 
-There is no default property. The default-designer event is [**Click**](#click).
+没有默认属性。默认设计器事件为[**Click**](#click)。
 
 ```vb
-' The OLE-specific calls below are not currently functional
-' in twinBASIC; the example is given for reference only.
+' 以下OLE特有调用在twinBASIC中当前不可用
+' 此示例仅供参考。
 Private Sub Form_Load()
-    OLE1.CreateEmbed vbNullString, "Excel.Sheet"   ' [Unimplemented]
+    OLE1.CreateEmbed vbNullString, "Excel.Sheet"   ' [未实现]
 End Sub
 
 Private Sub OLE1_Click()
-    OLE1.DoVerb vbOLEPrimary                       ' [Unimplemented]
+    OLE1.DoVerb vbOLEPrimary                       ' [未实现]
 End Sub
 ```
 
 
-## Linked vs embedded objects
+## 链接与嵌入对象
 
-An OLE container holds either a *linked* object --- a reference to a document on disk that opens in its registered server when activated --- or an *embedded* object whose data is stored inside the host form's data stream. [**CreateLink**](#createlink) creates a linked object from an existing file; [**CreateEmbed**](#createembed) creates a fresh embedded object of a given class. [**OLEType**](#oletype) reports which form the current contents take, and [**OLETypeAllowed**](#oletypeallowed) restricts which forms the container will accept at design or run time.
+OLE容器持有*链接*对象——对磁盘上文档的引用，在激活时以注册的服务器打开——或*嵌入*对象，其数据存储在主机窗体的数据流中。[**CreateLink**](#createlink)从现有文件创建链接对象；[**CreateEmbed**](#createembed)创建给定类的新嵌入对象。[**OLEType**](#oletype)报告当前内容采用哪种形式，[**OLETypeAllowed**](#oletypeallowed)限制容器在设计或运行时接受哪种形式。
 
-[**SourceDoc**](#sourcedoc) and [**SourceItem**](#sourceitem) identify the linked file (and, for partial links, the item within it). [**Class**](#class) holds the ProgID of the embedded server (e.g. `"Word.Document"`, `"Excel.Sheet"`).
+[**SourceDoc**](#sourcedoc)和[**SourceItem**](#sourceitem)标识链接文件（以及对于部分链接，其中的项目）。[**Class**](#class)保存嵌入服务器的ProgID（例如`"Word.Document"`、`"Excel.Sheet"`）。
 
-## Verbs
+## 动词
 
-Each OLE server registers a set of *verbs* --- labelled actions like *Open*, *Edit*, or *Play*. [**FetchVerbs**](#fetchverbs) populates the per-instance verb list, exposed as the indexed [**ObjectVerbs**](#objectverbs), [**ObjectVerbFlags**](#objectverbflags), and [**ObjectVerbsCount**](#objectverbscount) properties. [**DoVerb**](#doverb) executes a verb by index --- passing **vbOLEPrimary** runs the server's primary verb, which is the action invoked by a double-click. [**AutoVerbMenu**](#autoverbmenu) controls whether right-clicking the control automatically pops up the verb menu.
+每个OLE服务器注册一组*动词*——标记的操作，如*打开*、*编辑*或*播放*。[**FetchVerbs**](#fetchverbs)填充每个实例的动词列表，作为索引属性[**ObjectVerbs**](#objectverbs)、[**ObjectVerbFlags**](#objectverbflags)和[**ObjectVerbsCount**](#objectverbscount)暴露。[**DoVerb**](#doverb)按索引执行动词——传递**vbOLEPrimary**运行服务器的主动词，即双击调用的操作。[**AutoVerbMenu**](#autoverbmenu)控制右击控件是否自动弹出动词菜单。
 
-## Activation and display
+## 激活和显示
 
-[**AutoActivate**](#autoactivate) chooses when the embedded object is activated for in-place editing --- manually, on focus, or on a double-click. [**DisplayType**](#displaytype) selects between rendering the object's content directly and rendering a registered icon. [**SizeMode**](#sizemode) chooses how the object's bitmap is fitted into the container (clipped, stretched, auto-sized, or zoomed).
+[**AutoActivate**](#autoactivate)选择嵌入对象何时被激活进行就地编辑——手动、焦点时或双击时。[**DisplayType**](#displaytype)在直接渲染对象内容和渲染注册图标之间选择。[**SizeMode**](#sizemode)选择对象的位图如何适配容器（裁剪、拉伸、自动调整大小或缩放）。
 
-## Updates and storage
+## 更新和存储
 
-A linked object's last-cached presentation can be re-fetched from its server with [**Update**](#update); [**UpdateOptions**](#updateoptions) decides whether updates happen automatically or only on demand. The container can be persisted out of an open file with [**SaveToFile**](#savetofile) (or [**SaveToOle1File**](#savetoole1file) for the legacy OLE1 stream format) and re-loaded with [**ReadFromFile**](#readfromfile), in each case using a Basic file number opened with **Open**. [**InsertObjDlg**](#insertobjdlg) and [**PasteSpecialDlg**](#pastespecialdlg) raise the standard Windows OLE dialogs for picking an object class or a clipboard format.
+链接对象的最后缓存表示可以通过[**Update**](#update)从其服务器重新获取；[**UpdateOptions**](#updateoptions)决定更新是自动还是按需进行。容器可以通过[**SaveToFile**](#savetofile)（或[**SaveToOle1File**](#savetoole1file)用于旧版OLE1流格式）从打开的文件中持久化，并使用[**ReadFromFile**](#readfromfile)重新加载，每种情况都使用以**Open**打开的Basic文件号。[**InsertObjDlg**](#insertobjdlg)和[**PasteSpecialDlg**](#pastespecialdlg)引发用于选择对象类或剪贴板格式的标准Windows OLE对话框。
 
-## Data binding
+## 数据绑定
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the container's contents to a binary field on a [**Data**](/en/official/Reference/VB/Data/) control's recordset, so the embedded object is loaded from and saved back into the row. [**DataChanged**](#datachanged) reports whether the contained object differs from the bound row's stored value.
+设置[**DataSource**](#datasource)和[**DataField**](#datafield)将容器的内容连接到[**Data**](/official/Reference/VB/Data/)控件记录集的二进制字段，使嵌入对象从行中加载并保存回行。[**DataChanged**](#datachanged)报告包含的对象是否与绑定行的存储值不同。
 
-## Properties
+## 属性
 
 ### Action
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **Integer** that, when assigned, performs one of the predefined OLE actions such as *create*, *delete*, *paste*, or *update*. Modern code uses the equivalent named methods ([**CreateEmbed**](#createembed), [**Delete**](#delete), [**Paste**](#paste), [**Update**](#update), …) instead.
+运行时专用的**Integer**，赋值时执行预定义的OLE操作之一，如*创建*、*删除*、*粘贴*或*更新*。现代代码使用等效的命名方法（[**CreateEmbed**](#createembed)、[**Delete**](#delete)、[**Paste**](#paste)、[**Update**](#update)等）代替。
 
 ### Anchors
 
-The set of edges of the parent that the OLE control's corresponding edges follow when the parent resizes. Read-only --- assign individual `.Left`, `.Top`, `.Right`, `.Bottom` flags through the returned **Anchors** object.
+父级的边缘集合，OLE控件的对应边缘在父级调整大小时跟随。只读——通过返回的**Anchors**对象分配单独的`.Left`、`.Top`、`.Right`、`.Bottom`标志。
 
 ### Appearance
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Determines how the container's border is drawn. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+决定容器的边框如何绘制。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。
 
 ### AppIsRunning
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **Boolean**: **True** while the OLE server hosting the embedded object is running. Assigning **True** starts the server; assigning **False** shuts it down.
+运行时专用的**Boolean**：当承载嵌入对象的OLE服务器正在运行时为**True**。赋值**True**启动服务器；赋值**False**关闭它。
 
 ### AutoActivate
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Selects when the embedded object is activated for in-place editing. A member of [**OLEContainerActivateConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerActivateConstants): **vbOLE_ActivateManual**, **vbOLE_ActivateGetFocus**, **vbOLE_ActivateDoubleclick** (default), or **vbOLE_ActivateAuto**.
+选择嵌入对象何时被激活进行就地编辑。[**OLEContainerActivateConstants**](/official/Reference/VBRUN/Constants/OLEContainerActivateConstants)的成员：**vbOLE_ActivateManual**、**vbOLE_ActivateGetFocus**、**vbOLE_ActivateDoubleclick**（默认）或**vbOLE_ActivateAuto**。
 
 ### AutoVerbMenu
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-When **True** (default), right-clicking the container automatically pops up a menu of the contained object's registered verbs. **Boolean**.
+当**True**（默认）时，右击容器自动弹出包含对象注册动词的菜单。**Boolean**。
 
 ### BackColor
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The background colour, as an **OLE_COLOR**. Defaults to the system window-background colour.
+背景颜色，作为**OLE_COLOR**。默认为系统窗口背景颜色。
 
 ### BackStyle
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Selects between an opaque and transparent background ([**BackFillStyleConstants**](/en/official/Reference/VBRUN/Constants/BackFillStyleConstants)): **vbBFTransparent** or **vbBFOpaque** (default).
+在 opaque 和透明背景之间选择（[**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants)）：**vbBFTransparent**或**vbBFOpaque**（默认）。
 
 ### BorderStyle
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Whether the container is drawn with a border. A member of [**ControlBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** or **vbFixedSingleBorder** (default).
+容器是否绘有边框。[**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants)的成员：**vbNoBorder**或**vbFixedSingleBorder**（默认）。
 
 ### CausesValidation
 
-Determines whether the previously focused control's [**Validate**](#validate) event runs before this control receives the focus. **Boolean**, default **True**.
+决定之前焦点控件的[**Validate**](#validate)事件是否在此控件获得焦点之前运行。**Boolean**，默认**True**。
 
 ### Class
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The ProgID of the OLE server class for the contained object --- for example `"Word.Document"` or `"Excel.Sheet"`. **String**. Used together with [**SourceDoc**](#sourcedoc) and [**SourceItem**](#sourceitem) when populating the container at design time, or as the default class for [**InsertObjDlg**](#insertobjdlg).
+包含对象的OLE服务器类的ProgID——例如`"Word.Document"`或`"Excel.Sheet"`。**String**。在设计时填充容器时与[**SourceDoc**](#sourcedoc)和[**SourceItem**](#sourceitem)一起使用，或作为[**InsertObjDlg**](#insertobjdlg)的默认类。
 
 ### Container
 
-The control that hosts this OLE control --- typically the form. Read with **Get**, change with **Set**. Setting **Container** re-parents the control to a different container at run time.
+承载此OLE控件的控件——通常是窗体。使用**Get**读取，使用**Set**更改。设置**Container**在运行时将控件重新父级化到不同的容器。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as an OLE container. Always **vbOLEControl**.
+标识此控件为OLE容器的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbOLEControl**。
 
 ### Data
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **Long** handle to the data block returned for the format named in [**Format**](#format). Used together with the [**ObjectAcceptFormats**](#objectacceptformats) / [**ObjectGetFormats**](#objectgetformats) machinery to round-trip raw OLE data.
+运行时专用的**Long**句柄，指向[**Format**](#format)中命名的格式返回的数据块。与[**ObjectAcceptFormats**](#objectacceptformats) / [**ObjectGetFormats**](#objectgetformats)机制一起使用，以往返原始OLE数据。
 
 ### DataChanged
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **Boolean**: **True** if the bound recordset field has changed since the container last loaded it. Cleared after a successful save.
+运行时专用的**Boolean**：如果绑定的记录集字段自容器上次加载以来已更改则为**True**。成功保存后被清除。
 
 ### DataField
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The name of the binary field, in the recordset of the bound [**DataSource**](#datasource), whose contents are stored and retrieved by the OLE container. **String**.
+在绑定的[**DataSource**](#datasource)的记录集中，由OLE容器存储和检索其内容的二进制字段的名称。**String**。
 
 ### DataSource
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+引用[**Data**](/official/Reference/VB/Data/)控件（或其他**DataSource**提供者），其记录集为[**DataField**](#datafield)提供值。使用**Set**设置。
 
 ### DataText
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **String** alias for transferring text-format data into and out of the contained object's clipboard equivalent.
+运行时专用的**String**别名，用于将文本格式数据传入和传出包含对象的剪贴板等效物。
 
 ### DisplayType
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Whether the container shows the object's content or its registered icon. A member of [**OLEContainerDisplayTypeConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants): **vbOLE_DisplayContent** (default) or **vbOLE_DisplayIcon**.
+容器显示对象内容还是其注册图标。[**OLEContainerDisplayTypeConstants**](/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants)的成员：**vbOLE_DisplayContent**（默认）或**vbOLE_DisplayIcon**。
 
 ### Dock
 
-Where the OLE control is docked within its container. A member of [**DockModeConstants**](/en/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked controls ignore [**Anchors**](#anchors).
+OLE控件在其容器中停靠的位置。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants)的成员：**vbDockNone**（默认）、**vbDockLeft**、**vbDockTop**、**vbDockRight**、**vbDockBottom**或**vbDockFill**。停靠的控件忽略[**Anchors**](#anchors)。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the control is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+在控件被拖放时用作鼠标光标的**StdPicture**（参见[**Drag**](#drag)和[**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/en/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+控件是否应在用户按住鼠标时拖动自身。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants)的成员：**vbManual** (0, 默认——从代码调用[**Drag**](#drag))或**vbAutomatic** (1)。
 
 ### Enabled
 
-Determines whether the control accepts user input. **Boolean**, default **True**.
+决定控件是否接受用户输入。**Boolean**，默认**True**。
 
 ### FileNumber
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **Integer** giving the Basic file number passed to the most recent [**ReadFromFile**](#readfromfile), [**SaveToFile**](#savetofile), or [**SaveToOle1File**](#savetoole1file) call.
+运行时专用的**Integer**，给出最近一次[**ReadFromFile**](#readfromfile)、[**SaveToFile**](#savetofile)或[**SaveToOle1File**](#savetoole1file)调用传递的Basic文件号。
 
 ### Format
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The clipboard format identifier currently associated with the [**Data**](#data) handle. **String**.
+当前与[**Data**](#data)句柄关联的剪贴板格式标识符。**String**。
 
 ### Height
 
-The control's height, in twips by default (or in the container's **ScaleMode** units). **Single**.
+控件的高度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Single**。
 
 ### HelpContextID
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC. Available only when the host build defines `FEATURE_HELP`.
+保留用于VB6兼容性；twinBASIC中当前未实现。仅当主机构建定义了`FEATURE_HELP`时可用。
 :::
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the control has focus.
+标识应用程序帮助文件中主题的**Long**，当用户在控件具有焦点时按**F1**时检索。
 
 ### HostName
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The friendly name the OLE server should display for the host application --- e.g. shown in Word's title bar while editing the embedded document in place. **String**.
+OLE服务器应为宿主应用程序显示的友好名称——例如，在就地编辑嵌入文档时显示在Word的标题栏中。**String**。
 
 ### hWnd
 
-The Win32 window handle for the underlying control, as a **LongPtr**. Read-only. Useful for passing to API functions.
+底层控件的Win32窗口句柄，作为**LongPtr**。只读。适用于传递给API函数。
 
 ### Index
 
-When the control is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当控件是控件数组的一部分时，此实例在数组中从零开始的**Long**索引。在非数组实例上读取**Index**会引发运行时错误343（*Object not an array*）。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the control. **Single**.
+从容器的左边缘到控件左边缘的水平距离。**Single**。
 
 ### LpOleObject
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **LongPtr** giving the raw `IOleObject` interface pointer of the contained object, for passing to native code.
+运行时专用的**LongPtr**，给出包含对象的原始`IOleObject`接口指针，用于传递给原生代码。
 
 ### MiscFlags
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A bit-mask of miscellaneous container behaviours (see [**OLEContainerConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLEMiscFlagMemStorage**, **vbOLEMiscFlagDisableInPlace**). **Long**.
+杂项容器行为的位掩码（参见[**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants)——**vbOLEMiscFlagMemStorage**、**vbOLEMiscFlagDisableInPlace**）。**Long**。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the control.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针位于控件上时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
+当指针位于控件上时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Name
 
-The unique design-time name of the control on its parent form. Read-only at run time.
+控件在其父窗体上的唯一设计时名称。运行时只读。
 
 ### object
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **Object** reference to the OLE Automation interface of the contained object --- the late-bound entry point for scripting it. **Read-only**.
+运行时专用的包含对象OLE Automation接口的**Object**引用——用于后期绑定脚本编写的入口点。**只读**。
 
 ### ObjectAcceptFormats
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-An indexed **String** property listing the clipboard formats that the contained object can accept on a paste. Use [**ObjectAcceptFormatsCount**](#objectacceptformatscount) to bound the index.
+索引**String**属性，列出包含对象在粘贴时可以接受的剪贴板格式。使用[**ObjectAcceptFormatsCount**](#objectacceptformatscount)限定索引范围。
 
 ### ObjectAcceptFormatsCount
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The number of entries in [**ObjectAcceptFormats**](#objectacceptformats). **Integer**.
+[**ObjectAcceptFormats**](#objectacceptformats)中的条目数。**Integer**。
 
 ### ObjectGetFormats
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-An indexed **String** property listing the clipboard formats that the contained object can produce on a copy. Use [**ObjectGetFormatsCount**](#objectgetformatscount) to bound the index.
+索引**String**属性，列出包含对象在复制时可以生成的剪贴板格式。使用[**ObjectGetFormatsCount**](#objectgetformatscount)限定索引范围。
 
 ### ObjectGetFormatsCount
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The number of entries in [**ObjectGetFormats**](#objectgetformats). **Integer**.
+[**ObjectGetFormats**](#objectgetformats)中的条目数。**Integer**。
 
 ### ObjectVerbFlags
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-An indexed **Long** property giving the menu-flag bit-mask for each entry in [**ObjectVerbs**](#objectverbs). The flag values match the Win32 `MF_*` menu constants and indicate whether the verb item is greyed, checked, etc.
+索引**Long**属性，给出[**ObjectVerbs**](#objectverbs)中每个条目的菜单标志位掩码。标志值与Win32 `MF_*`菜单常量匹配，指示动词项是否灰显、选中等等。
 
 ### ObjectVerbs
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-An indexed **String** property listing the names of the verbs registered for the contained object --- populated by [**FetchVerbs**](#fetchverbs). Pass an index to [**DoVerb**](#doverb) to invoke a verb.
+索引**String**属性，列为包含对象注册的动词名称——由[**FetchVerbs**](#fetchverbs)填充。将索引传递给[**DoVerb**](#doverb)以调用动词。
 
 ### ObjectVerbsCount
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The number of entries in [**ObjectVerbs**](#objectverbs). **Long**.
+[**ObjectVerbs**](#objectverbs)中的条目数。**Long**。
 
 ### OLEDropAllowed
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-When **True**, the container accepts OLE objects dragged onto it from outside the application. **Boolean**, default **False**.
+当**True**时，容器接受从应用程序外部拖放到其上的OLE对象。**Boolean**，默认**False**。
 
 ### OLEType
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only **Integer** reporting whether the contained object is currently linked, embedded, or empty (see [**OLEContainerConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLELinked**, **vbOLEEmbedded**, **vbOLEEither**, **vbOLENone**).
+运行时专用的**Integer**，报告包含对象当前是链接的、嵌入的还是空的（参见[**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants)——**vbOLELinked**、**vbOLEEmbedded**、**vbOLEEither**、**vbOLENone**）。
 
 ### OLETypeAllowed
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Restricts which kinds of contained object the container will accept. A member of [**OLEContainerTypesAllowedConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerTypesAllowedConstants): **vbOLE_Linked**, **vbOLE_Embedded**, or **vbOLE_Either** (default).
+限制容器将接受哪种类型的包含对象。[**OLEContainerTypesAllowedConstants**](/official/Reference/VBRUN/Constants/OLEContainerTypesAllowedConstants)的成员：**vbOLE_Linked**、**vbOLE_Embedded**或**vbOLE_Either**（默认）。
 
 ### Parent
 
-A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that contains this control. Read-only.
+引用包含此控件的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）。只读。
 
 ### PasteOK
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only, read-only **Boolean**: **True** if the current clipboard contents are in a format the contained object would accept via [**Paste**](#paste).
+运行时专用只读**Boolean**：当当前剪贴板内容的格式可被包含对象通过[**Paste**](#paste)接受时为**True**。
 
 ### Picture
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A run-time-only, read-only **IPictureDisp** giving the contained object's current presentation as a picture, suitable for printing or copying onto a [**PictureBox**](/en/official/Reference/VB/PictureBox/).
+运行时专用只读**IPictureDisp**，给出包含对象当前的表示作为图片，适合打印或复制到[**PictureBox**](/official/Reference/VB/PictureBox/)上。
 
 ### SizeMode
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-How the contained object's bitmap is fitted into the container. A member of [**OLEContainerSizeModeConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerSizeModeConstants): **vbOLE_SizeClip** (default), **vbOLE_SizeStretch**, **vbOLE_SizeAutoSize**, or **vbOLE_SizeZoom**.
+包含对象的位图如何适配容器。[**OLEContainerSizeModeConstants**](/official/Reference/VBRUN/Constants/OLEContainerSizeModeConstants)的成员：**vbOLE_SizeClip**（默认）、**vbOLE_SizeStretch**、**vbOLE_SizeAutoSize**或**vbOLE_SizeZoom**。
 
 ### SourceDoc
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The full path of the source file used by [**CreateLink**](#createlink) (and the default value for [**InsertObjDlg**](#insertobjdlg)). **String**.
+[**CreateLink**](#createlink)使用的源文件的完整路径（以及[**InsertObjDlg**](#insertobjdlg)的默认值）。**String**。
 
 ### SourceItem
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-The named item within [**SourceDoc**](#sourcedoc) that the link refers to --- for example, an Excel range name. **String**.
+[**SourceDoc**](#sourcedoc)中链接引用的命名项目——例如Excel范围名称。**String**。
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**.
+控件在窗体TAB键导航顺序中的位置。**Long**。
 
 ### TabStop
 
-Whether the user can reach the control by pressing the **TAB** key. **Boolean**, default **True**. A disabled control is skipped regardless of this setting.
+用户是否可以通过按**TAB**键到达控件。**Boolean**，默认**True**。禁用的控件无论此设置如何都会被跳过。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the control. Ignored by the framework.
+应用程序可用于将自定义数据与控件关联的自由格式**String**。框架忽略此属性。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the control. **Single**.
+从容器顶部到控件顶部的垂直距离。**Single**。
 
 ### UpdateOptions
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-How a linked object's cached presentation is refreshed. A member of [**OLEContainerUpdateOptionsConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerUpdateOptionsConstants): **vbOLE_UpdateAutomatic** (default), **vbOLE_UpdateFrozen**, or **vbOLE_UpdateManual**.
+链接对象的缓存表示如何刷新。[**OLEContainerUpdateOptionsConstants**](/official/Reference/VBRUN/Constants/OLEContainerUpdateOptionsConstants)的成员：**vbOLE_UpdateAutomatic**（默认）、**vbOLE_UpdateFrozen**或**vbOLE_UpdateManual**。
 
 ### Verb
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-A **Long** verb index used by the legacy [**Action**](#action) property when performing the *do verb* action. New code should call [**DoVerb**](#doverb) directly.
+旧版[**Action**](#action)属性执行*执行动词*操作时使用的**Long**动词索引。新代码应直接调用[**DoVerb**](#doverb)。
 
 ### Visible
 
-Whether the control is shown. **Boolean**, default **True**.
+控件是否显示。**Boolean**，默认**True**。
 
 ### WhatsThisHelpID
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC. Available only when the host build defines `FEATURE_HELP`.
+保留用于VB6兼容性；twinBASIC中当前未实现。仅当主机构建定义了`FEATURE_HELP`时可用。
 :::
 
-A **Long** identifying a "What's This?" help-pop-up topic in the application's help file. See [**ShowWhatsThis**](#showwhatsthis).
+标识应用程序帮助文件中"What's This?"帮助弹出主题的**Long**。参见[**ShowWhatsThis**](#showwhatsthis)。
 
 ### Width
 
-The control's width. **Single**.
+控件的宽度。**Single**。
 
-## Methods
+## 方法
 
 ### Close
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Closes the contained object, ending the running server session if one is open. The container's data is preserved; only the live editing connection is dropped.
+关闭包含的对象，结束正在运行的服务器会话（如果有）。容器的数据被保留；仅断开实时编辑连接。
 
-Syntax: *object*.**Close**
+语法：*object*.**Close**
 
 ### Copy
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Copies the contained object to the system clipboard.
+将包含的对象复制到系统剪贴板。
 
-Syntax: *object*.**Copy**
+语法：*object*.**Copy**
 
 ### CreateEmbed
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Creates a new embedded object of the given class, optionally pre-filled from a template file.
+创建给定类的新嵌入对象，可选地从模板文件预填充。
 
-Syntax: *object*.**CreateEmbed** *SourceDoc* [, *Class* ]
+语法：*object*.**CreateEmbed** *SourceDoc* [, *Class* ]
 
 *SourceDoc*
-: *required* A **String**. Path of a file to use as a template for the new object, or `vbNullString` to create a blank object.
+: *必需* **String**。用作新对象模板的文件路径，或`vbNullString`创建空白对象。
 
 *Class*
-: *optional* A **Variant** **String** ProgID identifying the OLE server class to instantiate (e.g. `"Word.Document"`). Required when *SourceDoc* is empty.
+: *可选* **Variant** **String** ProgID，标识要实例化的OLE服务器类（例如`"Word.Document"`）。当*SourceDoc*为空时必需。
 
 ### CreateLink
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Creates a linked object that references an existing file on disk.
+创建引用磁盘上现有文件的链接对象。
 
-Syntax: *object*.**CreateLink** *SourceDoc* [, *SourceItem* ]
+语法：*object*.**CreateLink** *SourceDoc* [, *SourceItem* ]
 
 *SourceDoc*
-: *required* A **String** giving the full path of the source file.
+: *必需* 给出源文件完整路径的**String**。
 
 *SourceItem*
-: *optional* A **Variant** **String** identifying a named item within the source file (e.g. an Excel range name) to link to a fragment rather than the whole document.
+: *可选* **Variant** **String**，标识源文件中要链接到片段而非整个文档的命名项目（例如Excel范围名称）。
 
 ### Delete
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Removes the contained object from the container. Releases all resources associated with it.
+从容器中移除包含的对象。释放与其关联的所有资源。
 
-Syntax: *object*.**Delete**
+语法：*object*.**Delete**
 
 ### DoVerb
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Invokes a registered verb on the contained object. The standard verb constants are defined in [**OLEContainerConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLEPrimary** (0), **vbOLEShow** (-1), **vbOLEOpen** (-2), **vbOLEHide** (-3), **vbOLEUIActivate** (-4), **vbOLEInPlaceActivate** (-5), **vbOLEDiscardUndoState** (-6); positive indices refer to the per-server entries in [**ObjectVerbs**](#objectverbs).
+对包含的对象调用已注册的动词。标准动词常量在[**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants)中定义——**vbOLEPrimary** (0)、**vbOLEShow** (-1)、**vbOLEOpen** (-2)、**vbOLEHide** (-3)、**vbOLEUIActivate** (-4)、**vbOLEInPlaceActivate** (-5)、**vbOLEDiscardUndoState** (-6)；正索引引用[**ObjectVerbs**](#objectverbs)中按服务器的条目。
 
-Syntax: *object*.**DoVerb** [ *Verb* ]
+语法：*object*.**DoVerb** [ *Verb* ]
 
 *Verb*
-: *optional* A **Variant** **Long**. Defaults to **vbOLEPrimary** if omitted.
+: *可选* **Variant** **Long**。省略时默认为**vbOLEPrimary**。
 
 ### Drag
 
-Begins, completes, or cancels a manual drag-and-drop operation. Typically called from a [**MouseDown**](#mousedown) handler when [**DragMode**](#dragmode) is **vbManual**.
+开始、完成或取消手动拖放操作。通常在[**DragMode**](#dragmode)为**vbManual**时从[**MouseDown**](#mousedown)处理程序调用。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/en/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants)的成员：**vbCancel** (0)、**vbBeginDrag** (1, 默认)或**vbEndDrag** (2)。
 
 ### FetchVerbs
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Re-reads the verb list from the contained object's server and refreshes [**ObjectVerbs**](#objectverbs), [**ObjectVerbFlags**](#objectverbflags), and [**ObjectVerbsCount**](#objectverbscount).
+从包含对象的服务器重新读取动词列表并刷新[**ObjectVerbs**](#objectverbs)、[**ObjectVerbFlags**](#objectverbflags)和[**ObjectVerbsCount**](#objectverbscount)。
 
-Syntax: *object*.**FetchVerbs**
+语法：*object*.**FetchVerbs**
 
 ### InsertObjDlg
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Displays the standard Windows *Insert Object* dialog so the user can choose between a new embedded object, an existing file (linked or embedded), or an icon.
+显示标准Windows*插入对象*对话框，以便用户可以选择新嵌入对象、现有文件（链接或嵌入）或图标。
 
-Syntax: *object*.**InsertObjDlg**
+语法：*object*.**InsertObjDlg**
 
 ### Move
 
-Repositions and optionally resizes the control in a single call.
+通过一次调用重新定位并可选地调整控件大小。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
 *Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+: *可选* 相应属性的新值。省略的值保持不变。
 
 ### Paste
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Pastes the current clipboard contents into the container, if [**PasteOK**](#pasteok) reports the format is acceptable.
+将当前剪贴板内容粘贴到容器中，前提是[**PasteOK**](#pasteok)报告格式可接受。
 
-Syntax: *object*.**Paste**
+语法：*object*.**Paste**
 
 ### PasteSpecialDlg
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Displays the standard Windows *Paste Special* dialog so the user can choose how the current clipboard contents are pasted (link, embed, or as a specific format).
+显示标准Windows*选择性粘贴*对话框，以便用户可以选择当前剪贴板内容的粘贴方式（链接、嵌入或作为特定格式）。
 
-Syntax: *object*.**PasteSpecialDlg**
+语法：*object*.**PasteSpecialDlg**
 
 ### ReadFromFile
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Reads the container's contents from a Basic-style binary file previously written with [**SaveToFile**](#savetofile).
+从先前用[**SaveToFile**](#savetofile)写入的Basic样式二进制文件中读取容器内容。
 
-Syntax: *object*.**ReadFromFile** *FileNumber*
+语法：*object*.**ReadFromFile** *FileNumber*
 
 *FileNumber*
-: *required* An **Integer**. The file number returned by the **Open** statement, on a stream opened **For Binary**.
+: *必需* **Integer**。**Open**语句返回的文件号，在以**For Binary**打开的流上。
 
 ### SaveToFile
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Writes the container's contents --- including the linked or embedded object's data and any presentation cache --- to a Basic-style binary file in the current OLE2 stream format.
+将容器内容——包括链接或嵌入对象的数据和任何表示缓存——以当前OLE2流格式写入Basic样式二进制文件。
 
-Syntax: *object*.**SaveToFile** *FileNumber*
+语法：*object*.**SaveToFile** *FileNumber*
 
 *FileNumber*
-: *required* An **Integer** opened **For Binary**.
+: *必需* 以**For Binary**打开的**Integer**。
 
 ### SaveToOle1File
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Writes the container's contents in the legacy OLE1 stream format. Provided for round-tripping data files produced by very old applications; new code should use [**SaveToFile**](#savetofile).
+以旧版OLE1流格式写入容器内容。为往返非常旧的应用程序生成的数据文件而提供；新代码应使用[**SaveToFile**](#savetofile)。
 
-Syntax: *object*.**SaveToOle1File** *FileNumber*
+语法：*object*.**SaveToOle1File** *FileNumber*
 
 *FileNumber*
-: *required* An **Integer** opened **For Binary**.
+: *必需* 以**For Binary**打开的**Integer**。
 
 ### SetFocus
 
-Moves the input focus to the control. The control must be both [**Visible**](#visible) and [**Enabled**](#enabled), or run-time error 5 (*Invalid procedure call or argument*) is raised.
+将输入焦点移到控件。控件必须同时[**Visible**](#visible)和[**Enabled**](#enabled)，否则会引发运行时错误5（*Invalid procedure call or argument*）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
-### ShowWhatsThis
+### Show WhatsThis
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC. Available only when the host build defines `FEATURE_HELP`.
+保留用于VB6兼容性；twinBASIC中当前未实现。仅当主机构建定义了`FEATURE_HELP`时可用。
 :::
 
-Displays the topic identified by [**WhatsThisHelpID**](#whatsthishelpid) as a "What's This?" pop-up.
+将以[**WhatsThisHelpID**](#whatsthishelpid)标识的主题显示为"What's This?"弹出窗口。
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### Update
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-For a linked object, retrieves the latest data from the source file and refreshes the cached presentation. For an embedded object whose server is running, asks the server to commit any pending changes back into the container.
+对于链接对象，从源文件检索最新数据并刷新缓存的表示。对于服务器正在运行的嵌入对象，请求服务器将任何待处理的更改提交回容器。
 
-Syntax: *object*.**Update**
+语法：*object*.**Update**
 
 ### ZOrder
 
-Brings the control to the front or back of its sibling stack.
+将控件带到其同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront** (0, 默认)或**vbSendToBack** (1)。
 
-## Events
+## 事件
 
 ### Click
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the user clicks the container with any mouse button. **Default-designer event.**
+当用户用任意鼠标按钮点击容器时引发。**默认设计器事件。**
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the user double-clicks the container. With the default [**AutoActivate**](#autoactivate) setting **vbOLE_ActivateDoubleclick**, this is the same gesture that activates the contained object for in-place editing.
+当用户双击容器时引发。使用默认的[**AutoActivate**](#autoactivate)设置**vbOLE_ActivateDoubleclick**时，这与激活包含对象进行就地编辑的手势相同。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+当手动拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+当手动拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### GotFocus
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the control receives the input focus.
+当控件获得输入焦点时引发。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### Initialize
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised once, after the control's underlying window has been created.
+在控件的底层窗口创建之后引发一次。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### KeyDown
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the user presses any key while the control has focus.
+当控件具有焦点时用户按下任意键引发。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the user types a character that produces an ANSI keystroke.
+当用户输入产生ANSI按键的字符时引发。
 
-Syntax: *object*\_**KeyPress**( *KeyAscii* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyAscii* **As Integer** )
 
 ### KeyUp
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the user releases a key while the control has focus.
+当控件具有焦点时用户释放键引发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### LostFocus
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the control loses the input focus.
+当控件失去输入焦点时引发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### MouseDown
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the user presses any mouse button over the control.
+当用户在控件上按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the cursor moves over the control.
+当光标在控件上移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the user releases a mouse button over the control.
+当用户在控件上释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### ObjectMove
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the contained object asks the container to relocate or resize itself --- typically in response to in-place editing changes.
+当包含对象请求容器重新定位或调整自身大小时引发——通常是响应就地编辑更改。
 
-Syntax: *object*\_**ObjectMove**( *Left* **As Single**, *Top* **As Single**, *Width* **As Single**, *Height* **As Single** )
+语法：*object*\_**ObjectMove**( *Left* **As Single**, *Top* **As Single**, *Width* **As Single**, *Height* **As Single** )
 
 ### Resize
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised when the contained object reports a new natural size --- for example, after an embedded image is replaced with one of different dimensions.
+当包含对象报告新的自然大小时引发——例如，嵌入图像被替换为不同尺寸的图像后。
 
-Syntax: *object*\_**Resize**( *HeightNew* **As Single**, *WidthNew* **As Single** )
+语法：*object*\_**Resize**( *HeightNew* **As Single**, *WidthNew* **As Single** )
 
 ### Updated
 
 ::: info
-Reserved for VB6 compatibility; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中当前未实现。
 :::
 
-Raised after the contained object has been modified, so the host can flag itself as dirty. *Code* is one of the status values in [**OLEContainerConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerConstants): **vbOLEChanged**, **vbOLESaved**, **vbOLEClosed**, or **vbOLERenamed**.
+在包含对象被修改后引发，以便主机可以将自身标记为脏。*Code*是[**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants)中的状态值之一：**vbOLEChanged**、**vbOLESaved**、**vbOLEClosed**或**vbOLERenamed**。
 
-Syntax: *object*\_**Updated**( *Code* **As Integer** )
+语法：*object*\_**Updated**( *Code* **As Integer** )
 
 ### Validate
 
-Raised when the focus is moving to another control whose [**CausesValidation**](#causesvalidation) is **True**. Setting *Cancel* to **True** keeps the focus on this control.
+当焦点移向另一个[**CausesValidation**](#causesvalidation)为**True**的控件时引发。将*Cancel*设置为**True**使焦点保持在此控件上。
 
-Syntax: *object*\_**Validate**( *Cancel* **As Boolean** )
+语法：*object*\_**Validate**( *Cancel* **As Boolean** )
