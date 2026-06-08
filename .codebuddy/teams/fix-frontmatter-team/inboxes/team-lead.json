@@ -1,0 +1,20 @@
+[
+  {
+    "id": "msg-1780961830999-tb4sik",
+    "from": "checker-2",
+    "to": "team-lead",
+    "type": "message",
+    "content": "已完成 VBRUN/DataObject 目录下所有文件的 frontmatter 修复工作。\n\n**修复统计**：共修复 11 个文件\n\n**修复的文件列表**：\n1. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/SetData.md`\n2. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/GetFormatByName.md`\n3. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/GetFormat.md`\n4. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/GetDataByName.md`\n5. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/GetData.md`\n6. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/Files.md`\n7. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/DataObjectFormats.md`\n8. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/DataObjectFormat.md`\n9. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/DataObjectFiles.md`\n10. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/Clear.md`\n11. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/DataObject/AvailableFormats.md`\n\n**修复内容**：\n- 删除了所有文件中重复的 AIGC frontmatter 块（包含 ContentProducer、ContentPropagator 等元数据）\n- 保留了正确的 VitePress frontmatter 块（包含 title、parent、permalink 等配置）\n\n所有文件现在都具有正确的单层 frontmatter 结构。",
+    "timestamp": "2026-06-08T23:37:10.999Z",
+    "read": true
+  },
+  {
+    "id": "msg-1780961848095-eqcfh7",
+    "from": "checker-1",
+    "to": "team-lead",
+    "type": "message",
+    "content": "已完成所有10个文件的多层 frontmatter 修复工作。\n\n**修复结果汇总：**\n\n共修复了 **10 个文件**：\n\n1. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/en/official/Documentation/Permanent-Links.md`\n   - 删除了2个AIGC frontmatter块，保留VitePress frontmatter\n\n2. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/en/official/Reference/twinBASIC-Additions.md`\n   - 删除了1个AIGC frontmatter块，保留VitePress frontmatter\n\n3. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/en/official/Reference/tbIDE/HtmlElement.md`\n   - 删除了4个AIGC frontmatter块，保留VitePress frontmatter\n\n4. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/en/official/Reference/VBA/Interaction/SendKeys.md`\n   - 删除了1个AIGC frontmatter块，保留VitePress frontmatter\n\n5. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Documentation/Pipeline-Stages.md`\n   - 删除了1个AIGC frontmatter块，并清理了VitePress frontmatter中混入的AIGC内容\n\n6. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Documentation/PDF-Generation.md`\n   - 删除了1个AIGC frontmatter块，并清理了VitePress frontmatter中混入的AIGC内容\n\n7. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/PropertyBag/index.md`\n   - 删除了1个AIGC frontmatter块，保留VitePress frontmatter\n\n8. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/index.md`\n   - 删除了1个AIGC frontmatter块，保留VitePress frontmatter\n\n9. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/Hyperlink/index.md`\n   - 删除了1个AIGC frontmatter块，保留VitePress frontmatter\n\n10. `d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn/docs/zh/official/Reference/VBRUN/ErrorContext/index.md`\n    - 删除了1个AIGC frontmatter块，保留VitePress frontmatter\n\n所有文件现在都只包含正确的 VitePress frontmatter（title, parent, nav_order, permalink 等），AIGC 元数据已完全清除。",
+    "timestamp": "2026-06-08T23:37:28.095Z",
+    "read": true
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "name": "fix-frontmatter-team",
+  "leadAgentId": "c8cac2916bad442aada28445f79e4072",
+  "workspacePath": "d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn",
+  "createdAt": "2026-06-08T23:35:42.170Z",
+  "options": {
+    "workspacePath": "d:/code/vi/twinbasic/docs/doc.twinbasic.com.cn",
+    "isAutoTeam": false
+  },
+  "members": [
+    {
+      "memberId": "team-lead@fix-frontmatter-team",
+      "name": "team-lead",
+      "role": "Team Lead - coordinates the team and interacts with the user"
+    },
+    {
+      "memberId": "checker-1@fix-frontmatter-team",
+      "name": "checker-1",
+      "role": "检查组1并修复多层frontmatter"
+    },
+    {
+      "memberId": "checker-2@fix-frontmatter-team",
+      "name": "checker-2",
+      "role": "检查组2并修复多层frontmatter"
+    },
+    {
+      "memberId": "checker-3@fix-frontmatter-team",
+      "name": "checker-3",
+      "role": "检查组3并修复多层frontmatter"
+    },
+    {
+      "memberId": "checker-4@fix-frontmatter-team",
+      "name": "checker-4",
+      "role": "检查组4并修复多层frontmatter"
+    },
+    {
+      "memberId": "checker-5@fix-frontmatter-team",
+      "name": "checker-5",
+      "role": "检查组5并修复多层frontmatter"
+    }
+  ],
+  "isAutoTeam": false
+}
