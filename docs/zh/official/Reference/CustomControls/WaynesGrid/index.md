@@ -1,13 +1,21 @@
----
+﻿---
 title: WaynesGrid
 parent: CustomControls Package
 permalink: /tB/Packages/CustomControls/WaynesGrid/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '97e1c89d-78b1-43d9-af37-6dd69f0443dd'
+  PropagateID: '97e1c89d-78b1-43d9-af37-6dd69f0443dd'
+  ReservedCode1: '1fdd1b0c-6e20-484d-8deb-d8b4f108fef6'
+  ReservedCode2: '1fdd1b0c-6e20-484d-8deb-d8b4f108fef6'
 ---
 
-# WaynesGrid class
-A tabular data display --- a grid of cells with column headers and row headers, resizable columns, optional grid lines, hover and selection highlighting, vertical and horizontal scrolling via the mouse wheel, and full keyboard navigation. The number of rows is set by [**RowCount**](#rowcount); the cells themselves are filled in by handling the [**GetCellText**](#getcelltext) event, which fires once per visible cell as the grid paints.
+# WaynesGrid 类
+表格数据显示——带列标题和行标题的单元格网格、可调整列宽、可选网格线、悬停和选择高亮、通过鼠标滚轮的垂直和水平滚动以及完整的键盘导航。行数由 [**RowCount**](#rowcount) 设置；单元格本身通过处理 [**GetCellText**](#getcelltext) 事件填充，该事件在网格绘制时每个可见单元格触发一次。
 
-The grid has an array of [**Column**](/official/Reference/CustomControls/WaynesGrid/Column) objects giving each column its [**Caption**](/official/Reference/CustomControls/WaynesGrid/Column#caption) and [**Width**](/official/Reference/CustomControls/WaynesGrid/Column#width). Five distinct [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) sub-objects control the appearance of column headers, row headers, normal cells, the hovered cell, the selected cell, and full-column / full-row multi-selection.
+网格有一个 [**Column**](/official/Reference/CustomControls/WaynesGrid/Column) 对象数组，为每列提供 [**Caption**](/official/Reference/CustomControls/WaynesGrid/Column#caption) 和 [**Width**](/official/Reference/CustomControls/WaynesGrid/Column#width)。五个不同的 [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) 子对象控制列标题、行标题、普通单元格、悬停单元格、选中单元格以及全列/全行多选的外观。
 
 ```vb
 Private Sub Form_Load()
@@ -32,7 +40,7 @@ Private Sub Grid1_GetCellText( _
 End Sub
 ```
 
-The six [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) sub-objects ([**ColumnHeaderOptions**](#columnheaderoptions), [**RowHeaderOptions**](#rowheaderoptions), [**CellOptions**](#celloptions), [**HoverCellOptions**](#hovercelloptions), [**SelectedCellOptions**](#selectedcelloptions), [**MultiSelectCellOptions**](#multiselectcelloptions)) control the grid's visual style. A typical setup gives headers a gradient, body cells left-aligned text with a small left-padding indent, and the selected cell a contrasting border:
+六个 [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) 子对象（[**ColumnHeaderOptions**](#columnheaderoptions)、[**RowHeaderOptions**](#rowheaderoptions)、[**CellOptions**](#celloptions)、[**HoverCellOptions**](#hovercelloptions)、[**SelectedCellOptions**](#selectedcelloptions)、[**MultiSelectCellOptions**](#multiselectcelloptions)）控制网格的视觉风格。典型设置为标题行添加渐变、正文单元格左对齐文本附带小幅左内边距缩进、选中单元格添加对比边框：
 
 ```vb
 With Grid1.ColumnHeaderOptions
@@ -54,147 +62,147 @@ With Grid1.SelectedCellOptions
 End With
 ```
 
-## Cell selection
+## 单元格选择
 
-The grid exposes three separate selection states, each tracked through its own pair of properties:
+网格暴露三种独立的选择状态，每种通过自己的属性对跟踪：
 
-- A single hover-highlight cell --- the cell currently under the mouse --- controlled by [**HoverCellOptions**](#hovercelloptions). Internal to the grid; not exposed as a property.
-- A single selected cell, with coordinates in [**SelectedCellX**](#selectedcellx) and [**SelectedCellY**](#selectedcelly), drawn using [**SelectedCellOptions**](#selectedcelloptions).
-- A full-row or full-column multi-selection, indicated by clicking the row header or column header. [**SelectedFullColumnX**](#selectedfullcolumnx) and [**SelectedFullRowY**](#selectedfullrowy) hold the indices; the affected cells render with [**MultiSelectCellOptions**](#multiselectcelloptions).
+- 单个悬停高亮单元格——当前鼠标下的单元格——由 [**HoverCellOptions**](#hovercelloptions) 控制。网格内部使用；不作为属性暴露。
+- 单个选中单元格，坐标在 [**SelectedCellX**](#selectedcellx) 和 [**SelectedCellY**](#selectedcelly) 中，使用 [**SelectedCellOptions**](#selectedcelloptions) 绘制。
+- 通过点击行标题或列标题的全行或全列多选。[**SelectedFullColumnX**](#selectedfullcolumnx) 和 [**SelectedFullRowY**](#selectedfullrowy) 持有索引；受影响的单元格使用 [**MultiSelectCellOptions**](#multiselectcelloptions) 渲染。
 
-A value of `-1` on any of the selection-coordinate properties means "no selection of that kind". Setting a selection programmatically and then asking the grid to repaint moves the focus to the corresponding cell as well, by way of [**CustomControlContext.ChangeFocusedElement**](/official/Reference/CustomControls/Framework/CustomControlContext#changefocusedelement).
+选择坐标属性上的 `-1` 值表示"无此类选择"。以编程方式设置选择然后请求网格重绘会通过 [**CustomControlContext.ChangeFocusedElement**](/official/Reference/CustomControls/Framework/CustomControlContext#changefocusedelement) 将焦点移至相应单元格。
 
-## Properties
+## 属性
 
 ### Anchors
 
-Which sides of the control are attached to its container during resize. [**Anchors**](/official/Reference/CustomControls/Styles/Anchors). Inherited.
+调整大小时控件的哪些边附着到其容器。[**Anchors**](/official/Reference/CustomControls/Styles/Anchors)。继承。
 
 ### CellOptions
 
-The [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) used to draw ordinary, unselected, non-hovered cells.
+用于绘制普通、未选中、未悬停单元格的 [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions)。
 
 ### ColumnHeaderOptions
 
-The [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) used to draw the column-header row (the top row).
+用于绘制列标题行（顶部行）的 [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions)。
 
 ### Columns
 
-The array of [**Column**](/official/Reference/CustomControls/WaynesGrid/Column) objects describing each column. Read-write; `ReDim` to grow / shrink, and assign individual [**Column**](/official/Reference/CustomControls/WaynesGrid/Column) instances into the elements.
+描述每列的 [**Column**](/official/Reference/CustomControls/WaynesGrid/Column) 对象数组。可读写；`ReDim` 增减大小，将单个 [**Column**](/official/Reference/CustomControls/WaynesGrid/Column) 实例赋给元素。
 
 ### Dock
 
-How the control is docked inside its container. A member of [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode). Inherited.
+控件在其容器内的停靠方式。[**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) 的成员。继承。
 
 ### HeaderRowHeight
 
-The height of the column-header row, in pixels (unscaled by DPI). **Long**. Default: 60.
+列标题行的高度（像素，未经 DPI 缩放）。**Long**。默认：60。
 
 ### Height
 
-The control's height in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件的高度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### HorizontalLineOptions
 
-The [**Line**](/official/Reference/CustomControls/Styles/Line) drawn between successive rows. Set its [**StrokeSize**](/official/Reference/CustomControls/Styles/Line#strokesize) to 0 to suppress the horizontal lines.
+连续行之间绘制的 [**Line**](/official/Reference/CustomControls/Styles/Line)。将其 [**StrokeSize**](/official/Reference/CustomControls/Styles/Line#strokesize) 设为 0 可取消水平线。
 
 ### HoverCellOptions
 
-The [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) used to draw the cell currently under the mouse cursor.
+用于绘制当前鼠标光标下单元格的 [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions)。
 
 ### Left
 
-The horizontal offset of the control's left edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件左边缘距其容器的水平偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### MultiSelectCellOptions
 
-The [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) used to draw cells that belong to a full-column or full-row multi-selection.
+用于绘制属于全列或全行多选的单元格的 [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions)。
 
 ### Name
 
-The unique design-time name of the control on its parent form. **String**. Inherited.
+控件在其父窗体上的唯一设计时名称。**String**。继承。
 
 ### ResizerBar
 
-The [**Line**](/official/Reference/CustomControls/Styles/Line) drawn over a column-edge while the user is dragging it to resize. Transparent when not hovered; rendered with the line's fill while the resize is active.
+用户拖动列边缘调整大小时绘制的 [**Line**](/official/Reference/CustomControls/Styles/Line)。未悬停时透明；调整大小激活时以线条的填充渲染。
 
 ### RowCount
 
-The total number of rows in the grid. **Long**. Default: -1 (unbounded --- the grid paints rows forever as the user scrolls).
+网格的总行数。**Long**。默认：-1（无限制——网格在用户滚动时绘制行）。
 
 ### RowHeaderOptions
 
-The [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) used to draw the row-header column (the leftmost column).
+用于绘制行标题列（最左侧列）的 [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions)。
 
 ### RowHeight
 
-The height of every non-header row, in pixels (unscaled by DPI). **Long**. Default: 40.
+每个非标题行的高度（像素，未经 DPI 缩放）。**Long**。默认：40。
 
 ### SelectedCellOptions
 
-The [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions) used to draw the single currently-selected cell at ([**SelectedCellX**](#selectedcellx), [**SelectedCellY**](#selectedcelly)).
+用于绘制 ([**SelectedCellX**](#selectedcellx), [**SelectedCellY**](#selectedcelly)) 处当前选中单元格的 [**CellRenderingOptions**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions)。
 
 ### SelectedCellX
 
-The X (column) index of the currently-selected cell, or -1 if no cell is selected. **Long**. Default: -1.
+当前选中单元格的 X（列）索引，或 -1 表示无选中单元格。**Long**。默认：-1。
 
 ### SelectedCellY
 
-The Y (row) index of the currently-selected cell, or -1 if no cell is selected. **Long**. Default: -1.
+当前选中单元格的 Y（行）索引，或 -1 表示无选中单元格。**Long**。默认：-1。
 
 ### SelectedFullColumnX
 
-The X (column) index of a full-column multi-selection, or -1 if no full column is selected. **Long**. Default: -1.
+全列多选的 X（列）索引，或 -1 表示无全列选中。**Long**。默认：-1。
 
 ### SelectedFullRowY
 
-The Y (row) index of a full-row multi-selection, or -1 if no full row is selected. **Long**. Default: -1.
+全行多选的 Y（行）索引，或 -1 表示无全行选中。**Long**。默认：-1。
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**. Inherited.
+控件在窗体 TAB 键导航顺序中的位置。**Long**。继承。
 
 ### TabStop
 
-Whether the user can reach the control by pressing **TAB**. **Boolean**. Inherited. Default: **True**.
+用户是否可以通过按 **TAB** 到达控件。**Boolean**。继承。默认：**True**。
 
 ### Top
 
-The vertical offset of the control's top edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件上边缘距其容器的垂直偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### VerticalLineOptions
 
-The [**Line**](/official/Reference/CustomControls/Styles/Line) drawn between successive columns. Set its [**StrokeSize**](/official/Reference/CustomControls/Styles/Line#strokesize) to 0 to suppress the vertical lines.
+连续列之间绘制的 [**Line**](/official/Reference/CustomControls/Styles/Line)。将其 [**StrokeSize**](/official/Reference/CustomControls/Styles/Line#strokesize) 设为 0 可取消垂直线。
 
 ### Visible
 
-Whether the control is currently displayed. **Boolean**. Inherited. Default: **True**.
+控件当前是否显示。**Boolean**。继承。默认：**True**。
 
 ### Width
 
-The control's width in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件的宽度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
-## Methods
+## 方法
 
 ### Repaint
 
-Asks the framework to redraw the grid. Equivalent to calling [**CustomControlContext.Repaint**](/official/Reference/CustomControls/Framework/CustomControlContext#repaint) on the control's stored context; exposed as a public method on the grid so an external observer (e.g. the form, after updating the data behind the grid) can trigger a redraw without accessing the framework directly.
+请求框架重绘网格。等同于在控件存储的上下文上调用 [**CustomControlContext.Repaint**](/official/Reference/CustomControls/Framework/CustomControlContext#repaint)；作为网格的公共方法暴露，以便外部观察者（如窗体在更新网格背后的数据后）可以直接触发重绘而无需访问框架。
 
-Syntax: *object*.**Repaint**
+语法：*object*.**Repaint**
 
-## Events
+## 事件
 
 ### GetCellText
 
-Raised once per visible cell as the grid paints, asking the host for the text to display. The default text is `<column-caption><row-index+1>` --- replace *Value* in the handler to show real data.
+网格绘制时每个可见单元格触发一次，向宿主请求要显示的文本。默认文本为 `<列标题><行索引+1>`——在处理程序中替换 *Value* 以显示真实数据。
 
-Syntax: *object*\_**GetCellText**( **ByVal** *X* **As Long**, **ByVal** *Y* **As Long**, **ByRef** *Value* **As String** )
+语法：*object*\_**GetCellText**( **ByVal** *X* **As Long**, **ByVal** *Y* **As Long**, **ByRef** *Value* **As String** )
 
 *X*
-: The column index of the cell being painted.
+: 正在绘制的单元格的列索引。
 
 *Y*
-: The row index of the cell being painted.
+: 正在绘制的单元格的行索引。
 
 *Value*
-: A pre-populated default value; assign to it to override what is displayed.
+: 预填充的默认值；对其赋值以覆盖显示内容。

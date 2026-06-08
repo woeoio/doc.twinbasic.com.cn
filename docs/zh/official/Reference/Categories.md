@@ -1,470 +1,478 @@
 ---
-title: Categories
+title: "分类"
 parent: Reference Section
 nav_order: 1
 permalink: /Reference/Categories
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7b148a2a-21c1-488a-adef-0d776687e46d'
+  PropagateID: '7b148a2a-21c1-488a-adef-0d776687e46d'
+  ReservedCode1: '457962e9-e7ed-40c9-b36b-2984a01310f1'
+  ReservedCode2: '457962e9-e7ed-40c9-b36b-2984a01310f1'
 ---
 
-This chapter lists the global statements and procedures that form the core of the twinBASIC language.
+本章列出了构成twinBASIC语言核心的全局语句和过程。
 
-# Categorical List
+# 分类列表
 
-## Compiler Control
+## 编译器控制
 
-* [Option](/official/Reference/Core/Option) - configure a compiler option
-* [#If ... Then ... Else](/official/Reference/Core/Topic-Preprocessor) - enable or disable compilation of enclosed code
-* [#Const](/official/Reference/Core/Topic-Preprocessor) - define a module-private conditional compiler constant
+* [Option](/official/Reference/Core/Option) - 配置编译器选项
+* [#If ... Then ... Else](/official/Reference/Core/Topic-Preprocessor) - 启用或禁用所包含代码的编译
+* [#Const](/official/Reference/Core/Topic-Preprocessor) - 定义模块私有的条件编译常量
 
-## Declarations and Definitions
+## 声明和定义
 
-* [Class](/official/Reference/Core/Class), [Module](/official/Reference/Core/Module) - define a class or module
-* [Interface](/official/Reference/Core/Interface), [CoClass](/official/Reference/Core/CoClass) - (twinBASIC) define a COM interface or coclass using twinBASIC syntax
-* [Sub](/official/Reference/Core/Sub) - define a procedure
-* [Function](/official/Reference/Core/Function) - define a function
-* [Property](/official/Reference/Core/Property) - define a property
-* [ParamArray](/official/Reference/Core/ParamArray) - declare a procedure's final parameter as a variadic argument list
-* [Enum](/official/Reference/Core/Enum) - define an enumeration type with associated constants
-* [Type](/official/Reference/Core/Type) - declare a user-defined data type (UDT)/a structure
-* [Declare](/official/Reference/Core/Declare) - declare an external/library procedure or function
-* [Event](/official/Reference/Core/Event) - declare an event
-* [Implements](/official/Reference/Core/Implements) - specifies that a class implements a given interface
-* [End](/official/Reference/Core/End) - terminate execution, finish a Function, Sub, Property, or Enum definition, finish a Type declaration; finish a Class or Module, finish an If, Select, or With block
+* [Class](/official/Reference/Core/Class), [Module](/official/Reference/Core/Module) - 定义类或模块
+* [Interface](/official/Reference/Core/Interface), [CoClass](/official/Reference/Core/CoClass) - (twinBASIC) 使用twinBASIC语法定义COM接口或组件类
+* [Sub](/official/Reference/Core/Sub) - 定义过程
+* [Function](/official/Reference/Core/Function) - 定义函数
+* [Property](/official/Reference/Core/Property) - 定义属性
+* [ParamArray](/official/Reference/Core/ParamArray) - 将过程的最后一个参数声明为可变参数列表
+* [Enum](/official/Reference/Core/Enum) - 定义具有关联常量的枚举类型
+* [Type](/official/Reference/Core/Type) - 声明用户自定义数据类型(UDT)/结构体
+* [Declare](/official/Reference/Core/Declare) - 声明外部/库过程或函数
+* [Event](/official/Reference/Core/Event) - 声明事件
+* [Implements](/official/Reference/Core/Implements) - 指定类实现给定接口
+* [End](/official/Reference/Core/End) - 终止执行，结束Function、Sub、Property或Enum定义，结束Type声明，结束Class或Module，结束If、Select或With块
 
-## Flow Control
+## 流程控制
 
-Statements:
+语句：
 
-* [Call](/official/Reference/Core/Call) - invokes a procedure or function
-* [Do ... Loop](/official/Reference/Core/Do-Loop), [For ... Next](/official/Reference/Core/For-Next), [For Each ... Next](/official/Reference/Core/For-Each-Next), [While ... Wend](/official/Reference/Core/While-Wend) - loops
-* [If ... Then ... Else](/official/Reference/Core/If-Then-Else) - execute code conditionally
-* [Continue](/official/Reference/Core/Continue) - skip to the next iteration of the loop
-* [Exit](/official/Reference/Core/Exit) - exit a loop, procedure, function or property
-* [Return](/official/Reference/Core/Return) - return from a **GoSub** subroutine, or (twinBASIC) return a value and exit from a **Function** or **Property Get**
-* [Select Case](/official/Reference/Core/Select-Case) - execute a code block selected by an expression
-* [With](/official/Reference/Core/With) - bring a variable or expression into scope
-* [Goto](/official/Reference/Core/GoTo), [GoSub ... Return](/official/Reference/Core/GoSub-Return) - transfer execution to another location
-* [On ... GoTo](/official/Reference/Core/On-GoTo), [On ... GoSub](/official/Reference/Core/On-GoSub) - transfer execution to a location selected by an expression
-* [Stop](/official/Reference/Core/Stop) - interrupt execution
+* [Call](/official/Reference/Core/Call) - 调用过程或函数
+* [Do ... Loop](/official/Reference/Core/Do-Loop), [For ... Next](/official/Reference/Core/For-Next), [For Each ... Next](/official/Reference/Core/For-Each-Next), [While ... Wend](/official/Reference/Core/While-Wend) - 循环
+* [If ... Then ... Else](/official/Reference/Core/If-Then-Else) - 条件执行代码
+* [Continue](/official/Reference/Core/Continue) - 跳到循环的下一次迭代
+* [Exit](/official/Reference/Core/Exit) - 退出循环、过程、函数或属性
+* [Return](/official/Reference/Core/Return) - 从**GoSub**子程序返回，或(twinBASIC)从**Function**或**Property Get**返回值并退出
+* [Select Case](/official/Reference/Core/Select-Case) - 根据表达式选择执行代码块
+* [With](/official/Reference/Core/With) - 将变量或表达式引入作用域
+* [Goto](/official/Reference/Core/GoTo), [GoSub ... Return](/official/Reference/Core/GoSub-Return) - 将执行转移到另一位置
+* [On ... GoTo](/official/Reference/Core/On-GoTo), [On ... GoSub](/official/Reference/Core/On-GoSub) - 根据表达式选择将执行转移到指定位置
+* [Stop](/official/Reference/Core/Stop) - 中断执行
 
-Inline conditional functions --- expression-level alternatives to the **If...Then...Else** and **Select Case** statements above:
+内联条件函数 --- 上述**If...Then...Else**和**Select Case**语句在表达式级别的替代方案：
 
-* [If](/official/Reference/VBA/Interaction/If) - evaluate an expression and return one of two values; only the chosen branch is evaluated (twinBASIC addition)
-* [IIf](/official/Reference/VBA/Interaction/IIf) - evaluate an expression and return one of two values; both branches are always evaluated
-* [Choose](/official/Reference/VBA/Interaction/Choose) - return one value from a list, selected by 1-based index
-* [Switch](/official/Reference/VBA/Interaction/Switch) - return the value paired with the first **True** condition in a list of (condition, value) pairs
+* [If](/official/Reference/VBA/Interaction/If) - 计算表达式并返回两个值之一；仅计算所选分支(twinBASIC新增)
+* [IIf](/official/Reference/VBA/Interaction/IIf) - 计算表达式并返回两个值之一；两个分支始终都会被计算
+* [Choose](/official/Reference/VBA/Interaction/Choose) - 根据1起始索引从列表中返回一个值
+* [Switch](/official/Reference/VBA/Interaction/Switch) - 在(条件, 值)对列表中返回第一个**True**条件对应的值
 
-See also: 
+另见：
 
-* [End](/official/Reference/Core/End) - terminate execution.
-* [On Error](/official/Reference/Core/On-Error), [Resume](/official/Reference/Core/Resume) - flow control for run-time errors (see [Error Handling](#error-handling))
+* [End](/official/Reference/Core/End) - 终止执行。
+* [On Error](/official/Reference/Core/On-Error), [Resume](/official/Reference/Core/Resume) - 运行时错误的流程控制（参见[错误处理](#error-handling)）
 
-## Error Handling
+## 错误处理
 
-Statements:
+语句：
 
-* [On Error](/official/Reference/Core/On-Error) - specifies what to do when an error occurs
-* [Resume](/official/Reference/Core/Resume) - resumes execution after an error has been caught
-* [Error](/official/Reference/Core/Error) statement - simulates the occurrence of an error (legacy; prefer **Err.Raise**)
+* [On Error](/official/Reference/Core/On-Error) - 指定发生错误时的处理方式
+* [Resume](/official/Reference/Core/Resume) - 在捕获错误后恢复执行
+* [Error](/official/Reference/Core/Error) 语句 - 模拟错误的发生（旧式；建议使用**Err.Raise**）
 
-Procedures:
+过程：
 
-* [Err](/official/Reference/VBA/Information/Err) - returns the **ErrObject** describing the current run-time error state
-* [Erl](/official/Reference/VBA/Information/Erl) - returns the line number where the most recent run-time error occurred
-* [Error$, Error](/official/Reference/VBA/Conversion/Error) function - returns the error message that corresponds to a given error number
-* [CVErr](/official/Reference/VBA/Conversion/CVErr) - wraps a numeric expression in a **Variant** of subtype **Error**
-* [SetThreadGlobalErrorTrap](/official/Reference/VBA/HiddenModule/SetThreadGlobalErrorTrap) - register a callback that fires when an unhandled run-time error escapes the active error handler chain on the calling thread
+* [Err](/official/Reference/VBA/Information/Err) - 返回描述当前运行时错误状态的**ErrObject**
+* [Erl](/official/Reference/VBA/Information/Erl) - 返回最近运行时错误发生的行号
+* [Error$, Error](/official/Reference/VBA/Conversion/Error) 函数 - 返回与给定错误号对应的错误消息
+* [CVErr](/official/Reference/VBA/Conversion/CVErr) - 将数值表达式包装为**Error**子类型的**Variant**
+* [SetThreadGlobalErrorTrap](/official/Reference/VBA/HiddenModule/SetThreadGlobalErrorTrap) - 注册一个回调，当未处理的运行时错误逃逸调用线程上的活动错误处理链时触发
 
-## Variable Declaration
+## 变量声明
 
-Statements:
+语句：
 
-* [Dim](/official/Reference/Core/Dim) - declare a typed scalar or array variable
-* [Const](/official/Reference/Core/Const) - declare a constant
-* [Public](/official/Reference/Core/Public) - declare a public variable in a class or module
-* [Private](/official/Reference/Core/Private) - declare a private variable in a class or module
-* [Protected](/official/Reference/Core/Protected) - (twinBASIC) declare a class member accessible within the class and its derived classes
-* [Static](/official/Reference/Core/Static) - declare a a variable of static duration
+* [Dim](/official/Reference/Core/Dim) - 声明类型化标量或数组变量
+* [Const](/official/Reference/Core/Const) - 声明常量
+* [Public](/official/Reference/Core/Public) - 在类或模块中声明公共变量
+* [Private](/official/Reference/Core/Private) - 在类或模块中声明私有变量
+* [Protected](/official/Reference/Core/Protected) - (twinBASIC) 声明可在类及其派生类中访问的类成员
+* [Static](/official/Reference/Core/Static) - 声明静态持续期的变量
 
-## Variable Assignment and Modification
+## 变量赋值和修改
 
-Statements:
+语句：
 
-- [Let](/official/Reference/Core/Let) - sets the value of a variable
-- [Set](/official/Reference/Core/Set) - changes the object referred by the variable
-- [New](/official/Reference/Core/New) - create a new instance of a class
-- [LSet](/official/Reference/Core/LSet) - assigns a user-defined type, or left-aligns a string
-- [RSet](/official/Reference/Core/RSet) - right-aligns a string
+- [Let](/official/Reference/Core/Let) - 设置变量的值
+- [Set](/official/Reference/Core/Set) - 更改变量引用的对象
+- [New](/official/Reference/Core/New) - 创建类的新实例
+- [LSet](/official/Reference/Core/LSet) - 赋值用户自定义类型，或左对齐字符串
+- [RSet](/official/Reference/Core/RSet) - 右对齐字符串
 
-Operators:
+运算符：
 
-- [Is](/official/Reference/Core/Is) - compares two object references for identity
-- [IsNot](/official/Reference/Core/IsNot) - (twinBASIC) the logical inverse of **Is**
+- [Is](/official/Reference/Core/Is) - 比较两个对象引用是否同一
+- [IsNot](/official/Reference/Core/IsNot) - (twinBASIC) **Is**的逻辑反运算
 
-## Arrays
+## 数组
 
-Statements:
+语句：
 
-* [ReDim](/official/Reference/Core/ReDim) - allocate or change the size of a dynamically-sized array
-* [Erase](/official/Reference/Core/Erase) - fill a fixed-size array with default values, or invalidate a dynamic array
+* [ReDim](/official/Reference/Core/ReDim) - 分配或更改动态数组的大小
+* [Erase](/official/Reference/Core/Erase) - 用默认值填充固定大小数组，或使动态数组无效
 
-Procedures:
+过程：
 
-* [LBound](/official/Reference/VBA/Information/LBound) - smallest valid subscript for an array dimension
-* [UBound](/official/Reference/VBA/Information/UBound) - largest valid subscript for an array dimension
-* [IsArray](/official/Reference/VBA/Information/IsArray) - returns whether a variable is an array
-* [IsArrayInitialized](/official/Reference/VBA/Information/IsArrayInitialized) - returns whether an array has been dimensioned
+* [LBound](/official/Reference/VBA/Information/LBound) - 数组某一维的最小有效下标
+* [UBound](/official/Reference/VBA/Information/UBound) - 数组某一维的最大有效下标
+* [IsArray](/official/Reference/VBA/Information/IsArray) - 返回变量是否为数组
+* [IsArrayInitialized](/official/Reference/VBA/Information/IsArrayInitialized) - 返回数组是否已分配维度
 
-See also:
+另见：
 
-* [Dim](/official/Reference/Core/Dim) - allocate a scalar or array variable
-* [Array](/official/Reference/VBA/Information/Array), [Filter](/official/Reference/VBA/Strings/Filter), [Join](/official/Reference/VBA/Strings/Join), [Split](/official/Reference/VBA/Strings/Split) - array helpers
-* [vbaAryMove](/official/Reference/VBA/HiddenModule/vbaAryMove), [vbaRefVarAry](/official/Reference/VBA/HiddenModule/vbaRefVarAry) - low-level **Variant**-array helpers (see [Memory and Pointers](#memory-and-pointers))
+* [Dim](/official/Reference/Core/Dim) - 分配标量或数组变量
+* [Array](/official/Reference/VBA/Information/Array), [Filter](/official/Reference/VBA/Strings/Filter), [Join](/official/Reference/VBA/Strings/Join), [Split](/official/Reference/VBA/Strings/Split) - 数组辅助函数
+* [vbaAryMove](/official/Reference/VBA/HiddenModule/vbaAryMove), [vbaRefVarAry](/official/Reference/VBA/HiddenModule/vbaRefVarAry) - 底层**Variant**数组辅助函数（参见[内存和指针](#memory-and-pointers)）
 
-## File I/O
+## 文件I/O
 
-Statements:
+语句：
 
-- [Open](/official/Reference/Core/Open), [Close](/official/Reference/Core/Close) - open/close a file for I/O operations
-- [Get](/official/Reference/Core/Get), [Put](/official/Reference/Core/Put) - read/write data from an open random access file
-- [Line Input](/official/Reference/Core/Line-Input), [Print](/official/Reference/Core/Print) - read/write a line from/to an open text file
-- [Input](/official/Reference/Core/Input), [Write](/official/Reference/Core/Write) - read/write data from an open sequential access file
-- [Seek](/official/Reference/Core/Seek) - change the current access position in an open file
-- [Lock](/official/Reference/Core/Lock), [Unlock](/official/Reference/Core/Unlock) - lock/unlock a range of records in an open file
+- [Open](/official/Reference/Core/Open), [Close](/official/Reference/Core/Close) - 打开/关闭文件进行I/O操作
+- [Get](/official/Reference/Core/Get), [Put](/official/Reference/Core/Put) - 从打开的随机访问文件读取/写入数据
+- [Line Input](/official/Reference/Core/Line-Input), [Print](/official/Reference/Core/Print) - 从/向打开的文本文件读取/写入一行
+- [Input](/official/Reference/Core/Input), [Write](/official/Reference/Core/Write) - 从/向打开的顺序访问文件读取/写入数据
+- [Seek](/official/Reference/Core/Seek) - 更改打开文件中的当前访问位置
+- [Lock](/official/Reference/Core/Lock), [Unlock](/official/Reference/Core/Unlock) - 锁定/解锁打开文件中的记录范围
 
-Procedures:
+过程：
 
-* [Reset](/official/Reference/Core/Reset) - close all open disk files
-* [Width](/official/Reference/VBA/FileSystem/Width) - set the limit for line lengths when printing
-* [Input, Input$](/official/Reference/VBA/FileSystem/Input) - read a fixed number of characters from a sequential file
-* [InputB, InputB$](/official/Reference/VBA/FileSystem/InputB) - read a fixed number of bytes from a sequential file
-* [ChDir](/official/Reference/Core/ChDir), [ChDrive](/official/Reference/Core/ChDrive) - change the current working directory and disk drive
-* [MkDir](/official/Reference/Core/MkDir), [RmDir](/official/Reference/Core/RmDir) - create/remove a directory on disk
-* [Name](/official/Reference/Core/Name) - rename a file or directory on disk
-* [SetAttr](/official/Reference/Core/SetAttr) - set attributes of a file on disk
-* [FileCopy](/official/Reference/Core/FileCopy) - copy a file on disk
-* [Kill](/official/Reference/Core/Kill) - delete a file from disk
-* [SavePicture](/official/Reference/Core/SavePicture) - write a `Picture` or `Image` to a disk file
-* [MacID](/official/Reference/VBA/Conversion/MacID) - convert a 4-character Mac file-type code (legacy)
+* [Reset](/official/Reference/Core/Reset) - 关闭所有打开的磁盘文件
+* [Width](/official/Reference/VBA/FileSystem/Width) - 设置打印时的行长度限制
+* [Input, Input$](/official/Reference/VBA/FileSystem/Input) - 从顺序文件读取固定数量的字符
+* [InputB, InputB$](/official/Reference/VBA/FileSystem/InputB) - 从顺序文件读取固定数量的字节
+* [ChDir](/official/Reference/Core/ChDir), [ChDrive](/official/Reference/Core/ChDrive) - 更改当前工作目录和磁盘驱动器
+* [MkDir](/official/Reference/Core/MkDir), [RmDir](/official/Reference/Core/RmDir) - 创建/删除磁盘上的目录
+* [Name](/official/Reference/Core/Name) - 重命名磁盘上的文件或目录
+* [SetAttr](/official/Reference/Core/SetAttr) - 设置磁盘文件的属性
+* [FileCopy](/official/Reference/Core/FileCopy) - 复制磁盘上的文件
+* [Kill](/official/Reference/Core/Kill) - 从磁盘删除文件
+* [SavePicture](/official/Reference/Core/SavePicture) - 将`Picture`或`Image`写入磁盘文件
+* [MacID](/official/Reference/VBA/Conversion/MacID) - 转换4字符Mac文件类型代码（旧式）
 
-## State Management
+## 状态管理
 
-Procedures:
+过程：
 
-* [Load](/official/Reference/Core/Load), [Unload](/official/Reference/Core/Unload) - load/unload a form or control into memory
-* [GetSetting](/official/Reference/VBA/Interaction/GetSetting), [SaveSetting](/official/Reference/VBA/Interaction/SaveSetting) - retrieve/store a string value from/to the system registry
-* [GetAllSettings](/official/Reference/VBA/Interaction/GetAllSettings) - retrieve every key/value pair in a section of an application's registry entry
-* [DeleteSetting](/official/Reference/VBA/Interaction/DeleteSetting) - remove value from the system registry
+* [Load](/official/Reference/Core/Load), [Unload](/official/Reference/Core/Unload) - 将窗体或控件加载/卸载到内存
+* [GetSetting](/official/Reference/VBA/Interaction/GetSetting), [SaveSetting](/official/Reference/VBA/Interaction/SaveSetting) - 从/向系统注册表检索/存储字符串值
+* [GetAllSettings](/official/Reference/VBA/Interaction/GetAllSettings) - 检索应用程序注册表项中某个节的所有键值对
+* [DeleteSetting](/official/Reference/VBA/Interaction/DeleteSetting) - 从系统注册表删除值
 
-## Events
+## 事件
 
-Statements:
+语句：
 
-* [RaiseEvent](/official/Reference/Core/RaiseEvent) - raise an event that may be handled by event handlers
+* [RaiseEvent](/official/Reference/Core/RaiseEvent) - 引发可由事件处理器处理的事件
 
-Procedures:
+过程：
 
-* [RaiseEventByName](/official/Reference/VBA/Interaction/RaiseEventByName) - raise an event by name on an object, taking arguments as a **Variant** array
-* [RaiseEventByName2](/official/Reference/VBA/Interaction/RaiseEventByName2) - raise an event by name on an object, taking a variable-length argument list
-* [RuntimeCreateGetMessageHook](/official/Reference/VBA/HiddenModule/RuntimeCreateGetMessageHook) - create an **IGetMessageHook** for filtering Windows messages destined for a window and (optionally) its descendants
+* [RaiseEventByName](/official/Reference/VBA/Interaction/RaiseEventByName) - 按名称在对象上引发事件，以**Variant**数组形式接收参数
+* [RaiseEventByName2](/official/Reference/VBA/Interaction/RaiseEventByName2) - 按名称在对象上引发事件，以可变长度参数列表接收参数
+* [RuntimeCreateGetMessageHook](/official/Reference/VBA/HiddenModule/RuntimeCreateGetMessageHook) - 创建**IGetMessageHook**用于过滤发往窗口（及其后代，可选）的Windows消息
 
-See also
+另见
 
-* [Event](/official/Reference/Core/Event) - declare an event
-* [IGetMessageHook interface](/official/Reference/VBA/HiddenModule/#igetmessagehook-interface) - subscribe a callback to a Windows message type, then start/stop delivery
+* [Event](/official/Reference/Core/Event) - 声明事件
+* [IGetMessageHook 接口](/official/Reference/VBA/HiddenModule/#igetmessagehook-interface) - 订阅Windows消息类型的回调，然后开始/停止消息传送
 
-## User Dialogs
+## 用户对话框
 
-Procedures:
+过程：
 
-* [MsgBox](/official/Reference/VBA/Interaction/MsgBox) - display a modal message dialog and return the button the user clicked
-* [InputBox](/official/Reference/VBA/Interaction/InputBox) - prompt the user for a line of text and return what was entered
-* [Beep](/official/Reference/VBA/Interaction/Beep) - sound a system beep
+* [MsgBox](/official/Reference/VBA/Interaction/MsgBox) - 显示模态消息对话框并返回用户点击的按钮
+* [InputBox](/official/Reference/VBA/Interaction/InputBox) - 提示用户输入一行文本并返回所输入的内容
+* [Beep](/official/Reference/VBA/Interaction/Beep) - 发出系统提示音
 
-## Process Control
+## 进程控制
 
-Procedures:
+过程：
 
-* [Shell](/official/Reference/VBA/Interaction/Shell) - run another program asynchronously and return its task ID
-* [AppActivate](/official/Reference/VBA/Interaction/AppActivate) - change the focus to, or activate, a named window
-* [SendKeys](/official/Reference/VBA/Interaction/SendKeys) - send keystrokes to the active window
-* [DoEvents](/official/Reference/VBA/Interaction/DoEvents) - yield control to the message loop so pending events can be processed
+* [Shell](/official/Reference/VBA/Interaction/Shell) - 异步运行另一个程序并返回其任务ID
+* [AppActivate](/official/Reference/VBA/Interaction/AppActivate) - 将焦点切换到命名窗口或激活该窗口
+* [SendKeys](/official/Reference/VBA/Interaction/SendKeys) - 向活动窗口发送按键
+* [DoEvents](/official/Reference/VBA/Interaction/DoEvents) - 让出控制权到消息循环，以便处理挂起的事件
 
-## COM and Automation
+## COM和自动化
 
-Procedures:
+过程：
 
-* [CreateObject](/official/Reference/VBA/Interaction/CreateObject) - create a new instance of a COM/Automation object
-* [GetObject](/official/Reference/VBA/Interaction/GetObject) - obtain a reference to an Automation object loaded from a file or already running
-* [CallByName](/official/Reference/VBA/Interaction/CallByName) - invoke a method or property on an object dynamically by name
-* [CallByDispId](/official/Reference/VBA/Interaction/CallByDispId) - invoke a method or property on an object dynamically by IDispatch dispatch ID (twinBASIC addition)
-* [CreateGUID](/official/Reference/VBA/HiddenModule/CreateGUID) - generate a fresh GUID and return it as a registry-formatted string
-* [vbaCastObj](/official/Reference/VBA/HiddenModule/vbaCastObj) - reinterpret an object as another COM interface (a typed `QueryInterface`)
-* [vbaObjSet](/official/Reference/VBA/HiddenModule/vbaObjSet), [vbaObjSetAddref](/official/Reference/VBA/HiddenModule/vbaObjSetAddref) - assign a raw object pointer to an **Object** variable, with or without addref
-* [vbaObjAddref](/official/Reference/VBA/HiddenModule/vbaObjAddref) - increment the COM reference count of the object at a given address
+* [CreateObject](/official/Reference/VBA/Interaction/CreateObject) - 创建COM/Automation对象的新实例
+* [GetObject](/official/Reference/VBA/Interaction/GetObject) - 获取从文件加载或正在运行的Automation对象的引用
+* [CallByName](/official/Reference/VBA/Interaction/CallByName) - 按名称动态调用对象的方法或属性
+* [CallByDispId](/official/Reference/VBA/Interaction/CallByDispId) - 按 IDispatch 调度ID动态调用对象的方法或属性(twinBASIC新增)
+* [CreateGUID](/official/Reference/VBA/HiddenModule/CreateGUID) - 生成新的GUID并以注册表格式字符串返回
+* [vbaCastObj](/official/Reference/VBA/HiddenModule/vbaCastObj) - 将对象重新解释为另一个COM接口（类型化的`QueryInterface`）
+* [vbaObjSet](/official/Reference/VBA/HiddenModule/vbaObjSet), [vbaObjSetAddref](/official/Reference/VBA/HiddenModule/vbaObjSetAddref) - 将原始对象指针赋值给**Object**变量，可选是否增加引用计数
+* [vbaObjAddref](/official/Reference/VBA/HiddenModule/vbaObjAddref) - 递增给定地址处对象的COM引用计数
 
-See also:
+另见：
 
-* [ObjPtr](/official/Reference/VBA/Information/ObjPtr) - return the COM-identity address of an object (see [Memory and Pointers](#memory-and-pointers))
+* [ObjPtr](/official/Reference/VBA/Information/ObjPtr) - 返回对象的COM标识地址（参见[内存和指针](#memory-and-pointers)）
 
-## Command Line and Environment
+## 命令行和环境
 
-Procedures:
+过程：
 
-* [Command$, Command](/official/Reference/VBA/Interaction/Command) - return the command-line arguments passed to the program
-* [Environ$, Environ](/official/Reference/VBA/Interaction/Environ) - return the value of a process environment variable
+* [Command$, Command](/official/Reference/VBA/Interaction/Command) - 返回传递给程序的命令行参数
+* [Environ$, Environ](/official/Reference/VBA/Interaction/Environ) - 返回进程环境变量的值
 
-## Colours
+## 颜色
 
-Procedures:
+过程：
 
-* [RGB](/official/Reference/VBA/Information/RGB) - build an RGB colour value from red, green, and blue components
-* [RGBA](/official/Reference/VBA/Information/RGBA) - build an RGBA colour value from red, green, blue, and alpha components
-* [RGB_R](/official/Reference/VBA/Information/RGB_R), [RGB_G](/official/Reference/VBA/Information/RGB_G), [RGB_B](/official/Reference/VBA/Information/RGB_B), [RGBA_A](/official/Reference/VBA/Information/RGBA_A) - extract individual colour components
-* [QBColor](/official/Reference/VBA/Information/QBColor) - return the RGB colour value for a QuickBASIC colour index
-* [TranslateColor](/official/Reference/VBA/Information/TranslateColor) - translate an OLE colour value to a plain RGB colour value
+* [RGB](/official/Reference/VBA/Information/RGB) - 从红、绿、蓝分量构建RGB颜色值
+* [RGBA](/official/Reference/VBA/Information/RGBA) - 从红、绿、蓝和Alpha分量构建RGBA颜色值
+* [RGB_R](/official/Reference/VBA/Information/RGB_R), [RGB_G](/official/Reference/VBA/Information/RGB_G), [RGB_B](/official/Reference/VBA/Information/RGB_B), [RGBA_A](/official/Reference/VBA/Information/RGBA_A) - 提取各个颜色分量
+* [QBColor](/official/Reference/VBA/Information/QBColor) - 返回QuickBASIC颜色索引对应的RGB颜色值
+* [TranslateColor](/official/Reference/VBA/Information/TranslateColor) - 将OLE颜色值转换为普通RGB颜色值
 
-## Mathematics
+## 数学
 
-Procedures:
+过程：
 
-* [Atn](/official/Reference/VBA/Math/Atn), [Cos](/official/Reference/VBA/Math/Cos), [Sin](/official/Reference/VBA/Math/Sin), [Tan](/official/Reference/VBA/Math/Tan) - trigonometric functions
-* [Sqr](/official/Reference/VBA/Math/Sqr) - take a square root
-* [Exp](/official/Reference/VBA/Math/Exp) - calculate an exponential with base $e$
-* [Log](/official/Reference/VBA/Math/Log) - calculate the natural (base $e$) logarithm of a number
-* [Sgn](/official/Reference/VBA/Math/Sgn) - return the sign of a number
-* [Abs](/official/Reference/VBA/Math/Abs) - returns the absolute value of a number
-* [Round](/official/Reference/VBA/Math/Round) - round the number to a given number of decimal places
-* [Rnd](/official/Reference/VBA/Math/Rnd) - generate a random number in the range [0.0, 1.0)
-* [Randomize](/official/Reference/VBA/Math/Randomize) - seed the random number generator
-* [Partition](/official/Reference/VBA/Interaction/Partition) - return a string label identifying which of a series of equal-width numeric ranges a value falls into (histogram-style bucketing)
+* [Atn](/official/Reference/VBA/Math/Atn), [Cos](/official/Reference/VBA/Math/Cos), [Sin](/official/Reference/VBA/Math/Sin), [Tan](/official/Reference/VBA/Math/Tan) - 三角函数
+* [Sqr](/official/Reference/VBA/Math/Sqr) - 求平方根
+* [Exp](/official/Reference/VBA/Math/Exp) - 计算以$e$为底的指数
+* [Log](/official/Reference/VBA/Math/Log) - 计算数的自然（以$e$为底）对数
+* [Sgn](/official/Reference/VBA/Math/Sgn) - 返回数的符号
+* [Abs](/official/Reference/VBA/Math/Abs) - 返回数的绝对值
+* [Round](/official/Reference/VBA/Math/Round) - 将数舍入到指定小数位数
+* [Rnd](/official/Reference/VBA/Math/Rnd) - 生成[0.0, 1.0)范围内的随机数
+* [Randomize](/official/Reference/VBA/Math/Randomize) - 为随机数生成器设置种子
+* [Partition](/official/Reference/VBA/Interaction/Partition) - 返回字符串标签，标识值落入哪个等宽数值范围（直方图式分桶）
 
-See also:
+另见：
 
-* [Fix](/official/Reference/VBA/Conversion/Fix), [Int](/official/Reference/VBA/Conversion/Int) - extract the integer portion of a number
-* [CInt](/official/Reference/VBA/Conversion/CInt), [CLng](/official/Reference/VBA/Conversion/CLng), [CLngLng](/official/Reference/VBA/Conversion/CLngLng), [CLngPtr](/official/Reference/VBA/Conversion/CLngPtr) - coerce to integer types (rounds half-to-even)
+* [Fix](/official/Reference/VBA/Conversion/Fix), [Int](/official/Reference/VBA/Conversion/Int) - 提取数的整数部分
+* [CInt](/official/Reference/VBA/Conversion/CInt), [CLng](/official/Reference/VBA/Conversion/CLng), [CLngLng](/official/Reference/VBA/Conversion/CLngLng), [CLngPtr](/official/Reference/VBA/Conversion/CLngPtr) - 强制转换为整数类型（四舍五入到偶数）
 
-## Type Conversion
+## 类型转换
 
-Procedures that coerce an expression to a specific type:
+将表达式强制转换为特定类型的过程：
 
-* [CBool](/official/Reference/VBA/Conversion/CBool), [CByte](/official/Reference/VBA/Conversion/CByte), [CCur](/official/Reference/VBA/Conversion/CCur), [CDbl](/official/Reference/VBA/Conversion/CDbl), [CDec](/official/Reference/VBA/Conversion/CDec), [CInt](/official/Reference/VBA/Conversion/CInt), [CLng](/official/Reference/VBA/Conversion/CLng), [CLngLng](/official/Reference/VBA/Conversion/CLngLng), [CLngPtr](/official/Reference/VBA/Conversion/CLngPtr), [CSng](/official/Reference/VBA/Conversion/CSng) - coerce to a specific numeric type
-* [CStr](/official/Reference/VBA/Conversion/CStr) - coerce to **String** (locale-aware; preferred over [Str](/official/Reference/VBA/Conversion/Str))
-* [CVar](/official/Reference/VBA/Conversion/CVar) - coerce to **Variant**
-* [CDate](/official/Reference/VBA/Conversion/CDate) - coerce to **Date**; [CVDate](/official/Reference/VBA/Conversion/CVDate) returns a **Variant** of subtype **Date** (legacy)
-* [CType](/official/Reference/VBA/Conversion/CType) - explicit cast operator with a caller-supplied target type (twinBASIC extension)
+* [CBool](/official/Reference/VBA/Conversion/CBool), [CByte](/official/Reference/VBA/Conversion/CByte), [CCur](/official/Reference/VBA/Conversion/CCur), [CDbl](/official/Reference/VBA/Conversion/CDbl), [CDec](/official/Reference/VBA/Conversion/CDec), [CInt](/official/Reference/VBA/Conversion/CInt), [CLng](/official/Reference/VBA/Conversion/CLng), [CLngLng](/official/Reference/VBA/Conversion/CLngLng), [CLngPtr](/official/Reference/VBA/Conversion/CLngPtr), [CSng](/official/Reference/VBA/Conversion/CSng) - 强制转换为特定数值类型
+* [CStr](/official/Reference/VBA/Conversion/CStr) - 强制转换为**String**（识别区域设置；优于[Str](/official/Reference/VBA/Conversion/Str)）
+* [CVar](/official/Reference/VBA/Conversion/CVar) - 强制转换为**Variant**
+* [CDate](/official/Reference/VBA/Conversion/CDate) - 强制转换为**Date**；[CVDate](/official/Reference/VBA/Conversion/CVDate)返回**Date**子类型的**Variant**（旧式）
+* [CType](/official/Reference/VBA/Conversion/CType) - 具有调用方提供目标类型的显式强制转换运算符(twinBASIC扩展)
 
-Procedures that convert between numbers and strings:
+在数值和字符串之间转换的过程：
 
-* [Hex$, Hex](/official/Reference/VBA/Conversion/Hex) - hexadecimal string representation of a number
-* [Oct$, Oct](/official/Reference/VBA/Conversion/Oct) - octal string representation of a number
-* [Str$, Str](/official/Reference/VBA/Conversion/Str) - decimal string representation of a number
-* [Val](/official/Reference/VBA/Conversion/Val) - parse a string into a **Double**
-* [ValDec](/official/Reference/VBA/Conversion/ValDec) - parse a string into a **Decimal**
+* [Hex$, Hex](/official/Reference/VBA/Conversion/Hex) - 数值的十六进制字符串表示
+* [Oct$, Oct](/official/Reference/VBA/Conversion/Oct) - 数值的八进制字符串表示
+* [Str$, Str](/official/Reference/VBA/Conversion/Str) - 数值的十进制字符串表示
+* [Val](/official/Reference/VBA/Conversion/Val) - 将字符串解析为**Double**
+* [ValDec](/official/Reference/VBA/Conversion/ValDec) - 将字符串解析为**Decimal**
 
-Procedures that extract the integer portion of a number:
+提取数的整数部分的过程：
 
-* [Fix](/official/Reference/VBA/Conversion/Fix) - truncates toward zero
-* [Int](/official/Reference/VBA/Conversion/Int) - rounds toward negative infinity
+* [Fix](/official/Reference/VBA/Conversion/Fix) - 向零截断
+* [Int](/official/Reference/VBA/Conversion/Int) - 向负无穷舍入
 
-Other:
+其他：
 
-* [Nz](/official/Reference/VBA/Conversion/Nz) - replace **Null** with a default value
+* [Nz](/official/Reference/VBA/Conversion/Nz) - 用默认值替换**Null**
 
-See also:
+另见：
 
-* [Format$, Format](/official/Reference/VBA/Strings/Format) - locale-aware number formatting
-* [FormatNumber](/official/Reference/VBA/Strings/FormatNumber), [FormatPercent](/official/Reference/VBA/Strings/FormatPercent), [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency), [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime) - typed formatters
-* [CVErr](/official/Reference/VBA/Conversion/CVErr), [Error$, Error](/official/Reference/VBA/Conversion/Error) function - error helpers (see [Error Handling](#error-handling))
+* [Format$, Format](/official/Reference/VBA/Strings/Format) - 识别区域设置的数值格式化
+* [FormatNumber](/official/Reference/VBA/Strings/FormatNumber), [FormatPercent](/official/Reference/VBA/Strings/FormatPercent), [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency), [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime) - 类型化格式化函数
+* [CVErr](/official/Reference/VBA/Conversion/CVErr), [Error$, Error](/official/Reference/VBA/Conversion/Error) 函数 - 错误辅助函数（参见[错误处理](#error-handling)）
 
-## Type Inspection
+## 类型检查
 
-Procedures that name or identify a variable's subtype:
+命名或标识变量子类型的过程：
 
-* [VarType](/official/Reference/VBA/Information/VarType) - returns the **VbVarType** code identifying a variable's subtype
-* [TypeName](/official/Reference/VBA/Information/TypeName) - returns the name of a variable's data type as a **String**
+* [VarType](/official/Reference/VBA/Information/VarType) - 返回标识变量子类型的**VbVarType**代码
+* [TypeName](/official/Reference/VBA/Information/TypeName) - 以**String**形式返回变量数据类型的名称
 
-Procedures that test a value's state or subtype:
+测试值状态或子类型的过程：
 
-* [IsDate](/official/Reference/VBA/Information/IsDate) - returns whether an expression can be evaluated as a date
-* [IsEmpty](/official/Reference/VBA/Information/IsEmpty) - returns whether a **Variant** is uninitialised
-* [IsError](/official/Reference/VBA/Information/IsError) - returns whether an expression is an error subtype
-* [IsMissing](/official/Reference/VBA/Information/IsMissing) - returns whether an optional argument was supplied
-* [IsNull](/official/Reference/VBA/Information/IsNull) - returns whether a variable contains a **Null** value
-* [IsNumeric](/official/Reference/VBA/Information/IsNumeric) - returns whether an expression can be evaluated as a number
-* [IsObject](/official/Reference/VBA/Information/IsObject) - returns whether a variable refers to an object
+* [IsDate](/official/Reference/VBA/Information/IsDate) - 返回表达式是否可作为日期计算
+* [IsEmpty](/official/Reference/VBA/Information/IsEmpty) - 返回**Variant**是否未初始化
+* [IsError](/official/Reference/VBA/Information/IsError) - 返回表达式是否为错误子类型
+* [IsMissing](/official/Reference/VBA/Information/IsMissing) - 返回可选参数是否已提供
+* [IsNull](/official/Reference/VBA/Information/IsNull) - 返回变量是否包含**Null**值
+* [IsNumeric](/official/Reference/VBA/Information/IsNumeric) - 返回表达式是否可作为数值计算
+* [IsObject](/official/Reference/VBA/Information/IsObject) - 返回变量是否引用对象
 
-See also:
+另见：
 
-* [IsArray](/official/Reference/VBA/Information/IsArray), [IsArrayInitialized](/official/Reference/VBA/Information/IsArrayInitialized) - in [Arrays](#arrays)
+* [IsArray](/official/Reference/VBA/Information/IsArray), [IsArrayInitialized](/official/Reference/VBA/Information/IsArrayInitialized) - 见[数组](#arrays)
 
-## String Handling
+## 字符串处理
 
-Statements that modify strings:
+修改字符串的语句：
 
-* [Mid =](/official/Reference/Core/Mid-equals), [MidB =](/official/Reference/Core/MidB-equals) - assign to or replace characters or wide/narrow string sections
+* [Mid =](/official/Reference/Core/Mid-equals), [MidB =](/official/Reference/Core/MidB-equals) - 赋值或替换字符或宽/窄字符串段
 
-Procedures that check properties of strings:
+检查字符串属性的过程：
 
-* [Len](/official/Reference/VBA/Strings/Len), [LenB](/official/Reference/VBA/Strings/Len) - the length of a string
-* [Asc](/official/Reference/VBA/Strings/Asc), [AscB](/official/Reference/VBA/Strings/Asc), [AscW](/official/Reference/VBA/Strings/Asc) - returns the character code of the first letter in a string
-* [StrComp](/official/Reference/VBA/Strings/StrComp) - compares two strings
-* [InStr$](/official/Reference/VBA/Strings/InStr), [InStrB](/official/Reference/VBA/Strings/InStr), [InStr](/official/Reference/VBA/Strings/InStr) - finds the position of a given substring in a string
+* [Len](/official/Reference/VBA/Strings/Len), [LenB](/official/Reference/VBA/Strings/Len) - 字符串的长度
+* [Asc](/official/Reference/VBA/Strings/Asc), [AscB](/official/Reference/VBA/Strings/Asc), [AscW](/official/Reference/VBA/Strings/Asc) - 返回字符串中第一个字母的字符代码
+* [StrComp](/official/Reference/VBA/Strings/StrComp) - 比较两个字符串
+* [InStr$](/official/Reference/VBA/Strings/InStr), [InStrB](/official/Reference/VBA/Strings/InStr), [InStr](/official/Reference/VBA/Strings/InStr) - 在字符串中查找给定子字符串的位置
 
-Procedures that create strings:
+创建字符串的过程：
 
-* [Chr\$](/official/Reference/VBA/Strings/Chr), [Chr](/official/Reference/VBA/Strings/Chr), [ChrB\$](/official/Reference/VBA/Strings/Chr), [ChrB](/official/Reference/VBA/Strings/Chr), [ChrW\$](/official/Reference/VBA/Strings/Chr), [ChrW](/official/Reference/VBA/Strings/Chr) - returns the character having a given code
-* [Space$](/official/Reference/VBA/Strings/Space), [Space](/official/Reference/VBA/Strings/Space) - return a string of spaces
-* [String\$](/official/Reference/VBA/Strings/String), [String](/official/Reference/VBA/Strings/String) - return a string of specified characters
+* [Chr\$](/official/Reference/VBA/Strings/Chr), [Chr](/official/Reference/VBA/Strings/Chr), [ChrB\$](/official/Reference/VBA/Strings/Chr), [ChrB](/official/Reference/VBA/Strings/Chr), [ChrW\$](/official/Reference/VBA/Strings/Chr), [ChrW](/official/Reference/VBA/Strings/Chr) - 返回具有给定代码的字符
+* [Space$](/official/Reference/VBA/Strings/Space), [Space](/official/Reference/VBA/Strings/Space) - 返回由空格组成的字符串
+* [String\$](/official/Reference/VBA/Strings/String), [String](/official/Reference/VBA/Strings/String) - 返回由指定字符组成的字符串
 
-Procedures that return modified strings:
+返回修改后字符串的过程：
 
-* [Left\$](/official/Reference/VBA/Strings/Left), [Left](/official/Reference/VBA/Strings/Left), [LeftB$](/official/Reference/VBA/Strings/Left), [LeftB](/official/Reference/VBA/Strings/Left) - extract a left substring of a string
-* [Mid$](/official/Reference/VBA/Strings/Mid), [Mid](/official/Reference/VBA/Strings/Mid), [MidB\$](/official/Reference/VBA/Strings/Mid), [MidB](/official/Reference/VBA/Strings/Mid) - extract a substring of a string
-* [Right\$](/official/Reference/VBA/Strings/Right), [Right](/official/Reference/VBA/Strings/Right), [RightB\$](/official/Reference/VBA/Strings/Right), [RightB](/official/Reference/VBA/Strings/Right) - extract a right substring of a string
-* [LTrim\$](/official/Reference/VBA/Strings/LTrim), [LTrim](/official/Reference/VBA/Strings/LTrim), [RTrim\$](/official/Reference/VBA/Strings/RTrim), [RTrim](/official/Reference/VBA/Strings/RTrim) - removes leading/trailing spaces from a string
-* [Trim$](/official/Reference/VBA/Strings/Trim), [Trim](/official/Reference/VBA/Strings/Trim) - removes leading and trailing spaces from a string
-* [StrReverse](/official/Reference/VBA/Strings/StrReverse) - reverses the order of characters of a string
-* [LCase\$](/official/Reference/VBA/Strings/LCase), [LCase](/official/Reference/VBA/Strings/LCase), [UCase\$](/official/Reference/VBA/Strings/UCase), [UCase](/official/Reference/VBA/Strings/UCase) - capitalizes or lowercases a string
-* [StrConv](/official/Reference/VBA/Strings/StrConv) - converts the string to a specified format
-* [Join](/official/Reference/VBA/Strings/Join) - concatenates a string array using a given delimiter
-* [Split](/official/Reference/VBA/Strings/Split) - splits a string into a string array
-* [Replace](/official/Reference/VBA/Strings/Replace) - replaces substrings in a string
-* [Filter](/official/Reference/VBA/Strings/Filter) - filters a string array into a subset according to criteria
-* [InStrRev](/official/Reference/VBA/Strings/InStrRev) - returns the position of a given substring in a string, searching from the end
-* [Format\$](/official/Reference/VBA/Strings/Format), [Format](/official/Reference/VBA/Strings/Format) - format a numeric expression in a specific way
-* [FormatNumber](/official/Reference/VBA/Strings/FormatNumber) - formats an expression as a numeric string
-* [FormatPercent](/official/Reference/VBA/Strings/FormatPercent) - formats an expression as a percent string
+* [Left\$](/official/Reference/VBA/Strings/Left), [Left](/official/Reference/VBA/Strings/Left), [LeftB$](/official/Reference/VBA/Strings/Left), [LeftB](/official/Reference/VBA/Strings/Left) - 提取字符串的左侧子串
+* [Mid$](/official/Reference/VBA/Strings/Mid), [Mid](/official/Reference/VBA/Strings/Mid), [MidB\$](/official/Reference/VBA/Strings/Mid), [MidB](/official/Reference/VBA/Strings/Mid) - 提取字符串的子串
+* [Right\$](/official/Reference/VBA/Strings/Right), [Right](/official/Reference/VBA/Strings/Right), [RightB\$](/official/Reference/VBA/Strings/Right), [RightB](/official/Reference/VBA/Strings/Right) - 提取字符串的右侧子串
+* [LTrim\$](/official/Reference/VBA/Strings/LTrim), [LTrim](/official/Reference/VBA/Strings/LTrim), [RTrim\$](/official/Reference/VBA/Strings/RTrim), [RTrim](/official/Reference/VBA/Strings/RTrim) - 删除字符串的前导/尾随空格
+* [Trim$](/official/Reference/VBA/Strings/Trim), [Trim](/official/Reference/VBA/Strings/Trim) - 删除字符串的前导和尾随空格
+* [StrReverse](/official/Reference/VBA/Strings/StrReverse) - 反转字符串中的字符顺序
+* [LCase\$](/official/Reference/VBA/Strings/LCase), [LCase](/official/Reference/VBA/Strings/LCase), [UCase\$](/official/Reference/VBA/Strings/UCase), [UCase](/official/Reference/VBA/Strings/UCase) - 将字符串转换为大写或小写
+* [StrConv](/official/Reference/VBA/Strings/StrConv) - 将字符串转换为指定格式
+* [Join](/official/Reference/VBA/Strings/Join) - 使用给定分隔符连接字符串数组
+* [Split](/official/Reference/VBA/Strings/Split) - 将字符串拆分为字符串数组
+* [Replace](/official/Reference/VBA/Strings/Replace) - 替换字符串中的子串
+* [Filter](/official/Reference/VBA/Strings/Filter) - 根据条件将字符串数组过滤为子集
+* [InStrRev](/official/Reference/VBA/Strings/InStrRev) - 从末尾搜索，返回子字符串在字符串中的位置
+* [Format\$](/official/Reference/VBA/Strings/Format), [Format](/official/Reference/VBA/Strings/Format) - 以特定方式格式化数值表达式
+* [FormatNumber](/official/Reference/VBA/Strings/FormatNumber) - 将表达式格式化为数值字符串
+* [FormatPercent](/official/Reference/VBA/Strings/FormatPercent) - 将表达式格式化为百分比字符串
 
-Procedures that convert between numbers and strings:
+在数值和字符串之间转换的过程：
 
-* [CStr](/official/Reference/VBA/Conversion/CStr) - coerce a value to **String** (locale-aware)
-* [Hex$, Hex](/official/Reference/VBA/Conversion/Hex) - hexadecimal string representation of a number
-* [Oct$, Oct](/official/Reference/VBA/Conversion/Oct) - octal string representation of a number
-* [Str$, Str](/official/Reference/VBA/Conversion/Str) - decimal string representation of a number
-* [Val](/official/Reference/VBA/Conversion/Val) - parse a string into a **Double**
-* [ValDec](/official/Reference/VBA/Conversion/ValDec) - parse a string into a **Decimal**
+* [CStr](/official/Reference/VBA/Conversion/CStr) - 将值强制转换为**String**（识别区域设置）
+* [Hex$, Hex](/official/Reference/VBA/Conversion/Hex) - 数值的十六进制字符串表示
+* [Oct$, Oct](/official/Reference/VBA/Conversion/Oct) - 数值的八进制字符串表示
+* [Str$, Str](/official/Reference/VBA/Conversion/Str) - 数值的十进制字符串表示
+* [Val](/official/Reference/VBA/Conversion/Val) - 将字符串解析为**Double**
+* [ValDec](/official/Reference/VBA/Conversion/ValDec) - 将字符串解析为**Decimal**
 
-See also:
+另见：
 
-* [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency) - format an expression as a currency string
-* [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime) - formats an expression as a date/time string
+* [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency) - 将表达式格式化为货币字符串
+* [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime) - 将表达式格式化为日期/时间字符串
 
-## Date and Time
+## 日期和时间
 
-Procedures:
+过程：
 
-* [Date](/official/Reference/Core/Date), [Time](/official/Reference/Core/Time) - set the current date and time
-* [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime) - formats an expression as a date/time string
-* [MonthName](/official/Reference/VBA/Strings/MonthName) - returns the name of the specified month
-* [WeekdayName](/official/Reference/VBA/Strings/WeekdayName) - returns the name of the specified day of the week
+* [Date](/official/Reference/Core/Date), [Time](/official/Reference/Core/Time) - 设置当前日期和时间
+* [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime) - 将表达式格式化为日期/时间字符串
+* [MonthName](/official/Reference/VBA/Strings/MonthName) - 返回指定月份的名称
+* [WeekdayName](/official/Reference/VBA/Strings/WeekdayName) - 返回指定星期几的名称
 
-See also:
+另见：
 
-* [CDate](/official/Reference/VBA/Conversion/CDate), [CVDate](/official/Reference/VBA/Conversion/CVDate) - coerce an expression to **Date** or **Variant** (subtype **Date**)
+* [CDate](/official/Reference/VBA/Conversion/CDate), [CVDate](/official/Reference/VBA/Conversion/CVDate) - 将表达式强制转换为**Date**或**Variant**（子类型**Date**）
 
-## Introspection
+## 自省
 
-Procedures:
+过程：
 
-* [CurrentProjectName](/official/Reference/VBA/Compilation/CurrentProjectName) - returns the name of the current project
-* [CurrentComponentName](/official/Reference/VBA/Compilation/CurrentComponentName) - returns the name of the current component (module or class)
-* [CurrentComponentCLSID](/official/Reference/VBA/Compilation/CurrentComponentCLSID) - returns the Class ID (CLSID) of the current class
-* [CurrentProcedureName](/official/Reference/VBA/Compilation/CurrentProcedureName) - returns the name of the procedure in which the function is called
-* [CurrentSourceFile](/official/Reference/VBA/Compilation/CurrentSourceFile) - returns the full path of the current source file
-* [ProcessorArchitecture](/official/Reference/VBA/Compilation/ProcessorArchitecture) - returns the processor architecture of the running application
-* [CompilerVersion](/official/Reference/VBA/Compilation/CompilerVersion) - returns the twinBASIC compiler version number
-* [GetDeclaredTypeProgId](/official/Reference/VBA/HiddenModule/GetDeclaredTypeProgId), [GetDeclaredTypeClsid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeClsid), [GetDeclaredTypeIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeIid), [GetDeclaredTypeEventIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeEventIid) - return the COM ProgID/CLSID/IID/event IID of a declared type, resolved at compile time
-* [GetDeclaredMinEnumValue](/official/Reference/VBA/HiddenModule/GetDeclaredMinEnumValue), [GetDeclaredMaxEnumValue](/official/Reference/VBA/HiddenModule/GetDeclaredMaxEnumValue) - return the smallest/largest value of a declared enumeration, resolved at compile time
+* [CurrentProjectName](/official/Reference/VBA/Compilation/CurrentProjectName) - 返回当前项目的名称
+* [CurrentComponentName](/official/Reference/VBA/Compilation/CurrentComponentName) - 返回当前组件（模块或类）的名称
+* [CurrentComponentCLSID](/official/Reference/VBA/Compilation/CurrentComponentCLSID) - 返回当前类的类ID(CLSID)
+* [CurrentProcedureName](/official/Reference/VBA/Compilation/CurrentProcedureName) - 返回调用该函数所在的过程名称
+* [CurrentSourceFile](/official/Reference/VBA/Compilation/CurrentSourceFile) - 返回当前源文件的完整路径
+* [ProcessorArchitecture](/official/Reference/VBA/Compilation/ProcessorArchitecture) - 返回运行应用程序的处理器架构
+* [CompilerVersion](/official/Reference/VBA/Compilation/CompilerVersion) - 返回twinBASIC编译器版本号
+* [GetDeclaredTypeProgId](/official/Reference/VBA/HiddenModule/GetDeclaredTypeProgId), [GetDeclaredTypeClsid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeClsid), [GetDeclaredTypeIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeIid), [GetDeclaredTypeEventIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeEventIid) - 返回已声明类型的COM ProgID/CLSID/IID/事件IID，在编译时解析
+* [GetDeclaredMinEnumValue](/official/Reference/VBA/HiddenModule/GetDeclaredMinEnumValue), [GetDeclaredMaxEnumValue](/official/Reference/VBA/HiddenModule/GetDeclaredMaxEnumValue) - 返回已声明枚举的最小/最大值，在编译时解析
 
-See also:
+另见：
 
-* [IMEStatus](/official/Reference/VBA/Information/IMEStatus) - the current Input Method Editor mode (East Asian Windows only)
+* [IMEStatus](/official/Reference/VBA/Information/IMEStatus) - 当前输入法编辑器模式（仅限东亚Windows）
 
-## Memory and Pointers
+## 内存和指针
 
-Procedures:
+过程：
 
-* [ObjPtr](/official/Reference/VBA/Information/ObjPtr) - return the COM-identity address of an object
-* [StrPtr](/official/Reference/VBA/Information/StrPtr) - return the address of the underlying buffer of a **String**
-* [VarPtr](/official/Reference/VBA/Information/VarPtr) - return the address of a variable
-* [AllocMem](/official/Reference/VBA/HiddenModule/AllocMem), [FreeMem](/official/Reference/VBA/HiddenModule/FreeMem) - allocate/release native memory blocks
-* [GetMem1](/official/Reference/VBA/HiddenModule/GetMem1), [GetMem2](/official/Reference/VBA/HiddenModule/GetMem2), [GetMem4](/official/Reference/VBA/HiddenModule/GetMem4), [GetMem8](/official/Reference/VBA/HiddenModule/GetMem8), [GetMemPtr](/official/Reference/VBA/HiddenModule/GetMemPtr) - read N bytes from a memory address into a typed variable
-* [PutMem1](/official/Reference/VBA/HiddenModule/PutMem1), [PutMem2](/official/Reference/VBA/HiddenModule/PutMem2), [PutMem4](/official/Reference/VBA/HiddenModule/PutMem4), [PutMem8](/official/Reference/VBA/HiddenModule/PutMem8), [PutMemPtr](/official/Reference/VBA/HiddenModule/PutMemPtr) - write a typed value of N bytes to a memory address
-* [vbaCopyBytes](/official/Reference/VBA/HiddenModule/vbaCopyBytes), [vbaCopyBytesZero](/official/Reference/VBA/HiddenModule/vbaCopyBytesZero) - copy a block of bytes; the *Zero* form clears the source after the copy
+* [ObjPtr](/official/Reference/VBA/Information/ObjPtr) - 返回对象的COM标识地址
+* [StrPtr](/official/Reference/VBA/Information/StrPtr) - 返回**String**底层缓冲区的地址
+* [VarPtr](/official/Reference/VBA/Information/VarPtr) - 返回变量的地址
+* [AllocMem](/official/Reference/VBA/HiddenModule/AllocMem), [FreeMem](/official/Reference/VBA/HiddenModule/FreeMem) - 分配/释放本机内存块
+* [GetMem1](/official/Reference/VBA/HiddenModule/GetMem1), [GetMem2](/official/Reference/VBA/HiddenModule/GetMem2), [GetMem4](/official/Reference/VBA/HiddenModule/GetMem4), [GetMem8](/official/Reference/VBA/HiddenModule/GetMem8), [GetMemPtr](/official/Reference/VBA/HiddenModule/GetMemPtr) - 从内存地址读取N字节到类型化变量
+* [PutMem1](/official/Reference/VBA/HiddenModule/PutMem1), [PutMem2](/official/Reference/VBA/HiddenModule/PutMem2), [PutMem4](/official/Reference/VBA/HiddenModule/PutMem4), [PutMem8](/official/Reference/VBA/HiddenModule/PutMem8), [PutMemPtr](/official/Reference/VBA/HiddenModule/PutMemPtr) - 将N字节的类型化值写入内存地址
+* [vbaCopyBytes](/official/Reference/VBA/HiddenModule/vbaCopyBytes), [vbaCopyBytesZero](/official/Reference/VBA/HiddenModule/vbaCopyBytesZero) - 复制字节块；*Zero*形式在复制后清除源
 
-See also:
+另见：
 
-* [vbaAryMove](/official/Reference/VBA/HiddenModule/vbaAryMove), [vbaRefVarAry](/official/Reference/VBA/HiddenModule/vbaRefVarAry) - low-level **Variant**-array helpers (see [Arrays](#arrays))
-* [vbaObjSet](/official/Reference/VBA/HiddenModule/vbaObjSet), [vbaObjSetAddref](/official/Reference/VBA/HiddenModule/vbaObjSetAddref), [vbaObjAddref](/official/Reference/VBA/HiddenModule/vbaObjAddref) - object-pointer assignment and refcounting (see [COM and Automation](#com-and-automation))
+* [vbaAryMove](/official/Reference/VBA/HiddenModule/vbaAryMove), [vbaRefVarAry](/official/Reference/VBA/HiddenModule/vbaRefVarAry) - 底层**Variant**数组辅助函数（参见[数组](#arrays)）
+* [vbaObjSet](/official/Reference/VBA/HiddenModule/vbaObjSet), [vbaObjSetAddref](/official/Reference/VBA/HiddenModule/vbaObjSetAddref), [vbaObjAddref](/official/Reference/VBA/HiddenModule/vbaObjAddref) - 对象指针赋值和引用计数（参见[COM和自动化](#com-and-automation)）
 
-## Threading and Atomics
+## 线程和原子操作
 
-Procedures:
+过程：
 
-* [InterlockedExchangePointer](/official/Reference/VBA/HiddenModule/InterlockedExchangePointer) - atomically exchange a pointer-sized value
-* [InterlockedCompareExchangePointer](/official/Reference/VBA/HiddenModule/InterlockedCompareExchangePointer) - atomically compare-and-swap a pointer-sized value
-* [InterlockedCompareExchange32](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange32), [InterlockedCompareExchange64](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange64) - atomic 32-bit / 64-bit compare-and-swap
-* [InterlockedIncrement32](/official/Reference/VBA/HiddenModule/InterlockedIncrement32), [InterlockedDecrement32](/official/Reference/VBA/HiddenModule/InterlockedDecrement32) - atomic 32-bit increment / decrement
+* [InterlockedExchangePointer](/official/Reference/VBA/HiddenModule/InterlockedExchangePointer) - 原子交换指针大小的值
+* [InterlockedCompareExchangePointer](/official/Reference/VBA/HiddenModule/InterlockedCompareExchangePointer) - 原子比较并交换指针大小的值
+* [InterlockedCompareExchange32](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange32), [InterlockedCompareExchange64](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange64) - 原子32位/64位比较并交换
+* [InterlockedIncrement32](/official/Reference/VBA/HiddenModule/InterlockedIncrement32), [InterlockedDecrement32](/official/Reference/VBA/HiddenModule/InterlockedDecrement32) - 原子32位递增/递减
 
-See also:
+另见：
 
-* [SetThreadGlobalErrorTrap](/official/Reference/VBA/HiddenModule/SetThreadGlobalErrorTrap) - per-thread error trap (see [Error Handling](#error-handling))
+* [SetThreadGlobalErrorTrap](/official/Reference/VBA/HiddenModule/SetThreadGlobalErrorTrap) - 每线程错误陷阱（参见[错误处理](#error-handling)）
 
-## Inline Assembly and Codegen
+## 内联汇编和代码生成
 
-Procedures:
+过程：
 
-* [Emit](/official/Reference/VBA/HiddenModule/Emit) - inject custom **Byte** values into the codegen of the enclosing procedure
-* [EmitAny](/official/Reference/VBA/HiddenModule/EmitAny) - inject custom typed values into the codegen of the enclosing procedure (size inferred from each value's data type)
-* [StackOffset](/official/Reference/VBA/HiddenModule/StackOffset) - return the stack-frame offset of a variable, resolved at compile time
-* [StackArgsSize](/official/Reference/VBA/HiddenModule/StackArgsSize) - return the total size of stack-passed arguments to the enclosing procedure
-* [UnprotectedAccess](/official/Reference/VBA/HiddenModule/UnprotectedAccess) - return an object reference that bypasses access checks on private members
+* [Emit](/official/Reference/VBA/HiddenModule/Emit) - 将自定义**Byte**值注入到所在过程的代码生成中
+* [EmitAny](/official/Reference/VBA/HiddenModule/EmitAny) - 将自定义类型化值注入到所在过程的代码生成中（大小从每个值的数据类型推断）
+* [StackOffset](/official/Reference/VBA/HiddenModule/StackOffset) - 返回变量的栈帧偏移量，在编译时解析
+* [StackArgsSize](/official/Reference/VBA/HiddenModule/StackArgsSize) - 返回所在过程的栈传参数总大小
+* [UnprotectedAccess](/official/Reference/VBA/HiddenModule/UnprotectedAccess) - 返回绕过私有成员访问检查的对象引用
 
-See also:
+另见：
 
-* [Direct Assembly Insertion](/official/Features/Advanced/Assembly) - the `Naked` modifier and worked examples
+* [直接汇编插入](/official/Features/Advanced/Assembly) - `Naked`修饰符和示例
 
-## Expression Evaluation
+## 表达式求值
 
-Procedures:
+过程：
 
-* [Eval](/official/Reference/VBA/HiddenModule/Eval) - compile and evaluate a twinBASIC expression supplied as a string
+* [Eval](/official/Reference/VBA/HiddenModule/Eval) - 编译并求值以字符串形式提供的twinBASIC表达式
 
-See also:
+另见：
 
-* [ExpressionService module](/official/Reference/VBA/TbExpressionService/) - the underlying engine, when more control over binders or compiled-expression reuse is needed
+* [ExpressionService 模块](/official/Reference/VBA/TbExpressionService/) - 底层引擎，当需要对绑定器或已编译表达式复用进行更多控制时使用
 
-## Financial
+## 财务
 
-Procedures:
+过程：
 
-* [DDB](/official/Reference/VBA/Financial/DDB) - depreciation of an asset via the Double-Declining Balance method
-* [FV](/official/Reference/VBA/Financial/FV) - future value of an investment with constant deposits and interest
-* [Pmt](/official/Reference/VBA/Financial/Pmt) - payment for a loan with constant payments and interest
-* [IPmt](/official/Reference/VBA/Financial/IPmt) - interest payment for a loan with constant payments and interest
-* [PPmt](/official/Reference/VBA/Financial/PPmt) - principal payment for a loan with constant payments and interest 
-* [SYD](/official/Reference/VBA/Financial/SYD) - sum-of-years' digits depreciation of an asset
-* [SLN](/official/Reference/VBA/Financial/SLN) - straight-line depreciation of an asset in one period
-* [PV](/official/Reference/VBA/Financial/PV) - present value of investment
-* [IRR](/official/Reference/VBA/Financial/IRR) - internal rate of return for a series of cash flows
-* [MIRR](/official/Reference/VBA/Financial/MIRR) - modified internal rate of return for a series of cash flow
-* [Rate](/official/Reference/VBA/Financial/Rate) - interest rate per period of an annuity
-* [NPV](/official/Reference/VBA/Financial/NPV) - net present value of an investment
-* [NPer](/official/Reference/VBA/Financial/NPer) - number of periods for an investment with constant deposits and interest
-* [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency) - format an expression as a currency string
+* [DDB](/official/Reference/VBA/Financial/DDB) - 使用双倍余额递减法计算资产折旧
+* [FV](/official/Reference/VBA/Financial/FV) - 具有恒定存款和利率的投资的未来值
+* [Pmt](/official/Reference/VBA/Financial/Pmt) - 具有恒定付款和利率的贷款的每期付款额
+* [IPmt](/official/Reference/VBA/Financial/IPmt) - 具有恒定付款和利率的贷款的每期利息付款额
+* [PPmt](/official/Reference/VBA/Financial/PPmt) - 具有恒定付款和利率的贷款的每期本金付款额
+* [SYD](/official/Reference/VBA/Financial/SYD) - 年数总和法计算资产折旧
+* [SLN](/official/Reference/VBA/Financial/SLN) - 在一个期间内的直线折旧
+* [PV](/official/Reference/VBA/Financial/PV) - 投资的现值
+* [IRR](/official/Reference/VBA/Financial/IRR) - 一系列现金流的内部收益率
+* [MIRR](/official/Reference/VBA/Financial/MIRR) - 一系列现金流的修正内部收益率
+* [Rate](/official/Reference/VBA/Financial/Rate) - 年金的每期利率
+* [NPV](/official/Reference/VBA/Financial/NPV) - 投资的净现值
+* [NPer](/official/Reference/VBA/Financial/NPer) - 具有恒定存款和利率的投资的期数
+* [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency) - 将表达式格式化为货币字符串
 
-## Unit Testing
+## 单元测试
 
-Modules of the [Assert](/official/Reference/Assert/) package:
+[Assert](/official/Reference/Assert/)包的模块：
 
-* [Exact](/official/Reference/Assert/Exact) - strictest comparison semantics; datatypes must match and no implicit conversions happen
-* [Strict](/official/Reference/Assert/Strict) - case-sensitive strings, otherwise standard twinBASIC equality
-* [Permissive](/official/Reference/Assert/Permissive) - case-insensitive strings, otherwise standard twinBASIC equality
+* [Exact](/official/Reference/Assert/Exact) - 最严格的比较语义；数据类型必须匹配且不进行隐式转换
+* [Strict](/official/Reference/Assert/Strict) - 区分大小写的字符串比较，否则使用标准twinBASIC相等比较
+* [Permissive](/official/Reference/Assert/Permissive) - 不区分大小写的字符串比较，否则使用标准twinBASIC相等比较
 
-Each module exposes the same fifteen assertions: **Succeed**, **Fail**, **Inconclusive**, **AreEqual** / **AreNotEqual**, **AreSame** / **AreNotSame**, **IsTrue** / **IsFalse**, **IsNothing** / **IsNotNothing**, **IsNull** / **IsNotNull**, **SequenceEquals** / **NotSequenceEquals**. All are tagged `[DebugOnly(True)]` and compile out of release builds.
+每个模块公开相同的十五个断言：**Succeed**、**Fail**、**Inconclusive**、**AreEqual** / **AreNotEqual**、**AreSame** / **AreNotSame**、**IsTrue** / **IsFalse**、**IsNothing** / **IsNotNothing**、**IsNull** / **IsNotNull**、**SequenceEquals** / **NotSequenceEquals**。所有断言均标记`[DebugOnly(True)]`，在发布版本中不编译。
 
-## Deprecated
+## 已弃用
 
-Statements:
+语句：
 
-* [DefBool, DefByte, DefInt, DefLng, DefCur, DefSng, DefDbl, DefDec, DefDate, DefStr, DefObj, DefVar](/official/Reference/Core/Deftype) - used to give implicit types to single-letter variables
+* [DefBool, DefByte, DefInt, DefLng, DefCur, DefSng, DefDbl, DefDec, DefDate, DefStr, DefObj, DefVar](/official/Reference/Core/Deftype) - 用于为单字母变量赋予隐式类型

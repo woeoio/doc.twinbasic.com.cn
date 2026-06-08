@@ -1,13 +1,21 @@
----
+﻿---
 title: CustomFormContext
 parent: Framework
 permalink: /tB/Packages/CustomControls/Framework/CustomFormContext
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '8d221999-ab78-475a-a980-a2a395eddbb1'
+  PropagateID: '8d221999-ab78-475a-a980-a2a395eddbb1'
+  ReservedCode1: '57dc31ee-627b-452a-9820-90b539b40e06'
+  ReservedCode2: '57dc31ee-627b-452a-9820-90b539b40e06'
 ---
 
-# CustomFormContext class
-The form-class counterpart to [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext). Extends the base context with **Show** and **Close** --- the operations a top-level form needs that an embedded control does not.
+# CustomFormContext 类
+[**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext) 的窗体类对应类。扩展了基上下文的 **Show** 和 **Close**——顶级窗体所需而嵌入控件不需要的操作。
 
-[**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) receives its context as a [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext) (because it implements [**ICustomControl**](/official/Reference/CustomControls/Framework/ICustomControl)) and casts it to **CustomFormContext** internally so that it can call **Show** from its own **Show** method and **Close** from its **Close** method.
+[**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) 作为 [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext) 接收其上下文（因为它实现了 [**ICustomControl**](/official/Reference/CustomControls/Framework/ICustomControl)），并在内部转换为 **CustomFormContext**，以便从自己的 **Show** 方法调用 **Show**，从 **Close** 方法调用 **Close**。
 
 ```vb
 Private Sub OnInitialize(ByVal Ctx As CustomControls.CustomControlContext) _
@@ -17,20 +25,20 @@ Private Sub OnInitialize(ByVal Ctx As CustomControls.CustomControlContext) _
 End Sub
 ```
 
-## Inherited
+## 继承
 
-A **CustomFormContext** includes every member from [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext) --- [**ChangeFocusedElement**](/official/Reference/CustomControls/Framework/CustomControlContext#changefocusedelement), [**CreateTimer**](/official/Reference/CustomControls/Framework/CustomControlContext#createtimer), [**GetSerializer**](/official/Reference/CustomControls/Framework/CustomControlContext#getserializer), and [**Repaint**](/official/Reference/CustomControls/Framework/CustomControlContext#repaint) --- and adds the two form-specific members below.
+**CustomFormContext** 包含 [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext) 的每个成员——[**ChangeFocusedElement**](/official/Reference/CustomControls/Framework/CustomControlContext#changefocusedelement)、[**CreateTimer**](/official/Reference/CustomControls/Framework/CustomControlContext#createtimer)、[**GetSerializer**](/official/Reference/CustomControls/Framework/CustomControlContext#getserializer) 和 [**Repaint**](/official/Reference/CustomControls/Framework/CustomControlContext#repaint)——并添加以下两个窗体专用成员。
 
-## Methods
+## 方法
 
 ### Close
 
-Closes the underlying window. Equivalent to the user clicking the title-bar close button. Application code typically calls [**WaynesForm.Close**](/official/Reference/CustomControls/WaynesForm/#close), which in turn calls into this method.
+关闭底层窗口。等同于用户点击标题栏关闭按钮。应用程序代码通常调用 [**WaynesForm.Close**](/official/Reference/CustomControls/WaynesForm/#close)，后者再调用此方法。
 
-Syntax: *object*.**Close** ( )
+语法：*object*.**Close** ( )
 
 ### Show
 
-Shows the underlying window. Application code typically calls [**WaynesForm.Show**](/official/Reference/CustomControls/WaynesForm/#show), which in turn calls into this method.
+显示底层窗口。应用程序代码通常调用 [**WaynesForm.Show**](/official/Reference/CustomControls/WaynesForm/#show)，后者再调用此方法。
 
-Syntax: *object*.**Show** ( )
+语法：*object*.**Show** ( )

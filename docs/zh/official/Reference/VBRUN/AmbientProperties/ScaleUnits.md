@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd05702b1-4cd3-4067-a979-adf7b1aff51a'
+  PropagateID: 'd05702b1-4cd3-4067-a979-adf7b1aff51a'
+  ReservedCode1: 'b0d15769-ad23-4c59-b9bf-786a1782af3c'
+  ReservedCode2: 'b0d15769-ad23-4c59-b9bf-786a1782af3c'
+---
+
 ---
 title: ScaleUnits
 parent: AmbientProperties
@@ -5,18 +16,18 @@ permalink: /tB/Packages/VBRUN/AmbientProperties/ScaleUnits
 ---
 # ScaleUnits
 
-Returns a localised name for the unit of measure the container uses to size itself, as a **String**. Read-only.
+返回容器用于自身尺寸的度量单位的本地化名称，类型为**String**。只读。
 
-Syntax: *object*.**ScaleUnits**
+语法：*object*.**ScaleUnits**
 
 *object*
-: *required* An object expression that evaluates to an **AmbientProperties** object.
+: *必需* 求值为**AmbientProperties**对象的对象表达式。
 
-Common values include `"Twip"`, `"Pixel"`, `"Inch"`, `"Centimeter"`, `"Millimeter"`, `"Point"`, and `"Character"`, but the container is free to return any string and to localise it for the current language. The value is a hint for display purposes --- for example, in a status bar or a property sheet --- and not a fixed enumeration that should be parsed.
+常见值包括`"Twip"`、`"Pixel"`、`"Inch"`、`"Centimeter"`、`"Millimeter"`、`"Point"`和`"Character"`，但容器可自由返回任何字符串并针对当前语言进行本地化。此值为显示用途的提示——例如在状态栏或属性表中——而非应被解析的固定枚举。
 
-### Example
+### 示例
 
-This example responds to a **ScaleUnits** change and updates a label in the control's property sheet.
+此示例响应**ScaleUnits**更改并更新控件属性表中的标签。
 
 ```vb
 Private Sub UserControl_AmbientChanged(PropertyName As String)
@@ -27,7 +38,7 @@ Private Sub UserControl_AmbientChanged(PropertyName As String)
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [LocaleID](/official/Reference/VBRUN/AmbientProperties/LocaleID) property
-- [TextAlign](/official/Reference/VBRUN/AmbientProperties/TextAlign) property
+- [LocaleID](/official/Reference/VBRUN/AmbientProperties/LocaleID) 属性
+- [TextAlign](/official/Reference/VBRUN/AmbientProperties/TextAlign) 属性

@@ -2,29 +2,38 @@
 title: RaiseEvent
 parent: Statements
 permalink: /tB/Core/RaiseEvent
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '067b6699-9e39-4e56-923c-b4aee0d80498'
+  PropagateID: '067b6699-9e39-4e56-923c-b4aee0d80498'
+  ReservedCode1: '6d6f7ca0-1b12-4b42-bc57-4d326ec9ed38'
+  ReservedCode2: '6d6f7ca0-1b12-4b42-bc57-4d326ec9ed38'
 ---
+
 # RaiseEvent
 
-Fires an event declared at the module level within a class, form, or document.
+在类、窗体或文档中触发在模块级声明的事件。
 
-Syntax:
+语法：
 > **RaiseEvent** *eventname* [ **(** *argumentlist* **)** ]
 
 *eventname*
-: Name of the event to fire. Must be the name of an [**Event**](/official/Reference/Core/Event) declared in the same module.
+: 要触发的事件名称。必须是在同一模块中声明的[**Event**](/official/Reference/Core/Event)的名称。
 
 *argumentlist*
-: *optional* Comma-delimited list of variables, arrays, or expressions to pass as event arguments. The *argumentlist* must be enclosed by parentheses. If the event has no arguments, the parentheses must be omitted.
+: *可选* 以逗号分隔的变量、数组或表达式列表，作为事件参数传递。*argumentlist*必须用括号括起。如果事件没有参数，则必须省略括号。
 
-If the event has not been declared within the module in which it is raised, an error occurs. If the event has no arguments, including empty parentheses in the **RaiseEvent** invocation causes an error.
+如果事件未在引发它的模块中声明，则产生错误。如果事件没有参数，在**RaiseEvent**调用中包含空括号会导致错误。
 
-**RaiseEvent** cannot fire events that are not explicitly declared in the module. For example, even if a form has a built-in **Click** event, **RaiseEvent** cannot fire it. Declaring a **Click** event in the form module shadows the form's own **Click** event.
+**RaiseEvent**不能触发未在模块中显式声明的事件。例如，即使窗体有内置的**Click**事件，**RaiseEvent**也不能触发它。在窗体模块中声明**Click**事件会遮蔽窗体自身的**Click**事件。
 
-Event firing is done in the order that connections were established. Because events can have **ByRef** parameters, a process that connects late may receive parameters that have been changed by an earlier event handler.
+事件触发按连接建立的顺序进行。因为事件可以有**ByRef**参数，较晚连接的进程可能接收到已被先前事件处理程序更改的参数。
 
-### Example
+### 示例
 
-The following fragment declares an event at the module level of a class module and raises it from a procedure:
+以下代码片段在类模块的模块级声明一个事件，并从过程中引发它：
 
 ```vb
 ' In a class module:
@@ -35,9 +44,9 @@ Sub Demo()
 End Sub
 ```
 
-A more complete example showing event source/sink wiring. The class that raises an event is the event source, and the classes that handle the event are the sinks. An event source can have multiple sinks; when the source raises the event, every sink receives it.
+一个更完整的示例展示事件源/接收器的连接。引发事件的类是事件源，处理事件的类是接收器。一个事件源可以有多个接收器；当源引发事件时，每个接收器都会收到。
 
-The source class declares two events and raises them from a worker procedure:
+源类声明两个事件并从工作过程中引发它们：
 
 ```vb
 Class TimerState
@@ -63,7 +72,7 @@ Class TimerState
 End Class
 ```
 
-A sink subscribes by using a `WithEvents` field and supplying handler procedures named `<field>_<EventName>`:
+接收器通过使用`WithEvents`字段并提供名为`<field>_<EventName>`的处理程序过程来订阅：
 
 ```vb
 Class Form1
@@ -88,8 +97,8 @@ Class Form1
 End Class
 ```
 
-### See Also
+### 另请参阅
 
-- [**Event** statement](/official/Reference/Core/Event)
-- [**Class** statement](/official/Reference/Core/Class)
-- [**Implements** statement](/official/Reference/Core/Implements)
+- [**Event** 语句](/official/Reference/Core/Event)
+- [**Class** 语句](/official/Reference/Core/Class)
+- [**Implements** 语句](/official/Reference/Core/Implements)

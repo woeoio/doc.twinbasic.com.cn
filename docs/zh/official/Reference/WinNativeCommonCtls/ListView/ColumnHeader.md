@@ -2,12 +2,21 @@
 title: ColumnHeader
 parent: ListView
 permalink: /tB/Packages/WinNativeCommonCtls/ListView/ColumnHeader
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '296645be-63ff-4186-975f-23ded6e4a9c1'
+  PropagateID: '296645be-63ff-4186-975f-23ded6e4a9c1'
+  ReservedCode1: '5049dba1-4387-4e19-a2ec-e580f2c3c06c'
+  ReservedCode2: '5049dba1-4387-4e19-a2ec-e580f2c3c06c'
 ---
 
-# ColumnHeader class
-A **ColumnHeader** represents a single column in a [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) running in **lvwReport** view. Returned from [**ColumnHeaders.Add**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders#add) and from [**ColumnHeaders.Item**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders#item).
+# ColumnHeader 类
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ColumnHeader** instances through the parent [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/)'s [**ColumnHeaders**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) collection.
+**ColumnHeader** 表示在 **lvwReport** 视图中运行的 [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 中的单个列。从 [**ColumnHeaders.Add**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders#add) 和 [**ColumnHeaders.Item**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders#item) 返回。
+
+该类标记为 `[COMCreatable(False)]` --- 用户代码通过父级 [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 的 [**ColumnHeaders**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) 集合访问 **ColumnHeader** 实例。
 
 ```vb
 With ListView1.ColumnHeaders
@@ -17,67 +26,67 @@ With ListView1.ColumnHeaders
 End With
 ```
 
-Properties
+属性
 ----------
 
 ### Alignment
 
-The horizontal alignment of the column's text. A member of [**ListColumnAlignmentConstants**](#listcolumnalignmentconstants). Default: **lvwColumnLeft**.
+列文本的水平对齐方式。[**ListColumnAlignmentConstants**](#listcolumnalignmentconstants) 的成员。默认：**lvwColumnLeft**。
 
 ::: info
-The first column in a ListView must be left-aligned. Attempting to add a non-left-aligned column at position 1 raises run-time error 5.
+ListView 中的第一列必须左对齐。尝试在位置1添加非左对齐的列会引发运行时错误 5。
 :::
 
 ### Icon
 
-The icon rendered in the header. **Variant** --- either a 1-based **Long** index into [**ListView.ColumnHeaderIcons**](/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons), or a **String** key. Assignment validates against the bound image list.
+在标题中渲染的图标。**Variant** --- 可以是基于1的 **Long** 索引指向 [**ListView.ColumnHeaderIcons**](/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons)，或 **String** 键。赋值对照绑定图像列表验证。
 
 ### Index
 
-The 1-based position of the column in the parent collection. **Long**, read-only. Attempting to assign raises run-time error 383.
+此列在父集合中基于1的位置。**Long**，只读。尝试赋值引发运行时错误 383。
 
 ### Key
 
-The string key the column was added under. **String**, read/write.
+此列添加时的字符串键。**String**，读/写。
 
 ### Left
 
-The column's horizontal pixel position in the listview, computed as the sum of preceding columns' widths. **Single**, read-only.
+列在列表视图中的水平像素位置，计算为前面列宽度之和。**Single**，只读。
 
 ### Position
 
-The column's visual position. **Long**, read/write. Distinct from [**Index**](#index) --- when [**ListView.AllowColumnReorder**](/official/Reference/WinNativeCommonCtls/ListView/#allowcolumnreorder) is **True**, the user can drag columns to reorder them, in which case **Index** stays fixed but **Position** changes.
+列的视觉位置。**Long**，读/写。与 [**Index**](#index) 不同 --- 当 [**ListView.AllowColumnReorder**](/official/Reference/WinNativeCommonCtls/ListView/#allowcolumnreorder) 为 **True** 时，用户可拖动列重新排序，此时 **Index** 保持不变但 **Position** 改变。
 
-Assigning a value outside `1..Count` raises run-time error 380.
+赋值超出 `1..Count` 范围引发运行时错误 380。
 
 ### SubItemIndex
 
-The 0-based sub-item index this column displays. **Long**, read-only. Maps the column to a [**ListItem.SubItems**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#subitemsindex)(*index*) value. Returns `0` for the first column (which shows [**ListItem.Text**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#text)).
+此列显示的基于0的子项索引。**Long**，只读。将列映射到 [**ListItem.SubItems**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#subitemsindex)(*index*) 值。第一列返回 `0`（显示 [**ListItem.Text**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#text)）。
 
 ### Tag
 
-Arbitrary data the application can attach to the column. **Variant**.
+应用程序可附加到此列的任意数据。**Variant**。
 
 ### Text
 
-The column header text. **String**, read/write. The default member.
+列标题文本。**String**，读/写。默认成员。
 
 ### Width
 
-The column's pixel width. **Single**, read/write.
+列的像素宽度。**Single**，读/写。
 
 ## ListColumnAlignmentConstants
 
-Determines the horizontal alignment of a column's text. Declared on the **ColumnHeader** class.
+确定列文本的水平对齐方式。在 **ColumnHeader** 类上声明。
 
-| Member                    | Value | Description       |
+| 成员                    | 值 | 描述       |
 |---------------------------|-------|-------------------|
-| **lvwColumnLeft**     | 0 | Left-aligned text.   |
-| **lvwColumnRight**   | 1 | Right-aligned text.  |
-| **lvwColumnCenter** | 2 | Centered text.       |
+| **lvwColumnLeft**     | 0 | 左对齐文本。   |
+| **lvwColumnRight**   | 1 | 右对齐文本。  |
+| **lvwColumnCenter** | 2 | 居中文本。       |
 
-## See Also
+## 另见
 
-- [ListView](/official/Reference/WinNativeCommonCtls/ListView/) -- the parent control
-- [ColumnHeaders](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) -- the collection holding **ColumnHeader** instances
-- [ListItem](/official/Reference/WinNativeCommonCtls/ListView/ListItem) -- a row, whose [**SubItems**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#subitemsindex) align with columns
+- [ListView](/official/Reference/WinNativeCommonCtls/ListView/) --- 父控件
+- [ColumnHeaders](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) --- 持有 **ColumnHeader** 实例的集合
+- [ListItem](/official/Reference/WinNativeCommonCtls/ListView/ListItem) --- 行，其 [**SubItems**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#subitemsindex) 与列对齐

@@ -2,43 +2,52 @@
 title: Delegate
 parent: Statements
 permalink: /tB/Core/Delegate
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4bcec2ef-ab03-496c-8fa3-1dd0f4719ab7'
+  PropagateID: '4bcec2ef-ab03-496c-8fa3-1dd0f4719ab7'
+  ReservedCode1: '9cee2987-c3ce-44a1-be7b-48a0deeaade3'
+  ReservedCode2: '9cee2987-c3ce-44a1-be7b-48a0deeaade3'
 ---
+
 # Delegate
 
-Declares a function-pointer type --- a named signature that variables, parameters, and UDT members can hold a *reference* to a callable matching. A delegate value is bit-compatible with **LongPtr**, but adds compile-time signature checking when it is assigned, passed, or called.
+声明函数指针类型——一种命名的签名，变量、参数和UDT成员可以持有对匹配的可调用对象的*引用*。委托值在位级别与 **LongPtr** 兼容，但在赋值、传递或调用时增加了编译时签名检查。
 
 ::: info
-The **Delegate** statement is a twinBASIC extension. In classic VBA, function pointers are untyped **LongPtr** values produced by **AddressOf** and called indirectly through custom mechanisms (`DispCallFunc`, `CallWindowProc` shims, etc.).
+**Delegate** 语句是twinBASIC扩展。在经典VBA中，函数指针是由 **AddressOf** 产生的无类型 **LongPtr** 值，通过自定义机制（`DispCallFunc`、`CallWindowProc` 垫片等）间接调用。
 :::
 
-Syntax:
+语法：
 > [ **Public** \| **Private** ] **Delegate Function** *name* [ **CDecl** ] **(** [ *arglist* ] **)** **As** *type*
 
 **Public**
-: *optional* In an ActiveX project, exports the delegate type to the type library so consumers in other projects see *name*.
+: *可选* 在ActiveX项目中，将委托类型导出到类型库，使其他项目的使用者可以看到 *name*。
 
 **Private**
-: *optional* Withholds the delegate from the type library; usable only within the project.
+: *可选* 不将委托导出到类型库；仅在项目内可用。
 
 *name*
-: The identifier naming the delegate type. Must be a valid twinBASIC identifier.
+: 命名委托类型的标识符。必须是有效的twinBASIC标识符。
 
 **CDecl**
-: *optional* Marks the delegate as using the C calling convention (`cdecl` --- caller cleans the stack), used to model callbacks expected by C-runtime APIs such as `qsort`. The default is `stdcall`. See [API Declarations](/official/Features/Advanced/API-Declarations#cdecl-callbacks).
+: *可选* 将委托标记为使用C调用约定（`cdecl`——调用者清理栈），用于建模C运行时API（如 `qsort`）所期望的回调。默认为 `stdcall`。参见[API声明](/official/Features/Advanced/API-Declarations#cdecl-callbacks)。
 
 *arglist*
-: *optional* Parameter signature, written exactly as for a [**Sub**](/official/Reference/Core/Sub) or [**Function**](/official/Reference/Core/Function) --- comma-separated `[ ByVal | ByRef ] [ Optional ] *varname* [ As *type* ]` parts.
+: *可选* 参数签名，与 [**Sub**](/official/Reference/Core/Sub) 或 [**Function**](/official/Reference/Core/Function) 的写法完全相同——逗号分隔的 `[ ByVal | ByRef ] [ Optional ] *varname* [ As *type* ]` 部分。
 
 *type*
-: Return type of the delegate's signature.
+: 委托签名的返回类型。
 
-After the declaration, *name* may be used wherever a type is allowed: to declare variables and parameters of function-pointer type, as the type of a member of a [**Type**](/official/Reference/Core/Type) (UDT), or as a parameter type in a [**Declare**](/official/Reference/Core/Declare) statement or an [**Interface**](/official/Reference/Core/Interface) member.
+声明之后，*name* 可在允许类型的任何地方使用：声明函数指针类型的变量和参数、作为 [**Type**](/official/Reference/Core/Type)（UDT）成员的类型、或作为 [**Declare**](/official/Reference/Core/Declare) 语句或 [**Interface**](/official/Reference/Core/Interface) 成员的参数类型。
 
-A delegate value is normally produced by **AddressOf**, which yields a delegate-typed reference to a regular procedure with a matching signature. For backwards compatibility, a delegate variable can also be assigned a plain **LongPtr** address obtained by other means --- the value passes through unchecked. A delegate variable is called like a function: `result = myDelegate(arg1, arg2)`.
+委托值通常由 **AddressOf** 产生，它产生一个对具有匹配签名的常规过程的委托类型引用。为向后兼容，委托变量也可以接受通过其他方式获得的普通 **LongPtr** 地址——该值不经检查直接通过。委托变量的调用方式与函数相同：`result = myDelegate(arg1, arg2)`。
 
-### Example
+### 示例
 
-A basic delegate, declared, assigned, and called:
+一个基本委托，声明、赋值并调用：
 
 ```vb
 Private Delegate Function Operation (ByVal A As Long, ByVal B As Long) As Long
@@ -53,7 +62,7 @@ Private Sub Command1_Click()
 End Sub
 ```
 
-A delegate used as a UDT member, modelling the `lpfnHook` field of the Windows `CHOOSECOLOR` struct. Existing code that assigns a **Long**/**LongPtr** to `lpfnHook` continues to work; new code can assign **AddressOf** *Handler* directly and have the signature checked at compile time:
+委托用作UDT成员，建模Windows `CHOOSECOLOR` 结构的 `lpfnHook` 字段。将 **Long**/**LongPtr** 赋值给 `lpfnHook` 的现有代码继续工作；新代码可以直接赋值 **AddressOf** *Handler* 并在编译时检查签名：
 
 ```vb
 Public Delegate Function CCHookProc (ByVal hwnd As LongPtr, ByVal uMsg As Long, _
@@ -75,7 +84,7 @@ Dim tCC As CHOOSECOLOR
 tCC.lpfnHook = AddressOf ChooseColorHookProc
 ```
 
-A **CDecl** delegate, used as the comparator parameter of the C-runtime `qsort` API:
+**CDecl** 委托，用作C运行时 `qsort` API的比较器参数：
 
 ```vb
 Private Delegate Function LongComparator CDecl ( _
@@ -91,12 +100,12 @@ Private Declare PtrSafe Sub qsort CDecl Lib "msvcrt" ( _
 )
 ```
 
-### See Also
+### 另请参阅
 
-- [**Declare** statement](/official/Reference/Core/Declare)
-- [**Type** statement](/official/Reference/Core/Type)
-- [**Interface** statement](/official/Reference/Core/Interface)
-- [**Alias** statement](/official/Reference/Core/Alias)
-- [Delegate Types](/official/Features/Language/Delegates)
-- [API Declarations](/official/Features/Advanced/API-Declarations)
-- [Enhanced Pointer Functionality](/official/Features/Language/Pointers)
+- [**Declare** 语句](/official/Reference/Core/Declare)
+- [**Type** 语句](/official/Reference/Core/Type)
+- [**Interface** 语句](/official/Reference/Core/Interface)
+- [**Alias** 语句](/official/Reference/Core/Alias)
+- [委托类型](/official/Features/Language/Delegates)
+- [API声明](/official/Features/Advanced/API-Declarations)
+- [增强指针功能](/official/Features/Language/Pointers)

@@ -2,35 +2,44 @@
 title: If
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/If
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '07ab35e0-ccce-4314-945b-5df06c13e9be'
+  PropagateID: '07ab35e0-ccce-4314-945b-5df06c13e9be'
+  ReservedCode1: '049849f8-2436-4caf-80c4-5d0f488e48cb'
+  ReservedCode2: '049849f8-2436-4caf-80c4-5d0f488e48cb'
 ---
+
 # If
 
-Returns one of two values depending on a condition, evaluating only the branch it returns. **If** is a twinBASIC addition; in VBA, the closest equivalent is [**IIf**](/official/Reference/VBA/Interaction/IIf), which always evaluates both branches.
+根据条件返回两个值之一，仅评估返回的分支。**If**是twinBASIC新增项；在VBA中，最接近的等价物是[**IIf**](/official/Reference/VBA/Interaction/IIf)，它始终评估两个分支。
 
-Syntax:
+语法：
 
 - **If(** *expression* **,** *truepart* **,** *falsepart* **)**
 - **If(** *expressiontruepart* **,** *falsepart* **)**
 
 *expression*
-: *required* Expression evaluated for its truth value. May be any expression that converts to **Boolean**.
+: *必需* 为其真值评估的表达式。可以是任何可转换为**Boolean**的表达式。
 
 *truepart*
-: *required* Value or expression returned when *expression* is **True**. In the three-argument form this is evaluated only when *expression* is **True**.
+: *必需* 当*expression*为**True**时返回的值或表达式。在三参数形式中，仅当*expression*为**True**时才评估。
 
 *falsepart*
-: *required* Value or expression returned when *expression* is **False**, or when *expressiontruepart* is **Null**, **Empty**, or **Nothing**. Evaluated only when actually needed.
+: *必需* 当*expression*为**False**，或*expressiontruepart*为**Null**、**Empty**或**Nothing**时返回的值或表达式。仅在实际需要时评估。
 
 *expressiontruepart*
-: *required* (in the two-argument form) Expression that serves as both the test and the value to return when it is "set". The function returns *expressiontruepart* unless it is **Null**, **Empty**, or a **Nothing** object reference, in which case it returns *falsepart*. Useful for null-coalescing --- for example, `If(MaybeNothing, FallbackValue)`.
+: *必需*（在两参数形式中）同时作为测试和"已设置"时返回值的表达式。函数返回*expressiontruepart*，除非它为**Null**、**Empty**或**Nothing**对象引用，在这种情况下返回*falsepart*。适用于空值合并——例如`If(MaybeNothing, FallbackValue)`。
 
-The three-argument form is the inline conditional: it returns *truepart* when *expression* is **True**, *falsepart* otherwise, and only the chosen branch is evaluated. This makes expressions such as `If(Divisor <> 0, 100 / Divisor, "n/a")` safe even when *Divisor* is zero.
+三参数形式是内联条件：当*expression*为**True**时返回*truepart*，否则返回*falsepart*，仅评估所选分支。这使得诸如`If(Divisor <> 0, 100 / Divisor, "n/a")`的表达式即使*Divisor*为零也是安全的。
 
 ::: info
-**If** uses special internal bindings in the compiler and may not behave exactly like a regular function --- in particular, `Application.Run "If", ...` and other reflective callers will not invoke it.
+**If**在编译器中使用特殊的内部绑定，可能不像常规函数那样运行——特别是`Application.Run "If", ...`和其他反射调用者不会调用它。
 :::
 
-### Example
+### 示例
 
 ```vb
 Dim Divisor As Long
@@ -49,8 +58,8 @@ MaybeName = "Alice"
 Debug.Print If(MaybeName, "Anonymous")              ' "Alice"
 ```
 
-### See Also
+### 另请参阅
 
-- [IIf](/official/Reference/VBA/Interaction/IIf) function
-- [Choose](/official/Reference/VBA/Interaction/Choose) function
-- [Switch](/official/Reference/VBA/Interaction/Switch) function
+- [IIf](/official/Reference/VBA/Interaction/IIf)函数
+- [Choose](/official/Reference/VBA/Interaction/Choose)函数
+- [Switch](/official/Reference/VBA/Interaction/Switch)函数

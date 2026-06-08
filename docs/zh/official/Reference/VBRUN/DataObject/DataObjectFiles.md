@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '323cec4d-0423-4f7a-88ba-e65e7f2d515e'
+  PropagateID: '323cec4d-0423-4f7a-88ba-e65e7f2d515e'
+  ReservedCode1: 'eecf9286-8102-4fd8-b4b7-543c617cd9a7'
+  ReservedCode2: 'eecf9286-8102-4fd8-b4b7-543c617cd9a7'
+---
+
 ---
 title: DataObjectFiles
 parent: DataObject
@@ -5,62 +16,62 @@ permalink: /tB/Packages/VBRUN/DataObject/DataObjectFiles
 ---
 # DataObjectFiles
 
-A **DataObjectFiles** object is the collection of file paths held by a [**DataObject**](/official/Reference/VBRUN/DataObject/) --- typically the payload of a Windows shell drag-and-drop, which arrives under the `vbCFFiles` clipboard format. Each element is a fully qualified path stored as a **String**. The collection is reachable through the [**Files**](/official/Reference/VBRUN/DataObject/Files) property of the parent **DataObject**.
+**DataObjectFiles**对象是[**DataObject**](/official/Reference/VBRUN/DataObject/)保存的文件路径集合——通常是Windows Shell拖放的有效负载，以`vbCFFiles`剪贴板格式到达。每个元素是以**String**保存的完全限定路径。此集合可通过父**DataObject**的[**Files**](/official/Reference/VBRUN/DataObject/Files)属性获取。
 
-The collection is mutable: the source side of a drag-and-drop or clipboard operation can build a list with [**Add**](#add), and the destination side reads it back with [**Item**](#item) or **For Each** iteration.
+此集合是可变的：拖放或剪贴板操作的源端可以使用[**Add**](#add)构建列表，目标端使用[**Item**](#item)或**For Each**迭代读回列表。
 
-## Members
+## 成员
 
 ### Add
 
-Appends a file path to the collection.
+向集合追加文件路径。
 
-Syntax: *object*.**Add** *Filename* [ **,** *Index* ]
+语法：*object*.**Add** *Filename* [ **,** *Index* ]
 
 *object*
-: *required* An object expression that evaluates to a **DataObjectFiles** object.
+: *必需* 求值为**DataObjectFiles**对象的对象表达式。
 
 *Filename*
-: *required* A **String** giving the fully qualified path of the file to add.
+: *必需* 给出要添加文件完全限定路径的**String**。
 
 *Index*
-: *optional* A **Variant** identifying an existing entry. When supplied, the new path is inserted before that entry; if numeric, *Index* is a one-based position between `1` and [**Count**](#count). When omitted, the path is appended to the end.
+: *可选* 标识现有条目的**Variant**。提供时，新路径插入到该条目之前；如果为数值，*Index*是`1`到[**Count**](#count)之间从一开始的位置。省略时，路径追加到末尾。
 
 ### Clear
 
-Removes every entry from the collection.
+从集合中移除所有条目。
 
-Syntax: *object*.**Clear**
+语法：*object*.**Clear**
 
 *object*
-: *required* An object expression that evaluates to a **DataObjectFiles** object.
+: *必需* 求值为**DataObjectFiles**对象的对象表达式。
 
-After **Clear**, [**Count**](#count) is `0`.
+调用**Clear**后，[**Count**](#count)为`0`。
 
 ### Count
 
-Returns the number of paths in the collection.
+返回集合中的路径数量。
 
-Syntax: *object*.**Count**
+语法：*object*.**Count**
 
 *object*
-: *required* An object expression that evaluates to a **DataObjectFiles** object.
+: *必需* 求值为**DataObjectFiles**对象的对象表达式。
 
-The value is a **Long**. Valid indexes for [**Item**](#item) run from `1` to **Count**.
+值为**Long**。[**Item**](#item)的有效索引范围从`1`到**Count**。
 
 ### Item
 
-Returns one path from the collection by its one-based position, as a **String**.
+按从一开始的位置从集合中返回一个路径，类型为**String**。
 
-Syntax: *object*.**Item(** *Index* **)**
+语法：*object*.**Item(** *Index* **)**
 
 *object*
-: *required* An object expression that evaluates to a **DataObjectFiles** object.
+: *必需* 求值为**DataObjectFiles**对象的对象表达式。
 
 *Index*
-: *required* A **Long** giving the one-based position of the path to return. Must be between `1` and [**Count**](#count); otherwise an error occurs.
+: *必需* 给出要返回路径从一开始位置的**Long**。必须在`1`和[**Count**](#count)之间；否则将发生错误。
 
-**Item** is the default member of **DataObjectFiles**, so the following lines are equivalent:
+**Item**是**DataObjectFiles**的默认成员，因此以下两行等效：
 
 ```vb
 path = Data.Files.Item(1)
@@ -69,19 +80,19 @@ path = Data.Files(1)
 
 ### Remove
 
-Removes a single entry from the collection.
+从集合中移除单个条目。
 
-Syntax: *object*.**Remove** *Index*
+语法：*object*.**Remove** *Index*
 
 *object*
-: *required* An object expression that evaluates to a **DataObjectFiles** object.
+: *必需* 求值为**DataObjectFiles**对象的对象表达式。
 
 *Index*
-: *required* A **Variant** identifying the entry to remove. Numeric values are treated as one-based positions between `1` and [**Count**](#count); string values are matched against the stored paths. If no entry matches, an error occurs.
+: *必需* 标识要移除条目的**Variant**。数值被视为`1`到[**Count**](#count)之间从一开始的位置；字符串与存储的路径匹配。如果没有匹配的条目，将发生错误。
 
-### For Each iteration
+### For Each 迭代
 
-A **DataObjectFiles** object can be iterated with the [**For Each...Next**](/official/Reference/Core/For-Each-Next) statement, which yields each path in turn, in insertion order. The hidden `_NewEnum` member supplies the enumerator and is not called directly from user code.
+**DataObjectFiles**对象可以使用[**For Each...Next**](/official/Reference/Core/For-Each-Next)语句进行迭代，按插入顺序依次产生每个路径。隐藏的`_NewEnum`成员提供枚举器，不从用户代码直接调用。
 
 ```vb
 Dim Path As Variant
@@ -90,9 +101,9 @@ For Each Path In Data.Files
 Next Path
 ```
 
-### Example
+### 示例
 
-This example iterates the file paths in a **DataObjectFiles** collection received from a shell drag-and-drop.
+此示例迭代从Shell拖放接收的**DataObjectFiles**集合中的文件路径。
 
 ```vb
 Private Sub Form1_OLEDragDrop(Data As DataObject, Effect As Long, _
@@ -105,7 +116,7 @@ Private Sub Form1_OLEDragDrop(Data As DataObject, Effect As Long, _
 End Sub
 ```
 
-## See Also
+## 另见
 
 - [DataObject](/official/Reference/VBRUN/DataObject/)
-- [Files](/official/Reference/VBRUN/DataObject/Files) property
+- [Files](/official/Reference/VBRUN/DataObject/Files) 属性

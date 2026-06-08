@@ -1,17 +1,25 @@
 ---
-title: Delegate Types
+title: "委托类型"
 parent: Language Syntax
 nav_order: 4
 permalink: /Features/Language/Delegates
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a5b78759-d446-475a-8b69-d994e313c029'
+  PropagateID: 'a5b78759-d446-475a-8b69-d994e313c029'
+  ReservedCode1: '6aab486b-a1d4-483a-8bff-077cf8ae69f9'
+  ReservedCode2: '6aab486b-a1d4-483a-8bff-077cf8ae69f9'
 ---
 
-# Delegate Types for Indirect Calls
+# 用于间接调用的委托类型
 
-There is native support for calling a function by pointer, by way of `Delegate` syntax. A delegate in twinBASIC is a function pointer type that's compatible with LongPtr. `AddressOf` returns a delegate type, that's also backwards compatible with `LongPtr`.
+twinBASIC 原生支持通过指针调用函数，使用 `Delegate` 语法。twinBASIC 中的委托是与 LongPtr 兼容的函数指针类型。`AddressOf` 返回委托类型，也与 `LongPtr` 向后兼容。
 
-## Basic Usage
+## 基本用法
 
-The syntax looks like this:
+语法如下：
 
 ```vb
 Private Delegate Function Delegate1 (ByVal A As Long, ByVal B As Long) As Long
@@ -26,9 +34,9 @@ Public Function Addition(ByVal A As Long, ByVal B As Long) As Long
 End Function
 ```
 
-## Advanced Usage
+## 高级用法
 
-The delegate type can also be used in interface/API declarations and as members of a User-defined type. For example, the `ChooseColor` API:
+委托类型也可以在接口/API 声明中以及作为用户定义类型的成员使用。例如 `ChooseColor` API：
 
 ```vb
 Public Delegate Function CCHookProc (ByVal hwnd As LongPtr, ByVal uMsg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
@@ -46,7 +54,7 @@ Public Type CHOOSECOLOR
 End Type
 ```
 
-If you already have code assigning a `Long`/`LongPtr` to the `lpfnHook` member, it will continue to work normally, but now you can also have the type safety benefits of setting it to a method matching the Delegate:
+如果你已有代码将 `Long`/`LongPtr` 赋值给 `lpfnHook` 成员，它将继续正常工作，但现在你还可以获得类型安全的好处，将其设置为匹配委托的方法：
 
 ```vb
 Dim tCC As CHOOSECOLOR

@@ -2,35 +2,43 @@
 title: Error
 parent: Statements
 permalink: /tB/Core/Error
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a36673e9-0f85-43e7-81d2-17a61b49980d'
+  PropagateID: 'a36673e9-0f85-43e7-81d2-17a61b49980d'
+  ReservedCode1: '2aa658c5-7b87-4f35-b65b-531a23e0ac77'
+  ReservedCode2: '2aa658c5-7b87-4f35-b65b-531a23e0ac77'
 ---
 
 # Error
 
-Simulates the occurrence of an error.
+模拟错误的发生。
 
-Syntax: **Error** *errornumber*
+语法：**Error** *errornumber*
 
 *errornumber*
-: can be any valid error number.
+: 可以是任何有效的错误号。
 
-The **Error** statement is supported for backward compatibility. In new code, especially when creating objects, use the **Err** object's **Raise** method to generate run-time errors.
+**Error** 语句为向后兼容而受支持。在新代码中，特别是创建对象时，请使用 **Err** 对象的 **Raise** 方法生成运行时错误。
 
-If *errornumber* is defined, the **Error** statement calls the error handler after the properties of the **Err** object are assigned the following default values:
+如果定义了 *errornumber*，**Error** 语句在 **Err** 对象的属性被赋予以下默认值后调用错误处理程序：
 
-| Property         | Value                                                        |
+| 属性         | 值                                                        |
 | :--------------- | :----------------------------------------------------------- |
-| **Number**       | Value specified as argument to **Error** statement. Can be any valid error number. |
-| **Source**       | Name of the current Visual Basic project. |
-| **Description**  | String expression corresponding to the return value of the **Error** function for the specified **Number**, if this string exists. If the string doesn't exist, **Description** contains a zero-length string (""). |
-| **HelpFile**     | The fully qualified drive, path, and file name of the appropriate Visual Basic Help file. |
-| **HelpContext**  | The appropriate Visual Basic Help file context ID for the error corresponding to the **Number** property. |
-| **LastDLLError** | Zero.                                                        |
+| **Number**       | 作为 **Error** 语句参数指定的值。可以是任何有效的错误号。 |
+| **Source**       | 当前Visual Basic项目的名称。 |
+| **Description**  | 与指定 **Number** 的 **Error** 函数返回值对应的字符串表达式（如果该字符串存在）。如果字符串不存在，**Description** 包含零长度字符串("")。 |
+| **HelpFile**     | 适当的Visual Basic帮助文件的完整驱动器、路径和文件名。 |
+| **HelpContext**  | 与 **Number** 属性对应的错误在适当的Visual Basic帮助文件中的上下文ID。 |
+| **LastDLLError** | 零。                                                        |
 
-If no error handler exists or if none is enabled, an error message is created and displayed from the **Err** object properties.
+如果不存在错误处理程序或未启用任何错误处理程序，则会从 **Err** 对象属性创建并显示错误消息。
 
-### Example
+### 示例
 
-This example uses the **Error** statement to simulate error number 11.
+本示例使用 **Error** 语句模拟错误号11。
 
 ```vb
 On Error Resume Next ' Defer error handling. 

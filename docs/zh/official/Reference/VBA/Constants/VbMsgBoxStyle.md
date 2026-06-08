@@ -2,57 +2,66 @@
 title: VbMsgBoxStyle
 parent: Constants Module
 permalink: /tB/Modules/Constants/VbMsgBoxStyle
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fff6a0f1-cbdd-49ae-a544-8bd68c5ee568'
+  PropagateID: 'fff6a0f1-cbdd-49ae-a544-8bd68c5ee568'
+  ReservedCode1: '4fa1744b-5261-492e-b774-795e6391cba9'
+  ReservedCode2: '4fa1744b-5261-492e-b774-795e6391cba9'
 ---
+
 # VbMsgBoxStyle
 
-Buttons, icons, default-button, modality, and other behaviour flags for the **MsgBox** dialog. Combine values from different groups with **Or** (or addition) to specify the desired combination --- for example, `vbYesNo Or vbCritical Or vbDefaultButton2`.
+**MsgBox** 对话框的按钮、图标、默认按钮、模态和其他行为标志。使用 **Or**（或加法）组合不同组的值以指定所需的组合——例如 `vbYesNo Or vbCritical Or vbDefaultButton2`。
 
-### Buttons
+### 按钮
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **vbOKOnly** | 0 | **OK** button only (default). |
-| **vbOKCancel** | 1 | **OK** and **Cancel** buttons. |
-| **vbAbortRetryIgnore** | 2 | **Abort**, **Retry**, and **Ignore** buttons. |
-| **vbYesNoCancel** | 3 | **Yes**, **No**, and **Cancel** buttons. |
-| **vbYesNo** | 4 | **Yes** and **No** buttons. |
-| **vbRetryCancel** | 5 | **Retry** and **Cancel** buttons. |
-| **vbCancelTryAgainContinue** | 6 | **Cancel**, **Try Again**, and **Continue** buttons. |
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **vbOKOnly** | 0 | 仅 **OK** 按钮（默认）。 |
+| **vbOKCancel** | 1 | **OK** 和 **Cancel** 按钮。 |
+| **vbAbortRetryIgnore** | 2 | **Abort**、**Retry** 和 **Ignore** 按钮。 |
+| **vbYesNoCancel** | 3 | **Yes**、**No** 和 **Cancel** 按钮。 |
+| **vbYesNo** | 4 | **Yes** 和 **No** 按钮。 |
+| **vbRetryCancel** | 5 | **Retry** 和 **Cancel** 按钮。 |
+| **vbCancelTryAgainContinue** | 6 | **Cancel**、**Try Again** 和 **Continue** 按钮。 |
 
-### Icon
+### 图标
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **vbCritical** | 16 | Critical message icon. |
-| **vbQuestion** | 32 | Warning query icon. |
-| **vbExclamation** | 48 | Warning message icon. |
-| **vbInformation** | 64 | Information message icon. |
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **vbCritical** | 16 | 严重消息图标。 |
+| **vbQuestion** | 32 | 警告查询图标。 |
+| **vbExclamation** | 48 | 警告消息图标。 |
+| **vbInformation** | 64 | 信息消息图标。 |
 
-### Default button
+### 默认按钮
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **vbDefaultButton1** | 0 | First button is default (default). |
-| **vbDefaultButton2** | 256 | Second button is default. |
-| **vbDefaultButton3** | 512 | Third button is default. |
-| **vbDefaultButton4** | 768 | Fourth button is default. |
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **vbDefaultButton1** | 0 | 第一个按钮为默认（默认）。 |
+| **vbDefaultButton2** | 256 | 第二个按钮为默认。 |
+| **vbDefaultButton3** | 512 | 第三个按钮为默认。 |
+| **vbDefaultButton4** | 768 | 第四个按钮为默认。 |
 
-### Modality
+### 模态
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **vbApplicationModal** | 0 | Application-modal message box (default). |
-| **vbSystemModal** | 4096 | System-modal message box. |
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **vbApplicationModal** | 0 | 应用程序模态消息框（默认）。 |
+| **vbSystemModal** | 4096 | 系统模态消息框。 |
 
-### Options
+### 选项
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **vbMsgBoxHelpButton** | 16384 | Adds a Help button to the message box. |
-| **vbMsgBoxSetForeground** | 65536 | Specifies the message box window as the foreground window. |
-| **vbMsgBoxRight** | 524288 | Text is right-aligned. |
-| **vbMsgBoxRtlReading** | 1048576 | Text is displayed right-to-left, for Hebrew and Arabic systems. |
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **vbMsgBoxHelpButton** | 16384 | 向消息框添加帮助按钮。 |
+| **vbMsgBoxSetForeground** | 65536 | 指定消息框窗口为前台窗口。 |
+| **vbMsgBoxRight** | 524288 | 文本右对齐。 |
+| **vbMsgBoxRtlReading** | 1048576 | 文本从右到左显示，适用于希伯来语和阿拉伯语系统。 |
 
-### See Also
+### 另请参阅
 
 - [VbMsgBoxResult](/official/Reference/VBA/Constants/VbMsgBoxResult)

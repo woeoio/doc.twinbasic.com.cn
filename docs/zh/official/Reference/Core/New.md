@@ -5,35 +5,35 @@ permalink: /tB/Core/New
 ---
 # New
 
-Creates a new instance of a class.
+创建类的新实例。
 
-The **New** keyword is used in two contexts:
+**New**关键字用于两种上下文：
 
-- In a declaration ([**Dim**](/official/Reference/Core/Dim), [**Private**](/official/Reference/Core/Private), [**Public**](/official/Reference/Core/Public), or [**Static**](/official/Reference/Core/Static)) to enable *implicit* object creation: a new instance is created on the first reference to the variable.
-- In a [**Set**](/official/Reference/Core/Set) statement, to create a new instance of a class and assign the reference to a variable or property.
+- 在声明语句（[**Dim**](/official/Reference/Core/Dim)、[**Private**](/official/Reference/Core/Private)、[**Public**](/official/Reference/Core/Public)或[**Static**](/official/Reference/Core/Static)）中启用*隐式*对象创建：首次引用变量时创建新实例。
+- 在[**Set**](/official/Reference/Core/Set)语句中，创建类的新实例并将引用赋给变量或属性。
 
-Syntax:
+语法：
 
 - > [ **Dim** \| **Private** \| **Public** \| **Static** ] *varname* **As** **New** *type*
 - > **Set** *objectvar* **=** **New** *type*
 
 *varname*, *objectvar*
-: Name of the variable or property receiving the new object reference.
+: 接收新对象引用的变量或属性名称。
 
 *type*
-: A class name or other creatable object type. **New** can't be used to create new instances of any intrinsic data type (such as **Long** or **String**), and can't be used to create dependent objects.
+: 类名或其他可创建的对象类型。**New**不能用于创建任何内部数据类型（如**Long**或**String**）的新实例，也不能用于创建依赖对象。
 
-When **New** is used in a declaration, no instance is created at the point of declaration. Instead, an instance is created automatically the first time the variable is referenced after declaration. Each time the variable is set to **Nothing** and then referenced again, a new instance is created.
+在声明中使用**New**时，不会在声明处创建实例。而是在声明后首次引用变量时自动创建实例。每次将变量设置为**Nothing**后再次引用，都会创建新实例。
 
-When **New** is used with **Set**, an instance is created immediately, and the reference is assigned to *objectvar*. If *objectvar* previously held a reference to another object, that reference is released when the new one is assigned.
+在**Set**中使用**New**时，会立即创建实例，并将引用赋给*objectvar*。如果*objectvar*先前持有对另一个对象的引用，则在赋新引用时释放旧引用。
 
 ::: info
-**New** cannot be used together with **WithEvents** in a declaration. To connect an event-aware object reference, declare the variable with **WithEvents** and assign it later with **Set**.
+**New**不能与**WithEvents**在声明中一起使用。要连接可感知事件的对象引用，请先用**WithEvents**声明变量，然后再用**Set**赋值。
 :::
 
-### Example
+### 示例
 
-Implicit creation via **New** in a declaration. The instance of `Worksheet` is created on first use, not at the **Dim** line.
+通过声明中的**New**隐式创建。`Worksheet`的实例在首次使用时创建，而非在**Dim**行创建。
 
 ```vb
 Dim X As New Worksheet
@@ -41,7 +41,7 @@ Dim X As New Worksheet
 X.Activate ' First reference - instance is created here.
 ```
 
-Explicit creation via **Set ... = New**. The instance is created at the **Set** line. This is the more common form, since the moment of construction is visible at the call site.
+通过**Set ... = New**显式创建。实例在**Set**行创建。这是更常用的形式，因为构造的时刻在调用处可见。
 
 ```vb
 Dim Forms(1 To 4) As Form1
@@ -51,8 +51,8 @@ For i = 1 To 4
 Next i
 ```
 
-### See Also
+### 另请参阅
 
-- [**Set** statement](/official/Reference/Core/Set)
-- [**Dim** statement](/official/Reference/Core/Dim)
-- [**Class** statement](/official/Reference/Core/Class)
+- [**Set** 语句](/official/Reference/Core/Set)
+- [**Dim** 语句](/official/Reference/Core/Dim)
+- [**Class** 语句](/official/Reference/Core/Class)

@@ -1,35 +1,44 @@
 ---
-title: Input, Input$
+title: "Input, Input$"
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/Input
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'be676f0b-6339-4b35-b811-22bf4e84a3aa'
+  PropagateID: 'be676f0b-6339-4b35-b811-22bf4e84a3aa'
+  ReservedCode1: 'c67b0ed4-52bd-4dc7-9b4c-900089682b44'
+  ReservedCode2: 'c67b0ed4-52bd-4dc7-9b4c-900089682b44'
 ---
+
 # Input, Input$
 
-Returns a fixed number of characters read from a file opened in **Input** or **Binary** mode.
+返回从以**Input**或**Binary**模式打开的文件中读取的固定数量字符。
 
-Syntax:
-- **Input(** *Number* **,** [ **#** ] *FileNumber* **)** --- returns a **Variant**.
-- **Input$(** *Number* **,** [ **#** ] *FileNumber* **)** --- returns a **String**.
+语法：
+- **Input(** *Number* **,** [ **#** ] *FileNumber* **)** --- 返回**Variant**。
+- **Input$(** *Number* **,** [ **#** ] *FileNumber* **)** --- 返回**String**。
 
 *Number*
-: *required* The number of characters to return.
+: *必需* 要返回的字符数。
 
 *FileNumber*
-: *required* The file number used to open the file with the [**Open**](/official/Reference/Core/Open) statement.
+: *必需* 用于以[**Open**](/official/Reference/Core/Open)语句打开文件的文件号。
 
-Data read with **Input** is usually written to a file with **Print #** or **[Put](/official/Reference/Core/Put)**. Use this function only with files opened in **Input** or **Binary** mode.
+使用**Input**读取的数据通常由**Print #**或**[Put](/official/Reference/Core/Put)**写入文件。此函数仅适用于以**Input**或**Binary**模式打开的文件。
 
-Unlike the **Input #** statement, the **Input** function returns all the characters it reads, including commas, carriage returns, linefeeds, quotation marks, and leading spaces.
+与**Input #**语句不同，**Input**函数返回它读取的所有字符，包括逗号、回车符、换行符、引号和前导空格。
 
-For files opened for **Binary** access, an attempt to read through the file using **Input** until [**EOF**](/official/Reference/VBA/FileSystem/EOF) returns **True** generates an error. Use [**LOF**](/official/Reference/VBA/FileSystem/LOF) and [**Loc**](/official/Reference/VBA/FileSystem/Loc) instead of **EOF** when reading binary files with **Input**, or use **[Get](/official/Reference/Core/Get)** when **EOF** is needed.
+对于以**Binary**访问模式打开的文件，尝试使用**Input**读取文件直到[**EOF**](/official/Reference/VBA/FileSystem/EOF)返回**True**会产生错误。使用**Input**读取二进制文件时，请使用[**LOF**](/official/Reference/VBA/FileSystem/LOF)和[**Loc**](/official/Reference/VBA/FileSystem/Loc)代替**EOF**，或在需要**EOF**时使用**[Get](/official/Reference/Core/Get)**。
 
 ::: info
-Use [**InputB**](/official/Reference/VBA/FileSystem/InputB) for byte data contained within text files. With **InputB**, *Number* specifies the number of bytes to return rather than the number of characters.
+对文本文件中包含的字节数据使用[**InputB**](/official/Reference/VBA/FileSystem/InputB)。使用**InputB**时，*Number*指定要返回的字节数而非字符数。
 :::
 
-### Example
+### 示例
 
-This example uses the **Input** function to read one character at a time from a file and print it to the immediate window. *TESTFILE* is assumed to be a text file with a few lines of sample data.
+本示例使用**Input**函数从文件中逐字符读取并输出到立即窗口。假设*TESTFILE*是一个包含几行示例数据的文本文件。
 
 ```vb
 Dim MyChar As Variant
@@ -41,8 +50,8 @@ Loop
 Close #1                            ' Close file.
 ```
 
-### See Also
+### 另请参阅
 
-- [InputB, InputB$](/official/Reference/VBA/FileSystem/InputB) functions
-- [Open](/official/Reference/Core/Open) statement
-- [EOF](/official/Reference/VBA/FileSystem/EOF), [LOF](/official/Reference/VBA/FileSystem/LOF), [Loc](/official/Reference/VBA/FileSystem/Loc) functions
+- [InputB, InputB$](/official/Reference/VBA/FileSystem/InputB)函数
+- [Open](/official/Reference/Core/Open)语句
+- [EOF](/official/Reference/VBA/FileSystem/EOF)、[LOF](/official/Reference/VBA/FileSystem/LOF)、[Loc](/official/Reference/VBA/FileSystem/Loc)函数

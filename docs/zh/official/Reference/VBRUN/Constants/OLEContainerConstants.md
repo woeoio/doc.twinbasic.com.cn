@@ -2,91 +2,100 @@
 title: OLEContainerConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/OLEContainerConstants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f54205f2-3705-4b8f-9655-4b7c337a4cfd'
+  PropagateID: 'f54205f2-3705-4b8f-9655-4b7c337a4cfd'
+  ReservedCode1: '0217bed7-c92e-4a67-8ff9-40b5ac9b45bd'
+  ReservedCode2: '0217bed7-c92e-4a67-8ff9-40b5ac9b45bd'
 ---
+
 # OLEContainerConstants
 
-A combined enumeration containing every option value used by the **OLE** container control. Each logical group of values has a more specific enumeration of its own --- see the See Also section --- but **OLEContainerConstants** retains all of the original VB6 names so existing code continues to compile.
+包含**OLE**容器控件使用的所有选项值的组合枚举。每组逻辑值都有更具体的枚举 --- 参见另见部分 --- 但**OLEContainerConstants**保留了所有原始VB6名称，以便现有代码继续编译。
 
-## OLE type
+## OLE类型
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLELinked** | 0 | The object is linked to its source. |
-| **vbOLEEmbedded** | 1 | The object is embedded inside the container. |
-| **vbOLEEither** | 2 | Either linked or embedded. |
-| **vbOLENone** | 3 | No object. |
+| **vbOLELinked** | 0 | 对象链接到其源。 |
+| **vbOLEEmbedded** | 1 | 对象嵌入在容器中。 |
+| **vbOLEEither** | 2 | 链接或嵌入。 |
+| **vbOLENone** | 3 | 无对象。 |
 
-## Update options
+## 更新选项
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLEAutomatic** | 0 | The container updates the linked object whenever the source changes. |
-| **vbOLEFrozen** | 1 | Updates are paused. |
-| **vbOLEManual** | 2 | Updates happen only when **Update** is called. |
+| **vbOLEAutomatic** | 0 | 源更改时容器自动更新链接对象。 |
+| **vbOLEFrozen** | 1 | 更新已暂停。 |
+| **vbOLEManual** | 2 | 仅在调用**Update**时更新。 |
 
-## Activation triggers
+## 激活触发
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLEActivateManual** | 0 | Manual activation via **DoVerb**. |
-| **vbOLEActivateGetFocus** | 1 | Activate on focus. |
-| **vbOLEActivateDoubleclick** | 2 | Activate on double-click. |
-| **vbOLEActivateAuto** | 3 | Activate automatically based on the object's defaults. |
+| **vbOLEActivateManual** | 0 | 通过**DoVerb**手动激活。 |
+| **vbOLEActivateGetFocus** | 1 | 获得焦点时激活。 |
+| **vbOLEActivateDoubleclick** | 2 | 双击时激活。 |
+| **vbOLEActivateAuto** | 3 | 根据对象默认设置自动激活。 |
 
-## Sizing
+## 大小调整
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLESizeClip** | 0 | The object is clipped at the container's edges. |
-| **vbOLESizeStretch** | 1 | The object is stretched to fill the container. |
-| **vbOLESizeAutoSize** | 2 | The container resizes itself to fit the object. |
-| **vbOLESizeZoom** | 3 | The object is scaled to fit, preserving its aspect ratio. |
+| **vbOLESizeClip** | 0 | 对象在容器边缘处被裁剪。 |
+| **vbOLESizeStretch** | 1 | 对象拉伸以填充容器。 |
+| **vbOLESizeAutoSize** | 2 | 容器自动调整大小以适应对象。 |
+| **vbOLESizeZoom** | 3 | 对象按比例缩放以适应容器，保持宽高比。 |
 
-## Display style
+## 显示样式
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLEDisplayContent** | 0 | The object's contents are displayed. |
-| **vbOLEDisplayIcon** | 1 | The object is displayed as an icon. |
+| **vbOLEDisplayContent** | 0 | 显示对象内容。 |
+| **vbOLEDisplayIcon** | 1 | 对象以图标显示。 |
 
-## Status
+## 状态
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLEChanged** | 0 | The object has been changed since the last update. |
-| **vbOLESaved** | 1 | The object has been saved. |
-| **vbOLEClosed** | 2 | The object has been closed. |
-| **vbOLERenamed** | 3 | The object has been renamed. |
+| **vbOLEChanged** | 0 | 对象自上次更新以来已更改。 |
+| **vbOLESaved** | 1 | 对象已保存。 |
+| **vbOLEClosed** | 2 | 对象已关闭。 |
+| **vbOLERenamed** | 3 | 对象已重命名。 |
 
-## Verbs
+## 动词
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLEPrimary** | 0 | Invoke the object's primary verb. |
-| **vbOLEShow** | -1 | Show the object. |
-| **vbOLEOpen** | -2 | Open the object in a separate window. |
-| **vbOLEHide** | -3 | Hide the object. |
-| **vbOLEUIActivate** | -4 | Activate the object's user interface. |
-| **vbOLEInPlaceActivate** | -5 | Activate the object in place. |
-| **vbOLEDiscardUndoState** | -6 | Discard any undo state the object holds. |
+| **vbOLEPrimary** | 0 | 调用对象的主动词。 |
+| **vbOLEShow** | -1 | 显示对象。 |
+| **vbOLEOpen** | -2 | 在单独窗口中打开对象。 |
+| **vbOLEHide** | -3 | 隐藏对象。 |
+| **vbOLEUIActivate** | -4 | 激活对象的用户界面。 |
+| **vbOLEInPlaceActivate** | -5 | 就地激活对象。 |
+| **vbOLEDiscardUndoState** | -6 | 丢弃对象持有的任何撤销状态。 |
 
-## Menu flags
+## 菜单标志
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLEFlagGrayed** | 1 | The verb appears grayed in the menu. |
-| **vbOLEFlagDisabled** | 2 | The verb is disabled. |
-| **vbOLEFlagChecked** | 8 | The verb appears with a check mark. |
-| **vbOLEFlagSeparator** | 2048 | The item is rendered as a menu separator. |
+| **vbOLEFlagGrayed** | 1 | 动词在菜单中灰显。 |
+| **vbOLEFlagDisabled** | 2 | 动词被禁用。 |
+| **vbOLEFlagChecked** | 8 | 动词显示有复选标记。 |
+| **vbOLEFlagSeparator** | 2048 | 项目呈现为菜单分隔符。 |
 
-## Miscellaneous
+## 杂项
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLEMiscFlagMemStorage** | 1 | The object's storage is held in memory rather than on disk. |
-| **vbOLEMiscFlagDisableInPlace** | 2 | In-place activation is disabled for this object. |
+| **vbOLEMiscFlagMemStorage** | 1 | 对象的存储保留在内存中而非磁盘上。 |
+| **vbOLEMiscFlagDisableInPlace** | 2 | 此对象禁用就地激活。 |
 
-### See Also
+### 另见
 
 - [OLEContainerActivateConstants](/official/Reference/VBRUN/Constants/OLEContainerActivateConstants)
 - [OLEContainerDisplayTypeConstants](/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants)

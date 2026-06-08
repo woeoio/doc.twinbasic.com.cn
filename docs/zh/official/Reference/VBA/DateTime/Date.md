@@ -2,28 +2,36 @@
 title: Date
 parent: DateTime Module
 permalink: /tB/Modules/DateTime/Date
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1f1b9dbc-84c2-42b2-b6ec-ecfe6de7aa2b'
+  PropagateID: '1f1b9dbc-84c2-42b2-b6ec-ecfe6de7aa2b'
+  ReservedCode1: '8c29db63-04cc-4e1a-8b72-ae35d8031774'
+  ReservedCode2: '8c29db63-04cc-4e1a-8b72-ae35d8031774'
 ---
+
 # Date
 
 ::: info
 
-In twinBASIC, **Date** and **Date$** are implemented as module-level properties, not as functions/statements like they were in VBx. This has no impact on their behavior. These properties still have the syntax and semantics of the Date and Date$ functions and statements in VBx.
+在 twinBASIC 中，**Date** 和 **Date$** 实现为模块级属性，而非 VBx 中的函数/语句。这对其行为没有影响。这些属性仍然具有 VBx 中 Date 和 Date$ 函数与语句的语法和语义。
 :::
 
-## Date Property
+## Date 属性
 
-The behavior of the **Date** property is unchanged by the [**Calendar**](/official/Reference/VBA/DateTime/Calendar) property setting.
+**Date** 属性的行为不受 [**Calendar**](/official/Reference/VBA/DateTime/Calendar) 属性设置的影响。
 
 ### Get
 
+返回一个包含当前系统日期的 **Variant**。
 
-Returns a **Variant** containing the current system date.
+语法：**Date** [ **()** ]
 
-Syntax: **Date** [ **()** ]
+#### 示例
 
-#### Example
-
-This example uses the **Date** property to return the current system date.
+此示例使用 **Date** 属性返回当前系统日期。
 
 ```vb
 Dim MyDate as Variant
@@ -32,21 +40,21 @@ MyDate = Date   ' MyDate contains the current system date.
 
 ### Let
 
-Sets the current system date from a value with a Variant or Date type.
+从 Variant 或 Date 类型的值设置当前系统日期。
 
-Syntax: **Date** **=** *date*
+语法：**Date** **=** *date*
 
 *date*
-: *required* For systems running Microsoft Windows 95, the *date* specification must be a date from January 1, 1980, through December 31, 2099. For systems running Microsoft Windows NT, *date* must be a date from January 1, 1980, through December 31, 2079. For the Macintosh, *date* must be a date from January 1, 1904, through February 5, 2040.
+: *必需* 对于运行 Microsoft Windows 95 的系统，*date* 必须是从 1980 年 1 月 1 日到 2099 年 12 月 31 日的日期。对于运行 Microsoft Windows NT 的系统，*date* 必须是从 1980 年 1 月 1 日到 2079 年 12 月 31 日的日期。对于 Macintosh，*date* 必须是从 1904 年 1 月 1 日到 2040 年 2 月 5 日的日期。
 
 ::: important
 
-In some versions of Microsoft Windows, including Windows 10 and 11, setting the system date is a privileged operation that requires the process to have relevant permissions. Without those permissions, assignment to **Date** results in a Permission Denied runtime error.
+在某些版本的 Microsoft Windows（包括 Windows 10 和 11）中，设置系统日期是一项特权操作，需要进程具有相关权限。如果没有这些权限，对 **Date** 的赋值会导致"权限被拒绝"运行时错误。
 :::
 
-#### Example
+#### 示例
 
-This example uses the **Date** property to set the computer system date. In the development environment, the date literal is displayed in short date format by using the locale settings of the code.
+此示例使用 **Date** 属性设置计算机系统日期。在开发环境中，日期字面量使用代码的区域设置以短日期格式显示。
 
 ```vb
 Dim MyDate As Date
@@ -54,19 +62,19 @@ MyDate = #February 12, 1985#  ' Assign a date to a variable.
 Date= MyDate                  ' Change system date. 
 ```
 
-## Date$ Property
+## Date$ 属性
 
-The behavior of the **Date$** property relies on the [**Calendar**](/official/Reference/VBA/DateTime/Calendar) property setting. If the calendar is Hijri, **Date$** returns or accepts a 10-character string of the form *mm-dd-yyyy*, where *mm* (01--12), *dd* (01--30) and *yyyy* (1400--1523) are the Hijri month, day, and year. The equivalent Gregorian range is Jan 1, 1980, through Dec 31, 2099.
+**Date$** 属性的行为依赖于 [**Calendar**](/official/Reference/VBA/DateTime/Calendar) 属性设置。如果日历为回历，**Date$** 返回或接受一个 10 字符的字符串，格式为 *mm-dd-yyyy*，其中 *mm* (01--12)、*dd* (01--30) 和 *yyyy* (1400--1523) 分别为回历月、日和年。等效的公历范围为 1980 年 1 月 1 日到 2099 年 12 月 31 日。
 
 ### Get
 
-Returns a **String** containing the current system date.
+返回一个包含当前系统日期的 **String**。
 
-Syntax: **Date$** [ **()** ]
+语法：**Date$** [ **()** ]
 
-#### Example
+#### 示例
 
-This example uses the **Date** property to return the current system date as a string.
+此示例使用 **Date** 属性以字符串形式返回当前系统日期。
 
 ```vb
 Dim MyDate$
@@ -75,21 +83,21 @@ MyDate = Date$  ' MyDate contains the current system date.
 
 ### Let
 
-Sets the current system date from a string.
+从字符串设置当前系统日期。
 
-Syntax: **Date$** **=** *date*
+语法：**Date$** **=** *date*
 
 *date*
-: *required* For systems running Microsoft Windows 95, the *date* specification must be a date from January 1, 1980, through December 31, 2099. For systems running Microsoft Windows NT, *date* must be a date from January 1, 1980, through December 31, 2079. For the Macintosh, *date* must be a date from January 1, 1904, through February 5, 2040.
+: *必需* 对于运行 Microsoft Windows 95 的系统，*date* 必须是从 1980 年 1 月 1 日到 2099 年 12 月 31 日的日期。对于运行 Microsoft Windows NT 的系统，*date* 必须是从 1980 年 1 月 1 日到 2079 年 12 月 31 日的日期。对于 Macintosh，*date* 必须是从 1904 年 1 月 1 日到 2040 年 2 月 5 日的日期。
 
 ::: important
 
-In some versions of Microsoft Windows, including Windows 10 and 11, setting the system date is a privileged operation that requires the process to have relevant permissions. Without those permissions, assignment to **Date**$ results in a Permission Denied runtime error.
+在某些版本的 Microsoft Windows（包括 Windows 10 和 11）中，设置系统日期是一项特权操作，需要进程具有相关权限。如果没有这些权限，对 **Date**$ 的赋值会导致"权限被拒绝"运行时错误。
 :::
 
-#### Example
+#### 示例
 
-This example uses the **Date$** property to set the computer system date. In the development environment, the date literal is displayed in short date format by using the locale settings of the code.
+此示例使用 **Date$** 属性设置计算机系统日期。在开发环境中，日期字面量使用代码的区域设置以短日期格式显示。
 
 ```vb
 Dim MyDate$
@@ -97,8 +105,8 @@ MyDate = "02-12-1985"        ' Assign a date to a variable.
 Date$ = MyDate               ' Change the system date. 
 ```
 
-### See Also
+### 另请参阅
 
-- [Time](/official/Reference/VBA/DateTime/Time) property
-- [Format](/official/Reference/VBA/Strings/Format) function
-- [Now](/official/Reference/VBA/DateTime/Now) function
+- [Time](/official/Reference/VBA/DateTime/Time) 属性
+- [Format](/official/Reference/VBA/Strings/Format) 函数
+- [Now](/official/Reference/VBA/DateTime/Now) 函数

@@ -1,14 +1,25 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3b326d16-2d38-414f-8d27-f7c366684e1b'
+  PropagateID: '3b326d16-2d38-414f-8d27-f7c366684e1b'
+  ReservedCode1: '8a46a569-87bc-4028-b29b-5c34460b9d38'
+  ReservedCode2: '8a46a569-87bc-4028-b29b-5c34460b9d38'
+---
+
 ---
 title: Shape
 parent: VB Package
 permalink: /tB/Packages/VB/Shape/
 ---
 
-# Shape class
+# Shape 类
 
-A **Shape** is a windowless lightweight control that draws one of a fixed set of geometric primitives --- rectangle, square, oval, circle, rounded rectangle, rounded square, five-pointed star, or an arrow pointing in any of the four cardinal directions --- directly on its container. It exists purely for visual presentation: backgrounds, decorative artwork, panel dividers, highlighting, and any other place where a heavy [**PictureBox**](/official/Reference/VB/PictureBox/) would be overkill.
+**Shape**是无窗口轻量级控件，直接在其容器上绘制一组固定几何图元中的一种——矩形、正方形、椭圆、圆形、圆角矩形、圆角正方形、五角星或指向四个基本方向的箭头。它纯粹用于视觉呈现：背景、装饰图、面板分隔线、高亮以及任何使用重量级[**PictureBox**](/official/Reference/VB/PictureBox/)显得过重的地方。
 
-A **Shape** has no interactive elements --- no focus, no caption, and no mouse, keyboard, or drag events. The shape kind and its appearance are chosen entirely through properties; the only event raised by the control is [**Initialize**](#initialize). The default property is [**Shape**](#shape) and the default event is [**Initialize**](#initialize).
+**Shape**没有交互元素——无焦点、无标题、无鼠标/键盘/拖动事件。形状类型及其外观完全通过属性选择；控件唯一引发的事件是[**Initialize**](#initialize)。默认属性是[**Shape**](#shape)，默认事件是[**Initialize**](#initialize)。
 
 ```vb
 Private Sub Form_Load()
@@ -22,265 +33,265 @@ End Sub
 ```
 
 
-## Windowless rendering
+## 无窗口渲染
 
-A **Shape** has no `hWnd`. The framework paints it onto its parent's drawing surface during the parent's paint cycle, so the control is cheap --- no Win32 window is created on its behalf and no per-instance overhead beyond a small piece of state. The trade-offs are the same as for any windowless control:
+**Shape**没有`hWnd`。框架在父级的绘制周期中将其绘制到父级的绘图表面上，因此控件开销很小——不会为其创建Win32窗口，除了一小块状态外没有每实例开销。其权衡与任何无窗口控件相同：
 
-- No focus, no keyboard input, no `KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`.
-- No mouse events of any kind --- to make a region clickable, place a transparent [**Label**](/official/Reference/VB/Label/) on top.
-- No `hWnd` to pass to API functions, and no `SetFocus`.
-- Cannot host child controls.
+- 无焦点、无键盘输入、无`KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`。
+- 无任何鼠标事件——要使区域可点击，在其上方放置透明的[**Label**](/official/Reference/VB/Label/)。
+- 没有可传递给API函数的`hWnd`，也没有`SetFocus`。
+- 不能承载子控件。
 
-For anything that needs those, use [**PictureBox**](/official/Reference/VB/PictureBox/) or a custom **UserControl** instead.
+对于需要这些功能的场景，请改用[**PictureBox**](/official/Reference/VB/PictureBox/)或自定义**UserControl**。
 
-## Shape kinds
+## 形状类型
 
-[**Shape**](#shape) chooses which primitive is drawn, as a member of [**ShapeConstants**](/official/Reference/VBRUN/Constants/ShapeConstants):
+[**Shape**](#shape)选择绘制哪种图元，作为[**ShapeConstants**](/official/Reference/VBRUN/Constants/ShapeConstants)的成员：
 
-| Constant                      | Value | Drawn as                                                                    |
-|-------------------------------|-------|-----------------------------------------------------------------------------|
-| **vbShapeRectangle**          | 0     | Rectangle filling the control's bounds.                                     |
-| **vbShapeSquare**             | 1     | Square inscribed in the bounds --- the shorter side determines the size, the longer side is centred. |
-| **vbShapeOval**               | 2     | Ellipse filling the bounds.                                                 |
-| **vbShapeCircle**             | 3     | Circle inscribed in the bounds --- the shorter side determines the diameter.  |
-| **vbShapeRoundedRectangle**   | 4     | Rectangle with rounded corners; corner radius from [**RoundedCornerSize**](#roundedcornersize). |
-| **vbShapeRoundedSquare**      | 5     | Square inscribed in the bounds, with rounded corners.                       |
-| **vbShapeStar**               | 6     | Regular star polygon; configured through [**VariationA**](#variationa), [**VariationB**](#variationb), and [**VariationC**](#variationc). |
-| **vbShapeArrowLeft**          | 7     | Left-pointing arrow.                                                        |
-| **vbShapeArrowRight**         | 8     | Right-pointing arrow.                                                       |
-| **vbShapeArrowUp**            | 9     | Up-pointing arrow.                                                          |
-| **vbShapeArrowDown**          | 10    | Down-pointing arrow.                                                        |
+| 常量                          | 值 | 绘制为                                                   |
+|-------------------------------|----|----------------------------------------------------------|
+| **vbShapeRectangle**          | 0  | 填充控件边界的矩形。                                     |
+| **vbShapeSquare**             | 1  | 内接于边界的正方形——较短边决定尺寸，较长边居中。         |
+| **vbShapeOval**               | 2  | 填充边界的椭圆。                                         |
+| **vbShapeCircle**             | 3  | 内接于边界的圆——较短边决定直径。                         |
+| **vbShapeRoundedRectangle**   | 4  | 圆角矩形；圆角半径来自[**RoundedCornerSize**](#roundedcornersize)。 |
+| **vbShapeRoundedSquare**      | 5  | 内接于边界的圆角正方形。                                 |
+| **vbShapeStar**               | 6  | 正星形多边形；通过[**VariationA**](#variationa)、[**VariationB**](#variationb)和[**VariationC**](#variationc)配置。 |
+| **vbShapeArrowLeft**          | 7  | 向左的箭头。                                             |
+| **vbShapeArrowRight**         | 8  | 向右的箭头。                                             |
+| **vbShapeArrowUp**            | 9  | 向上的箭头。                                             |
+| **vbShapeArrowDown**          | 10 | 向下的箭头。                                             |
 
-For **vbShapeCircle**, **vbShapeSquare**, and **vbShapeRoundedSquare**, the drawn primitive is square: the shorter of the control's width and height is used and the primitive is centred along the longer axis. The control's bounding rectangle is unchanged.
+对于**vbShapeCircle**、**vbShapeSquare**和**vbShapeRoundedSquare**，绘制的图元是正方形的：使用控件宽度和高度中的较短者，图元沿较长轴居中。控件的边界矩形不变。
 
-## Stars and arrows
+## 星形和箭头
 
-Stars and arrows are parameterised through the three **Variation** properties, all **Long** with a sentinel default of `-1` that selects the built-in default geometry:
+星形和箭头通过三个**Variation**属性参数化，均为**Long**，默认值为哨兵值`-1`，选择内置默认几何：
 
-For **vbShapeStar**:
+对于**vbShapeStar**：
 
-- [**VariationA**](#variationa) -- number of points, clamped to the inclusive range `2`--`30`. Default `5`.
-- [**VariationB**](#variationb) -- inner-radius factor controlling how "thin" the star's arms are. Larger values produce thinner arms. Default chosen so the inner radius is half the outer radius.
-- [**VariationC**](#variationc) -- vertex-spread divisor, an integer from `1` to `12`. Lower values produce closely-bunched points; higher values produce a more conventional star. Default `12` (effectively a divisor of `2`).
+- [**VariationA**](#variationa) — 点数，钳制到包含范围`2`--`30`。默认`5`。
+- [**VariationB**](#variationb) — 内半径因子，控制星形臂的"粗细"。值越大臂越细。默认选择使内半径为外半径一半的值。
+- [**VariationC**](#variationc) — 顶点展开除数，`1`到`12`的整数。值越低产生越密集的点；值越高产生越常规的星形。默认`12`（有效除数为`2`）。
 
-For **vbShapeArrowLeft**, **vbShapeArrowRight**, **vbShapeArrowUp**, **vbShapeArrowDown**:
+对于**vbShapeArrowLeft**、**vbShapeArrowRight**、**vbShapeArrowUp**、**vbShapeArrowDown**：
 
-- [**VariationA**](#variationa) -- arrowhead "height" along the arrow's axis, as a percentage (`0`--`100`) of the control's cross-axis dimension. Default `30` (i.e. `0.30`).
-- [**VariationB**](#variationb) -- arrowhead "depth" along the arrow's tip-to-tail axis, as a percentage (`0`--`100`) of the control's axis dimension. Default `50` (i.e. `0.50`).
+- [**VariationA**](#variationa) — 箭头沿横轴方向的"高度"，作为控件横轴尺寸的百分比（`0`--`100`）。默认`30`（即`0.30`）。
+- [**VariationB**](#variationb) — 箭头沿纵轴方向的"深度"，作为控件纵轴尺寸的百分比（`0`--`100`）。默认`50`（即`0.50`）。
 
-[**VariationC**](#variationc) is unused for arrows.
+[**VariationC**](#variationc)在箭头中未使用。
 
-## Background, fill, and gradients
+## 背景、填充和渐变
 
-A **Shape** is painted in three logical layers:
+**Shape**按三个逻辑层绘制：
 
-1. The control's background, governed by [**BackStyle**](#backstyle) and [**BackColor**](#backcolor). When [**BackStyle**](#backstyle) is **vbBFTransparent** (default), pixels outside the drawn shape but inside the control's bounding rectangle show whatever the parent painted underneath. When **vbBFOpaque**, those pixels are filled with [**BackColor**](#backcolor).
-2. The interior of the shape, governed by [**FillStyle**](#fillstyle), [**FillColor**](#fillcolor), and (for gradients) [**FillColorAlt**](#fillcoloralt).
-3. The shape's outline, governed by [**BorderStyle**](#borderstyle), [**BorderColor**](#bordercolor), and [**BorderWidth**](#borderwidth).
+1. 控件的背景，由[**BackStyle**](#backstyle)和[**BackColor**](#backcolor)控制。当[**BackStyle**](#backstyle)为**vbBFTransparent**（默认）时，绘制形状之外但在控件边界矩形之内的像素显示父级在下面绘制的内容。当**vbBFOpaque**时，这些像素用[**BackColor**](#backcolor)填充。
+2. 形状的内部，由[**FillStyle**](#fillstyle)、[**FillColor**](#fillcolor)和（渐变的）[**FillColorAlt**](#fillcoloralt)控制。
+3. 形状的轮廓，由[**BorderStyle**](#borderstyle)、[**BorderColor**](#bordercolor)和[**BorderWidth**](#borderwidth)控制。
 
-[**FillStyle**](#fillstyle) is a member of [**FillStyleConstantsEx**](/official/Reference/VBRUN/Constants/FillStyleConstantsEx):
+[**FillStyle**](#fillstyle)是[**FillStyleConstantsEx**](/official/Reference/VBRUN/Constants/FillStyleConstantsEx)的成员：
 
-| Constant                  | Value | Interior                                                       |
-|---------------------------|-------|----------------------------------------------------------------|
-| **vbFSSolid**             | 0     | Filled with [**FillColor**](#fillcolor).                       |
-| **vbFSTransparent**       | 1     | No fill (default --- the shape's interior shows through).        |
-| **vbHorizontalLine**      | 2     | Horizontal hatch in [**FillColor**](#fillcolor).               |
-| **vbVerticalLine**        | 3     | Vertical hatch in [**FillColor**](#fillcolor).                 |
-| **vbUpwardDiagonal**      | 4     | `/`-direction diagonal hatch.                                  |
-| **vbDownwardDiagonal**    | 5     | `\`-direction diagonal hatch.                                  |
-| **vbCross**               | 6     | Orthogonal cross-hatch.                                        |
-| **vbDiagonalCross**       | 7     | Diagonal cross-hatch.                                          |
-| **vbGradientNS**          | 8     | Vertical gradient from [**FillColor**](#fillcolor) (top) to [**FillColorAlt**](#fillcoloralt) (bottom). |
-| **vbGradientWE**          | 9     | Horizontal gradient from [**FillColor**](#fillcolor) (left) to [**FillColorAlt**](#fillcoloralt) (right). |
+| 常量                    | 值 | 内部                                                     |
+|-------------------------|----|----------------------------------------------------------|
+| **vbFSSolid**           | 0  | 用[**FillColor**](#fillcolor)填充。                     |
+| **vbFSTransparent**     | 1  | 无填充（默认——形状内部透出）。                           |
+| **vbHorizontalLine**    | 2  | [**FillColor**](#fillcolor)的水平阴影线。               |
+| **vbVerticalLine**      | 3  | [**FillColor**](#fillcolor)的垂直阴影线。               |
+| **vbUpwardDiagonal**    | 4  | `/`方向对角阴影线。                                     |
+| **vbDownwardDiagonal**  | 5  | `\`方向对角阴影线。                                     |
+| **vbCross**             | 6  | 正交交叉阴影线。                                         |
+| **vbDiagonalCross**     | 7  | 对角交叉阴影线。                                         |
+| **vbGradientNS**        | 8  | 从[**FillColor**](#fillcolor)（顶部）到[**FillColorAlt**](#fillcoloralt)（底部）的垂直渐变。 |
+| **vbGradientWE**        | 9  | 从[**FillColor**](#fillcolor)（左侧）到[**FillColorAlt**](#fillcoloralt)（右侧）的水平渐变。 |
 
-The gradient styles (**vbGradientNS**, **vbGradientWE**) use the Win32 `GradientFill` GDI primitive, which does not respect the world transform applied for rotation: when [**Angle**](#angle) is non-zero, the gradient styles fall back to a solid fill of [**FillColor**](#fillcolor). The hatch and gradient styles are clipped to the shape's outline using a GDI region matching the shape kind.
+渐变样式（**vbGradientNS**、**vbGradientWE**）使用Win32 `GradientFill` GDI原语，该原语不支持为旋转应用的世界变换：当[**Angle**](#angle)非零时，渐变样式回退为[**FillColor**](#fillcolor)的纯色填充。阴影线和渐变样式使用匹配形状类型的GDI区域裁剪到形状轮廓。
 
-## Border
+## 边框
 
-The outline is drawn with a Win32 GDI pen:
+轮廓使用Win32 GDI画笔绘制：
 
-- [**BorderColor**](#bordercolor) -- the pen colour (defaults to the system window-text colour).
-- [**BorderWidth**](#borderwidth) -- the pen width in pixels (default `1`).
-- [**BorderStyle**](#borderstyle) -- the pen pattern, as a member of [**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants): **vbTransparent** (0 --- no outline), **vbBSSolid** (1, default), **vbBSDash** (2), **vbBSDot** (3), **vbBSDashDot** (4), **vbBSDashDotDot** (5), or **vbBSInsideSolid** (6).
+- [**BorderColor**](#bordercolor) — 画笔颜色（默认为系统窗口文本颜色）。
+- [**BorderWidth**](#borderwidth) — 画笔宽度（像素，默认`1`）。
+- [**BorderStyle**](#borderstyle) — 画笔图案，作为[**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants)的成员：**vbTransparent**（0——无轮廓）、**vbBSSolid**（1，默认）、**vbBSDash**（2）、**vbBSDot**（3）、**vbBSDashDot**（4）、**vbBSDashDotDot**（5）或**vbBSInsideSolid**（6）。
 
-As with [**Line**](/official/Reference/VB/Line/), GDI forces a solid pen whenever [**BorderWidth**](#borderwidth) is greater than `1` --- dashed and dotted patterns are only honoured at width `1`.
+与[**Line**](/official/Reference/VB/Line/)一样，当[**BorderWidth**](#borderwidth)大于`1`时，GDI强制使用实线画笔——虚线和点线图案仅在宽度`1`时有效。
 
-## Rotation
+## 旋转
 
-[**Angle**](#angle) rotates the rendered shape around the control's top-left point, in degrees, anti-clockwise. `0` (default) is the natural orientation; `90` is a quarter turn anti-clockwise; values between `0` and `360` give arbitrary rotations. The control's bounding rectangle on the parent does not change --- large rotation angles can therefore push the visible shape outside the rectangle. The rendered pixels are bounded only by the parent's clip, not by the **Shape**'s own rectangle.
+[**Angle**](#angle)围绕控件左上角以度为单位逆时针旋转渲染形状。`0`（默认）为自然方向；`90`为逆时针旋转四分之一圈；`0`到`360`之间的值给出任意旋转。控件在父级上的边界矩形不变——因此大旋转角度可能将可见形状推出矩形。渲染的像素仅受父级裁剪区域约束，不受**Shape**自身矩形约束。
 
-Gradient fill styles do not honour rotation --- see [Background, fill, and gradients](#background-fill-and-gradients).
+渐变填充样式不支持旋转——参见[背景、填充和渐变](#background-fill-and-gradients)。
 
-## Draw mode
+## 绘制模式
 
-[**DrawMode**](#drawmode) selects the raster operation that combines the drawn pixels with the destination. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default --- opaque drawing) or one of the XOR / AND / NOT / merge variants. Non-default modes are mainly useful for "rubber-band" feedback drawn over an existing background --- the same XOR applied twice cancels itself out, restoring the original pixels.
+[**DrawMode**](#drawmode)选择将绘制像素与目标组合的光栅操作。[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员：**vbCopyPen**（默认——不透明绘制）或XOR/AND/NOT/合并变体之一。非默认模式主要用于在现有背景上绘制的"橡皮筋"反馈——同一XOR应用两次可相互抵消，恢复原始像素。
 
-## Properties
+## 属性
 
 ### Anchors
 
-The set of edges of the parent that the **Shape**'s corresponding edges follow when the parent resizes. Read-only --- assign individual `.Left`, `.Top`, `.Right`, `.Bottom` flags through the returned **Anchors** object.
+决定控件的哪些边随父级对应边调整的边集合。只读——通过返回的**Anchors**对象设置各个`.Left`、`.Top`、`.Right`、`.Bottom`标志。
 
 ### Angle
 
-The rotation of the rendered shape, in degrees, anti-clockwise around the control's top-left corner. **Double**, default `0`. See [Rotation](#rotation) for the details and the gradient-fill caveat.
+渲染形状的旋转角度，以度为单位，围绕控件左上角逆时针旋转。**Double**，默认`0`。详见[旋转](#rotation)及渐变填充注意事项。
 
 ### BackColor
 
-The colour painted into the **Shape**'s bounding rectangle (outside the shape's own outline) when [**BackStyle**](#backstyle) is **vbBFOpaque**. **OLE_COLOR**, defaults to the system window-background colour. Has no effect when [**BackStyle**](#backstyle) is **vbBFTransparent**.
+当[**BackStyle**](#backstyle)为**vbBFOpaque**时绘制到**Shape**边界矩形（形状自身轮廓之外）的颜色。**OLE_COLOR**，默认为系统窗口背景颜色。当[**BackStyle**](#backstyle)为**vbBFTransparent**时无效。
 
 ### BackStyle
 
-Whether the bounding rectangle around the shape is filled with [**BackColor**](#backcolor) or left transparent. A member of [**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants): **vbBFTransparent** (0, default) or **vbBFOpaque** (1).
+形状周围的边界矩形是否用[**BackColor**](#backcolor)填充或保持透明。[**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants)的成员：**vbBFTransparent**（0，默认）或**vbBFOpaque**（1）。
 
 ### BorderColor
 
-The colour of the shape's outline, as an **OLE_COLOR**. Defaults to the system window-text colour.
+形状轮廓的颜色，作为**OLE_COLOR**。默认为系统窗口文本颜色。
 
 ### BorderStyle
 
-The pen pattern used for the outline. A member of [**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants): **vbTransparent** (0), **vbBSSolid** (1, default), **vbBSDash** (2), **vbBSDot** (3), **vbBSDashDot** (4), **vbBSDashDotDot** (5), or **vbBSInsideSolid** (6). Forced to **vbBSSolid** by Win32 whenever [**BorderWidth**](#borderwidth) is greater than `1`.
+用于轮廓的画笔图案。[**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants)的成员：**vbTransparent**（0）、**vbBSSolid**（1，默认）、**vbBSDash**（2）、**vbBSDot**（3）、**vbBSDashDot**（4）、**vbBSDashDotDot**（5）或**vbBSInsideSolid**（6）。当[**BorderWidth**](#borderwidth)大于`1`时Win32强制为**vbBSSolid**。
 
 ### BorderWidth
 
-The outline pen width, in pixels. **Long**, default `1`. Widths greater than `1` ignore [**BorderStyle**](#borderstyle) and always draw solid.
+轮廓画笔宽度，以像素为单位。**Long**，默认`1`。大于`1`的宽度忽略[**BorderStyle**](#borderstyle)并始终绘制实线。
 
 ### Container
 
-The control that hosts this **Shape** --- typically the form, a [**Frame**](/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
+承载此**Shape**的控件——通常是窗体、[**Frame**](/official/Reference/VB/Frame/)或**UserControl**。用**Get**读取，用**Set**更改。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control. Always **vbShape**. This constant is shared with the [**Line**](/official/Reference/VB/Line/) control --- both are windowless geometric primitives.
+标识此控件的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbShape**。此常量与[**Line**](/official/Reference/VB/Line/)控件共享——两者都是无窗口几何图元。
 
 ### Dock
 
-Where the **Shape** is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked shapes ignore [**Anchors**](#anchors).
+**Shape**在其容器中的停靠位置。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants)的成员：**vbDockNone**（默认）、**vbDockLeft**、**vbDockTop**、**vbDockRight**、**vbDockBottom**或**vbDockFill**。停靠的形状忽略[**Anchors**](#anchors)。
 
 ### DrawMode
 
-The raster operation that the shape drawing applies when combining its pixels with the destination. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default) is normal opaque drawing; other values produce XOR, AND, NOT, and other pixel-mixing effects.
+形状绘制在将像素与目标组合时应用的光栅操作。[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员：**vbCopyPen**（默认）为普通不透明绘制；其他值产生XOR、AND、NOT和其他像素混合效果。
 
 ### FillColor
 
-The primary colour used to fill the shape's interior. **OLE_COLOR**, defaults to the system scrollbar colour. Used as the only colour for solid and hatched fills, and as the start colour for gradient fills. Has no effect when [**FillStyle**](#fillstyle) is **vbFSTransparent**.
+用于填充形状内部的主要颜色。**OLE_COLOR**，默认为系统滚动条颜色。用于纯色和阴影线填充的唯一颜色，以及渐变填充的起始颜色。当[**FillStyle**](#fillstyle)为**vbFSTransparent**时无效。
 
 ### FillColorAlt
 
-The secondary colour used as the end of a gradient fill. **OLE_COLOR**, defaults to `vbWhite`. Used only when [**FillStyle**](#fillstyle) is **vbGradientNS** or **vbGradientWE**.
+用作渐变填充终点的次要颜色。**OLE_COLOR**，默认为`vbWhite`。仅在[**FillStyle**](#fillstyle)为**vbGradientNS**或**vbGradientWE**时使用。
 
 ### FillStyle
 
-The pattern used to fill the shape's interior, as a member of [**FillStyleConstantsEx**](/official/Reference/VBRUN/Constants/FillStyleConstantsEx). Default **vbFSTransparent** (1) --- the interior is not painted and shows through to the underlying parent pixels. See [Background, fill, and gradients](#background-fill-and-gradients) for the full table and the caveat for gradients combined with rotation.
+用于填充形状内部的图案，作为[**FillStyleConstantsEx**](/official/Reference/VBRUN/Constants/FillStyleConstantsEx)的成员。默认**vbFSTransparent**（1）——内部不绘制，透出底层父级像素。完整表格及渐变与旋转组合的注意事项见[背景、填充和渐变](#background-fill-and-gradients)。
 
 ### Height
 
-The control's height, in twips by default (or in the container's **ScaleMode** units). **Double**.
+控件的高度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Double**。
 
 ### Index
 
-When the **Shape** is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当**Shape**是控件数组的一部分时，此实例在数组中的**Long**零基索引。在非数组实例上读取**Index**会引发运行时错误343（*对象不是数组*）。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the control. **Double**.
+从容器左边缘到控件左边缘的水平距离。**Double**。
 
 ### Name
 
-The unique design-time name of the **Shape** on its parent form. Read-only at run time.
+**Shape**在其父窗体上的唯一设计时名称。运行时只读。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the **Shape**. Read-only.
+对最终包含**Shape**的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）的引用。只读。
 
 ### RoundedCornerSize
 
-The radius, in the container's **ScaleMode** units, of the corner arc drawn when [**Shape**](#shape) is **vbShapeRoundedRectangle** or **vbShapeRoundedSquare**. **Long**, default `20`. Ignored for other shape kinds.
+当[**Shape**](#shape)为**vbShapeRoundedRectangle**或**vbShapeRoundedSquare**时绘制的圆角弧半径，以容器的**ScaleMode**单位。**Long**，默认`20`。对其他形状类型忽略。
 
 ### Shape
 
-The geometric primitive drawn by the control. **Default property.**
+控件绘制的几何图元。**默认属性。**
 
-Syntax: *object*.**Shape** [ = *value* ]
+语法：*object*.**Shape** [ = *value* ]
 
 *value*
-: A member of [**ShapeConstants**](/official/Reference/VBRUN/Constants/ShapeConstants). See [Shape kinds](#shape-kinds) for the full table.
+: [**ShapeConstants**](/official/Reference/VBRUN/Constants/ShapeConstants)的成员。完整表格见[形状类型](#shape-kinds)。
 
-When accessed through the default-property path (e.g. `Shape1 = vbShapeOval`), the value is read and written as a **Long** matching the underlying enum.
+通过默认属性路径访问时（如`Shape1 = vbShapeOval`），值作为匹配底层枚举的**Long**读写。
 
 ### TabIndex
 
 ::: info
-Inherited from the windowless-control base class but has no effect: a **Shape** does not accept focus and is skipped by TAB-key navigation regardless of this value.
+继承自无窗口控件基类但无效果：**Shape**不接受焦点，无论此值如何都会被TAB键导航跳过。
 :::
 
 ### TabStop
 
 ::: info
-Inherited from the windowless-control base class but has no effect: a **Shape** does not accept focus and cannot be reached by the TAB key.
+继承自无窗口控件基类但无效果：**Shape**不接受焦点，无法通过TAB键到达。
 :::
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the **Shape**. Ignored by the framework.
+应用程序可用于将自定义数据与**Shape**关联的自由格式**String**。框架忽略此属性。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the control. **Double**.
+从容器顶部到控件顶部的垂直距离。**Double**。
 
 ### VariationA
 
-First geometry parameter for the star and arrow shape kinds. **Long**, default `-1` (which selects the built-in default for the current shape). See [Stars and arrows](#stars-and-arrows) for the meaning per shape.
+星形和箭头形状类型的第一几何参数。**Long**，默认`-1`（选择当前形状的内置默认值）。每种形状的含义见[星形和箭头](#stars-and-arrows)。
 
 ### VariationB
 
-Second geometry parameter for the star and arrow shape kinds. **Long**, default `-1`. See [Stars and arrows](#stars-and-arrows).
+星形和箭头形状类型的第二几何参数。**Long**，默认`-1`。见[星形和箭头](#stars-and-arrows)。
 
 ### VariationC
 
-Third geometry parameter, used only by **vbShapeStar**. **Long**, default `-1`. See [Stars and arrows](#stars-and-arrows).
+第三几何参数，仅**vbShapeStar**使用。**Long**，默认`-1`。见[星形和箭头](#stars-and-arrows)。
 
 ### Visible
 
-Whether the **Shape** is drawn. **Boolean**, default **True**.
+**Shape**是否绘制。**Boolean**，默认**True**。
 
 ### Width
 
-The control's width, in twips by default (or in the container's **ScaleMode** units). **Double**.
+控件的宽度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Double**。
 
-## Methods
+## 方法
 
 ### Move
 
-Repositions and optionally resizes the **Shape** in a single call.
+在单次调用中重新定位并可选地调整**Shape**的尺寸。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### Refresh
 
-Forces an immediate repaint of the **Shape**'s bounding rectangle on the parent's drawing surface.
+强制立即重绘**Shape**在父级绘图表面上的边界矩形。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### ZOrder
 
-Brings the **Shape** to the front or back of the windowless-sibling stack within its container.
+将**Shape**带到容器内无窗口同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront**（0，默认）或**vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Initialize
 
-Raised once, after the **Shape** has been connected to its container's paint cycle but before it is first painted. Useful for last-minute setup that depends on container state. **Default event.**
+在**Shape**已连接到其容器的绘制周期但首次绘制之前引发一次。适用于依赖容器状态的最后一刻设置。**默认事件。**
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )

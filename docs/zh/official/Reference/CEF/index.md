@@ -1,86 +1,94 @@
 ---
-title: CEF Package
+title: "CEF 包"
 parent: Packages
 nav_order: 6
 permalink: /tB/Packages/CEF/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '55661cc8-a78f-458f-8063-4ca4519e94f6'
+  PropagateID: '55661cc8-a78f-458f-8063-4ca4519e94f6'
+  ReservedCode1: '02d3bdac-fcc3-4572-8761-77ff1e6549bd'
+  ReservedCode2: '02d3bdac-fcc3-4572-8761-77ff1e6549bd'
 ---
 
-# CEF Package
+# CEF 包
 
-The **cefPackage** wraps the [Chromium Embedded Framework](https://chromiumembedded.github.io/cef/) and exposes it as an ordinary twinBASIC control. Drop a [**CefBrowser**](/official/Reference/CEF/CefBrowser/) onto a form and a Chromium browser renders web content inside it --- navigate to URLs, run JavaScript, print pages to PDF, and exchange messages with the loaded page.
+**cefPackage** 封装了 [Chromium Embedded Framework](https://chromiumembedded.github.io/cef/) 并将其作为普通的 twinBASIC 控件暴露。将 [**CefBrowser**](/official/Reference/CEF/CefBrowser/) 拖放到窗体上，Chromium 浏览器即可在其内部渲染Web内容——导航到URL、运行JavaScript、将页面打印为PDF，以及与已加载的页面交换消息。
 
-The package is a built-in package shipped with twinBASIC, but the CEF runtime itself is distributed *separately* --- applications must ship the matching runtime ZIP alongside the executable. See [Runtime files](#runtime-files) below.
+该包是随 twinBASIC 一起发布的内置包，但 CEF 运行时本身是*单独*分发的——应用程序必须将匹配的运行时ZIP与可执行文件一起发布。参见下方的[运行时文件](#runtime-files)。
 
 ::: important
-The CEF package is currently in **BETA**. Several features available on [**WebView2**](/official/Reference/WebView2/) are not yet exposed; see [WebView2 parity](#webview2-parity) below.
+CEF 包目前处于 **BETA** 阶段。[**WebView2**](/official/Reference/WebView2/) 上可用的若干功能尚未暴露；参见下方的 [WebView2 对等性](#webview2-parity)。
 :::
 
 
-## Why CEF instead of WebView2?
+## 为什么选择 CEF 而不是 WebView2？
 
-CEF and [**WebView2**](/official/Reference/WebView2/) both wrap a Chromium-based browser inside a twinBASIC control. CEF brings advantages that matter for some applications:
+CEF 和 [**WebView2**](/official/Reference/WebView2/) 都将基于Chromium的浏览器封装在 twinBASIC 控件中。CEF 对某些应用具有更重要的优势：
 
-- **Cross-platform ready.** CEF runs on Windows, Linux, and macOS. [**WebView2**](/official/Reference/WebView2/) is Windows-only.
-- **Full control over the runtime stack.** The application targets a specific Chromium build and distributes it alongside the software. There is no automatic runtime update outside the application's control, so behavior stays consistent across deployments.
-- **Deeper runtime integration.** CEF allows hosting twinBASIC code inside the renderer / JavaScript process --- something the more restricted WebView2 object model cannot do.
+- **跨平台就绪。** CEF 可在 Windows、Linux 和 macOS 上运行。[**WebView2**](/official/Reference/WebView2/) 仅限 Windows。
+- **完全控制运行时栈。** 应用程序以特定的 Chromium 构建为目标，并将其与软件一起分发。应用程序控制之外不会有自动运行时更新，因此行为在不同部署之间保持一致。
+- **更深入的运行时集成。** CEF 允许在渲染器/JavaScript进程内托管 twinBASIC 代码——这是更受限的 WebView2 对象模型无法做到的。
 
-[**WebView2**](/official/Reference/WebView2/) is the right fit when targeting only modern Windows and the system-installed Edge runtime is acceptable; **CEF** is preferable when control over the Chromium version or cross-platform readiness matters.
+当仅面向现代 Windows 且可接受系统安装的 Edge 运行时时，[**WebView2**](/official/Reference/WebView2/) 是正确的选择；当需要控制 Chromium 版本或跨平台就绪性时，**CEF** 更为可取。
 
-## Supported runtimes
+## 支持的运行时
 
-Three CEF versions are supported, each with a different Chromium baseline and different OS reach:
+支持三个 CEF 版本，每个版本有不同的 Chromium 基线和不同的操作系统覆盖范围：
 
-| Runtime version | Supported OS  | Notes                                                          |
+| 运行时版本 | 支持的操作系统 | 备注                                                          |
 |-----------------|---------------|----------------------------------------------------------------|
-| **v49**         | Windows XP+   | Last Chromium version that supports Windows XP.                |
-| **v109**        | Windows 7+    | Last Chromium version that supports Windows 7.                 |
-| **v145**        | Windows 10+   | Recommended modern runtime.                                    |
+| **v49**         | Windows XP+   | 最后一个支持 Windows XP 的 Chromium 版本。                |
+| **v109**        | Windows 7+    | 最后一个支持 Windows 7 的 Chromium 版本。                 |
+| **v145**        | Windows 10+   | 推荐的现代运行时。                                    |
 
 ::: warning
-Older Chromium versions should not generally be used for unrestricted internet browsing --- they have unpatched security vulnerabilities. They remain appropriate for tightly controlled environments where the browser loads only trusted local or internal content.
+较旧的 Chromium 版本通常不应用于不受限制的互联网浏览——它们存在未修补的安全漏洞。但对于浏览器仅加载受信任的本地或内部内容的严格受控环境，它们仍然适用。
 :::
 
-The user picks a runtime in two places that must agree:
+用户在两个必须一致的位置选择运行时：
 
-- **At compile time** --- by adding the matching `[COMPILER PACKAGE] twinBASIC - Chromium Embedded Framework Package v<N>` reference to the project. This sets the `CEF_VERSION` conditional-compilation constant (49, 109, or 145) that the package's own sources compile against. [**CefBrowser.CefMajorVersion**](/official/Reference/CEF/CefBrowser/#cefmajorversion) returns this value at run time.
-- **At deploy time** --- by shipping the matching runtime ZIP, extracted into [the discovery folder](#installing-runtime-files) or pointed at via [**EnvironmentOptions.BrowserExecutableFolder**](/official/Reference/CEF/CefBrowser/EnvironmentOptions#browserexecutablefolder).
+- **编译时**——通过向项目添加匹配的 `[COMPILER PACKAGE] twinBASIC - Chromium Embedded Framework Package v<N>` 引用。这设置了包自身源代码编译时使用的 `CEF_VERSION` 条件编译常量（49、109 或 145）。[**CefBrowser.CefMajorVersion**](/official/Reference/CEF/CefBrowser/#cefmajorversion) 在运行时返回此值。
+- **部署时**——通过发布匹配的运行时ZIP，解压到[发现文件夹](#installing-runtime-files)或通过 [**EnvironmentOptions.BrowserExecutableFolder**](/official/Reference/CEF/CefBrowser/EnvironmentOptions#browserexecutablefolder) 指定。
 
-The runtime bitness must match the application bitness --- a 32-bit application needs the 32-bit runtime ZIP, a 64-bit application needs the 64-bit ZIP.
+运行时的位数必须与应用程序的位数匹配——32位应用程序需要32位运行时ZIP，64位应用程序需要64位ZIP。
 
-## Runtime files
+## 运行时文件
 
-The runtime ships separately from the package. Download the ZIP that matches both the CEF version and the application bitness:
+运行时与包分开发布。下载与 CEF 版本和应用程序位数都匹配的ZIP：
 
-| Version | Win32                                                        | Win64                                                        |
+| 版本 | Win32                                                        | Win64                                                        |
 | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | v49     | [cefRuntime49_win32.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime49_win32.zip) | [cefRuntime49_win64.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime49_win64.zip) |
 | v109    | [cefRuntime109_win32.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime109_win32.zip) | [cefRuntime109_win64.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime109_win64.zip) |
 | v145    | [cefRuntime145_win32.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime145_win32.zip) | [cefRuntime145_win64.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime145_win64.zip) |
 
-See also [CEF Runtime Releases](https://github.com/twinbasic/cef-runtimes/releases/) for the latest release.
+另请参阅 [CEF Runtime Releases](https://github.com/twinbasic/cef-runtimes/releases/) 获取最新版本。
 
-### Installing runtime files
+### 安装运行时文件
 
 
-Extract the ZIP into:
+将ZIP解压到：
 
 ```text
 %LocalAppData%\twinBASIC_CEF_Runtime\
 ```
 
-For example, the v145 Win64 runtime ends up at:
+例如，v145 Win64 运行时最终位于：
 
 ```text
 %LocalAppData%\twinBASIC_CEF_Runtime\145_0_7632_160_Win64\
 ```
 
-The version-stamped folder must contain `libcef.dll` and its sibling runtime files.
+带版本戳的文件夹必须包含 `libcef.dll` 及其同级运行时文件。
 
-At launch, [**CefBrowser**](/official/Reference/CEF/CefBrowser/) searches for the runtime in this default location. If `libcef.dll` cannot be found, the [**Error**](/official/Reference/CEF/CefBrowser/#error) event fires with the exact path that was searched.
+启动时，[**CefBrowser**](/official/Reference/CEF/CefBrowser/) 在此默认位置搜索运行时。如果找不到 `libcef.dll`，[**Error**](/official/Reference/CEF/CefBrowser/#error) 事件将触发，并附带所搜索的确切路径。
 
-### Overriding the runtime location
+### 覆盖运行时位置
 
-A different folder --- for example a portable side-by-side deployment --- is selected by assigning [**EnvironmentOptions.BrowserExecutableFolder**](/official/Reference/CEF/CefBrowser/EnvironmentOptions#browserexecutablefolder) before or during the [**Create**](/official/Reference/CEF/CefBrowser/#create) event:
+可以通过在 [**Create**](/official/Reference/CEF/CefBrowser/#create) 事件之前或期间赋值 [**EnvironmentOptions.BrowserExecutableFolder**](/official/Reference/CEF/CefBrowser/EnvironmentOptions#browserexecutablefolder) 来选择不同的文件夹——例如便携式并排部署：
 
 ```vb
 Private Sub CefBrowser1_Create()
@@ -89,35 +97,35 @@ Private Sub CefBrowser1_Create()
 End Sub
 ```
 
-The folder must contain `libcef.dll`.
+该文件夹必须包含 `libcef.dll`。
 
-## WebView2 parity
+## WebView2 对等性
 
-These [**WebView2**](/official/Reference/WebView2/) features are not yet exposed on **CefBrowser** and have no documented counterpart:
+以下 [**WebView2**](/official/Reference/WebView2/) 功能尚未在 **CefBrowser** 上暴露，且没有已记录的对应项：
 
-- Methods: **OpenTaskManagerWindow**, **AddObject** (host-object publication for JavaScript), **AddWebResourceRequestedFilter** and the surrounding request-interception machinery.
-- Events: **AcceleratorKeyPressed**, **PermissionRequested**, **WebResourceRequested**, **ProcessFailed**, **ScriptDialogOpening**, **UserContextMenu**, **SuspendCompleted**, **SuspendFailed**, **DownloadStarting**, **NewWindowRequested**.
+- 方法：**OpenTaskManagerWindow**、**AddObject**（用于JavaScript的宿主对象发布）、**AddWebResourceRequestedFilter** 及周围的请求拦截机制。
+- 事件：**AcceleratorKeyPressed**、**PermissionRequested**、**WebResourceRequested**、**ProcessFailed**、**ScriptDialogOpening**、**UserContextMenu**、**SuspendCompleted**、**SuspendFailed**、**DownloadStarting**、**NewWindowRequested**。
 
-The [**NavigationComplete**](/official/Reference/CEF/CefBrowser/#navigationcomplete) event has **IsSuccess** and **WebErrorStatus** parameters in its signature but currently returns placeholder values (`True` and `0`) --- the underlying CEF callbacks that would populate them have not yet been connected.
+[**NavigationComplete**](/official/Reference/CEF/CefBrowser/#navigationcomplete) 事件在其签名中有 **IsSuccess** 和 **WebErrorStatus** 参数，但目前返回占位值（`True` 和 `0`）——填充它们的底层 CEF 回调尚未连接。
 
-The API will continue to grow; this list is a snapshot of the current beta, not a long-term limitation.
+API 将继续增长；此列表是当前测试版的快照，而非长期限制。
 
-## Classes
+## 类
 
-- [CefBrowser](/official/Reference/CEF/CefBrowser/) -- the control: navigation, scripting, virtual-host mapping, PDF printing, and lifecycle events controlled by the matching CEF runtime
-- [CefEnvironmentOptions](/official/Reference/CEF/CefBrowser/EnvironmentOptions) -- pre-creation configuration for the CEF environment (executable folder, user-data folder, log file, log severity); reached via the control's **EnvironmentOptions** property
+- [CefBrowser](/official/Reference/CEF/CefBrowser/) -- 控件：导航、脚本、虚拟主机映射、PDF打印和由匹配的CEF运行时控制的生命周期事件
+- [CefEnvironmentOptions](/official/Reference/CEF/CefBrowser/EnvironmentOptions) -- CEF环境的预创建配置（可执行文件夹、用户数据文件夹、日志文件、日志严重级别）；通过控件的 **EnvironmentOptions** 属性访问
 
-## Enumerations
+## 枚举
 
-- [CefLogSeverity](/official/Reference/CEF/Enumerations/CefLogSeverity) -- the verbosity threshold for the CEF debug log; used by [**EnvironmentOptions.LogSeverity**](/official/Reference/CEF/CefBrowser/EnvironmentOptions#logseverity)
-- [cefPrintOrientation](/official/Reference/CEF/Enumerations/cefPrintOrientation) -- page orientation passed to [**PrintToPdf**](/official/Reference/CEF/CefBrowser/#printtopdf)
+- [CefLogSeverity](/official/Reference/CEF/Enumerations/CefLogSeverity) -- CEF调试日志的详细级别阈值；由 [**EnvironmentOptions.LogSeverity**](/official/Reference/CEF/CefBrowser/EnvironmentOptions#logseverity) 使用
+- [cefPrintOrientation](/official/Reference/CEF/Enumerations/cefPrintOrientation) -- 传递给 [**PrintToPdf**](/official/Reference/CEF/CefBrowser/#printtopdf) 的页面方向
 
-## Tutorials
+## 教程
 
-- [Getting started](/official/Tutorials/CEF/Getting-started) -- package reference, runtime download, install path
-- [Customize the UserDataFolder](/official/Tutorials/CEF/Customize-the-UserDataFolder) -- relocating the runtime's working folder
-- [Re-entrancy](/official/Tutorials/CEF/Re-entrancy) -- the deferred-event model and the one place ([**JsRun**](/official/Reference/CEF/CefBrowser/#jsrun)) that still requires attention
-- [Building a browser shell](/official/Tutorials/CEF/Building-a-browser-shell) -- back / forward / reload / zoom / PDF
-- [Hosting local web assets](/official/Tutorials/CEF/Hosting-local-web-assets) -- virtual-host folder mappings
-- [JavaScript interop](/official/Tutorials/CEF/JavaScript-interop) -- messages and scripted calls between BASIC and the page
-- [Driving Monaco from twinBASIC](/official/Tutorials/CEF/Driving-Monaco) -- case study combining everything above
+- [入门指南](/official/Tutorials/CEF/Getting-started) -- 包引用、运行时下载、安装路径
+- [自定义 UserDataFolder](/official/Tutorials/CEF/Customize-the-UserDataFolder) -- 重定位运行时的工作文件夹
+- [重入性](/official/Tutorials/CEF/Re-entrancy) -- 延迟事件模型和仍需注意的唯一位置（[**JsRun**](/official/Reference/CEF/CefBrowser/#jsrun)）
+- [构建浏览器外壳](/official/Tutorials/CEF/Building-a-browser-shell) -- 后退/前进/刷新/缩放/PDF
+- [托管本地Web资源](/official/Tutorials/CEF/Hosting-local-web-assets) -- 虚拟主机文件夹映射
+- [JavaScript互操作](/official/Tutorials/CEF/JavaScript-interop) -- BASIC与页面之间的消息和脚本调用
+- [用twinBASIC驱动Monaco](/official/Tutorials/CEF/Driving-Monaco) -- 综合以上所有内容的案例研究

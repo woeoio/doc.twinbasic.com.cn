@@ -2,21 +2,30 @@
 title: CByte
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/CByte
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c640babb-b8ab-4a53-b2ef-655091667116'
+  PropagateID: 'c640babb-b8ab-4a53-b2ef-655091667116'
+  ReservedCode1: '7468d0c7-39de-4f69-81d3-91cb6c6a8844'
+  ReservedCode2: '7468d0c7-39de-4f69-81d3-91cb6c6a8844'
 ---
+
 # CByte
 
-Coerces an expression to a **Byte**.
+将表达式强制转换为 **Byte**。
 
-Syntax: **CByte(** *expression* **)**
+语法：**CByte(** *expression* **)**
 
 *expression*
-: *required* Any valid string or numeric expression in the range `0` to `255`.
+: *必需* 范围在 `0` 到 `255` 之间的任何有效字符串或数值表达式。
 
-The return type is **Byte**. If *expression* is outside the range of a **Byte**, a run-time error occurs. Fractions are rounded --- when the fractional part is exactly `0.5`, **CByte** rounds to the nearest even number.
+返回类型为 **Byte**。如果 *expression* 超出 **Byte** 的范围，将发生运行时错误。小数部分会四舍五入——当小数部分恰好为 `0.5` 时，**CByte** 舍入到最接近的偶数。
 
-### Example
+### 示例
 
-This example uses the **CByte** function to convert an expression to a **Byte**.
+此示例使用 **CByte** 函数将表达式转换为 **Byte**。
 
 ```vb
 Dim MyDouble, MyByte
@@ -24,6 +33,6 @@ MyDouble = 125.5678          ' MyDouble is a Double.
 MyByte = CByte(MyDouble)     ' MyByte contains 126.
 ```
 
-### See Also
+### 另请参阅
 
-- [CBool](/official/Reference/VBA/Conversion/CBool), [CInt](/official/Reference/VBA/Conversion/CInt), [CLng](/official/Reference/VBA/Conversion/CLng), [CDbl](/official/Reference/VBA/Conversion/CDbl), [CSng](/official/Reference/VBA/Conversion/CSng), [CStr](/official/Reference/VBA/Conversion/CStr), [CVar](/official/Reference/VBA/Conversion/CVar) functions
+- [CBool](/official/Reference/VBA/Conversion/CBool)、[CInt](/official/Reference/VBA/Conversion/CInt)、[CLng](/official/Reference/VBA/Conversion/CLng)、[CDbl](/official/Reference/VBA/Conversion/CDbl)、[CSng](/official/Reference/VBA/Conversion/CSng)、[CStr](/official/Reference/VBA/Conversion/CStr)、[CVar](/official/Reference/VBA/Conversion/CVar) 函数

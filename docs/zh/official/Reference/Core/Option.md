@@ -5,33 +5,33 @@ permalink: /tB/Core/Option
 ---
 # Option
 
-Configures a compiler option.
+配置编译器选项。
 
 
 ## Option Base
 
-Syntax: **Option Base** { **0** \| **1** }
+语法：**Option Base** { **0** \| **1** }
 
-Used at the [module level](/official/Reference/Glossary#module-level) to declare the default lower bound for array subscripts.
+在[模块级](/official/Reference/Glossary#module-level)用于声明数组下标的默认下界。
 
-Because the default base is **0**, the **Option Base** statement is never required.
+由于默认基数为**0**，**Option Base**语句永远不是必需的。
 
-If used, the statement must appear in a [module](/official/Reference/Glossary#module) or [class](/official/Reference/Glossary#class) before any procedures, functions, or properties. **Option Base** can appear only once in a module and must precede array [declarations](/official/Reference/Glossary#declaration) that include dimensions.
+如果使用，该语句必须出现在[模块](/official/Reference/Glossary#module)或[类](/official/Reference/Glossary#class)中的任何过程、函数或属性之前。**Option Base**在模块中只能出现一次，且必须在包含维度的数组[声明](/official/Reference/Glossary#declaration)之前。
 
 ::: info
-The **To** clause in the [**Dim**](/official/Reference/Core/Dim), [**Private**](/official/Reference/Core/Private), [**Public**](/official/Reference/Core/Public), [**ReDim**](/official/Reference/Core/ReDim), and [**Static**](/official/Reference/Core/Static) statements provides a more flexible way to control the range of an array's subscripts. However, when the lower bound is not explicitly set with a **To** clause, **Option Base** can change the default lower bound to 1. The base of an array created with the [**ParamArray**](/official/Reference/Core/ParamArray) keyword is zero; **Option Base** does not affect [**ParamArray**](/official/Reference/Core/ParamArray) (or the [**Array**](/official/Reference/Core/Array) function).
+[**Dim**](/official/Reference/Core/Dim)、[**Private**](/official/Reference/Core/Private)、[**Public**](/official/Reference/Core/Public)、[**ReDim**](/official/Reference/Core/ReDim)和[**Static**](/official/Reference/Core/Static)语句中的**To**子句提供了更灵活的方式来控制数组下标的范围。但是，当未用**To**子句显式设置下界时，**Option Base**可以将默认下界更改为1。使用[**ParamArray**](/official/Reference/Core/ParamArray)关键字创建的数组的基数为零；**Option Base**不影响[**ParamArray**](/official/Reference/Core/ParamArray)（或[**Array**](/official/Reference/Core/Array)函数）。
 :::
 
-The **Option Base** statement only affects the lower bound of arrays in the module where the statement is located.
+**Option Base**语句仅影响该语句所在模块中数组的下界。
 
-### See Also
+### 另请参阅
 
-- [**Dim**](/official/Reference/Core/Dim) and [**ReDim**](/official/Reference/Core/ReDim) statements
-- [**LBound**](/official/Reference/Core/LBound) and [**UBound**](/official/Reference/Core/UBound) functions
+- [**Dim**](/official/Reference/Core/Dim)和[**ReDim**](/official/Reference/Core/ReDim)语句
+- [**LBound**](/official/Reference/Core/LBound)和[**UBound**](/official/Reference/Core/UBound)函数
 
-### Example of use at module level
+### 模块级使用示例
 
-This example uses the **Option Base** statement to override the default base array subscript value of 0. The [**LBound**](/official/Reference/Core/LBound) function returns the smallest available subscript for the indicated dimension of an array. The **Option Base** statement is used at the module level only.
+本示例使用**Option Base**语句将默认的数组下标基数值0覆盖为1。[**LBound**](/official/Reference/Core/LBound)函数返回数组指定维度的最小可用下标。**Option Base**语句仅在模块级使用。
 
 ```vb
 Module MyModule
@@ -49,7 +49,7 @@ Module MyModule
 End Module
 ```
 
-### Example of use at class level
+### 类级使用示例
 
 ```vb
 Class Example1
@@ -71,29 +71,29 @@ End Class
 
 ## Option Explicit
 
-Syntax: **Option Explicit**
+语法：**Option Explicit**
 
-Used at the [module level](/official/Reference/Glossary#module-level) to force explicit declaration of all [variables](/official/Reference/Glossary#variable) in that [module](/official/Reference/Glossary#module).
+在[模块级](/official/Reference/Glossary#module-level)用于强制显式声明该[模块](/official/Reference/Glossary#module)中的所有[变量](/official/Reference/Glossary#variable)。
 
-If used, the **Option Explicit** statement must appear in a module before any [procedures](/official/Reference/Glossary#procedure).
+如果使用，**Option Explicit**语句必须出现在模块中的任何[过程](/official/Reference/Glossary#procedure)之前。
 
-This option makes it mandatory to require variable declarations. There is no complementary option to make the declarations optional.
+此选项使变量声明成为强制性的。没有对应的选项可以使声明变为可选。
 
-When **Option Explicit** appears in a module, all variables must be explicitly declared by using the [**Dim**](/official/Reference/Core/Dim), [**Private**](/official/Reference/Core/Private), [**Public**](/official/Reference/Core/Public), [**ReDim**](/official/Reference/Core/ReDim), or [**Static**](/official/Reference/Core/Static) statements. Attempting to use an undeclared variable name raises an error at [compile time](/official/Reference/Glossary#compile-time).
+当**Option Explicit**出现在模块中时，所有变量必须使用[**Dim**](/official/Reference/Core/Dim)、[**Private**](/official/Reference/Core/Private)、[**Public**](/official/Reference/Core/Public)、[**ReDim**](/official/Reference/Core/ReDim)或[**Static**](/official/Reference/Core/Static)语句显式声明。尝试使用未声明的变量名会在[编译时](/official/Reference/Glossary#compile-time)引发错误。
 
-Without the **Option Explicit** statement, and when the [**Option Explicit On**](/official/IDE/Project-Settings#option-explicit-on) project setting is changed to its non-default value of *No*, all undeclared variables are of **Variant** type unless the default type is otherwise specified with a [**Def**_type_](/official/Reference/Core/Deftype) statement.
+如果没有**Option Explicit**语句，且[**Option Explicit On**](/official/IDE/Project-Settings#option-explicit-on)项目设置更改为非默认值*No*，则所有未声明的变量均为**Variant**类型，除非使用[**Def**_type_](/official/Reference/Core/Deftype)语句另行指定默认类型。
 
 ::: info
-The **Option Explicit On** project setting is *Yes* by default in new projects.
+**Option Explicit On**项目设置在新项目中默认为*Yes*。
 :::
 
-**Option Explicit** prevents incorrect typing of an existing variable's name, and removes confusion where the [scope](/official/Reference/Glossary#scope) of a variable is not clear.
+**Option Explicit**可防止错误键入现有变量的名称，并消除变量[作用域](/official/Reference/Glossary#scope)不清晰时的混淆。
 
-### See Also
+### 另请参阅
 
-- [**Const**](/official/Reference/Core/Const), [**Dim**](/official/Reference/Core/Dim), and [**Static**](/official/Reference/Core/Static) statements
+- [**Const**](/official/Reference/Core/Const)、[**Dim**](/official/Reference/Core/Dim)和[**Static**](/official/Reference/Core/Static)语句
 
-### Example of use at module level
+### 模块级使用示例
 
 ```vb
 Module MyModule
@@ -108,32 +108,32 @@ End Module
 
 ## Option Compare
 
-Syntax: **Option Compare** { **Binary** \| **Text** \| **Database** }
+语法：**Option Compare** { **Binary** \| **Text** \| **Database** }
 
-If used, the **Option Compare** statement must appear in a [module](/official/Reference/Glossary#module) before any [procedures](/official/Reference/Glossary#procedure).
+如果使用，**Option Compare**语句必须出现在[模块](/official/Reference/Glossary#module)中的任何[过程](/official/Reference/Glossary#procedure)之前。
 
-The **Option Compare** statement specifies the [string comparison](/official/Reference/Glossary#string-comparison) method (**Binary**, **Text**, or **Database**) for a module. If a module doesn't include an **Option Compare** statement, the default text comparison method is **Binary**.
+**Option Compare**语句为模块指定[字符串比较](/official/Reference/Glossary#string-comparison)方法（**Binary**、**Text**或**Database**）。如果模块不包含**Option Compare**语句，默认的文本比较方法为**Binary**。
 
-* **Option Compare Binary** results in string comparisons based on a [sort order](/official/Reference/Glossary#sort-order) derived from the internal binary representations of the characters. In Microsoft Windows, sort order is determined by the code page. A typical binary sort order is shown in the following example:
+* **Option Compare Binary**会根据字符的内部二进制表示派生的[排序顺序](/official/Reference/Glossary#sort-order)进行字符串比较。在Microsoft Windows中，排序顺序由代码页决定。典型的二进制排序顺序如下例所示：
 
   ```vb
   A < B < E < Z < a < b < e < z < À < Ê < Ø < à < ê < ø 
   ```
 
-* **Option Compare Text** results in string comparisons based on a case-insensitive text sort order determined by the system's [locale](/official/Reference/Glossary#locale). When the same characters are sorted by using **Option Compare Text**, the following text sort order is produced:
+* **Option Compare Text**会根据系统的[区域设置](/official/Reference/Glossary#locale)确定的不区分大小写的文本排序顺序进行字符串比较。当使用**Option Compare Text**对相同字符排序时，产生的文本排序顺序如下：
 
   ```vb
   (A=a) < ( À=à) < (B=b) < (E=e) < (Ê=ê) < (Z=z) < (Ø=ø) 
   ```
-* **Option Compare Database** has no effect in twinBASIC. When used within Microsoft Access, it results in string comparisons based on the sort order determined by the locale ID of the database where the string comparisons occur.
+* **Option Compare Database**在twinBASIC中无效。在Microsoft Access中使用时，它会根据发生字符串比较的数据库的区域设置ID确定的排序顺序进行字符串比较。
 
-### See Also
+### 另请参阅
 
-- [**InStr\$**](/official/Reference/VBA/Strings/InStr), [**InStr**](/official/Reference/VBA/Strings/InStr), [**InStrB**](/official/Reference/VBA/Strings/InStr), and [**InStrRev**](/official/Reference/VBA/Strings/InStrRev) functions.
+- [**InStr\$**](/official/Reference/VBA/Strings/InStr)、[**InStr**](/official/Reference/VBA/Strings/InStr)、[**InStrB**](/official/Reference/VBA/Strings/InStr)和[**InStrRev**](/official/Reference/VBA/Strings/InStrRev)函数。
 
-### Example
+### 示例
 
-This example uses the **Option Compare** statement to set the default string comparison method. The **Option Compare** statement is used at the module level only.
+本示例使用**Option Compare**语句设置默认的字符串比较方法。**Option Compare**语句仅在模块级使用。
 
 ```vb
 Module ModBin
@@ -149,16 +149,16 @@ End Module
 
 ## Option Private
 
-Syntax: **Option Private Module**
+语法：**Option Private Module**
 
-When used in applications that reference multiple [packages](/official/Reference/Glossary#package), **Option Private Module** prevents a [module's](/official/Reference/Glossary#module) or [class's](/official/Reference/Glossary#class) contents from being referenced outside its package.
+在引用多个[包](/official/Reference/Glossary#package)的应用程序中使用时，**Option Private Module**可防止[模块](/official/Reference/Glossary#module)或[类](/official/Reference/Glossary#class)的内容在其包外被引用。
 
-If used, the **Option Private** statement must appear at [module level](/official/Reference/Glossary#module-level) or [class level](/official/Reference/Glossary#class-level), before any [procedures](/official/Reference/Glossary#procedure).
+如果使用，**Option Private**语句必须出现在[模块级](/official/Reference/Glossary#module-level)或[类级](/official/Reference/Glossary#class-level)，在任何[过程](/official/Reference/Glossary#procedure)之前。
 
-When a module contains **Option Private Module**, the public parts, for example, [variables](/official/Reference/Glossary#variable), [objects](/official/Reference/Glossary#object), and [user-defined types](/official/Reference/Glossary#user-defined-type) declared at the module level, are still available within the [project](/official/Reference/Glossary#project) containing the module, but they are not available to other applications or projects.
+当模块包含**Option Private Module**时，公共部分（例如在模块级声明的[变量](/official/Reference/Glossary#variable)、[对象](/official/Reference/Glossary#object)和[用户自定义类型](/official/Reference/Glossary#user-defined-type)）仍可在包含该模块的[项目](/official/Reference/Glossary#project)内使用，但其他应用程序或项目无法使用。
 
 ::: info
-**Option Private** is a more verbose way of making modules or classes private to the package. An equivalent effect in a less verbose fashion is obtained with [**Private**](/official/Reference/Core/Private) statement as follows:
+**Option Private**是使模块或类对包私有的更冗长的方式。使用[**Private**](/official/Reference/Core/Private)语句可以用更简洁的方式获得等效效果：
 
 ```vb
 Private Module MyModule
@@ -171,9 +171,9 @@ End Class
 ```
 :::
 
-### Example
+### 示例
 
-This example demonstrates the **Option Private** statement, which is used at module level to indicate that the entire module is private. With **Option Private Module**, module-level parts not declared **Private** are available to other modules in the project, but not to other projects or applications.
+本示例演示**Option Private**语句，该语句用在模块级表示整个模块是私有的。使用**Option Private Module**时，模块级中未声明为**Private**的部分对项目中的其他模块可用，但对其他项目或应用程序不可用。
 
 ```vb
 Module MyModule

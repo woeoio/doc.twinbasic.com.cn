@@ -5,55 +5,55 @@ permalink: /tB/Core/Public
 ---
 # Public
 
-Used at the module level to declare public variables and allocate storage space.
+在模块级用于声明公共变量并分配存储空间。
 
-Syntax:
+语法：
 > **Public** [ **WithEvents** ] *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ] [ **,** [ **WithEvents** ] *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ]] **. . .**
 
 **WithEvents**
-: *optional* Keyword specifying that *varname* is an object variable used to respond to events triggered by an ActiveX object. **WithEvents** is valid only in class modules. Any number of individual variables may be declared by using **WithEvents**, but arrays cannot be declared with **WithEvents**, nor can **New** be combined with **WithEvents**.
+: *可选* 指定*varname*是用于响应ActiveX对象触发事件的对象变量的关键字。**WithEvents**仅在类模块中有效。可以使用**WithEvents**声明任意数量的单独变量，但不能使用**WithEvents**声明数组，也不能将**New**与**WithEvents**组合使用。
 
 *varname*
-: Name of the variable; follows standard naming conventions.
+: 变量名称；遵循标准命名约定。
 
 *subscripts*
-: *optional* Dimensions of an array variable; up to 60 multiple dimensions may be declared. The *subscripts* argument uses the following syntax: [ *lower* **To** ] *upper* [ , [ *lower* **To** ] *upper* ] **. . .**. When not explicitly stated in *lower*, the lower bound of an array is controlled by the [**Option Base**](/official/Reference/Core/Option#Base) statement. The lower bound is zero if no **Option Base** statement is present.
+: *可选* 数组变量的维度；最多可声明60个多维。*subscripts*参数使用以下语法：[ *lower* **To** ] *upper* [ , [ *lower* **To** ] *upper* ] **. . .**。当*lower*未显式指定时，数组的下界由[**Option Base**](/official/Reference/Core/Option#Base)语句控制。如果没有**Option Base**语句，下界为零。
 
 **New**
-: *optional* Keyword that enables implicit creation of an object. When **New** is used to declare the object variable, a new instance of the object is created on first reference to it, so the **[Set](/official/Reference/Core/Set)** statement is not required to assign the object reference. The **New** keyword can't be used to declare variables of any intrinsic data type or to declare instances of dependent objects, and it can't be used with **WithEvents**.
+: *可选* 启用隐式对象创建的关键字。当使用**New**声明对象变量时，首次引用时创建对象的新实例，因此不需要**[Set](/official/Reference/Core/Set)**语句来赋值对象引用。**New**关键字不能用于声明任何内部数据类型的变量或声明依赖对象的实例，也不能与**WithEvents**一起使用。
 
 *type*
-: *optional* Data type of the variable; may be **Byte**, **Boolean**, **Integer**, **Long**, **Currency**, **Single**, **Double**, **Decimal**, **Date**, **String** (for variable-length strings), **String** *length* (for fixed-length strings), **Object**, **Variant**, a user-defined type, or an object type. Use a separate **As** *type* clause for each variable being defined.
+: *可选* 变量的数据类型；可以是**Byte**、**Boolean**、**Integer**、**Long**、**Currency**、**Single**、**Double**、**Decimal**、**Date**、**String**（用于变长字符串）、**String** *length*（用于定长字符串）、**Object**、**Variant**、用户自定义类型或对象类型。为每个定义的变量使用单独的**As** *type*子句。
 
-Variables declared by using the **Public** statement are available to all procedures in all modules in all applications, unless **[Option Private Module](/official/Reference/Core/Option)** is in effect; in which case, the variables are public only within the project in which they reside.
+使用**Public**语句声明的变量对所有应用程序的所有模块中的所有过程可用，除非**[Option Private Module](/official/Reference/Core/Option)**生效；在此情况下，变量仅在其所在的项目内为公共的。
 
-The **Public** statement can't be used in a class module to declare a fixed-length string variable.
+**Public**语句不能在类模块中用于声明定长字符串变量。
 
-Use the **Public** statement to declare the data type of a variable. For example, the following statement declares a variable as an **Integer**:
+使用**Public**语句声明变量的数据类型。例如，以下语句将变量声明为**Integer**：
 
 ```vb
 Public NumberOfEmployees As Integer
 ```
 
-Also use a **Public** statement to declare the object type of a variable. The following statement declares a variable for a new instance of a worksheet:
+也可以使用**Public**语句声明变量的对象类型。以下语句声明一个新工作表实例的变量：
 
 ```vb
 Public X As New Worksheet
 ```
 
-If the **New** keyword is not used when declaring an object variable, the variable that refers to the object must be assigned an existing object by using the **Set** statement before it can be used. Until it is assigned an object, the declared object variable has the special value **Nothing**, which indicates that it doesn't refer to any particular instance of an object.
+如果声明对象变量时未使用**New**关键字，则引用该对象的变量必须在使用前通过**Set**语句赋值一个现有对象。在赋值对象之前，声明的对象变量具有特殊值**Nothing**，表示它不引用任何特定的对象实例。
 
-The **Public** statement with empty parentheses also declares a dynamic array. After declaring a dynamic array, use the **[ReDim](/official/Reference/Core/ReDim)** statement within a procedure to define the number of dimensions and elements in the array. Redeclaring a dimension for an array variable whose size was explicitly specified in a [**Private**](/official/Reference/Core/Private), **Public**, or [**Dim**](/official/Reference/Core/Dim) statement raises an error.
+带空括号的**Public**语句也声明动态数组。声明动态数组后，在过程中使用**[ReDim](/official/Reference/Core/ReDim)**语句定义数组的维度和元素数。对在[**Private**](/official/Reference/Core/Private)、**Public**或[**Dim**](/official/Reference/Core/Dim)语句中显式指定大小的数组变量重新声明维度会引发错误。
 
-When no data type or object type is specified, and there is no [**Deftype**](/official/Reference/Core/Deftype) statement in the module, the variable is **Variant** by default.
+当未指定数据类型或对象类型，且模块中没有[**Deftype**](/official/Reference/Core/Deftype)语句时，变量默认为**Variant**。
 
-When variables are initialized, a numeric variable is initialized to 0, a variable-length string is initialized to a zero-length string (""), and a fixed-length string is filled with zeros. **Variant** variables are initialized to **Empty**. Each element of a user-defined type variable is initialized as if it were a separate variable.
+变量初始化时，数值变量初始化为0，变长字符串初始化为零长度字符串（""），定长字符串用零填充。**Variant**变量初始化为**Empty**。用户自定义类型变量的每个元素作为独立变量初始化。
 
-The **Public** keyword is also used as a procedure modifier on **[Sub](/official/Reference/Core/Sub)**, **[Function](/official/Reference/Core/Function)**, and **[Property](/official/Reference/Core/Property)** declarations to make those procedures accessible to all other procedures in all modules.
+**Public**关键字也用作**[Sub](/official/Reference/Core/Sub)**、**[Function](/official/Reference/Core/Function)**和**[Property](/official/Reference/Core/Property)**声明中的过程修饰符，使这些过程可被所有模块中的所有其他过程访问。
 
-### Example
+### 示例
 
-This example uses the **Public** statement at the module level (General section) of a standard module to explicitly declare variables as public; that is, they are available to all procedures in all modules in all applications unless **Option Private Module** is in effect.
+本示例在标准模块的模块级（通用部分）使用**Public**语句显式将变量声明为公共的；即它们对所有应用程序的所有模块中的所有过程可用，除非**Option Private Module**生效。
 
 ```vb
 Public Number As Integer ' Public Integer variable.
@@ -62,10 +62,10 @@ Public NameArray(1 To 5) As String ' Public array variable.
 Public MyVar, YourVar, ThisVar As Integer
 ```
 
-### See Also
+### 另请参阅
 
-- [**Dim** statement](/official/Reference/Core/Dim)
-- [**Private** statement](/official/Reference/Core/Private)
-- [**Static** statement](/official/Reference/Core/Static)
-- [**Option** statement](/official/Reference/Core/Option)
-- [**ReDim** statement](/official/Reference/Core/ReDim)
+- [**Dim** 语句](/official/Reference/Core/Dim)
+- [**Private** 语句](/official/Reference/Core/Private)
+- [**Static** 语句](/official/Reference/Core/Static)
+- [**Option** 语句](/official/Reference/Core/Option)
+- [**ReDim** 语句](/official/Reference/Core/ReDim)

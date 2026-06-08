@@ -2,27 +2,36 @@
 title: Clear
 parent: ErrObject
 permalink: /tB/Modules/ErrObject/Clear
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7275aba3-87f3-4e54-a166-0a292d1dbb7b'
+  PropagateID: '7275aba3-87f3-4e54-a166-0a292d1dbb7b'
+  ReservedCode1: 'f9946a97-f196-4683-b826-49f64e6b6f75'
+  ReservedCode2: 'f9946a97-f196-4683-b826-49f64e6b6f75'
 ---
+
 # Clear
 
-Clears all property settings of the **Err** object --- [**Number**](/official/Reference/VBA/ErrObject/Number) is reset to **0**, the string properties to zero-length strings, and [**HelpContext**](/official/Reference/VBA/ErrObject/HelpContext) to **0**.
+清除 **Err** 对象的所有属性设置——[**Number**](/official/Reference/VBA/ErrObject/Number) 重置为 **0**，字符串属性重置为零长度字符串，[**HelpContext**](/official/Reference/VBA/ErrObject/HelpContext) 重置为 **0**。
 
-Syntax: **Err**.**Clear**
+语法：**Err**.**Clear**
 
-Use **Clear** to explicitly reset the **Err** object after an error has been handled, for example when using deferred error handling with **On Error Resume Next**. **Clear** is also called automatically whenever any of the following statements is executed:
+在处理错误后使用 **Clear** 显式重置 **Err** 对象，例如在使用 **On Error Resume Next** 进行延迟错误处理时。在执行以下任一语句时，也会自动调用 **Clear**：
 
-- Any form of **Resume**
-- **Exit Sub**, **Exit Function**, **Exit Property**
-- Any **On Error** statement
+- 任何形式的 **Resume**
+- **Exit Sub**、**Exit Function**、**Exit Property**
+- 任何 **On Error** 语句
 
 ::: info
 
-The **On Error Resume Next** construct may be preferable to **On Error GoTo** when handling errors generated during access to other objects. Checking **Err** after each interaction with an object removes ambiguity about which object the error came from --- both the object that placed the code in [**Err.Number**](/official/Reference/VBA/ErrObject/Number) and the object that originally generated the error (specified in [**Err.Source**](/official/Reference/VBA/ErrObject/Source)) can be identified, and they may be distinct.
+当处理访问其他对象时产生的错误时，**On Error Resume Next** 构造可能比 **On Error GoTo** 更可取。在与对象每次交互后检查 **Err** 可消除错误来源的歧义——将代码放入 [**Err.Number**](/official/Reference/VBA/ErrObject/Number) 的对象和最初生成错误的对象（在 [**Err.Source**](/official/Reference/VBA/ErrObject/Source) 中指定）都可以被识别，它们可能是不同的。
 :::
 
-### Example
+### 示例
 
-This example uses **Err.Clear** to reset the **Err** object's numeric properties to zero and its string properties to zero-length strings between iterations of a loop. If **Clear** were omitted, the error message dialog box would be displayed on every iteration after an error first occurred --- whether or not the next calculation actually generated an error.
+此示例使用 **Err.Clear** 在循环的每次迭代之间将 **Err** 对象的数值属性重置为零，字符串属性重置为零长度字符串。如果省略 **Clear**，则在首次发生错误后的每次迭代中都会显示错误消息对话框——无论下一次计算是否实际产生了错误。
 
 ```vb
 Dim result(10) As Integer    ' Declare an array whose elements 
@@ -40,9 +49,9 @@ Do Until idx = 10
 Loop
 ```
 
-### See Also
+### 另请参阅
 
-- [Number](/official/Reference/VBA/ErrObject/Number) property
-- [Description](/official/Reference/VBA/ErrObject/Description) property
-- [Source](/official/Reference/VBA/ErrObject/Source) property
-- [Raise](/official/Reference/VBA/ErrObject/Raise) method
+- [Number](/official/Reference/VBA/ErrObject/Number) 属性
+- [Description](/official/Reference/VBA/ErrObject/Description) 属性
+- [Source](/official/Reference/VBA/ErrObject/Source) 属性
+- [Raise](/official/Reference/VBA/ErrObject/Raise) 方法

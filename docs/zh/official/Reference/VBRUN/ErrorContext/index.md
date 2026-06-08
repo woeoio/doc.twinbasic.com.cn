@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7c7e138c-89c0-43a3-8d26-f3e938227e07'
+  PropagateID: '7c7e138c-89c0-43a3-8d26-f3e938227e07'
+  ReservedCode1: '33a10c3b-efa0-4763-b7f3-77b1caed6fe1'
+  ReservedCode2: '33a10c3b-efa0-4763-b7f3-77b1caed6fe1'
+---
+
 ---
 title: ErrorContext
 parent: VBRUN Package
@@ -5,148 +16,148 @@ nav_order: 14
 permalink: /tB/Packages/VBRUN/ErrorContext/
 ---
 
-# ErrorContext class
+# ErrorContext 类
 
-An **ErrorContext** object captures everything the runtime knows about a run-time error: its identity ([**Number**](#number), [**Description**](#description), [**Source**](#source)), its help references ([**HelpFile**](#helpfile), [**HelpContext**](#helpcontext)), the operating-system error code at the time it was raised ([**LastDLLError**](#lastdllerror)), the [**State**](#state) of the error-handling machinery, and a snapshot of the [**Callstack**](#callstack) from the moment of the failure. It is twinBASIC's structured counterpart to the simpler [**Err**](/official/Reference/VBA/ErrObject/) object.
+**ErrorContext**对象捕获运行时关于运行时错误的所有信息：其标识（[**Number**](#number)、[**Description**](#description)、[**Source**](#source)）、帮助引用（[**HelpFile**](#helpfile)、[**HelpContext**](#helpcontext)）、引发时的操作系统错误代码（[**LastDLLError**](#lastdllerror)）、错误处理机制的[**State**](#state)以及故障时刻的[**Callstack**](#callstack)快照。它是twinBASIC对较简单的[**Err**](/official/Reference/VBA/ErrObject/)对象的结构化对应。
 
-The error-identity properties (**Number**, **Description**, **Source**, **HelpFile**, **HelpContext**, **LastDLLError**) have the same meaning here as on the **Err** object --- see the [**ErrObject**](/official/Reference/VBA/ErrObject/) module for a discussion of each. **State** and **Callstack** are unique to **ErrorContext** and reflect the structured error-handling machinery that has no equivalent on the legacy **Err** object.
+错误标识属性（**Number**、**Description**、**Source**、**HelpFile**、**HelpContext**、**LastDLLError**）在此处的含义与**Err**对象上相同——参见[**ErrObject**](/official/Reference/VBA/ErrObject/)模块中各项的讨论。**State**和**Callstack**是**ErrorContext**独有的，反映了旧版**Err**对象上没有对应功能的结构化错误处理机制。
 
-## Members
+## 成员
 
 ### Callstack
 
-Returns a snapshot of the call stack as it was when the error was raised, as an [**ErrorCallstack**](/official/Reference/VBRUN/ErrorCallstack/).
+返回错误引发时调用堆栈的快照，类型为[**ErrorCallstack**](/official/Reference/VBRUN/ErrorCallstack/)。
 
-Syntax: *object*.**Callstack**
+语法：*object*.**Callstack**
 
 *object*
-: *required* An object expression that evaluates to an **ErrorContext** object.
+: *必需* 求值为**ErrorContext**对象的对象表达式。
 
-The snapshot lists every active procedure outermost-first; the innermost frame is the procedure that raised the error. The collection is read-only --- see [**ErrorCallstack**](/official/Reference/VBRUN/ErrorCallstack/) for how to iterate it.
+快照按最外层在前列出每个活动过程；最内层帧是引发错误的过程。此集合为只读——参见[**ErrorCallstack**](/official/Reference/VBRUN/ErrorCallstack/)了解如何迭代。
 
 ### Description
 
-Returns a short text description of the error, as a **String**. Read-only.
+返回错误的简短文本描述，类型为**String**。只读。
 
-Syntax: *object*.**Description**
+语法：*object*.**Description**
 
 *object*
-: *required* An object expression that evaluates to an **ErrorContext** object.
+: *必需* 求值为**ErrorContext**对象的对象表达式。
 
-For runtime-defined errors, this is the message the runtime would have shown in an unhandled-error dialog. For user-defined errors, it is whatever string was passed to **Err.Raise**.
+对于运行时定义的错误，这是运行时将在未处理错误对话框中显示的消息。对于用户定义的错误，它是传递给**Err.Raise**的字符串。
 
 ### HelpContext
 
-Returns the help-file context ID associated with the error, as a **Long**. Read-only.
+返回与错误关联的帮助文件上下文ID，类型为**Long**。只读。
 
-Syntax: *object*.**HelpContext**
+语法：*object*.**HelpContext**
 
 *object*
-: *required* An object expression that evaluates to an **ErrorContext** object.
+: *必需* 求值为**ErrorContext**对象的对象表达式。
 
-When [**HelpFile**](#helpfile) names a help file, **HelpContext** identifies the topic in that file that documents the error. **0** if no help context is associated.
+当[**HelpFile**](#helpfile)指定帮助文件时，**HelpContext**标识该文件中记录错误的主题。如果没有关联的帮助上下文则为**0**。
 
 ### HelpFile
 
-Returns the path of the help file associated with the error, as a **String**. Read-only.
+返回与错误关联的帮助文件路径，类型为**String**。只读。
 
-Syntax: *object*.**HelpFile**
+语法：*object*.**HelpFile**
 
 *object*
-: *required* An object expression that evaluates to an **ErrorContext** object.
+: *必需* 求值为**ErrorContext**对象的对象表达式。
 
-A zero-length string if no help file is associated.
+如果没有关联的帮助文件则为零长度字符串。
 
 ### LastDLLError
 
-Returns the last operating-system error code recorded by a call into a Windows DLL, as a **Long**. Read-only.
+返回Windows DLL调用记录的最后一个操作系统错误代码，类型为**Long**。只读。
 
-Syntax: *object*.**LastDLLError**
+语法：*object*.**LastDLLError**
 
 *object*
-: *required* An object expression that evaluates to an **ErrorContext** object.
+: *必需* 求值为**ErrorContext**对象的对象表达式。
 
-twinBASIC's error trapping does not catch failures inside `Declare`d Windows API calls --- those calls report failure through their return value, and the calling code has to inspect this property to learn the underlying Win32 error. The value is meaningful only on Windows.
+twinBASIC的错误捕获不会捕获Declare声明的Windows API调用内部的失败——这些调用通过返回值报告失败，调用代码必须检查此属性来了解底层Win32错误。此值仅在Windows上有意义。
 
 ### Number
 
-Returns the run-time error number, as a **Long**. Read-only.
+返回运行时错误编号，类型为**Long**。只读。
 
-Syntax: *object*.**Number**
+语法：*object*.**Number**
 
 *object*
-: *required* An object expression that evaluates to an **ErrorContext** object.
+: *必需* 求值为**ErrorContext**对象的对象表达式。
 
-Built-in errors use the standard VBA error codes (for example, `9` for "Subscript out of range" or `91` for "Object variable or With block variable not set"). User-defined errors raised with **Err.Raise** typically add the **vbObjectError** offset to a small per-application code.
+内置错误使用标准VBA错误代码（例如，9表示"下标越范围"，91表示"对象变量或With块变量未设置"）。使用**Err.Raise**引发的用户定义错误通常将**vbObjectError**偏移量加到每个应用程序的小代码上。
 
 ### Source
 
-Returns the name of the object or application that raised the error, as a **String**. Read-only.
+返回引发错误的对象或应用程序名称，类型为**String**。只读。
 
-Syntax: *object*.**Source**
+语法：*object*.**Source**
 
 *object*
-: *required* An object expression that evaluates to an **ErrorContext** object.
+: *必需* 求值为**ErrorContext**对象的对象表达式。
 
-For errors raised inside a twinBASIC project, this is the project name; for errors raised by an Automation server, it is the application's programmatic identifier. User code can supply any string when calling **Err.Raise**.
+对于在twinBASIC项目内部引发的错误，这是项目名称；对于由Automation服务器引发的错误，这是应用程序的编程标识符。用户代码在调用**Err.Raise**时可提供任意字符串。
 
 ### State
 
-Returns or sets a value identifying which error-handling construct is currently active, as an **OnErrorStatus** value.
+返回或设置标识当前活动错误处理构造的值，类型为**OnErrorStatus**值。
 
-Syntax: *object*.**State** [ **=** *value* ]
+语法：*object*.**State** [ **=** *value* ]
 
 *object*
-: *required* An object expression that evaluates to an **ErrorContext** object.
+: *必需* 求值为**ErrorContext**对象的对象表达式。
 
-The runtime updates **State** as control flows through error handlers, **Try**/**Catch**/**Finally** blocks, and the various propagation paths. Reading the property tells diagnostic code which construct it is being invoked from. Assigning to it overrides the runtime's idea of what to do next --- a deliberately advanced operation, useful mainly to diagnostic tools and to libraries that manage their own error flow.
+运行时在控制流经过错误处理器、**Try**/**Catch**/**Finally**块以及各种传播路径时更新**State**。读取此属性可告诉诊断代码它是从哪个构造调用的。对其赋值会覆盖运行时对下一步操作的决定——这是一种刻意设计的高级操作，主要用于诊断工具和管理自身错误流的库。
 
-The **OnErrorStatus** enumeration values are:
+**OnErrorStatus**枚举值为：
 
-`OnErrorGoto0` (`&H1`)
-: An **On Error GoTo 0** is currently in effect --- no handler is installed.
+OnErrorGoto0（&H1）
+: 当前生效**On Error GoTo 0**——未安装处理器。
 
-`OnErrorResumeNext` (`&H2`)
-: An **On Error Resume Next** is currently in effect.
+OnErrorResumeNext（&H2）
+: 当前生效**On Error Resume Next**。
 
-`OnErrorGotoLabel` (`&H3`)
-: An **On Error GoTo** *label* is currently in effect.
+OnErrorGotoLabel（&H3）
+: 当前生效**On Error GoTo** *label*。
 
-`OnErrorEnd` (`&H4`)
-: Execution is being terminated because of an unhandled error.
+OnErrorEnd（&H4）
+: 因未处理错误导致执行终止。
 
-`OnErrorDebug` (`&H5`)
-: The runtime is about to break into the debugger.
+OnErrorDebug（&H5）
+: 运行时即将中断进入调试器。
 
-`CalledByLocalHandler` (`&H6`)
-: The currently executing code was called by a local error handler.
+CalledByLocalHandler（&H6）
+: 当前执行的代码由本地错误处理器调用。
 
-`OnErrorRetry` (`&H7`)
-: A retry of the failing statement is in progress (the structured equivalent of **Resume**).
+OnErrorRetry（&H7）
+: 正在重试失败语句（**Resume**的结构化等价）。
 
-`OnErrorPropagate` (`&H8`)
-: An unhandled error is being propagated up the call stack.
+OnErrorPropagate（&H8）
+: 未处理的错误正在沿调用堆栈向上传播。
 
-`OnErrorExitProcedure` (`&H9`)
-: An error is forcing the current procedure to exit.
+OnErrorExitProcedure（&H9）
+: 错误正在强制当前过程退出。
 
-`OnErrorCatch` (`&Ha`)
-: Control is inside a **Catch** block matching a specific error.
+OnErrorCatch（&Ha）
+: 控制在匹配特定错误的**Catch**块内。
 
-`OnErrorCatchAll` (`&Hb`)
-: Control is inside a general "catch all" block.
+OnErrorCatchAll（&Hb）
+: 控制在通用的"捕获全部"块内。
 
-`OnErrorInsideCatch` (`&Hc`)
-: Control is nested inside a **Catch** block (a further error has been raised inside a handler).
+OnErrorInsideCatch（&Hc）
+: 控制嵌套在**Catch**块内（处理器内部又引发了错误）。
 
-`OnErrorInsideCatchAll` (`&Hd`)
-: Control is nested inside a "catch all" block.
+OnErrorInsideCatchAll（&Hd）
+: 控制嵌套在"捕获全部"块内。
 
-`OnErrorInsideFinally` (`&He`)
-: Control is inside a **Finally** block.
+OnErrorInsideFinally（&He）
+: 控制在**Finally**块内。
 
-`OnErrorPropagateCatch` (`&Hf`)
-: An error is being propagated out of a **Catch** block.
+OnErrorPropagateCatch（&Hf）
+: 错误正在从**Catch**块传播出去。
 
-`OnErrorPropagateCatchAll` (`&H10`)
-: An error is being propagated out of a "catch all" block.
+OnErrorPropagateCatchAll（&H10）
+: 错误正在从"捕获全部"块传播出去。

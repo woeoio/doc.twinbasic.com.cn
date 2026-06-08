@@ -2,13 +2,21 @@
 title: Enum
 parent: Statements
 permalink: /tB/Core/Enum
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a405fb42-3828-4a7b-86de-aba4f2fa462c'
+  PropagateID: 'a405fb42-3828-4a7b-86de-aba4f2fa462c'
+  ReservedCode1: 'a65ce68c-70eb-4af8-8d5d-8dfa3e30ab3b'
+  ReservedCode2: 'a65ce68c-70eb-4af8-8d5d-8dfa3e30ab3b'
 ---
 
 # Enum
 
-Declares a type for an enumeration.
+声明枚举类型。
 
-Syntax:
+语法：
 
 > [ *attributes* ]  
 > [ **Public** | **Private** ] **Enum** *name*  
@@ -17,25 +25,25 @@ Syntax:
 > **End Enum**
 
 *attributes*
-: *optional* One or more of:  
-[EnumId](/official/Reference/Attributes#enumid), [Flags](/official/Reference/Attributes#flags), [PopulateFrom](/official/Reference/Attributes#populatefrom)
+: *可选* 以下一个或多个：  
+[EnumId](/official/Reference/Attributes#enumid)、[Flags](/official/Reference/Attributes#flags)、[PopulateFrom](/official/Reference/Attributes#populatefrom)
 
 **Public**
-: *optional* Specifies that the **Enum** type is visible throughout the project. **Enum** types are **Public** by default.
+: *可选* 指定 **Enum** 类型在整个项目中可见。**Enum** 类型默认为 **Public**。
 
 **Private**
-: *optional* Specifies that the **Enum** type is visible only within the module in which it appears.
+: *可选* 指定 **Enum** 类型仅在其出现的模块内可见。
 
 *name*
-: The name of the **Enum** type. The *name* must be a valid Visual Basic identifier and is specified as the type when declaring variables or parameters of the **Enum** type.
+: **Enum** 类型的名称。*name* 必须是有效的Visual Basic标识符，在声明 **Enum** 类型的变量或参数时作为类型指定。
 
 *membername*
-: A valid Visual Basic identifier specifying the name by which a constituent element of the **Enum** type will be known.
+: 有效的Visual Basic标识符，指定 **Enum** 类型组成元素的名称。
 
 *constantexpression*
-: *optional* Value of the element (evaluates to a **Long**). If no *constantexpression* is specified, the value assigned is either zero (if it is the first *membername* ), or 1 greater than the value of the immediately preceding *membername*.
+: *可选* 元素的值（求值为 **Long**）。如果未指定 *constantexpression*，则赋值为零（如果是第一个 *membername*），或比紧接前一个 *membername* 的值大1。
 
-Enumeration variables are variables declared with an **Enum** type. Both variables and parameters can be declared with an **Enum** type. The elements of the **Enum** type are initialized to constant values within the **Enum** statement. The assigned values can't be modified at run time and can include both positive and negative numbers. For example:
+枚举变量是用 **Enum** 类型声明的变量。变量和参数都可以用 **Enum** 类型声明。**Enum** 类型的元素在 **Enum** 语句中初始化为常量值。赋值不能在运行时修改，可以包含正数和负数。例如：
 
 ```vb
 Enum SecurityLevel 
@@ -45,15 +53,15 @@ Enum SecurityLevel
 End Enum 
 ```
 
-An **Enum** statement can appear only at the module level. After the **Enum** type is defined, it can be used to declare variables, parameters, or procedures returning its type. An **Enum** type name cannot be qualified with a module name.
+**Enum** 语句只能出现在模块级别。定义 **Enum** 类型后，可用于声明变量、参数或返回其类型的过程。**Enum** 类型名不能用模块名限定。
 
-**Public Enum** types in a class module are not members of the class; however, they are written to the type library. **Enum** types defined in standard modules aren't written to type libraries. **Public Enum** types of the same name can't be defined in both standard modules and class modules because they share the same name space. When two **Enum** types in different type libraries have the same name, but different elements, a reference to a variable of the type depends on which type library has higher priority in the **References**.
+类模块中的 **Public Enum** 类型不是类的成员；但是，它们会写入类型库。标准模块中定义的 **Enum** 类型不会写入类型库。同名的 **Public Enum** 类型不能同时在标准模块和类模块中定义，因为它们共享同一命名空间。当不同类型库中的两个 **Enum** 类型同名但元素不同时，对该类型变量的引用取决于哪个类型库在 **引用** 中具有更高优先级。
 
-An **Enum** type cannot be used as the target in a **With** block.
+**Enum** 类型不能用作 **With** 块的目标。
 
-### Example
+### 示例
 
-The following example shows the **Enum** statement used to define a collection of named constants. In this case, the constants are colors that might be used to design data entry forms for a database.
+以下示例展示使用 **Enum** 语句定义命名常量集合。在此例中，常量是可能用于设计数据库数据输入窗体的颜色。
 
 ```vb
 Public Enum InterfaceColors 

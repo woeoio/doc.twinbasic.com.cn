@@ -2,32 +2,41 @@
 title: Str
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/Str
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7b29c89b-ee88-4a81-91e9-65735cb69c7d'
+  PropagateID: '7b29c89b-ee88-4a81-91e9-65735cb69c7d'
+  ReservedCode1: '9ffe227d-8631-4f09-aa8d-738c56e94779'
+  ReservedCode2: '9ffe227d-8631-4f09-aa8d-738c56e94779'
 ---
+
 # Str, Str$
 
-Returns a string representation of a number.
+返回数字的字符串表示。
 
-Syntax:
+语法：
 
 - **Str$(** *number* **)**
 - **Str(** *number* **)**
 
 *number*
-: *required* Any valid numeric expression.
+: *必需* 任何有效的数值表达式。
 
-The `$`-suffixed form returns a **String**; the unsuffixed form returns a **Variant** (**String**).
+`$` 后缀形式返回 **String**；无后缀形式返回 **Variant** (**String**)。
 
-When numbers are converted to strings, a leading space is always reserved for the sign of *number*. If *number* is positive, the returned string contains a leading space and the plus sign is implied.
+当数字转换为字符串时，始终为 *number* 的符号保留一个前导空格。如果 *number* 为正数，返回的字符串包含一个前导空格，隐含正号。
 
-Use the [**Format**](/official/Reference/VBA/Strings/Format) function to convert numeric values to be formatted as dates, times, or currency, or in other user-defined formats. Unlike **Str**, the **Format** function doesn't include a leading space for the sign of *number*.
+使用 [**Format**](/official/Reference/VBA/Strings/Format) 函数将数值转换为格式化的日期、时间或货币，或其他用户自定义格式。与 **Str** 不同，**Format** 函数不为 *number* 的符号包含前导空格。
 
 ::: info
-The **Str** function recognizes only the period (`.`) as a valid decimal separator. When different decimal separators may be used (for example, in international applications), use [**CStr**](/official/Reference/VBA/Conversion/CStr) to convert a number to a string.
+**Str** 函数仅将句点（`.`）识别为有效的小数分隔符。当可能使用不同的小数分隔符时（例如在国际应用程序中），请使用 [**CStr**](/official/Reference/VBA/Conversion/CStr) 将数字转换为字符串。
 :::
 
-### Example
+### 示例
 
-This example uses the **Str** function to return a string representation of a number. When a number is converted to a string, a leading space is always reserved for its sign.
+此示例使用 **Str** 函数返回数字的字符串表示。当数字转换为字符串时，始终为其符号保留一个前导空格。
 
 ```vb
 Dim MyString
@@ -36,6 +45,6 @@ MyString = Str(-459.65)     ' Returns "-459.65".
 MyString = Str(459.001)     ' Returns " 459.001".
 ```
 
-### See Also
+### 另请参阅
 
-- [CStr](/official/Reference/VBA/Conversion/CStr), [Format](/official/Reference/VBA/Strings/Format), [Hex](/official/Reference/VBA/Conversion/Hex), [Oct](/official/Reference/VBA/Conversion/Oct), [Val](/official/Reference/VBA/Conversion/Val) functions
+- [CStr](/official/Reference/VBA/Conversion/CStr)、[Format](/official/Reference/VBA/Strings/Format)、[Hex](/official/Reference/VBA/Conversion/Hex)、[Oct](/official/Reference/VBA/Conversion/Oct)、[Val](/official/Reference/VBA/Conversion/Val) 函数

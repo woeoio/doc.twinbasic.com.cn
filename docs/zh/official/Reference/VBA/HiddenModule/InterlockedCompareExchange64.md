@@ -2,25 +2,34 @@
 title: InterlockedCompareExchange64
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/InterlockedCompareExchange64
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ec0a52ab-fa83-498b-872b-2cd42e35d872'
+  PropagateID: 'ec0a52ab-fa83-498b-872b-2cd42e35d872'
+  ReservedCode1: '9ce3571b-c3f3-483f-8d32-54fa90f7197a'
+  ReservedCode2: '9ce3571b-c3f3-483f-8d32-54fa90f7197a'
 ---
+
 # InterlockedCompareExchange64
 
-Atomically compares a 64-bit value at a memory location with a comparand and replaces it with a new value if they match. Returns the original value either way.
+原子地将内存位置的64位值与比较值进行比较，如果匹配则替换为新值。无论哪种情况都返回原始值。
 
-Syntax: **InterlockedCompareExchange64(** *Target* **,** *NewValue* **,** *OldValueCompare* **)** **As LongLong**
+语法：**InterlockedCompareExchange64(** *Target* **,** *NewValue* **,** *OldValueCompare* **)** **As LongLong**
 
 *Target*
-: *required* **LongLong**. The 64-bit variable to update, passed by reference.
+: *必需* **LongLong**。要更新的64位变量，按引用传递。
 
 *NewValue*
-: *required* **LongLong**. The value to write into *Target* if the compare succeeds.
+: *必需* **LongLong**。比较成功时写入*Target*的值。
 
 *OldValueCompare*
-: *required* **LongLong**. The expected current value of *Target*.
+: *必需* **LongLong**。*Target*的预期当前值。
 
-The compare-and-swap happens as one atomic operation. The return value is the value that was in *Target* at the start of the call --- equal to *OldValueCompare* on success, anything else on failure (in which case *Target* is left unchanged). Wraps the Win32 `InterlockedCompareExchange64` intrinsic.
+比较和交换作为一个原子操作发生。返回值是调用开始时*Target*中的值——成功时等于*OldValueCompare*，失败时为其他值（此时*Target*保持不变）。封装了Win32的`InterlockedCompareExchange64`内联函数。
 
-### See Also
+### 另请参阅
 
-- [InterlockedCompareExchange32](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange32) function
-- [InterlockedCompareExchangePointer](/official/Reference/VBA/HiddenModule/InterlockedCompareExchangePointer) function
+- [InterlockedCompareExchange32](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange32)函数
+- [InterlockedCompareExchangePointer](/official/Reference/VBA/HiddenModule/InterlockedCompareExchangePointer)函数

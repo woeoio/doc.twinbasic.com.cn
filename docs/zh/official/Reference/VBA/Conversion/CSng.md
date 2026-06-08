@@ -2,23 +2,32 @@
 title: CSng
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/CSng
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '93bf09d6-e2eb-4252-a6f1-10b9ecfd06a4'
+  PropagateID: '93bf09d6-e2eb-4252-a6f1-10b9ecfd06a4'
+  ReservedCode1: '97983340-55e6-4b8b-96be-85da520b996c'
+  ReservedCode2: '97983340-55e6-4b8b-96be-85da520b996c'
 ---
+
 # CSng
 
-Coerces an expression to a **Single**.
+将表达式强制转换为 **Single**。
 
-Syntax: **CSng(** *expression* **)**
+语法：**CSng(** *expression* **)**
 
 *expression*
-: *required* Any valid string or numeric expression in the **Single** range --- `-3.402823E38` to `-1.401298E-45` for negative values, and `1.401298E-45` to `3.402823E38` for positive values.
+: *必需* **Single** 范围内的任何有效字符串或数值表达式——负值为 `-3.402823E38` 到 `-1.401298E-45`，正值为 `1.401298E-45` 到 `3.402823E38`。
 
-The return type is **Single**. If *expression* is outside the range of a **Single**, a run-time error occurs.
+返回类型为 **Single**。如果 *expression* 超出 **Single** 的范围，将发生运行时错误。
 
-**CSng** is the internationally aware alternative to [**Val**](/official/Reference/VBA/Conversion/Val) for converting a string to a numeric type.
+**CSng** 是替代 [**Val**](/official/Reference/VBA/Conversion/Val) 将字符串转换为数值类型的区域感知方案。
 
-### Example
+### 示例
 
-This example uses the **CSng** function to convert values to a **Single**.
+此示例使用 **CSng** 函数将值转换为 **Single**。
 
 ```vb
 Dim MyDouble1, MyDouble2, MySingle1, MySingle2
@@ -28,6 +37,6 @@ MySingle1 = CSng(MyDouble1)              ' MySingle1 contains 75.34211.
 MySingle2 = CSng(MyDouble2)              ' MySingle2 contains 75.34216.
 ```
 
-### See Also
+### 另请参阅
 
-- [CBool](/official/Reference/VBA/Conversion/CBool), [CByte](/official/Reference/VBA/Conversion/CByte), [CCur](/official/Reference/VBA/Conversion/CCur), [CDbl](/official/Reference/VBA/Conversion/CDbl), [CDec](/official/Reference/VBA/Conversion/CDec), [CInt](/official/Reference/VBA/Conversion/CInt), [CLng](/official/Reference/VBA/Conversion/CLng), [CStr](/official/Reference/VBA/Conversion/CStr), [CVar](/official/Reference/VBA/Conversion/CVar) functions
+- [CBool](/official/Reference/VBA/Conversion/CBool)、[CByte](/official/Reference/VBA/Conversion/CByte)、[CCur](/official/Reference/VBA/Conversion/CCur)、[CDbl](/official/Reference/VBA/Conversion/CDbl)、[CDec](/official/Reference/VBA/Conversion/CDec)、[CInt](/official/Reference/VBA/Conversion/CInt)、[CLng](/official/Reference/VBA/Conversion/CLng)、[CStr](/official/Reference/VBA/Conversion/CStr)、[CVar](/official/Reference/VBA/Conversion/CVar) 函数

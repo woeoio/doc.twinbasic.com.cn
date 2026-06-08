@@ -2,36 +2,43 @@
 title: Call
 parent: Statements
 permalink: /tB/Core/Call
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'aa90d73b-ae57-4709-93cb-7462b74f643c'
+  PropagateID: 'aa90d73b-ae57-4709-93cb-7462b74f643c'
+  ReservedCode1: 'abf87c81-26d3-40ac-aa12-4626dd07ca9c'
+  ReservedCode2: 'abf87c81-26d3-40ac-aa12-4626dd07ca9c'
 ---
 
 # Call
 
+将控制权转移到 **Sub** [过程](/official/Reference/Glossary#procedure)、**Function** 过程或动态链接库(DLL)过程。
 
-Transfers control to a **Sub** [procedure](/official/Reference/Glossary#procedure), **Function** procedure, or dynamic-link library (DLL) procedure.
-
-Syntax:
+语法：
 
 - **Call** *name* **(** [ *argumentlist* ] **)**  
-  When the **Call** keyword is specified, the *argumentlist* must be enclosed in parentheses.  
-  
+  当指定 **Call** 关键字时，*argumentlist* 必须用括号括起来。  
+   
 - *name* **(** [ *argumentlist* ] **)**  
-  Without the **Call** keyword, the *argumentlist* can be optionally enclosed in parentheses,  
+  不使用 **Call** 关键字时，*argumentlist* 可以选择是否用括号括起来，  
   
-- *name* [ *argumentlist* ]  
+- *name* [ *argumentlist* ] 
 
 *name*
-: The name of the procedure to call
+: 要调用的过程名称
 
 *argumentlist*
-: *optional* A comma-delimited list of variables, arrays or expressions to pass to the procedure. Components of *argumentlist* may include the keywords **ByVal** or **ByRef** to describe how the arguments are to be passed to the called procedure.
+: *可选* 传递给过程的变量、数组或表达式的逗号分隔列表。*argumentlist* 的组成部分可以包含 **ByVal** 或 **ByRef** 关键字，以描述参数传递给被调用过程的方式。
 
-The **Call** keyword is not required when calling a procedure. However, when the **Call** keyword is used to call a procedure that requires arguments, *argumentlist* must be enclosed in parentheses. When the **Call** keyword is omitted, the parentheses around *argumentlist* must also be omitted. When either **Call** syntax is used to call any intrinsic or user-defined function, the function's return value is discarded.
+调用过程时不需要 **Call** 关键字。但是，当使用 **Call** 关键字调用需要参数的过程时，*argumentlist* 必须用括号括起来。省略 **Call** 关键字时，*argumentlist* 周围的括号也必须省略。使用任一 **Call** 语法调用任何内部或用户自定义函数时，函数的返回值将被丢弃。
 
-To pass a whole array to a procedure, use the array name followed by empty parentheses.
+要将整个数组传递给过程，请使用数组名后跟空括号。
 
-### Example
+### 示例
 
-This example illustrates how the **Call** statement is used to transfer control to a **Sub** procedure, an intrinsic function, and a dynamic-link library (DLL) procedure.
+本示例演示如何使用 **Call** 语句将控制权转移到 **Sub** 过程、内部函数和动态链接库(DLL)过程。
 
 ```vb
 ' Call a Sub procedure. 
@@ -56,8 +63,8 @@ Sub CallMyDll()
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**Declare** statement](/official/Reference/Core/Declare)
-- [**Function** statement](/official/Reference/Core/Function)
-- [**Sub** statement](/official/Reference/Core/Sub)
+- [**Declare** 语句](/official/Reference/Core/Declare)
+- [**Function** 语句](/official/Reference/Core/Function)
+- [**Sub** 语句](/official/Reference/Core/Sub)

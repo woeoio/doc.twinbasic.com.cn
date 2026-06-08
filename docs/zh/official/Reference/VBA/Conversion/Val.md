@@ -2,45 +2,54 @@
 title: Val
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/Val
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ab87c77c-5dce-4ce4-8da4-09563611013b'
+  PropagateID: 'ab87c77c-5dce-4ce4-8da4-09563611013b'
+  ReservedCode1: '293465b0-4298-45ef-9bd3-8b6f631b77ca'
+  ReservedCode2: '293465b0-4298-45ef-9bd3-8b6f631b77ca'
 ---
+
 # Val
 
-Returns the numbers contained in a string as a numeric value of appropriate type.
+返回字符串中包含的数字作为适当类型的数值。
 
-Syntax: **Val(** *string* **)**
+语法：**Val(** *string* **)**
 
 *string*
-: *required* Any valid string expression.
+: *必需* 任何有效的字符串表达式。
 
-The return type is **Double**.
+返回类型为 **Double**。
 
-The **Val** function stops reading the string at the first character that it can't recognize as part of a number. Symbols and characters that are often considered parts of numeric values, such as dollar signs and commas, are not recognized.
+**Val** 函数在字符串中遇到第一个无法识别为数字部分的字符时停止读取。通常被视为数值部分的符号和字符（如美元符号和逗号）不被识别。
 
-However, the function recognizes the radix prefixes `&O` (for octal) and `&H` (for hexadecimal). Blanks, tabs, and linefeed characters are stripped from the argument.
+但是，该函数识别基数前缀 `&O`（八进制）和 `&H`（十六进制）。参数中的空格、制表符和换行符会被去除。
 
-The following returns the value `1615198`:
+以下返回值 `1615198`：
 
 ```vb
 Val("    1615 198th Street N.E.")
 ```
 
-In the following code, **Val** returns the decimal value `-1` for the hexadecimal value shown:
+在以下代码中，**Val** 为所示的十六进制值返回十进制值 `-1`：
 
 ```vb
 Val("&HFFFF")
 ```
 
 ::: info
-The **Val** function recognizes only the period (`.`) as a valid decimal separator. When different decimal separators are used, as in international applications, use [**CDbl**](/official/Reference/VBA/Conversion/CDbl) instead to convert a string to a number.
+**Val** 函数仅将句点（`.`）识别为有效的小数分隔符。当使用不同的小数分隔符时（如国际应用程序中），请改用 [**CDbl**](/official/Reference/VBA/Conversion/CDbl) 将字符串转换为数字。
 :::
 
 ::: info
-The **Val** function recognizes deprecated data type suffixes prior to conversion and may result in a type-mismatch error. For example, fifty percent represented as the string `"50%"` will convert as expected to `50`, but `Val("50.5%")` will raise an error because the percent symbol is interpreted as a suffix declaring the data type as **Integer**, which it is not in this case. The full list of data type suffixes is **Single** (`!`), **Currency** (`@`), **Double** (`#`), **String** (`$`), **Integer** (`%`), **Long** (`&`), and **LongLong** (`^`) for 64-bit hosts.
+**Val** 函数在转换前会识别已弃用的数据类型后缀，可能导致类型不匹配错误。例如，表示百分之五十的字符串 `"50%"` 会如预期转换为 `50`，但 `Val("50.5%")` 会引发错误，因为百分号被解释为声明数据类型为 **Integer** 的后缀，但在此情况下并非如此。数据类型后缀的完整列表为：**Single** (`!`)、**Currency** (`@`)、**Double** (`#`)、**String** (`$`)、**Integer** (`%`)、**Long** (`&`)，以及 64 位宿主的 **LongLong** (`^`)。
 :::
 
-### Example
+### 示例
 
-This example uses the **Val** function to return the numbers contained in a string.
+此示例使用 **Val** 函数返回字符串中包含的数字。
 
 ```vb
 Dim MyValue
@@ -49,6 +58,6 @@ MyValue = Val(" 2 45 7")     ' Returns 2457.
 MyValue = Val("24 and 57")   ' Returns 24.
 ```
 
-### See Also
+### 另请参阅
 
-- [ValDec](/official/Reference/VBA/Conversion/ValDec), [CDbl](/official/Reference/VBA/Conversion/CDbl), [CDec](/official/Reference/VBA/Conversion/CDec), [Str](/official/Reference/VBA/Conversion/Str) functions
+- [ValDec](/official/Reference/VBA/Conversion/ValDec)、[CDbl](/official/Reference/VBA/Conversion/CDbl)、[CDec](/official/Reference/VBA/Conversion/CDec)、[Str](/official/Reference/VBA/Conversion/Str) 函数

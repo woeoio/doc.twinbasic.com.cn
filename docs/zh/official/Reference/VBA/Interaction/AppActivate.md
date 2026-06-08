@@ -2,33 +2,41 @@
 title: AppActivate
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/AppActivate
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4a40c04f-e36b-4bb5-9239-86cd87df526d'
+  PropagateID: '4a40c04f-e36b-4bb5-9239-86cd87df526d'
+  ReservedCode1: '0bbdf01d-a12d-4eb9-9fd3-c642f63145d0'
+  ReservedCode2: '0bbdf01d-a12d-4eb9-9fd3-c642f63145d0'
 ---
+
 # AppActivate
 
-Activates an application window.
+激活应用程序窗口。
 
-Syntax:
+语法：
 - **AppActivate** *title* [ **,** *wait* ]
   
   *title*
-  : *required* A string expression specifying the title in the title bar of the application window to activate.
+  : *必需* 字符串表达式，指定要激活的应用程序窗口标题栏中的标题。
   
   *wait*
-  : *optional* A Boolean value specifying whether the calling application has the focus before activating another. If **False** (default), the specified application is immediately activated, even if the calling application does not have the focus. If **True**, the calling application waits until it has the focus, then activates the specified application.
+  : *可选* Boolean值，指定调用应用程序在激活另一个应用程序之前是否需要具有焦点。如果为**False**（默认），则立即激活指定应用程序，即使调用应用程序不具有焦点。如果为**True**，调用应用程序等待直到获得焦点，然后激活指定应用程序。
   
 - **AppActivate** *taskId* [ **,** *wait* ]
   
   *taskId*
-  : *required* The task ID returned by the [**Shell**](/official/Reference/VBA/Interaction/Shell) function can be used in place of *title* to activate an application.
+  : *必需* [**Shell**](/official/Reference/VBA/Interaction/Shell)函数返回的任务ID可代替*title*用于激活应用程序。
 
-The **AppActivate** statement changes the focus to the named application or window but does not affect whether it is maximized or minimized. Focus moves from the activated application window when the user takes some action to change the focus or close the window. Use the [**Shell**](/official/Reference/VBA/Interaction/Shell) function to start an application and set the window style.
+**AppActivate**语句将焦点更改到命名应用程序或窗口，但不影响其是否最大化或最小化。当用户采取某些操作更改焦点或关闭窗口时，焦点从激活的应用程序窗口移开。使用[**Shell**](/official/Reference/VBA/Interaction/Shell)函数启动应用程序并设置窗口样式。
 
-In determining which application to activate, *title* is compared to the title string of each running application. If there is no exact match, any application whose title string begins with *title* is activated. If there is more than one instance of the application named by *title*, one instance is arbitrarily activated.
+在确定要激活哪个应用程序时，*title*与每个运行中应用程序的标题字符串进行比较。如果没有完全匹配，则激活标题字符串以*title*开头的任何应用程序。如果*title*指定的应用程序有多个实例，则任意激活一个实例。
 
-### Example
+### 示例
 
-This example illustrates various uses of the **AppActivate** statement to activate an application window. The **Shell** statements assume the applications are in the paths specified.
-<!-- On the Macintosh, the default drive name is "HD" and portions of the pathname are separated by colons instead of backslashes. -->
+本示例演示**AppActivate**语句激活应用程序窗口的各种用法。**Shell**语句假设应用程序位于指定路径。
 
 ```vb
 Dim MyAppID, ReturnValue
@@ -46,7 +54,7 @@ AppActivate ReturnValue   ' Activate Microsoft
                           ' Excel.
 ```
 
-### See Also
+### 另请参阅
 
-- [SendKeys](/official/Reference/VBA/Interaction/SendKeys) statement
-- [Shell](/official/Reference/VBA/Interaction/Shell) function
+- [SendKeys](/official/Reference/VBA/Interaction/SendKeys)语句
+- [Shell](/official/Reference/VBA/Interaction/Shell)函数

@@ -2,23 +2,32 @@
 title: Year
 parent: DateTime Module
 permalink: /tB/Modules/DateTime/Year
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3338510e-ca94-4872-bd45-83ddafe7fb5a'
+  PropagateID: '3338510e-ca94-4872-bd45-83ddafe7fb5a'
+  ReservedCode1: '8b5ffe5f-40e4-4823-8741-6687cfe9b1fc'
+  ReservedCode2: '8b5ffe5f-40e4-4823-8741-6687cfe9b1fc'
 ---
+
 # Year
 
-Returns a **Variant** (**Integer**) containing a whole number representing the year.
+返回一个 **Variant** (**Integer**)，包含表示年份的整数。
 
-Syntax: **Year** ( *date* )
+语法：**Year** ( *date* )
 
 *date*
-: *required* Any **Variant**, numeric expression, string expression, or any combination that can represent a date. If *date* contains **Null**, **Null** is returned.
+: *必需* 任何可以表示日期的 **Variant**、数值表达式、字符串表达式或其任意组合。如果 *date* 包含 **Null**，则返回 **Null**。
 
 ::: info
-If the [**Calendar**](/official/Reference/VBA/DateTime/Calendar) property setting is Gregorian, the returned integer represents the Gregorian year for the date argument. If the calendar is Hijri, the returned integer represents the Hijri year for the date argument.
+如果 [**Calendar**](/official/Reference/VBA/DateTime/Calendar) 属性设置为公历，则返回的整数表示日期参数的公历年份。如果日历为回历，则返回的整数表示日期参数的回历年份。
 :::
 
-### Example
+### 示例
 
-This example uses the **Year** function to obtain the year from a specified date.
+此示例使用 **Year** 函数从指定日期中获取年份。
 
 ```vb
 Dim MyDate, MyYear
@@ -26,6 +35,6 @@ MyDate = #February 12, 1969#    ' Assign a date.
 MyYear = Year(MyDate)    ' MyYear contains 1969.
 ```
 
-### See Also
+### 另请参阅
 
-- [Day](/official/Reference/VBA/DateTime/Day), [Month](/official/Reference/VBA/DateTime/Month), [DatePart](/official/Reference/VBA/DateTime/DatePart) functions
+- [Day](/official/Reference/VBA/DateTime/Day)、[Month](/official/Reference/VBA/DateTime/Month)、[DatePart](/official/Reference/VBA/DateTime/DatePart) 函数

@@ -1,13 +1,21 @@
----
+﻿---
 title: Anchors
 parent: Styles
 permalink: /tB/Packages/CustomControls/Styles/Anchors
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6b56c2be-5dc8-48c5-986d-37bdcdb5c547'
+  PropagateID: '6b56c2be-5dc8-48c5-986d-37bdcdb5c547'
+  ReservedCode1: 'a5d2ef89-6f08-47c5-980d-3977bca7ba59'
+  ReservedCode2: 'a5d2ef89-6f08-47c5-980d-3977bca7ba59'
 ---
 
-# Anchors class
-Determines which sides of a control are attached to its parent container when the container is resized. A control with both **Left** and **Right** set to **True**, for example, keeps its left and right edges at the same distance from the container's edges, stretching horizontally as the container grows. Controls receive this object through their inherited **Anchors** property.
+# Anchors 类
+决定容器调整大小时控件的哪些边附着到其父容器。例如，**Left** 和 **Right** 都设为 **True** 的控件保持其左右边缘与容器边缘等距，容器增长时水平拉伸。控件通过其继承的 **Anchors** 属性接收此对象。
 
-The default is **Left**=**True**, **Top**=**True**, **Right**=**False**, **Bottom**=**False** --- the control stays at the same offset from the upper-left corner of the container and does not resize. To make a control fill the bottom of its container as the form is resized, anchor it to **Left**, **Right**, and **Bottom**.
+默认为 **Left**=**True**、**Top**=**True**、**Right**=**False**、**Bottom**=**False**——控件保持与容器左上角相同的偏移且不调整大小。要使控件在窗体调整大小时填充容器底部，将其锚定到 **Left**、**Right** 和 **Bottom**。
 
 ```vb
 With txtNotes.Anchors
@@ -18,26 +26,26 @@ With txtNotes.Anchors
 End With
 ```
 
-## Properties
+## 属性
 
 ### Bottom
 
-When **True**, the control's bottom edge stays at the same distance from the container's bottom edge. **Boolean**, default **False**.
+当 **True** 时，控件底边与容器底边保持等距。**Boolean**，默认 **False**。
 
 ### Left
 
-When **True**, the control's left edge stays at the same distance from the container's left edge. **Boolean**, default **True**.
+当 **True** 时，控件左边与容器左边保持等距。**Boolean**，默认 **True**。
 
 ### Right
 
-When **True**, the control's right edge stays at the same distance from the container's right edge. **Boolean**, default **False**.
+当 **True** 时，控件右边与容器右边保持等距。**Boolean**，默认 **False**。
 
 ### Top
 
-When **True**, the control's top edge stays at the same distance from the container's top edge. **Boolean**, default **True**.
+当 **True** 时，控件顶边与容器顶边保持等距。**Boolean**，默认 **True**。
 
-## Events
+## 事件
 
 ### OnChanged
 
-Raised whenever any of the four anchor flags is assigned. The hosting control listens for this event and re-applies the docking layout. Application code does not normally subscribe directly.
+四个锚定标志中任一个被赋值时触发。承载控件监听此事件并重新应用停靠布局。应用程序代码通常不直接订阅。

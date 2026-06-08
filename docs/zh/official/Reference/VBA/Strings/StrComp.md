@@ -2,42 +2,51 @@
 title: StrComp
 parent: Strings Module
 permalink: /tB/Modules/Strings/StrComp
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fc5c1b56-f034-4922-9007-1afbe1e97ada'
+  PropagateID: 'fc5c1b56-f034-4922-9007-1afbe1e97ada'
+  ReservedCode1: '2814d6dd-a143-4889-aef3-26ba5a82f328'
+  ReservedCode2: '2814d6dd-a143-4889-aef3-26ba5a82f328'
 ---
+
 # StrComp
 
-Returns a **Variant** (**Integer**) indicating the result of a string comparison.
+返回一个**Variant**（**Integer**），指示字符串比较的结果。
 
-Syntax: **StrComp(** *string1*, *string2* [ **,** *compare* ] **)**
+语法：**StrComp(** *string1*, *string2* [ **,** *compare* ] **)**
 
 *string1*
-: *required* Any valid string expression.
+: *必需* 任意有效的字符串表达式。
 
 *string2*
-: *required* Any valid string expression.
+: *必需* 任意有效的字符串表达式。
 
 *compare*
-: *optional* Specifies the type of string comparison. If the *compare* argument is **Null**, an error occurs. If *compare* is omitted, the [**Option Compare**](/official/Reference/Core/Option) setting determines the type of comparison.
+: *可选* 指定字符串比较的类型。如果*compare*参数为**Null**，则会出错。如果省略*compare*，则由[**Option Compare**](/official/Reference/Core/Option)设置决定比较类型。
 
-The *compare* argument settings are:
+*compare*参数的设置为：
 
-| Constant               | Value | Description                                                                              |
-|------------------------|-------|------------------------------------------------------------------------------------------|
-| **vbUseCompareOption** | -1    | Performs a comparison by using the setting of the **Option Compare** statement.          |
-| **vbBinaryCompare**    | 0     | Performs a binary comparison.                                                            |
-| **vbTextCompare**      | 1     | Performs a textual comparison.                                                           |
+| 常量                   | 值  | 描述                                                     |
+|------------------------|-----|----------------------------------------------------------|
+| **vbUseCompareOption** | -1  | 使用**Option Compare**语句的设置进行比较。               |
+| **vbBinaryCompare**    | 0   | 执行二进制比较。                                          |
+| **vbTextCompare**      | 1   | 执行文本比较。                                            |
 
-**Return values:**
+**返回值：**
 
-| If                                  | **StrComp** returns |
-|-------------------------------------|---------------------|
-| *string1* is less than *string2*    | -1                  |
-| *string1* is equal to *string2*     | 0                   |
-| *string1* is greater than *string2* | 1                   |
-| *string1* or *string2* is **Null**  | **Null**            |
+| 条件                                   | **StrComp**返回值 |
+|----------------------------------------|-------------------|
+| *string1*小于*string2*                 | -1                |
+| *string1*等于*string2*                 | 0                 |
+| *string1*大于*string2*                 | 1                 |
+| *string1*或*string2*为**Null**         | **Null**          |
 
-### Example
+### 示例
 
-This example uses the **StrComp** function to return the results of a string comparison. If the third argument is 1, a textual comparison is performed; if the third argument is 0 or omitted, a binary comparison is performed.
+本示例使用**StrComp**函数返回字符串比较的结果。如果第三个参数为1，则执行文本比较；如果第三个参数为0或省略，则执行二进制比较。
 
 ```vb
 Dim MyStr1, MyStr2, MyComp
@@ -47,6 +56,6 @@ MyComp = StrComp(MyStr1, MyStr2, 0)   ' Returns -1.
 MyComp = StrComp(MyStr2, MyStr1)      ' Returns 1.
 ```
 
-### See Also
+### 另请参阅
 
-- [InStr](/official/Reference/VBA/Strings/InStr) function
+- [InStr](/official/Reference/VBA/Strings/InStr)函数

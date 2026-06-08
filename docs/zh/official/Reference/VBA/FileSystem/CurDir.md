@@ -2,23 +2,32 @@
 title: CurDir
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/CurDir
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6c040317-bd56-4ce2-b5e2-409e1ff9db13'
+  PropagateID: '6c040317-bd56-4ce2-b5e2-409e1ff9db13'
+  ReservedCode1: '0cfc147f-0895-4ce9-911b-c9d9af2498f5'
+  ReservedCode2: '0cfc147f-0895-4ce9-911b-c9d9af2498f5'
 ---
+
 # CurDir
 
-Returns the current path.
+返回当前路径。
 
-## CurDir Function
+## CurDir函数
 
-Returns a **Variant** (**String**) representing the current path.
+返回一个表示当前路径的**Variant**（**String**）。
 
-Syntax: **CurDir** [ **(** *drive* **)** ]
+语法：**CurDir** [ **(** *drive* **)** ]
 
 *drive*
-: *optional* String expression that specifies an existing drive. If no drive is specified or if *drive* is a zero-length string (`""`), **CurDir** returns the path for the current drive.
+: *可选* 字符串表达式，指定一个现有的驱动器。如果未指定驱动器或*drive*为零长度字符串(`""`)，**CurDir**返回当前驱动器的路径。
 
-### Example
+### 示例
 
-This example uses the **CurDir** function to return the current path.
+本示例使用**CurDir**函数返回当前路径。
 
 ```vb
 ' Assume current path on C drive is "C:\WINDOWS\SYSTEM".
@@ -30,18 +39,18 @@ MyPath = CurDir("C")  ' Returns "C:\WINDOWS\SYSTEM".
 MyPath = CurDir("D")  ' Returns "D:\EXCEL".
 ```
 
-## CurDir$ Function
+## CurDir$函数
 
-Returns a **String** representing the current path.
+返回一个表示当前路径的**String**。
 
-Syntax: **CurDir$** [ **(** *drive* **)** ]
+语法：**CurDir$** [ **(** *drive* **)** ]
 
 *drive*
-: *optional* String expression that specifies an existing drive. If no drive is specified or if *drive* is a zero-length string (`""`), **CurDir$** returns the path for the current drive.
+: *可选* 字符串表达式，指定一个现有的驱动器。如果未指定驱动器或*drive*为零长度字符串(`""`)，**CurDir$**返回当前驱动器的路径。
 
-### Example
+### 示例
 
-This example uses the **CurDir$** function to return the current path.
+本示例使用**CurDir$**函数返回当前路径。
 
 ```vb
 ' Assume current path on C drive is "C:\WINDOWS\SYSTEM".
@@ -53,7 +62,7 @@ MyPath = CurDir$("C")  ' Returns "C:\WINDOWS\SYSTEM".
 MyPath = CurDir$("D")  ' Returns "D:\EXCEL".
 ```
 
-### See Also
+### 另请参阅
 
-- [ChDir](/official/Reference/VBA/FileSystem/ChDir), [ChDrive](/official/Reference/VBA/FileSystem/ChDrive) statements
-- [Dir](/official/Reference/VBA/FileSystem/Dir) function
+- [ChDir](/official/Reference/VBA/FileSystem/ChDir)、[ChDrive](/official/Reference/VBA/FileSystem/ChDrive)语句
+- [Dir](/official/Reference/VBA/FileSystem/Dir)函数

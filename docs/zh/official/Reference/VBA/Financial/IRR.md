@@ -2,28 +2,37 @@
 title: IRR
 parent: Financial Module
 permalink: /tB/Modules/Financial/IRR
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '19389868-1c01-4308-9043-401c09a872ed'
+  PropagateID: '19389868-1c01-4308-9043-401c09a872ed'
+  ReservedCode1: '30dbba2c-47ac-43ac-be18-3df589af90d6'
+  ReservedCode2: '30dbba2c-47ac-43ac-be18-3df589af90d6'
 ---
+
 # IRR
 
-Returns a **Double** specifying the internal rate of return for a series of periodic cash flows (payments and receipts).
+返回一个 **Double**，指定一系列定期现金流（付款和收入）的内部收益率。
 
-Syntax: **IRR(** *values()* [ **,** *guess* ] **)**
+语法：**IRR(** *values()* [ **,** *guess* ] **)**
 
 *values()*
-: *required* Array of **Double** specifying cash flow values. The array must contain at least one negative value (a payment) and one positive value (a receipt).
+: *必需* **Double** 数组，指定现金流值。数组必须包含至少一个负值（付款）和一个正值（收入）。
 
 *guess*
-: *optional* **Variant** specifying an estimate of the value to be returned by **IRR**. If omitted, *guess* is 0.1 (10 percent).
+: *可选* **Variant**，指定 **IRR** 返回值的估计。如果省略，*guess* 为 0.1（10%）。
 
-The internal rate of return is the interest rate received for an investment consisting of payments and receipts that occur at regular intervals.
+内部收益率是按固定间隔发生的付款和收入投资所获得的利率。
 
-The **IRR** function uses the order of values within the array to interpret the order of payments and receipts. The payment and receipt values must be in the correct sequence. The cash flow for each period doesn't have to be fixed, as it is for an annuity.
+**IRR** 函数使用数组中值的顺序来解释付款和收入的顺序。付款和收入值必须按正确顺序排列。每期的现金流不必像年金那样固定。
 
-**IRR** is calculated by iteration. Starting with the value of *guess*, **IRR** cycles through the calculation until the result is accurate to within 0.00001 percent. If **IRR** can't find a result after 20 tries, it fails.
+**IRR** 通过迭代计算。从 *guess* 的值开始，**IRR** 循环计算直到结果精确到 0.00001% 以内。如果 **IRR** 在 20 次尝试后仍未找到结果，则失败。
 
-### Example
+### 示例
 
-In this example, the **IRR** function returns the internal rate of return for a series of 5 cash flows contained in the array `Values()`. The first array element is a negative cash flow representing business start-up costs. The remaining four cash flows represent positive cash flows for the subsequent 4 years. `Guess` is the estimated internal rate of return.
+在此示例中，**IRR** 函数返回包含在数组 `Values()` 中的 5 个现金流的内部收益率。第一个数组元素是负现金流，代表企业创业成本。其余四个现金流代表随后 4 年的正现金流。`Guess` 是估计的内部收益率。
 
 ```vb
 Dim Guess, Fmt, RetRate, Msg
@@ -40,6 +49,6 @@ Msg = Msg & Format(RetRate, Fmt) & " percent."
 MsgBox Msg    ' Display internal return rate.
 ```
 
-### See Also
+### 另请参阅
 
-- [MIRR](/official/Reference/VBA/Financial/MIRR), [NPV](/official/Reference/VBA/Financial/NPV), [Rate](/official/Reference/VBA/Financial/Rate) functions
+- [MIRR](/official/Reference/VBA/Financial/MIRR)、[NPV](/official/Reference/VBA/Financial/NPV)、[Rate](/official/Reference/VBA/Financial/Rate) 函数

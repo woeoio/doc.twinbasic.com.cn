@@ -2,24 +2,33 @@
 title: GetMem2
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/GetMem2
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '560e4b2f-e311-4fad-8e09-58d5a708377d'
+  PropagateID: '560e4b2f-e311-4fad-8e09-58d5a708377d'
+  ReservedCode1: '8e27d330-0ddf-4ad9-8457-9900f25107ac'
+  ReservedCode2: '8e27d330-0ddf-4ad9-8457-9900f25107ac'
 ---
+
 # GetMem2
 
-Reads two bytes from a memory address into an **Integer** variable.
+从内存地址读取两个字节到**Integer**变量中。
 
-Syntax: **GetMem2** *Address* **,** *retVal*
+语法：**GetMem2** *Address* **,** *retVal*
 
 *Address*
-: *required* **LongPtr**. The address to read from.
+: *必需* **LongPtr**。要读取的地址。
 
 *retVal*
-: *required* **Integer**. The variable to receive the value read from *Address*.
+: *必需* **Integer**。接收从*Address*读取的值的变量。
 
-The bytes are interpreted in the host's native byte order --- little-endian on x86 and x64. The address is read directly with no bounds or alignment check.
+字节按宿主的本机字节序解释——x86和x64上为小端序。直接读取地址，不进行边界或对齐检查。
 
-### Example
+### 示例
 
-This example writes a 16-bit value to a buffer and reads it back with **GetMem2**.
+本示例将一个16位值写入缓冲区并用**GetMem2**读回。
 
 ```vb
 Dim buf As LongPtr = AllocMem(4)
@@ -29,7 +38,7 @@ GetMem2 buf, v          ' v = &H1234
 FreeMem buf
 ```
 
-### See Also
+### 另请参阅
 
-- [GetMem1](/official/Reference/VBA/HiddenModule/GetMem1), [GetMem4](/official/Reference/VBA/HiddenModule/GetMem4), [GetMem8](/official/Reference/VBA/HiddenModule/GetMem8), [GetMemPtr](/official/Reference/VBA/HiddenModule/GetMemPtr) procedures
-- [PutMem2](/official/Reference/VBA/HiddenModule/PutMem2) procedure
+- [GetMem1](/official/Reference/VBA/HiddenModule/GetMem1)、[GetMem4](/official/Reference/VBA/HiddenModule/GetMem4)、[GetMem8](/official/Reference/VBA/HiddenModule/GetMem8)、[GetMemPtr](/official/Reference/VBA/HiddenModule/GetMemPtr)过程
+- [PutMem2](/official/Reference/VBA/HiddenModule/PutMem2)过程

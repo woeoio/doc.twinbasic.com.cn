@@ -2,23 +2,32 @@
 title: Log
 parent: Math Module
 permalink: /tB/Modules/Math/Log
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ff967d03-fff7-405a-adae-e3d69b806dc9'
+  PropagateID: 'ff967d03-fff7-405a-adae-e3d69b806dc9'
+  ReservedCode1: 'bdd153e1-36f2-459a-b0af-7e10570fa8af'
+  ReservedCode2: 'bdd153e1-36f2-459a-b0af-7e10570fa8af'
 ---
+
 # Log
 
-Returns a **Double** specifying the natural logarithm of a number.
+返回一个 **Double**，指定数字的自然对数。
 
-Syntax: **Log(** *number* **)**
+语法：**Log(** *number* **)**
 
 *number*
-: *required* A **Double** or any valid numeric expression greater than zero.
+: *必需* **Double** 或任何大于零的有效数值表达式。
 
-The natural logarithm is the logarithm to the base *e*. The constant *e* is approximately 2.718282.
+自然对数是以 *e* 为底的对数。常量 *e* 约为 2.718282。
 
-Base-*n* logarithms for any number *x* can be calculated by dividing the natural logarithm of *x* by the natural logarithm of *n* as follows:
+对于任意数字 *x* 的以 *n* 为底的对数，可以通过将 *x* 的自然对数除以 *n* 的自然对数来计算：
 
 Log<sub>*n*</sub>(*x*) = **Log(** *x* **)** / **Log(** *n* **)**
 
-The following example illustrates a custom **Function** that calculates base-10 logarithms:
+以下示例演示了一个计算以 10 为底对数的自定义 **Function**：
 
 ```vb
 Static Function Log10(X)
@@ -26,9 +35,9 @@ Static Function Log10(X)
 End Function
 ```
 
-### Example
+### 示例
 
-This example uses the **Log** function to return the natural logarithm of a number.
+此示例使用 **Log** 函数返回数字的自然对数。
 
 ```vb
 Dim MyAngle, MyLog
@@ -38,7 +47,7 @@ MyAngle = 1.3
 MyLog = Log(MyAngle + Sqr(MyAngle * MyAngle + 1))
 ```
 
-### See Also
+### 另请参阅
 
-- [Exp](/official/Reference/VBA/Math/Exp) function
-- [Sqr](/official/Reference/VBA/Math/Sqr) function
+- [Exp](/official/Reference/VBA/Math/Exp) 函数
+- [Sqr](/official/Reference/VBA/Math/Sqr) 函数

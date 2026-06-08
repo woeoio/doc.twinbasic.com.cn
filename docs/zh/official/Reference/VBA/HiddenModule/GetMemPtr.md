@@ -2,22 +2,31 @@
 title: GetMemPtr
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/GetMemPtr
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '267f40fb-97cd-4807-b508-89443d5dea4b'
+  PropagateID: '267f40fb-97cd-4807-b508-89443d5dea4b'
+  ReservedCode1: 'ada26c70-396c-475f-81ad-8d891974e7d3'
+  ReservedCode2: 'ada26c70-396c-475f-81ad-8d891974e7d3'
 ---
+
 # GetMemPtr
 
-Reads a pointer-sized value from a memory address into a **LongPtr** variable.
+从内存地址读取指针大小的值到**LongPtr**变量中。
 
-Syntax: **GetMemPtr** *Address* **,** *retVal*
+语法：**GetMemPtr** *Address* **,** *retVal*
 
 *Address*
-: *required* **LongPtr**. The address to read from.
+: *必需* **LongPtr**。要读取的地址。
 
 *retVal*
-: *required* **LongPtr**. The variable to receive the pointer-sized value read from *Address*.
+: *必需* **LongPtr**。接收从*Address*读取的指针大小值的变量。
 
-The number of bytes read matches the host's pointer width --- four bytes in 32-bit builds, eight bytes in 64-bit builds. The bytes are interpreted in the host's native byte order. The address is read directly with no bounds or alignment check.
+读取的字节数与宿主的指针宽度匹配——32位构建中为四个字节，64位构建中为八个字节。字节按宿主的本机字节序解释。直接读取地址，不进行边界或对齐检查。
 
-### Example
+### 示例
 
 ```vb
 ' Read the IUnknown vtable pointer of a Collection instance.
@@ -27,7 +36,7 @@ GetMemPtr ObjPtr(c), vtbl
 Debug.Print "vtable at "; Hex(vtbl)
 ```
 
-### See Also
+### 另请参阅
 
-- [GetMem1](/official/Reference/VBA/HiddenModule/GetMem1), [GetMem2](/official/Reference/VBA/HiddenModule/GetMem2), [GetMem4](/official/Reference/VBA/HiddenModule/GetMem4), [GetMem8](/official/Reference/VBA/HiddenModule/GetMem8) procedures
-- [PutMemPtr](/official/Reference/VBA/HiddenModule/PutMemPtr) procedure
+- [GetMem1](/official/Reference/VBA/HiddenModule/GetMem1)、[GetMem2](/official/Reference/VBA/HiddenModule/GetMem2)、[GetMem4](/official/Reference/VBA/HiddenModule/GetMem4)、[GetMem8](/official/Reference/VBA/HiddenModule/GetMem8)过程
+- [PutMemPtr](/official/Reference/VBA/HiddenModule/PutMemPtr)过程

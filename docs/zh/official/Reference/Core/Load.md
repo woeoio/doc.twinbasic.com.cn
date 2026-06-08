@@ -2,24 +2,33 @@
 title: Load
 parent: Statements
 permalink: /tB/Core/Load
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4044b392-107b-4702-b83b-bc29779df5c5'
+  PropagateID: '4044b392-107b-4702-b83b-bc29779df5c5'
+  ReservedCode1: '4f15e44b-bf26-4cd6-a597-b856305990ce'
+  ReservedCode2: '4f15e44b-bf26-4cd6-a597-b856305990ce'
 ---
+
 # Load
 
-Loads an object --- typically a form --- into memory but does not show it.
+将对象——通常是窗体——加载到内存但不在屏幕上显示。
 
-Syntax:
+语法：
 > **Load** *object*
 
 *object*
-: An object expression that evaluates to a loadable object (commonly a form or a control array element).
+: 求值为可加载对象的对象表达式（通常是窗体或控件数组元素）。
 
-When an object is loaded, it is placed in memory but is not visible. Use the **Show** method to make it visible. Until an object is visible, the user can't interact with it; the object can be manipulated programmatically inside its **Initialize** event handler.
+对象加载后，被放入内存但不可见。使用 **Show** 方法使其可见。对象在可见之前，用户不能与它交互；可以在其 **Initialize** 事件处理程序中以编程方式操作对象。
 
-Use [**Unload**](/official/Reference/Core/Unload) to remove the object from memory once it is no longer needed.
+当不再需要对象时，使用 [**Unload**](/official/Reference/Core/Unload) 将其从内存中移除。
 
-### Example
+### 示例
 
-In the following example, `UserForm2` is loaded during `UserForm1`'s **Initialize** event. Subsequent clicking on `UserForm2` reveals `UserForm1`.
+以下示例中，`UserForm2` 在 `UserForm1` 的 **Initialize** 事件期间加载。随后点击 `UserForm2` 会显示 `UserForm1`。
 
 ```vb
 ' This is the Initialize event procedure for UserForm1.
@@ -39,6 +48,6 @@ Private Sub UserForm_Click()
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**Unload** statement](/official/Reference/Core/Unload)
+- [**Unload** 语句](/official/Reference/Core/Unload)

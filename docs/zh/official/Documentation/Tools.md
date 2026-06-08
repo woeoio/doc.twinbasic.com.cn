@@ -1,57 +1,57 @@
 ---
-title: Tools and Scripts
-parent: Documentation Development
+title: "工具与脚本"
+parent: "文档开发"
 nav_order: 3
 permalink: /Documentation/Development/Tools
 AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '71220d92-e193-444b-a5fd-6765c3597cad'
-  PropagateID: '71220d92-e193-444b-a5fd-6765c3597cad'
-  ReservedCode1: 'bac0a5dc-4e2e-4bc1-93e6-56c3877f65c8'
-  ReservedCode2: 'bac0a5dc-4e2e-4bc1-93e6-56c3877f65c8'
+  ProduceID: '67576b9b-ab92-484e-b1b2-7b94f8c9f22e'
+  PropagateID: '67576b9b-ab92-484e-b1b2-7b94f8c9f22e'
+  ReservedCode1: '18e0f2d8-14dc-4de9-98ca-3a42f36be429'
+  ReservedCode2: '18e0f2d8-14dc-4de9-98ca-3a42f36be429'
 ---
 
-# Tools and Scripts
+# 工具与脚本
 
-One-line-per-tool reference for every executable in the documentation repository: the Windows batch wrappers under `docs/`, the cross-platform Node and Python scripts under `scripts/`, the `tbdocs` orchestrator and its CLI flags, and the PDF render driver. If you are looking for the day-to-day workflow rather than a cheat sheet, the [Building and Deployment](/official/Documentation/Building) page is the gentler read; if you are modifying the build pipeline itself, the [tbdocs Internals](/official/Documentation/Builder) page goes one level deeper.
+文档仓库中每个可执行文件的单行参考：`docs/` 下的Windows批处理包装器、`scripts/` 下的跨平台Node和Python脚本、`tbdocs` 编排器及其CLI标志，以及PDF渲染驱动器。如果你在寻找日常工作流而非速查表，[构建与部署](/official/Documentation/Building)页面更适合；如果你在修改构建管线本身，[tbdocs内部机制](/official/Documentation/Builder)页面更深入。
 
-## Batch wrappers under docs/
+## docs/下的批处理包装器
 
-Each batch file uses `@pushd "%~dp0"` to run from the repository root regardless of where it is invoked from. POSIX equivalents are listed in the per-batch entry below.
+每个批处理文件使用 `@pushd "%~dp0"` 从仓库根目录运行，无论从何处调用。POSIX等效命令在各批处理条目下方列出。
 
 ### build.bat
 
     build.bat [extra tbdocs flags]
 
-Renders the documentation. Wraps `node builder\tbdocs.mjs --src docs` and forwards extra arguments through `%*`. Produces `_site/`, `_site-offline/`, and `_site-pdf/`, modulo the `--no-offline` / `--no-pdf` flags and the `also_build_offline` / `also_build_pdf` keys in `_config.yml`. Build time on the current tree is ~3 seconds end-to-end.
+渲染文档。包装 `node builder\tbdocs.mjs --src docs` 并通过 `%*` 转发额外参数。生成 `_site/`、`_site-offline/` 和 `_site-pdf/`，受 `--no-offline` / `--no-pdf` 标志和 `_config.yml` 中的 `also_build_offline` / `also_build_pdf` 键控制。当前源码树的构建时间端到端约3秒。
 
 ### serve.bat
 
     serve.bat
 
-Starts a long-lived dev process. Wraps `node builder\tbdocs.mjs --src docs --serve` and forwards extra arguments through `%*`. After an initial build, an HTTP server binds to port 4000 (pass `--port <N>` to use a different port), a recursive source-tree watcher fires a debounced rebuild on each change, and a browser connected to the page auto-reloads via SSE on each successful rebuild. Offline and PDF passes are skipped each rebuild. Ctrl+C exits cleanly. **Only failures (4xx, 5xx, server exceptions) are logged** --- successful requests are silent.
+启动长期开发进程。包装 `node builder\tbdocs.mjs --src docs --serve` 并通过 `%*` 转发额外参数。初始构建后，HTTP服务器绑定到端口4000（传 `--port <N>` 使用不同端口），递归源码树监视器在每次更改时触发防抖重建，连接到页面的浏览器通过SSE在每次成功重建后自动重载。离线和PDF传递在每次重建时跳过。Ctrl+C干净退出。**仅记录失败（4xx、5xx、服务器异常）**——成功请求无输出。
 
 ### check.bat
 
     check.bat
 
-Runs `scripts/check_links.mjs` against the rendered `_site/` and `_site-offline/` trees in two parallel passes. The offline pass also runs `--forbid "https://docs.twinbasic.com"` to flag any surviving live-site link the offline rewrite missed. Both passes assert link integrity, HTML well-formedness, duplicate-`id` detection, anchor resolution, and accessibility hints; the online pass additionally checks `sitemap.xml` and the search index. Requires `build.bat` to have run first.
+以两个并行传递对渲染的 `_site/` 和 `_site-offline/` 树运行 `scripts/check_links.mjs`。离线传递还运行 `--forbid "https://docs.twinbasic.com"` 以标记离线重写遗漏的任何存活站点链接。两个传递都断言链接完整性、HTML良构性、重复 `id` 检测、锚点解析和无障碍提示；在线传递额外检查 `sitemap.xml` 和搜索索引。需要先运行 `build.bat`。
 
 ### book.bat
 
     book.bat
 
-Renders the PDF book from `docs\_site-pdf\book.html` into `docs\_pdf\twinBASIC Book.pdf`. Calls `node book\render-book.mjs` (see [below](#bookrender-bookmjs)). Requires `build.bat` to have populated `_site-pdf/` and a Chromium install from `npx puppeteer browsers install chrome`. The first invocation auto-runs `npm install` if `puppeteer` is missing. The output filename is set by the `-o` argument here; to rename the PDF, update it in `book.bat` and in `.github/workflows/jekyll-gh-pages.yml`.
+从 `docs\_site-pdf\book.html` 渲染PDF书到 `docs\_pdf\twinBASIC Book.pdf`。调用 `node book\render-book.mjs`（见[下方](#bookrender-bookmjs)）。需要 `build.bat` 已填充 `_site-pdf/` 和通过 `npx puppeteer browsers install chrome` 安装的Chromium。首次调用在缺少 `puppeteer` 时自动运行 `npm install`。输出文件名由此处的 `-o` 参数设置；要重命名PDF，需在 `book.bat` 和 `.github/workflows/jekyll-gh-pages.yml` 中更新。
 
-## CLI tools
+## CLI工具
 
 ### tbdocs --- node builder/tbdocs.mjs
 
-Entry point for the static site generator. `build.bat` invokes it as `node builder\tbdocs.mjs --src docs`; CI invokes it the same way.
+静态站点生成器入口。`build.bat` 调用 `node builder\tbdocs.mjs --src docs`；CI以相同方式调用。
 
-Full invocation:
+完整调用：
 
     node builder/tbdocs.mjs [--src <path>] [--dest <path>]
                             [--baseurl <prefix>] [--url <origin>]
@@ -60,80 +60,80 @@ Full invocation:
                             [--profile-offline]
                             [--serve] [--port <N>]
 
-| Flag | Effect |
+| 标志 | 作用 |
 |---|---|
-| `--src <path>` | Source root. Default: `docs` relative to the working directory. |
-| `--dest <path>` | Online-tree destination. Default: `<src>/_site`. The offline tree lands at `<dest>-offline`, the PDF tree at `<dest>-pdf`. |
-| `--baseurl <prefix>` | Overrides `_config.yml`'s `baseurl`. Used by CI to inject the GitHub Pages base path on fork deployments. |
-| `--url <origin>` | Overrides `_config.yml`'s `url`. Used by CI so canonical URLs match the actual deployment origin rather than the configured production host. |
-| `--dry-run` | Skip every filesystem write. Useful for benchmarking or validating discovery / compute / render. |
-| `--no-offline` | Skip the offline tree pass. |
-| `--no-pdf` | Skip the PDF tree pass. |
-| `--tolerate-missing-images` | Downgrade Phase 8's missing-image error to a warning. Use when the source tree is mid-edit and may temporarily reference an image that does not yet exist. |
-| `--profile-offline` | Print per-substep timing for the offline tree pass. |
-| `--serve` | Start the long-lived dev server (watch + rebuild + SSE live-reload). Offline and PDF passes are skipped each rebuild. |
-| `--port <N>` | HTTP port for `--serve` mode. Default: 4000. |
+| `--src <path>` | 源根目录。默认：相对于工作目录的 `docs`。 |
+| `--dest <path>` | 在线树目标。默认：`<src>/_site`。离线树位于 `<dest>-offline`，PDF树位于 `<dest>-pdf`。 |
+| `--baseurl <prefix>` | 覆盖 `_config.yml` 的 `baseurl`。CI用于在fork部署时注入GitHub Pages基础路径。 |
+| `--url <origin>` | 覆盖 `_config.yml` 的 `url`。CI用于使规范URL匹配实际部署源而非配置的生产主机。 |
+| `--dry-run` | 跳过所有文件系统写入。用于基准测试或验证发现/计算/渲染。 |
+| `--no-offline` | 跳过离线树传递。 |
+| `--no-pdf` | 跳过PDF树传递。 |
+| `--tolerate-missing-images` | 将阶段8的缺失图片错误降级为警告。当源码树正在编辑且可能临时引用尚不存在的图片时使用。 |
+| `--profile-offline` | 打印离线树传递的每子步骤计时。 |
+| `--serve` | 启动长期开发服务器（监视+重建+SSE实时重载）。每次重建跳过离线和PDF传递。 |
+| `--port <N>` | `--serve` 模式的HTTP端口。默认：4000。 |
 
 ### scripts/check_links.mjs
 
     node scripts/check_links.mjs [pass-args...] [/sep/ [pass-args...] ...]
 
-Offline (filesystem-only) link checker plus optional integrity checks. Multiple `/sep/`-separated passes run in parallel through `worker_threads`. The relevant flags:
+离线（仅文件系统）链接检查器加可选完整性检查。多个 `/sep/` 分隔的传递通过 `worker_threads` 并行运行。相关标志：
 
-| Flag | Effect |
+| 标志 | 作用 |
 |---|---|
-| `--offline` | Required. Online (network) link checking is not implemented. |
-| `--root-dir <path>` | Filesystem root to resolve root-absolute URLs against. |
-| `--fallback-extensions <list>` | Comma-separated list of extensions to append when a link target does not exist as-is. Use `html` to mirror GitHub Pages' extensionless-URL behaviour. |
-| `--index-files <list>` | Comma-separated list of filenames to try when a URL resolves to a directory. Use `'index.html,.'` to also accept the directory itself as a valid target. |
-| `--base-path <prefix>` | Strip this prefix from root-absolute URLs before resolving. Used in CI when `--baseurl` is set. |
-| `--include-fragments` | Resolve `#fragment` anchors against the target page's IDs. |
-| `--forbid <prefix>` | Repeatable. Fail the run if any extracted link starts with `prefix`. Used by the offline pass to catch live-site links the offlinify rewrite missed (the bare prefix and `prefix/` are exempt). |
-| `--check-html` | Assert HTML well-formedness. |
-| `--check-a11y` | Surface accessibility hints (missing `alt`, etc.). |
-| `--check-ids` | Flag duplicate `id` attributes within a page. |
-| `--check-sitemap` | Assert `sitemap.xml` covers every page. |
-| `--check-search` | Assert search-index entries resolve to existing pages. |
-| `--check-canonical` | Assert each page's canonical URL matches its location. |
-| `--no-fail` | Downgrade failures to informational output (exit 0 even with broken links). |
+| `--offline` | 必需。在线（网络）链接检查未实现。 |
+| `--root-dir <path>` | 解析根绝对URL所依据的文件系统根目录。 |
+| `--fallback-extensions <list>` | 当链接目标原样不存在时追加的扩展名逗号分隔列表。使用 `html` 镜像GitHub Pages的无扩展名URL行为。 |
+| `--index-files <list>` | 当URL解析到目录时尝试的文件名逗号分隔列表。使用 `'index.html,.'` 也接受目录本身作为有效目标。 |
+| `--base-path <prefix>` | 在解析前从根绝对URL中去除此前缀。CI中设置 `--baseurl` 时使用。 |
+| `--include-fragments` | 根据目标页面的ID解析 `#fragment` 锚点。 |
+| `--forbid <prefix>` | 可重复。如果任何提取的链接以 `prefix` 开头则运行失败。离线传递用于捕获离线重写遗漏的存活站点链接（裸前缀和 `prefix/` 豁免）。 |
+| `--check-html` | 断言HTML良构性。 |
+| `--check-a11y` | 显示无障碍提示（缺少 `alt` 等）。 |
+| `--check-ids` | 标记页面内重复的 `id` 属性。 |
+| `--check-sitemap` | 断言 `sitemap.xml` 覆盖每个页面。 |
+| `--check-search` | 断言搜索索引条目解析到现有页面。 |
+| `--check-canonical` | 断言每个页面的规范URL匹配其位置。 |
+| `--no-fail` | 将失败降级为信息输出（即使有断链也退出码0）。 |
 
-Exit code 1 indicates broken links; exit code 2 indicates integrity-only failures (the integrity checks share the same SAX parse pass as link extraction). The script dedupes `(target, fragment)` so each unique filesystem check fires exactly once regardless of how many pages link to the same target --- on the current tree (~733k link occurrences, ~12k unique targets across 1,127 HTML files / 124 MB) each pass runs in ~2.2 seconds on a development box.
+退出码1表示断链；退出码2表示仅完整性失败（完整性检查与链接提取共享同一SAX解析传递）。脚本对 `(target, fragment)` 去重，因此每个唯一文件系统检查恰好触发一次，无论多少页面链接到同一目标——在当前源码树上（约733k链接出现，约12k唯一目标横跨1,127个HTML文件/124 MB）每个传递在开发机上约2.2秒运行。
 
 ### scripts/crawl_check.mjs
 
     node scripts/crawl_check.mjs <start-url> [--concurrency N] [--timeout MS] [--skip-external]
 
-Online link crawler for the deployed site. Starts at `<start-url>`, GETs every same-origin / same-base-path page recursively, extracts links, and verifies that each link responds 2xx (HEAD for cross-origin, GET for same-origin). Exits 0 if all links are reachable, 1 if any are broken. Use it after a manual `workflow_dispatch` deploy to verify the published site --- `check_links.mjs` covers the local filesystem; `crawl_check.mjs` covers the live deployed site.
+已部署站点的在线链接爬虫。从 `<start-url>` 开始，GET每个同源/同基础路径页面递归，提取链接，验证每个链接响应2xx（跨源HEAD，同源GET）。所有链接可达退出0，任何断链退出1。在手动 `workflow_dispatch` 部署后用于验证已发布站点——`check_links.mjs` 覆盖本地文件系统；`crawl_check.mjs` 覆盖实时部署的站点。
 
 ### scripts/convert_em_dash_separators.py
 
     python scripts/convert_em_dash_separators.py
 
-Normalises literal en-dash / em-dash characters in markdown source under `docs/` to their kramdown smart-quotes ASCII source form (`--` for en-dash, `---` for em-dash). The site forbids literal `–` / `—` in source --- this is the canonical fixer if any slip back in. Skips fenced code blocks and inline code spans.
+将 `docs/` 下Markdown源中的字面短划线/长划线字符规范化为其kramdown智能引号ASCII源形式（`--` 表示短划线，`---` 表示长划线）。站点禁止源代码中出现字面 `–` / `—`——如果有混入，这是规范的修复工具。跳过围栏代码块和内联代码跨度。
 
 ### book/render-book.mjs
 
     node book/render-book.mjs <input.html> -o <output.pdf> [options]
 
-The PDF renderer that `book.bat` calls. It is a generic HTML-to-PDF converter: it takes the pre-built `_site-pdf/book.html` as its sole document input and has no knowledge of `_data/book.yml` --- all chapter structure, heading levels, and outline entries are already embedded in the HTML by `tbdocs` Phase 8. Uses `puppeteer` + `paged.js` + `pdf-lib` directly, so it controls `pdf-lib`'s `parseSpeed` (the default yields the event loop between every 100 objects on load, adding ~32 seconds to a 100-second build for no reason in Node --- see [perf/README.md](https://github.com/twinbasic/documentation/blob/main/perf/README.md) for the diagnosis). Replaces an earlier `npx pagedjs-cli ...` invocation.
+`book.bat` 调用的PDF渲染器。它是一个通用HTML转PDF转换器：以预构建的 `_site-pdf/book.html` 作为唯一文档输入，不了解 `_data/book.yml`——所有章节结构、标题级别和大纲条目已由 `tbdocs` 阶段8嵌入HTML中。直接使用 `puppeteer` + `paged.js` + `pdf-lib`，因此控制了 `pdf-lib` 的 `parseSpeed`（默认值在加载时每100个对象之间让出事件循环，为100秒构建增加约32秒无意义开销——参见[perf/README.md](https://github.com/twinbasic/documentation/blob/main/perf/README.md)的诊断）。替代了早期的 `npx pagedjs-cli ...` 调用。
 
-Key options used by `book.bat`:
+`book.bat` 使用的关键选项：
 
-| Flag | Effect |
+| 标志 | 作用 |
 |---|---|
-| `-o <output.pdf>` | Output PDF path. |
-| `--outline-tags h1,h2,h3,h4` | Heading levels to include in the PDF outline / bookmarks. |
-| `--additional-script <path>` | Path to a script injected before paged.js runs. `book.bat` passes `perf\detach-pages.js`, which hides each finalised page from Chromium's layout tree and restores them all before `page.pdf()` runs, dropping render time from ~104s to ~51s on the 1,638-page book by sidestepping paged.js's quadratic overflow walker. |
+| `-o <output.pdf>` | 输出PDF路径。 |
+| `--outline-tags h1,h2,h3,h4` | 包含在PDF大纲/书签中的标题级别。 |
+| `--additional-script <path>` | 在paged.js运行前注入的脚本路径。`book.bat` 传递 `perf\detach-pages.js`，它从Chromium的布局树中隐藏每个已定型的页面，并在 `page.pdf()` 运行前全部恢复，通过绕过paged.js的二次溢出遍历器将1,638页书籍的渲染时间从约104秒降至约51秒。 |
 
-## Configuration files
+## 配置文件
 
-The build pipeline also reads a handful of declarative files. They are not executable but the build's behaviour depends on them.
+构建管线还读取少量声明性文件。它们不可执行，但构建行为依赖于它们。
 
-| File | Effect |
+| 文件 | 作用 |
 |---|---|
-| `docs/_config.yml` | Site config. `tbdocs` reads `url`, `baseurl`, `title`, `logo`, `also_build_offline`, `also_build_pdf`, `offline_exclude`, `exclude`, the footer / aux-link knobs, the GitHub edit-link knobs, and the offline-download-link knobs. Jekyll-only keys (`markdown`, `kramdown`, `theme`, `highlighter`, the `defaults` block, the `compress_html` block) are ignored. |
-| `docs/_book.yml` | The PDF book's chapter manifest. Entries are resolved to pages via the selector schema (`page` / `pages` / `nav_page` / `nav_pages` / `no_descent`) and control PDF outline behaviour via `landing_page:`, `landing_is_target:`, `no_outline_entry:`, `no_heading_shift:`, and `outline_closed:`. Full schema is documented in the file header. Phase 2 resolves chapter arrays; Phase 8 assembles `book.html`. |
-| `builder/themes/Light.theme`, `Dark.theme`, `Classic.theme` | twinBASIC IDE theme files, vendored from the BETA installer. `builder/highlight-theme.mjs` parses them into a Symbol-keyed palette that drives both the renderer's scope-to-class mapping and the generated `tb-highlight.css`. Refresh from the installer when the IDE adds new palette entries. |
-| `builder/twinbasic.tmLanguage.json` | TextMate grammar for the twinBASIC language. Shiki uses it to tokenise every ` ```vb ` code block. |
+| `docs/_config.yml` | 站点配置。`tbdocs` 读取 `url`、`baseurl`、`title`、`logo`、`also_build_offline`、`also_build_pdf`、`offline_exclude`、`exclude`、页脚/辅助链接旋钮、GitHub编辑链接旋钮和离线下载链接旋钮。Jekyll专用键（`markdown`、`kramdown`、`theme`、`highlighter`、`defaults`块、`compress_html`块）被忽略。 |
+| `docs/_book.yml` | PDF书的章节清单。条目通过选择器模式（`page` / `pages` / `nav_page` / `nav_pages` / `no_descent`）解析为页面，并通过 `landing_page:`、`landing_is_target:`、`no_outline_entry:`、`no_heading_shift:` 和 `outline_closed:` 控制PDF大纲行为。完整模式记录在文件头部。阶段2解析章节数组；阶段8组装 `book.html`。 |
+| `builder/themes/Light.theme`、`Dark.theme`、`Classic.theme` | 从BETA安装程序供应商的twinBASIC IDE主题文件。`builder/highlight-theme.mjs` 将其解析为Symbol键控的调色板，驱动渲染器的scope到类映射和生成的 `tb-highlight.css`。当IDE添加新调色板条目时从安装程序刷新。 |
+| `builder/twinbasic.tmLanguage.json` | twinBASIC语言的TextMate语法。Shiki使用它对每个 ` ```vb ` 代码块进行分词。 |
 
 > AI生成

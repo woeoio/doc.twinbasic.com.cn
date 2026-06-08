@@ -2,21 +2,30 @@
 title: RGB_B
 parent: Information Module
 permalink: /tB/Modules/Information/RGB_B
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '5e26e9f9-fae8-4520-97fd-9eaf1a02020b'
+  PropagateID: '5e26e9f9-fae8-4520-97fd-9eaf1a02020b'
+  ReservedCode1: '97f78473-1549-46eb-9e99-fa30275b78a8'
+  ReservedCode2: '97f78473-1549-46eb-9e99-fa30275b78a8'
 ---
+
 # RGB_B
 
-Returns the blue component (as an **Integer**) from a given RGBA colour value.
+从给定的RGBA颜色值中返回蓝色分量（作为**Integer**）。
 
-Syntax: **RGB_B(** *RGBA* **)**
+语法：**RGB_B(** *RGBA* **)**
 
 *RGBA*
-: *required* A **Long** RGBA colour value, of the kind returned by [**RGB**](/official/Reference/VBA/Information/RGB) or [**RGBA**](/official/Reference/VBA/Information/RGBA).
+: *必需* **Long** RGBA颜色值，类似于[**RGB**](/official/Reference/VBA/Information/RGB)或[**RGBA**](/official/Reference/VBA/Information/RGBA)返回的值。
 
-The return value is the blue component in the range 0--255.
+返回值为0--255范围内的蓝色分量。
 
-### Example
+### 示例
 
-This example extracts the blue component from a colour built with **RGB**.
+本示例从使用**RGB**构建的颜色中提取蓝色分量。
 
 ```vb
 Dim MyColor As Long
@@ -25,7 +34,7 @@ MyColor = RGB(210, 45, 200)
 BlueComponent = RGB_B(MyColor)        ' Returns 200.
 ```
 
-### See Also
+### 另请参阅
 
-- [RGB](/official/Reference/VBA/Information/RGB), [RGBA](/official/Reference/VBA/Information/RGBA) functions
-- [RGB_R](/official/Reference/VBA/Information/RGB_R), [RGB_G](/official/Reference/VBA/Information/RGB_G), [RGBA_A](/official/Reference/VBA/Information/RGBA_A) functions
+- [RGB](/official/Reference/VBA/Information/RGB)、[RGBA](/official/Reference/VBA/Information/RGBA)函数
+- [RGB_R](/official/Reference/VBA/Information/RGB_R)、[RGB_G](/official/Reference/VBA/Information/RGB_G)、[RGBA_A](/official/Reference/VBA/Information/RGBA_A)函数

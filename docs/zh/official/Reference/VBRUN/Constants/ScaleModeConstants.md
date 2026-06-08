@@ -1,23 +1,32 @@
-﻿---
+---
 title: ScaleModeConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/ScaleModeConstants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'be296186-631c-4495-ad2f-94975964927f'
+  PropagateID: 'be296186-631c-4495-ad2f-94975964927f'
+  ReservedCode1: '221ed5da-9e2e-4324-8228-caa076dc70df'
+  ReservedCode2: '221ed5da-9e2e-4324-8228-caa076dc70df'
 ---
+
 # ScaleModeConstants
 
-Measurement-unit values for the **ScaleMode** property of forms and containers, controlling the units used by the **Scale**, **CurrentX**, **CurrentY**, **Width**, and **Height** properties.
+窗体和容器**ScaleMode**属性的测量单位值，控制**Scale**、**CurrentX**、**CurrentY**、**Width**和**Height**属性使用的单位。
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbScaledPixels** | -1 | Pixels, scaled by the system DPI factor. *(twinBASIC addition.)* |
-| **vbUser** | 0 | A user-defined coordinate system set explicitly with **Scale**. |
-| **vbTwips** | 1 | Twips --- 1/1440 inch (the default). |
-| **vbPoints** | 2 | Points --- 1/72 inch. |
-| **vbPixels** | 3 | Pixels of the underlying device. |
-| **vbCharacters** | 4 | Characters of the current font (12 horizontal, 24 vertical points). |
-| **vbInches** | 5 | Inches. |
-| **vbMillimeters** | 6 | Millimetres. |
-| **vbCentimeters** | 7 | Centimetres. |
-| **vbHimetric** | 8 | HiMetric units --- 0.01 millimetre. |
-| **vbContainerPosition** | 9 | The container's coordinates, used for positioning. |
-| **vbContainerSize** | 10 | The container's coordinates, used for sizing. |
+| **vbScaledPixels** | -1 | 像素，按系统DPI因子缩放。*(twinBASIC新增)* |
+| **vbUser** | 0 | 使用**Scale**显式设置的用户自定义坐标系。 |
+| **vbTwips** | 1 | 缇 --- 1/1440英寸（默认）。 |
+| **vbPoints** | 2 | 磅 --- 1/72英寸。 |
+| **vbPixels** | 3 | 底层设备的像素。 |
+| **vbCharacters** | 4 | 当前字体的字符（水平12磅，垂直24磅）。 |
+| **vbInches** | 5 | 英寸。 |
+| **vbMillimeters** | 6 | 毫米。 |
+| **vbCentimeters** | 7 | 厘米。 |
+| **vbHimetric** | 8 | HiMetric单位 --- 0.01毫米。 |
+| **vbContainerPosition** | 9 | 容器的坐标，用于定位。 |
+| **vbContainerSize** | 10 | 容器的坐标，用于调整大小。 |

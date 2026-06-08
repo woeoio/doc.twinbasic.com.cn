@@ -1,16 +1,27 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ed50fbce-3715-455f-a5e2-a5095ce4f586'
+  PropagateID: 'ed50fbce-3715-455f-a5e2-a5095ce4f586'
+  ReservedCode1: 'd91a965e-9b3a-4de4-b748-23e80d4f9673'
+  ReservedCode2: 'd91a965e-9b3a-4de4-b748-23e80d4f9673'
+---
+
 ---
 title: MultiFrame
 parent: VB Package
 permalink: /tB/Packages/VB/MultiFrame/
 ---
 
-# MultiFrame class
+# MultiFrame 类
 
-A **MultiFrame** is a layout container that arranges a set of [**Frame**](/official/Reference/VB/Frame/) controls in a single horizontal or vertical strip and resizes them whenever the **MultiFrame** itself is resized. Each contained frame keeps its own border, caption, and child controls; the **MultiFrame** decides only where each frame is placed and how wide (or tall) it is.
+**MultiFrame**是一个布局容器，将一组[**Frame**](/official/Reference/VB/Frame/)控件排列在单条水平或垂直带中，并在**MultiFrame**自身调整大小时调整它们的尺寸。每个包含的框架保留自己的边框、标题和子控件；**MultiFrame**仅决定每个框架的位置和宽度（或高度）。
 
-A frame is associated with a **MultiFrame** by setting the frame's [**Container**](/official/Reference/VB/Frame/#container) to point at the **MultiFrame**. The frame's [**MultiFramePosition**](/official/Reference/VB/Frame/#multiframeposition) chooses its place in the sequence and [**MultiFrameSize**](/official/Reference/VB/Frame/#multiframesize) gives its size as a percentage of the **MultiFrame**'s usable extent. Frames whose **MultiFrameSize** is `0` share whatever extent remains after the fixed-size frames have been laid out.
+通过将框架的[**Container**](/official/Reference/VB/Frame/#container)设置为指向**MultiFrame**来关联框架。框架的[**MultiFramePosition**](/official/Reference/VB/Frame/#multiframeposition)选择其在序列中的位置，[**MultiFrameSize**](/official/Reference/VB/Frame/#multiframesize)给出其尺寸作为**MultiFrame**可用范围的百分比。**MultiFrameSize**为`0`的框架共享固定尺寸框架布局后剩余的范围。
 
-The default event is [**Initialize**](#initialize). There is no default property.
+默认事件是[**Initialize**](#initialize)。没有默认属性。
 
 ```vb
 Private Sub Form_Load()
@@ -31,152 +42,152 @@ End Sub
 ```
 
 
-## Direction and sizing
+## 方向和尺寸
 
-[**Direction**](#direction) chooses between **vbDirectionHorizontal** (the default --- frames laid out left-to-right) and **vbDirectionVertical** (frames stacked top-to-bottom). Changing **Direction** at run time triggers an immediate re-layout.
+[**Direction**](#direction)选择**vbDirectionHorizontal**（默认——框架从左到右排列）或**vbDirectionVertical**（框架从上到下堆叠）。在运行时更改**Direction**会触发立即重新布局。
 
-For each contained frame, [**MultiFrameSize**](/official/Reference/VB/Frame/#multiframesize) gives its extent as a percentage of the **MultiFrame**'s width (horizontal) or height (vertical). Frames whose **MultiFrameSize** is `0` share the leftover extent equally --- so a typical pattern is to give the edge panels fixed percentages and leave one centre panel at `0` so it absorbs window resizes. Percentages are not clamped; if the fixed-size frames already exceed the **MultiFrame**'s extent the auto-sized frames collapse to zero.
+对于每个包含的框架，[**MultiFrameSize**](/official/Reference/VB/Frame/#multiframesize)给出其范围作为**MultiFrame**宽度（水平）或高度（垂直）的百分比。**MultiFrameSize**为`0`的框架平均共享剩余范围——因此典型模式是给边缘面板固定百分比，将一个中心面板保持为`0`使其吸收窗口调整大小。百分比不会被钳制；如果固定尺寸框架已超过**MultiFrame**的范围，自动调整尺寸的框架会收缩为零。
 
-## Position and shuffling
+## 位置和重排
 
-Each contained frame is anchored to a sequential position via its [**MultiFramePosition**](/official/Reference/VB/Frame/#multiframeposition) property (zero-based). Positions are kept contiguous: assigning a frame a new **MultiFramePosition** at run time makes the **MultiFrame** shuffle the remaining frames up or down so that the old slot closes and the new slot opens at the requested index. Duplicate or out-of-range positions are normalised at the next layout pass --- the **MultiFrame** falls back to the original control order on the parent form, renumbering the frames sequentially from `0`.
+每个包含的框架通过其[**MultiFramePosition**](/official/Reference/VB/Frame/#multiframeposition)属性（零基）锚定到顺序位置。位置保持连续：在运行时为框架分配新的**MultiFramePosition**会使**MultiFrame**将其余框架上移或下移，使旧槽位关闭并在请求的索引处打开新槽位。重复或超出范围的位置在下一次布局传递时被规范化——**MultiFrame**回退到父窗体上的原始控件顺序，从`0`开始对框架重新编号。
 
-A frame whose [**Container**](/official/Reference/VB/Frame/#container) is the **MultiFrame** but whose **MultiFramePosition** is `-1` is appended at the next free slot the first time the layout is built.
+[**Container**](/official/Reference/VB/Frame/#container)是**MultiFrame**但**MultiFramePosition**为`-1`的框架在首次构建布局时被附加到下一个空闲槽位。
 
-## Adopting frames at run time
+## 在运行时采用框架
 
-The mapping from frame to **MultiFrame** is discovered from the parent form's control collection on each layout pass: a frame appears in the strip exactly when its [**Container**](/official/Reference/VB/Frame/#container) property points at the **MultiFrame**. The discovered set is then cached. To force the cache to be rebuilt --- for example after re-parenting a frame at run time --- assign any value to [**FramesCount**](#framescount):
+框架到**MultiFrame**的映射在每次布局传递时从父窗体的控件集合中发现：当框架的[**Container**](/official/Reference/VB/Frame/#container)属性指向**MultiFrame**时，框架出现在带中。发现集随后被缓存。要强制重建缓存——例如在运行时重新设置框架的父级后——给[**FramesCount**](#framescount)赋任意值：
 
 ```vb
 Set fraExtra.Container = mfPanels
 mfPanels.FramesCount = 0       ' assigned value is ignored; the layout cache is rebuilt
 ```
 
-The **MultiFrame** repositions the frame's existing window in place; it does not change the frame's Win32 parent, so the frame remains a child of the form and continues to raise its events normally.
+**MultiFrame**在原地重新定位框架的现有窗口；它不会更改框架的Win32父级，因此框架仍然是窗体的子级并继续正常引发其事件。
 
-## Properties
+## 属性
 
 ### Anchors
 
-The set of edges of the parent that the **MultiFrame**'s corresponding edges follow when the parent resizes. Read-only --- assign individual `.Left`, `.Top`, `.Right`, `.Bottom` flags through the returned **Anchors** object.
+决定控件的哪些边随容器对应边调整的**Anchors**对象集合。只读——通过返回的**Anchors**对象设置各个`.Left`、`.Top`、`.Right`、`.Bottom`标志。
 
 ### BackColor
 
-The background colour of the **MultiFrame**'s drawing surface, as an **OLE_COLOR**. Defaults to the system window-background colour. Visible only where the contained frames do not fully cover the extent --- e.g. when their **MultiFrameSize**s sum to less than 100%.
+**MultiFrame**绘图表面的背景色，作为**OLE_COLOR**。默认为系统窗口背景色。仅在包含的框架未完全覆盖范围时可见——例如当其**MultiFrameSize**之和小于100%时。
 
 ### Container
 
-The control that hosts this **MultiFrame** --- typically the form. Read with **Get**, change with **Set**. Setting **Container** re-parents the **MultiFrame** to a different container at run time.
+承载此**MultiFrame**的控件——通常是窗体。用**Get**读取，用**Set**更改。设置**Container**在运行时将**MultiFrame**重新设置为其他容器的子级。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control. Always **vbShape**.
+标识此控件的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbShape**。
 
 ### Direction
 
-The orientation in which contained frames are laid out. A member of **MultiFrameDirectionConstants**: **vbDirectionHorizontal** (0, default --- frames laid out left-to-right) or **vbDirectionVertical** (1 --- frames stacked top-to-bottom). Changing **Direction** triggers an immediate re-layout of the contained frames.
+包含框架的布局方向。**MultiFrameDirectionConstants**的成员：**vbDirectionHorizontal**（0，默认——框架从左到右排列）或**vbDirectionVertical**（1——框架从上到下堆叠）。更改**Direction**会触发包含框架的立即重新布局。
 
 ### Dock
 
-Where the **MultiFrame** is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked **MultiFrame**s ignore [**Anchors**](#anchors).
+**MultiFrame**在其容器中的停靠位置。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants)的成员：**vbDockNone**（默认）、**vbDockLeft**、**vbDockTop**、**vbDockRight**、**vbDockBottom**或**vbDockFill**。停靠的**MultiFrame**忽略[**Anchors**](#anchors)。
 
 ### FramesCount
 
-The number of [**Frame**](/official/Reference/VB/Frame/) controls currently in the **MultiFrame**'s layout. **Long**.
+**MultiFrame**布局中当前[**Frame**](/official/Reference/VB/Frame/)控件的数量。**Long**。
 
-Syntax: *object*.**FramesCount** [ = *value* ]
+语法：*object*.**FramesCount** [ = *value* ]
 
-Reading **FramesCount** returns the size of the current layout cache. Assigning *any* value discards the cache so it is rebuilt on the next layout pass --- the assigned number itself is ignored. Use the assignment as a manual refresh after re-parenting a frame at run time.
+读取**FramesCount**返回当前布局缓存的大小。赋任意值会丢弃缓存使其在下一次布局传递时重建——所赋的数值本身被忽略。将赋值用作运行时重新设置框架父级后的手动刷新。
 
 ### Height
 
-The **MultiFrame**'s height, in twips by default (or in the container's **ScaleMode** units). **Double**.
+**MultiFrame**的高度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Double**。
 
 ### hWnd
 
-The Win32 window handle for the **MultiFrame**'s drawing surface, as a **LongPtr**. Read-only. Useful for passing to API functions.
+**MultiFrame**绘图表面的Win32窗口句柄，作为**LongPtr**。只读。适用于传递给API函数。
 
 ### Index
 
-When the **MultiFrame** is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当**MultiFrame**是控件数组的一部分时，此实例在数组中的**Long**零基索引。在非数组实例上读取**Index**会引发运行时错误343（*对象不是数组*）。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the **MultiFrame**. **Double**.
+从容器的左边缘到**MultiFrame**左边缘的水平距离。**Double**。
 
 ### Name
 
-The unique design-time name of the **MultiFrame** on its parent form. Read-only at run time.
+**MultiFrame**在其父窗体上的唯一设计时名称。运行时只读。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) that ultimately contains the **MultiFrame**. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
+对最终包含**MultiFrame**的[**Form**](/official/Reference/VB/Form/)的引用。只读。与[**Container**](#container)不同，后者返回直接父级。
 
 ### TabIndex
 
-The position of the **MultiFrame** in the form's TAB-key navigation order. **Long**.
+**MultiFrame**在窗体TAB键导航顺序中的位置。**Long**。
 
 ::: info
-A **MultiFrame** never takes the focus itself --- **TabIndex** is preserved for compatibility but has no observable effect on the user.
+**MultiFrame**自身从不获取焦点——**TabIndex**保留用于兼容但对用户无可见效果。
 :::
 
 ### TabStop
 
-Whether the **MultiFrame** participates in TAB-key navigation. **Boolean**, default **True**.
+**MultiFrame**是否参与TAB键导航。**Boolean**，默认**True**。
 
 ::: info
-A **MultiFrame** never takes the focus itself --- **TabStop** is preserved for compatibility but has no observable effect on the user.
+**MultiFrame**自身从不获取焦点——**TabStop**保留用于兼容但对用户无可见效果。
 :::
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the **MultiFrame**. Ignored by the framework.
+应用程序可用于将自定义数据与**MultiFrame**关联的自由格式**String**。框架忽略此属性。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the **MultiFrame**. **Double**.
+从容器顶部到**MultiFrame**顶部的垂直距离。**Double**。
 
 ### Visible
 
-Whether the **MultiFrame** is shown. **Boolean**, default **True**. The contained frames' own visibility is independent of this setting; hiding the **MultiFrame** hides its drawing surface but does not directly hide the frames.
+**MultiFrame**是否显示。**Boolean**，默认**True**。包含框架自身的可见性与此设置无关；隐藏**MultiFrame**隐藏其绘图表面但不直接隐藏框架。
 
 ### Width
 
-The **MultiFrame**'s width. **Double**.
+**MultiFrame**的宽度。**Double**。
 
-## Methods
+## 方法
 
 ### Move
 
-Repositions and optionally resizes the **MultiFrame** in a single call. Contained frames are re-laid out to match the new extent.
+在单次调用中重新定位并可选地调整**MultiFrame**的尺寸。包含的框架会重新布局以匹配新的范围。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### Refresh
 
-Forces an immediate repaint of the **MultiFrame**'s drawing surface.
+强制立即重绘**MultiFrame**的绘图表面。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### ZOrder
 
-Brings the **MultiFrame** to the front or back of its sibling stack within the container.
+将**MultiFrame**带到容器内同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront**（0，默认）或**vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Initialize
 
-Raised once, after the **MultiFrame**'s underlying window has been created but before the first layout pass has run. Useful for adjusting [**Direction**](#direction) or contained-frame sizes from code at start-up so that the very first layout reflects them. **Default event.**
+在**MultiFrame**的底层窗口已创建但第一次布局传递尚未运行后引发一次。适用于在启动时从代码调整[**Direction**](#direction)或包含框架的尺寸，使第一次布局就反映这些设置。**默认事件。**
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )

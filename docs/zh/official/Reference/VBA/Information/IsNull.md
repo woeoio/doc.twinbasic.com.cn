@@ -2,27 +2,36 @@
 title: IsNull
 parent: Information Module
 permalink: /tB/Modules/Information/IsNull
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c92f0a3e-9522-4fa2-a048-af12d071a412'
+  PropagateID: 'c92f0a3e-9522-4fa2-a048-af12d071a412'
+  ReservedCode1: 'f2c82cf3-6f42-491d-bfc1-c2c75c559077'
+  ReservedCode2: 'f2c82cf3-6f42-491d-bfc1-c2c75c559077'
 ---
+
 # IsNull
 
-Returns a **Boolean** indicating whether an expression contains no valid data (**Null**).
+返回一个**Boolean**，指示表达式是否不包含有效数据(**Null**)。
 
-Syntax: **IsNull(** *expression* **)**
+语法：**IsNull(** *expression* **)**
 
 *expression*
-: *required* A **Variant** containing a numeric or string expression.
+: *必需* **Variant**，包含数值或字符串表达式。
 
-**IsNull** returns **True** if *expression* is **Null**; otherwise, **False**. If *expression* contains more than one variable, **Null** in any constituent variable causes the whole expression to evaluate to **Null**, and **IsNull** to return **True**.
+如果*expression*为**Null**，**IsNull**返回**True**；否则返回**False**。如果*expression*包含多个变量，任何组成变量中的**Null**都会导致整个表达式求值为**Null**，并使**IsNull**返回**True**。
 
-The **Null** value indicates that a **Variant** holds no valid data. **Null** is not the same as [**Empty**](/official/Reference/VBA/Information/IsEmpty) (a variable that has not yet been initialized), nor the same as a zero-length string (`""`), which is sometimes called a null string.
+**Null**值表示**Variant**不包含有效数据。**Null**不同于[**Empty**](/official/Reference/VBA/Information/IsEmpty)（尚未初始化的变量），也不同于零长度字符串(`""`)，后者有时被称为空字符串。
 
 ::: important
-Use **IsNull** to determine whether an expression contains a **Null** value. Comparisons such as `If Var = Null` and `If Var <> Null` are always **False**, because any expression involving **Null** is itself **Null**, and a **Null** comparison is treated as **False**.
+使用**IsNull**来确定表达式是否包含**Null**值。诸如`If Var = Null`和`If Var <> Null`的比较始终为**False**，因为任何涉及**Null**的表达式本身也是**Null**，而**Null**比较被视为**False**。
 :::
 
-### Example
+### 示例
 
-This example uses **IsNull** to determine whether a variable contains a **Null**.
+本示例使用**IsNull**确定变量是否包含**Null**。
 
 ```vb
 Dim MyVar As Variant
@@ -36,7 +45,7 @@ MyVar = Null
 MyCheck = IsNull(MyVar)               ' True.
 ```
 
-### See Also
+### 另请参阅
 
-- [IsEmpty](/official/Reference/VBA/Information/IsEmpty), [IsMissing](/official/Reference/VBA/Information/IsMissing) functions
-- [Nz](/official/Reference/VBA/Conversion/Nz) function
+- [IsEmpty](/official/Reference/VBA/Information/IsEmpty)、[IsMissing](/official/Reference/VBA/Information/IsMissing)函数
+- [Nz](/official/Reference/VBA/Conversion/Nz)函数

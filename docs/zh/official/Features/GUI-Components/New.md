@@ -1,30 +1,38 @@
 ---
-title: New Controls
+title: "新控件"
 parent: GUI Components
 nav_order: 5
 permalink: /Features/GUI-Components/New
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '90a34c76-03dd-40dd-889d-64a9e6504c4f'
+  PropagateID: '90a34c76-03dd-40dd-889d-64a9e6504c4f'
+  ReservedCode1: 'ba74e1f8-1621-492d-93d5-754a1667faf0'
+  ReservedCode2: 'ba74e1f8-1621-492d-93d5-754a1667faf0'
 ---
 
-# New Controls
+# 新控件
 
-twinBASIC introduces several new controls to enhance your applications.
+twinBASIC 引入了几种新控件来增强你的应用程序。
 
-## QR Code Control
+## QR Code 控件
 
 ![image](../Images/54ed49d8-b434-45e3-9e63-a1fe75cdf814.png)
 
-Easily display custom QR codes with a native control.
+使用原生控件轻松显示自定义 QR 码。
 
-## Multiframe Control
+## Multiframe 控件
 
 ![image](../Images/4ad9c774-b31d-47d3-9963-6d99ac4f37bb.png)
 
-This control allows you to create a number of frames within it with their size specified as a percentage, such that as the control is resized the frames within expand proportionally. For details and a video demonstration, Mike Wolfe's twinBASIC Weekly Update [covered it when released](https://nolongerset.com/twinbasic-update-april-29-2025/#experimental-multi-frame-control).
+此控件允许你创建多个帧，其大小以百分比指定，这样当控件调整大小时，帧内的内容按比例扩展。有关详细信息和视频演示，Mike Wolfe 的 twinBASIC 周更新在[发布时做了介绍](https://nolongerset.com/twinbasic-update-april-29-2025/#experimental-multi-frame-control)。
 
-Combined with anchors and docking, this allows designing highly functional and complex layouts visually, without writing any code to handling resizing.
+结合锚定和停靠，这允许设计高度功能化和复杂的布局，无需编写任何处理大小调整的代码。
 
-## CheckMark Control
+## CheckMark 控件
 
 ![image](../Images/5fc60b7b-4f54-445c-8504-451019b7ec55.png)
 
-Primarily intended for reports but available in Forms and UserControls as well, the CheckMark control provides a scalable check component where this is fixed to a single size in a normal CheckBox control.
+主要面向报表但在窗体和 UserControl 中也可用，CheckMark 控件提供了可缩放的勾选组件，而普通 CheckBox 控件中此组件固定为单一尺寸。

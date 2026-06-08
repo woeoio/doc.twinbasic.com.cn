@@ -2,27 +2,36 @@
 title: Atn
 parent: Math Module
 permalink: /tB/Modules/Math/Atn
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1e168d18-ae7a-4193-b7b4-caebfc6932a6'
+  PropagateID: '1e168d18-ae7a-4193-b7b4-caebfc6932a6'
+  ReservedCode1: '81e9b273-aa25-4331-adae-55f451e798e5'
+  ReservedCode2: '81e9b273-aa25-4331-adae-55f451e798e5'
 ---
+
 # Atn
 
-Returns a **Double** specifying the arctangent of a number.
+返回一个 **Double**，指定数字的反正切值。
 
-Syntax: **Atn(** *number* **)**
+语法：**Atn(** *number* **)**
 
 *number*
-: *required* A **Double** or any valid numeric expression.
+: *必需* **Double** 或任何有效的数值表达式。
 
-The **Atn** function takes the ratio of two sides of a right triangle (*number*) and returns the corresponding angle in radians. The ratio is the length of the side opposite the angle divided by the length of the side adjacent to the angle.
+**Atn** 函数取直角三角形两边的比值（*number*），返回对应的弧度角。该比值是对边长度除以邻边长度。
 
-The range of the result is -pi/2 to pi/2 radians. To convert degrees to radians, multiply degrees by pi/180. To convert radians to degrees, multiply radians by 180/pi.
+结果范围为 -pi/2 到 pi/2 弧度。要将角度转换为弧度，将角度乘以 pi/180。要将弧度转换为角度，将弧度乘以 180/pi。
 
 ::: info
-**Atn** is the inverse trigonometric function of [**Tan**](/official/Reference/VBA/Math/Tan), which takes an angle as its argument and returns the ratio of two sides of a right triangle. Do not confuse **Atn** with the cotangent, which is the simple inverse of a tangent (1/tangent).
+**Atn** 是 [**Tan**](/official/Reference/VBA/Math/Tan) 的反三角函数，后者以角度为参数返回直角三角形两边的比值。不要将 **Atn** 与余切混淆，余切是正切的简单倒数（1/正切）。
 :::
 
-### Example
+### 示例
 
-This example uses **Atn** to derive an approximation of pi.
+此示例使用 **Atn** 推导 pi 的近似值。
 
 ```vb
 Const Pi As Double = Atn(1) * 4    ' pi ≈ 3.14159265358979
@@ -30,6 +39,6 @@ Debug.Print Pi
 Debug.Print Pi / 180               ' one degree in radians ≈ 0.0174532925199433
 ```
 
-### See Also
+### 另请参阅
 
-- [Cos](/official/Reference/VBA/Math/Cos), [Sin](/official/Reference/VBA/Math/Sin), [Tan](/official/Reference/VBA/Math/Tan) functions
+- [Cos](/official/Reference/VBA/Math/Cos)、[Sin](/official/Reference/VBA/Math/Sin)、[Tan](/official/Reference/VBA/Math/Tan) 函数

@@ -2,34 +2,41 @@
 title: Continue
 parent: Statements
 permalink: /tB/Core/Continue
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e9afbfeb-047e-44e2-a334-2af34da81440'
+  PropagateID: 'e9afbfeb-047e-44e2-a334-2af34da81440'
+  ReservedCode1: '7d8572d2-5fd9-4059-a5ca-a326ccf9b511'
+  ReservedCode2: '7d8572d2-5fd9-4059-a5ca-a326ccf9b511'
 ---
 
 # Continue
 
+立即开始外层循环的下一次迭代。
 
-Immediately begins the next iteration of the enclosing loop.
-
-Syntax: **Continue** [ **Do** \| **For** \| **While** ]
+语法：**Continue** [ **Do** \| **For** \| **While** ]
 
 Do
 
-: Used within a [Do](/official/Reference/Core/Do-Loop) loop.
+: 在 [Do](/official/Reference/Core/Do-Loop) 循环中使用。
 
 For
 
-: Used within a [For](/official/Reference/Core/For-Next) loop.
+: 在 [For](/official/Reference/Core/For-Next) 循环中使用。
 
 While
 
-: Used within a [While](/official/Reference/Core/While-Wend) loop
+: 在 [While](/official/Reference/Core/While-Wend) 循环中使用
 
 ::: info
-**Continue** is a twinBASIC extension. Classic VBA has no skip-iteration form for any loop construct --- the closest equivalent is a forward [**GoTo**](/official/Reference/Core/GoTo) to a label placed just before the loop's terminator.
+**Continue** 是twinBASIC扩展。经典VBA中任何循环结构都没有跳过迭代的形式——最接近的等价方式是使用 [**GoTo**](/official/Reference/Core/GoTo) 前向跳转到放置在循环终止符之前的标签。
 :::
 
-### Example
+### 示例
 
-This example uses **Continue For** to skip processing of certain characters of the string.
+本示例使用 **Continue For** 跳过字符串中某些字符的处理。
 
 ```vb
 Dim i%, ch$, text$

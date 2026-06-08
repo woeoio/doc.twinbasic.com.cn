@@ -2,54 +2,63 @@
 title: InStrRev
 parent: Strings Module
 permalink: /tB/Modules/Strings/InStrRev
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3647fb08-b58a-49cc-bf60-5e9440ba5158'
+  PropagateID: '3647fb08-b58a-49cc-bf60-5e9440ba5158'
+  ReservedCode1: 'fa149172-adcc-4f13-9615-2dc2f1785638'
+  ReservedCode2: 'fa149172-adcc-4f13-9615-2dc2f1785638'
 ---
+
 # InStrRev
 
-Returns the position of an occurrence of one string within another, from the end of the string.
+返回一个字符串在另一个字符串中从字符串末尾开始出现的位置。
 
-Syntax: **InStrRev(** *stringcheck*, *stringmatch* [ **,** *start* [ **,** *compare* ] ] **)**
+语法：**InStrRev(** *stringcheck*, *stringmatch* [ **,** *start* [ **,** *compare* ] ] **)**
 
 *stringcheck*
-: *required* String expression being searched.
+: *必需* 被搜索的字符串表达式。
 
 *stringmatch*
-: *required* String expression being searched for.
+: *必需* 要查找的字符串表达式。
 
 *start*
-: *optional* Numeric expression that sets the starting position for each search. If omitted, -1 is used, which means that the search begins at the last character position. If *start* contains **Null**, an error occurs.
+: *可选* 数值表达式，设置每次搜索的起始位置。如果省略，则使用-1，表示从最后一个字符位置开始搜索。如果*start*包含**Null**，则会出错。
 
 *compare*
-: *optional* Numeric value indicating the kind of comparison to use when evaluating substrings. If omitted, a binary comparison is performed. See settings below.
+: *可选* 数值，指示在计算子字符串时使用的比较类型。如果省略，则执行二进制比较。参见下面的设置。
 
-The *compare* argument can have the following values:
+*compare*参数可以取以下值：
 
-| Constant               | Value | Description                                                                              |
-|------------------------|-------|------------------------------------------------------------------------------------------|
-| **vbUseCompareOption** | -1    | Performs a comparison by using the setting of the [**Option Compare**](/official/Reference/Core/Option) statement. |
-| **vbBinaryCompare**    | 0     | Performs a binary comparison.                                                            |
-| **vbTextCompare**      | 1     | Performs a textual comparison.                                                           |
+| 常量                   | 值  | 描述                                                                             |
+|------------------------|-----|----------------------------------------------------------------------------------|
+| **vbUseCompareOption** | -1  | 使用[**Option Compare**](/official/Reference/Core/Option)语句的设置进行比较。    |
+| **vbBinaryCompare**    | 0   | 执行二进制比较。                                                                  |
+| **vbTextCompare**      | 1   | 执行文本比较。                                                                    |
 
-**Return values:**
+**返回值：**
 
-| If                                                  | **InStrRev** returns             |
-|-----------------------------------------------------|----------------------------------|
-| *stringcheck* is zero-length                        | 0                                |
-| *stringcheck* is **Null**                           | **Null**                         |
-| *stringmatch* is zero-length                        | *start*                          |
-| *stringmatch* is **Null**                           | **Null**                         |
-| *stringmatch* is not found                          | 0                                |
-| *stringmatch* is found within *stringcheck*         | Position at which match is found |
-| *start* > **Len**(*stringcheck*)                    | 0                                |
+| 条件                                                | **InStrRev**返回值             |
+|-----------------------------------------------------|--------------------------------|
+| *stringcheck*为零长度                               | 0                              |
+| *stringcheck*为**Null**                             | **Null**                       |
+| *stringmatch*为零长度                               | *start*                        |
+| *stringmatch*为**Null**                             | **Null**                       |
+| *stringmatch*未找到                                 | 0                              |
+| 在*stringcheck*中找到了*stringmatch*                | 找到匹配的位置                  |
+| *start* > **Len**(*stringcheck*)                    | 0                              |
 
 ::: info
-The syntax for the **InStrRev** function is not the same as the syntax for the [**InStr**](/official/Reference/VBA/Strings/InStr) function --- note the swapped order of the search arguments.
+**InStrRev**函数的语法与[**InStr**](/official/Reference/VBA/Strings/InStr)函数的语法不同——注意搜索参数的顺序不同。
 :::
 
-**InStrRev** will not find an instance of *stringmatch* unless the position of the end character of *stringmatch* is less than or equal to *start*.
+除非*stringmatch*末尾字符的位置小于或等于*start*，否则**InStrRev**不会找到*stringmatch*的实例。
 
-### Example
+### 示例
 
-This example uses **InStrRev** to find the last occurrence of a substring.
+本示例使用**InStrRev**查找子字符串的最后一次出现。
 
 ```vb
 Debug.Print InStrRev("a.b.c", ".")       ' 4  — last dot
@@ -57,6 +66,6 @@ Debug.Print InStrRev("a.b.c", ".", 3)    ' 2  — last dot at or before position
 Debug.Print InStrRev("a.b.c", "x")       ' 0  — not found
 ```
 
-### See Also
+### 另请参阅
 
-- [InStr](/official/Reference/VBA/Strings/InStr) function
+- [InStr](/official/Reference/VBA/Strings/InStr)函数

@@ -1,16 +1,27 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7b22bea2-0ddd-4602-bb1f-7ecd96a6e329'
+  PropagateID: '7b22bea2-0ddd-4602-bb1f-7ecd96a6e329'
+  ReservedCode1: '7557c95f-45be-49a2-a78e-23e3cbc3c46c'
+  ReservedCode2: '7557c95f-45be-49a2-a78e-23e3cbc3c46c'
+---
+
 ---
 title: QRCode
 parent: VB Package
 permalink: /tB/Packages/VB/QRCode/
 ---
 
-# QRCode class
+# QRCode 类
 
-A **QRCode** is a windowless lightweight control that renders a QR code generated from its [**Payload**](#payload) --- a URL, plain text, or a raw byte array. The encoding is performed in-process by the embedded `qrcodegen` library and the resulting matrix is painted directly on the parent at design time and at run time. The picture is regenerated automatically whenever any of the encoding properties changes, so a QR control can be wired up declaratively to data bindings or to other UI state with no plumbing.
+**QRCode**是无窗口轻量级控件，从其[**Payload**](#payload)——URL、纯文本或原始字节数组——渲染QR码。编码由嵌入的`qrcodegen`库在进程内执行，结果矩阵在设计时和运行时直接绘制在父级上。每当任何编码属性更改时图片会自动重新生成，因此QR控件可以声明式地连接到数据绑定或其他UI状态，无需额外管道。
 
-Like [**Image**](/official/Reference/VB/Image/), a QRCode has no `hWnd` and is not focusable. It is the right choice for embedding a scannable code in a form (login, payment, Wi-Fi credentials, contact card, app deep link, etc.) without paying for a heavy [**PictureBox**](/official/Reference/VB/PictureBox/).
+与[**Image**](/official/Reference/VB/Image/)一样，QRCode没有`hWnd`且不可聚焦。它是在窗体中嵌入可扫描码（登录、支付、Wi-Fi凭据、联系人卡片、应用深度链接等）而不为重量级[**PictureBox**](/official/Reference/VB/PictureBox/)付出代价的正确选择。
 
-The default property is [**Picture**](#picture) (the read-only generated image) and the default event is [**Click**](#click).
+默认属性是[**Picture**](#picture)（只读生成图像），默认事件是[**Click**](#click)。
 
 ```vb
 Private Sub Form_Load()
@@ -25,374 +36,374 @@ End Sub
 ```
 
 
-## Windowless rendering
+## 无窗口渲染
 
-A **QRCode** has no `hWnd`. The framework paints it directly onto its parent's drawing surface during the parent's paint cycle. The trade-offs are the same as for any windowless control:
+**QRCode**没有`hWnd`。框架在父级的绘制周期中将其直接绘制到父级的绘图表面上。其权衡与任何无窗口控件相同：
 
-- No focus, no keyboard input, no `KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`.
-- No `hWnd` to pass to API functions, and no `SetFocus`.
-- Cannot host child controls.
+- 无焦点、无键盘输入、无`KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`。
+- 没有可传递给API函数的`hWnd`，也没有`SetFocus`。
+- 不能承载子控件。
 
-For a QR code that needs any of those, host the **QRCode** inside a [**PictureBox**](/official/Reference/VB/PictureBox/) or [**Frame**](/official/Reference/VB/Frame/) and put the focusable controls next to it.
+对于需要这些功能的QR码，将**QRCode**承载在[**PictureBox**](/official/Reference/VB/PictureBox/)或[**Frame**](/official/Reference/VB/Frame/)内，并将可聚焦控件放在旁边。
 
-## Encoding the payload
+## 编码负载
 
-The [**Payload**](#payload) property is a **Variant** that accepts either a **String** (text or URL) or a one-dimensional **Byte()** array (for binary data). The encoder picks the most compact segment mode automatically --- numeric, alphanumeric, or byte --- based on the contents of the string; for a byte array the byte mode is used unconditionally and the data is encoded verbatim. Empty payloads clear [**Picture**](#picture) to **Nothing**; at design time the rectangle then shows a *(no payload text)* placeholder.
+[**Payload**](#payload)属性是**Variant**，接受**String**（文本或URL）或一维**Byte()**数组（用于二进制数据）。编码器根据字符串内容自动选择最紧凑的段模式——数字、字母数字或字节；对于字节数组，无条件使用字节模式，数据按原样编码。空负载会将[**Picture**](#picture)清除为**Nothing**；在设计时，矩形会显示*（无负载文本）*占位符。
 
-The QR code is regenerated whenever [**Payload**](#payload), [**ForeColor**](#forecolor), [**ModuleSize**](#modulesize), [**SquareModules**](#squaremodules), [**EccMode**](#eccmode), [**EccBoost**](#eccboost), [**MinVersion**](#minversion), [**MaxVersion**](#maxversion), or [**MaskType**](#masktype) changes, and the new picture becomes visible through [**Picture**](#picture). [**Refresh**](#refresh) only repaints --- it does not force re-encoding.
+每当[**Payload**](#payload)、[**ForeColor**](#forecolor)、[**ModuleSize**](#modulesize)、[**SquareModules**](#squaremodules)、[**EccMode**](#eccmode)、[**EccBoost**](#eccboost)、[**MinVersion**](#minversion)、[**MaxVersion**](#maxversion)或[**MaskType**](#masktype)更改时，QR码会重新生成，新图片通过[**Picture**](#picture)可见。[**Refresh**](#refresh)仅重绘——不会强制重新编码。
 
-## Error correction
+## 纠错
 
-QR codes embed a Reed-Solomon parity stream that lets the decoder recover from damage to a portion of the matrix. [**EccMode**](#eccmode) chooses how much of the matrix is dedicated to parity:
+QR码嵌入Reed-Solomon奇偶校验流，允许解码器从矩阵部分损坏中恢复。[**EccMode**](#eccmode)选择矩阵专用于奇偶校验的比例：
 
-| Constant                        | Value | Approx. recovery |
-|---------------------------------|-------|------------------|
-| **vbQRCodegenEccLow**           | 0     | 7%               |
-| **vbQRCodegenEccMedium**        | 1     | 15%              |
-| **vbQRCodegenEccQuartile**      | 2     | 25%              |
-| **vbQRCodegenEccHigh**          | 3     | 30%              |
+| 常量                            | 值 | 约恢复率 |
+|---------------------------------|----|----------|
+| **vbQRCodegenEccLow**           | 0  | 7%       |
+| **vbQRCodegenEccMedium**        | 1  | 15%      |
+| **vbQRCodegenEccQuartile**      | 2  | 25%      |
+| **vbQRCodegenEccHigh**          | 3  | 30%      |
 
-When [**EccBoost**](#eccboost) is **True** (default), the encoder raises the parity level beyond the configured minimum if doing so still fits the payload in the same QR version --- automatically achieving better resilience.
+当[**EccBoost**](#eccboost)为**True**（默认）时，编码器在负载仍适合相同QR版本的情况下将奇偶校验级别提升到超出配置的最低值——自动实现更好的弹性。
 
-## Version and mask
+## 版本和掩码
 
-The QR-code *version* (1 to 40) sets the matrix size: version 1 is 21 × 21 modules, version 40 is 177 × 177. [**MinVersion**](#minversion) and [**MaxVersion**](#maxversion) constrain the encoder's search; it picks the smallest version in the range that fits the payload at the chosen [**EccMode**](#eccmode). The defaults (`1` and `40`) span the full range. Values outside `1..40` are clamped, and if **MinVersion** ends up greater than **MaxVersion** it is reset to `1`.
+QR码*版本*（1到40）设置矩阵大小：版本1为21×21模块，版本40为177×177模块。[**MinVersion**](#minversion)和[**MaxVersion**](#maxversion)约束编码器的搜索；它选择范围内适合所选[**EccMode**](#eccmode)下负载的最小版本。默认值（`1`和`40`）跨越完整范围。`1..40`外的值被钳制，如果**MinVersion**最终大于**MaxVersion**，则重置为`1`。
 
-[**MaskType**](#masktype) selects one of eight masks applied to the matrix to break up patterns that confuse the scanner. **vbQRCodegenMaskAuto** (-1, default) picks the mask with the best penalty score; the eight named values **vbQRCodegenMask0** through **vbQRCodegenMask7** force a specific one --- useful for reproducibility.
+[**MaskType**](#masktype)选择应用于矩阵的八种掩码之一，以打破混淆扫描器的模式。**vbQRCodegenMaskAuto**（-1，默认）选择具有最佳惩罚分数的掩码；八个命名值**vbQRCodegenMask0**到**vbQRCodegenMask7**强制使用特定掩码——适用于可重现性。
 
-## Module rendering
+## 模块渲染
 
-[**ModuleSize**](#modulesize) is the pixel size of one module of the generated [**Picture**](#picture). Default `120`. The picture is rescaled down to the control's rectangle at paint time, so the choice of [**ModuleSize**](#modulesize) only matters when the picture is being saved or pulled out for use elsewhere (clipboard, drag-drop, **SavePicture**, …).
+[**ModuleSize**](#modulesize)是生成[**Picture**](#picture)中一个模块的像素大小。默认`120`。图片在绘制时按比例缩小到控件矩形，因此[**ModuleSize**](#modulesize)的选择仅在图片被保存或提取供其他用途（剪贴板、拖放、**SavePicture**……）时有影响。
 
-[**SquareModules**](#squaremodules) chooses how each module is drawn in the picture: as a filled square (**True**, default) or as a filled circle (**False** --- a stylistic choice that most scanners still tolerate).
+[**SquareModules**](#squaremodules)选择图片中每个模块的绘制方式：充填正方形（**True**，默认）或充填圆形（**False**——大多数扫描器仍可容忍的风格选择）。
 
-[**Square**](#square), in contrast, controls the rendering of the picture *on the control*: with **True** (default) the picture is letter-boxed and centred so it stays square regardless of the control's aspect ratio; with **False** the picture is stretched to fill the rectangle.
+[**Square**](#square)与此不同，控制图片*在控件上*的渲染：为**True**（默认）时图片信箱式居中，无论控件宽高比如何保持正方形；为**False**时图片拉伸以填充矩形。
 
-## Border
+## 边框
 
-[**BorderStyle**](#borderstyle) chooses between no border (default) and a single sunken border drawn around the rectangle. When a border is present, [**Appearance**](#appearance) selects between a 3-D and a flat (monochrome) version of it.
+[**BorderStyle**](#borderstyle)选择无边框（默认）和围绕矩形绘制的单凹陷边框。当边框存在时，[**Appearance**](#appearance)选择3-D和平面（单色）版本。
 
-## OLE drag-drop
+## OLE 拖放
 
-A **QRCode** supports both ends of an OLE drag-drop operation:
+**QRCode**支持OLE拖放操作的两端：
 
-- [**OLEDragMode**](#oledragmode) controls the source side. With **vbOLEDragAutomatic**, holding the mouse over the control and beginning a drag automatically copies the current [**Picture**](#picture) into the resulting **DataObject** -- convenient for dragging the generated QR onto another picture display or out to a file in Explorer. With **vbOLEDragManual** (default) drags must be initiated by calling [**OLEDrag**](#oledrag) from a [**MouseDown**](#mousedown) handler.
-- [**OLEDropMode**](#oledropmode) controls the destination side. With **vbOLEDropManual** the [**OLEDragOver**](#oledragover) and [**OLEDragDrop**](#oledragdrop) events fire so the application can decide what to do -- for example, set [**Payload**](#payload) to the dropped text. **vbOLEDropAutomatic** is not supported on a **QRCode** and assigning it raises run-time error 5 (*Invalid procedure call or argument*).
+- [**OLEDragMode**](#oledragmode)控制源端。使用**vbOLEDragAutomatic**时，在控件上方按住鼠标并开始拖动会自动将当前[**Picture**](#picture)复制到结果**DataObject**中——便于将生成的QR码拖到另一个图片显示或拖到资源管理器中的文件。使用**vbOLEDragManual**（默认）时，拖动必须通过从[**MouseDown**](#mousedown)处理程序调用[**OLEDrag**](#oledrag)来发起。
+- [**OLEDropMode**](#oledropmode)控制目标端。使用**vbOLEDropManual**时，[**OLEDragOver**](#oledragover)和[**OLEDragDrop**](#oledragdrop)事件触发，应用程序可以决定如何处理——例如将[**Payload**](#payload)设置为放置的文本。**vbOLEDropAutomatic**在**QRCode**上不受支持，赋值它会导致运行时错误5（*无效的过程调用或参数*）。
 
-## Data binding
+## 数据绑定
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control to a field of a [**Data**](/official/Reference/VB/Data/) control's recordset. Binding is asymmetric:
+设置[**DataSource**](#datasource)和[**DataField**](#datafield)将控件连接到[**Data**](/official/Reference/VB/Data/)控件记录集的字段。绑定是不对称的：
 
-- *Inbound* (recordset → control): non-null, non-empty field values are interpreted as text and assigned to [**Payload**](#payload); the QR is then re-encoded and repainted. Null and empty values clear [**Picture**](#picture) to **Nothing**.
-- *Outbound* (control → recordset): the current QR [**Picture**](#picture) is serialised as a byte array and written back to the bound field --- useful for storing a snapshot of the rendered code, but note that what comes out of the binding is not the same as what went in.
+- *入站*（记录集→控件）：非空、非空白的字段值被解释为文本并赋值给[**Payload**](#payload)；QR码随后重新编码并重绘。Null和空值将[**Picture**](#picture)清除为**Nothing**。
+- *出站*（控件→记录集）：当前QR[**Picture**](#picture)被序列化为字节数组并写回绑定字段——适用于存储渲染码的快照，但注意绑定输出的内容与输入不同。
 
-## Properties
+## 属性
 
 ### Anchors
 
-The set of edges of the parent that the control's corresponding edges follow when the parent resizes. Read-only --- assign individual `.Left`, `.Top`, `.Right`, `.Bottom` flags through the returned **Anchors** object.
+决定控件的哪些边随父级对应边调整的边集合。只读——通过返回的**Anchors**对象设置各个`.Left`、`.Top`、`.Right`、`.Bottom`标志。
 
 ### Appearance
 
-The style of the border, as a member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder**.
+边框的样式，作为[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。仅在[**BorderStyle**](#borderstyle)为**vbFixedSingleBorder**时有意义。
 
 ### BorderStyle
 
-The style of border drawn around the rectangle. A member of [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0, default) or **vbFixedSingleBorder** (1).
+绘制在矩形周围的边框样式。[**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants)的成员：**vbNoBorder**（0，默认）或**vbFixedSingleBorder**（1）。
 
 ### Container
 
-The control that hosts this **QRCode** --- typically the form, a [**Frame**](/official/Reference/VB/Frame/), a [**PictureBox**](/official/Reference/VB/PictureBox/), or a **UserControl**. Read with **Get**, change with **Set**.
+承载此**QRCode**的控件——通常是窗体、[**Frame**](/official/Reference/VB/Frame/)、[**PictureBox**](/official/Reference/VB/PictureBox/)或**UserControl**。用**Get**读取，用**Set**更改。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying the underlying control kind. Always **vbImage** --- the QRCode shares its control-type tag with [**Image**](/official/Reference/VB/Image/).
+标识底层控件类型的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbImage**——QRCode与[**Image**](/official/Reference/VB/Image/)共享其控件类型标签。
 
 ### DataChanged
 
-Whether the bound [**Picture**](#picture) has been written to since the last save or refresh from the [**DataSource**](#datasource). **Boolean**. Setting **DataChanged** = **True** also marks the bound recordset as dirty.
+绑定的[**Picture**](#picture)自上次从[**DataSource**](#datasource)保存或刷新以来是否已被写入。**Boolean**。设置**DataChanged** = **True**也会将绑定记录集标记为脏。
 
 ### DataField
 
-The name of the field, in the recordset of the bound [**DataSource**](#datasource), whose value sets [**Payload**](#payload). **String**.
+绑定的[**DataSource**](#datasource)记录集中设置[**Payload**](#payload)的字段名称。**String**。
 
 ### DataFormat
 
-A **StdDataFormat** that converts between the raw recordset value and the displayed payload, when the application needs custom handling. Set with **Set**.
+当应用程序需要自定义处理时，在原始记录集值和显示的负载之间转换的**StdDataFormat**。用**Set**设置。
 
 ### DataMember
 
-When the [**DataSource**](#datasource) exposes more than one recordset, the name of the member to bind to. **String**.
+当[**DataSource**](#datasource)公开多个记录集时，要绑定的成员名称。**String**。
 
 ### DataSource
 
-A reference to a [**Data**](/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+对[**Data**](/official/Reference/VB/Data/)控件（或其他**DataSource**提供者）的引用，其记录集为[**DataField**](#datafield)提供值。用**Set**设置。
 
 ### Dock
 
-Where the control is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked controls ignore [**Anchors**](#anchors).
+控件在其容器中的停靠位置。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants)的成员：**vbDockNone**（默认）、**vbDockLeft**、**vbDockTop**、**vbDockRight**、**vbDockBottom**或**vbDockFill**。停靠的控件忽略[**Anchors**](#anchors)。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the control is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+在控件被拖放时用作鼠标光标的**StdPicture**（参见[**Drag**](#drag)和[**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the control should drag itself (the manual VB-drag form, distinct from OLE drag) when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+控件是否应在用户按住鼠标时自行拖动（手动VB拖动形式，与OLE拖动不同）。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants)的成员：**vbManual**（0，默认——从代码调用[**Drag**](#drag)）或**vbAutomatic**（1）。
 
 ### EccBoost
 
-When **True** (default), the encoder is allowed to raise the actual parity level above [**EccMode**](#eccmode) when the payload still fits the same QR version at the higher level. **Boolean**. Set to **False** for reproducible output across payloads of varying length.
+当**True**（默认）时，编码器被允许在负载仍适合相同QR版本时将实际奇偶校验级别提升到[**EccMode**](#eccmode)之上。**Boolean**。设为**False**以获得对不同长度负载可重现的输出。
 
 ### EccMode
 
-The minimum error-correction level used when encoding. A member of **QRCodegenEccConstants** (defined in the VB package):
+编码时使用的最低纠错级别。**QRCodegenEccConstants**（在VB包中定义）的成员：
 
-| Constant                   | Value | Approx. recovery |
-|----------------------------|-------|------------------|
-| **vbQRCodegenEccLow**      | 0     | 7%               |
-| **vbQRCodegenEccMedium**   | 1     | 15%              |
-| **vbQRCodegenEccQuartile** | 2     | 25%              |
-| **vbQRCodegenEccHigh**     | 3     | 30%              |
+| 常量                           | 值 | 约恢复率 |
+|--------------------------------|----|----------|
+| **vbQRCodegenEccLow**          | 0  | 7%       |
+| **vbQRCodegenEccMedium**       | 1  | 15%      |
+| **vbQRCodegenEccQuartile**    | 2  | 25%      |
+| **vbQRCodegenEccHigh**         | 3  | 30%      |
 
-Default **vbQRCodegenEccLow**. Out-of-range values are clamped.
+默认**vbQRCodegenEccLow**。超出范围的值被钳制。
 
 ### Enabled
 
-Determines whether the control accepts mouse input. A disabled **QRCode** still paints normally but does not raise mouse events. **Boolean**, default **True**.
+决定控件是否接受鼠标输入。禁用的**QRCode**仍正常绘制但不引发鼠标事件。**Boolean**，默认**True**。
 
 ### ForeColor
 
-The colour of the dark modules in the generated QR code, as an **OLE_COLOR**. Default **vbBlack**. The light modules are always transparent --- the control's parent shows through them, so place the **QRCode** over a contrasting background.
+生成QR码中深色模块的颜色，作为**OLE_COLOR**。默认**vbBlack**。浅色模块始终透明——控件的父级透过它们显示，因此将**QRCode**放置在对比色背景上。
 
 ### Height
 
-The control's height, in twips by default (or in the container's **ScaleMode** units). **Double**.
+控件的高度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Double**。
 
 ### Index
 
-When the control is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当控件是控件数组的一部分时，此实例在数组中的**Long**零基索引。在非数组实例上读取**Index**会引发运行时错误343（*对象不是数组*）。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the control. **Double**.
+从容器左边缘到控件左边缘的水平距离。**Double**。
 
 ### MaskType
 
-The mask applied to the encoded matrix to break up patterns that confuse the scanner. A member of **QRCodegenMaskConstants** (defined in the VB package): **vbQRCodegenMaskAuto** (-1, default --- pick the mask with the lowest penalty score) or one of **vbQRCodegenMask0** … **vbQRCodegenMask7** (force the corresponding numbered mask). Out-of-range values fall back to **vbQRCodegenMaskAuto**.
+应用于编码矩阵的掩码，以打破混淆扫描器的模式。**QRCodegenMaskConstants**（在VB包中定义）的成员：**vbQRCodegenMaskAuto**（-1，默认——选择具有最低惩罚分数的掩码）或**vbQRCodegenMask0**……**vbQRCodegenMask7**之一（强制使用对应编号的掩码）。超出范围的值回退到**vbQRCodegenMaskAuto**。
 
 ### MaxVersion
 
-The largest QR version the encoder is allowed to choose. **Long**, default `40`. Clamped to `1..40`. If [**MinVersion**](#minversion) exceeds **MaxVersion** at encode time, **MinVersion** is reset to `1`.
+编码器允许选择的最大QR版本。**Long**，默认`40`。钳制到`1..40`。如果[**MinVersion**](#minversion)在编码时超过**MaxVersion**，**MinVersion**被重置为`1`。
 
 ### MinVersion
 
-The smallest QR version the encoder is allowed to choose. **Long**, default `1`. The encoder picks the smallest version in `MinVersion..MaxVersion` that fits the payload at the requested [**EccMode**](#eccmode). Clamped to `1..40`.
+编码器允许选择的最小QR版本。**Long**，默认`1`。编码器选择`MinVersion..MaxVersion`范围内在请求的[**EccMode**](#eccmode)下适合负载的最小版本。钳制到`1..40`。
 
 ### ModuleSize
 
-The pixel size of one QR module in the generated [**Picture**](#picture). **Long**, default `120`. The picture is scaled to the control's rectangle at paint time, so a larger **ModuleSize** only matters when the picture is being captured or saved at its native resolution.
+生成[**Picture**](#picture)中一个QR模块的像素大小。**Long**，默认`120`。图片在绘制时按比例缩放到控件矩形，因此较大的**ModuleSize**仅在图片以其原生分辨率捕获或保存时有影响。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the control.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针在控件上方时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+指针在控件上方时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Name
 
-The unique design-time name of the control on its parent form. Read-only at run time.
+控件在其父窗体上的唯一设计时名称。运行时只读。
 
 ### OLEDragMode
 
-Whether an OLE drag is started automatically when the user begins dragging the control. A member of [**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants): **vbOLEDragManual** (0, default --- application calls [**OLEDrag**](#oledrag)) or **vbOLEDragAutomatic** (1 --- the framework copies the current [**Picture**](#picture) into the resulting **DataObject** automatically).
+当用户开始拖动控件时是否自动启动OLE拖动。[**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants)的成员：**vbOLEDragManual**（0，默认——应用程序调用[**OLEDrag**](#oledrag)）或**vbOLEDragAutomatic**（1——框架自动将当前[**Picture**](#picture)复制到结果**DataObject**中）。
 
 ### OLEDropMode
 
-How the control responds to OLE drops arriving on it. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** (0, default) or **vbOLEDropManual** (1). Automatic drop is not supported on a **QRCode**; assigning **vbOLEDropAutomatic** raises run-time error 5 (*Invalid procedure call or argument*).
+控件如何响应到达其上的OLE放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants)的受限成员：**vbOLEDropNone**（0，默认）或**vbOLEDropManual**（1）。**QRCode**不支持自动放置；赋值**vbOLEDropAutomatic**会引发运行时错误5（*无效的过程调用或参数*）。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the control. Read-only.
+对最终包含控件的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）的引用。只读。
 
 ### Payload
 
-The data encoded in the QR code. **Variant**, default `"https://www.twinbasic.com"`.
+QR码中编码的数据。**Variant**，默认`"https://www.twinbasic.com"`。
 
-Syntax: *object*.**Payload** [ = *value* ]
+语法：*object*.**Payload** [ = *value* ]
 
-Accepts a **String** for text or URL payloads, or a one-dimensional **Byte()** array for arbitrary binary data. The encoder picks the most compact segment mode automatically --- numeric, alphanumeric, or byte --- based on the contents of the string. Assigning an empty value clears [**Picture**](#picture) to **Nothing**.
+接受用于文本或URL负载的**String**，或用于任意二进制数据的一维**Byte()**数组。编码器根据字符串内容自动选择最紧凑的段模式——数字、字母数字或字节。赋值空值会将[**Picture**](#picture)清除为**Nothing**。
 
 ### Picture
 
-The generated QR code, as a **StdPicture**. **Default property.** Read-only --- produced by the encoder from [**Payload**](#payload) and the other encoding properties. Returns **Nothing** when [**Payload**](#payload) is empty.
+生成的QR码，作为**StdPicture**。**默认属性。**只读——由编码器从[**Payload**](#payload)和其他编码属性生成。当[**Payload**](#payload)为空时返回**Nothing**。
 
 ### Square
 
-Whether the generated picture is rendered with a 1:1 aspect ratio inside the control's rectangle (**True**, default --- picture is centred and letter-boxed) or stretched to fill it (**False**). **Boolean**.
+生成的图片是否在控件矩形内以1:1宽高比渲染（**True**，默认——图片居中信箱式显示）或拉伸以填充（**False**）。**Boolean**。
 
 ### SquareModules
 
-Whether each module of the encoded matrix is drawn in the picture as a filled square (**True**, default) or as a filled circle (**False**). **Boolean**.
+编码矩阵的每个模块在图片中是否绘制为充填正方形（**True**，默认）或充填圆形（**False**）。**Boolean**。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the control. Ignored by the framework.
+应用程序可用于将自定义数据与控件关联的自由格式**String**。框架忽略此属性。
 
 ### ToolTipText
 
-A multi-line **String** displayed as a tooltip when the user hovers over the control.
+用户悬停在控件上方时作为工具提示显示的多行**String**。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the control. **Double**.
+从容器顶部到控件顶部的垂直距离。**Double**。
 
 ### Visible
 
-Whether the control is shown. **Boolean**, default **True**. Hidden **QRCode**s skip the paint pass entirely at run time, except in the IDE designer where they always render so the developer can position them.
+控件是否显示。**Boolean**，默认**True**。隐藏的**QRCode**在运行时完全跳过绘制传递，除了在IDE设计器中它们始终渲染以便开发者定位。
 
 ### WhatsThisHelpID
 
-A **Long** identifying a "What's This?" help-pop-up topic in the application's help file. See [**ShowWhatsThis**](#showwhatsthis).
+标识应用程序帮助文件中"这是什么？"帮助弹出主题的**Long**。参见[**ShowWhatsThis**](#showwhatsthis)。
 
 ### Width
 
-The control's width, in twips by default (or in the container's **ScaleMode** units). **Double**.
+控件的宽度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Double**。
 
-## Methods
+## 方法
 
 ### Drag
 
-Begins, completes, or cancels a manual VB-style drag operation. Distinct from OLE drag --- see [**OLEDrag**](#oledrag).
+开始、完成或取消手动VB样式拖动操作。与OLE拖动不同——参见[**OLEDrag**](#oledrag)。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants)的成员：**vbCancel**（0）、**vbBeginDrag**（1，默认）或**vbEndDrag**（2）。
 
 ### Move
 
-Repositions and optionally resizes the control in a single call.
+在单次调用中重新定位并可选地调整控件的尺寸。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the control, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject** (or, if the source has already been pre-populated, begins the drag immediately).
+从控件发起OLE拖动操作，引发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**（或者，如果源已被预填充，则立即开始拖动）。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### Refresh
 
-Forces an immediate repaint of the control's rectangle on the parent's drawing surface. Does *not* re-encode the QR --- for that, reassign [**Payload**](#payload) (or any of the encoding properties) which triggers regeneration automatically.
+强制立即重绘控件在父级绘图表面上的矩形。*不会*重新编码QR——为此需重新赋值[**Payload**](#payload)（或任何编码属性），这会自动触发重新生成。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### ShowWhatsThis
 
-Displays the topic identified by [**WhatsThisHelpID**](#whatsthishelpid) as a "What's This?" pop-up.
+以"这是什么？"弹窗形式显示由[**WhatsThisHelpID**](#whatsthishelpid)标识的主题。
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### ZOrder
 
-Brings the **QRCode** to the front or back of the windowless-sibling stack within its container.
+将**QRCode**带到容器内无窗口同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront**（0，默认）或**vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Click
 
-Raised when the user single-clicks the control's rectangle. **Default event.**
+当用户单击控件矩形时引发。**默认事件。**
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks the control's rectangle.
+当用户双击控件矩形时引发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop
 
-Raised on the destination control when a manual VB-style drag operation ends over it.
+当手动VB样式拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual VB-style drag operation is in progress.
+当手动VB样式拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### Initialize
 
-Raised once, after the control has been connected to its container's paint cycle but before it is first painted. Useful for last-minute setup that depends on container state.
+在控件已连接到其容器的绘制周期但首次绘制之前引发一次。适用于依赖容器状态的最后一刻设置。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the control.
+当用户在控件上方按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the control.
+当光标在控件上方移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the control.
+当用户在控件上方释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+当OLE拖动操作完成时在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+当用户在目标控件上放置数据时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+当OLE拖动经过目标控件时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+在拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标请求已注册但尚未提供的格式的数据时在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects. Also raised automatically when [**OLEDragMode**](#oledragmode) is **vbOLEDragAutomatic** and the user begins a drag.
+在OLE拖动开始时在源控件上引发，以便应用程序填充**DataObject**并选择允许的效果。当[**OLEDragMode**](#oledragmode)为**vbOLEDragAutomatic**且用户开始拖动时也会自动引发。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )

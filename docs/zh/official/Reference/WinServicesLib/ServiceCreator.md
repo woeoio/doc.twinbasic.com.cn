@@ -1,18 +1,27 @@
 ---
 title: ServiceCreator
-parent: WinServicesLib Package
+parent: "WinServicesLib 包"
 permalink: /tB/Packages/WinServicesLib/ServiceCreator
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ee4ecdda-c82e-4f04-a2a3-572e0dc34c7e'
+  PropagateID: 'ee4ecdda-c82e-4f04-a2a3-572e0dc34c7e'
+  ReservedCode1: 'a6694f3b-ffa4-48f9-949b-5d522e5d8e37'
+  ReservedCode2: 'a6694f3b-ffa4-48f9-949b-5d522e5d8e37'
 ---
 
-# ServiceCreator(Of T) class
-The generic factory the **WinServicesLib** dispatcher uses to instantiate the user's service class when the SCM launches a service. *T* is the user's [**ITbService**](/official/Reference/WinServicesLib/ITbService) implementation; **ServiceCreator(Of T)** wraps `New T` in a factory the dispatcher can hold by interface.
+# ServiceCreator(Of T) 类
 
-Syntax: **New ServiceCreator(Of** *T* **)**
+**WinServicesLib** 调度器在SCM启动服务时用于实例化用户服务类的通用工厂。*T* 是用户的 [**ITbService**](/official/Reference/WinServicesLib/ITbService) 实现；**ServiceCreator(Of T)** 将 `New T` 包装在调度器可以按接口持有的工厂中。
+
+语法：**New ServiceCreator(Of** *T* **)**
 
 *T*
-: *required* A user class that implements [**ITbService**](/official/Reference/WinServicesLib/ITbService). The constraint is *practical* rather than syntactic --- there is no `Where T : ITbService` clause in the source, but the factory's `CreateInstance` returns `New T As ITbService`, which the compiler only accepts when *T* implements [**ITbService**](/official/Reference/WinServicesLib/ITbService).
+: *必需* 实现 [**ITbService**](/official/Reference/WinServicesLib/ITbService) 的用户类。约束是*实际性的*而非语法性的——源代码中没有 `Where T : ITbService` 子句，但工厂的 `CreateInstance` 返回 `New T As ITbService`，编译器仅在 *T* 实现 [**ITbService**](/official/Reference/WinServicesLib/ITbService) 时才接受。
 
-The class is the value typically assigned to [**ServiceManager.InstanceCreator**](/official/Reference/WinServicesLib/ServiceManager#instancecreator):
+该类是通常赋给 [**ServiceManager.InstanceCreator**](/official/Reference/WinServicesLib/ServiceManager#instancecreator) 的值：
 
 ```vb
 With Services.ConfigureNew
@@ -21,30 +30,30 @@ With Services.ConfigureNew
 End With
 ```
 
-The package keeps the factory by reference; the dispatcher trampoline calls [**CreateInstance**](#createinstance) once per service start, immediately after the SCM has spawned the service thread. The returned instance is the object whose [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint), [**StartupFailed**](/official/Reference/WinServicesLib/ITbService#startupfailed), and [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) methods the package will route to.
+包通过引用持有工厂；调度器跳板每次服务启动调用 [**CreateInstance**](#createinstance) 一次，在SCM生成服务线程之后。返回的实例是包将路由其 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint)、[**StartupFailed**](/official/Reference/WinServicesLib/ITbService#startupfailed) 和 [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) 方法的对象。
 
-See the package [overview](/official/Reference/WinServicesLib/) for where **ServiceCreator** fits in the broader lifecycle.
+参见包[概述](/official/Reference/WinServicesLib/)了解 **ServiceCreator** 在更广泛生命周期中的位置。
 
-## Methods
+## 方法
 
 ### CreateInstance
 
-Returns a fresh `New T` cast as [**ITbService**](/official/Reference/WinServicesLib/ITbService).
+返回一个转换为 [**ITbService**](/official/Reference/WinServicesLib/ITbService) 的新 `New T`。
 
-Syntax: *creator*.**CreateInstance** **As** [**ITbService**](/official/Reference/WinServicesLib/ITbService)
+语法：*creator*.**CreateInstance** **As** [**ITbService**](/official/Reference/WinServicesLib/ITbService)
 
-User code rarely calls **CreateInstance** directly; the package's dispatcher trampoline invokes it once per service start. The returned instance is owned by the dispatcher for the lifetime of the service --- it is released when the service stops or the dispatcher exits.
+用户代码很少直接调用 **CreateInstance**；包的调度器跳板每次服务启动调用一次。返回的实例由调度器在服务的整个生命周期内拥有——当服务停止或调度器退出时释放。
 
-The method has no parameters; if the user's service class needs configuration, it should read it from the [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) passed to [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) rather than from constructor arguments.
+该方法没有参数；如果用户的服务类需要配置，应从传递给 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 中读取，而非从构造函数参数中读取。
 
-## Why a factory rather than a class reference
+## 为什么使用工厂而非类引用
 
-`ServiceCreator(Of T)` exists because the SCM dispatch model needs *deferred* instantiation. The configuration phase runs in `Sub Main` before the SCM has decided which services to start; constructing the service class eagerly there would create an unnecessary instance for services the SCM may never launch (or launch only much later). The factory defers the `New T` call until the service actually starts.
+`ServiceCreator(Of T)` 的存在是因为SCM调度模型需要*延迟*实例化。配置阶段在SCM决定启动哪些服务之前运行于 `Sub Main` 中；在那里急切地构造服务类会为SCM可能永远不会启动（或只在很久之后才启动）的服务创建不必要的实例。工厂将 `New T` 调用推迟到服务实际启动时。
 
-The same indirection lets the dispatcher pair the [**ITbService**](/official/Reference/WinServicesLib/ITbService) instance with the [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) one-to-one --- the trampoline can pass the service-specific [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) into [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) without the service class having to know about the manager at construction time.
+同样的间接性让调度器将 [**ITbService**](/official/Reference/WinServicesLib/ITbService) 实例与 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 一对一配对——跳板可以将特定服务的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 传入 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint)，而服务类无需在构造时了解管理器。
 
-## See Also
+## 另见
 
-- [WinServicesLib package](/official/Reference/WinServicesLib/) -- overview, lifecycle, two-thread split
-- [ITbService interface](/official/Reference/WinServicesLib/ITbService) -- the contract *T* must implement
-- [ServiceManager class](/official/Reference/WinServicesLib/ServiceManager) -- the per-service configuration; **ServiceCreator** instances are assigned to its [**InstanceCreator**](/official/Reference/WinServicesLib/ServiceManager#instancecreator) field
+- [WinServicesLib 包](/official/Reference/WinServicesLib/) -- 概述、生命周期、双线程分离
+- [ITbService 接口](/official/Reference/WinServicesLib/ITbService) -- *T* 必须实现的契约
+- [ServiceManager 类](/official/Reference/WinServicesLib/ServiceManager) -- 每服务配置；**ServiceCreator** 实例被赋给其 [**InstanceCreator**](/official/Reference/WinServicesLib/ServiceManager#instancecreator) 字段

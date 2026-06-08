@@ -2,32 +2,41 @@
 title: Hex
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/Hex
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6233ec02-231f-4a6d-8d34-949dc613f30c'
+  PropagateID: '6233ec02-231f-4a6d-8d34-949dc613f30c'
+  ReservedCode1: 'd51bb007-4c28-480b-99df-9cc29aaaa1c4'
+  ReservedCode2: 'd51bb007-4c28-480b-99df-9cc29aaaa1c4'
 ---
+
 # Hex, Hex$
 
-Returns a string representing the hexadecimal value of a number.
+返回表示数字十六进制值的字符串。
 
-Syntax:
+语法：
 
 - **Hex$(** *number* **)**
 - **Hex(** *number* **)**
 
 *number*
-: *required* Any valid numeric or string expression. If *number* is not a whole number, it is rounded to the nearest whole number before being evaluated.
+: *必需* 任何有效的数值或字符串表达式。如果 *number* 不是整数，则在求值前四舍五入到最接近的整数。
 
-The `$`-suffixed form returns a **String**; the unsuffixed form returns a **Variant** (**String**).
+`$` 后缀形式返回 **String**；无后缀形式返回 **Variant** (**String**)。
 
-| If *number* is                  | Hex returns                     |
-|---------------------------------|---------------------------------|
-| -2,147,483,648 to 2,147,483,647 | Up to eight hexadecimal characters |
-| **Null**                        | **Null** (unsuffixed form only) |
-| **Empty**                       | Zero (`"0"`)                    |
+| 如果 *number* 为 | Hex 返回 |
+|------------------|----------|
+| -2,147,483,648 到 2,147,483,647 | 最多八个十六进制字符 |
+| **Null** | **Null**（仅限无后缀形式） |
+| **Empty** | 零（`"0"`） |
 
-For the opposite of **Hex**, precede a hexadecimal value with **&H**. For example, `Hex(255)` returns the string `"FF"` and `&HFF` returns the number 255.
+**Hex** 的逆操作：在十六进制值前加 **&H**。例如，`Hex(255)` 返回字符串 `"FF"`，而 `&HFF` 返回数字 255。
 
-### Example
+### 示例
 
-This example uses the **Hex** function to return the hexadecimal value of a number.
+此示例使用 **Hex** 函数返回数字的十六进制值。
 
 ```vb
 Dim MyHex
@@ -36,6 +45,6 @@ MyHex = Hex(10)     ' Returns "A".
 MyHex = Hex(459)    ' Returns "1CB".
 ```
 
-### See Also
+### 另请参阅
 
-- [Oct](/official/Reference/VBA/Conversion/Oct), [Str](/official/Reference/VBA/Conversion/Str) functions
+- [Oct](/official/Reference/VBA/Conversion/Oct)、[Str](/official/Reference/VBA/Conversion/Str) 函数

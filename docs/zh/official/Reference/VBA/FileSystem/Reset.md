@@ -2,18 +2,27 @@
 title: Reset
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/Reset
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '86917635-760f-4e62-a86c-4b97b8e0f411'
+  PropagateID: '86917635-760f-4e62-a86c-4b97b8e0f411'
+  ReservedCode1: '99b2c620-2647-4980-b752-e5d3b2e0698a'
+  ReservedCode2: '99b2c620-2647-4980-b752-e5d3b2e0698a'
 ---
+
 # Reset
 
-Closes all disk files opened by using the **Open** statement.
+关闭所有使用**Open**语句打开的磁盘文件。
 
-Syntax: **Reset**
+语法：**Reset**
 
-The **Reset** statement closes all active files opened by the [Open](/official/Reference/Core/Open) statement and writes the contents of all file buffers to disk.
+**Reset**语句关闭所有由[Open](/official/Reference/Core/Open)语句打开的活动文件，并将所有文件缓冲区的内容写入磁盘。
 
-### Example
+### 示例
 
-This example uses the **Reset** statement to close all open files and write the contents of all file buffers to disk.
+本示例使用**Reset**语句关闭所有打开的文件并将所有文件缓冲区的内容写入磁盘。
 
 ```vb
 Dim FileNumber
@@ -24,6 +33,6 @@ Next FileNumber
 Reset    ' Close files and write contents to disk.
 ```
 
-### See Also
+### 另请参阅
 
-- [Close](/official/Reference/Core/Close) statement
+- [Close](/official/Reference/Core/Close)语句

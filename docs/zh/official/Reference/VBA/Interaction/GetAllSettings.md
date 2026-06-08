@@ -2,26 +2,35 @@
 title: GetAllSettings
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/GetAllSettings
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '950bbc0c-caa7-4978-80f7-e0543cc5d38b'
+  PropagateID: '950bbc0c-caa7-4978-80f7-e0543cc5d38b'
+  ReservedCode1: 'd01db37d-874e-4082-8d15-89afd1b09ba4'
+  ReservedCode2: 'd01db37d-874e-4082-8d15-89afd1b09ba4'
 ---
+
 # GetAllSettings
 
-Returns every key and its value in a section of an application's entry in the Windows registry. <!-- or (on the Macintosh) information in the application's initialization file. -->
+返回Windows注册表中应用程序条目某个节中的每个键及其值。
 
-Syntax: **GetAllSettings(** *appname* **,** *section* **)**
+语法：**GetAllSettings(** *appname* **,** *section* **)**
 
 *appname*
-: *required* String expression containing the name of the application or project whose key settings are requested. <!-- On the Macintosh, this is the filename of the initialization file in the Preferences folder in the System folder. -->
+: *必需* 字符串表达式，包含请求其键设置的应用程序或项目的名称。
 
 *section*
-: *required* String expression containing the name of the section whose key settings are requested.
+: *必需* 字符串表达式，包含请求其键设置的节的名称。
 
-Returns a **Variant** whose contents are a two-dimensional array of strings: each row holds one key and its value, in columns 0 and 1 respectively. **GetAllSettings** returns an uninitialized **Variant** if either *appname* or *section* does not exist.
+返回一个**Variant**，其内容为二维字符串数组：每行包含一个键及其值，分别在第0列和第1列。如果*appname*或*section*不存在，**GetAllSettings**返回未初始化的**Variant**。
 
-The root of these registry settings is: `Computer\HKEY_CURRENT_USER\Software\VB and VBA Program Settings`.
+这些注册表设置的根路径为：`Computer\HKEY_CURRENT_USER\Software\VB and VBA Program Settings`。
 
-### Example
+### 示例
 
-This example first uses [**SaveSetting**](/official/Reference/VBA/Interaction/SaveSetting) to make entries in the Windows registry for the application, then uses **GetAllSettings** to display every key/value in a section, and finally uses [**DeleteSetting**](/official/Reference/VBA/Interaction/DeleteSetting) to remove the application's entries. Note that the *appname* and *section* names themselves are not retrieved.
+本示例首先使用[**SaveSetting**](/official/Reference/VBA/Interaction/SaveSetting)在Windows注册表中为应用程序创建条目，然后使用**GetAllSettings**显示某个节中的所有键值对，最后使用[**DeleteSetting**](/official/Reference/VBA/Interaction/DeleteSetting)删除应用程序的条目。注意*appname*和*section*名称本身不会被检索。
 
 ```vb
 ' Place some settings in the registry.
@@ -39,8 +48,8 @@ Next IntSettings
 DeleteSetting "MyApp", "Startup"
 ```
 
-### See Also
+### 另请参阅
 
-- [DeleteSetting](/official/Reference/VBA/Interaction/DeleteSetting) statement
-- [GetSetting](/official/Reference/VBA/Interaction/GetSetting) function
-- [SaveSetting](/official/Reference/VBA/Interaction/SaveSetting) statement
+- [DeleteSetting](/official/Reference/VBA/Interaction/DeleteSetting)语句
+- [GetSetting](/official/Reference/VBA/Interaction/GetSetting)函数
+- [SaveSetting](/official/Reference/VBA/Interaction/SaveSetting)语句

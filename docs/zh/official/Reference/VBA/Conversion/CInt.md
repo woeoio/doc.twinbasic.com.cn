@@ -2,25 +2,34 @@
 title: CInt
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/CInt
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '2b68a88b-e28a-4f5a-a517-46a132f19663'
+  PropagateID: '2b68a88b-e28a-4f5a-a517-46a132f19663'
+  ReservedCode1: 'd40281cb-d523-441f-be00-8dda8c2518b3'
+  ReservedCode2: 'd40281cb-d523-441f-be00-8dda8c2518b3'
 ---
+
 # CInt
 
-Coerces an expression to an **Integer**.
+将表达式强制转换为 **Integer**。
 
-Syntax: **CInt(** *expression* **)**
+语法：**CInt(** *expression* **)**
 
 *expression*
-: *required* Any valid string or numeric expression in the range `-32,768` to `32,767`. Fractions are rounded.
+: *必需* 范围在 `-32,768` 到 `32,767` 之间的任何有效字符串或数值表达式。小数部分会四舍五入。
 
-The return type is **Integer**. If *expression* is outside the range of an **Integer**, a run-time error occurs.
+返回类型为 **Integer**。如果 *expression* 超出 **Integer** 的范围，将发生运行时错误。
 
-When the fractional part is exactly `0.5`, **CInt** always rounds it to the nearest even number. For example, `0.5` rounds to `0`, and `1.5` rounds to `2`. **CInt** differs from the [**Fix**](/official/Reference/VBA/Conversion/Fix) and [**Int**](/official/Reference/VBA/Conversion/Int) functions, which truncate, rather than round, the fractional part of a number. Also, **Fix** and **Int** always return a value of the same type as is passed in.
+当小数部分恰好为 `0.5` 时，**CInt** 始终舍入到最接近的偶数。例如，`0.5` 舍入为 `0`，`1.5` 舍入为 `2`。**CInt** 与 [**Fix**](/official/Reference/VBA/Conversion/Fix) 和 [**Int**](/official/Reference/VBA/Conversion/Int) 函数不同，后者截断而非舍入数字的小数部分。此外，**Fix** 和 **Int** 始终返回与传入值相同类型的值。
 
-**CInt** is the internationally aware alternative to [**Val**](/official/Reference/VBA/Conversion/Val) for converting a string to a numeric type.
+**CInt** 是替代 [**Val**](/official/Reference/VBA/Conversion/Val) 将字符串转换为数值类型的区域感知方案。
 
-### Example
+### 示例
 
-This example uses the **CInt** function to convert a value to an **Integer**.
+此示例使用 **CInt** 函数将值转换为 **Integer**。
 
 ```vb
 Dim MyDouble, MyInt
@@ -28,7 +37,7 @@ MyDouble = 2345.5678                 ' MyDouble is a Double.
 MyInt = CInt(MyDouble)               ' MyInt contains 2346.
 ```
 
-### See Also
+### 另请参阅
 
-- [CBool](/official/Reference/VBA/Conversion/CBool), [CByte](/official/Reference/VBA/Conversion/CByte), [CLng](/official/Reference/VBA/Conversion/CLng), [CLngLng](/official/Reference/VBA/Conversion/CLngLng), [CSng](/official/Reference/VBA/Conversion/CSng), [CStr](/official/Reference/VBA/Conversion/CStr), [CVar](/official/Reference/VBA/Conversion/CVar) functions
-- [Fix](/official/Reference/VBA/Conversion/Fix), [Int](/official/Reference/VBA/Conversion/Int) functions
+- [CBool](/official/Reference/VBA/Conversion/CBool)、[CByte](/official/Reference/VBA/Conversion/CByte)、[CLng](/official/Reference/VBA/Conversion/CLng)、[CLngLng](/official/Reference/VBA/Conversion/CLngLng)、[CSng](/official/Reference/VBA/Conversion/CSng)、[CStr](/official/Reference/VBA/Conversion/CStr)、[CVar](/official/Reference/VBA/Conversion/CVar) 函数
+- [Fix](/official/Reference/VBA/Conversion/Fix)、[Int](/official/Reference/VBA/Conversion/Int) 函数

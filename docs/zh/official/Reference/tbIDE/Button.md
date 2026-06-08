@@ -1,12 +1,20 @@
----
+﻿---
 title: Button
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/Button
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'b127d289-556c-4096-bcc1-72a0794a80ff'
+  PropagateID: 'b127d289-556c-4096-bcc1-72a0794a80ff'
+  ReservedCode1: '0f09564d-6f7a-46d4-a491-1c4c62e5fad3'
+  ReservedCode2: '0f09564d-6f7a-46d4-a491-1c4c62e5fad3'
 ---
 
-# Button class
+# Button 类
 
-An addin-created toolbar button. Returned by [**Toolbar.AddButton**](/official/Reference/tbIDE/Toolbar#addbutton); held via `WithEvents` to receive [**OnClick**](#onclick) notifications. The button's [**Caption**](#caption) and [**IconData**](#icondata) are mutable at run time --- the caption can reflect a state, or the icon can reflect a toggle.
+一个由插件创建的工具栏按钮。由 [**Toolbar.AddButton**](/official/Reference/tbIDE/Toolbar#addbutton) 返回；通过 `WithEvents` 持有以接收 [**OnClick**](#onclick) 通知。按钮的 [**Caption**](#caption) 和 [**IconData**](#icondata) 在运行时可变——标题可以反映状态，图标可以反映切换。
 
 ```vb
 Private WithEvents RefreshButton As Button
@@ -22,31 +30,31 @@ End Sub
 ```
 
 
-## Properties
+## 属性
 
 ### Caption
 
-The button's caption. **String**. When [**IconData**](#icondata) is set, the caption is shown as a tooltip on hover. When [**IconData**](#icondata) is empty, the caption is shown inline as the button's text. Read / write.
+按钮的标题。**String**。当设置了 [**IconData**](#icondata) 时，标题在悬停时显示为工具提示。当 [**IconData**](#icondata) 为空时，标题以内联方式显示为按钮文本。可读/写。
 
-Syntax: *button*.**Caption** [ = *value* ]
+语法：*button*.**Caption** [ = *value* ]
 
 ### IconData
 
-The icon graphic as a **Byte()** array --- typically the bytes of an embedded PNG / ICO resource. Pass **Empty** to remove the icon and fall back to showing the [**Caption**](#caption) inline. Read / write.
+图标图形，为 **Byte()** 数组——通常是嵌入的 PNG / ICO 资源的字节。传入 **Empty** 以移除图标并回退到以内联方式显示 [**Caption**](#caption)。可读/写。
 
-Syntax: *button*.**IconData** [ = *bytes* ]
+语法：*button*.**IconData** [ = *bytes* ]
 
 *bytes*
-: A **Byte()** array (or **Empty**). **Variant**.
+: 一个 **Byte()** 数组（或 **Empty**）。**Variant**。
 
 ### ID
 
-The unique ID assigned to the button when it was created via [**Toolbar.AddButton**](/official/Reference/tbIDE/Toolbar#addbutton). **String**, read-only.
+通过 [**Toolbar.AddButton**](/official/Reference/tbIDE/Toolbar#addbutton) 创建按钮时分配的唯一 ID。**String**，只读。
 
-## Events
+## 事件
 
 ### OnClick
 
-Fires when the user clicks the button.
+当用户点击按钮时触发。
 
-Syntax: *button*_**OnClick**()
+语法：*button*_**OnClick**()

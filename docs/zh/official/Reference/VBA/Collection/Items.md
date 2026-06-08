@@ -1,27 +1,36 @@
 ---
-title: Items
+title: "Items 方法"
 parent: Collection
 permalink: /tB/Modules/Collection/Items
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '91b9651a-942b-48fc-a96c-0ddce27fae27'
+  PropagateID: '91b9651a-942b-48fc-a96c-0ddce27fae27'
+  ReservedCode1: 'b6284746-b4d7-4c34-9520-4e4c19e998d7'
+  ReservedCode2: 'b6284746-b4d7-4c34-9520-4e4c19e998d7'
 ---
+
 # Items
 
-Returns a **Variant** array containing all the items in a **Collection** object. The lower bound of the returned array is zero.
+返回一个 **Variant** 数组，包含 **Collection** 对象中的所有项。返回数组的下界为零。
 
-Syntax: *object*.**Items()**
+语法：*object*.**Items()**
 
 *object*
-: *required* An object expression that evaluates to a **Collection** object.
+: *必需* 一个计算结果为 **Collection** 对象的对象表达式。
 
 ::: info
 
-**Items** is a twinBASIC extension; the classic VBA **Collection** object has no **Items** method. The same effect in VBA requires iterating the collection with **For Each** and copying each item into an array.
+**Items** 是 twinBASIC 扩展；经典 VBA 的 **Collection** 对象没有 **Items** 方法。在 VBA 中要实现相同效果，需要使用 **For Each** 遍历集合并将每个项复制到数组中。
 :::
 
-If the collection is empty, **Items** returns an empty array.
+如果集合为空，**Items** 返回一个空数组。
 
-The **Items** method is useful when passing the collection's contents to a procedure expecting an array, or to iterate without holding a reference to the collection.
+**Items** 方法在将集合内容传递给期望数组的过程，或在不持有集合引用的情况下进行迭代时非常有用。
 
-### Example
+### 示例
 
 ```vb
 Dim col As New Collection
@@ -38,9 +47,9 @@ For i = LBound(a) To UBound(a)
 Next i
 ```
 
-### See Also
+### 另请参阅
 
-- [Item](/official/Reference/VBA/Collection/Item) method
-- [Keys](/official/Reference/VBA/Collection/Keys) method
-- [Count](/official/Reference/VBA/Collection/Count) property
-- [Add](/official/Reference/VBA/Collection/Add) method
+- [Item](/official/Reference/VBA/Collection/Item) 方法
+- [Keys](/official/Reference/VBA/Collection/Keys) 方法
+- [Count](/official/Reference/VBA/Collection/Count) 属性
+- [Add](/official/Reference/VBA/Collection/Add) 方法

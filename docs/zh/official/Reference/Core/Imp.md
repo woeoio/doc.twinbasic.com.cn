@@ -2,23 +2,32 @@
 title: Imp
 parent: Operators
 permalink: /tB/Core/Imp
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '5edf1b69-95aa-42b8-a2b5-cae96e9f48c3'
+  PropagateID: '5edf1b69-95aa-42b8-a2b5-cae96e9f48c3'
+  ReservedCode1: '64574506-0cd2-4baf-96ca-445815da1b1c'
+  ReservedCode2: '64574506-0cd2-4baf-96ca-445815da1b1c'
 ---
-# Imp operator
 
-Used to perform a bitwise implication on two expressions. *expression1* **Imp** *expression2* is **False** only when *expression1* is **True** and *expression2* is **False**; in every other non-**Null** case the result is **True**.
+# Imp 运算符
 
-Syntax:
+用于对两个表达式执行按位蕴涵运算。*expression1* **Imp** *expression2* 仅当 *expression1* 为 **True** 且 *expression2* 为 **False** 时为 **False**；在所有其他非 **Null** 情况下结果为 **True**。
+
+语法：
 > *result* **=** *expression1* **Imp** *expression2*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *expression1*, *expression2*
-: Any expressions.
+: 任意表达式。
 
-The following table illustrates how *result* is determined:
+下表说明了 *result* 的确定方式：
 
-| If *expression1* is | And *expression2* is | The *result* is |
+| 如果 *expression1* 为 | 且 *expression2* 为 | 则 *result* 为 |
 |:-----|:-----|:-----|
 | **True**  | **True**  | **True**  |
 | **True**  | **False** | **False** |
@@ -30,9 +39,9 @@ The following table illustrates how *result* is determined:
 | **Null**  | **False** | **Null**  |
 | **Null**  | **Null**  | **Null**  |
 
-The **Imp** operator performs a bitwise comparison of identically positioned bits in two numeric expressions and sets the corresponding bit in *result* according to the following table:
+**Imp** 运算符对两个数值表达式中相同位置的位执行按位比较，并根据下表在 *result* 中设置相应的位：
 
-| If bit in *expression1* is | And bit in *expression2* is | The *result* is |
+| 如果 *expression1* 中的位为 | 且 *expression2* 中的位为 | 则 *result* 为 |
 |:-----:|:-----:|:-----:|
 | 0 | 0 | 1 |
 | 0 | 1 | 1 |
@@ -40,12 +49,12 @@ The **Imp** operator performs a bitwise comparison of identically positioned bit
 | 1 | 1 | 1 |
 
 ::: info
-**Imp** always evaluates *both* operands.
+**Imp** 总是求值*两个*操作数。
 :::
 
-### Example
+### 示例
 
-This example uses the **Imp** operator to perform a logical implication on two expressions.
+本示例使用 **Imp** 运算符对两个表达式执行逻辑蕴涵运算。
 
 ```vb
 Dim A, B, C, D, MyCheck
@@ -58,10 +67,10 @@ MyCheck = C > D Imp B > A         ' Returns Null.
 MyCheck = B Imp A                 ' Returns -1 (bitwise comparison).
 ```
 
-### See Also
+### 另请参阅
 
-- [**Eqv** operator](/official/Reference/Core/Eqv)
-- [**Xor** operator](/official/Reference/Core/Xor)
-- [**And** operator](/official/Reference/Core/And)
-- [**Or** operator](/official/Reference/Core/Or)
-- [Operators](/official/Reference/Operators)
+- [**Eqv** 运算符](/official/Reference/Core/Eqv)
+- [**Xor** 运算符](/official/Reference/Core/Xor)
+- [**And** 运算符](/official/Reference/Core/And)
+- [**Or** 运算符](/official/Reference/Core/Or)
+- [运算符](/official/Reference/Operators)

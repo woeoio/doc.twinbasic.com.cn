@@ -1,16 +1,24 @@
 ---
-title: FileSystem Module
+title: FileSystem模块
 parent: VBA Package
 permalink: /tB/Modules/FileSystem/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fb824c18-a466-4331-b0b4-22cc81fa02b8'
+  PropagateID: 'fb824c18-a466-4331-b0b4-22cc81fa02b8'
+  ReservedCode1: '8cbb5312-11d7-4070-8904-c2cd8bd18862'
+  ReservedCode2: '8cbb5312-11d7-4070-8904-c2cd8bd18862'
 ---
 
-# FileSystem module
+# FileSystem模块
 
-The **FileSystem** module groups together the procedures and statements for working with files and directories on disk. Its members divide cleanly into two camps: *pathname-based* operations that act on something named in the filesystem (creating and deleting files and directories, querying their attributes, iterating over a directory listing), and *file-number-based* operations that act on a handle previously returned by the **Open** statement (reading, positioning, formatting, and tracking the channel).
+**FileSystem**模块将用于处理磁盘文件和目录的过程和语句组合在一起。其成员可分为两类：*基于路径名*的操作，作用于文件系统中命名的对象（创建和删除文件与目录、查询属性、遍历目录列表），以及*基于文件号*的操作，作用于先前由**Open**语句返回的句柄（读取、定位、格式化和跟踪通道）。
 
-## Navigating directories
+## 导航目录
 
-[**ChDrive**](/official/Reference/VBA/FileSystem/ChDrive) changes the current drive, [**ChDir**](/official/Reference/VBA/FileSystem/ChDir) changes the current directory on a given drive, and [**CurDir**](/official/Reference/VBA/FileSystem/CurDir) returns the path of the current drive --- or of any other drive, if one is named. [**MkDir**](/official/Reference/VBA/FileSystem/MkDir) and [**RmDir**](/official/Reference/VBA/FileSystem/RmDir) create and remove directories.
+[**ChDrive**](/official/Reference/VBA/FileSystem/ChDrive)更改当前驱动器，[**ChDir**](/official/Reference/VBA/FileSystem/ChDir)更改指定驱动器上的当前目录，[**CurDir**](/official/Reference/VBA/FileSystem/CurDir)返回当前驱动器的路径——如果指定了其他驱动器，则返回该驱动器的路径。[**MkDir**](/official/Reference/VBA/FileSystem/MkDir)和[**RmDir**](/official/Reference/VBA/FileSystem/RmDir)分别创建和删除目录。
 
 ```vb
 ChDrive "D"
@@ -19,9 +27,9 @@ Debug.Print CurDir              ' "D:\Projects"
 MkDir "D:\Projects\Output"
 ```
 
-## Inspecting files and directories
+## 检查文件和目录
 
-[**Dir**](/official/Reference/VBA/FileSystem/Dir) is the wildcard matcher: pass it a pathname containing `*` or `?` and it returns the first matching name, then call it again with no arguments to step through subsequent matches until it returns `""`. [**FileLen**](/official/Reference/VBA/FileSystem/FileLen) returns the size of a file in bytes without opening it, and [**FileDateTime**](/official/Reference/VBA/FileSystem/FileDateTime) returns its last-modified timestamp. [**GetAttr**](/official/Reference/VBA/FileSystem/GetAttr) and [**SetAttr**](/official/Reference/VBA/FileSystem/SetAttr) read and write the [**VbFileAttribute**](/official/Reference/VBA/Constants/VbFileAttribute) flag bits --- read-only, hidden, system, archive --- and **GetAttr** also reports whether a name refers to a directory by setting the **vbDirectory** bit.
+[**Dir**](/official/Reference/VBA/FileSystem/Dir)是通配符匹配器：传入包含`*`或`?`的路径名，它返回第一个匹配的名称，然后不带参数再次调用可遍历后续匹配项，直到返回`""`。[**FileLen**](/official/Reference/VBA/FileSystem/FileLen)无需打开文件即可返回文件大小（字节），[**FileDateTime**](/official/Reference/VBA/FileSystem/FileDateTime)返回最后修改时间戳。[**GetAttr**](/official/Reference/VBA/FileSystem/GetAttr)和[**SetAttr**](/official/Reference/VBA/FileSystem/SetAttr)读取和写入[**VbFileAttribute**](/official/Reference/VBA/Constants/VbFileAttribute)标志位——只读、隐藏、系统、存档——**GetAttr**还通过设置**vbDirectory**位来报告名称是否指向目录。
 
 ```vb
 Dim Name As String
@@ -32,18 +40,18 @@ Do While Name <> ""
 Loop
 ```
 
-## Copying and deleting
+## 复制和删除
 
-[**FileCopy**](/official/Reference/VBA/FileSystem/FileCopy) copies one file to another, and [**Kill**](/official/Reference/VBA/FileSystem/Kill) deletes files matching a wildcard pattern. Both operate by pathname and raise a run-time error when asked to act on a file the current process has open.
+[**FileCopy**](/official/Reference/VBA/FileSystem/FileCopy)将一个文件复制到另一个文件，[**Kill**](/official/Reference/VBA/FileSystem/Kill)删除匹配通配符模式的文件。两者都通过路径名操作，当要求对当前进程已打开的文件执行操作时会引发运行时错误。
 
 ```vb
 FileCopy "C:\Data\report.xlsx", "C:\Backup\report.xlsx"
 Kill "C:\Backup\*.tmp"
 ```
 
-## Opening and tracking file numbers
+## 打开和跟踪文件号
 
-The lower-level read/write statements --- **Open**, **Close**, **Get**, **Put**, **Print**, **Write**, **Input**, and **Line Input** --- work in terms of a *file number* in the range 1--511. [**FreeFile**](/official/Reference/VBA/FileSystem/FreeFile) returns the next number that isn't currently in use, sparing the caller from picking one by hand and racing other code to it. Once a file is open, [**FileAttr**](/official/Reference/VBA/FileSystem/FileAttr) reports the access mode --- **Input**, **Output**, **Random**, **Append**, or **Binary** --- that the file number was opened with. [**Reset**](/official/Reference/VBA/FileSystem/Reset) closes every file number currently open and flushes its buffers, and is most useful as a last-ditch cleanup before exit.
+较低层的读/写语句——**Open**、**Close**、**Get**、**Put**、**Print**、**Write**、**Input**和**Line Input**——使用1--511范围内的*文件号*进行操作。[**FreeFile**](/official/Reference/VBA/FileSystem/FreeFile)返回当前未使用的下一个文件号，使调用者无需手动选择并与其他代码竞争。文件打开后，[**FileAttr**](/official/Reference/VBA/FileSystem/FileAttr)报告文件号打开时的访问模式——**Input**、**Output**、**Random**、**Append**或**Binary**。[**Reset**](/official/Reference/VBA/FileSystem/Reset)关闭所有当前打开的文件号并刷新其缓冲区，在退出前作为最后的清理最为有用。
 
 ```vb
 Dim N As Long
@@ -53,9 +61,9 @@ Open "C:\Data\report.txt" For Input As #N
 Close #N
 ```
 
-## Position within an open file
+## 打开文件中的位置
 
-For an open file number, [**EOF**](/official/Reference/VBA/FileSystem/EOF) returns **True** once a sequential read has run past the last record, [**LOF**](/official/Reference/VBA/FileSystem/LOF) returns the file's total length in bytes, and [**Loc**](/official/Reference/VBA/FileSystem/Loc) returns the current read/write position. The unit of *position* depends on the open mode --- record number for **Random**, byte offset for **Binary**, and the byte position divided by 128 for sequential modes --- so the per-mode tables on each function's page are the authoritative reference. [**Seek**](/official/Reference/VBA/FileSystem/Seek) doubles as a function and a statement: the function returns the position of the **next** read or write (whereas **Loc** reports the position of the *last*), and the statement repositions the file pointer ahead of the next operation.
+对于打开的文件号，[**EOF**](/official/Reference/VBA/FileSystem/EOF)在顺序读取超过最后一条记录后返回**True**，[**LOF**](/official/Reference/VBA/FileSystem/LOF)返回文件的总长度（字节），[**Loc**](/official/Reference/VBA/FileSystem/Loc)返回当前读/写位置。*位置*的单位取决于打开模式——**Random**模式为记录号，**Binary**模式为字节偏移量，顺序模式为字节位置除以128——因此每个函数页面上的按模式说明表是权威参考。[**Seek**](/official/Reference/VBA/FileSystem/Seek)兼具函数和语句的功能：函数返回*下一次*读或写的位置（而**Loc**报告*上一次*的位置），语句在下一次操作前重新定位文件指针。
 
 ```vb
 Dim N As Long, Line As String
@@ -67,33 +75,33 @@ Loop
 Close #N
 ```
 
-## Reading and formatting through open file numbers
+## 通过文件号读取和格式化
 
-[**Input**](/official/Reference/VBA/FileSystem/Input) and [**Input$**](/official/Reference/VBA/FileSystem/Input) return a fixed number of characters read from a file number opened with **Open**, as a **Variant** or a **String** respectively; [**InputB**](/official/Reference/VBA/FileSystem/InputB) and [**InputB$**](/official/Reference/VBA/FileSystem/InputB) are their byte-oriented counterparts, counting raw bytes rather than UTF-16 characters. They differ from the **Input #** statement in that they return every character they read --- commas, newlines, quotation marks, leading spaces, and all --- making them the right choice when the bytes on disk are not a stream of comma-delimited values.
+[**Input**](/official/Reference/VBA/FileSystem/Input)和[**Input$**](/official/Reference/VBA/FileSystem/Input)从以**Open**语句打开的文件号中读取固定数量的字符，分别返回**Variant**和**String**；[**InputB**](/official/Reference/VBA/FileSystem/InputB)和[**InputB$**](/official/Reference/VBA/FileSystem/InputB)是它们的面向字节版本，计算原始字节数而非UTF-16字符数。它们与**Input #**语句的不同之处在于，它们返回读取到的每个字符——逗号、换行符、引号、前导空格等——当磁盘上的字节不是逗号分隔值的流时，它们是正确的选择。
 
-[**Width**](/official/Reference/VBA/FileSystem/Width) sets the output line width on a sequential output channel: subsequent **Print #** wraps to a new line once the chosen number of characters has been written, or never wraps at all when *Width* is `0`.
+[**Width**](/official/Reference/VBA/FileSystem/Width)设置顺序输出通道上的输出行宽：后续的**Print #**在写入指定数量的字符后换行，当*Width*为`0`时则永不换行。
 
-## Members
+## 成员
 
-- [ChDir](/official/Reference/VBA/FileSystem/ChDir) -- changes the current directory or folder
-- [ChDrive](/official/Reference/VBA/FileSystem/ChDrive) -- changes the current drive
-- [CurDir](/official/Reference/VBA/FileSystem/CurDir) -- returns the current path
-- [Dir](/official/Reference/VBA/FileSystem/Dir) -- returns the name of a file, directory, folder, or volume label that matches a pattern
-- [EOF](/official/Reference/VBA/FileSystem/EOF) -- returns whether the end of a file opened for **Random** or sequential **Input** has been reached
-- [FileAttr](/official/Reference/VBA/FileSystem/FileAttr) -- returns the file mode for files opened with the **Open** statement
-- [FileCopy](/official/Reference/VBA/FileSystem/FileCopy) -- copies a file
-- [FileDateTime](/official/Reference/VBA/FileSystem/FileDateTime) -- returns the date and time when a file was created or last modified
-- [FileLen](/official/Reference/VBA/FileSystem/FileLen) -- returns the length of a file in bytes
-- [FreeFile](/official/Reference/VBA/FileSystem/FreeFile) -- returns the next file number available for use by the **Open** statement
-- [GetAttr](/official/Reference/VBA/FileSystem/GetAttr) -- returns the attributes of a file or directory
-- [Input, Input$](/official/Reference/VBA/FileSystem/Input) -- reads a fixed number of characters from an open sequential file
-- [InputB, InputB$](/official/Reference/VBA/FileSystem/InputB) -- reads a fixed number of bytes from an open sequential file
-- [Kill](/official/Reference/VBA/FileSystem/Kill) -- deletes files from a disk
-- [Loc](/official/Reference/VBA/FileSystem/Loc) -- returns the current read/write position within an open file
-- [LOF](/official/Reference/VBA/FileSystem/LOF) -- returns the size, in bytes, of an open file
-- [MkDir](/official/Reference/VBA/FileSystem/MkDir) -- creates a new directory or folder
-- [Reset](/official/Reference/VBA/FileSystem/Reset) -- closes all disk files opened by using the **Open** statement
-- [RmDir](/official/Reference/VBA/FileSystem/RmDir) -- removes an existing directory or folder
-- [Seek](/official/Reference/VBA/FileSystem/Seek) -- returns or sets the read/write position within an open file
-- [SetAttr](/official/Reference/VBA/FileSystem/SetAttr) -- sets attribute information for a file
-- [Width](/official/Reference/VBA/FileSystem/Width) -- sets the line width for a sequential output file
+- [ChDir](/official/Reference/VBA/FileSystem/ChDir) -- 更改当前目录或文件夹
+- [ChDrive](/official/Reference/VBA/FileSystem/ChDrive) -- 更改当前驱动器
+- [CurDir](/official/Reference/VBA/FileSystem/CurDir) -- 返回当前路径
+- [Dir](/official/Reference/VBA/FileSystem/Dir) -- 返回与模式匹配的文件、目录、文件夹或卷标的名称
+- [EOF](/official/Reference/VBA/FileSystem/EOF) -- 返回是否已到达以**Random**或顺序**Input**模式打开的文件末尾
+- [FileAttr](/official/Reference/VBA/FileSystem/FileAttr) -- 返回以**Open**语句打开的文件模式
+- [FileCopy](/official/Reference/VBA/FileSystem/FileCopy) -- 复制文件
+- [FileDateTime](/official/Reference/VBA/FileSystem/FileDateTime) -- 返回文件创建或最后修改的日期和时间
+- [FileLen](/official/Reference/VBA/FileSystem/FileLen) -- 返回文件的字节长度
+- [FreeFile](/official/Reference/VBA/FileSystem/FreeFile) -- 返回**Open**语句可用的下一个文件号
+- [GetAttr](/official/Reference/VBA/FileSystem/GetAttr) -- 返回文件或目录的属性
+- [Input, Input$](/official/Reference/VBA/FileSystem/Input) -- 从打开的顺序文件中读取固定数量的字符
+- [InputB, InputB$](/official/Reference/VBA/FileSystem/InputB) -- 从打开的顺序文件中读取固定数量的字节
+- [Kill](/official/Reference/VBA/FileSystem/Kill) -- 从磁盘删除文件
+- [Loc](/official/Reference/VBA/FileSystem/Loc) -- 返回打开文件中当前的读/写位置
+- [LOF](/official/Reference/VBA/FileSystem/LOF) -- 返回打开文件的大小（字节）
+- [MkDir](/official/Reference/VBA/FileSystem/MkDir) -- 创建新目录或文件夹
+- [Reset](/official/Reference/VBA/FileSystem/Reset) -- 关闭所有以**Open**语句打开的磁盘文件
+- [RmDir](/official/Reference/VBA/FileSystem/RmDir) -- 删除现有目录或文件夹
+- [Seek](/official/Reference/VBA/FileSystem/Seek) -- 返回或设置打开文件中的读/写位置
+- [SetAttr](/official/Reference/VBA/FileSystem/SetAttr) -- 设置文件的属性信息
+- [Width](/official/Reference/VBA/FileSystem/Width) -- 设置顺序输出文件的行宽

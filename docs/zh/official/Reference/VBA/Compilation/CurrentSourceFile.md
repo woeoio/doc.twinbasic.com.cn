@@ -2,20 +2,29 @@
 title: CurrentSourceFile
 parent: Compilation Module
 permalink: /tB/Modules/Compilation/CurrentSourceFile
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ea9f29f8-22f4-4810-b2a5-25da8c900e1d'
+  PropagateID: 'ea9f29f8-22f4-4810-b2a5-25da8c900e1d'
+  ReservedCode1: '597474a1-b12b-499b-b9d5-30b5475a6f9b'
+  ReservedCode2: '597474a1-b12b-499b-b9d5-30b5475a6f9b'
 ---
+
 # CurrentSourceFile
 
-Returns the full path of the source file in which the function is called, as a **String**.
+以 **String** 形式返回函数被调用时所在源文件的完整路径。
 
-Syntax: **CurrentSourceFile** [ **()** ]
+语法：**CurrentSourceFile** [ **()** ]
 
-The value is the absolute path of the source file that lexically contains the call.
+该值是词汇上包含调用的源文件的绝对路径。
 
 ::: info
-**CurrentSourceFile** is a compile-time intrinsic: the path is captured when the source is compiled. It reflects where the file lived on the build machine and may not correspond to any path that exists at run time.
+**CurrentSourceFile** 是编译时内部函数：路径在源代码编译时捕获。它反映的是文件在构建机器上的位置，可能与运行时存在的任何路径不一致。
 :::
 
-### Example
+### 示例
 
 ```vb
 Public Sub TraceHere()
@@ -23,8 +32,8 @@ Public Sub TraceHere()
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [CurrentComponentName](/official/Reference/VBA/Compilation/CurrentComponentName) function
-- [CurrentProcedureName](/official/Reference/VBA/Compilation/CurrentProcedureName) function
-- [CurrentProjectName](/official/Reference/VBA/Compilation/CurrentProjectName) function
+- [CurrentComponentName](/official/Reference/VBA/Compilation/CurrentComponentName) 函数
+- [CurrentProcedureName](/official/Reference/VBA/Compilation/CurrentProcedureName) 函数
+- [CurrentProjectName](/official/Reference/VBA/Compilation/CurrentProjectName) 函数

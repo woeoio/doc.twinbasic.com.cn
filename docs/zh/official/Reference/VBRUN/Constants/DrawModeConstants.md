@@ -1,27 +1,36 @@
-﻿---
+---
 title: DrawModeConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/DrawModeConstants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '27255747-f068-4c53-bd41-3ed3fda0d8f8'
+  PropagateID: '27255747-f068-4c53-bd41-3ed3fda0d8f8'
+  ReservedCode1: '45cac769-0379-4859-a628-09f9ecf51dad'
+  ReservedCode2: '45cac769-0379-4859-a628-09f9ecf51dad'
 ---
+
 # DrawModeConstants
 
-GDI raster-operation values for the **DrawMode** property, controlling how the pen colour is combined with the existing pixels when drawing with **PSet**, **Line**, **Circle**, and similar methods.
+**DrawMode**属性的GDI光栅操作值，控制使用**PSet**、**Line**、**Circle**和类似方法绘图时画笔颜色如何与现有像素组合。
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbBlackness** | 1 | Output is black. |
-| **vbNotMergePen** | 2 | Inverse of **vbMergePen**. |
-| **vbMaskNotPen** | 3 | Combination of the colours common to the background and the inverse of the pen. |
-| **vbNotCopyPen** | 4 | Inverse of **vbCopyPen**. |
-| **vbMaskPenNot** | 5 | Combination of the pen and the inverse of the screen. |
-| **vbInvert** | 6 | Inverse of the existing screen colour. |
-| **vbXorPen** | 7 | XOR of the pen and the screen. |
-| **vbNotMaskPen** | 8 | Inverse of **vbMaskPen**. |
-| **vbMaskPen** | 9 | Combination of the colours common to both the pen and the screen. |
-| **vbNotXorPen** | 10 | Inverse of **vbXorPen**. |
-| **vbNop** | 11 | No drawing --- the screen is left unchanged. |
-| **vbMergeNotPen** | 12 | Combination of the screen and the inverse of the pen. |
-| **vbCopyPen** | 13 | Output is the pen colour (the default). |
-| **vbMergePenNot** | 14 | Combination of the pen and the inverse of the screen. |
-| **vbMergePen** | 15 | Combination of the pen colour and the screen colour. |
-| **vbWhiteness** | 16 | Output is white. |
+| **vbBlackness** | 1 | 输出为黑色。 |
+| **vbNotMergePen** | 2 | **vbMergePen**的反转。 |
+| **vbMaskNotPen** | 3 | 背景与画笔反转的共有颜色组合。 |
+| **vbNotCopyPen** | 4 | **vbCopyPen**的反转。 |
+| **vbMaskPenNot** | 5 | 画笔与屏幕反转的组合。 |
+| **vbInvert** | 6 | 现有屏幕颜色的反转。 |
+| **vbXorPen** | 7 | 画笔与屏幕的异或。 |
+| **vbNotMaskPen** | 8 | **vbMaskPen**的反转。 |
+| **vbMaskPen** | 9 | 画笔与屏幕共有颜色的组合。 |
+| **vbNotXorPen** | 10 | **vbXorPen**的反转。 |
+| **vbNop** | 11 | 不绘图 --- 屏幕保持不变。 |
+| **vbMergeNotPen** | 12 | 屏幕与画笔反转的组合。 |
+| **vbCopyPen** | 13 | 输出为画笔颜色（默认）。 |
+| **vbMergePenNot** | 14 | 画笔与屏幕反转的组合。 |
+| **vbMergePen** | 15 | 画笔颜色与屏幕颜色的组合。 |
+| **vbWhiteness** | 16 | 输出为白色。 |

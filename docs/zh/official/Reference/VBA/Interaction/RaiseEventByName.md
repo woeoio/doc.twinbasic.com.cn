@@ -2,31 +2,40 @@
 title: RaiseEventByName
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/RaiseEventByName
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1b3eeebe-e63b-4e58-acda-9176558b3ff9'
+  PropagateID: '1b3eeebe-e63b-4e58-acda-9176558b3ff9'
+  ReservedCode1: '114671a6-3c6c-41b1-98c5-72e75a902cd2'
+  ReservedCode2: '114671a6-3c6c-41b1-98c5-72e75a902cd2'
 ---
+
 # RaiseEventByName
 
-Raises an event by name on an object, with the event arguments supplied as a **Variant** array. **RaiseEventByName** is a twinBASIC addition; the equivalent at compile time is the **RaiseEvent** statement, which requires the event name to be known when the code is written.
+按名称在对象上引发事件，事件参数作为**Variant**数组提供。**RaiseEventByName**是twinBASIC新增项；编译时的等价物是**RaiseEvent**语句，它要求在编写代码时已知事件名称。
 
-Syntax: **RaiseEventByName(** *object* **,** *procname* [ **,** *argsarray* ] **)**
+语法：**RaiseEventByName(** *object* **,** *procname* [ **,** *argsarray* ] **)**
 
 *object*
-: *required* **Object**. The object on which to raise the event. The object must declare a public event with the matching *procname* and an arity matching the number of items in *argsarray*.
+: *必需* **Object**。要在其上引发事件的对象。该对象必须声明具有匹配*procname*且元数与*argsarray*中项数匹配的公共事件。
 
 *procname*
-: *required* **String**. The name of the event to raise.
+: *必需* **String**。要引发的事件的名称。
 
 *argsarray*
-: *optional* **Variant**. A one-dimensional array containing the arguments to pass to the event handler(s), in declaration order. Pass an uninitialized **Variant** for an event that takes no parameters.
+: *可选* **Variant**。包含传给事件处理程序的参数的一维数组，按声明顺序。对于不带参数的事件，传入未初始化的**Variant**。
 
-Returns a **Variant**. The returned value is the value left in the last `ByRef` event argument by the handler --- useful only when the event has a `ByRef` "out" or "cancel" parameter.
+返回**Variant**。返回值是处理程序在最后一个`ByRef`事件参数中留下的值——仅当事件具有`ByRef`"输出"或"取消"参数时有意义。
 
 ::: info
-The variable-length-argument variant of this function --- [**RaiseEventByName2**](/official/Reference/VBA/Interaction/RaiseEventByName2) --- accepts arguments directly via **ParamArray**, which is usually more readable when the event signature is fixed. Use **RaiseEventByName** when the argument list is itself constructed dynamically.
+此函数的可变长度参数变体——[**RaiseEventByName2**](/official/Reference/VBA/Interaction/RaiseEventByName2)——通过**ParamArray**直接接受参数，当事件签名固定时通常更易读。当参数列表本身是动态构建时，使用**RaiseEventByName**。
 :::
 
-If *procname* doesn't match any event declared on *object*, or the supplied arity doesn't match the event declaration, a run-time error occurs.
+如果*procname*不匹配*object*上声明的任何事件，或提供的元数与事件声明不匹配，则产生运行时错误。
 
-### Example
+### 示例
 
 ```vb
 Dim Args(0) As Variant
@@ -34,7 +43,7 @@ Args(0) = "Some argument value"
 RaiseEventByName MyControl, "ValueChanged", Args
 ```
 
-### See Also
+### 另请参阅
 
-- [RaiseEventByName2](/official/Reference/VBA/Interaction/RaiseEventByName2) function
-- [CallByName](/official/Reference/VBA/Interaction/CallByName) function
+- [RaiseEventByName2](/official/Reference/VBA/Interaction/RaiseEventByName2)函数
+- [CallByName](/official/Reference/VBA/Interaction/CallByName)函数

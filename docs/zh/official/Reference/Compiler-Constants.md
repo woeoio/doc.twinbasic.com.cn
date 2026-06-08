@@ -1,59 +1,67 @@
 ---
-title: Compiler Constants
+title: "编译器常量"
 parent: Reference Section
 nav_order: 5
 permalink: /Reference/Compiler-Constants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'dd5864dc-1e96-49f0-95a6-f1d7fa18d66e'
+  PropagateID: 'dd5864dc-1e96-49f0-95a6-f1d7fa18d66e'
+  ReservedCode1: 'c951b8b6-c36e-478a-9ed3-1d6c48803ee6'
+  ReservedCode2: 'c951b8b6-c36e-478a-9ed3-1d6c48803ee6'
 ---
 
-This is a guide to the built in compiler constants in twinBASIC. It includes the constants listed for VBA in its documentation even if they're not defined, as an undefined compiler constant can always be used, but will be 0.
+本指南介绍twinBASIC中的内置编译器常量。它包含VBA文档中列出的常量，即使它们未定义也可以使用，因为未定义的编译器常量始终可用，但其值为0。
 
 ## `Win16`
 
-**Purpose:** Indicates a 16-bit Windows compatible platform.\
-**Value:** Always 0 (False); 16 bit Windows is not supported.
+**用途：** 指示16位Windows兼容平台。\
+**值：** 始终为0（False）；不支持16位Windows。
 
 ## `Win32` 
 
-**Purpose:** Indicates a 32bit compatible Windows platform\
-**Value:** Always 1 (True) on supported Windows platforms, for both 32bit and 64bit.
+**用途：** 指示32位兼容Windows平台\
+**值：** 在受支持的Windows平台上始终为1（True），无论是32位还是64位。
 
 ## `Win64`
 
-**Purpose:** Indicates a 64bit Windows AMD64 platform.\
-**Value:** 0 (False) when the compiler is in 32bit mode, 1 (True) when in 64bit mode.
+**用途：** 指示64位Windows AMD64平台。\
+**值：** 编译器处于32位模式时为0（False），处于64位模式时为1（True）。
 
 ## `VBA6`
 
-**Purpose:** Indicates compatibility with VBA6 syntax.\
-**Value:** Always 1 (True).
+**用途：** 指示与VBA6语法的兼容性。\
+**值：** 始终为1（True）。
 
 ## `VBA7`
 
-**Purpose:** Indicates compatibility with VBA7 syntax.\
-**Value:** Always 1 (True).
+**用途：** 指示与VBA7语法的兼容性。\
+**值：** 始终为1（True）。
 
 ## `MAC`
-**Purpose:** Indicates running on a MacOS platform.\
-**Value:** Always 0 (False). Mac is not currently supported, although this will change in the future.
+**用途：** 指示是否在MacOS平台上运行。\
+**值：** 始终为0（False）。目前不支持Mac，但将来会改变。
 
 ## `TWINBASIC`
 
-**Purpose:** Indicates compatibility with twinBASIC syntax.\
-**Value:** Always 1 (True).
+**用途：** 指示与twinBASIC语法的兼容性。\
+**值：** 始终为1（True）。
 
 ## `TWINBASIC_BUILD`
 
-**Purpose:** Provides a `Long` value giving the current twinBASIC Build Number.\
-**Value:** Currently this is the same as the "BETA" number, e.g. for Beta 610 it will have a value of 610.
+**用途：** 提供一个`Long`值，表示当前twinBASIC构建号。\
+**值：** 目前与"BETA"编号相同，例如Beta 610的值为610。
 
 ## `TWINBASIC_BUILD_TYPE`
-**Purpose:** Allows conditional compilation based on whether the project is an exe, dll, or ocx.\
-**Value:** A `String` that can be one of "Standard EXE", "Standard DLL", "ActiveX DLL", or "ActiveX Control", determined by the "Build Type" option in Project Settings.
+**用途：** 允许根据项目是exe、dll还是ocx进行条件编译。\
+**值：** 一个`String`，可以是"Standard EXE"、"Standard DLL"、"ActiveX DLL"或"ActiveX Control"，由项目设置中的"Build Type"选项决定。
 
 
-# Usage
+# 用法
 
-Usage of these follows the standard syntax of using a hashtag before the standard `If/Else/ElseIf` conditionals. For example, to differentiate between 32bit and 64bit VBA vs 64bit twinBASIC, 
+使用方式遵循在标准`If/Else/ElseIf`条件前加井号号的标准语法。例如，要区分32位和64位VBA与64位twinBASIC：
 
 ```vb
 #If VBA7 Then
@@ -81,7 +89,7 @@ Usage of these follows the standard syntax of using a hashtag before the standar
 #End If
 ```
 
-Or more simply, to determine whether to use `PtrSafe` then `DeclareWide` or other tB features:
+或者更简单地，判断是否使用`PtrSafe`、`DeclareWide`或其他tB功能：
 
 ```vb
 #If VBA7 Then
@@ -96,21 +104,21 @@ Or more simply, to determine whether to use `PtrSafe` then `DeclareWide` or othe
 ```
 
 ::: important
-Reminder: Compiler Constants are not `Boolean` values, so you shouuldn't use syntax like `#If Not Win64 Then` as the result may not be desired, for instance that example evaluates to `True` for both 32bit and 64bit modes when you likely used it expecting `False` under 64bit to use 32bit-only code.\
+提醒：编译器常量不是`Boolean`值，因此不应使用`#If Not Win64 Then`这样的语法，因为结果可能不符合预期。例如，该表达式在32位和64位模式下都会求值为`True`，而你可能期望在64位下为`False`以使用仅限32位的代码。\
 :::
-If you wish to treat these as `Boolean`, you can use the `CBool()` function, e.g. `#If Not CBool(Win64) Then`.
+如果希望将它们视为`Boolean`，可以使用`CBool()`函数，例如`#If Not CBool(Win64) Then`。
 
-# Appearance
+# 外观
 
-The tB editor has the helpful feature of showing you in real time which compiler constants are active. Code in `#If` blocks is inactive and will appear grayed out if it will not execute under current settings. Note that unlike VBx, inactive code is not evaluated for errors.
+tB编辑器具有实时显示编译器常量是否处于活动状态的有用功能。`#If`块中不会在当前设置下执行的代码会显示为灰色。注意，与VBx不同，不活动的代码不会进行错误检查。
 
-For example, in 32bit mode:\
+例如，在32位模式下：\
 ![image](Images/oHpCiV1.png)
 
-Then switching to 64bit mode:\
+切换到64位模式后：\
 ![image](Images/TYizrRW.png)
 
 
 ---
-*VB6, VBA, VBA6, and VBA7 are trademarks of the Microsoft Corporation.*\
-*MacOS is a trademark of Apple, Inc.*
+*VB6、VBA、VBA6和VBA7是Microsoft Corporation的商标。*\
+*MacOS是Apple, Inc.的商标。*

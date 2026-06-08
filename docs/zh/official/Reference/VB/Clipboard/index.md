@@ -1,14 +1,25 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4f95127f-e7ad-40f3-8749-0410d3a0a3ae'
+  PropagateID: '4f95127f-e7ad-40f3-8749-0410d3a0a3ae'
+  ReservedCode1: 'fa7510ee-3677-40ad-b240-7ba38ad7727a'
+  ReservedCode2: 'fa7510ee-3677-40ad-b240-7ba38ad7727a'
+---
+
 ---
 title: Clipboard
 parent: VB Package
 permalink: /tB/Packages/VB/Clipboard/
 ---
 
-# Clipboard class
+# Clipboard 类
 
-The **Clipboard** class wraps the system clipboard --- the Win32 inter-application copy-and-paste API --- and exposes it as a singleton object. Code reads and writes text, queries which formats are currently available, and (eventually --- see [the picture caveat](#picture-data)) reads and writes pictures.
+**Clipboard** 类封装了系统剪贴板——即 Win32 进程间复制粘贴API——并将其作为单例对象公开。代码通过它可以读写文本、查询当前可用的格式，以及（最终——参见[图片数据注意事项](#picture-data)）读写图片。
 
-**Clipboard** is not creatable: there is exactly one instance per process, owned by the runtime and exposed through the [**Clipboard**](/official/Reference/VB/Global/#clipboard) property on the [**Global**](/official/Reference/VB/Global/) app-object. Code reaches it without qualification:
+**Clipboard** 不可创建：每个进程只有一个实例，由运行时拥有，并通过[**Global**](/official/Reference/VB/Global/)应用对象的[**Clipboard**](/official/Reference/VB/Global/#clipboard)属性公开。代码无需限定即可访问：
 
 ```vb
 ' Copy
@@ -22,64 +33,64 @@ End If
 ```
 
 
-## Formats
+## 格式
 
-Clipboard contents are tagged with a *format* --- text, bitmap, files, rich text, and so on. The [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) enum lists the predefined formats:
+剪贴板内容以*格式*标记——文本、位图、文件、富文本等。[**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants)枚举列出了预定义的格式：
 
-| Constant              | Value | Meaning                                        |
-|-----------------------|-------|------------------------------------------------|
-| **vbCFText**          | 1     | ANSI plain text.                               |
-| **vbCFBitmap**        | 2     | DDB (device-dependent bitmap).                 |
-| **vbCFMetafile**      | 3     | Windows metafile (`WMF`).                      |
-| **vbCFDIB**           | 8     | DIB (device-independent bitmap).               |
-| **vbCFPalette**       | 9     | Colour palette.                                |
-| **vbCFUnicodeText**   | 13    | UTF-16 plain text.                             |
-| **vbCFEMetafile**     | 14    | Enhanced metafile (`EMF`).                     |
-| **vbCFFiles**         | 15    | A list of file paths (`CF_HDROP`).             |
-| **vbCFLink**          | `&HFFFFBF00` | DDE link (legacy OLE-1 link source).     |
-| **vbCFRTF**           | `&HFFFFBF01` | Rich Text Format.                        |
+| 常量                  | 值          | 含义                                       |
+|-----------------------|-------------|--------------------------------------------|
+| **vbCFText**          | 1           | ANSI纯文本。                              |
+| **vbCFBitmap**        | 2           | DDB（设备相关位图）。                     |
+| **vbCFMetafile**      | 3           | Windows图元文件（`WMF`）。                |
+| **vbCFDIB**           | 8           | DIB（设备无关位图）。                     |
+| **vbCFPalette**       | 9           | 调色板。                                   |
+| **vbCFUnicodeText**   | 13          | UTF-16纯文本。                            |
+| **vbCFEMetafile**     | 14          | 增强型图元文件（`EMF`）。                 |
+| **vbCFFiles**         | 15          | 文件路径列表（`CF_HDROP`）。              |
+| **vbCFLink**          | `&HFFFFBF00` | DDE链接（旧版OLE-1链接源）。             |
+| **vbCFRTF**           | `&HFFFFBF01` | 富文本格式。                              |
 
-The [**GetText**](#gettext) / [**SetText**](#settext) methods take an optional *Format* argument constrained to the text-shaped subset (**vbCFText**, **vbCFUnicodeText**, **vbCFRTF**, **vbCFLink**). The [**GetData**](#getdata) / [**SetData**](#setdata) methods handle pictures, restricted to the bitmap and metafile formats.
+[**GetText**](#gettext) / [**SetText**](#settext)方法接受一个可选的*Format*参数，限制为文本类子集（**vbCFText**、**vbCFUnicodeText**、**vbCFRTF**、**vbCFLink**）。[**GetData**](#getdata) / [**SetData**](#setdata)方法处理图片，仅限于位图和图元文件格式。
 
-## Picture data
+## 图片数据
 
-The picture methods --- [**GetData**](#getdata) and [**SetData**](#setdata) --- are declared but not yet connected.
+图片方法——[**GetData**](#getdata)和[**SetData**](#setdata)——已声明但尚未连接。
 
 ::: info
-[**GetData**](#getdata) and [**SetData**](#setdata) are reserved for compatibility with VB6; they are not currently implemented in twinBASIC. For picture-clipboard interop, use the Win32 clipboard API (`OpenClipboard`, `GetClipboardData`, `SetClipboardData`, `CloseClipboard`) directly until the implementation lands.
+[**GetData**](#getdata)和[**SetData**](#setdata)保留用于与VB6兼容；目前在twinBASIC中尚未实现。对于图片-剪贴板互操作，请直接使用Win32剪贴板API（`OpenClipboard`、`GetClipboardData`、`SetClipboardData`、`CloseClipboard`），直到该实现落地。
 :::
 
-[**Clear**](#clear), [**GetText**](#gettext), [**SetText**](#settext), and [**GetFormat**](#getformat) are all fully functional.
+[**Clear**](#clear)、[**GetText**](#gettext)、[**SetText**](#settext)和[**GetFormat**](#getformat)均已完全可用。
 
-## Methods
+## 方法
 
 ### Clear
 
-Empties the clipboard, removing every format currently on it.
+清空剪贴板，移除其上当前的所有格式。
 
-Syntax: *object*.**Clear**
+语法：*object*.**Clear**
 
 ### GetData
 
-Reads picture data from the clipboard. Returns the result as a **stdole.StdPicture**.
+从剪贴板读取图片数据。返回结果为**stdole.StdPicture**。
 
-Syntax: *object*.**GetData**( [ *Format* ] )
+语法：*object*.**GetData**( [ *Format* ] )
 
 *Format*
-: *optional* A member of [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) selecting which picture format to retrieve (**vbCFBitmap**, **vbCFDIB**, **vbCFMetafile**, **vbCFEMetafile**, or **vbCFPalette**). When omitted, the implementation picks the most descriptive format the clipboard currently holds.
+: *可选* [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants)的成员，选择要检索的图片格式（**vbCFBitmap**、**vbCFDIB**、**vbCFMetafile**、**vbCFEMetafile**或**vbCFPalette**）。省略时，实现会选择剪贴板当前持有的最具描述性的格式。
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
 ### GetFormat
 
-Tests whether the clipboard currently contains data in the given format. Returns **True** if it does, **False** otherwise.
+测试剪贴板当前是否包含给定格式的数据。如果包含则返回**True**，否则返回**False**。
 
-Syntax: *object*.**GetFormat**( *Format* )
+语法：*object*.**GetFormat**( *Format* )
 
 *Format*
-: *required* A member of [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) --- the format to probe for.
+: *必需* [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants)的成员——要探测的格式。
 
 ```vb
 If Clipboard.GetFormat(vbCFFiles) Then
@@ -89,12 +100,12 @@ End If
 
 ### GetText
 
-Reads text data from the clipboard. Returns a **String**; returns an empty string if the clipboard does not currently hold data in the requested format.
+从剪贴板读取文本数据。返回**String**；如果剪贴板当前不包含所请求格式的数据，则返回空字符串。
 
-Syntax: *object*.**GetText**( [ *Format* ] )
+语法：*object*.**GetText**( [ *Format* ] )
 
 *Format*
-: *optional* A member of [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) selecting which text format to retrieve: **vbCFText** (default), **vbCFUnicodeText**, **vbCFRTF**, or **vbCFLink**.
+: *可选* [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants)的成员，选择要检索的文本格式：**vbCFText**（默认）、**vbCFUnicodeText**、**vbCFRTF**或**vbCFLink**。
 
 ```vb
 Dim s As String
@@ -105,31 +116,31 @@ rtf = Clipboard.GetText(vbCFRTF)         ' RTF, if available
 
 ### SetData
 
-Places picture data onto the clipboard.
+将图片数据放到剪贴板上。
 
-Syntax: *object*.**SetData** *Picture* [, *Format* ]
+语法：*object*.**SetData** *Picture* [, *Format* ]
 
 *Picture*
-: *required* A **stdole.StdPicture** holding the picture to copy.
+: *必需* 持有要复制的图片的**stdole.StdPicture**。
 
 *Format*
-: *optional* A member of [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) --- which picture format to publish. When omitted, the format is inferred from the picture's underlying type.
+: *可选* [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants)的成员——要发布的图片格式。省略时，格式从图片的基础类型推断。
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
 ### SetText
 
-Places text data onto the clipboard. Note that **SetText** does *not* implicitly clear the clipboard first --- call [**Clear**](#clear) explicitly to ensure that no stale data of other formats survives alongside the new value.
+将文本数据放到剪贴板上。注意，**SetText** *不会*隐式地先清空剪贴板——需显式调用[**Clear**](#clear)以确保不会在新值旁边残留其他格式的过期数据。
 
-Syntax: *object*.**SetText** *Str* [, *Format* ]
+语法：*object*.**SetText** *Str* [, *Format* ]
 
 *Str*
-: *required* The **String** to publish.
+: *必需* 要发布的**String**。
 
 *Format*
-: *optional* A member of [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) --- **vbCFText** (default), **vbCFUnicodeText**, **vbCFRTF**, or **vbCFLink**.
+: *可选* [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants)的成员——**vbCFText**（默认）、**vbCFUnicodeText**、**vbCFRTF**或**vbCFLink**。
 
 ```vb
 Clipboard.Clear

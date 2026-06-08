@@ -1,34 +1,43 @@
 ---
-title: MidB =
+title: "MidB ="
 parent: Statements
 permalink: /tB/Core/MidB-equals
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '925ee1a0-58d5-4da0-a83b-af1d2fb7b89d'
+  PropagateID: '925ee1a0-58d5-4da0-a83b-af1d2fb7b89d'
+  ReservedCode1: '2ea7e991-cd7b-4415-b336-5cfc997734a6'
+  ReservedCode2: '2ea7e991-cd7b-4415-b336-5cfc997734a6'
 ---
-# MidB = statement
 
-Replaces a specified number of bytes in a **Variant** (**String**) variable with bytes from another string. The byte-mode counterpart of the [**Mid =**](/official/Reference/Core/Mid-equals) statement.
+# MidB = 语句
 
-Syntax:
+用另一个字符串的字节替换 **Variant** (**String**) 变量中指定数量的字节。[**Mid =**](/official/Reference/Core/Mid-equals) 语句的字节模式对应版本。
+
+语法：
 > **MidB(** *stringvar* **,** *start* [ **,** *length* ] **) =** *string*
 
 *stringvar*
-: Name of the string variable to modify.
+: 要修改的字符串变量的名称。
 
 *start*
-: **Variant** (**Long**). Byte position in *stringvar* where the replacement of bytes begins.
+: **Variant** (**Long**)。*stringvar* 中开始替换字节的字节位置。
 
 *length*
-: *optional* **Variant** (**Long**). Number of bytes to replace. If omitted, all of *string* is used.
+: *可选* **Variant** (**Long**)。要替换的字节数。如果省略，使用 *string* 的全部内容。
 
 *string*
-: String expression whose bytes replace part of *stringvar*.
+: 其字节替换 *stringvar* 部分内容的字符串表达式。
 
-The number of bytes replaced is always less than or equal to the number of bytes in *stringvar*.
+替换的字节数始终小于或等于 *stringvar* 中的字节数。
 
-**MidB =** is the byte-positioned form of [**Mid =**](/official/Reference/Core/Mid-equals): in this form, *start* and *length* count bytes of the underlying buffer rather than characters. This matters in double-byte character set languages where one character may occupy two bytes.
+**MidB =** 是 [**Mid =**](/official/Reference/Core/Mid-equals) 的字节定位形式：在此形式中，*start* 和 *length* 计算底层缓冲区的字节而非字符。这在双字节字符集语言中很重要，其中一个字符可能占用两个字节。
 
-### See Also
+### 另请参阅
 
-- [**Mid =** statement](/official/Reference/Core/Mid-equals)
-- [**MidB** function](/official/Reference/VBA/Strings/Mid)
-- [**LSet** statement](/official/Reference/Core/LSet)
-- [**RSet** statement](/official/Reference/Core/RSet)
+- [**Mid =** 语句](/official/Reference/Core/Mid-equals)
+- [**MidB** 函数](/official/Reference/VBA/Strings/Mid)
+- [**LSet** 语句](/official/Reference/Core/LSet)
+- [**RSet** 语句](/official/Reference/Core/RSet)

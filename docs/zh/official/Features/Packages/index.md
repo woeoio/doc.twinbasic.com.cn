@@ -1,28 +1,36 @@
 ---
-title: Package Management
+title: "包管理"
 parent: Features
 nav_order: 6
 permalink: /Features/Packages/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a4b250a6-6338-49a1-ab22-53f5e7150dd4'
+  PropagateID: 'a4b250a6-6338-49a1-ab22-53f5e7150dd4'
+  ReservedCode1: '5523c65b-cefd-464c-ab9b-c9f6a8a8410c'
+  ReservedCode2: '5523c65b-cefd-464c-ab9b-c9f6a8a8410c'
 ---
 
-# Package Management
+# 包管理
 
-In twinBASIC, a *package* is a collection of components that you can reference from another twinBASIC project.  The components can be modules, classes or interfaces.
+在 twinBASIC 中，*包* 是一组可以从另一个 twinBASIC 项目引用的组件。组件可以是模块、类或接口。
 
-twinBASIC comes complete with a package manager service called TWINSERV[^1], allowing you to share and distribute TWINPACK packages to other twinBASIC developers.
+twinBASIC 内置了一个名为 TWINSERV[^1] 的包管理器服务，允许你向其他 twinBASIC 开发者共享和分发 TWINPACK 包。
 
-A twinBASIC package is distributed as a TWINPACK file that contains everything needed by the components in that package.  A project that references a TWINPACK package, imports the whole package into the file system of the root project, resulting in no external dependencies.
+twinBASIC 包以 TWINPACK 文件分发，包含该包中组件所需的一切。引用 TWINPACK 包的项目会将整个包导入根项目的文件系统中，不会产生外部依赖。
 
-With TWINPACK packages you group common components together into their own namespace whilst allowing for convenient code reuse without any of the problems often associated with using external DLL libraries.
+通过 TWINPACK 包，你可以将常用组件组合到自己的命名空间中，同时允许便捷的代码重用，而无需面对使用外部 DLL 库时常见的问题。
 
-Please be aware that TWINPACK files currently contain the full source code of your packaged components.  It is planned that we will in future allow for creating binary (compiled) TWINPACK files for developers that hold an Ultimate edition licence of twinBASIC.
+请注意，TWINPACK 文件目前包含打包组件的完整源代码。计划在将来允许持有 twinBASIC 终极版许可证的开发者创建二进制（已编译）TWINPACK 文件。
 
-## Topics
+## 主题
 
-- [Creating a TWINPACK Package](/official/Features/Packages/Creating-a-TWINPACK-package) -- packaging twinBASIC components into a distributable TWINPACK file.
-- [Importing a Package from TWINSERV](/official/Features/Packages/Importing-a-package-from-TWINSERV) -- browsing and installing packages from the TWINSERV online repository.
-- [Importing a Package from a TWINPACK File](/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file) -- installing a package from a local TWINPACK file.
-- [Linked Packages](/official/Features/Packages/Linked-Packages) -- storing a package in a shared location rather than embedding it in each project file.
-- [Updating a Package](/official/Features/Packages/Updating-a-package) -- removing an outdated package and installing a newer version from TWINSERV.
+- [创建 TWINPACK 包](/official/Features/Packages/Creating-a-TWINPACK-package) -- 将 twinBASIC 组件打包为可分发的 TWINPACK 文件。
+- [从 TWINSERV 导入包](/official/Features/Packages/Importing-a-package-from-TWINSERV) -- 浏览和安装 TWINSERV 在线仓库中的包。
+- [从 TWINPACK 文件导入包](/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file) -- 从本地 TWINPACK 文件安装包。
+- [链接包](/official/Features/Packages/Linked-Packages) -- 将包存储在共享位置而非嵌入每个项目文件中。
+- [更新包](/official/Features/Packages/Updating-a-package) -- 移除过时的包并从 TWINSERV 安装更新版本。
 
-[^1]: A service of TWINBASIC LTD offered to the user community.
+[^1]: TWINBASIC LTD 向用户社区提供的服务。

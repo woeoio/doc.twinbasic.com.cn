@@ -2,30 +2,39 @@
 title: CallByName
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/CallByName
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9cd4582e-f4f8-47f2-8a20-59426a6da15b'
+  PropagateID: '9cd4582e-f4f8-47f2-8a20-59426a6da15b'
+  ReservedCode1: '91b2de06-648c-4057-a8b4-99864829adb1'
+  ReservedCode2: '91b2de06-648c-4057-a8b4-99864829adb1'
 ---
+
 # CallByName
 
-Calls a method, or reads or writes a property, on an object --- looked up by name at run time.
+在运行时按名称查找并调用对象上的方法，或读取或写入属性。
 
-Syntax: **CallByName(** *object* **,** *procname* **,** *calltype* [ **,** *args* ... ] **)**
+语法：**CallByName(** *object* **,** *procname* **,** *calltype* [ **,** *args* ... ] **)**
 
 *object*
-: *required* **Object**. The object whose member is to be invoked.
+: *必需* **Object**。要调用其成员的对象。
 
 *procname*
-: *required* **String**. The name of the method or property to invoke on *object*.
+: *必需* **String**。要在*object*上调用的方法或属性的名称。
 
 *calltype*
-: *required* A [**VbCallType**](/official/Reference/VBA/Constants/VbCallType) value indicating the kind of member: `vbMethod`, `vbGet`, `vbLet`, or `vbSet`.
+: *必需* [**VbCallType**](/official/Reference/VBA/Constants/VbCallType)值，指示成员类型：`vbMethod`、`vbGet`、`vbLet`或`vbSet`。
 
 *args*
-: *optional* The arguments to pass to the method, **Property Get**, **Property Let**, or **Property Set**.
+: *可选* 传给方法、**Property Get**、**Property Let**或**Property Set**的参数。
 
-The return value is a **Variant** containing whatever the call returned. For methods that return nothing, or for property assignments, the result is **Empty**.
+返回值是一个**Variant**，包含调用返回的任何内容。对于不返回值的方法或属性赋值，结果为**Empty**。
 
-### Example
+### 示例
 
-These three calls use **CallByName** to operate on a control by name. The first sets its **MousePointer** property to the crosshair cursor, the second reads the same property back out, and the third invokes the **Move** method to reposition the control.
+这三个调用使用**CallByName**按名称操作控件。第一个将其**MousePointer**属性设置为十字光标，第二个读回同一属性，第三个调用**Move**方法重新定位控件。
 
 ```vb
 CallByName Text1, "MousePointer", vbLet, vbCrosshair
@@ -33,7 +42,7 @@ Result = CallByName(Text1, "MousePointer", vbGet)
 CallByName Text1, "Move", vbMethod, 100, 100
 ```
 
-### See Also
+### 另请参阅
 
-- [CallByDispId](/official/Reference/VBA/Interaction/CallByDispId) function
-- [VbCallType](/official/Reference/VBA/Constants/VbCallType) enumeration
+- [CallByDispId](/official/Reference/VBA/Interaction/CallByDispId)函数
+- [VbCallType](/official/Reference/VBA/Constants/VbCallType)枚举

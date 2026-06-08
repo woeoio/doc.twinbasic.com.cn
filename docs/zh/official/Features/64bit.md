@@ -1,28 +1,36 @@
 ---
-title: 64bit Compilation
+title: "64位编译"
 parent: Features
 nav_order: 9
 permalink: /Features/64bit
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1d0aeb0e-2488-4f33-a84f-cb31d7938f7b'
+  PropagateID: '1d0aeb0e-2488-4f33-a84f-cb31d7938f7b'
+  ReservedCode1: '805c34a9-8efa-446d-8bfb-fa443c4d3240'
+  ReservedCode2: '805c34a9-8efa-446d-8bfb-fa443c4d3240'
 ---
 
-# 64bit Compilation
+# 64位编译
 
-twinBASIC can compile native 64bit executables in addition to 32bit. The syntax is compatible with VBA7 for this: the `LongPtr` data type and the standard to mark APIs `PtrSafe`.
+twinBASIC 除了编译 32 位外，还能编译原生 64 位可执行文件。其语法兼容 VBA7：使用 `LongPtr` 数据类型和标记 API 的标准关键字 `PtrSafe`。
 
-Using the [Fusion](/official/Features/Fusion) feature, it is also possible to use both 32bit and 64bit ActiveX controls in 32bit *and* 64bit projects.
+使用 [Fusion](/official/Features/Fusion) 功能，还可以在 32 位*和* 64 位项目中同时使用 32 位和 64 位 ActiveX 控件。
 
-## Example Syntax
+## 示例语法
 
 ```vb
 Public Declare PtrSafe Sub foo Lib "bar" (ByVal hWnd As LongPtr)
 ```
 
-## Important Considerations
+## 重要注意事项
 
 ::: important
-There is a lot more required to get most 32bit apps to work properly as 64bit. Only some `Long` variables are to be changed, and this is determined by their C/C++ data types, of which there are many. Examples that need to be `LongPtr` include handles like `HWND, HBITMAP, HICON,` and `HANDLE`; pointers like `void*, PVOID, ULONG_PTR, DWORD_PTR,` and `LPWSTR/PWSTR/LPCWSTR/WCHAR*` when passed as `Long`; and the `SIZE_T` type found in CopyMemory and memory allocation functions.
+要让大多数 32 位应用程序在 64 位下正常工作，还需要做更多工作。只有部分 `Long` 变量需要更改，这取决于它们对应的 C/C++ 数据类型（种类繁多）。需要改为 `LongPtr` 的示例包括：`HWND, HBITMAP, HICON` 和 `HANDLE` 等句柄；`void*, PVOID, ULONG_PTR, DWORD_PTR` 以及以 `Long` 传递时的 `LPWSTR/PWSTR/LPCWSTR/WCHAR*` 等指针；以及 CopyMemory 和内存分配函数中出现的 `SIZE_T` 类型。
 :::
 
-While the `PtrSafe` keyword is not mandatory, these changes still must be made. Additionally, any code working with memory pointers must account for the fact all the types mentioned (and the many more not), as well as v-table entries, are now either 4 or 8 bytes, when most programmers have traditionally hard coded 4 bytes. There are also UDT alignment issues more frequently. This is all very complex and you should seek resources and advice when moving to 64bit (though remember, 32bit is still supported so this isn't a requirement).
+虽然 `PtrSafe` 关键字并非强制要求，但这些更改仍然是必须的。此外，任何处理内存指针的代码都必须考虑到，所有上述类型（以及更多未提及的类型）以及 v-table 条目，现在可能是 4 或 8 字节，而大多数程序员传统上硬编码为 4 字节。UDT 对齐问题也更加频繁出现。这一切都非常复杂，在迁移到 64 位时应寻求资源和建议（不过请记住，32 位仍然受支持，因此这不是强制要求）。
 
-For common Windows APIs and COM interfaces, a community-developed package is available that provides 64bit compatible definitions: [Windows Development Library for twinBASIC (WinDevLib)](https://github.com/fafalone/WinDevLib).
+对于常见的 Windows API 和 COM 接口，社区开发了一个提供 64 位兼容定义的包：[Windows Development Library for twinBASIC (WinDevLib)](https://github.com/fafalone/WinDevLib)。

@@ -2,29 +2,38 @@
 title: Command
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/Command
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '26e8d13d-d85d-4276-89a0-26c5a7b84a83'
+  PropagateID: '26e8d13d-d85d-4276-89a0-26c5a7b84a83'
+  ReservedCode1: 'bb70931b-b604-4c95-a161-5c73d17de204'
+  ReservedCode2: 'bb70931b-b604-4c95-a161-5c73d17de204'
 ---
+
 # Command, Command$
 
-Returns the argument portion of the command line used to launch the program.
+返回用于启动程序的命令行参数部分。
 
-Syntax:
+语法：
 
 - **Command$()**
 - **Command()**
 
-The `$`-suffixed form returns a **String**; the unsuffixed form returns a **Variant** (**String**).
+带`$`后缀的形式返回**String**；不带后缀的形式返回**Variant**（**String**）。
 
-For applications compiled to an executable, **Command** returns any arguments that appear after the name of the application on the command line. For example, with the command line:
+对于编译为可执行文件的应用程序，**Command**返回命令行中应用程序名称之后出现的任何参数。例如，命令行：
 
 ```
 MyApp /switch arg1 arg2
 ```
 
-**Command** returns `"/switch arg1 arg2"`.
+**Command**返回`"/switch arg1 arg2"`。
 
-### Example
+### 示例
 
-This example uses **Command** to retrieve the command-line arguments and split them into an array.
+本示例使用**Command**检索命令行参数并将其拆分为数组。
 
 ```vb
 Function GetCommandLine(Optional MaxArgs As Variant) As Variant
@@ -58,7 +67,7 @@ Function GetCommandLine(Optional MaxArgs As Variant) As Variant
 End Function
 ```
 
-### See Also
+### 另请参阅
 
-- [Shell](/official/Reference/VBA/Interaction/Shell) function
-- [Environ](/official/Reference/VBA/Interaction/Environ) function
+- [Shell](/official/Reference/VBA/Interaction/Shell)函数
+- [Environ](/official/Reference/VBA/Interaction/Environ)函数

@@ -2,62 +2,71 @@
 title: DateAdd
 parent: DateTime Module
 permalink: /tB/Modules/DateTime/DateAdd
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e628367f-9173-4a1d-b18b-7e5b9b1b8e03'
+  PropagateID: 'e628367f-9173-4a1d-b18b-7e5b9b1b8e03'
+  ReservedCode1: 'bcc6b37b-a6ea-469a-9907-25b2b42bbaf8'
+  ReservedCode2: 'bcc6b37b-a6ea-469a-9907-25b2b42bbaf8'
 ---
+
 # DateAdd
 
-Returns a **Variant** (**Date**) containing a date to which a specified time interval has been added.
+返回一个 **Variant** (**Date**)，包含添加了指定时间间隔的日期。
 
-Syntax: **DateAdd** ( *interval*, *number*, *date* )
+语法：**DateAdd** ( *interval*, *number*, *date* )
 
 *interval*
-: *required* String expression that is the interval of time to add. See [Interval settings](#interval-settings).
+: *必需* 字符串表达式，表示要添加的时间间隔。参见[间隔设置](#interval-settings)。
 
 *number*
-: *required* Numeric expression for the number of intervals to add. It can be positive (to get dates in the future) or negative (to get dates in the past).
+: *必需* 数值表达式，表示要添加的间隔数。可以为正（获取未来日期）或负（获取过去日期）。
 
 *date*
-: *required* **Variant** (**Date**) or literal representing the date to which the interval is added.
+: *必需* **Variant** (**Date**) 或字面量，表示要添加间隔的日期。
 
-### Interval settings
+### 间隔设置
 
-| Setting  | Description  |
-|----------|-------------|
-| **yyyy** | Year         |
-| **q**    | Quarter      |
-| **m**    | Month        |
-| **y**    | Day of year  |
-| **d**    | Day          |
-| **w**    | Weekday      |
-| **ww**   | Week         |
-| **h**    | Hour         |
-| **n**    | Minute       |
-| **s**    | Second       |
+| 设置 | 描述 |
+|------|------|
+| **yyyy** | 年 |
+| **q** | 季度 |
+| **m** | 月 |
+| **y** | 一年中的天数 |
+| **d** | 日 |
+| **w** | 星期几 |
+| **ww** | 周 |
+| **h** | 小时 |
+| **n** | 分钟 |
+| **s** | 秒 |
 
-To add days to *date*, use Day of Year ("y"), Day ("d"), or Weekday ("w").
+要向 *date* 添加天数，请使用一年中的天数 ("y")、日 ("d") 或星期几 ("w")。
 
 ::: info
-When the "w" interval is used to add days to a date, **DateAdd** adds the total number of days specified, not just workdays (Monday through Friday).
+当使用 "w" 间隔向日期添加天数时，**DateAdd** 添加指定的总天数，而不仅仅是工作日（周一至周五）。
 :::
 
-**DateAdd** won't return an invalid date. The following example adds one month to January 31:
+**DateAdd** 不会返回无效日期。以下示例向 1 月 31 日添加一个月：
 
 ```vb
 DateAdd("m", 1, "31-Jan-95")
 ```
 
-In this case, **DateAdd** returns 28-Feb-95, not 31-Feb-95. If *date* is 31-Jan-96, it returns 29-Feb-96 because 1996 is a leap year.
+在这种情况下，**DateAdd** 返回 28-Feb-95，而非 31-Feb-95。如果 *date* 是 31-Jan-96，则返回 29-Feb-96，因为 1996 年是闰年。
 
-If the calculated date would precede the year 100, an error occurs.
+如果计算出的日期早于 100 年，将发生错误。
 
-If *number* isn't a **Long** value, it is rounded to the nearest whole number before being evaluated.
+如果 *number* 不是 **Long** 值，则在求值前四舍五入到最接近的整数。
 
-The format of the return value is determined by **Control Panel** settings, not by the format passed in the *date* argument.
+返回值的格式由**控制面板**设置决定，而非 *date* 参数中传递的格式。
 
-If the [**Calendar**](/official/Reference/VBA/DateTime/Calendar) property setting is Gregorian, the supplied date must be Gregorian. If the calendar is Hijri, the supplied date must be Hijri.
+如果 [**Calendar**](/official/Reference/VBA/DateTime/Calendar) 属性设置为公历，则提供的日期必须为公历。如果日历为回历，则提供的日期必须为回历。
 
-### Example
+### 示例
 
-This example takes a date and, using the **DateAdd** function, displays a corresponding date a specified number of months in the future.
+此示例取一个日期，并使用 **DateAdd** 函数显示指定月数后的对应日期。
 
 ```vb
 Dim FirstDate As Date
@@ -69,6 +78,6 @@ Number = InputBox("Enter number of months to add")
 MsgBox "New date: " & DateAdd(IntervalType, Number, FirstDate)
 ```
 
-### See Also
+### 另请参阅
 
-- [DateDiff](/official/Reference/VBA/DateTime/DateDiff), [DatePart](/official/Reference/VBA/DateTime/DatePart) functions
+- [DateDiff](/official/Reference/VBA/DateTime/DateDiff)、[DatePart](/official/Reference/VBA/DateTime/DatePart) 函数

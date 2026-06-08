@@ -1,35 +1,43 @@
 ---
-title: Window
+title: 窗口
 parent: Menu
 nav_order: 10
 permalink: /tB/IDE/Project/Menu/Window
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd09274e7-4b16-46bc-82e9-24b3cc80c98b'
+  PropagateID: 'd09274e7-4b16-46bc-82e9-24b3cc80c98b'
+  ReservedCode1: '0fa2bbbe-a5c8-447e-b6fb-cc2037055fc0'
+  ReservedCode2: '0fa2bbbe-a5c8-447e-b6fb-cc2037055fc0'
 ---
 
-# Window Menu
+# 窗口菜单
 
 ![Window Menu](Images/Menu_Window.png "Window Menu")
 
-- Panel Layouts
-- Panel Features
-- Keyboard Shortcuts
+- 面板布局
+- 面板功能
+- 键盘快捷键
 ---
-- Theme
-- Language
+- 主题
+- 语言
 
-## Panel Layouts
+## 面板布局
 
 ![Window Panel Layouts Menu](Images/Menu_Window_PanelLayouts.png "Window Panel Layouts Menu")
 
-- Default Built-in Layout <kbd>CTRL</kbd> + <kbd>#</kbd>
-- Full Screen Editor Layout
+- 默认内置布局 <kbd>CTRL</kbd> + <kbd>#</kbd>
+- 全屏编辑器布局
 ---
-- ✔ Custom Layout (Unsaved)
+- ✔ 自定义布局（未保存）
 ---
-- Save Current Panel Layout As...
-- Manage Panel Layouts...
+- 将当前面板布局另存为...
+- 管理面板布局...
 
 
-### Manage Panel Layouts...
+### 管理面板布局...
 
 ![Window Panel Layouts Default Menu](Images/Menu_Window_PanelLayouts_ManagePanelLayouts_Default.png "Window Panel Layouts Default Menu")
 
@@ -199,33 +207,33 @@ permalink: /tB/IDE/Project/Menu/Window
 
 </details>
 
-## Panel Features
+## 面板功能
 
 ![Window Panel Features Menu](Images/Menu_Window_PanelFeatures.png "Window Panel Features Menu")
 
-- ✔ Allow resizing of docked panels
-- ✔ Allow rearrangement of docked panels
-- ✔ Allow tear-out of docked panels
+- ✔ 允许调整停靠面板大小
+- ✔ 允许重新排列停靠面板
+- ✔ 允许拖出停靠面板
 ---
-- ✔ Allow resizing of floating panels
-- ✔ Allow movement of floating panels
+- ✔ 允许调整浮动面板大小
+- ✔ 允许移动浮动面板
 
-## Keyboard Shortcuts
+## 键盘快捷键
 
 ![Window Keyboard Shortcuts Menu](Images/Menu_Window_KeyboardShortcuts.png "Window Keyboard Shortcuts Menu")
 
-- ✔ Default Built-in Keyboard Shortcuts
+- ✔ 默认内置键盘快捷键
 ---
-- Manage Keyboard Shortcuts
+- 管理键盘快捷键
 
-### Manage Keyboard Shortcuts
+### 管理键盘快捷键
 
 ![Window Keyboard Shortcuts - Manage Keyboard Shortcuts Menu](Images/Menu_Window_KeyboardShortcuts_ManageKeyboardShortcuts.png "Window Keyboard Shortcuts - Manage Keyboard Shortcuts Menu")
 
 ![Window Keyboard Shortcuts - Manage Keyboard Shortcuts Menu](Images/Menu_Window_KeyboardShortcuts_ManageKeyboardShortcuts_1.png "Window Keyboard Shortcuts - Manage Keyboard Shortcuts Menu")
 
 <details>
-<summary markdown=span>Options</summary>
+<summary markdown=span>选项</summary>
 
 ```json
 {
@@ -951,20 +959,20 @@ permalink: /tB/IDE/Project/Menu/Window
 
 </details>
 
-## Theme
+## 主题
 
 ![Window Theme Menu](Images/Menu_Window_Theme.png "Window Theme Menu")
 
-- Classic (Light)
-- ✔ Dark
-- Light
+- 经典（浅色）
+- ✔ 深色
+- 浅色
 ---
-- Reload from disk
+- 从磁盘重新加载
 
-## Language
+## 语言
 
 ![Window Language Menu](Images/Menu_Window_Language.png "Window Language Menu")
 
 - ...
-- English (British English)
+- 英语（英式英语）
 - ...

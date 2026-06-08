@@ -2,21 +2,30 @@
 title: GetInheritedOwner
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/GetInheritedOwner
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c674073c-eff4-47eb-a9d1-136c1383f268'
+  PropagateID: 'c674073c-eff4-47eb-a9d1-136c1383f268'
+  ReservedCode1: '9060de3f-9ec3-405e-9d66-5a04d3f40d63'
+  ReservedCode2: '9060de3f-9ec3-405e-9d66-5a04d3f40d63'
 ---
+
 # GetInheritedOwner
 
-Returns the inherited owner object of a control.
+返回控件的继承所有者对象。
 
-Syntax: **GetInheritedOwner(** *Value* **)** **As Object**
+语法：**GetInheritedOwner(** *Value* **)** **As Object**
 
 *Value*
-: *required* **Object**. The control whose inherited owner is wanted.
+: *必需* **Object**。要获取其继承所有者的控件。
 
-For controls that participate in a control-container hierarchy, the inherited owner is the topmost owning object that supplies ambient settings --- typically the form. Returns **Nothing** when no inherited owner is set.
+对于参与控件容器层次结构的控件，继承所有者是提供环境设置的最上层拥有对象——通常是窗体。当没有设置继承所有者时返回**Nothing**。
 
-### Example
+### 示例
 
-This example reads the topmost container of a control and reports its type.
+本示例读取控件的最上层容器并报告其类型。
 
 ```vb
 ' Inside a VB control class
@@ -27,7 +36,6 @@ If Not host Is Nothing Then
 End If
 ```
 
-### See Also
+### 另请参阅
 
-- [vbaCastObj](/official/Reference/VBA/HiddenModule/vbaCastObj) function
-
+- [vbaCastObj](/official/Reference/VBA/HiddenModule/vbaCastObj)函数

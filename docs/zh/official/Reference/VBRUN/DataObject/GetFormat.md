@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f47a9525-a7dc-4317-b500-321c44dde4ad'
+  PropagateID: 'f47a9525-a7dc-4317-b500-321c44dde4ad'
+  ReservedCode1: '7132d602-6740-4df4-bb98-da90687aeecd'
+  ReservedCode2: '7132d602-6740-4df4-bb98-da90687aeecd'
+---
+
 ---
 title: GetFormat
 parent: DataObject
@@ -5,19 +16,19 @@ permalink: /tB/Packages/VBRUN/DataObject/GetFormat
 ---
 # GetFormat
 
-Returns whether the **DataObject** holds a value in the given clipboard format, as a **Boolean**.
+返回**DataObject**是否保存给定剪贴板格式的值，类型为**Boolean**。
 
-Syntax: *object*.**GetFormat(** *Format* **)**
+语法：*object*.**GetFormat(** *Format* **)**
 
 *object*
-: *required* An object expression that evaluates to a **DataObject**.
+: *必需* 求值为**DataObject**的对象表达式。
 
 *Format*
-: *required* A **ClipboardConstants** value identifying the format to test for --- for example `vbCFText`, `vbCFUnicodeText`, `vbCFBitmap`, `vbCFFiles`.
+: *必需* 标识要测试格式的**ClipboardConstants**值——例如`vbCFText`、`vbCFUnicodeText`、`vbCFBitmap`、`vbCFFiles`。
 
-The result is **True** if the **DataObject** can produce a value in *Format*, **False** otherwise. Use this before calling [**GetData**](/official/Reference/VBRUN/DataObject/GetData) when the format may not be present, so that an unknown format does not silently return **Empty**.
+如果**DataObject**可以在*Format*中产生值，结果为**True**，否则为**False**。当格式可能不存在时，在调用[**GetData**](/official/Reference/VBRUN/DataObject/GetData)之前使用此方法，以免未知格式静默返回**Empty**。
 
-### Example
+### 示例
 
 ```vb
 If Data.GetFormat(vbCFFiles) Then
@@ -28,9 +39,9 @@ If Data.GetFormat(vbCFFiles) Then
 End If
 ```
 
-### See Also
+### 另见
 
-- [GetData](/official/Reference/VBRUN/DataObject/GetData) method
-- [GetFormatByName](/official/Reference/VBRUN/DataObject/GetFormatByName) method
-- [AvailableFormats](/official/Reference/VBRUN/DataObject/AvailableFormats) method
-- [SetData](/official/Reference/VBRUN/DataObject/SetData) method
+- [GetData](/official/Reference/VBRUN/DataObject/GetData) 方法
+- [GetFormatByName](/official/Reference/VBRUN/DataObject/GetFormatByName) 方法
+- [AvailableFormats](/official/Reference/VBRUN/DataObject/AvailableFormats) 方法
+- [SetData](/official/Reference/VBRUN/DataObject/SetData) 方法

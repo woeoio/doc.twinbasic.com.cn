@@ -1,15 +1,23 @@
----
+﻿---
 title: WaynesTextBox
 parent: CustomControls Package
 permalink: /tB/Packages/CustomControls/WaynesTextBox/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '691a0abd-4f99-46cf-b3eb-3570170163f0'
+  PropagateID: '691a0abd-4f99-46cf-b3eb-3570170163f0'
+  ReservedCode1: '78aaa056-4293-4915-8bcf-b0c49c8e619e'
+  ReservedCode2: '78aaa056-4293-4915-8bcf-b0c49c8e619e'
 ---
 
-# WaynesTextBox class
-A single-line editable text field. The user can type, select with the mouse or with shift-modified cursor keys, jump word-by-word with **Ctrl+Left** / **Ctrl+Right**, double-click to select a word, and copy / cut / paste / select-all with the standard Windows shortcuts. The control draws its own caret, selection highlight, and inline text decorators (squiggle for *ERROR*, underline for *WARNING*, background highlight for *INFO*) on top of the configurable background.
+# WaynesTextBox 类
+单行可编辑文本字段。用户可以输入文本、用鼠标或 Shift+光标键选择文字、用 **Ctrl+Left** / **Ctrl+Right** 逐词跳转、双击选词，以及用标准 Windows 快捷键复制/剪切/粘贴/全选。控件在可配置背景之上绘制自己的插入符、选择高亮和内联文本装饰器（*ERROR* 的波浪线、*WARNING* 的下划线、*INFO* 的背景高亮）。
 
-The control paints three visual states ([**NormalState**](#normalstate), [**HoverState**](#hoverstate), [**FocusedState**](#focusedstate)) controlled by parallel [**WaynesTextBoxState**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState) sub-objects, each of which has its own background fill, borders, corners, text rendering, selection colours, caret colour, and decorator colours.
+控件绘制三种视觉状态（[**NormalState**](#normalstate)、[**HoverState**](#hoverstate)、[**FocusedState**](#focusedstate)），由并行的 [**WaynesTextBoxState**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState) 子对象控制，每个子对象有独立的背景填充、边框、角、文本渲染、选择颜色、插入符颜色和装饰器颜色。
 
-The current text is held in [**Value**](#value). Surrogate-pair characters are handled correctly by the cursor / selection logic --- the caret never appears between the high and low halves of a pair.
+当前文本保存在 [**Value**](#value) 中。代理对字符由光标/选择逻辑正确处理——插入符不会出现在代理对的高半部分和低半部分之间。
 
 ```vb
 Private Sub Form_Load()
@@ -19,7 +27,7 @@ Private Sub Form_Load()
 End Sub
 ```
 
-The three states are styled independently --- a common pattern is to give the focused state a heavier border in an accent colour and brighten its fill, so the active field stands out from its siblings:
+三种状态独立样式——常见模式是给焦点状态更粗的强调色边框和更亮的填充，使活动字段从同辈中突出：
 
 ```vb
 Private Sub Form_Load()
@@ -41,72 +49,72 @@ Private Sub Form_Load()
 End Sub
 ```
 
-## Inline text decorators
+## 内联文本装饰器
 
-As the user types, the control automatically marks any occurrence of three literal strings inside [**Value**](#value):
+用户输入时，控件自动标记 [**Value**](#value) 中三个字面字符串的出现：
 
-- `ERROR` --- a red squiggle underline (colour from [**WaynesTextBoxState.DecorationERROR**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState#decorationerror)).
-- `WARNING` --- a dark-blue 2-pixel straight underline (from [**DecorationWARNING**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState#decorationwarning)).
-- `INFO` --- a light-blue background highlight (from [**DecorationINFO**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState#decorationinfo)).
+- `ERROR` —— 红色波浪下划线（颜色来自 [**WaynesTextBoxState.DecorationERROR**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState#decorationerror)）。
+- `WARNING` —— 深蓝色 2 像素直线下划线（来自 [**DecorationWARNING**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState#decorationwarning)）。
+- `INFO` —— 浅蓝色背景高亮（来自 [**DecorationINFO**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState#decorationinfo)）。
 
-The colours are configurable per visual state. The substrings themselves are hard-coded into the control's paint logic in the current release.
+颜色可按视觉状态配置。子字符串本身在当前版本中控件的绘制逻辑中硬编码。
 
-## Properties
+## 属性
 
 ### Anchors
 
-Which sides of the control are attached to its container during resize. [**Anchors**](/official/Reference/CustomControls/Styles/Anchors). Inherited.
+调整大小时控件的哪些边附着到其容器。[**Anchors**](/official/Reference/CustomControls/Styles/Anchors)。继承。
 
 ### Dock
 
-How the control is docked inside its container. A member of [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode). Inherited.
+控件在其容器内的停靠方式。[**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) 的成员。继承。
 
 ### FocusedState
 
-The [**WaynesTextBoxState**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState) used when the control has the keyboard focus. Pre-set with focus-specific defaults --- orange caret, blue selection background.
+控件具有键盘焦点时使用的 [**WaynesTextBoxState**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState)。预设焦点特定默认值——橙色插入符、蓝色选择背景。
 
 ### Height
 
-The control's height in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件的高度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### HoverState
 
-The [**WaynesTextBoxState**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState) used when the mouse is hovering over the textbox without it having focus.
+鼠标悬停在文本框上但未获得焦点时使用的 [**WaynesTextBoxState**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState)。
 
 ### Left
 
-The horizontal offset of the control's left edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件左边缘距其容器的水平偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Name
 
-The unique design-time name of the control on its parent form. **String**. Inherited.
+控件在其父窗体上的唯一设计时名称。**String**。继承。
 
 ### NormalState
 
-The [**WaynesTextBoxState**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState) used when the textbox is idle --- not focused and not hovered.
+文本框空闲时——未焦点且未悬停——使用的 [**WaynesTextBoxState**](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState)。
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**. Inherited.
+控件在窗体 TAB 键导航顺序中的位置。**Long**。继承。
 
 ### TabStop
 
-Whether the user can reach the control by pressing **TAB**. **Boolean**. Inherited. Default: **True**.
+用户是否可以通过按 **TAB** 到达控件。**Boolean**。继承。默认：**True**。
 
 ### Top
 
-The vertical offset of the control's top edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件上边缘距其容器的垂直偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Value
 
-The current text in the field. **String**. Default: `"Textbox"`.
+字段中的当前文本。**String**。默认：`"Textbox"`。
 
-Syntax: *object*.**Value** [ = *string* ]
+语法：*object*.**Value** [ = *string* ]
 
 ### Visible
 
-Whether the control is currently displayed. **Boolean**. Inherited. Default: **True**.
+控件当前是否显示。**Boolean**。继承。默认：**True**。
 
 ### Width
 
-The control's width in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件的宽度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。

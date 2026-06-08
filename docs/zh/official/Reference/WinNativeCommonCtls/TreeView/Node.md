@@ -2,12 +2,21 @@
 title: Node
 parent: TreeView
 permalink: /tB/Packages/WinNativeCommonCtls/TreeView/Node
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '8b50e38c-9951-424e-a5fe-8ecb26e18a2d'
+  PropagateID: '8b50e38c-9951-424e-a5fe-8ecb26e18a2d'
+  ReservedCode1: '63f5358b-b9d5-4611-b864-fcb164128b96'
+  ReservedCode2: '63f5358b-b9d5-4611-b864-fcb164128b96'
 ---
 
-# Node class
-A **Node** is a single entry in a [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/)'s [**Nodes**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) collection. Returned from [**Nodes.Add**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes#add) and from [**Nodes.Item**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes#item). Each node has its own text, icons, sort settings, check state, and sibling / parent / child relationships.
+# Node 类
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **Node** instances through the parent [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/)'s [**Nodes**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) collection or through navigation properties on other nodes.
+**Node** 是 [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) 的 [**Nodes**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) 集合中的单个条目。从 [**Nodes.Add**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes#add) 和 [**Nodes.Item**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes#item) 返回。每个节点拥有自己的文本、图标、排序设置、选中状态和同级/父级/子级关系。
+
+该类标记为 `[COMCreatable(False)]` --- 用户代码通过父级 [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) 的 [**Nodes**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) 集合或其他节点上的导航属性访问 **Node** 实例。
 
 ```vb
 Dim root As Node = TreeView1.Nodes.Add(, , "root", "My Computer")
@@ -20,122 +29,122 @@ Debug.Print drive.Parent.Text           ' "My Computer"
 Debug.Print drive.Root.Text             ' "My Computer"
 ```
 
-Properties
+属性
 ----------
 
 ### BackColor
 
-The background color used to render this node. **OLE_COLOR**. Default: **vbWindowBackground**.
+用于渲染此节点的背景颜色。**OLE_COLOR**。默认：**vbWindowBackground**。
 
 ### Bold
 
-Whether the node text is rendered in a bold font. **Boolean**. Default: **False**.
+节点文本是否以粗体渲染。**Boolean**。默认：**False**。
 
 ### Checked
 
-Whether the node's checkbox is checked. **Boolean**. Only meaningful when [**TreeView.CheckBoxes**](/official/Reference/WinNativeCommonCtls/TreeView/#checkboxes) is **True**.
+节点的复选框是否选中。**Boolean**。仅在 [**TreeView.CheckBoxes**](/official/Reference/WinNativeCommonCtls/TreeView/#checkboxes) 为 **True** 时有意义。
 
 ### Child
 
-The first child node of this node, or **Nothing** if it has no children. **Node**, read-only.
+此节点的第一个子节点，如果没有子节点则为 **Nothing**。**Node**，只读。
 
 ### Children
 
-The number of immediate child nodes of this node. **Long**, read-only.
+此节点的直接子节点数。**Long**，只读。
 
 ### Expanded
 
-Whether the node is currently expanded (showing its children). **Boolean**, read/write. Assigning fires [**TreeView.BeforeExpand**](/official/Reference/WinNativeCommonCtls/TreeView/#beforeexpand) / [**TreeView.BeforeCollapse**](/official/Reference/WinNativeCommonCtls/TreeView/#beforecollapse) (cancellable) followed by [**TreeView.Expand**](/official/Reference/WinNativeCommonCtls/TreeView/#expand) / [**TreeView.Collapse**](/official/Reference/WinNativeCommonCtls/TreeView/#collapse).
+节点当前是否展开（显示其子节点）。**Boolean**，读/写。赋值触发 [**TreeView.BeforeExpand**](/official/Reference/WinNativeCommonCtls/TreeView/#beforeexpand) / [**TreeView.BeforeCollapse**](/official/Reference/WinNativeCommonCtls/TreeView/#beforecollapse)（可取消），随后触发 [**TreeView.Expand**](/official/Reference/WinNativeCommonCtls/TreeView/#expand) / [**TreeView.Collapse**](/official/Reference/WinNativeCommonCtls/TreeView/#collapse)。
 
 ### FirstSibling
 
-The first sibling of this node (the leftmost peer under the same parent). **Node**, read-only. If the node is itself the first sibling, returns the node.
+此节点的第一个同级节点（同一父级下最左侧的对等节点）。**Node**，只读。如果节点本身就是第一个同级，则返回该节点。
 
 ### ForeColor
 
-The text color used to render this node. **OLE_COLOR**. Default: **vbWindowText**.
+用于渲染此节点的文本颜色。**OLE_COLOR**。默认：**vbWindowText**。
 
 ### FullPath
 
-The hierarchical path from the root to this node, with [**TreeView.PathSeparator**](/official/Reference/WinNativeCommonCtls/TreeView/#pathseparator) inserted between node texts. **String**, read-only.
+从根到此节点的层次路径，节点文本之间插入 [**TreeView.PathSeparator**](/official/Reference/WinNativeCommonCtls/TreeView/#pathseparator)。**String**，只读。
 
-Example: a node "C: drive" whose parent is "My Computer" returns `"My Computer\C: drive"`.
+示例：父节点为"My Computer"的"C: drive"节点返回 `"My Computer\C: drive"`。
 
 ### Image
 
-The icon rendered when the node is not selected. **Variant** --- either a 1-based **Long** index into [**TreeView.ImageList**](/official/Reference/WinNativeCommonCtls/TreeView/#imagelist), or a **String** key. Assignment validates against the bound image list.
+节点未选中时渲染的图标。**Variant** --- 可以是基于1的 **Long** 索引指向 [**TreeView.ImageList**](/official/Reference/WinNativeCommonCtls/TreeView/#imagelist)，或 **String** 键。赋值会对照绑定图像列表进行验证。
 
 ### Index
 
-The 1-based position of this node in the parent collection. **Long**, read-only.
+此节点在父集合中基于1的位置。**Long**，只读。
 
 ### Key
 
-The string key the node was added under. **String**, read/write.
+节点添加时的字符串键。**String**，读/写。
 
 ### LastSibling
 
-The last sibling of this node (the rightmost peer under the same parent). **Node**, read-only.
+此节点的最后一个同级节点（同一父级下最右侧的对等节点）。**Node**，只读。
 
 ### Next
 
-The next sibling of this node, or **Nothing** if this is the last sibling. **Node**, read-only.
+此节点的下一个同级节点，如果这是最后一个同级则为 **Nothing**。**Node**，只读。
 
 ### Parent
 
-The parent **Node**, or **Nothing** if this node is at the root level. **Node**, read/write. Note: assigning **Parent** does not move the node --- it merely changes the recorded parent reference.
+父级 **Node**，如果此节点位于根级则为 **Nothing**。**Node**，读/写。注意：赋值 **Parent** 不会移动节点 --- 它仅更改记录的父级引用。
 
 ### Previous
 
-The previous sibling of this node, or **Nothing** if this is the first sibling. **Node**, read-only.
+此节点的前一个同级节点，如果这是第一个同级则为 **Nothing**。**Node**，只读。
 
 ### Root
 
-The root node of the subtree this node belongs to. **Node**, read-only.
+此节点所属子树的根节点。**Node**，只读。
 
 ### Selected
 
-Whether this node is the [**TreeView.SelectedItem**](/official/Reference/WinNativeCommonCtls/TreeView/#selecteditem) of the treeview. **Boolean**, read/write.
+此节点是否为树视图的 [**TreeView.SelectedItem**](/official/Reference/WinNativeCommonCtls/TreeView/#selecteditem)。**Boolean**，读/写。
 
 ### SelectedImage
 
-The icon rendered when the node is selected. **Variant** --- either an index or a key into [**TreeView.ImageList**](/official/Reference/WinNativeCommonCtls/TreeView/#imagelist). When unset, defaults to the same as [**Image**](#image).
+节点选中时渲染的图标。**Variant** --- 可以是一个索引或 [**TreeView.ImageList**](/official/Reference/WinNativeCommonCtls/TreeView/#imagelist) 的键。未设置时默认与 [**Image**](#image) 相同。
 
 ### Sorted
 
-Whether this node's children are sorted. **Boolean**. Default: **False**. Independent of [**TreeView.Sorted**](/official/Reference/WinNativeCommonCtls/TreeView/#sorted), which controls root-level sorting.
+此节点的子节点是否排序。**Boolean**。默认：**False**。独立于控制根级排序的 [**TreeView.Sorted**](/official/Reference/WinNativeCommonCtls/TreeView/#sorted)。
 
 ### SortOrder
 
-The sort direction for this node's children. A member of [**TreeSortOrderConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants). Default: **tvwAscending**.
+此节点子节点的排序方向。[**TreeSortOrderConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants) 的成员。默认：**tvwAscending**。
 
 ### SortType
 
-The string comparison used for sorting this node's children. A member of [**TreeSortTypeConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants): **tvwBinary** or **tvwText**. Default: **tvwText**.
+此节点子节点排序使用的字符串比较。[**TreeSortTypeConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) 的成员：**tvwBinary** 或 **tvwText**。默认：**tvwText**。
 
 ### Tag
 
-Arbitrary data the application can attach to the node. **Variant**.
+应用程序可附加到节点的任意数据。**Variant**。
 
 ### Text
 
-The node's label text. **String**, read/write.
+节点的标签文本。**String**，读/写。
 
 ### Visible
 
-Whether the node is currently visible --- i.e. not hidden because an ancestor is collapsed and not scrolled out of view. **Boolean**, read-only.
+节点当前是否可见 --- 即未因祖先折叠而隐藏且未滚出视图。**Boolean**，只读。
 
-Methods
+方法
 -------
 
 ### EnsureVisible
 
-Scrolls and expands ancestor nodes as necessary to make this node visible in the treeview.
+滚动并展开祖先节点以使此节点在树视图中可见。
 
-Syntax: *object*.**EnsureVisible**
+语法：*object*.**EnsureVisible**
 
-## See Also
+## 另见
 
-- [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/) -- the parent control
-- [Nodes](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) -- the collection holding **Node** instances
-- [TreeSortOrderConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants), [TreeSortTypeConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) -- the **SortOrder** / **SortType** enums
+- [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/) --- 父控件
+- [Nodes](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) --- 持有 **Node** 实例的集合
+- [TreeSortOrderConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants)、[TreeSortTypeConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) --- **SortOrder** / **SortType** 枚举

@@ -1,34 +1,42 @@
 ---
-title: Inheritance
+title: 继承
 parent: Language Syntax
 nav_order: 3
 permalink: /Features/Language/Inheritance
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1e8c475f-f77a-4fc2-a6da-2011d13e9092'
+  PropagateID: '1e8c475f-f77a-4fc2-a6da-2011d13e9092'
+  ReservedCode1: '7facb7b3-1d52-47a4-b0e0-b469ba18476a'
+  ReservedCode2: '7facb7b3-1d52-47a4-b0e0-b469ba18476a'
 ---
 
-# Inheritance
+# 继承
 
-twinBASIC provides several mechanisms for inheritance to support both simple and complete object-oriented programming patterns: **Implements**, **Implements Via** and **Inherits**.
+twinBASIC 提供了几种继承机制以支持简单和完整的面向对象编程模式：**Implements**、**Implements Via** 和 **Inherits**。
 
-## Enhancements to **Implements**
+## **Implements** 的增强
 
-`Implements` in twinBASIC has several enhancements:
+twinBASIC 中的 `Implements` 有多项增强：
 
-### Inherited Interfaces
+### 继承的接口
 
-`Implements` in twinBASIC is allowed on inherited interfaces -- for instance, if you have `Interface IFoo2 Extends IFoo`, you then use `Implements IFoo2` in a class, where in VBx this would not be allowed. You'll need to provide methods for all inherited interfaces (besides `IDispatch` and `IUnknown`). The class will mark all interfaces as available-- you don't need a separate statement for `IFoo`, it will be passed through `Set` statements (and their underlying `QueryInterface` calls) automatically.
+twinBASIC 中的 `Implements` 允许用于继承的接口——例如，如果你有 `Interface IFoo2 Extends IFoo`，然后在类中使用 `Implements IFoo2`，而在 VBx 中这是不允许的。你需要为所有继承的接口（除 `IDispatch` 和 `IUnknown` 外）提供方法。类将标记所有接口为可用——你不需要为 `IFoo` 写单独的语句，它会通过 `Set` 语句（及其底层的 `QueryInterface` 调用）自动传递。
 
-### Multiple Implementations
+### 多重实现
 
-If you have an interface that multiple others extend from, you can write multiple implementations, or specify one implementation for all. For example:
+如果你有一个被多个其他接口继承的接口，你可以编写多个实现，或为所有接口指定一个实现。例如：
 
 ```vb
 IOleWindow_GetWindow() As LongPtr _
     Implements IOleWindow.GetWindow, IShellBrowser.GetWindow, IShellView2.GetWindow
 ```
 
-### 'As Any' Parameters in Interfaces
+### 接口中的 'As Any' 参数
 
-`Implements` is allowed on interfaces with 'As Any' parameters: In VBx, you'd get an error if you attempted to use any interface containing a member with an `As Any` argument. With twinBASIC, this is allowed if you substitute `As LongPtr` for `As Any`, for example:
+`Implements` 允许用于包含 'As Any' 参数的接口：在 VBx 中，如果你尝试使用任何包含 `As Any` 参数成员的接口会报错。在 twinBASIC 中，如果你用 `As LongPtr` 替代 `As Any`，这是允许的，例如：
 
 ```vb
 Interface IFoo Extends IUnknown
@@ -43,21 +51,21 @@ Class MyClass
     End Sub
 ```
 
-## **Implements Via** for Basic Inheritance
+## **Implements Via** 实现基本继承
 
-tB allows simple inheritance among classes. For example, if you have class cVehicle which implements IVehicle containing method Honk, you could create child classes like cCar or cTruck, which inherit the methods of the original, so you could call cCar.Honk without writing a separate implementation.
+tB 允许类之间的简单继承。例如，如果你有一个实现了 IVehicle（包含方法 Honk）的类 cVehicle，你可以创建子类如 cCar 或 cTruck，继承原始类的方法，这样你可以调用 cCar.Honk 而无需编写单独的实现。
 
 ![image](../Images/b0724fe2-636d-47db-a8fc-531a585ddaf9.png)
 
-You can see that the Honk method is only implemented by the parent class, then called from the child class when you click the CodeLens button to run the sub in place from the IDE.
+你可以看到 Honk 方法只由父类实现，然后在你点击 CodeLens 按钮从 IDE 中就地运行 Sub 时从子类调用。
 
-## **Inherits** for Complete OOP
+## **Inherits** 实现完整 OOP
 
-This option supports full inheritance and OOP: `Protected` methods and variables accessible to derived classes (but not outside callers), `Overridable` and `Overrides` syntax, multiple inheritance, and explicit base class constructors.
+此选项支持完整的继承和 OOP：派生类可访问（但外部调用者不可）的 `Protected` 方法和变量、`Overridable` 和 `Overrides` 语法、多重继承以及显式基类构造函数。
 
-### Example: Animal Class Hierarchy
+### 示例：Animal 类层次
 
-Starting with a base class:
+从基类开始：
 
 ```vb
 Private Class Animal
@@ -101,7 +109,7 @@ Private Class Animal
 End Class
 ```
 
-Others can inherit:
+其他类可以继承：
 
 ```vb
 ' ===== Derived: Dog =====
@@ -154,4 +162,4 @@ Private Class GuardDog
 End Class
 ```
 
-This is just an excerpt, see the full Sample 23 for additional classes, usage, and information about inheritance in twinBASIC.
+这只是摘录，完整的示例 23 中有更多类、用法和关于 twinBASIC 中继承的说明。

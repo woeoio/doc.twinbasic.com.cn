@@ -1,59 +1,67 @@
 ---
-title: Generics
+title: "泛型"
 parent: Language Syntax
 nav_order: 5
 permalink: /Features/Language/Generics
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7347a22a-aa26-4ed3-8a49-eb20b49d0a32'
+  PropagateID: '7347a22a-aa26-4ed3-8a49-eb20b49d0a32'
+  ReservedCode1: 'f98f488b-ccf5-44c0-a725-4701d6ec628b'
+  ReservedCode2: 'f98f488b-ccf5-44c0-a725-4701d6ec628b'
 ---
 
-# Generics
+# 泛型
 
 ::: important
-Generics are syntactic sugar for copy-pasting code followed by a search-and-replace of type names.
+泛型是"复制粘贴代码后搜索替换类型名"的语法糖。
 
-Everything that the generic syntax provides can be achieved without it by writing repetitive code.
+泛型语法提供的所有功能都可以通过编写重复代码来实现。
 :::
 
-This repetition is error-prone and tedious, however, and thus the generic syntax keeps the code DRY[^1].
+然而这种重复既容易出错又乏味，因此泛型语法保持代码 DRY[^1]。
 
-The generic syntax introduces *type parameters* / *type variables* whose *type-values* exist during compilation, as opposed to regular parameters and their values that exist during run-time only.
+泛型语法引入了*类型参数*/*类型变量*，其*类型值*在编译时存在，而常规参数及其值仅在运行时存在。
 
-Procedures, **Class**es and **Type**s (UDTs) can be made generic.
+过程、**Class** 和 **Type**（UDT）可以声明为泛型。
 
 ::: warning
-Generic **Type**s (UDTs) don't yet support member procedures (error TB5124).
+泛型 **Type**（UDT）尚不支持成员过程（错误 TB5124）。
 :::
 
-## Generic Procedures
+## 泛型过程
 
-Syntax:
+语法：
 
-* **Definition**  
+* **定义**
   ( **Function** | ... ) *name* **(Of** *type-variable-list* **)** **(** *parameter-list* **)** **As** *return-type*
-  
-* In detail:  
-  ( **Function** | **Sub** | **Property** (**Get** | **Let** | **Set**) ) *name* **(Of** *type-var1* [ **,** *type-var2* ...]**)** **(** *parameter-list* **)** **As** *return-type*  
-  The *parameter-list* can reference any of the type variables, e.g.  
+
+* 详细形式：
+  ( **Function** | **Sub** | **Property** (**Get** | **Let** | **Set**) ) *name* **(Of** *type-var1* [ **,** *type-var2* ...]**)** **(** *parameter-list* **)** **As** *return-type*
+  *parameter-list* 可以引用任何类型变量，例如
   `Sub MyPrint(Of T)(ByVal file&, value As T)`
-  
-* **Invocation** or **Call Site**  
-  *name* [ **(Of** *type-argument-list* **)** ] [ **(** *argument-list* **)** ] 
-  
-* In detail:  
-  *name* [ **(Of** *type-arg1* [ **,** *type-arg2* ] **)** ] [ **(** *argument-list* **)** ]  
-  The type variables from the definition's *parameter-list* are substituted with concrete or arguments types provided in the *argument-list*, unless provided explicitly as a type argument in the *type-argument-list*.  
-  The type variables that were not referenced in the *parameter-list* have to be provided in the *type-argument-list* as *type-arguments*.
 
-In the definition, the *type-variable-list*, i.e. **(Of** *type-var* ... **)**, introduces genericity. The type variables (*type-var*) introduce identifiers of arbitrary types that can be referenced within:
+* **调用**或**调用点**
+  *name* [ **(Of** *type-argument-list* **)** ] [ **(** *argument-list* **)** ]
 
-- *parameter-list*, 
-- *return-type*, and 
-- the body of the procedure.
+* 详细形式：
+  *name* [ **(Of** *type-arg1* [ **,** *type-arg2* ] **)** ] [ **(** *argument-list* **)** ]
+  定义中 *parameter-list* 中的类型变量将被调用点 *argument-list* 中提供的具体类型替代，除非在 *type-argument-list* 中显式提供。
+  未在 *parameter-list* 中引用的类型变量必须在 *type-argument-list* 中作为*类型参数*提供。
 
-In the invocation, the *type-argument-list*, i.e. **(Of** *type-arg* ... **)**, is optional as needed to provide types arguments for those type variables that don't appear in the *parameter-list* of the definition. The type variables that are used within the *parameter-list* are assigned type values of the respective arguments at the call site *unless their values are explicitly provided* in the *type-argument-list*.
+在定义中，*type-variable-list*，即 **(Of** *type-var* ... **)**，引入泛型性。类型变量（*type-var*）引入任意类型的标识符，可以在以下位置引用：
 
-### Call site type arguments
+- *parameter-list*，
+- *return-type*，以及
+- 过程体。
 
-Type variables that correspond to types that could be deduced from the call argument types must form a trailer of the *type-variable-list*:  
+在调用中，*type-argument-list*，即 **(Of** *type-arg* ... **)**，根据需要可选，为那些不出现在定义 *parameter-list* 中的类型变量提供类型参数。在 *parameter-list* 中使用的类型变量将自动从调用点对应参数的类型推断出类型值，*除非在 *type-argument-list* 中显式提供了其值*。
+
+### 调用点类型参数
+
+对应可从调用参数类型推断出的类型的类型变量必须构成 *type-variable-list* 的尾部：
 
 ```vb
 Sub MySub1(Of T, U, V)(argu As U, argv As V): End Sub
@@ -63,7 +71,7 @@ MySub1(Of Long, Single, Double)(33%, 42%)' Valid: provided U = Single, provided 
 MySub1(Of Long, , Double)(33%, 42%)      ' Invalid: omitted deduced type must be trailing
 ```
 
-Thus, to suppress deduction, put the type variable in the type list *before* the non-deducible type parameters:
+因此，要禁止推断，将类型变量放在类型列表中不可推断的类型参数*之前*：
 
 ```vb
 ' T must be provided, it won't be deduced
@@ -74,7 +82,7 @@ MyFn1(Of, String)(10%)          ' Invalid: T is not trailing so it can't be omit
                                 ' suppresses deduction of T
 ```
 
-Only the unused type variables may have their arguments omitted at positions *after the first* in the *type-variable-list*.:
+只有未使用的类型变量可以在 *type-variable-list* 中第一个位置*之后*省略其参数：
 
 ```vb
 Sub MySub2(Of T, U, V)(argt As T, argv As V): End Sub
@@ -86,9 +94,9 @@ MySub3(Of, Single)(22%)             ' Invalid: unused U can't be omitted as it's
                                     ' variable in the type-parameter-list
 ```
 
-### Example 1
+### 示例 1
 
-In this example, the invocations of the generic **First** and **Last** subs don't need to explicitly provide type argument values using the  *type-argument-list*, i.e. **(Of** ... **)**, since they can be deduced from the argument types.
+在此示例中，泛型 **First** 和 **Last** Sub 的调用不需要显式提供类型参数值（即 **(Of** ... **)**），因为它们可以从参数类型推断。
 
 ```vb
 Public Function First(Of T)(Array() As T) As T
@@ -106,7 +114,7 @@ Sub Test()
 End Sub
 ```
 
-Without the generic syntax, the procedure would have had to be written for every type *T* it's used on. In the example below, that would be `T=String` and `T=Integer`:
+如果没有泛型语法，过程必须为每个使用的类型 *T* 单独编写。在下面的示例中，需要 `T=String` 和 `T=Integer`：
 
 ```vb
 Public Function First(Array() As String) As String
@@ -114,7 +122,7 @@ Public Function First(Array() As String) As String
 End Function
     
 Public Function First(Array() As Integer) As Integer
-    If IsArrayInitialized(Array) Then Return Array(LBound(Array))
+    If IsArrayInitialized(Array) Then Return Array(UBound(Array))
 End Function
         
 Sub Test()
@@ -124,14 +132,14 @@ Sub Test()
 End Sub
 ```
 
-### Example 2 with some type variables not appearing in the *parameter-list*
+### 示例 2：部分类型变量不出现在 *parameter-list* 中
 
-There are two common cases when a type variable might not appear in the *parameter-list*:
+类型变量可能不出现在 *parameter-list* 中的常见情况有两种：
 
-- when it is the *result-type*, and/or
-- when it is used in the body of the procedure.
+- 当它是*返回类型*时，和/或
+- 当它在过程体中使用时。
 
-The example below illustrates those possibilities:
+以下示例说明了这些情况：
 
 ```vb
 Public Function Caster(Of R, U, T)(value As T) As R
@@ -147,48 +155,48 @@ Sub Test()
 End Sub
 ```
 
-The function **Caster** introduces three type variables within its scope:
+函数 **Caster** 在其作用域内引入了三个类型变量：
 
-- **T** is by default deduced from the type of the **value** argument, or can be provided on invocation,
-- **R** is the result type and must be provided on invocation,
-- **U** is a type used in the body of the function and must be provided on invocation.
+- **T** 默认从 **value** 参数的类型推断，或在调用时提供，
+- **R** 是返回类型，必须在调用时提供，
+- **U** 是函数体中使用的类型，必须在调用时提供。
 
 ::: tip
-The order of the type variables in the definition can be chosen so that the trailing variable(s) are used in the *parameter-list*. The type-values of those type variable can thus be omitted if the types inferred from the argument types at the call site are appropriate.
+定义中类型变量的顺序可以安排为尾部变量在 *parameter-list* 中使用。这样如果调用点从参数类型推断的类型合适，这些类型变量的类型值可以省略。
 :::
 
-1. In the invocation `Example(Of String, Integer)(1.23!)`,  
-   *T* is deduced to be **Single**, *U* is provided and set to **Integer**, and **R** is provided and set to **String**.
+1. 在调用 `Example(Of String, Integer)(1.23!)` 中，
+   *T* 被推断为 **Single**，*U* 被提供并设为 **Integer**，**R** 被提供并设为 **String**。
 
-2. In the invocation `Example(Of String, Integer, Double)(1.23!)`,  
-    *T* is provided and set to **Double**, *U* is provided and set to **Integer**, and *R* is provided and set to **String**.
-   * First, the compiler will cast `1.23!` to the type of the formal parameter, that is to a **Double** `1.23#`.
-   * Then, in the body of the function, the *value* is cast to **Integer** when it's assigned to **intermediate**.
-   * Finally, also in the body, the **intermediate** is cast to the result type of **String**, and returned.
-   
+2. 在调用 `Example(Of String, Integer, Double)(1.23!)` 中，
+   *T* 被提供并设为 **Double**，*U* 被提供并设为 **Integer**，**R** 被提供并设为 **String**。
+   * 首先，编译器将 `1.23!` 转换为形参的类型，即 **Double** `1.23#`。
+   * 然后，在函数体中，*value* 在赋值给 **intermediate** 时被转换为 **Integer**。
+   * 最后，同样在函数体中，**intermediate** 被转换为结果类型 **String** 并返回。
 
-## Generic Classes And UDTs
 
-Syntax:
+## 泛型类和 UDT
 
-* **Definition**  
-  [ **Class** | ... ] *name* **(Of** *type-variable-list* **)** 
-* In Detail:  
+语法：
+
+* **定义**
+  [ **Class** | ... ] *name* **(Of** *type-variable-list* **)**
+* 详细形式：
   [ **Class** | **Type** ] *name* **(Of** *type-var1* [ **,** *type-var2* ... ] **)**
-* **Instantiation**  
+* **实例化**
   *name* **(Of** *type-argument-list* **)**
-* In Detail:  
+* 详细形式：
   *name* **(Of** *type-arg1* [ **,** *type-arg2* ... ] **)**
 
-The type variables (*type-var*) introduce identifiers of arbitrary types that can be referenced anywhere within the body of the class.
+类型变量（*type-var*）引入任意类型的标识符，可以在类体内的任何位置引用。
 
 ::: important
-When instantiating generic classes and UDTs,  **all of the type arguments** have to be provided.
+实例化泛型类和 UDT 时，**所有类型参数**都必须提供。
 
-If they aren't, code generation errors and silent failures at runtime may occur.
+如果未提供，可能会导致代码生成错误和运行时的静默失败。
 :::
 
-### Example of  correct and incorrect instantiation
+### 正确和不正确实例化的示例
 
 ```vb
 Class MyClass(Of T, U)
@@ -204,17 +212,17 @@ Dim j As New MyClass(Of Integer, Single)   ' Correct instantiation
 j.DumpU(12)     ' Valid, uses U = Single
 ```
 
-### Type-instances vs object-instances
+### 类型实例与对象实例
 
-A generic class enables substitution of type variables with type arguments provided in an instantiation. Every utterance of a generic class name with type arguments instantiates the generic class type into a regular class type.
+泛型类允许用实例化时提供的类型参数替换类型变量。每次使用泛型类名加类型参数都会将泛型类类型实例化为一个常规类类型。
 
 ::: info
-Compile Time: A generic class is instantiated by calling out its name with arguments.
+编译时：通过调用类名加参数来实例化泛型类。
 
-Run Time:  Objects of those instantiated types can be created.
+运行时：可以创建那些实例化类型的对象。
 :::
 
-In the example below, two class types are instantiated: **MyClass**(**Integer**) and **MyClass**(**String**). This happens at compile time. No instances of **MyClass** are created at runtime, since both variables default to **Nothing**:
+在下面的示例中，实例化了两个类类型：**MyClass**(**Integer**) 和 **MyClass**(**String**)。这发生在编译时。运行时没有创建 **MyClass** 的实例，因为两个变量都默认为 **Nothing**：
 
 ```vb
 Class MyClass(Of T) ' ...
@@ -226,9 +234,9 @@ Sub Test()
 End Sub
 ```
 
-### List Class Example
+### List 类示例
 
-A Class generic allows the type in methods throughout the class. The following example shows this to make a generic List class:
+泛型类允许在整个类的方法中使用类型参数。以下示例展示了创建一个泛型 List 类：
 
 ```vb
 [COMCreatable(False)]
@@ -252,9 +260,9 @@ End Sub
 
 ```
 
-### List UDT Example
+### List UDT 示例
 
-While generic UDTs don't support member procedures yet in twinBASIC, the data members are supported:
+虽然 twinBASIC 中泛型 UDT 尚不支持成员过程，但数据成员是支持的：
 
 ```vb
 Type ListU(Of T)

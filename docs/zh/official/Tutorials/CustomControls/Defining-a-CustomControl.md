@@ -1,72 +1,82 @@
 ---
-title: Defining a CustomControl
+title: "定义CustomControl"
 parent: CustomControls
 nav_order: 2
 permalink: /Tutorials/CustomControls/Defining
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ddf408f1-08e9-4dfd-9c0d-ec854225598b'
+  PropagateID: 'ddf408f1-08e9-4dfd-9c0d-ec854225598b'
+  ReservedCode1: '7c46f1ee-fe4c-459b-aea1-6ce65b1f953e'
+  ReservedCode2: '7c46f1ee-fe4c-459b-aea1-6ce65b1f953e'
 ---
 
-# Defining a CustomControl
-A CustomControl is simply an ordinary twinBASIC class, with a few extra attributes and requirements.
+# 定义CustomControl
+
+CustomControl就是一个普通的twinBASIC类，带有一些额外的属性和要求。
 
 ::: tip
-It is highly advisable to look at and experiment with the sample project provided with twinBASIC before trying to implement your own CustomControl.
+强烈建议在尝试实现自己的CustomControl之前，先查看并实验twinBASIC提供的示例项目。
 :::
 
 ![Custom Control Sample Project](Images/ccSampleProject.png)
 
 ***
-## CustomControl() attribute
+## CustomControl()属性
 ![CustomControl attribute](Images/ccCustomControlAttribute.png)
 
-This is a required attribute for all CustomControls.  You must provide the relative path to an image file within your project that can be used to identify your control in the form designer toolbox.  We recommend that you put the image file in the Miscellaneous folder in your project.
+这是所有CustomControl的必需属性。你必须提供项目内图片文件的相对路径，用于在窗体设计器工具箱中标识你的控件。我们建议将图片文件放在项目的Miscellaneous文件夹中。
 
 ![CustomControl GridImage Folder](Images/ccGridButtonImage.png)
 
 ***
-##  ClassId() attribute
+##  ClassId()属性
 ![CustomControl ClassId Attribute](Images/ccClassIdAttribute.png)
 
-This is a required attribute for all CustomControls.  You must provide a unique CLSID (GUID) in order for the form engine to work with your control. 
+这是所有CustomControl的必需属性。你必须提供唯一的CLSID（GUID），以便窗体引擎与你的控件配合工作。
 
 ::: tip
-If you enter `[ ClassId () ]` twinBASIC helps you out - just press the 'insert a randomly generated GUID' text:
+如果你输入 `[ ClassId () ]`，twinBASIC会帮助你——只需点击"insert a randomly generated GUID"文本：
 :::
 
 ![CustomControl ClassId auto-generate](Images/ccClassIdInsert.png)
 
 ***
-##  COMCreatable() attribute
+##  COMCreatable()属性
 ![CustomControl COMCreatable attribute](Images/ccCOMCreatable.png)
 
-This is an optional attribute, but it is usually advisable to set this attribute to False, as you don't need to instantiate CustomControls from external COM environments.
+这是一个可选属性，但通常建议将此属性设为False，因为你不需要从外部COM环境实例化CustomControl。
 
 ***
-## Must implement ICustomControl
+## 必须实现ICustomControl
 ![CustomControl ICustomControl interface](Images/ccICustomControl.png)
 
-All CustomControls *must* implement [`CustomControls.ICustomControl`](/official/Reference/CustomControls/Framework/ICustomControl).  This interface currently has 3 methods that you must implement:
+所有CustomControl*必须*实现[`CustomControls.ICustomControl`](/official/Reference/CustomControls/Framework/ICustomControl)。该接口当前有3个你必须实现的方法：
 
 ```vb
 Sub Initialize(ByVal Context As CustomControlContext)
 ```
 
-This method is called when your control is attached to a form.  You must store the provided Context object in a class field as it offers a `Repaint()` method for informing the form engine that something in your control has changed and needs to be repainted.
+此方法在你的控件附加到窗体时调用。你必须将提供的Context对象存储在类字段中，因为它提供了一个 `Repaint()` 方法，用于通知窗体引擎控件中的某些内容已更改并需要重绘。
 
 ```vb
 Sub Destroy()
 ```
 
-This method is called when your control is detached from a form.  This allows an opportunity to break circular references so that your object instance can be destructed properly.   The implementation for this can often be left empty provided you don't create circular references in objects.
+此方法在你的控件从窗体分离时调用。这提供了打破循环引用的机会，以便你的对象实例可以正确析构。如果你不在对象中创建循环引用，此实现通常可以留空。
 
 ```vb
 Sub Paint(ByVal Canvas As Canvas)
 ```
 
-This is the most interesting part for a CustomControl.  As such, it gets its own section, see [Painting / drawing to your control](/official/Tutorials/CustomControls/Painting-drawing-to-your-control)
+这是CustomControl最有趣的部分。因此它有自己的章节，参见[绘制/绘图到你的控件](/official/Tutorials/CustomControls/Painting-drawing-to-your-control)
 
 ***
-## Minimum set of properties
-As twinBASIC doesn't yet support inheritance, you must expose a set of common properties (class fields) for all CustomControls:
+## 最小属性集
+
+由于twinBASIC尚不支持继承，你必须为所有CustomControl暴露一组公共属性（类字段）：
 
 ```vb
 Public Name As String
@@ -79,25 +89,26 @@ Public Dock As CustomControls.DockMode
 Public Visible As Boolean
 ```
 
-The form designer and the form engine work with these properties, so it is important to include them in your CustomControl class. The types used here are all defined in the framework: [`PixelCount`](/official/Reference/CustomControls/Enumerations/PixelCount), [`DockMode`](/official/Reference/CustomControls/Enumerations/DockMode), and the [`Anchors`](/official/Reference/CustomControls/Styles/Anchors) style object.
+窗体设计器和窗体引擎使用这些属性，因此将它们包含在你的CustomControl类中很重要。这里使用的类型都在框架中定义：[`PixelCount`](/official/Reference/CustomControls/Enumerations/PixelCount)、[`DockMode`](/official/Reference/CustomControls/Enumerations/DockMode)和[`Anchors`](/official/Reference/CustomControls/Styles/Anchors)样式对象。
 
-Note that the form designer works with pixel values which are not DPI-scaled.  So the Left/Top/Width/Height properties of your control do not reflect DPI scaling.  For example, if your control has a width of 50 pixels, then at DPI 150%, then the actual drawing width is 75 pixels ( see [Painting / drawing to your control](/official/Tutorials/CustomControls/Painting-drawing-to-your-control)).
+注意，窗体设计器使用的是未经DPI缩放的像素值。因此你的控件的Left/Top/Width/Height属性不反映DPI缩放。例如，如果你的控件宽度为50像素，则在DPI 150%时，实际绘制宽度为75像素（参见[绘制/绘图到你的控件](/official/Tutorials/CustomControls/Painting-drawing-to-your-control)）。
 
 ***
-## Must have a serialization constructor
-CustomControls *must* offer a serialization constructor:
+## 必须有序列化构造函数
+
+CustomControl*必须*提供序列化构造函数：
 
 ```vb
 Public Sub New(Serializer As SerializationInfo)
 ```
 
-The passed in Serializer object offers a `Deserialize()` method that you call to load the properties that have been set for your control via the form designer.  See [Property Sheet and Object Serialization](/official/Tutorials/CustomControls/Property-sheet-and-object-serialization) for further information.
+传入的Serializer对象提供了一个 `Deserialize()` 方法，你调用它来加载通过窗体设计器为控件设置的属性。更多信息参见[属性表和对象序列化](/official/Tutorials/CustomControls/Property-sheet-and-object-serialization)。
 
 ::: info
-The current framework names the serializer type [`SerializeInfo`](/official/Reference/CustomControls/Framework/SerializeInfo) (not `SerializationInfo`), and `Deserialize()` is exposed as `RuntimeUISrzDeserialize()`. See the reference page for the current member names and the design-mode / runtime-mode flags also available on this object.
+当前框架将序列化器类型命名为[`SerializeInfo`](/official/Reference/CustomControls/Framework/SerializeInfo)（不是 `SerializationInfo`），`Deserialize()` 暴露为 `RuntimeUISrzDeserialize()`。参见参考页面了解当前成员名称以及该对象上也可用的设计模式/运行时模式标志。
 :::
 
 ***
-## See also
+## 另见
 
-- [CustomControls package reference](/official/Reference/CustomControls/) -- the full reference for the framework half (interfaces, callback objects, the [`Canvas`](/official/Reference/CustomControls/Framework/Canvas) drawing surface, the [`SerializeInfo`](/official/Reference/CustomControls/Framework/SerializeInfo) serializer) and the built-in `Waynes…` controls built on it.
+- [CustomControls包参考](/official/Reference/CustomControls/) —— 框架部分（接口、回调对象、[`Canvas`](/official/Reference/CustomControls/Framework/Canvas)绘图面、[`SerializeInfo`](/official/Reference/CustomControls/Framework/SerializeInfo)序列化器）和基于其构建的内置 `Waynes…` 控件的完整参考。

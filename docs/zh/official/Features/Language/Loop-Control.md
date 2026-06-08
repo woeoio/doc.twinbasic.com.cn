@@ -1,20 +1,28 @@
 ---
-title: Loop Control
+title: "循环控制"
 parent: Language Syntax
 nav_order: 12
 permalink: /Features/Language/Loop-Control
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'edba1e05-af9c-4d95-9b8e-0a3465aa9718'
+  PropagateID: 'edba1e05-af9c-4d95-9b8e-0a3465aa9718'
+  ReservedCode1: 'e10c5133-0c9f-4501-9109-134b4d7c7e79'
+  ReservedCode2: 'e10c5133-0c9f-4501-9109-134b4d7c7e79'
 ---
 
-# Loop Control
+# 循环控制
 
-The following new statements are available for controlling the procession of loops:
+以下新语句可用于控制循环的执行流程：
 
-- `Continue For` - Proceed to the next iteration (or end) of `For` loop.
-- `Continue While` - Proceed to the next iteration (or end) of `While` loop.
-- `Continue Do` - Proceed to the next iteration of `Do` loop.
-- `Exit While` - Exit a `While` loop immediately.
+- `Continue For` - 进入 `For` 循环的下一次迭代（或结束）。
+- `Continue While` - 进入 `While` 循环的下一次迭代（或结束）。
+- `Continue Do` - 进入 `Do` 循环的下一次迭代。
+- `Exit While` - 立即退出 `While` 循环。
 
-## Example
+## 示例
 
 ```vb
 Dim i As Long

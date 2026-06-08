@@ -2,27 +2,36 @@
 title: HelpContext
 parent: ErrObject
 permalink: /tB/Modules/ErrObject/HelpContext
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '8e6bda1c-746e-4d34-8f03-d31516d74048'
+  PropagateID: '8e6bda1c-746e-4d34-8f03-d31516d74048'
+  ReservedCode1: 'e6c15235-9180-4ed6-ae58-f077feb7ce69'
+  ReservedCode2: 'e6c15235-9180-4ed6-ae58-f077feb7ce69'
 ---
+
 # HelpContext
 
-Returns or sets a **Long** containing the context ID for a topic in the Help file associated with the active error. Read/write.
+返回或设置一个 **Long**，包含与活动错误关联的帮助文件中主题的上下文 ID。可读/写。
 
-Syntax:
+语法：
 - **Err**.**HelpContext**
 - **Err**.**HelpContext** **=** *contextID*
 
 *contextID*
-: A **Long** specifying the context ID for the appropriate Help topic. Set to **0** when no specific topic applies.
+: 指定相应帮助主题上下文 ID 的 **Long**。当没有特定主题适用时设置为 **0**。
 
-The **HelpContext** property is used to automatically display the Help topic specified in the [**HelpFile**](/official/Reference/VBA/ErrObject/HelpFile) property.
+**HelpContext** 属性用于自动显示 [**HelpFile**](/official/Reference/VBA/ErrObject/HelpFile) 属性中指定的帮助主题。
 
-If both **HelpFile** and **HelpContext** are empty, the value of [**Number**](/official/Reference/VBA/ErrObject/Number) is checked. If **Number** corresponds to a built-in run-time error, the Help context ID for that error is used. If the **Number** value doesn't correspond to a built-in error, the contents page of the Help file is displayed.
+如果 **HelpFile** 和 **HelpContext** 均为空，则检查 [**Number**](/official/Reference/VBA/ErrObject/Number) 的值。如果 **Number** 对应于内置运行时错误，则使用该错误的帮助上下文 ID。如果 **Number** 值不对应于内置错误，则显示帮助文件的内容页。
 
-Write routines to handle typical errors. When programming with an object, the object's Help file can improve error handling or display a meaningful message to the user when an error isn't recoverable.
+编写处理典型错误的例程。使用对象编程时，对象的帮助文件可以在错误不可恢复时改善错误处理或向用户显示有意义的消息。
 
-### Example
+### 示例
 
-This example uses the **HelpContext** property of the **Err** object to show the Help topic for the `Overflow` error.
+此示例使用 **Err** 对象的 **HelpContext** 属性显示 `Overflow` 错误的帮助主题。
 
 ```vb
 Dim msg As String
@@ -37,8 +46,8 @@ If Err.Number <> 0 Then
 End If
 ```
 
-### See Also
+### 另请参阅
 
-- [HelpFile](/official/Reference/VBA/ErrObject/HelpFile) property
-- [Number](/official/Reference/VBA/ErrObject/Number) property
-- [Raise](/official/Reference/VBA/ErrObject/Raise) method
+- [HelpFile](/official/Reference/VBA/ErrObject/HelpFile) 属性
+- [Number](/official/Reference/VBA/ErrObject/Number) 属性
+- [Raise](/official/Reference/VBA/ErrObject/Raise) 方法

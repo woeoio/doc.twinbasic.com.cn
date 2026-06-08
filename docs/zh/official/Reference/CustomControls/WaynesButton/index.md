@@ -1,13 +1,21 @@
----
+﻿---
 title: WaynesButton
 parent: CustomControls Package
 permalink: /tB/Packages/CustomControls/WaynesButton/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6336721b-a2af-4130-a2d9-b437da21da09'
+  PropagateID: '6336721b-a2af-4130-a2d9-b437da21da09'
+  ReservedCode1: '94dec705-61a8-4391-b107-9f55d134228e'
+  ReservedCode2: '94dec705-61a8-4391-b107-9f55d134228e'
 ---
 
-# WaynesButton class
-An owner-drawn push-button. Renders a configurable rectangle (with optional gradient fill, borders, rounded / notched / cut-out corners) and a centred [**Caption**](#caption), in one of four visual states --- normal, hovered, focused, or pressed --- controlled by four parallel [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) sub-objects.
+# WaynesButton 类
+自绘按钮。渲染一个可配置的矩形（可选渐变填充、边框、圆角/凹口/切角）和居中的 [**Caption**](#caption)，具有四种视觉状态——正常、悬停、焦点或按下——由四个并行的 [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) 子对象控制。
 
-The button raises a [**Click**](#click) event when clicked, plus the standard set of mouse, focus, and keyboard events. By default the four state objects are pre-set with a solid mid-blue ([**WAYNESCOLOR_BLUE**](#) --- `&HAC7220`) background and 15-pixel curved corners.
+按钮被点击时触发 [**Click**](#click) 事件，以及标准鼠标、焦点和键盘事件集。默认情况下四个状态对象预设为纯中蓝色（[**WAYNESCOLOR_BLUE**](#) —— `&HAC7220`）背景和 15 像素曲线角。
 
 ```vb
 Private Sub Form_Load()
@@ -22,147 +30,147 @@ Private Sub btnGo_Click()
 End Sub
 ```
 
-## Visual states
+## 视觉状态
 
-The button paints in one of four states, chosen at each repaint:
+按钮在每次重绘时选择四种状态之一绘制：
 
-| State                              | When                                                                            |
-|------------------------------------|---------------------------------------------------------------------------------|
-| [**PressedState**](#pressedstate)  | The mouse is held down inside the button.                                       |
-| [**HoverState**](#hoverstate)      | The mouse is held down outside the button, but began inside; or the mouse is hovering without being pressed. |
-| [**FocusedState**](#focusedstate)  | The control has the keyboard focus and the mouse is not hovering or pressing.   |
-| [**NormalState**](#normalstate)    | None of the above.                                                              |
+| 状态 | 时机 |
+|------|------|
+| [**PressedState**](#pressedstate) | 鼠标在按钮内按住不放。 |
+| [**HoverState**](#hoverstate) | 鼠标在按钮外按住但开始在按钮内按下；或鼠标悬停但未按下。 |
+| [**FocusedState**](#focusedstate) | 控件具有键盘焦点且鼠标未悬停或按下。 |
+| [**NormalState**](#normalstate) | 以上均不满足。 |
 
-Each state is a [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) --- a small bundle of [**Corners**](/official/Reference/CustomControls/Styles/Corners), [**BackgroundFill**](/official/Reference/CustomControls/Styles/Fill), [**Borders**](/official/Reference/CustomControls/Styles/Borders), and [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering).
+每个状态是一个 [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)——[**Corners**](/official/Reference/CustomControls/Styles/Corners)、[**BackgroundFill**](/official/Reference/CustomControls/Styles/Fill)、[**Borders**](/official/Reference/CustomControls/Styles/Borders) 和 [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) 的小型组合。
 
-## Properties
+## 属性
 
 ### Anchors
 
-Which sides of the control are attached to its container during resize. [**Anchors**](/official/Reference/CustomControls/Styles/Anchors). Inherited.
+调整大小时控件的哪些边附着到其容器。[**Anchors**](/official/Reference/CustomControls/Styles/Anchors)。继承。
 
 ### Caption
 
-The text shown centred on the button. **String**. Default: `"Button"`.
+按钮上居中显示的文本。**String**。默认：`"Button"`。
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
 ### Dock
 
-How the control is docked inside its container. A member of [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode). Inherited.
+控件在其容器内的停靠方式。[**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) 的成员。继承。
 
 ### FocusedState
 
-The [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) used when the control has the keyboard focus but is not being hovered or pressed.
+控件具有键盘焦点但未悬停或按下时使用的 [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)。
 
 ### Height
 
-The control's height in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件的高度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### HoverState
 
-The [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) used when the mouse is hovering over the button without being pressed (or when the mouse has been pressed and dragged off the button).
+鼠标悬停在按钮上但未按下时使用的 [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)（或鼠标按下后拖出按钮时）。
 
 ### Left
 
-The horizontal offset of the control's left edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件左边缘距其容器的水平偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Name
 
-The unique design-time name of the control on its parent form. **String**. Inherited.
+控件在其父窗体上的唯一设计时名称。**String**。继承。
 
 ### NormalState
 
-The [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) used when the button is idle --- not hovered, not focused, not pressed.
+按钮空闲时——未悬停、未焦点、未按下——使用的 [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)。
 
 ### PressedState
 
-The [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) used when the mouse is held down on the button.
+鼠标在按钮上按住时使用的 [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)。
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**. Inherited.
+控件在窗体 TAB 键导航顺序中的位置。**Long**。继承。
 
 ### TabStop
 
-Whether the user can reach the control by pressing **TAB**. **Boolean**. Inherited. Default: **True**.
+用户是否可以通过按 **TAB** 到达控件。**Boolean**。继承。默认：**True**。
 
 ### Top
 
-The vertical offset of the control's top edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件上边缘距其容器的垂直偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Visible
 
-Whether the control is currently displayed. **Boolean**. Inherited. Default: **True**.
+控件当前是否显示。**Boolean**。继承。默认：**True**。
 
 ### Width
 
-The control's width in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件的宽度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
-## Events
+## 事件
 
 ### Click
 
-Raised when the user clicks the button (mouse down + mouse up inside the control).
+用户点击按钮时触发（鼠标按下 + 在控件内释放）。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### GotFocus
 
-Raised when the control receives the keyboard focus.
+控件获得键盘焦点时触发。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### KeyDown
 
-Raised when the user presses a key while the control has focus.
+控件具有焦点时用户按下按键触发。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
-Raised when the user types a character key while the control has focus.
+控件具有焦点时用户输入字符键触发。
 
-Syntax: *object*\_**KeyPress**( *KeyCode* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyCode* **As Integer** )
 
 ### KeyUp
 
-Raised when the user releases a key while the control has focus.
+控件具有焦点时用户释放按键触发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### LostFocus
 
-Raised when the control loses the keyboard focus.
+控件失去键盘焦点时触发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### MouseDown
 
-Raised when the user presses a mouse button over the control.
+用户在控件上按下鼠标按钮时触发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseEnter
 
-Raised when the cursor first enters the control.
+光标首次进入控件时触发。
 
-Syntax: *object*\_**MouseEnter**( )
+语法：*object*\_**MouseEnter**( )
 
 ### MouseLeave
 
-Raised when the cursor leaves the control.
+光标离开控件时触发。
 
-Syntax: *object*\_**MouseLeave**( )
+语法：*object*\_**MouseLeave**( )
 
 ### MouseMove
 
-Raised when the cursor moves over the control.
+光标在控件上移动时触发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the control.
+用户在控件上释放鼠标按钮时触发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )

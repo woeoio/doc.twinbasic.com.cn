@@ -1,32 +1,41 @@
 ---
-title: ^, ^=
+title: "^, ^="
 parent: Operators
 permalink: /tB/Core/Exponent
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'baa5f927-bd41-4d86-904a-4d3f67a2a45d'
+  PropagateID: 'baa5f927-bd41-4d86-904a-4d3f67a2a45d'
+  ReservedCode1: '6aef5bcb-2114-4732-992f-cf7afc2b92d2'
+  ReservedCode2: '6aef5bcb-2114-4732-992f-cf7afc2b92d2'
 ---
-# ^ and ^= operators
 
-Used to raise a number to the power of an exponent. The compound form **^=** raises-and-assigns in one step.
+# ^ 和 ^= 运算符
 
-Syntax:
+用于将数提高到指数幂。复合形式 **^=** 在一步中完成求幂并赋值。
+
+语法：
 > *result* **=** *number* **^** *exponent*  
 > *variable* **^=** *exponent*       *(twinBASIC)*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *variable*
-: *(twinBASIC)* Any numeric variable or writable property.
+: *(twinBASIC)* 任意数值变量或可写属性。
 
 *number*, *exponent*
-: Any numeric expressions.
+: 任意数值表达式。
 
-*number* can be negative only if *exponent* is an integer value. When more than one exponentiation is performed in a single expression, the **^** operator is evaluated as it is encountered from left to right.
+只有当 *exponent* 为整数值时，*number* 才可以为负数。当在单个表达式中执行多次求幂时，**^** 运算符按从左到右的顺序求值。
 
-Usually, the data type of *result* is a **Double** or a **Variant** containing a **Double**. However, if either *number* or *exponent* is a **Null** expression, *result* is **Null**.
+通常，*result* 的数据类型为 **Double** 或包含 **Double** 的 **Variant**。但如果 *number* 或 *exponent* 为 **Null** 表达式，则 *result* 为 **Null**。
 
-### Compound assignment
+### 复合赋值
 
-`x ^= y` is the twinBASIC shorthand for `x = x ^ y`. The left-hand side is evaluated once; the result follows the same type-promotion and **Null** rules described above. **^=** is a statement, not an expression --- it does not produce a value.
+`x ^= y` 是twinBASIC中 `x = x ^ y` 的简写。左侧仅求值一次；结果遵循上述相同的类型提升和 **Null** 规则。**^=** 是语句而非表达式——它不产生值。
 
 ```vb
 Dim Value As Double = 2
@@ -34,9 +43,9 @@ Value ^= 3                      ' Value is now 8.
 Value ^= 2                      ' Value is now 64.
 ```
 
-### Example
+### 示例
 
-This example uses the **^** operator to raise a number to the power of an exponent.
+本示例使用 **^** 运算符将数提高到指数幂。
 
 ```vb
 Dim MyValue
@@ -45,8 +54,8 @@ MyValue = 3 ^ 3 ^ 3             ' Returns 19683 (evaluated left-to-right as (3^3
 MyValue = (-5) ^ 3              ' Returns -125.
 ```
 
-### See Also
+### 另请参阅
 
-- [**\*** operator](/official/Reference/Core/Multiply)
-- [**/** operator](/official/Reference/Core/Divide)
-- [Operators](/official/Reference/Operators)
+- [**\*** 运算符](/official/Reference/Core/Multiply)
+- [**/** 运算符](/official/Reference/Core/Divide)
+- [运算符](/official/Reference/Operators)

@@ -1,12 +1,20 @@
----
+﻿---
 title: Toolbars
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/Toolbars
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '138ab0a3-1322-487e-848e-49cd11990dcd'
+  PropagateID: '138ab0a3-1322-487e-848e-49cd11990dcd'
+  ReservedCode1: '9a39af09-7bdf-410d-b580-b1fd34ec1203'
+  ReservedCode2: '9a39af09-7bdf-410d-b580-b1fd34ec1203'
 ---
 
-# Toolbars class
+# Toolbars 类
 
-The collection of IDE toolbars. Reached through [**Host.Toolbars**](/official/Reference/tbIDE/Host#toolbars). Currently a single toolbar --- `Host.Toolbars(0)` --- but the collection interface allows future IDE versions to add more.
+IDE 工具栏集合。通过 [**Host.Toolbars**](/official/Reference/tbIDE/Host#toolbars) 访问。当前只有一个工具栏——`Host.Toolbars(0)`——但集合接口允许未来 IDE 版本添加更多。
 
 ```vb
 With Host.Toolbars(0)
@@ -15,17 +23,17 @@ With Host.Toolbars(0)
 End With
 ```
 
-## Properties
+## 属性
 
 ### Count
 
-The number of toolbars. **Long**, read-only. Currently always **1**.
+工具栏数量。**Long**，只读。当前始终为 **1**。
 
 ### Item
 
-Indexed access to a toolbar. **DefaultMember** --- so `Toolbars(0)` is equivalent to `Toolbars.Item(0)`.
+工具栏的索引访问。**DefaultMember**——因此 `Toolbars(0)` 等同于 `Toolbars.Item(0)`。
 
-Syntax: *toolbars*( *Index* ) **As** [**Toolbar**](/official/Reference/tbIDE/Toolbar)
+语法：*toolbars*( *Index* ) **As** [**Toolbar**](/official/Reference/tbIDE/Toolbar)
 
 *Index*
-: A zero-based **Variant** index. Currently `0` is the only valid value.
+: 一个基于 0 的 **Variant** 索引。当前 `0` 是唯一有效值。

@@ -1,15 +1,24 @@
 ---
-title: '#If, #Const'
+title: "#If, #Const"
 parent: Statements
 permalink: /tB/Core/Topic-Preprocessor
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '92a4ef18-30f8-42a1-a2c0-931670bfffe1'
+  PropagateID: '92a4ef18-30f8-42a1-a2c0-931670bfffe1'
+  ReservedCode1: '3750cbc4-9273-4de9-b17f-aa124a01025b'
+  ReservedCode2: '3750cbc4-9273-4de9-b17f-aa124a01025b'
 ---
-# #If...Then...#Else, #Const directives
 
-Compiler directives that conditionally include or exclude blocks of code at *compile time*, and define the constants those conditions are tested against. Unlike runtime [**If...Then...Else**](/official/Reference/Core/If-Then-Else) and [**Const**](/official/Reference/Core/Const), the directives operate during compilation: code in an inactive branch is omitted entirely from the compiled output and contributes no size or runtime cost.
+# #If...Then...#Else、#Const 指令
 
-## #If...Then...#Else directive
+在*编译时*有条件地包含或排除代码块的编译器指令，并定义用于测试这些条件的常量。与运行时的[**If...Then...Else**](/official/Reference/Core/If-Then-Else)和[**Const**](/official/Reference/Core/Const)不同，这些指令在编译期间操作：非活动分支中的代码从编译输出中完全省略，不产生大小或运行时开销。
 
-Syntax:
+## #If...Then...#Else 指令
+
+语法：
 
 > **#If** *expression* **Then**  
 > &nbsp;&nbsp;&nbsp;&nbsp;*statements*  
@@ -20,44 +29,44 @@ Syntax:
 > **#End If**
 
 *expression*, *expression-n*
-: An expression composed exclusively of conditional compiler constants, literals, and operators, evaluating to **True** or **False**.
+: 完全由条件编译常量、字面量和运算符组成的表达式，计算结果为**True**或**False**。
 
 *statements*, *elseifstatements*, *elsestatements*
-: Source lines or further compiler directives included when the corresponding *expression* is **True**.
+: 当对应*expression*为**True**时包含的源代码行或进一步的编译器指令。
 
-The directive's behaviour mirrors the runtime [**If...Then...Else**](/official/Reference/Core/If-Then-Else) statement, with the following differences:
+该指令的行为与运行时[**If...Then...Else**](/official/Reference/Core/If-Then-Else)语句类似，但有以下差异：
 
-- There is no single-line form --- `#If`, `#ElseIf`, `#Else`, and `#End If` must each appear on their own line.
-- All *expressions* are evaluated regardless of which branch is selected, so every constant they reference must be defined. Undefined conditional compiler constants evaluate as **Empty** (i.e. zero), which is treated as **False**.
-- Code in unselected branches is *removed* from the compilation rather than skipped at runtime. In twinBASIC, inactive code is not even checked for errors. The IDE greys out inactive blocks based on the current build configuration.
+- 没有单行形式——`#If`、`#ElseIf`、`#Else`和`#End If`必须各自出现在单独的行上。
+- 所有*expressions*都会被计算，无论选择了哪个分支，因此它们引用的每个常量都必须已定义。未定义的条件编译常量计算为**Empty**（即零），被视为**False**。
+- 未选择分支中的代码从编译中*移除*而非在运行时跳过。在twinBASIC中，非活动代码甚至不被检查错误。IDE根据当前构建配置将非活动块显示为灰色。
 
 ::: info
-The [**Option Compare**](/official/Reference/Core/Option) statement does not affect expressions in `#If`/`#ElseIf`. They are always evaluated as if **Option Compare Text** were in effect.
+[**Option Compare**](/official/Reference/Core/Option)语句不影响`#If`/`#ElseIf`中的表达式。它们始终按**Option Compare Text**生效来计算。
 :::
 
-## #Const directive
+## #Const 指令
 
-Syntax:
+语法：
 
 > **#Const** *constname* **=** *expression*
 
 *constname*
-: Name of the conditional compiler constant; follows standard variable naming conventions.
+: 条件编译常量的名称；遵循标准变量命名约定。
 
 *expression*
-: A literal, another conditional compiler constant, or any combination using arithmetic or logical operators (except [**Is**](/official/Reference/Core/Is)). Standard runtime constants (declared with [**Const**](/official/Reference/Core/Const)) are *not* allowed here.
+: 字面量、另一个条件编译常量，或使用算术或逻辑运算符（[**Is**](/official/Reference/Core/Is)除外）的任意组合。不允许使用标准运行时常量（用[**Const**](/official/Reference/Core/Const)声明的）。
 
-Conditional compiler constants declared with `#Const` are private to the module in which they appear. Project-wide conditional constants must be defined in the project's compilation settings --- `#Const` cannot create them.
+使用`#Const`声明的条件编译常量对其出现的模块是私有的。项目范围的条件常量必须在项目的编译设置中定义——`#Const`不能创建它们。
 
-Conditional compiler constants are always evaluated at the module level regardless of where they appear in code; they can only be used in `#If`/`#ElseIf` expressions.
+条件编译常量始终在模块级计算，无论它们出现在代码中的什么位置；它们只能在`#If`/`#ElseIf`表达式中使用。
 
-## Predefined compiler constants
+## 预定义编译器常量
 
-twinBASIC provides a set of built-in compiler constants --- `Win64`, `Win32`, `TWINBASIC`, `TWINBASIC_BUILD`, `VBA7`, etc. See the dedicated [Compiler Constants](/official/Reference/Compiler-Constants) page for the full list and what each one means.
+twinBASIC提供了一组内置编译器常量——`Win64`、`Win32`、`TWINBASIC`、`TWINBASIC_BUILD`、`VBA7`等。完整列表及各常量的含义请参见[编译器常量](/official/Reference/Compiler-Constants)页面。
 
-### Example
+### 示例
 
-This example uses the `Win64` predefined constant to select platform-specific imports, and a project-defined `DEBUG_BUILD` constant to enable extra logging only in debug builds.
+本示例使用`Win64`预定义常量选择特定平台的导入，并使用项目定义的`DEBUG_BUILD`常量仅在调试构建中启用额外日志记录。
 
 ```vb
 #Const DEBUG_BUILD = 1
@@ -78,8 +87,8 @@ Public Sub DoWork()
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**If...Then...Else** statement](/official/Reference/Core/If-Then-Else) -- the runtime counterpart.
-- [**Const** statement](/official/Reference/Core/Const) -- the runtime counterpart of **#Const**.
-- [Compiler Constants](/official/Reference/Compiler-Constants) -- the full list of built-in conditional constants.
+- [**If...Then...Else** 语句](/official/Reference/Core/If-Then-Else)——运行时对应语句。
+- [**Const** 语句](/official/Reference/Core/Const)——**#Const**的运行时对应语句。
+- [编译器常量](/official/Reference/Compiler-Constants)——内置条件常量完整列表。

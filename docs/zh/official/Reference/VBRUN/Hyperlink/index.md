@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cf403654-752a-4f79-80a4-61c86f446849'
+  PropagateID: 'cf403654-752a-4f79-80a4-61c86f446849'
+  ReservedCode1: '21fdb753-d7cf-4adc-bffe-e57fd30c06c5'
+  ReservedCode2: '21fdb753-d7cf-4adc-bffe-e57fd30c06c5'
+---
+
 ---
 title: Hyperlink
 parent: VBRUN Package
@@ -5,56 +16,56 @@ nav_order: 16
 permalink: /tB/Packages/VBRUN/Hyperlink/
 ---
 
-# Hyperlink class
+# Hyperlink 类
 
-The **Hyperlink** object lets a control or form ask its container to navigate to a target document, the way clicking a link in a browser would. It is used from a control's code through the host's **Hyperlink** property --- for example **UserControl.Hyperlink** --- and works in containers that participate in browser-style navigation (Internet Explorer, Office binders, and a few other hyperlink-aware hosts). When the host does not support hyperlink navigation, the runtime falls back to launching the system's default handler for the target.
+**Hyperlink**对象允许控件或窗体请求其容器导航到目标文档，就像在浏览器中点击链接一样。它通过宿主的**Hyperlink**属性从控件代码中使用——例如**UserControl.Hyperlink**——在参与浏览器式导航的容器（Internet Explorer、Office绑定器和其他少数支持超链接的宿主）中工作。当宿主不支持超链接导航时，运行时回退到启动目标的系统默认处理器。
 
-```vb
+``vb
 Private Sub HelpButton_Click()
     UserControl.Hyperlink.NavigateTo "https://docs.twinbasic.com/"
 End Sub
-```
+``
 
-## Members
+## 成员
 
 ### GoBack
 
-Asks the container to navigate one step backwards in its history list, as if the user had pressed the browser's **Back** button.
+请求容器在其历史列表中后退一步，如同用户按下了浏览器的**Back**按钮。
 
-Syntax: *object*.**GoBack**
+语法：*object*.**GoBack**
 
 *object*
-: *required* An object expression that evaluates to a **Hyperlink** object.
+: *必需* 求值为**Hyperlink**对象的对象表达式。
 
-If there is no previous entry, or if the host does not maintain a history list, the call has no effect (or raises an error, depending on the host).
+如果没有前一条目，或宿主不维护历史列表，则调用无效（或引发错误，取决于宿主）。
 
 ### GoForward
 
-Asks the container to navigate one step forward in its history list, as if the user had pressed the browser's **Forward** button.
+请求容器在其历史列表中前进一步，如同用户按下了浏览器的**Forward**按钮。
 
-Syntax: *object*.**GoForward**
+语法：*object*.**GoForward**
 
 *object*
-: *required* An object expression that evaluates to a **Hyperlink** object.
+: *必需* 求值为**Hyperlink**对象的对象表达式。
 
-If there is no next entry, or if the host does not maintain a history list, the call has no effect (or raises an error, depending on the host).
+如果没有下一条目，或宿主不维护历史列表，则调用无效（或引发错误，取决于宿主）。
 
 ### NavigateTo
 
-Asks the container to navigate to a target document.
+请求容器导航到目标文档。
 
-Syntax: *object*.**NavigateTo** *Target* [ **,** *Location* [ **,** *FrameName* ] ]
+语法：*object*.**NavigateTo** *Target* [ **,** *Location* [ **,** *FrameName* ] ]
 
 *object*
-: *required* An object expression that evaluates to a **Hyperlink** object.
+: *必需* 求值为**Hyperlink**对象的对象表达式。
 
 *Target*
-: *required* A **String** giving the destination --- a URL, a UNC path, or a local file path. The container is responsible for resolving the string and dispatching it to the right handler.
+: *必需* 给出目标的**String**——URL、UNC路径或本地文件路径。容器负责解析字符串并将其分派到正确的处理器。
 
 *Location*
-: *optional* A **String** naming an anchor or bookmark within *Target* --- for example the fragment after `#` in an HTML URL --- that the container should scroll to once the document has been loaded.
+: *可选* 命名*Target*内锚点或书签的**String**——例如HTML URL中#后的片段——容器在加载文档后应滚动到该位置。
 
 *FrameName*
-: *optional* A **String** naming a frame within an HTML frameset that should receive the navigation, instead of the top-level window. Ignored by hosts that do not understand HTML frames.
+: *可选* 命名HTML框架集中应接收导航的框架的**String**，代替顶级窗口。不支持HTML框架的宿主将忽略此参数。
 
-If the host implements browser-style navigation, the new target is added to the history list so subsequent [**GoBack**](#goback) and [**GoForward**](#goforward) calls work as expected.
+如果宿主实现浏览器式导航，新目标将添加到历史列表，使后续的[**GoBack**](#goback)和[**GoForward**](#goforward)调用按预期工作。

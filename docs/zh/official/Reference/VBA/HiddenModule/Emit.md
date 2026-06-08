@@ -2,21 +2,30 @@
 title: Emit
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/Emit
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '709f480c-aed0-41ed-9d44-37491fe233fc'
+  PropagateID: '709f480c-aed0-41ed-9d44-37491fe233fc'
+  ReservedCode1: '71f07ffd-a211-46e9-b6a7-319290cc729a'
+  ReservedCode2: '71f07ffd-a211-46e9-b6a7-319290cc729a'
 ---
+
 # Emit
 
-Splices raw bytes into the codegen output of the enclosing procedure.
+将原始字节拼接到封闭过程的代码生成输出中。
 
-Syntax: **Emit** *Values* ...
+语法：**Emit** *Values* ...
 
 *Values*
-: *required* A **ParamArray** of **Byte** values that are emitted, in order, at the location of the call.
+: *必需* 一个**Byte**值的**ParamArray**，按顺序在调用位置处发出。
 
-The bytes are written into the procedure's machine code at the spot where **Emit** appears --- there is no run-time call. Used together with the **Naked** procedure modifier to write inline assembly.
+这些字节被写入过程机器代码中**Emit**出现的位置——没有运行时调用。与**Naked**过程修饰符一起使用来编写内联汇编。
 
-### Example
+### 示例
 
-A naked **InterlockedIncrement** that adds one to *Addend* atomically.
+一个原子的**InterlockedIncrement**，将*Addend*加一。
 
 ```vb
 Public Function InlineInterlockedIncrement CDecl Naked(Addend As Long) As Long
@@ -35,8 +44,8 @@ Public Function InlineInterlockedIncrement CDecl Naked(Addend As Long) As Long
 End Function
 ```
 
-### See Also
+### 另请参阅
 
-- [EmitAny](/official/Reference/VBA/HiddenModule/EmitAny) procedure
-- [Direct Assembly Insertion](/official/Features/Advanced/Assembly)
-- [StackOffset](/official/Reference/VBA/HiddenModule/StackOffset) function
+- [EmitAny](/official/Reference/VBA/HiddenModule/EmitAny)过程
+- [直接汇编插入](/official/Features/Advanced/Assembly)
+- [StackOffset](/official/Reference/VBA/HiddenModule/StackOffset)函数

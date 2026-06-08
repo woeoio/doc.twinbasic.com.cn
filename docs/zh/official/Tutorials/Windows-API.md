@@ -1,40 +1,47 @@
 ---
-title: Calling the Windows API
+title: "调用Windows API"
 parent: Tutorials
 permalink: /Tutorials/Windows-API
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cd17c8cd-5987-4e40-bcf2-e088c2af8e86'
+  PropagateID: 'cd17c8cd-5987-4e40-bcf2-e088c2af8e86'
+  ReservedCode1: 'f0bc7419-dd2a-4588-b064-ca453849f3ce'
+  ReservedCode2: 'f0bc7419-dd2a-4588-b064-ca453849f3ce'
 ---
 
+# 调用Windows API
 
-# Calling the Windows API
-
-This tutorial demonstrates an end-to-end Windows API call --- writing a `Declare` statement, calling the function, handling the result, and reading error information when things go wrong. By the end you will have a small form that tracks and displays the current mouse cursor position in real time.
+本教程演示端到端的Windows API调用——编写 `Declare` 语句、调用函数、处理结果，以及在出错时读取错误信息。完成后你将拥有一个小型窗体，可以实时跟踪并显示当前鼠标光标位置。
 
 
-## Background
+## 背景
 
-The Windows API is a large set of C functions exposed by system DLLs such as `user32.dll`, `kernel32.dll`, and `gdi32.dll`. VBA and twinBASIC can call these functions directly using a `Declare` statement, which maps an external function into the module's namespace with a typed signature.
+Windows API是系统DLL（如 `user32.dll`、`kernel32.dll` 和 `gdi32.dll`）暴露的大量C函数集合。VBA和twinBASIC可以使用 `Declare` 语句直接调用这些函数，该语句将外部函数映射到模块的命名空间中并提供类型化签名。
 
-The two things that matter most when writing a Declare:
+编写Declare时最重要的两件事：
 
-1. **The correct type for every parameter.** A wrong type can pass the wrong number of bytes and corrupt the stack or heap.
-2. **32-bit vs. 64-bit compatibility.** Many Win32 types are pointer-sized; they are 4 bytes in a 32-bit build and 8 bytes in a 64-bit build.
+1. **每个参数的正确类型。** 错误的类型可能传递错误的字节数并破坏栈或堆。
+2. **32位与64位兼容性。** 许多Win32类型是指针大小的；在32位构建中为4字节，在64位构建中为8字节。
 
-twinBASIC handles both concerns through **LongPtr** (a pointer-width integer) and the `PtrSafe` keyword (which signals that a Declare is safe to use in a 64-bit process).
+twinBASIC通过**LongPtr**（指针宽度整数）和 `PtrSafe` 关键字（表示Declare在64位进程中安全使用）处理这两个问题。
 
-## The example: tracking mouse coordinates
+## 示例：跟踪鼠标坐标
 
-`GetCursorPos` reads the current screen coordinates of the mouse pointer and writes them into a caller-supplied `POINT` structure. It is a simple, safe function with no side effects --- a good starting point for learning the pattern.
+`GetCursorPos` 读取鼠标指针的当前屏幕坐标，并将其写入调用方提供的 `POINT` 结构中。它是一个简单、安全且无副作用的函数——学习该模式的良好起点。
 
-The C prototype from the Windows SDK:
+Windows SDK中的C原型：
 
 ```c
 BOOL GetCursorPos(LPPOINT lpPoint);
 ```
 
-- Return value: non-zero on success, zero on failure.
-- The single parameter is a pointer to a `POINT` structure that the function fills.
+- 返回值：成功时非零，失败时为零。
+- 唯一参数是指向 `POINT` 结构的指针，函数将填充该结构。
 
-A twinBASIC translation:
+twinBASIC翻译：
 
 ```vb
 Private Type POINT
@@ -46,26 +53,26 @@ Private Declare PtrSafe Function GetCursorPos Lib "user32" _
     (lpPoint As POINT) As Long
 ```
 
-`POINT` contains two 32-bit integer fields. Even in a 64-bit build the fields themselves remain 32-bit --- only pointer values change width. `Long` is correct here.
+`POINT` 包含两个32位整数字段。即使在64位构建中，字段本身仍是32位的——只有指针值改变宽度。这里使用 `Long` 是正确的。
 
-The parameter `lpPoint As POINT` is passed **ByRef** by default. ByRef means twinBASIC passes the address of the local `POINT` variable to the function, which writes the coordinates back into it through that pointer. This is the standard Windows pattern for output parameters typed as `LP<Something>`.
+参数 `lpPoint As POINT` 默认按**ByRef**传递。ByRef意味着twinBASIC将局部 `POINT` 变量的地址传递给函数，函数通过该指针将坐标写回。这是Windows中类型为 `LP<Something>` 的输出参数的标准模式。
 
-## Step 1: Create the project and form
+## 步骤1：创建项目和窗体
 
-Create a new Standard EXE project (or open an existing one). On `Form1`, add:
+创建一个新的标准EXE项目（或打开现有项目）。在 `Form1` 上添加：
 
-| Control | Name | Caption | Notes |
+| 控件 | 名称 | 标题 | 备注 |
 |---------|------|---------|-------|
-| Label | `lblCoords` | `(waiting...)` | Shows the current coordinates |
-| Timer | `Timer1` | --- | Set **Interval** to `100` (ms), **Enabled** to `True` |
+| Label | `lblCoords` | `(waiting...)` | 显示当前坐标 |
+| Timer | `Timer1` | --- | 将**Interval**设为 `100`（毫秒），**Enabled**设为 `True` |
 
-The Timer fires its `Timer` event every 100 milliseconds. Each firing will call `GetCursorPos` and update the label.
+Timer每100毫秒触发其 `Timer` 事件。每次触发将调用 `GetCursorPos` 并更新标签。
 
 <!-- screenshot: Form1 with a large Label and a Timer control in the lower-left corner -->
 
-## Step 2: Add the Declare and the UDT
+## 步骤2：添加Declare和UDT
 
-Open the Code Editor for `Form1`. At the top of the module, before any procedures, add the UDT and the Declare:
+打开 `Form1` 的代码编辑器。在模块顶部、任何过程之前，添加UDT和Declare：
 
 ```vb
 Private Type POINT
@@ -78,12 +85,12 @@ Private Declare PtrSafe Function GetCursorPos Lib "user32" _
 ```
 
 ::: info
-`PtrSafe` is required on any `Declare` that will be used in a 64-bit build. It tells the compiler that the signature has been reviewed for pointer-width correctness. Including `PtrSafe` on a 32-bit-only project has no effect, so it is good practice to use it everywhere.
+`PtrSafe` 在任何将用于64位构建的 `Declare` 上都是必需的。它告诉编译器该签名已经过指针宽度正确性审查。在仅32位项目上包含 `PtrSafe` 没有影响，因此在所有地方使用它是良好实践。
 :::
 
-## Step 3: Call the function and handle the result
+## 步骤3：调用函数并处理结果
 
-Double-click the Timer control in the designer to generate the `Timer1_Timer` event handler, then fill it in:
+在设计器中双击Timer控件生成 `Timer1_Timer` 事件处理程序，然后填充内容：
 
 ```vb
 Private Sub Timer1_Timer()
@@ -100,25 +107,25 @@ Private Sub Timer1_Timer()
 End Sub
 ```
 
-`GetCursorPos` returns non-zero when it succeeds and zero when it fails. The `POINT` fields `x` and `y` are valid only when the return is non-zero.
+`GetCursorPos` 成功时返回非零值，失败时返回零。`POINT` 字段 `x` 和 `y` 仅在返回值为非零时有效。
 
-## Step 4: Run the application
+## 步骤4：运行应用程序
 
-Press **F5**. Move the mouse over the form. The label updates ten times per second with the current screen coordinates (in pixels, measured from the top-left corner of the primary monitor).
+按**F5**。在窗体上移动鼠标。标签每秒更新十次，显示当前屏幕坐标（以像素为单位，从主显示器左上角测量）。
 
-## Error handling with GetLastError
+## 使用GetLastError处理错误
 
-When a Win32 function returns a failure code, the extended error information is available through `GetLastError` --- another kernel32 function:
+当Win32函数返回失败代码时，扩展错误信息可通过 `GetLastError` 获取——另一个kernel32函数：
 
 ```vb
 Private Declare PtrSafe Function GetLastError Lib "kernel32" () As Long
 ```
 
 ::: info
-In VBA-compatible code you can also read the last Win32 error through [**Err.LastDllError**](/official/Reference/VBA/Information/Err), which is populated automatically after any DLL call. Both return the same value; `Err.LastDllError` does not require an extra Declare.
+在VBA兼容代码中，你也可以通过[**Err.LastDllError**](/official/Reference/VBA/Information/Err)读取上一个Win32错误，该值在任何DLL调用后自动填充。两者返回相同的值；`Err.LastDllError` 不需要额外的Declare。
 :::
 
-A robust version of the Timer handler:
+Timer处理程序的健壮版本：
 
 ```vb
 Private Sub Timer1_Timer()
@@ -132,24 +139,24 @@ Private Sub Timer1_Timer()
 End Sub
 ```
 
-In practice `GetCursorPos` almost never fails; checking the return code matters for functions that deal with file handles, network connections, or security contexts where failure is routine.
+实际上 `GetCursorPos` 几乎不会失败；检查返回代码对于处理文件句柄、网络连接或安全上下文的函数更为重要，这些场景中失败是常见的。
 
-## 32-bit vs. 64-bit considerations
+## 32位与64位注意事项
 
-For `GetCursorPos` the distinction does not arise because all its types are concrete 32-bit integers. Many other API functions use pointer-sized types that require care:
+对于 `GetCursorPos`，这种区别不会出现，因为其所有类型都是具体的32位整数。许多其他API函数使用指针大小的类型，需要小心处理：
 
-| C type | twinBASIC type | Why |
+| C类型 | twinBASIC类型 | 原因 |
 |--------|----------------|-----|
-| `HWND`, `HANDLE` | **LongPtr** | Window and object handles are pointer-sized |
-| `HINSTANCE`, `HMODULE` | **LongPtr** | Instance handles are pointer-sized |
-| `LPCWSTR`, `LPWSTR` | **LongPtr** (with StrPtr) or **String** | String pointers are pointer-sized |
-| `DWORD` | **Long** | Always 32-bit |
-| `BOOL` | **Long** | Always 32-bit |
-| `INT`, `int` | **Long** | Always 32-bit |
+| `HWND`, `HANDLE` | **LongPtr** | 窗口和对象句柄是指针大小 |
+| `HINSTANCE`, `HMODULE` | **LongPtr** | 实例句柄是指针大小 |
+| `LPCWSTR`, `LPWSTR` | **LongPtr** (配合StrPtr) 或 **String** | 字符串指针是指针大小 |
+| `DWORD` | **Long** | 始终32位 |
+| `BOOL` | **Long** | 始终32位 |
+| `INT`, `int` | **Long** | 始终32位 |
 
-A Declare that uses `Long` for a handle type compiles and runs in 32-bit mode but fails or crashes in 64-bit mode because a 64-bit handle does not fit in 4 bytes. Always use `LongPtr` for handle and pointer parameters.
+使用 `Long` 作为句柄类型的Declare在32位模式下可以编译和运行，但在64位模式下会失败或崩溃，因为64位句柄无法放入4字节。对于句柄和指针参数，始终使用 `LongPtr`。
 
-### Example: GetForegroundWindow
+### 示例：GetForegroundWindow
 
 ```vb
 Private Declare PtrSafe Function GetForegroundWindow Lib "user32" () As LongPtr
@@ -161,13 +168,13 @@ Private Sub ShowActiveWindow()
 End Sub
 ```
 
-The return type is `LongPtr` because a window handle is pointer-sized. In a 32-bit build `LongPtr` is 4 bytes; in a 64-bit build it is 8 bytes. The same Declare and the same calling code work in both targets without any `#If Win64` conditional.
+返回类型为 `LongPtr`，因为窗口句柄是指针大小的。在32位构建中 `LongPtr` 为4字节；在64位构建中为8字节。相同的Declare和相同的调用代码在两种目标下都能工作，无需任何 `#If Win64` 条件编译。
 
-## ANSI vs. Unicode function variants
+## ANSI与Unicode函数变体
 
-Most Win32 text-related functions come in two variants: an ANSI version (suffix `A`) that takes `LPSTR` / `char*` strings, and a Unicode version (suffix `W`) that takes `LPWSTR` / `wchar_t*` strings. twinBASIC strings are Unicode (`BSTR`), so always prefer the `W` variant.
+大多数Win32文本相关函数有两个变体：ANSI版本（后缀 `A`）接受 `LPSTR` / `char*` 字符串，Unicode版本（后缀 `W`）接受 `LPWSTR` / `wchar_t*` 字符串。twinBASIC字符串是Unicode（`BSTR`），因此始终优先使用 `W` 变体。
 
-Specify the Unicode function name in the `Alias` clause when the unaliased name would resolve to the ANSI variant:
+当无别名的名称会解析为ANSI变体时，在 `Alias` 子句中指定Unicode函数名：
 
 ```vb
 ' Without Alias, the linker resolves to the ANSI variant on some systems.
@@ -179,11 +186,11 @@ Private Declare PtrSafe Function GetWindowText Lib "user32" _
      ByVal nMaxCount As Long) As Long
 ```
 
-For functions where twinBASIC can pass a **String** directly, `DeclareWide` is an alternative to manually managing the buffer pointer --- see [Features → Enhanced API Declarations](/official/Features/Advanced/API-Declarations) for the `DeclareWide` and `CDecl` extensions.
+对于twinBASIC可以直接传递**String**的函数，`DeclareWide` 是手动管理缓冲区指针的替代方案——参见[特性 → 增强的API声明](/official/Features/Advanced/API-Declarations)了解 `DeclareWide` 和 `CDecl` 扩展。
 
-## Putting it together
+## 完整代码
 
-The full module for the cursor-tracking form:
+光标跟踪窗体的完整模块：
 
 ```vb
 Private Type POINT
@@ -212,8 +219,8 @@ Private Sub Timer1_Timer()
 End Sub
 ```
 
-## Where to go next
+## 下一步
 
-- **Enhanced API Declarations** -- `DeclareWide`, `CDecl`, `ByVal` UDTs, variadic arguments: [Features → Enhanced API Declarations](/official/Features/Advanced/API-Declarations)
-- **Forms basics** -- the standard VB controls and event model: [Forms basics](/official/Tutorials/Forms)
-- **Unit testing** -- verifying functions that wrap API calls: [Writing unit tests with Assert](/official/Tutorials/Testing-with-Assert)
+- **增强的API声明** —— `DeclareWide`、`CDecl`、`ByVal` UDT、可变参数：[特性 → 增强的API声明](/official/Features/Advanced/API-Declarations)
+- **窗体基础** —— 标准VB控件和事件模型：[窗体基础](/official/Tutorials/Forms)
+- **单元测试** —— 验证封装API调用的函数：[使用Assert编写单元测试](/official/Tutorials/Testing-with-Assert)

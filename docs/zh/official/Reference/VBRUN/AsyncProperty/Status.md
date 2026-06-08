@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4696bee9-db4f-4958-ba3b-79f511443259'
+  PropagateID: '4696bee9-db4f-4958-ba3b-79f511443259'
+  ReservedCode1: '7bad5cb5-e974-4372-ad02-8243ae162a83'
+  ReservedCode2: '7bad5cb5-e974-4372-ad02-8243ae162a83'
+---
+
 ---
 title: Status
 parent: AsyncProperty
@@ -5,18 +16,18 @@ permalink: /tB/Packages/VBRUN/AsyncProperty/Status
 ---
 # Status
 
-Returns a human-readable description of the current state of the read, as a **String**. Read-only.
+返回读取当前状态的人类可读描述，类型为**String**。只读。
 
-Syntax: *object*.**Status**
+语法：*object*.**Status**
 
 *object*
-: *required* An object expression that evaluates to an **AsyncProperty** object.
+: *必需* 求值为**AsyncProperty**对象的对象表达式。
 
-The value is a short message such as `"Finding resource"`, `"Connecting"`, or `"Receiving response"`, suitable for display in a status bar or tooltip while the read is in progress. For programmatic logic, examine [**StatusCode**](/official/Reference/VBRUN/AsyncProperty/StatusCode) instead --- its values are stable, whereas **Status** is intended for human consumption and may be localised.
+该值是简短消息，如`"Finding resource"`、`"Connecting"`或`"Receiving response"`，适合在读取进行中时显示在状态栏或工具提示中。用于编程逻辑时，请改为检查[**StatusCode**](/official/Reference/VBRUN/AsyncProperty/StatusCode)——其值是稳定的，而**Status**为人类阅读设计，可能经过本地化。
 
-### Example
+### 示例
 
-This example displays the human-readable status string in a label during a download.
+此示例在下载期间在标签中显示人类可读的状态字符串。
 
 ```vb
 Private Sub UserControl_AsyncReadProgress(AsyncProp As AsyncProperty)
@@ -24,8 +35,8 @@ Private Sub UserControl_AsyncReadProgress(AsyncProp As AsyncProperty)
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [StatusCode](/official/Reference/VBRUN/AsyncProperty/StatusCode) property
-- [BytesRead](/official/Reference/VBRUN/AsyncProperty/BytesRead) property
-- [BytesMax](/official/Reference/VBRUN/AsyncProperty/BytesMax) property
+- [StatusCode](/official/Reference/VBRUN/AsyncProperty/StatusCode) 属性
+- [BytesRead](/official/Reference/VBRUN/AsyncProperty/BytesRead) 属性
+- [BytesMax](/official/Reference/VBRUN/AsyncProperty/BytesMax) 属性

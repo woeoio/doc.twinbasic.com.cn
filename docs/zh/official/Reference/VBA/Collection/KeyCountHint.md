@@ -2,31 +2,40 @@
 title: KeyCountHint
 parent: Collection
 permalink: /tB/Modules/Collection/KeyCountHint
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '938caa29-06b7-40cc-8be4-2ba836f94a7f'
+  PropagateID: '938caa29-06b7-40cc-8be4-2ba836f94a7f'
+  ReservedCode1: '9e31d2dd-2058-4a8b-a7a0-1efed229f068'
+  ReservedCode2: '9e31d2dd-2058-4a8b-a7a0-1efed229f068'
 ---
+
 # KeyCountHint
 
-Returns or sets a hint to a **Collection** object about the number of keyed items it is expected to hold, allowing the underlying hash table to be sized accordingly. Read/write.
+返回或设置向 **Collection** 对象提示预期持有的键控项数量，使底层哈希表可以相应地调整大小。可读写。
 
-Syntax:
+语法：
 - *object*.**KeyCountHint**
 - *object*.**KeyCountHint** **=** *hint*
 
 *object*
-: *required* An object expression that evaluates to a **Collection** object.
+: *必需* 一个计算结果为 **Collection** 对象的对象表达式。
 
 *hint*
-: A **Long** value giving the estimated number of keyed items that will be added to the collection.
+: 一个 **Long** 值，给出预计将添加到集合中的键控项数量。
 
 ::: info
 
-**KeyCountHint** is a twinBASIC extension and has no equivalent in the classic VBA **Collection** object.
+**KeyCountHint** 是 twinBASIC 扩展，在经典 VBA 的 **Collection** 对象中没有等效项。
 :::
 
-Setting **KeyCountHint** is optional. It is most effective when set before any items are added to the collection: the hint is used to pre-allocate the hash table and avoid repeated resizing as items are inserted. If the actual number of keyed items exceeds the hint, the collection still functions correctly, but performance may be reduced while the hash table grows.
+设置 **KeyCountHint** 是可选的。在向集合添加任何项之前设置最为有效：该提示用于预分配哈希表，避免在插入项时反复调整大小。如果实际的键控项数量超过提示值，集合仍能正常工作，但哈希表增长时性能可能会降低。
 
-The hint affects only keyed items (those added with a **Key** argument); items added without a key are unaffected.
+该提示仅影响键控项（使用 **Key** 参数添加的项）；不使用键添加的项不受影响。
 
-### Example
+### 示例
 
 ```vb
 Dim Big As New Collection
@@ -38,8 +47,8 @@ For i = 1 To 100000
 Next
 ```
 
-### See Also
+### 另请参阅
 
-- [Add](/official/Reference/VBA/Collection/Add) method
-- [Exists](/official/Reference/VBA/Collection/Exists) method
-- [KeyCompareMode](/official/Reference/VBA/Collection/KeyCompareMode) property
+- [Add](/official/Reference/VBA/Collection/Add) 方法
+- [Exists](/official/Reference/VBA/Collection/Exists) 方法
+- [KeyCompareMode](/official/Reference/VBA/Collection/KeyCompareMode) 属性

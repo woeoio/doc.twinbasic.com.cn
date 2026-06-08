@@ -1,44 +1,51 @@
 ---
-title: Writing unit tests with Assert
+title: "使用Assert编写单元测试"
 parent: Tutorials
 permalink: /Tutorials/Testing-with-Assert
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4e5f8d17-4a09-44e3-8c84-2cba19f50848'
+  PropagateID: '4e5f8d17-4a09-44e3-8c84-2cba19f50848'
+  ReservedCode1: '41fe337d-0805-4d88-8e41-4e067970bc6a'
+  ReservedCode2: '41fe337d-0805-4d88-8e41-4e067970bc6a'
 ---
 
+# 使用Assert编写单元测试
 
-# Writing unit tests with Assert
-
-This tutorial shows how to write a small function, add tests for it using the **Assert** package, and run those tests from inside the IDE.
+本教程展示如何编写一个小函数、使用**Assert**包为其添加测试，并从IDE内部运行这些测试。
 
 
-## The Assert package
+## Assert包
 
-The [Assert package](/official/Reference/Assert/) provides three modules --- [**Exact**](/official/Reference/Assert/Exact), [**Strict**](/official/Reference/Assert/Strict), and [**Permissive**](/official/Reference/Assert/Permissive) --- that share the same fifteen-member API:
+[Assert包](/official/Reference/Assert/)提供三个模块——[**Exact**](/official/Reference/Assert/Exact)、[**Strict**](/official/Reference/Assert/Strict)和[**Permissive**](/official/Reference/Assert/Permissive)——它们共享相同的十五成员API：
 
-| Module | String comparison | Numeric datatype must match |
+| 模块 | 字符串比较 | 数值数据类型必须匹配 |
 |--------|-------------------|-----------------------------|
-| **Exact** | Case-sensitive | Yes --- `5` and `5.0` are not equal |
-| **Strict** | Case-sensitive | No |
-| **Permissive** | Case-insensitive | No |
+| **Exact** | 区分大小写 | 是——`5` 和 `5.0` 不相等 |
+| **Strict** | 区分大小写 | 否 |
+| **Permissive** | 不区分大小写 | 否 |
 
-All three compile out of release builds: every member is tagged `[DebugOnly(True)]`, so assertion calls have zero runtime cost in production EXEs. Tests live in the same project as production code and run in the IDE under the full debugger.
+这三个模块在发布构建中会被编译掉：每个成员都标记了 `[DebugOnly(True)]`，因此断言调用在生产EXE中零运行时开销。测试与生产代码位于同一项目中，并在IDE中由完整调试器运行。
 
-The most commonly used members are:
+最常用的成员：
 
-- `Exact.AreEqual expected, actual` -- fails if the two values differ
-- `Exact.IsTrue condition` -- fails if the condition is `False`
-- `Exact.IsFalse condition` -- fails if the condition is `True`
-- `Exact.Fail message` -- unconditionally records a failure
-- `Exact.Succeed` -- explicitly records a pass (useful at the end of conditional paths)
+- `Exact.AreEqual expected, actual` —— 如果两个值不同则失败
+- `Exact.IsTrue condition` —— 如果条件为 `False` 则失败
+- `Exact.IsFalse condition` —— 如果条件为 `True` 则失败
+- `Exact.Fail message` —— 无条件记录失败
+- `Exact.Succeed` —— 显式记录通过（在条件路径末尾很有用）
 
-Each failing assertion records the source location, the expected and actual values, and the optional message string. Results appear in the **Debug Console** pane.
+每个失败的断言记录源位置、期望值和实际值以及可选的消息字符串。结果显示在**调试控制台**面板中。
 
-## Adding the package
+## 添加包
 
-Open **Project → References** (Ctrl+T) → **Available Packages** and tick **Assert**. Click **OK**. The three modules (`Exact`, `Strict`, `Permissive`) are now in scope without any `Imports` statement.
+打开**项目 → 引用**（Ctrl+T）→ **可用包**，勾选**Assert**。点击**确定**。三个模块（`Exact`、`Strict`、`Permissive`）现在在作用域中，无需任何 `Imports` 语句。
 
-## The function under test
+## 被测试的函数
 
-Add a standard **Module** to the project (right-click the project in the Project Explorer, then **Add → Module**). Name it `StringUtils`. Add the following function:
+向项目添加一个标准**模块**（在项目资源管理器中右键点击项目，然后**添加 → 模块**）。命名为 `StringUtils`。添加以下函数：
 
 ```vb
 ' Pads s on the left with padChar until it reaches totalWidth characters.
@@ -54,11 +61,11 @@ Public Function PadLeft(ByVal s As String, _
 End Function
 ```
 
-`PadLeft` is a good test subject: it has a clear specification, an optional parameter with a default, and several distinct edge cases.
+`PadLeft` 是一个很好的测试对象：它有明确的规格说明、带有默认值的可选参数，以及多个不同的边界情况。
 
-## Writing the tests
+## 编写测试
 
-Add a second module, `TestStringUtils`. Each test is a `Public Sub` that exercises one aspect of the function. Keep each Sub short --- ideally one logical scenario per Sub, named to describe what it checks.
+添加第二个模块 `TestStringUtils`。每个测试是一个 `Public Sub`，测试函数的一个方面。保持每个Sub简短——理想情况下每个Sub一个逻辑场景，名称描述其检查内容。
 
 ```vb
 Public Sub TestPadLeft_Normal()
@@ -92,17 +99,17 @@ Public Sub TestPadLeft_SingleChar()
 End Sub
 ```
 
-These tests cover: the normal case, a custom pad character, the at-boundary case, the over-boundary case, an empty input, and a minimal input.
+这些测试覆盖了：正常情况、自定义填充字符、边界情况、超出边界情况、空输入和最小输入。
 
-## Running the tests
+## 运行测试
 
-There are two ways to run a test Sub:
+有两种方式运行测试Sub：
 
-1. **CodeLens** --- place the cursor anywhere inside a test Sub. The CodeLens bar above the `Sub` line shows a `▶ Run` button. Click it to run that one Sub. The result appears immediately in the **Debug Console**.
+1. **CodeLens** —— 将光标放在测试Sub内的任何位置。`Sub` 行上方的CodeLens条显示一个 `▶ Run` 按钮。点击它运行该Sub。结果立即显示在**调试控制台**中。
 
-2. **F5 from inside the Sub** --- place the cursor inside the Sub and press **F5**. twinBASIC runs the procedure and stops when it returns or when an assertion fails.
+2. **从Sub内部按F5** —— 将光标放在Sub内并按**F5**。twinBASIC运行该过程，并在其返回或断言失败时停止。
 
-To run all tests in a batch, add a runner Sub that calls each test in sequence:
+要批量运行所有测试，添加一个运行器Sub按顺序调用每个测试：
 
 ```vb
 Public Sub RunAllTests()
@@ -116,11 +123,11 @@ Public Sub RunAllTests()
 End Sub
 ```
 
-Place the cursor inside `RunAllTests` and press **F5** (or click **▶ Run** in the CodeLens bar). If any assertion fails, execution stops at the failing line and the Debug Console shows which assertion failed, its expected and actual values, and the source location.
+将光标放在 `RunAllTests` 内并按**F5**（或点击CodeLens条中的**▶ Run**）。如果任何断言失败，执行在失败行停止，调试控制台显示哪个断言失败、其期望值和实际值以及源位置。
 
-## Testing error paths
+## 测试错误路径
 
-Sometimes a function should raise an error for bad input. Test that with `On Error Resume Next` and `Err.Number`:
+有时函数应该对错误输入引发错误。使用 `On Error Resume Next` 和 `Err.Number` 进行测试：
 
 ```vb
 Public Sub TestPadLeft_ZeroWidth()
@@ -131,7 +138,7 @@ Public Sub TestPadLeft_ZeroWidth()
 End Sub
 ```
 
-If instead you expected the function to raise an error:
+如果你期望函数引发错误：
 
 ```vb
 Public Sub TestSomethingThatShouldRaise()
@@ -144,9 +151,9 @@ Public Sub TestSomethingThatShouldRaise()
 End Sub
 ```
 
-## Choosing the right module
+## 选择正确的模块
 
-Use **Exact** by default --- its strictest comparison semantics prevent tests from passing for the wrong reason. Switch to **Strict** or **Permissive** when the code under test is intentionally case-insensitive or when you are comparing values that should be equal regardless of numeric type:
+默认使用**Exact**——其最严格的比较语义防止测试因错误原因而通过。当被测试代码有意不区分大小写，或比较的值无论数值类型如何都应相等时，切换到**Strict**或**Permissive**：
 
 ```vb
 ' Exact would fail because "hello" ≠ "Hello" (case differs)
@@ -154,24 +161,24 @@ Strict.AreEqual "HELLO", LCase$("HELLO")  ' fails -- "hello" ≠ "HELLO"
 Permissive.AreEqual "HELLO", LCase$("HELLO")  ' passes -- case-insensitive
 ```
 
-The three modules are documented in full at:
+三个模块的完整文档见：
 
-- [Exact module](/official/Reference/Assert/Exact) -- strictest semantics
-- [Strict module](/official/Reference/Assert/Strict) -- case-sensitive strings, type-lenient numeric
-- [Permissive module](/official/Reference/Assert/Permissive) -- case-insensitive strings, type-lenient numeric
+- [Exact模块](/official/Reference/Assert/Exact) —— 最严格的语义
+- [Strict模块](/official/Reference/Assert/Strict) —— 区分大小写字符串，类型宽松数值
+- [Permissive模块](/official/Reference/Assert/Permissive) —— 不区分大小写字符串，类型宽松数值
 
-## Test organisation
+## 测试组织
 
-As a project grows, keep tests close to the code they exercise. One common convention:
+随着项目增长，将测试保持在它们所测试的代码附近。一种常见约定：
 
-- One production module per concern: `StringUtils`, `DateUtils`, `FileHelpers`, …
-- One test module per production module: `TestStringUtils`, `TestDateUtils`, `TestFileHelpers`, …
-- A top-level `RunAll` Sub in a `TestRunner` module that calls each module's runner
+- 每个关注点一个生产模块：`StringUtils`、`DateUtils`、`FileHelpers`、……
+- 每个生产模块一个测试模块：`TestStringUtils`、`TestDateUtils`、`TestFileHelpers`、……
+- 在 `TestRunner` 模块中有一个顶层 `RunAll` Sub，调用每个模块的运行器
 
-Because all test Subs are compiled out of release builds (`[DebugOnly(True)]`), this organisation adds no overhead to the shipped executable.
+由于所有测试Sub在发布构建中会被编译掉（`[DebugOnly(True)]`），这种组织不会给发布可执行文件增加任何开销。
 
-## Where to go next
+## 下一步
 
-- **Assert package reference** -- all fifteen members in detail: [Assert package](/official/Reference/Assert/)
-- **Forms basics** -- building a form to host a small test harness visually: [Forms basics](/official/Tutorials/Forms)
-- **Windows API** -- writing and testing a function that wraps a Declare: [Calling the Windows API](/official/Tutorials/Windows-API)
+- **Assert包参考** —— 所有十五个成员的详细说明：[Assert包](/official/Reference/Assert/)
+- **窗体基础** —— 构建窗体以可视化地承载小型测试工具：[窗体基础](/official/Tutorials/Forms)
+- **Windows API** —— 编写和测试封装Declare的函数：[调用Windows API](/official/Tutorials/Windows-API)

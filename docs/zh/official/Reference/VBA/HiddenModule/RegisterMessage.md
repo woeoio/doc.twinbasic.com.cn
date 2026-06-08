@@ -2,31 +2,40 @@
 title: RegisterMessage
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/RegisterMessage
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3212e551-462b-4125-9802-be5a9647972a'
+  PropagateID: '3212e551-462b-4125-9802-be5a9647972a'
+  ReservedCode1: '258a2a06-4223-4985-a4a8-b0041e97de77'
+  ReservedCode2: '258a2a06-4223-4985-a4a8-b0041e97de77'
 ---
+
 # RegisterMessage
 
-Subscribes a callback to a single Windows message type for a chosen window and descendant scope.
+为选定窗口和后代范围的单个Windows消息类型订阅回调。
 
-Syntax: *hook*.**RegisterMessage** *ParentHWND* **,** *Mode* **,** *MessageType* **,** *Callback*
+语法：*hook*.**RegisterMessage** *ParentHWND* **,** *Mode* **,** *MessageType* **,** *Callback*
 
 *hook*
-: *required* An [**IGetMessageHook**](./#igetmessagehook-interface) instance, typically returned by [**RuntimeCreateGetMessageHook**](/official/Reference/VBA/HiddenModule/RuntimeCreateGetMessageHook).
+: *必需* 一个[**IGetMessageHook**](./#igetmessagehook-interface)实例，通常由[**RuntimeCreateGetMessageHook**](/official/Reference/VBA/HiddenModule/RuntimeCreateGetMessageHook)返回。
 
 *ParentHWND*
-: *required* **LongPtr**. The window the subscription anchors on.
+: *必需* **LongPtr**。订阅锚定的窗口。
 
 *Mode*
-: *required* [**EnumDescendantsModeFlags**](./#enumdescendantsmodeflags). The descendant scope: only the exact window, all descendants, or only direct children.
+: *必需* [**EnumDescendantsModeFlags**](./#enumdescendantsmodeflags)。后代范围：仅精确窗口、所有后代或仅直接子级。
 
 *MessageType*
-: *required* **Integer**. The Windows `WM_*` message identifier to subscribe to. Each call subscribes to one type; call **RegisterMessage** repeatedly to listen for several.
+: *必需* **Integer**。要订阅的Windows `WM_*`消息标识符。每次调用订阅一种类型；重复调用**RegisterMessage**可监听多种消息。
 
 *Callback*
-: *required* [**GetMessageHookHelper.GetMessageHandler**](./#getmessagehandler). The function that receives matching messages. Pass `AddressOf` a function with the matching signature.
+: *必需* [**GetMessageHookHelper.GetMessageHandler**](./#getmessagehandler)。接收匹配消息的函数。传递`AddressOf`一个具有匹配签名的函数。
 
-The subscription is recorded but does not start firing until [**Start**](/official/Reference/VBA/HiddenModule/Start) is called on the hook. Existing subscriptions are not disturbed by adding new ones.
+订阅会被记录，但在钩子上调用[**Start**](/official/Reference/VBA/HiddenModule/Start)之前不会开始触发。添加新订阅不会干扰现有订阅。
 
-### Example
+### 示例
 
 ```vb
 Const WM_KEYDOWN = &H100
@@ -39,9 +48,9 @@ Sub HookKeyboard(ByVal h As IGetMessageHook)
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [Start](/official/Reference/VBA/HiddenModule/Start) method
-- [Stop](/official/Reference/VBA/HiddenModule/Stop) method
-- [IGetMessageHook interface](./#igetmessagehook-interface)
-- [GetMessageHookHelper module](./#getmessagehookhelper-module)
+- [Start](/official/Reference/VBA/HiddenModule/Start)方法
+- [Stop](/official/Reference/VBA/HiddenModule/Stop)方法
+- [IGetMessageHook接口](./#igetmessagehook-interface)
+- [GetMessageHookHelper模块](./#getmessagehookhelper-module)

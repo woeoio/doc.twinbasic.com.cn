@@ -2,31 +2,40 @@
 title: MIRR
 parent: Financial Module
 permalink: /tB/Modules/Financial/MIRR
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4ac96029-a205-4002-a650-1968d5b5c17c'
+  PropagateID: '4ac96029-a205-4002-a650-1968d5b5c17c'
+  ReservedCode1: 'a5c347e6-8290-4aca-8e2a-357afd032f66'
+  ReservedCode2: 'a5c347e6-8290-4aca-8e2a-357afd032f66'
 ---
+
 # MIRR
 
-Returns a **Double** specifying the modified internal rate of return for a series of periodic cash flows (payments and receipts).
+返回一个 **Double**，指定一系列定期现金流（付款和收入）的修正内部收益率。
 
-Syntax: **MIRR(** *values()*, *finance_rate*, *reinvest_rate* **)**
+语法：**MIRR(** *values()*, *finance_rate*, *reinvest_rate* **)**
 
 *values()*
-: *required* Array of **Double** specifying cash flow values. The array must contain at least one negative value (a payment) and one positive value (a receipt).
+: *必需* **Double** 数组，指定现金流值。数组必须包含至少一个负值（付款）和一个正值（收入）。
 
 *finance_rate*
-: *required* **Double** specifying interest rate paid as the cost of financing.
+: *必需* **Double**，指定作为融资成本支付的利率。
 
 *reinvest_rate*
-: *required* **Double** specifying interest rate received on gains from cash reinvestment.
+: *必需* **Double**，指定从现金再投资收益中获得的利率。
 
-The modified internal rate of return is the internal rate of return when payments and receipts are financed at different rates. The **MIRR** function takes into account both the cost of the investment (*finance_rate*) and the interest rate received on reinvestment of cash (*reinvest_rate*).
+修正内部收益率是付款和收入以不同利率融资时的内部收益率。**MIRR** 函数考虑了投资成本（*finance_rate*）和现金再投资收益的利率（*reinvest_rate*）。
 
-The *finance_rate* and *reinvest_rate* arguments are percentages expressed as decimal values. For example, 12 percent is expressed as 0.12.
+*finance_rate* 和 *reinvest_rate* 参数是以小数表示的百分比。例如，12% 表示为 0.12。
 
-The **MIRR** function uses the order of values within the array to interpret the order of payments and receipts. The payment and receipt values must be in the correct sequence.
+**MIRR** 函数使用数组中值的顺序来解释付款和收入的顺序。付款和收入值必须按正确顺序排列。
 
-### Example
+### 示例
 
-This example uses the **MIRR** function to return the modified internal rate of return for a series of cash flows contained in the array `Values()`. `LoanAPR` represents the financing interest, and `InvAPR` represents the interest rate received on reinvestment.
+此示例使用 **MIRR** 函数返回包含在数组 `Values()` 中的一系列现金流的修正内部收益率。`LoanAPR` 代表融资利率，`InvAPR` 代表再投资收益利率。
 
 ```vb
 Dim LoanAPR, InvAPR, Fmt, RetRate, Msg
@@ -44,6 +53,6 @@ Msg = Msg & Format(Abs(RetRate) * 100, Fmt) & "%."
 MsgBox Msg    ' Display internal return rate.
 ```
 
-### See Also
+### 另请参阅
 
-- [IRR](/official/Reference/VBA/Financial/IRR), [NPV](/official/Reference/VBA/Financial/NPV), [Rate](/official/Reference/VBA/Financial/Rate) functions
+- [IRR](/official/Reference/VBA/Financial/IRR)、[NPV](/official/Reference/VBA/Financial/NPV)、[Rate](/official/Reference/VBA/Financial/Rate) 函数

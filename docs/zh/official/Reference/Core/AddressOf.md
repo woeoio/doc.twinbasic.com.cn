@@ -2,41 +2,50 @@
 title: AddressOf
 parent: Operators
 permalink: /tB/Core/AddressOf
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0e476837-1059-49e5-9427-6cf3af38ea0f'
+  PropagateID: '0e476837-1059-49e5-9427-6cf3af38ea0f'
+  ReservedCode1: '17492843-7ff1-4cf2-be7a-eb2320179eb3'
+  ReservedCode2: '17492843-7ff1-4cf2-be7a-eb2320179eb3'
 ---
-# AddressOf operator
 
-A unary operator that returns a function-pointer reference to its operand.
+# AddressOf 运算符
 
-Syntax:
+一元运算符，返回其操作数的函数指针引用。
+
+语法：
 > **AddressOf** *procedurename*  
 > **AddressOf** *instance*.*procedurename*     *(twinBASIC)*
 
 *procedurename*
-: The name of a [**Sub**](/official/Reference/Core/Sub), [**Function**](/official/Reference/Core/Function), or [**Property**](/official/Reference/Core/Property) procedure whose address is taken.
+: 需要获取地址的 [**Sub**](/official/Reference/Core/Sub)、[**Function**](/official/Reference/Core/Function) 或 [**Property**](/official/Reference/Core/Property) 过程的名称。
 
 *instance*
-: *optional* (twinBASIC) An object reference whose member *procedurename* is targeted. The resulting pointer is bound to *instance*, so calling through it invokes the method on that specific object.
+: *可选* (twinBASIC) 对象引用，其成员 *procedurename* 为目标。生成的指针绑定到 *instance*，因此通过该指针调用会在该特定对象上调用方法。
 
-When a procedure name appears in an argument list, normally the procedure is *called* and the procedure's return value is passed. **AddressOf** suppresses the call and substitutes the procedure's address instead. The most common use is to install a callback in a Windows API --- the API then invokes the procedure from outside the project's code, in a process known as a *callback*.
+当过程名出现在参数列表中时，通常会*调用*该过程并传递其返回值。**AddressOf** 抑制调用，改为传递过程的地址。最常见的用途是在Windows API中安装回调——API随后从项目代码外部调用该过程，这个过程称为*回调*。
 
-The value **AddressOf** produces is bit-compatible with **LongPtr**, so it can be passed wherever a function pointer is expected --- including legacy [**Declare**](/official/Reference/Core/Declare) parameters typed **As Long** or **As LongPtr**. When the destination type is a [**Delegate**](/official/Reference/Core/Delegate), the compiler additionally checks that the operand's signature matches the delegate's.
+**AddressOr** 生成的值与 **LongPtr** 在位级别兼容，因此可以传递给任何需要函数指针的地方——包括使用 **As Long** 或 **As LongPtr** 类型的传统 [**Declare**](/official/Reference/Core/Declare) 参数。当目标类型为 [**Delegate**](/official/Reference/Core/Delegate) 时，编译器还会检查操作数的签名是否与委托的签名匹配。
 
-In classic VBA, *procedurename* must name a procedure in a standard [**Module**](/official/Reference/Core/Module) of the current project; the destination parameter must be typed **As Long**; and the resulting pointer can only be invoked by code outside Basic (e.g. a DLL). twinBASIC lifts each of these restrictions --- see [twinBASIC enhancements](#twinbasic-enhancements) below.
+在经典VBA中，*procedurename* 必须是当前项目标准 [**Module**](/official/Reference/Core/Module) 中的过程名称；目标参数必须为 **As Long** 类型；生成的指针只能由Basic外部的代码（如DLL）调用。twinBASIC解除了所有限制——参见下文[twinBASIC增强功能](#twinbasic-enhancements)。
 
 ::: important
-Errors raised inside a callback cannot propagate back to the foreign caller --- the API runs outside the project's error-handling chain. Place `On Error Resume Next` (or an explicit handler) at the top of any procedure used as an **AddressOf** target.
+回调内部引发的错误无法传播回外部调用者——API运行在项目的错误处理链之外。在用作 **AddressOf** 目标的任何过程顶部放置 `On Error Resume Next`（或显式错误处理程序）。
 :::
 
-### twinBASIC enhancements
+### twinBASIC增强功能
 
-- **Indirect calls back through Basic.** A delegate variable holding an **AddressOf** value can be called directly: `Dim op As Operation = AddressOf Add: r = op(5, 6)`. Classic VBA can pass such pointers between procedures but cannot invoke through them inside Basic. See [**Delegate**](/official/Reference/Core/Delegate).
-- **Class, form, and user-control members.** **AddressOf** accepts methods declared on a class, form, or user-control. Take a pointer to an instance method by qualifying the name with the object reference: `AddressOf myInstance.MyMethod`. The resulting pointer remembers the instance --- calling through it dispatches to that object.
-- **CDecl callbacks.** Mark both the target procedure and the matching [**Delegate**](/official/Reference/Core/Delegate) (or [**Declare**](/official/Reference/Core/Declare) parameter) with **CDecl** to model `cdecl` callbacks. Classic VBA's **AddressOf** is hard-wired to `__stdcall`. See [API Declarations](/official/Features/Advanced/API-Declarations#cdecl-callbacks).
-- **No `FARPROC` shim needed.** Assigning a function pointer to a local variable is direct --- `Dim lpfn As LongPtr = AddressOf MyFunc` --- without writing an intermediate forwarding procedure.
+- **通过Basic间接回调。** 持有 **AddressOf** 值的委托变量可以直接调用：`Dim op As Operation = AddressOf Add: r = op(5, 6)`。经典VBA可以在过程之间传递此类指针，但无法在Basic内部通过它们调用。参见 [**Delegate**](/official/Reference/Core/Delegate)。
+- **类、窗体和用户控件的成员。** **AddressOf** 接受在类、窗体或用户控件上声明的方法。通过用对象引用限定名称来获取实例方法的指针：`AddressOf myInstance.MyMethod`。生成的指针记住实例——通过它调用会分派到该对象。
+- **CDecl回调。** 在目标过程和匹配的 [**Delegate**](/official/Reference/Core/Delegate)（或 [**Declare**](/official/Reference/Core/Declare) 参数）上同时标记 **CDecl**，以建模 `cdecl` 回调。经典VBA的 **AddressOf** 固定使用 `__stdcall`。参见 [API声明](/official/Features/Advanced/API-Declarations#cdecl-callbacks)。
+- **无需 `FARPROC` 垫片。** 将函数指针赋值给局部变量是直接的——`Dim lpfn As LongPtr = AddressOf MyFunc`——无需编写中间转发过程。
 
-### Example
+### 示例
 
-Calling through a typed delegate, inside Basic:
+在Basic内部通过类型化委托调用：
 
 ```vb
 Private Delegate Function Operation (ByVal A As Long, ByVal B As Long) As Long
@@ -51,7 +60,7 @@ Private Sub Demo()
 End Sub
 ```
 
-Installing a callback in a Win32 API. `EnumWindows` invokes *EnumProc* once per top-level window:
+在Win32 API中安装回调。`EnumWindows` 对每个顶层窗口调用一次 *EnumProc*：
 
 ```vb
 Public Declare PtrSafe Function EnumWindows Lib "user32" ( _
@@ -68,7 +77,7 @@ Public Sub ListTopLevelWindows()
 End Sub
 ```
 
-Taking a pointer to an instance method by qualifying with the object reference:
+通过用对象引用限定来获取实例方法的指针：
 
 ```vb
 Class CFoo
@@ -83,11 +92,11 @@ Public Sub Demo()
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**Delegate** statement](/official/Reference/Core/Delegate)
-- [**Declare** statement](/official/Reference/Core/Declare)
-- [Delegate Types](/official/Features/Language/Delegates)
-- [Enhanced Pointer Functionality](/official/Features/Language/Pointers)
-- [API Declarations](/official/Features/Advanced/API-Declarations)
-- [Operators](/official/Reference/Operators)
+- [**Delegate** 语句](/official/Reference/Core/Delegate)
+- [**Declare** 语句](/official/Reference/Core/Declare)
+- [委托类型](/official/Features/Language/Delegates)
+- [增强指针功能](/official/Features/Language/Pointers)
+- [API声明](/official/Features/Advanced/API-Declarations)
+- [运算符](/official/Reference/Operators)

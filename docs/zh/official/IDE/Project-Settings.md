@@ -1,142 +1,149 @@
 ---
-title: Project Settings
+title: 项目设置
 parent: IDE
 permalink: /tB/IDE/Project/Settings
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a3d34879-6563-4227-a8c7-b67540bef851'
+  PropagateID: 'a3d34879-6563-4227-a8c7-b67540bef851'
+  ReservedCode1: 'f4bc4609-d61b-43ad-a19e-39f1c4fe72ed'
+  ReservedCode2: 'f4bc4609-d61b-43ad-a19e-39f1c4fe72ed'
 ---
 
-# Project Settings
+# 项目设置
 
-Listed below are the project settings, in the same order as they appear in the Project Settings dialog. The explanations of those settings will be added below in the future. In the meantime, please refer to the setting descriptions built into the Project Settings dialog:
+以下列出了项目设置，顺序与项目设置对话框中显示的相同。各设置说明将在后续补充。目前请参考项目设置对话框中内置的描述：
 
 ![A fragment of the Project Settings dialog, indicating a description of a setting](Images/project settings description text.png)
-## Project Name
+## 项目名称
 
-## Project Description
+## 项目描述
 
-## Application Title
+## 应用程序标题
 
-## Application HelpFile
+## 应用程序帮助文件
 
-## Startup Object
+## 启动对象
 
-## Icon Form
+## 图标窗体
 
-## Library References
+## 库引用
 
 ![Library References - Project Settings](Images/ProjectSettings_LibraryReferences.png "Library References - Project Settings")
 
 ![Available COM References - Project Settings](Images/ProjectSettings_AvailableCOMReferences.png "Available COM References - Project Settings")
 
-See [Packages](/official/Features/Packages/)
+参见[包](/official/Features/Packages/)
 
 ![432410211-d9f1e4d9-1805-47e5-93aa-251151b4e914](../Features/Packages/Images/e749e10f-e361-4f15-a977-d756fcb3b5dd.png)
 
-## Compiler Warnings
+## 编译器警告
 
-## Project ID
+## 项目 ID
 
-## Use Project ID for type library ID
+## 使用项目 ID 作为类型库 ID
 
-## Build Output Path
+## 生成输出路径
 
-## Build Type
+## 生成类型
 
-## Licence Type
+## 许可证类型
 
-## Package Visibility
+## 包可见性
 
-## VERSION Resource
+## VERSION 资源
 
-### Major/Minor/Build
+### 主版本/次版本/内部版本
 
-### Product Name
+### 产品名称
 
-### Company Name
+### 公司名称
 
-### File Description
+### 文件描述
 
-### Legal Copyright
+### 版权
 
-### Legal Trademarks
+### 商标
 
-### Comments
+### 备注
 
-### Auto-Increment
+### 自动递增
 
-## Type Library Version
+## 类型库版本
 
-### Major/Minor
-### Auto-Increment
-## Register DLLs to HKLM
+### 主版本/次版本
+### 自动递增
+## 将 DLL 注册到 HKLM
 
-## COM Initialization
+## COM 初始化
 
-## Is Console Application
+## 控制台应用程序
 
-## Native Subsystem
+## 原生子系统
 
-## Override Entry Point
+## 覆盖入口点
 
-## Runtime Binding of DLL Declares
+## DLL 声明的运行时绑定
 
-## Conditional Compilation Args
+## 条件编译参数
 
 ## Option Explicit On
 
-## Auto Prettify Source Code
+## 自动格式化源代码
 
-## CodeLens - Show Run Procedure
-## Runtime Windows Codepage
+## CodeLens - 显示运行过程
+## 运行时 Windows 代码页
 
-## Use Unicode Standard Library
+## 使用 Unicode 标准库
 
-## Unicode Control Notifications
+## Unicode 控件通知
 
-## Include Procedure Name Symbols in Built Executables
-## Trace Flags
+## 在生成的可执行文件中包含过程名称符号
+## 跟踪标志
 
-## Trace Output
+## 跟踪输出
 
-## Disable Overflow Checks
+## 禁用溢出检查
 
-## Disable Array Bounds Checks
+## 禁用数组边界检查
 
-## Disable FPU Error Checks
+## 禁用 FPU 错误检查
 
-## Sanitize Booleans
+## 布尔值净化
 
-## Constant Function Folding
+## 常量函数折叠
 
-## Large Address Aware (LAA)
-## Terminal Server Avare
-## Data Execution Prevention Aware (DEP)
-## Export
+## 大地址感知 (LAA)
+## 终端服务器感知
+## 数据执行保护感知 (DEP)
+## 导出
 
-### Export Path
+### 导出路径
 
-### Export After Save
+### 保存后导出
 
-### Export Verbose
+### 详细导出
 
-## Force DPI Awareness At Startup
-## Runtime Command Line Args
+## 启动时强制 DPI 感知
+## 运行时命令行参数
 
-## Immediate Memory Invalidation
+## 即时内存失效
 
-## Break On All Errors
+## 遇到所有错误时中断
 
-## Build Stack Reserve Size
+## 构建堆栈保留大小
 
-## Target OS Version
+## 目标操作系统版本
 
-## Codegen Model
+## 代码生成模型
 
-## Strip PE File Relocation Symbols
-## Enable Address Space Layout Randomization (ASLR)
-## PE File Image Base Address (Win32)
-## PE File Image Base Address (Win64)
+## 去除 PE 文件重定位符号
+## 启用地址空间布局随机化 (ASLR)
+## PE 文件映像基址 (Win32)
+## PE 文件映像基址 (Win64)
 
-## Debuggable
+## 可调试
 
-## Feature Flags
-
+## 功能标志

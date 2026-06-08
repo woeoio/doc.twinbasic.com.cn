@@ -8,7 +8,7 @@ permalink: /tB/Packages/VB/PropertyPage/
 
 A **PropertyPage** is a container that backs a single tab of a COM property-page dialog --- the popup invoked from the **(Custom)** entry on an ActiveX control's property browser. It exposes the **IPropertyPage2** COM interface so that any host that supports ActiveX property pages (the twinBASIC IDE, classic VB6, Office, …) can place it inside its own property-sheet frame, give it the controls the user is editing, and apply the page's changes back to them.
 
-Designing a property page is much like designing a small dialog [**Form**](/official/Reference/VB/Form/): drop child controls onto it, write event handlers, and use its drawing surface freely. What sets it apart is the lifecycle, which is controlled by the host rather than by the application:
+Designing a property page is much like designing a small dialog [**Form**](/en/official/Reference/VB/Form/): drop child controls onto it, write event handlers, and use its drawing surface freely. What sets it apart is the lifecycle, which is controlled by the host rather than by the application:
 
 1. The host instantiates the property-page class once per dialog.
 2. The host calls **IPropertyPage2.SetObjects** to pass the selected ActiveX controls. The framework stores them in [**SelectedControls**](#selectedcontrols) and raises [**SelectionChanged**](#selectionchanged).
@@ -57,7 +57,7 @@ The VB6 property-page dialog frame draws each tab at one of two standard sizes -
 
 A **PropertyPage** is a graphics surface in its own right. The full set of VB6 drawing primitives --- [**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and the [**Print**](#print) statement --- write to its device context, using [**ForeColor**](#forecolor), [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle), [**DrawWidth**](#drawwidth), [**DrawMode**](#drawmode), and [**DrawStyle**](#drawstyle) for the pen and fill, and [**Font**](#font) for text. The current pen position is tracked by [**CurrentX**](#currentx) and [**CurrentY**](#currenty); [**TextWidth**](#textwidth) and [**TextHeight**](#textheight) measure a string in the current font; [**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert single coordinates between scale modes.
 
-The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/official/Reference/VB/Form/). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the page keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
+The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/en/official/Reference/VB/Form/). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the page keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
 
 ## Controls and containers
 
@@ -73,7 +73,7 @@ The control on this page that currently has the input focus, as a **Control** ob
 
 ### Appearance
 
-A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
 
 ::: info
 Retained for VB6 compatibility; the property has no observable effect on a property page.
@@ -120,7 +120,7 @@ Next
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a property page. Always **vbPropertyPage**.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a property page. Always **vbPropertyPage**.
 
 ### Count
 
@@ -144,11 +144,11 @@ The vertical DPI scale factor of the monitor the page is currently on. Currently
 
 ### DrawMode
 
-The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen**.
+The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen**.
 
 ### DrawStyle
 
-The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
+The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
 
 ### DrawWidth
 
@@ -160,7 +160,7 @@ The fill colour for closed shapes drawn by [**Circle**](#circle) and the rectang
 
 ### FillStyle
 
-The fill pattern for closed shapes. A member of [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
+The fill pattern for closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
 
 ### Font
 
@@ -232,7 +232,7 @@ A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer)
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the page (and not over a child control with its own setting). A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+The mouse cursor shown when the pointer is over the page (and not over a child control with its own setting). A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
 
 ### Name
 
@@ -240,7 +240,7 @@ The unique design-time name of the property-page class. Read-only at run time. A
 
 ### OLEDropMode
 
-How the page responds to OLE drops. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a property page.
+How the page responds to OLE drops. A restricted member of [**OLEDropConstants**](/en/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a property page.
 
 ### Palette
 
@@ -278,7 +278,7 @@ The logical horizontal coordinate of the left edge of the page's client area, in
 
 ### ScaleMode
 
-The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser** (the four **Scale\*** properties define the rectangle).
+The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser** (the four **Scale\*** properties define the rectangle).
 
 ### ScaleTop
 
@@ -401,7 +401,7 @@ Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1*
 : *optional* The source rectangle within the picture; defaults to the whole picture.
 
 *Opcode*
-: *optional* A raster-operation code (member of [**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
+: *optional* A raster-operation code (member of [**RasterOpConstants**](/en/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
 
 *StretchQuality*
 : *optional* The interpolation method when scaling. Defaults to normal quality.
@@ -462,7 +462,7 @@ Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
 : *required* A **Single** giving the source length.
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
 
 ### ScaleY
 
@@ -474,7 +474,7 @@ Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
 : *required* A **Single** giving the source length.
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
 
 ### SetFocus
 

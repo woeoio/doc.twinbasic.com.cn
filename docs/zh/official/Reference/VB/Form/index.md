@@ -41,11 +41,11 @@ A form goes through six distinct events from creation to destruction:
 | [**Unload**](#unload)            | After **QueryUnload** approves. Setting *Cancel* to non-zero keeps the form open.   |
 | [**Terminate**](#terminate)      | After the window has been destroyed and the class instance is released.             |
 
-Closing a form goes through both **QueryUnload** *and* **Unload**, so either can veto. The *UnloadMode* argument of **QueryUnload** ([**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants)) reports whether the user clicked the close button, code called **Unload**, Windows is shutting down, the MDI parent is closing, and so on.
+Closing a form goes through both **QueryUnload** *and* **Unload**, so either can veto. The *UnloadMode* argument of **QueryUnload** ([**QueryUnloadConstants**](/en/official/Reference/VBRUN/Constants/QueryUnloadConstants)) reports whether the user clicked the close button, code called **Unload**, Windows is shutting down, the MDI parent is closing, and so on.
 
 ## Showing the form
 
-[**Show**](#show) makes the form visible. It accepts an optional [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants) argument: **vbModeless** (default --- the call returns immediately and the user can interact with other forms) or **vbModal** (the call blocks until the form is closed, and other forms in the application become unresponsive). MDI child forms cannot be shown modally; attempting to do so raises run-time error 404.
+[**Show**](#show) makes the form visible. It accepts an optional [**FormShowConstants**](/en/official/Reference/VBRUN/Constants/FormShowConstants) argument: **vbModeless** (default --- the call returns immediately and the user can interact with other forms) or **vbModal** (the call blocks until the form is closed, and other forms in the application become unresponsive). MDI child forms cannot be shown modally; attempting to do so raises run-time error 404.
 
 ```vb
 dlgOptions.Show vbModal, Me      ' modal, owned by the calling form
@@ -53,11 +53,11 @@ dlgOptions.Show vbModal, Me      ' modal, owned by the calling form
 
 [**Hide**](#hide) and [**Close**](#close) reverse the effect: **Hide** just clears [**Visible**](#visible); **Close** runs the full unload sequence (**QueryUnload** then **Unload** then **Terminate**). The classic `Unload <FormName>` statement is the language-level equivalent of **Close**.
 
-[**StartUpPosition**](#startupposition) ([**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants)) is read at the first **Show** to decide where the form is placed; afterwards the user (or code through [**Move**](#move) and [**WindowState**](#windowstate)) controls position.
+[**StartUpPosition**](#startupposition) ([**StartUpPositionConstants**](/en/official/Reference/VBRUN/Constants/StartUpPositionConstants)) is read at the first **Show** to decide where the form is placed; afterwards the user (or code through [**Move**](#move) and [**WindowState**](#windowstate)) controls position.
 
 ## Window appearance
 
-[**BorderStyle**](#borderstyle) ([**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants)) chooses between sizable, fixed, dialog, tool, and borderless frames. [**Caption**](#caption) is the title-bar text. [**ControlBox**](#controlbox), [**MaxButton**](#maxbutton), and [**MinButton**](#minbutton) toggle the system menu and resize buttons. [**Icon**](#icon) supplies the small/large icon used by the system menu, the taskbar, and Alt-Tab. [**WindowState**](#windowstate) ([**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants)) reads or sets normal / minimised / maximised state at run time.
+[**BorderStyle**](#borderstyle) ([**FormBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/FormBorderStyleConstants)) chooses between sizable, fixed, dialog, tool, and borderless frames. [**Caption**](#caption) is the title-bar text. [**ControlBox**](#controlbox), [**MaxButton**](#maxbutton), and [**MinButton**](#minbutton) toggle the system menu and resize buttons. [**Icon**](#icon) supplies the small/large icon used by the system menu, the taskbar, and Alt-Tab. [**WindowState**](#windowstate) ([**FormWindowStateConstants**](/en/official/Reference/VBRUN/Constants/FormWindowStateConstants)) reads or sets normal / minimised / maximised state at run time.
 
 [**MinWidth**](#minwidth), [**MinHeight**](#minheight), [**MaxWidth**](#maxwidth), and [**MaxHeight**](#maxheight) constrain the *client area* in twips during interactive resizing. [**Moveable**](#moveable) decides whether the user can drag the form by its title bar; [**ShowInTaskbar**](#showintaskbar) decides whether the form shows up in the taskbar and Alt-Tab list.
 
@@ -110,7 +110,7 @@ When **True**, the form always shows underlines on access-key characters in [**C
 
 ### Appearance
 
-Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
 
 ::: info
 Retained for VB6 compatibility; the property has no observable effect on a form.
@@ -128,7 +128,7 @@ The background colour of the form's client area, as an **OLE_COLOR**. Defaults t
 
 ### BorderStyle
 
-The window-frame style. A member of [**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants): **vbBSNone**, **vbFixedSingle**, **vbSizable** (default), **vbFixedDialog**, **vbFixedToolWindow**, **vbSizableToolWindow**, **vbSizableNoTitleBar** (new in twinBASIC), or **vbSizableToolWindowNoTitleBar** (new in twinBASIC). Run-time changes are accepted but only take effect after another change to the window --- typically reassigning [**Caption**](#caption).
+The window-frame style. A member of [**FormBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/FormBorderStyleConstants): **vbBSNone**, **vbFixedSingle**, **vbSizable** (default), **vbFixedDialog**, **vbFixedToolWindow**, **vbSizableToolWindow**, **vbSizableNoTitleBar** (new in twinBASIC), or **vbSizableToolWindowNoTitleBar** (new in twinBASIC). Run-time changes are accepted but only take effect after another change to the window --- typically reassigning [**Caption**](#caption).
 
 ### Caption
 
@@ -163,7 +163,7 @@ The number of controls in [**Controls**](#controls), as a **Long**. Read-only. E
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a form. Always **vbForm**.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a form. Always **vbForm**.
 
 ### CurrentX
 
@@ -183,11 +183,11 @@ The vertical DPI scale factor of the monitor the form is currently on. Currently
 
 ### DrawMode
 
-The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default) is normal opaque drawing; other values produce XOR, AND, NOT, and other pixel-mixing effects.
+The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default) is normal opaque drawing; other values produce XOR, AND, NOT, and other pixel-mixing effects.
 
 ### DrawStyle
 
-The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
+The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
 
 ### DrawWidth
 
@@ -203,7 +203,7 @@ The fill colour for closed shapes drawn by [**Circle**](#circle) and the rectang
 
 ### FillStyle
 
-The fill pattern for closed shapes. A member of [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
+The fill pattern for closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
 
 ### Font
 
@@ -279,7 +279,7 @@ The maximum width of the form's *client area*, in twips. **Double**, default `0`
 
 ### MDIChild
 
-When **True**, the form is hosted as a child inside an [**MDIForm**](/official/Reference/VB/MDIForm/). **Boolean**, read-only --- set at design time. An MDI child form cannot be shown modally.
+When **True**, the form is hosted as a child inside an [**MDIForm**](/en/official/Reference/VB/MDIForm/). **Boolean**, read-only --- set at design time. An MDI child form cannot be shown modally.
 
 ### MinButton
 
@@ -299,7 +299,7 @@ A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer)
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the form (and not over a child control with its own setting). A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+The mouse cursor shown when the pointer is over the form (and not over a child control with its own setting). A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
 
 ### Moveable
 
@@ -317,7 +317,7 @@ Reserved for compatibility with VB6's ActiveX-document menu negotiation feature;
 
 ### OLEDropMode
 
-How the form responds to OLE drops. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a Form.
+How the form responds to OLE drops. A restricted member of [**OLEDropConstants**](/en/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a Form.
 
 ### Opacity
 
@@ -359,7 +359,7 @@ The logical horizontal coordinate of the left edge of the form's client area, in
 
 ### ScaleMode
 
-The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser** (the four **Scale\*** properties define the rectangle).
+The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser** (the four **Scale\*** properties define the rectangle).
 
 ### ScaleTop
 
@@ -375,11 +375,11 @@ Whether the form appears in the Windows taskbar and Alt-Tab list. **Boolean**, d
 
 ### StartUpPosition
 
-How the form's initial position is determined the first time it is shown. A member of [**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants): **vbStartUpManual**, **vbStartUpOwner**, **vbStartUpScreen**, or **vbStartUpWindowsDefault** (default). Read-only at run time --- set at design time.
+How the form's initial position is determined the first time it is shown. A member of [**StartUpPositionConstants**](/en/official/Reference/VBRUN/Constants/StartUpPositionConstants): **vbStartUpManual**, **vbStartUpOwner**, **vbStartUpScreen**, or **vbStartUpWindowsDefault** (default). Read-only at run time --- set at design time.
 
 ### TabFocusAutoSelect
 
-When **True**, a [**TextBox**](/official/Reference/VB/TextBox/) on this form whose own **TabFocusAutoSelect** is also **True** auto-selects its content when the focus enters it via the **TAB** key. **Boolean**, default **False**.
+When **True**, a [**TextBox**](/en/official/Reference/VB/TextBox/) on this form whose own **TabFocusAutoSelect** is also **True** auto-selects its content when the focus enters it via the **TAB** key. **Boolean**, default **False**.
 
 ### Tag
 
@@ -415,7 +415,7 @@ The form's outer width, in twips by default (or in the container's **ScaleMode**
 
 ### WindowState
 
-The window's normal/minimised/maximised state. A member of [**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants): **vbNormal** (0, default), **vbMinimized** (1), or **vbMaximized** (2). Setting it at run time updates the window placement immediately if the form is visible.
+The window's normal/minimised/maximised state. A member of [**FormWindowStateConstants**](/en/official/Reference/VBRUN/Constants/FormWindowStateConstants): **vbNormal** (0, default), **vbMinimized** (1), or **vbMaximized** (2). Setting it at run time updates the window placement immediately if the form is visible.
 
 ## Methods
 
@@ -516,14 +516,14 @@ Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1*
 : *optional* The source rectangle within the picture; defaults to the whole picture.
 
 *Opcode*
-: *optional* A raster-operation code (member of [**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
+: *optional* A raster-operation code (member of [**RasterOpConstants**](/en/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
 
 *StretchQuality*
 : *optional* The interpolation method when scaling. Defaults to normal quality.
 
 ### PopUpMenu
 
-Displays a [**Menu**](/official/Reference/VB/Menu/) as a context-menu pop-up at the specified location.
+Displays a [**Menu**](/en/official/Reference/VB/Menu/) as a context-menu pop-up at the specified location.
 
 Syntax: *object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
 
@@ -531,7 +531,7 @@ Syntax: *object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* 
 : *required* The **Menu** control to display. The menu must already exist on the form (or its MDI parent).
 
 *Flags*
-: *optional* A combination of [**MenuControlConstants**](/official/Reference/VBRUN/Constants/MenuControlConstants) controlling alignment and which mouse buttons trigger the menu items.
+: *optional* A combination of [**MenuControlConstants**](/en/official/Reference/VBRUN/Constants/MenuControlConstants) controlling alignment and which mouse buttons trigger the menu items.
 
 *X*, *Y*
 : *optional* The screen-relative position to anchor the menu at, in [**ScaleMode**](#scalemode) units. Defaults to the current mouse position.
@@ -564,7 +564,7 @@ Me.Print "Total: " & Format$(Total, "0.00")
 
 ### PrintForm
 
-Sends a screen-shot of the form's current visual state to the default printer through the [**Printer**](/official/Reference/VB/Printer/) object.
+Sends a screen-shot of the form's current visual state to the default printer through the [**Printer**](/en/official/Reference/VB/Printer/) object.
 
 Syntax: *object*.**PrintForm** [ *ImplicitEndDoc* [, *OutputAtCurrentPosition* ] ]
 
@@ -614,7 +614,7 @@ Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
 : *required* A **Single** giving the source length.
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
 
 ### ScaleY
 
@@ -626,11 +626,11 @@ Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
 : *required* A **Single** giving the source length.
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
 
 ### SetFocus
 
-Activates the form and gives input focus to the control whose [**TabIndex**](/official/Reference/VB/TextBox/#tabindex) is `0` (or to whichever control last held focus on this form).
+Activates the form and gives input focus to the control whose [**TabIndex**](/en/official/Reference/VB/TextBox/#tabindex) is `0` (or to whichever control last held focus on this form).
 
 Syntax: *object*.**SetFocus**
 
@@ -641,7 +641,7 @@ Makes the form visible. Triggers [**Load**](#load) on the first call.
 Syntax: *object*.**Show** [ *Modal* [, *OwnerForm* ] ]
 
 *Modal*
-: *optional* A member of [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants): **vbModeless** (0, default --- the call returns immediately) or **vbModal** (1 --- the call blocks until the form is closed and the user cannot interact with other forms).
+: *optional* A member of [**FormShowConstants**](/en/official/Reference/VBRUN/Constants/FormShowConstants): **vbModeless** (0, default --- the call returns immediately) or **vbModal** (1 --- the call blocks until the form is closed and the user cannot interact with other forms).
 
 *OwnerForm*
 : *optional* For modal shows, the form that is disabled while this form is up; defaults to the currently active form.
@@ -683,7 +683,7 @@ Brings the form to the front or back of the top-level z-order.
 Syntax: *object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
 
 ## Events
 
@@ -871,7 +871,7 @@ Syntax: *object*\_**QueryUnload**( *Cancel* **As Integer**, *UnloadMode* **As In
 : Set to non-zero (any non-zero value, conventionally **1**) to cancel the close.
 
 *UnloadMode*
-: A member of [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants) identifying what triggered the close --- the close button, code, Windows shutdown, the MDI parent, or the owner form.
+: A member of [**QueryUnloadConstants**](/en/official/Reference/VBRUN/Constants/QueryUnloadConstants) identifying what triggered the close --- the close button, code, Windows shutdown, the MDI parent, or the owner form.
 
 ### Resize
 

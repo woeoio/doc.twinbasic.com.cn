@@ -2,32 +2,41 @@
 title: AddCustomBinderObject
 parent: TbExpressionService
 permalink: /tB/Modules/TbExpressionService/AddCustomBinderObject
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '99e084e3-f783-4925-9eae-53493f15354a'
+  PropagateID: '99e084e3-f783-4925-9eae-53493f15354a'
+  ReservedCode1: '5f088ead-1592-48d8-bc3b-d2b6c14259c0'
+  ReservedCode2: '5f088ead-1592-48d8-bc3b-d2b6c14259c0'
 ---
+
 # AddCustomBinderObject
 
-Exposes the public members of an object so that compiled expressions can reach them.
+暴露对象的公共成员，使编译表达式可以访问它们。
 
-Syntax: *service*.**AddCustomBinderObject** *name*, *object* [ **,** *flags* ]
+语法：*service*.**AddCustomBinderObject** *name*, *object* [ **,** *flags* ]
 
 *service*
-: *required* An object expression that evaluates to a **TbExpressionService** object.
+: *必需* 计算结果为 **TbExpressionService** 对象的对象表达式。
 
 *name*
-: *required* A **String** giving the qualifier under which *object*'s members are visible to expressions compiled by *service*.
+: *必需* 一个 **String**，给出 *object* 的成员对 *service* 编译的表达式可见时的限定名。
 
 *object*
-: *required* The object whose public members are exposed.
+: *必需* 要暴露公共成员的对象。
 
 *flags*
-: *optional* A combination of [**ExpressionEngineBinderFlags**](./#expressionenginebinderflags) values. The default is `0`, in which case the object's members are reachable only when qualified by *name* (e.g. `Report.Title`). Pass [**IsAppObject**](./#IsAppObject) to additionally make the members reachable without qualification, the way an Office host's **Application** members are.
+: *可选* [**ExpressionEngineBinderFlags**](./#expressionenginebinderflags) 值的组合。默认为 `0`，此时对象的成员仅当由 *name* 限定时才可访问（例如 `Report.Title`）。传入 [**IsAppObject**](./#IsAppObject) 可以使成员无需限定即可访问，类似于 Office 宿主的 **Application** 成员。
 
-Member resolution is performed by name through the standard COM/IDispatch protocol --- any property or method that is callable from outside the object is callable from the expression. The object must remain alive for as long as expressions might be evaluated against it.
+成员解析通过标准 COM/IDispatch 协议按名称执行——任何可从对象外部调用的属性或方法都可从表达式中调用。只要可能对表达式求值，对象就必须保持活动状态。
 
-Multiple objects can be bound to the same service, each under its own *name*. They are consulted in the order they were added.
+多个对象可以绑定到同一服务，每个对象有自己的 *name*。按添加顺序查询。
 
-### Example
+### 示例
 
-This example exposes the host's report object so that an expression can refer to its properties either by qualified name or by bare name.
+此示例暴露宿主的报表对象，使表达式可以通过限定名或裸名引用其属性。
 
 ```vb
 Dim Service As TbExpressionService = New TbExpressionService
@@ -38,8 +47,8 @@ Debug.Print Service.Compile("Report.Title").Evaluate()    ' "Sales Q4"
 Debug.Print Service.Compile("Title").Evaluate()           ' "Sales Q4" — IsAppObject in effect
 ```
 
-### See Also
+### 另请参阅
 
-- [Compile](/official/Reference/VBA/TbExpressionService/Compile) method
-- [AddStdLibraryBinder](/official/Reference/VBA/TbExpressionService/AddStdLibraryBinder) method
-- [AddCustomBinder](/official/Reference/VBA/TbExpressionService/AddCustomBinder) method
+- [Compile](/official/Reference/VBA/TbExpressionService/Compile) 方法
+- [AddStdLibraryBinder](/official/Reference/VBA/TbExpressionService/AddStdLibraryBinder) 方法
+- [AddCustomBinder](/official/Reference/VBA/TbExpressionService/AddCustomBinder) 方法

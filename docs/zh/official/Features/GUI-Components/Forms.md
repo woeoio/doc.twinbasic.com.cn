@@ -1,52 +1,60 @@
 ---
-title: Forms
+title: 窗体
 parent: GUI Components
 nav_order: 1
 permalink: /Features/GUI-Components/Forms
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cb7259a8-805b-4ddb-8eb5-35a2b21a1ab4'
+  PropagateID: 'cb7259a8-805b-4ddb-8eb5-35a2b21a1ab4'
+  ReservedCode1: 'a0726dd2-bf32-427d-a454-44a98c314908'
+  ReservedCode2: 'a0726dd2-bf32-427d-a454-44a98c314908'
 ---
 
-# Form Features
+# 窗体功能
 
-twinBASIC provides numerous enhancements to forms and form handling.
+twinBASIC 为窗体和窗体处理提供了大量增强。
 
-## Modern Image Format Support
+## 现代图像格式支持
 
-You no longer face an incredibly limited format selection for images in tB Forms and Controls; not only do the Bitmap and Icon formats support the full range of formats for those, you can additionally load PNG Images, JPEG Images, Metafiles (.emf/.wmf), and SVG Vector Graphics (.svg).
+你不再面对 tB 窗体和控件中极其有限的图像格式选择；不仅 Bitmap 和 Icon 格式支持其全部格式范围，你还可以加载 PNG 图像、JPEG 图像、Metafile（.emf/.wmf）和 SVG 矢量图形（.svg）。
 
-### Improved LoadPicture
+### 增强的 LoadPicture
 
-Additionally, `LoadPicture` can load all image types directly from a byte array, rather than requiring a file on disk. You can use this to load images from resource files or other sources. Note that if your projects references stdole2.tlb (most do), currently you must qualify it as `Global.LoadPicture` to get tB's custom binding that supports byte arrays.
+此外，`LoadPicture` 可以直接从字节数组加载所有图像类型，而无需磁盘上的文件。你可以使用此功能从资源文件或其他来源加载图像。注意，如果你的项目引用了 stdole2.tlb（大多数都是），目前你必须限定为 `Global.LoadPicture` 以获取支持字节数组的 tB 自定义绑定。
 
-## Transparency and Alpha Blending
+## 透明度和 Alpha 混合
 
 ### Form.TransparencyKey
 
-This new property specifies a color that will be transparent to the window below it in the z-order (all windows, not just in your project). Setting this property will cause the specified color to be 100% transparent. A Shape control with a solid `FillStyle` is a helpful tool to color the areas of the form in the key color.
+这个新属性指定一种颜色，该颜色对 z 序中其下方窗口（所有窗口，不只是你的项目中的）完全透明。设置此属性将使指定颜色变为 100% 透明。使用具有实心 `FillStyle` 的 Shape 控件是将窗体区域着色为透明色的有用工具。
 
 ### Form.Opacity
 
-This sets an alpha blending level for the entire form. Like transparency, this is to all windows immediately underneath it. Note that any areas covered by the `TransparencyKey` color will remain 100% transparent.
+这为整个窗体设置 Alpha 混合级别。与透明度一样，这是对紧邻其下方的所有窗口。注意，被 `TransparencyKey` 颜色覆盖的任何区域将保持 100% 透明。
 
-The following image shows a Form with a `TransparencyKey` of Red, using a Shape control to define the transparent area, while also specifying 75% `Opacity` for the entire form:
+下图展示了一个具有红色 `TransparencyKey` 的窗体，使用 Shape 控件定义透明区域，同时为整个窗体指定了 75% 的 `Opacity`：
 
 ![image](../Images/85f25aa2-abc8-4d42-8510-078f8ee4a324.png)
 
-## Additional Form Features
+## 附加窗体功能
 
-In addition to the above, forms have:
+除了上述之外，窗体还有：
 
-- `DpiScaleX`/`DpiScaleY` properties to retrieve the current values
-- `.MinWidth`, `.MinHeight`, `.MaxWidth`, and `.MaxHeight` properties so subclassing isn't needed for this
-- `Form.TopMost` property.
-- Control anchoring: control x/y/cx/cy can made relative, so they're automatically moved/resized with the Form. For example if you put a TextBox in the bottom right, then check the Right and Bottom anchors (in addition to Top and Left), the bottom right will size with the form on resize. This saves a lot of boiler-plate sizing code.
-- Control docking: Controls can be fixed along one of the sides of the Form (or container), or made to fill the whole Form/container. Multiple controls can be combined and mixed/matched in docking positions.
+- `DpiScaleX`/`DpiScaleY` 属性用于获取当前值
+- `.MinWidth`、`.MinHeight`、`.MaxWidth` 和 `.MaxHeight` 属性，无需子类化即可实现
+- `Form.TopMost` 属性
+- 控件锚定：控件的 x/y/cx/cy 可以设为相对值，因此它们会随窗体自动移动/调整大小。例如，如果你将 TextBox 放在右下角，然后勾选右边和下边的锚定（除了上边和左边），右下角会随窗体调整大小。这节省了大量样板式的大小调整代码。
+- 控件停靠：控件可以固定在窗体（或容器）的任一边，或填充整个窗体/容器。多个控件可以在停靠位置上进行组合和混搭。
 
-For more information on Control Anchoring and Control Docking, see the [Anchoring and Docking page](/official/Features/GUI-Components/Anchoring-Docking).
+有关控件锚定和控件停靠的更多信息，请参见[锚定和停靠页面](/official/Features/GUI-Components/Anchoring-Docking)。
 
-## High Quality Scaling in Image Controls
+## 图像控件中的高质量缩放
 
-Image controls now offer a `StretchMode` property that allows you to choose Bilinear, Bicubic, Lanczos3 and Lanczos8 stretching algorithms, which are far superior to the default stretching algorithm. These use built in algorithms so do not add additional dependencies or API calls.
+图像控件现在提供 `StretchMode` 属性，允许你选择 Bilinear、Bicubic、Lanczos3 和 Lanczos8 拉伸算法，这些远优于默认拉伸算法。它们使用内置算法，不会增加额外的依赖或 API 调用。
 
-## DPI Scaling
+## DPI 缩放
 
-PictureDpiScaling property for forms, usercontrols and pictureboxes: PictureDpiScaling property allows you to turn off DPI scaling of images so that they display at 1:1 rather than allowing the OS to stretch them. The idea being you may want to choose a different bitmap manually, rather than apply the somewhat limited OS-stretching.
+窗体、UserControl 和 PictureBox 的 PictureDpiScaling 属性：PictureDpiScaling 属性允许你关闭图像的 DPI 缩放，使其以 1:1 显示而非让操作系统拉伸它们。这样做的想法是你可能希望手动选择不同的位图，而不是应用 somewhat 有限的操作系统拉伸。

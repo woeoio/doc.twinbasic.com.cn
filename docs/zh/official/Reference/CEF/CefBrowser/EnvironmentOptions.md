@@ -2,13 +2,21 @@
 title: EnvironmentOptions
 parent: CefBrowser
 permalink: /tB/Packages/CEF/CefBrowser/EnvironmentOptions
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '88a4aa64-fcd3-4537-b5c5-0e36777070d4'
+  PropagateID: '88a4aa64-fcd3-4537-b5c5-0e36777070d4'
+  ReservedCode1: '5da7f0b4-8112-4d37-86bb-7fe30944f86c'
+  ReservedCode2: '5da7f0b4-8112-4d37-86bb-7fe30944f86c'
 ---
 
-# CefEnvironmentOptions class
+# CefEnvironmentOptions 类
 
-Pre-creation configuration for the CEF environment --- runtime folder, user-data folder, and the optional debug-log destination. Available on every [**CefBrowser**](/official/Reference/CEF/CefBrowser/) control as its **EnvironmentOptions** property; the control instantiates one automatically before raising the [**Create**](/official/Reference/CEF/CefBrowser/#create) event.
+CEF环境的预创建配置——运行时文件夹、用户数据文件夹和可选的调试日志目标。在每个 [**CefBrowser**](/official/Reference/CEF/CefBrowser/) 控件上可作为其 **EnvironmentOptions** 属性使用；控件在触发 [**Create**](/official/Reference/CEF/CefBrowser/#create) 事件之前自动实例化一个。
 
-The fields below take effect only while the CEF runtime is being launched --- that is, *before or during* the control's [**Create**](/official/Reference/CEF/CefBrowser/#create) event. Assigning them after that point has no effect on the live environment.
+以下字段仅在CEF运行时启动期间生效——即在控件的 [**Create**](/official/Reference/CEF/CefBrowser/#create) 事件*之前或期间*。在该时间点之后赋值对运行中的环境没有影响。
 
 ```vb
 Private Sub CefBrowser1_Create()
@@ -20,15 +28,15 @@ Private Sub CefBrowser1_Create()
 End Sub
 ```
 
-The type itself is `Private Class` --- instances are reachable only through the control's **EnvironmentOptions** property, and a variable typed as **CefEnvironmentOptions** cannot be declared from outside the package.
+该类型本身是 `Private Class`——实例只能通过控件的 **EnvironmentOptions** 属性访问，无法从包外部声明类型为 **CefEnvironmentOptions** 的变量。
 
-## Properties
+## 属性
 
 ### BrowserExecutableFolder
 
-Path to the folder containing `libcef.dll` and its accompanying runtime files. **String**. Default: empty (the runtime is loaded from `%LocalAppData%\twinBASIC_CEF_Runtime\<version-stamped-folder>` --- see [Installing runtime files](/official/Reference/CEF/#installing-runtime-files)).
+包含 `libcef.dll` 及其伴随运行时文件的文件夹路径。**String**。默认：空（运行时从 `%LocalAppData%\twinBASIC_CEF_Runtime\<version-stamped-folder>` 加载——参见[安装运行时文件](/official/Reference/CEF/#installing-runtime-files)）。
 
-Set this to point at a portable side-by-side deployment, e.g. a CEF folder shipped beside the application executable:
+设置此项以指向便携式并排部署，例如应用程序可执行文件旁边的CEF文件夹：
 
 ```vb
 Private Sub CefBrowser1_Create()
@@ -37,30 +45,30 @@ Private Sub CefBrowser1_Create()
 End Sub
 ```
 
-If `libcef.dll` is not found at the configured (or default) location, the [**Error**](/official/Reference/CEF/CefBrowser/#error) event fires with the exact path that was searched.
+如果在配置的（或默认的）位置未找到 `libcef.dll`，[**Error**](/official/Reference/CEF/CefBrowser/#error) 事件将触发并附带所搜索的确切路径。
 
 ### LogFilePath
 
-Path to a writable file CEF will append its debug log to. **String**. Default: empty (no log file is written, regardless of [**LogSeverity**](#logseverity)).
+CEF将追加其调试日志的可写入文件路径。**String**。默认：空（无论 [**LogSeverity**](#logseverity) 如何设置，都不写入日志文件）。
 
-Used together with [**LogSeverity**](#logseverity) --- messages at or above the chosen severity are written to this file. The log is appended across runs; rotate or delete the file as needed.
+与 [**LogSeverity**](#logseverity) 配合使用——等于或高于所选严重级别的消息写入此文件。日志在多次运行之间追加；根据需要轮换或删除文件。
 
 ### LogSeverity
 
-The minimum severity at which CEF records messages to the log file named by [**LogFilePath**](#logfilepath). [**CefLogSeverity**](/official/Reference/CEF/Enumerations/CefLogSeverity). Default: **CefLogDisable** (logging off).
+CEF将消息记录到由 [**LogFilePath**](#logfilepath) 命名的日志文件的最低严重级别。[**CefLogSeverity**](/official/Reference/CEF/Enumerations/CefLogSeverity)。默认：**CefLogDisable**（日志记录关闭）。
 
-Set to **CefLogWarning** or **CefLogError** when investigating runtime issues, and back to **CefLogDisable** for normal use.
+在排查运行时问题时设置为 **CefLogWarning** 或 **CefLogError**，正常使用时设置回 **CefLogDisable**。
 
 ### UserDataFolder
 
-Path to the folder CEF uses for the user profile --- cache, cookies, history, local storage, and so on. **String**. Default: empty (the runtime picks a folder under `%LocalAppData%\twinBASIC_CEF\<ProjectName>\`).
+CEF用于用户配置文件的文件夹路径——缓存、Cookie、历史记录、本地存储等。**String**。默认：空（运行时在 `%LocalAppData%\twinBASIC_CEF\<ProjectName>\` 下选择一个文件夹）。
 
-Set a writable, application-specific path when the default would end up in a read-only location, or when multiple deployments of the same application must keep their profiles separate. The same folder cannot be opened by two CEF processes simultaneously --- if it's already locked, the [**Error**](/official/Reference/CEF/CefBrowser/#error) event fires with *"CEF cache path already locked by another process"*.
+当默认位置可能位于只读位置，或同一应用程序的多个部署必须保持其配置文件独立时，设置一个可写入的、特定于应用程序的路径。同一文件夹不能同时被两个CEF进程打开——如果已被锁定，[**Error**](/official/Reference/CEF/CefBrowser/#error) 事件将触发，消息为 *"CEF cache path already locked by another process"*。
 
-### See Also
+### 另见
 
-- [CefBrowser control class](/official/Reference/CEF/CefBrowser/)
-- [Create event](/official/Reference/CEF/CefBrowser/#create)
-- [Installing runtime files](/official/Reference/CEF/#installing-runtime-files)
-- [Overriding the runtime location](/official/Reference/CEF/#overriding-the-runtime-location)
-- [WebView2EnvironmentOptions](/official/Reference/WebView2/WebView2/EnvironmentOptions) -- the WebView2 counterpart
+- [CefBrowser 控件类](/official/Reference/CEF/CefBrowser/)
+- [Create 事件](/official/Reference/CEF/CefBrowser/#create)
+- [安装运行时文件](/official/Reference/CEF/#installing-runtime-files)
+- [覆盖运行时位置](/official/Reference/CEF/#overriding-the-runtime-location)
+- [WebView2EnvironmentOptions](/official/Reference/WebView2/WebView2/EnvironmentOptions) -- WebView2的对应项

@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6b3baa4d-8403-46e3-ba74-3c06a566aac8'
+  PropagateID: '6b3baa4d-8403-46e3-ba74-3c06a566aac8'
+  ReservedCode1: '656e6452-a7f7-441a-85dc-16fe64995b7b'
+  ReservedCode2: '656e6452-a7f7-441a-85dc-16fe64995b7b'
+---
+
 ---
 title: Value
 parent: AsyncProperty
@@ -5,33 +16,33 @@ permalink: /tB/Packages/VBRUN/AsyncProperty/Value
 ---
 # Value
 
-Returns the result of the asynchronous read, as a **Variant**. Read-only.
+返回异步读取的结果，类型为**Variant**。只读。
 
-Syntax: *object*.**Value**
+语法：*object*.**Value**
 
 *object*
-: *required* An object expression that evaluates to an **AsyncProperty** object.
+: *必需* 求值为**AsyncProperty**对象的对象表达式。
 
-**Value** is only meaningful in the **AsyncReadComplete** event --- during a progress notification the read has not yet finished. The concrete subtype of **Value** is determined by [**AsyncType**](/official/Reference/VBRUN/AsyncProperty/AsyncType):
+**Value**仅在**AsyncReadComplete**事件中有意义——在进度通知期间读取尚未完成。**Value**的具体子类型由[**AsyncType**](/official/Reference/VBRUN/AsyncProperty/AsyncType)决定：
 
-- `vbAsyncTypePicture` --- an **stdole.IPictureDisp**, which can be assigned to a **Picture** property.
-- `vbAsyncTypeFile` --- a **String** holding the path of a temporary file containing the downloaded data.
-- `vbAsyncTypeByteArray` --- a **Byte** array (`Byte()`) holding the raw bytes.
+- `vbAsyncTypePicture` —— **stdole.IPictureDisp**，可赋给**Picture**属性。
+- `vbAsyncTypeFile` —— **String**，保存包含下载数据的临时文件路径。
+- `vbAsyncTypeByteArray` —— **Byte**数组（`Byte()`），保存原始字节。
 
-### Example
+### 示例
 
-This example reads **Value** in the completion event and assigns the result to the control's **Picture** property.
+此示例在完成事件中读取**Value**并将结果赋给控件的**Picture**属性。
 
 ```vb
 Private Sub UserControl_AsyncReadComplete(AsyncProp As AsyncProperty)
     If AsyncProp.PropertyName = "Picture" Then
-        Set UserControl.Picture = AsyncProp.Value    ' Value is an IPictureDisp
+        Set UserControl.Picture = AsyncProp.Value    ' Value是IPictureDisp
     End If
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [AsyncType](/official/Reference/VBRUN/AsyncProperty/AsyncType) property
-- [PropertyName](/official/Reference/VBRUN/AsyncProperty/PropertyName) property
-- [Target](/official/Reference/VBRUN/AsyncProperty/Target) property
+- [AsyncType](/official/Reference/VBRUN/AsyncProperty/AsyncType) 属性
+- [PropertyName](/official/Reference/VBRUN/AsyncProperty/PropertyName) 属性
+- [Target](/official/Reference/VBRUN/AsyncProperty/Target) 属性

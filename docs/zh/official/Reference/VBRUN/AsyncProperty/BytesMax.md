@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '729296c5-928c-4f6a-b82f-c8ae1d6322bc'
+  PropagateID: '729296c5-928c-4f6a-b82f-c8ae1d6322bc'
+  ReservedCode1: 'e89439a7-1634-4887-9557-ebcd2ee2edc6'
+  ReservedCode2: 'e89439a7-1634-4887-9557-ebcd2ee2edc6'
+---
+
 ---
 title: BytesMax
 parent: AsyncProperty
@@ -5,18 +16,18 @@ permalink: /tB/Packages/VBRUN/AsyncProperty/BytesMax
 ---
 # BytesMax
 
-Returns the total number of bytes expected for the read, as a **Long**. Read-only.
+返回读取的预期总字节数，类型为**Long**。只读。
 
-Syntax: *object*.**BytesMax**
+语法：*object*.**BytesMax**
 
 *object*
-: *required* An object expression that evaluates to an **AsyncProperty** object.
+: *必需* 求值为**AsyncProperty**对象的对象表达式。
 
-Used together with [**BytesRead**](/official/Reference/VBRUN/AsyncProperty/BytesRead) to update a progress indicator during an **AsyncReadProgress** event. **BytesMax** can be zero when the server has not advertised a content length --- for example with an HTTP chunked transfer --- in which case the total size is not known until the read completes and a determinate progress bar cannot be shown.
+与[**BytesRead**](/official/Reference/VBRUN/AsyncProperty/BytesRead)一起使用，在**AsyncReadProgress**事件期间更新进度指示器。当服务器未公布内容长度时——例如HTTP分块传输——**BytesMax**可能为零，此时直到读取完成才知道总大小，无法显示确定性进度条。
 
-### Example
+### 示例
 
-This example shows progress as a ratio when the total size is known.
+此示例在总大小已知时以比率形式显示进度。
 
 ```vb
 Private Sub UserControl_AsyncReadProgress(AsyncProp As AsyncProperty)
@@ -28,8 +39,8 @@ Private Sub UserControl_AsyncReadProgress(AsyncProp As AsyncProperty)
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [BytesRead](/official/Reference/VBRUN/AsyncProperty/BytesRead) property
-- [Status](/official/Reference/VBRUN/AsyncProperty/Status) property
-- [StatusCode](/official/Reference/VBRUN/AsyncProperty/StatusCode) property
+- [BytesRead](/official/Reference/VBRUN/AsyncProperty/BytesRead) 属性
+- [Status](/official/Reference/VBRUN/AsyncProperty/Status) 属性
+- [StatusCode](/official/Reference/VBRUN/AsyncProperty/StatusCode) 属性

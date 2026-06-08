@@ -2,37 +2,45 @@
 title: SaveSetting
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/SaveSetting
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7848ea85-b19b-429f-b5de-b9784549f94e'
+  PropagateID: '7848ea85-b19b-429f-b5de-b9784549f94e'
+  ReservedCode1: '21e2ea03-8cbe-4d1a-a2ec-e2e3ad961109'
+  ReservedCode2: '21e2ea03-8cbe-4d1a-a2ec-e2e3ad961109'
 ---
 
 # SaveSetting
 
-Saves or creates an application entry in the application's entry in the Windows registry. <!-- or (on the Macintosh) information in the application's initialization file. -->
+在Windows注册表中应用程序条目保存或创建应用程序条目。
 
-Syntax: **SaveSetting** *appname*, *section*, *key*, *setting*
+语法：**SaveSetting** *appname*, *section*, *key*, *setting*
 
 *appname*
 
-: String expression containing the name of the application or project to which the setting applies. On the Macintosh, this is the filename of the initialization file in the Preferences folder in the System folder.
+: 字符串表达式，包含设置适用的应用程序或项目的名称。
 
 *section*
 
-: String expression containing the name of the section where the key setting is being saved.
+: 字符串表达式，包含保存键设置的节的名称。
 
 *key*
 
-: String expression containing the name of the key setting being saved.
+: 字符串表达式，包含保存的键设置的名称。
 
 *setting*
 
-: String expression containing the value that key is being set to.
+: 字符串表达式，包含键被设置的值。
 
-An error occurs if the key setting can't be saved for any reason.
+如果因任何原因无法保存键设置，则会产生错误。
 
-The root of these registry settings is: `Computer\HKEY_CURRENT_USER\Software\VB and VBA Program Settings`.
+这些注册表设置的根路径为：`Computer\HKEY_CURRENT_USER\Software\VB and VBA Program Settings`。
 
-### Example
+### 示例
 
-The following example first uses the **SaveSetting** statement to make entries in the Windows registry for the application, and then uses the [**DeleteSetting**](/official/Reference/VBA/Interaction/DeleteSetting) statement to remove them.
+以下示例首先使用**SaveSetting**语句在Windows注册表中为应用程序创建条目，然后使用[**DeleteSetting**](/official/Reference/VBA/Interaction/DeleteSetting)语句将其删除。
 
 ```vb
 ' Place some settings in the registry. 

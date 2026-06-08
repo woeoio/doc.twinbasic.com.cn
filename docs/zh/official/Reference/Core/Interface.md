@@ -2,16 +2,25 @@
 title: Interface
 parent: Statements
 permalink: /tB/Core/Interface
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a943da30-1075-4262-8bdf-8259b8094d2a'
+  PropagateID: 'a943da30-1075-4262-8bdf-8259b8094d2a'
+  ReservedCode1: '1f65fe1e-9d16-4ae2-867b-5224138cc617'
+  ReservedCode2: '1f65fe1e-9d16-4ae2-867b-5224138cc617'
 ---
+
 # Interface
 
-Defines a COM interface using twinBASIC syntax. An interface is a contract: a named set of method and property prototypes, with no implementation. Classes provide implementations of interfaces by using the [**Implements**](/official/Reference/Core/Implements) statement.
+使用twinBASIC语法定义COM接口。接口是契约：一组命名的无实现的方法和属性原型。类通过使用 [**Implements**](/official/Reference/Core/Implements) 语句提供接口的实现。
 
 ::: info
-The **Interface** block is a twinBASIC extension. In classic VBA there is no interface keyword --- interfaces could only be defined indirectly via a referenced type library (IDL/C++) or by using a class with no implementation.
+**Interface** 块是twinBASIC扩展。在经典VBA中没有interface关键字——接口只能通过引用的类型库（IDL/C++）间接定义，或使用无实现的类。
 :::
 
-Syntax:
+语法：
 > [ *attributes* ]  
 > [ **Public** \| **Private** ] **Interface** *name* [ **Extends** *baseinterface* [ **,** *baseinterface* ] ... ]  
 > &nbsp;&nbsp;&nbsp;&nbsp; [ *attributes* ]  
@@ -20,38 +29,38 @@ Syntax:
 > **End Interface**
 
 *attributes*
-: *optional* Interface- and member-level attributes. See [Available attributes](#available-attributes) below.
+: *可选* 接口和成员级别的属性。参见下文[可用属性](#available-attributes)。
 
 *name*
-: The identifier naming the interface. By convention an interface name begins with an uppercase `I` (`IFoo`, `ICalculator`, ...).
+: 命名接口的标识符。按照惯例，接口名以大写 `I` 开头（`IFoo`、`ICalculator`、...）。
 
 *baseinterface*
-: *optional* One or more interfaces that *name* extends. An implementing class is required to provide bodies for the inherited methods as well; in twinBASIC, a class can `Implements` *name* and rely on the inherited interfaces being satisfied automatically.
+: *可选* *name* 扩展的一个或多个接口。实现类需要为继承的方法也提供函数体；在twinBASIC中，类可以 `Implements` *name* 并依赖继承的接口自动满足。
 
 *member-prototype*
-: A header-only declaration. May be a [**Sub**](/official/Reference/Core/Sub), [**Function**](/official/Reference/Core/Function), [**Property Get**](/official/Reference/Core/Property), [**Property Let**](/official/Reference/Core/Property), or [**Property Set**](/official/Reference/Core/Property) signature, with arguments and return type. **Public**/**Private**/**Friend** modifiers are *not* allowed on members. There is no `End Sub` / `End Function` / `End Property` --- the prototype ends at end of line.
+: 仅头部的声明。可以是 [**Sub**](/official/Reference/Core/Sub)、[**Function**](/official/Reference/Core/Function)、[**Property Get**](/official/Reference/Core/Property)、[**Property Let**](/official/Reference/Core/Property) 或 [**Property Set**](/official/Reference/Core/Property) 签名，包含参数和返回类型。成员上不允许使用 **Public**/**Private**/**Friend** 修饰符。没有 `End Sub` / `End Function` / `End Property`——原型在行尾结束。
 
-**Interface** blocks are valid only in `.twin` source files (not legacy `.bas` or `.cls` files), and must appear *before* the [**Class**](/official/Reference/Core/Class) or [**Module**](/official/Reference/Core/Module) statement in the file. Interfaces always have project-wide scope.
+**Interface** 块仅在 `.twin` 源文件中有效（不支持传统 `.bas` 或 `.cls` 文件），且必须出现在文件中 [**Class**](/official/Reference/Core/Class) 或 [**Module**](/official/Reference/Core/Module) 语句*之前*。接口始终具有项目范围的作用域。
 
-### Available attributes
+### 可用属性
 
-Interface-level attributes:
+接口级别属性：
 
-- `[InterfaceId("...")]` --- fixes the IID for the interface (a string GUID). Set this on any public/exported interface so consumers in other projects bind to a stable identity.
-- `[Description("text")]` --- exposed as the `helpstring` in the type library.
-- `[Hidden]` --- hides the interface from IntelliSense and similar lists.
-- `[Restricted]` --- restricts the interface methods from being called in most contexts.
-- `[OleAutomation(True/False)]` --- controls whether the attribute is applied in the type library. `True` by default.
-- `[ComImport]` --- declares the interface as an import from an external COM library (e.g., the Windows shell).
-- `[ComExtensible(True/False)]` --- controls whether dynamically-added members can be invoked through `IDispatch`. `False` by default.
+- `[InterfaceId("...")]`——固定接口的IID（字符串GUID）。在任何公共/导出的接口上设置此项，以便其他项目的使用者绑定到稳定的标识。
+- `[Description("text")]`——在类型库中作为 `helpstring` 公开。
+- `[Hidden]`——从IntelliSense和类似列表中隐藏接口。
+- `[Restricted]`——限制接口方法在大多数上下文中被调用。
+- `[OleAutomation(True/False)]`——控制属性是否在类型库中应用。默认为 `True`。
+- `[ComImport]`——将接口声明为从外部COM库（如Windows shell）导入。
+- `[ComExtensible(True/False)]`——控制是否可以通过 `IDispatch` 调用动态添加的成员。默认为 `False`。
 
-Member-level attributes:
+成员级别属性：
 
 - `[Description("text")]`
-- `[PreserveSig]` --- keeps the raw COM signature (returning `HRESULT`) instead of having the runtime translate negative results into errors. Use this when the literal return value is required, or when negative values mean *acceptable failure* (e.g. an enumerator running out of items).
-- `[DispId(number)]` --- fixes the dispatch ID associated with the member.
+- `[PreserveSig]`——保留原始COM签名（返回 `HRESULT`），而不让运行时将负值结果转换为错误。当需要字面返回值，或负值表示*可接受的失败*（如枚举器用尽项目）时使用此属性。
+- `[DispId(number)]`——固定与成员关联的调度ID。
 
-### Example
+### 示例
 
 ```vb
 [InterfaceId("E7064791-0E4A-425B-8C8F-08802AAFEE61")]
@@ -65,7 +74,7 @@ Interface IFoo Extends IUnknown
 End Interface
 ```
 
-A class that implements `IFoo` provides bodies for every member:
+实现 `IFoo` 的类为每个成员提供函数体：
 
 ```vb
 Class FooImpl
@@ -85,10 +94,10 @@ Class FooImpl
 End Class
 ```
 
-### See Also
+### 另请参阅
 
-- [**Implements** statement](/official/Reference/Core/Implements)
-- [**CoClass** statement](/official/Reference/Core/CoClass)
-- [**Class** statement](/official/Reference/Core/Class)
-- [Interfaces and CoClasses](/official/Features/Language/Interfaces-CoClasses)
-- [Inheritance](/official/Features/Language/Inheritance)
+- [**Implements** 语句](/official/Reference/Core/Implements)
+- [**CoClass** 语句](/official/Reference/Core/CoClass)
+- [**Class** 语句](/official/Reference/Core/Class)
+- [接口与CoClass](/official/Features/Language/Interfaces-CoClasses)
+- [继承](/official/Features/Language/Inheritance)

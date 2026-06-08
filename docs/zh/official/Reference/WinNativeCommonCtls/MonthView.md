@@ -2,10 +2,19 @@
 title: MonthView
 parent: WinNativeCommonCtls Package
 permalink: /tB/Packages/WinNativeCommonCtls/MonthView
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '76aaf48a-019c-4b9a-86bb-2334e66c1b9f'
+  PropagateID: '76aaf48a-019c-4b9a-86bb-2334e66c1b9f'
+  ReservedCode1: '385703a7-f391-4c27-8136-e1a3ce025cc9'
+  ReservedCode2: '385703a7-f391-4c27-8136-e1a3ce025cc9'
 ---
 
-# MonthView class
-A **MonthView** is a full-month calendar grid: a visible matrix of [**MonthColumns**](#monthcolumns) × [**MonthRows**](#monthrows) month panels, navigable forwards and backwards through the month headers, with optional today indicator, week numbers, and bold-day highlighting through the [**GetDayBold**](#getdaybold) callback event. Unlike [**DTPicker**](/official/Reference/WinNativeCommonCtls/DTPicker) --- which shows only its inline value field and pops the calendar on demand --- a **MonthView** is always visible on the form.
+# MonthView 类
+
+**MonthView** 是一个全月日历网格：一个 [**MonthColumns**](#monthcolumns) × [**MonthRows**](#monthrows) 月面板的可见矩阵，可通过月标题向前和向后导航，带可选的今日指示器、周数和通过 [**GetDayBold**](#getdaybold) 回调事件的粗体日期高亮。与 [**DTPicker**](/official/Reference/WinNativeCommonCtls/DTPicker) --- 仅显示其内联值字段并按需弹出日历 --- 不同，**MonthView** 始终在窗体上可见。
 
 ```vb
 Private Sub Form_Load()
@@ -30,276 +39,276 @@ Private Sub MonthView1_GetDayBold( _
 End Sub
 ```
 
-The control inherits the focusable rect-dockable members from `BaseControlFocusable` --- size, position, **Anchors**, **Dock**, **Font**, **Appearance**, **MousePointer** / **MouseIcon**, **ToolTipText**, **Drag**, **Refresh**, **SetFocus**, **TabIndex** / **TabStop**, **ZOrder**, **CausesValidation**, **VisualStyles**, **hWnd**, **HelpContextID** / **WhatsThisHelpID**.
+控件从 `BaseControlFocusable` 继承可聚焦矩形可停靠成员 --- 大小、位置、**Anchors**、**Dock**、**Font**、**Appearance**、**MousePointer** / **MouseIcon**、**ToolTipText**、**Drag**、**Refresh**、**SetFocus**、**TabIndex** / **TabStop**、**ZOrder**、**CausesValidation**、**VisualStyles**、**hWnd**、**HelpContextID** / **WhatsThisHelpID**。
 
-## Multi-month layout
+## 多月布局
 
-A **MonthView** can display more than one calendar panel at once. [**MonthColumns**](#monthcolumns) and [**MonthRows**](#monthrows) set the panel grid (default 1 × 1); when [**ResizeToFit**](#resizetofit) is **True** (the default), the control auto-sizes its **Width** and **Height** to fit the requested grid using the current [**Font**](/official/Reference/VB/CheckBox/#font) and the [**ShowToday**](#showtoday) / [**ShowWeekNumbers**](#showweeknumbers) options. Setting **ResizeToFit** to **False** allows the application to size the control freely, with the calendar panels arranged to fit whatever space is available.
+**MonthView** 可以同时显示多个日历面板。[**MonthColumns**](#monthcolumns) 和 [**MonthRows**](#monthrows) 设置面板网格（默认 1 × 1）；当 [**ResizeToFit**](#resizetofit) 为 **True**（默认）时，控件根据当前 [**Font**](/official/Reference/VB/CheckBox/#font) 和 [**ShowToday**](#showtoday) / [**ShowWeekNumbers**](#showweeknumbers) 选项自动调整 **Width** 和 **Height** 以适应请求的网格。将 **ResizeToFit** 设为 **False** 允许应用程序自由调整控件大小，日历面板排列以适应可用空间。
 
-[**GetMonthRange**](#getmonthrange) returns the span of dates currently visible across all panels --- useful inside [**GetDayBold**](#getdaybold) to know which days to populate.
+[**GetMonthRange**](#getmonthrange) 返回所有面板中当前可见的日期范围 --- 在 [**GetDayBold**](#getdaybold) 中很有用，用于了解需要填充哪些天。
 
-## Single-day and multi-day selection
+## 单日和多日选择
 
-When [**MultiSelect**](#multiselect) is **False** (the default), the user can select one date at a time and [**Value**](#value), [**SelStart**](#selstart), and [**SelEnd**](#selend) all report the same value. When [**MultiSelect**](#multiselect) is **True**, the user can drag-select a contiguous range up to [**MaxSelCount**](#maxselcount) days wide; [**SelStart**](#selstart) and [**SelEnd**](#selend) bracket the range, and [**Value**](#value) returns [**SelStart**](#selstart).
+当 [**MultiSelect**](#multiselect) 为 **False**（默认）时，用户一次只能选择一个日期，[**Value**](#value)、[**SelStart**](#selstart) 和 [**SelEnd**](#selend) 都返回相同值。当 [**MultiSelect**](#multiselect) 为 **True** 时，用户可以拖选最多 [**MaxSelCount**](#maxselcount) 天的连续范围；[**SelStart**](#selstart) 和 [**SelEnd**](#selend) 界定范围，[**Value**](#value) 返回 [**SelStart**](#selstart)。
 
-Changing [**MultiSelect**](#multiselect) at run time recreates the underlying Win32 window --- the property cannot be flipped through GWL_STYLE alone.
+运行时更改 [**MultiSelect**](#multiselect) 会重新创建底层Win32窗口 --- 该属性无法仅通过 GWL_STYLE 切换。
 
-## Bold days for highlighting
+## 粗体日期高亮
 
-The [**GetDayBold**](#getdaybold) event fires after every visible-range change, asking the application which days to render in bold. The application populates the *State* array with **True** / **False** for each day in the visible range; the control then caches the result until the user navigates to a different range. To force an individual day on or off without reissuing the whole event, use [**DayBold**](#dayboldday) ( *date* ) = *boolean*.
+[**GetDayBold**](#getdaybold) 事件在每次可见范围更改后触发，询问应用程序哪些天应以粗体渲染。应用程序用 **True** / **False** 填充可见范围内每一天的 *State* 数组；控件随后缓存结果直到用户导航到不同范围。要强制打开或关闭个别日期而无须重新触发整个事件，请使用 [**DayBold**](#dayboldday)（*date*）= *boolean*。
 
-Properties
+属性
 ----------
 
 ### Appearance
 
-How the control's border is drawn. A [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) member: **vbAppearFlat** or **vbAppear3d**. Default: **vbAppear3d**. Inherited.
+控件边框的绘制方式。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) 的成员：**vbAppearFlat** 或 **vbAppear3d**。默认：**vbAppear3d**。继承。
 
 ### BackColor
 
-The main background color of the calendar panels. **OLE_COLOR**. Default: **vbWindowBackground**.
+日历面板的主要背景颜色。**OLE_COLOR**。默认：**vbWindowBackground**。
 
 ### BorderStyle
 
-The control's border style. A [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants) member: **vbNoBorder** or **vbFixedSingleBorder**. Default: **vbFixedSingleBorder**.
+控件的边框样式。[**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants) 的成员：**vbNoBorder** 或 **vbFixedSingleBorder**。默认：**vbFixedSingleBorder**。
 
 ### CalendarCount
 
-The number of calendar panels the underlying control is rendering. **Byte**, read-only. Usually equals [**MonthColumns**](#monthcolumns) × [**MonthRows**](#monthrows).
+底层控件正在渲染的日历面板数。**Byte**，只读。通常等于 [**MonthColumns**](#monthcolumns) × [**MonthRows**](#monthrows)。
 
 ### Day
 
-The day-of-month component of [**Value**](#value). **Integer** (1--31). See [**DayCount**](#daycount).
+[**Value**](#value) 的月中第几天分量。**Integer**（1--31）。参见 [**DayCount**](#daycount)。
 
 ### DayBold(date)
 
-Whether a specific date in the visible range is rendered in bold. **Boolean**, read/write. The setter updates the underlying day-state bitmask and re-applies it; reading returns the live cached value.
+可见范围内特定日期是否以粗体渲染。**Boolean**，读/写。设置器更新底层日期状态位掩码并重新应用；读取返回实时缓存值。
 
-Syntax: *object*.**DayBold**( *date* ) [ **=** *boolean* ]
+语法：*object*.**DayBold**（*date*）[ **=** *boolean* ]
 
 *date*
-: A **Date** within the currently visible range. Out-of-range dates raise run-time error 380.
+: 当前可见范围内的一个 **Date**。超出范围的日期引发运行时错误 380。
 
 ### DayCount
 
-The number of days in the current value's month. **Long**, read-only.
+当前值所在月份的天数。**Long**，只读。
 
 ### DayOfWeek
 
-The day-of-week the current [**Value**](#value) falls on, as a [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) member. Read-only.
+当前 [**Value**](#value) 是星期几，作为 [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) 的成员。只读。
 
 ### ForeColor
 
-The text color used for normal days. **OLE_COLOR**. Default: **vbButtonText**.
+用于普通日期的文本颜色。**OLE_COLOR**。默认：**vbButtonText**。
 
 ### MaxDate
 
-The upper bound of the navigable date range. **Date**. Default: `9999-12-31`. Assigning a value lower than [**MinDate**](#mindate) raises run-time error 35775.
+可导航日期范围的上限。**Date**。默认：`9999-12-31`。赋值低于 [**MinDate**](#mindate) 时引发运行时错误 35775。
 
 ### MaxSelCount
 
-The maximum number of consecutive days the user can select when [**MultiSelect**](#multiselect) is **True**. **Long**. Default: `7`.
+当 [**MultiSelect**](#multiselect) 为 **True** 时用户可以选择的最大连续天数。**Long**。默认：`7`。
 
 ### MinDate
 
-The lower bound of the navigable date range. **Date**. Default: `1753-01-01`.
+可导航日期范围的下限。**Date**。默认：`1753-01-01`。
 
 ### Month
 
-The month-of-year component of [**Value**](#value). **Integer** (1--12).
+[**Value**](#value) 的月份分量。**Integer**（1--12）。
 
 ### MonthBackColor
 
-The background color used for the day cells. **OLE_COLOR**. Default: **vbWindowBackground**. Distinct from [**BackColor**](#backcolor), which covers the surrounding area when multiple panels are arranged.
+用于日期单元格的背景颜色。**OLE_COLOR**。默认：**vbWindowBackground**。与 [**BackColor**](#backcolor) 不同，后者覆盖多个面板排列时的周围区域。
 
 ### MonthColumns
 
-The number of calendar panels arranged horizontally. **Long**. Default: `1`. Changing this value triggers a resize when [**ResizeToFit**](#resizetofit) is **True**.
+水平排列的日历面板数。**Long**。默认：`1`。当 [**ResizeToFit**](#resizetofit) 为 **True** 时，更改此值会触发大小调整。
 
 ### MonthRows
 
-The number of calendar panels arranged vertically. **Long**. Default: `1`.
+垂直排列的日历面板数。**Long**。默认：`1`。
 
 ### MultiSelect
 
-Whether the user can select a contiguous range of days. **Boolean**. Default: **False**. Changing this property at run time recreates the underlying Win32 window.
+用户是否可以选择连续多天。**Boolean**。默认：**False**。运行时更改此属性会重新创建底层Win32窗口。
 
 ### ResizeToFit
 
-Whether the control auto-resizes to fit the requested [**MonthColumns**](#monthcolumns) × [**MonthRows**](#monthrows) grid using the current [**Font**](/official/Reference/VB/CheckBox/#font). **Boolean**. Default: **True**.
+控件是否根据当前 [**Font**](/official/Reference/VB/CheckBox/#font) 自动调整大小以适应请求的 [**MonthColumns**](#monthcolumns) × [**MonthRows**](#monthrows) 网格。**Boolean**。默认：**True**。
 
 ### RightToLeft
 
 ::: info
-**RightToLeft** is tagged `[Unimplemented]` and has no effect on the underlying control's rendering direction.
+**RightToLeft** 标记为 `[Unimplemented]`，对底层控件的渲染方向无效。
 :::
 
-A **Boolean**.
+一个 **Boolean**。
 
 ### ScrollRate
 
-The number of months the navigation arrows scroll the visible range by. **Long**. Default: `0` --- meaning "use the calendar's natural width" (typically `MonthColumns`). Pass any positive integer to override.
+导航箭头滚动可见范围的月数。**Long**。默认：`0` --- 表示"使用日历的自然宽度"（通常为 `MonthColumns`）。传入正整数以覆盖。
 
 ### SelEnd
 
-The end of the current selection range. **Date**, read/write. When [**MultiSelect**](#multiselect) is **False**, **SelEnd** equals [**SelStart**](#selstart) and equals [**Value**](#value).
+当前选择范围的结束日期。**Date**，读/写。当 [**MultiSelect**](#multiselect) 为 **False** 时，**SelEnd** 等于 [**SelStart**](#selstart) 并等于 [**Value**](#value)。
 
 ### SelStart
 
-The start of the current selection range. **Date**, read/write. Equals [**Value**](#value).
+当前选择范围的开始日期。**Date**，读/写。等于 [**Value**](#value)。
 
 ### ShowToday
 
-Whether the calendar shows the "Today: …" line at the bottom. **Boolean**. Default: **True**.
+日历是否在底部显示"Today: …"行。**Boolean**。默认：**True**。
 
 ### ShowTodayCircle
 
-Whether the calendar highlights today's date with a circle. **Boolean**. Default: **True**.
+日历是否用圆圈高亮今日日期。**Boolean**。默认：**True**。
 
 ### ShowTrailingDates
 
-Whether the calendar shows the leading and trailing days of the previous and next month. **Boolean**. Default: **True**.
+日历是否显示上月末和下月初的日期。**Boolean**。默认：**True**。
 
 ### ShowWeekNumbers
 
-Whether the calendar shows a week-number column on the left of each panel. **Boolean**. Default: **False**.
+日历是否在每个面板的左侧显示周数列。**Boolean**。默认：**False**。
 
 ### StartOfWeek
 
-Which day of the week is rendered as the leftmost column. A [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) member. Defaults to the system's first-day-of-week setting.
+一周中的哪一天渲染为最左列。[**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) 的成员。默认为系统的一周起始日设置。
 
 ### TitleBackColor
 
-The title bar (month name + year header) background color. **OLE_COLOR**. Default: **vbActiveTitleBar**.
+标题栏（月份名称 + 年份标题）背景颜色。**OLE_COLOR**。默认：**vbActiveTitleBar**。
 
 ### TitleForeColor
 
-The title bar text color. **OLE_COLOR**. Default: **vbActiveTitleBarText**.
+标题栏文本颜色。**OLE_COLOR**。默认：**vbActiveTitleBarText**。
 
 ### TrailingForeColor
 
-The text color used for trailing days from adjacent months when [**ShowTrailingDates**](#showtrailingdates) is **True**. **OLE_COLOR**. Default: **vbGrayText**.
+当 [**ShowTrailingDates**](#showtrailingdates) 为 **True** 时用于相邻月份尾随日期的文本颜色。**OLE_COLOR**。默认：**vbGrayText**。
 
 ### Value
 
-The currently selected start date. **Date**. The default member.
+当前选定的开始日期。**Date**。默认成员。
 
-Reading returns [**SelStart**](#selstart). Assigning fires [**SelChange**](#selchange) (the handler can cancel the change). Assigning a date outside [[**MinDate**](#mindate), [**MaxDate**](#maxdate)] raises run-time error 35773.
+读取返回 [**SelStart**](#selstart)。赋值触发 [**SelChange**](#selchange)（处理程序可取消更改）。赋值超出 [[**MinDate**](#mindate), [**MaxDate**](#maxdate)] 的日期引发运行时错误 35773。
 
 ### VisibleDays(sIndex)
 
-The date at the *sIndex*'th cell across all visible panels. **Date**, read-only.
+所有可见面板中第 *sIndex* 个单元格的日期。**Date**，只读。
 
-Syntax: *object*.**VisibleDays**( *sIndex* )
+语法：*object*.**VisibleDays**（*sIndex*）
 
 *sIndex*
-: A 1-based index between 1 and the total cell count returned by [**GetMonthRange**](#getmonthrange).
+: 一个从1开始的索引，介于1和 [**GetMonthRange**](#getmonthrange) 返回的总单元格数之间。
 
 ### Week
 
-The week-of-year for the current [**Value**](#value). **Integer** (1--53).
+当前 [**Value**](#value) 一年中的第几周。**Integer**（1--53）。
 
 ### Year
 
-The year component of [**Value**](#value). **Integer**.
+[**Value**](#value) 的年份分量。**Integer**。
 
-Methods
+方法
 -------
 
 ### GetMonthRange
 
-Returns the first and last visible date across all panels.
+返回所有面板中的第一个和最后一个可见日期。
 
-Syntax: *object*.**GetMonthRange** ( *IncludeTrailing*, [ *StartDate* ] [ , *EndDate* ] ) **As Long**
+语法：*object*.**GetMonthRange**（*IncludeTrailing*, [*StartDate*] [, *EndDate*]）**As Long**
 
 *IncludeTrailing*
-: A **Boolean**. When **True**, the range includes the trailing days of the previous month and leading days of the next month that are rendered in the first / last panels (useful for [**GetDayBold**](#getdaybold) population). When **False**, the range covers only the days that belong to the visible month columns.
+: 一个 **Boolean**。为 **True** 时，范围包括上月的尾随日期和下月的首导日期，这些日期渲染在第一个/最后一个面板中（用于 [**GetDayBold**](#getdaybold) 填充）。为 **False** 时，范围仅覆盖属于可见月份列的天数。
 
 *StartDate*
-: *output* A **Date** that receives the first visible date.
+: *输出* 一个接收第一个可见日期的 **Date**。
 
 *EndDate*
-: *output* A **Date** that receives the last visible date.
+: *输出* 一个接收最后一个可见日期的 **Date**。
 
-Returns the count of months in the visible range.
+返回可见范围内的月份数。
 
-Events
+事件
 ------
 
 ### Click
 
-Raised on any mouse click that doesn't hit a date cell.
+任何未命中日期单元格的鼠标点击时触发。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DateClick
 
-Raised when the user clicks a date cell. The clicked date is passed as a parameter.
+用户点击日期单元格时触发。被点击的日期作为参数传入。
 
-Syntax: *object*\_**DateClick**( **ByVal** *DateClicked* **As Date** )
+语法：*object*\_**DateClick**（**ByVal** *DateClicked* **As Date**）
 
 ### DateDblClick
 
-Raised when the user double-clicks a date cell.
+用户双击日期单元格时触发。
 
-Syntax: *object*\_**DateDblClick**( **ByVal** *DateDblClicked* **As Date** )
+语法：*object*\_**DateDblClick**（**ByVal** *DateDblClicked* **As Date**）
 
 ### DblClick
 
-Raised on any double-click that doesn't hit a date cell.
+任何未命中日期单元格的双击时触发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop, DragOver
 
-Inherited drag-drop events.
+继承的拖放事件。
 
 ### GetDayBold
 
-Raised for every visible range change, asking the application to populate the *State* array with the days that should be rendered in bold. The first array index is `1`; the array runs from *StartDate* through *StartDate* + *Count* − 1.
+每次可见范围更改时触发，要求应用程序填充 *State* 数组以指定哪些天应以粗体渲染。第一个数组索引为 `1`；数组从 *StartDate* 到 *StartDate* + *Count* − 1。
 
-Syntax: *object*\_**GetDayBold**( **ByVal** *StartDate* **As Date**, **ByVal** *Count* **As Integer**, *State*( ) **As Boolean** )
+语法：*object*\_**GetDayBold**（**ByVal** *StartDate* **As Date**，**ByVal** *Count* **As Integer**，*State*( ) **As Boolean**）
 
 *StartDate*
-: The first day in the visible range (including trailing days of the previous month).
+: 可见范围内的第一天（包括上月的尾随日期）。
 
 *Count*
-: The total number of days in the visible range.
+: 可见范围内的总天数。
 
 *State*
-: An array of **Boolean**, 1-indexed, that the handler sets to **True** for each day that should be bold.
+: 一个 **Boolean** 数组，从1开始索引，处理程序将应粗体的每一天设为 **True**。
 
 ### GotFocus, LostFocus
 
-Inherited focus events.
+继承的焦点事件。
 
 ### Initialize
 
-Raised after the control's window has been created and properties initialised from persisted state. Fires once per form-load.
+控件窗口创建并从持久化状态初始化属性后触发。每次窗体加载触发一次。
 
 ### KeyDown, KeyPress, KeyUp
 
-Inherited keyboard events.
+继承的键盘事件。
 
 ### MouseDown, MouseMove, MouseUp
 
-Inherited mouse events.
+继承的鼠标事件。
 
 ### OLECompleteDrag, OLEDragDrop, OLEDragOver, OLEGiveFeedback, OLESetData, OLEStartDrag
 
-Inherited OLE drag-and-drop events.
+继承的OLE拖放事件。
 
 ### SelChange
 
-Raised when the selection has changed. Set *Cancel* to **True** to roll the selection back to the previous range (the control restores the old [**SelStart**](#selstart) / [**SelEnd**](#selend)).
+选择更改时触发。将 *Cancel* 设为 **True** 将选择回滚到先前范围（控件恢复旧的 [**SelStart**](#selstart) / [**SelEnd**](#selend)）。
 
-Syntax: *object*\_**SelChange**( **ByVal** *StartDate* **As Date**, **ByVal** *EndDate* **As Date**, *Cancel* **As Boolean** )
+语法：*object*\_**SelChange**（**ByVal** *StartDate* **As Date**，**ByVal** *EndDate* **As Date**，*Cancel* **As Boolean**）
 
 ### Validate
 
-Inherited validation event.
+继承的验证事件。
 
-## See Also
+## 另见
 
-- [DTPicker](/official/Reference/WinNativeCommonCtls/DTPicker) -- the inline date picker whose dropdown uses the same Win32 calendar control
-- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbMonthView** lives
+- [DTPicker](/official/Reference/WinNativeCommonCtls/DTPicker) --- 内联日期选择器，其下拉使用相同的Win32日历控件
+- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) --- **vbMonthView** 所在位置

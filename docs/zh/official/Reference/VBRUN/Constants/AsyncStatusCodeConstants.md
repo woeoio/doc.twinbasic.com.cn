@@ -2,23 +2,32 @@
 title: AsyncStatusCodeConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/AsyncStatusCodeConstants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '18e71ea6-d91f-4da9-b52d-6d302f348a79'
+  PropagateID: '18e71ea6-d91f-4da9-b52d-6d302f348a79'
+  ReservedCode1: '107202da-4d4d-47ba-bdf3-06f914b62171'
+  ReservedCode2: '107202da-4d4d-47ba-bdf3-06f914b62171'
 ---
+
 # AsyncStatusCodeConstants
 
-Status codes reported by [**AsyncProperty.StatusCode**](/official/Reference/VBRUN/AsyncProperty/StatusCode) during an **AsyncReadProgress** notification, identifying which step of the download is currently in progress.
+**AsyncReadProgress**通知期间由[**AsyncProperty.StatusCode**](/official/Reference/VBRUN/AsyncProperty/StatusCode)报告的状态代码，标识下载当前正在进行的步骤。
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbAsyncStatusCodeError** | 0 | An error has occurred during the read. |
-| **vbAsyncStatusCodeFindingResource** | 1 | The runtime is locating the target server. |
-| **vbAsyncStatusCodeConnecting** | 2 | A connection to the target server is being established. |
-| **vbAsyncStatusCodeRedirecting** | 3 | The request is being redirected to a different URL. |
-| **vbAsyncStatusCodeBeginDownloadData** | 4 | The download of the resource data is starting. |
-| **vbAsyncStatusCodeDownloadingData** | 5 | The resource data is being received. |
-| **vbAsyncStatusCodeEndDownloadData** | 6 | The resource data has finished downloading. |
-| **vbAsyncStatusCodeUsingCachedCopy** | 10 | The resource is being served from the local cache rather than the network. |
-| **vbAsyncStatusCodeSendingRequest** | 11 | The request is being sent to the server. |
-| **vbAsyncStatusCodeMIMETypeAvailable** | 13 | The MIME type of the resource is now known. |
-| **vbAsyncStatusCodeCacheFileNameAvailable** | 14 | The local cache filename for the resource is now known. |
-| **vbAsyncStatusCodeBeginSyncOperation** | 15 | A synchronous portion of the operation is starting. |
-| **vbAsyncStatusCodeEndSyncOperation** | 16 | A synchronous portion of the operation has finished. |
+| **vbAsyncStatusCodeError** | 0 | 读取期间发生错误。 |
+| **vbAsyncStatusCodeFindingResource** | 1 | 运行时正在定位目标服务器。 |
+| **vbAsyncStatusCodeConnecting** | 2 | 正在建立与目标服务器的连接。 |
+| **vbAsyncStatusCodeRedirecting** | 3 | 请求正在重定向到不同的URL。 |
+| **vbAsyncStatusCodeBeginDownloadData** | 4 | 资源数据下载即将开始。 |
+| **vbAsyncStatusCodeDownloadingData** | 5 | 正在接收资源数据。 |
+| **vbAsyncStatusCodeEndDownloadData** | 6 | 资源数据下载已完成。 |
+| **vbAsyncStatusCodeUsingCachedCopy** | 10 | 正从本地缓存而非网络提供资源。 |
+| **vbAsyncStatusCodeSendingRequest** | 11 | 请求正在发送到服务器。 |
+| **vbAsyncStatusCodeMIMETypeAvailable** | 13 | 资源的MIME类型现在已知。 |
+| **vbAsyncStatusCodeCacheFileNameAvailable** | 14 | 资源的本地缓存文件名现在已知。 |
+| **vbAsyncStatusCodeBeginSyncOperation** | 15 | 操作的同步部分即将开始。 |
+| **vbAsyncStatusCodeEndSyncOperation** | 16 | 操作的同步部分已完成。 |

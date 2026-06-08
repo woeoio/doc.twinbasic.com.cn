@@ -2,24 +2,33 @@
 title: TranslateColor
 parent: Information Module
 permalink: /tB/Modules/Information/TranslateColor
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c04806f6-1096-427b-a3e4-d3ea2a93742e'
+  PropagateID: 'c04806f6-1096-427b-a3e4-d3ea2a93742e'
+  ReservedCode1: '16485c8d-0758-4e09-b3fc-3f87e1d96eeb'
+  ReservedCode2: '16485c8d-0758-4e09-b3fc-3f87e1d96eeb'
 ---
+
 # TranslateColor
 
-Translates an OLE colour value to a plain RGB colour, resolving any reference to the system palette in the process.
+将OLE颜色值转换为普通RGB颜色，在此过程中解析对系统调色板的任何引用。
 
-Syntax: **TranslateColor(** *ColorValue* [ **,** *hPalettePtr* ] **)**
+语法：**TranslateColor(** *ColorValue* [ **,** *hPalettePtr* ] **)**
 
 *ColorValue*
-: *required* A **Long** OLE colour value to translate.
+: *必需* **Long** OLE颜色值，要进行转换。
 
 *hPalettePtr*
-: *optional* A **LongPtr** handle to a palette to use for translation. Defaults to **0**, which selects the default system palette.
+: *可选* **LongPtr**，用于转换的调色板句柄。默认为**0**，选择默认系统调色板。
 
-The OLE colour format encodes either a literal RGB value or an index into the Windows system palette (such as `&H80000012`, the colour of a button face). **TranslateColor** returns the corresponding plain RGB **Long**, suitable for passing to APIs and properties that expect a true colour value rather than a system-palette reference.
+OLE颜色格式编码字面RGB值或Windows系统调色板中的索引（例如`&H80000012`，按钮表面的颜色）。**TranslateColor**返回对应的普通RGB **Long**，适合传给期望真正颜色值而非系统调色板引用的API和属性。
 
-### Example
+### 示例
 
-This example translates an OLE system colour to its current RGB value.
+本示例将OLE系统颜色转换为其当前RGB值。
 
 ```vb
 Dim OleColor As Long
@@ -28,7 +37,7 @@ OleColor = &H80000012                 ' COLOR_BTNFACE — the button face colour
 RgbColor = TranslateColor(OleColor)
 ```
 
-### See Also
+### 另请参阅
 
-- [RGB](/official/Reference/VBA/Information/RGB), [RGBA](/official/Reference/VBA/Information/RGBA) functions
-- [QBColor](/official/Reference/VBA/Information/QBColor) function
+- [RGB](/official/Reference/VBA/Information/RGB)、[RGBA](/official/Reference/VBA/Information/RGBA)函数
+- [QBColor](/official/Reference/VBA/Information/QBColor)函数

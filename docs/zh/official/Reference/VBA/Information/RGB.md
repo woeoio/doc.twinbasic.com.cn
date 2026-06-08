@@ -2,40 +2,49 @@
 title: RGB
 parent: Information Module
 permalink: /tB/Modules/Information/RGB
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '00805f95-532a-4e51-9c54-1e6a8323ec55'
+  PropagateID: '00805f95-532a-4e51-9c54-1e6a8323ec55'
+  ReservedCode1: '65fe9dbb-ae53-44ca-ab15-6a624e112f71'
+  ReservedCode2: '65fe9dbb-ae53-44ca-ab15-6a624e112f71'
 ---
+
 # RGB
 
-Returns a **Long** representing an RGB colour value.
+返回一个**Long**，表示RGB颜色值。
 
-Syntax: **RGB(** *red* **,** *green* **,** *blue* **)**
+语法：**RGB(** *red* **,** *green* **,** *blue* **)**
 
 *red*
-: *required* A number in the range 0--255 representing the red component of the colour.
+: *必需* 0--255范围内的数字，表示颜色的红色分量。
 
 *green*
-: *required* A number in the range 0--255 representing the green component of the colour.
+: *必需* 0--255范围内的数字，表示颜色的绿色分量。
 
 *blue*
-: *required* A number in the range 0--255 representing the blue component of the colour.
+: *必需* 0--255范围内的数字，表示颜色的蓝色分量。
 
-Application methods and properties that accept a colour specification expect a number representing an RGB colour value: the relative intensity of red, green, and blue that produces a particular shade. The value of any argument that exceeds 255 is treated as 255.
+接受颜色规范的应用程序方法和属性期望一个表示RGB颜色值的数字：产生特定色调的红、绿、蓝相对强度。任何超过255的参数值都被视为255。
 
-The following table lists some standard colours and the red, green, and blue values they include:
+下表列出了一些标准颜色及其包含的红、绿、蓝值：
 
-| Colour | Red | Green | Blue |
-|--------|-----|-------|------|
-| Black | 0 | 0 | 0 |
-| Blue | 0 | 0 | 255 |
-| Green | 0 | 255 | 0 |
-| Cyan | 0 | 255 | 255 |
-| Red | 255 | 0 | 0 |
-| Magenta | 255 | 0 | 255 |
-| Yellow | 255 | 255 | 0 |
-| White | 255 | 255 | 255 |
+| 颜色 | 红 | 绿 | 蓝 |
+|------|-----|-------|------|
+| 黑色 | 0 | 0 | 0 |
+| 蓝色 | 0 | 0 | 255 |
+| 绿色 | 0 | 255 | 0 |
+| 青色 | 0 | 255 | 255 |
+| 红色 | 255 | 0 | 0 |
+| 品红色 | 255 | 0 | 255 |
+| 黄色 | 255 | 255 | 0 |
+| 白色 | 255 | 255 | 255 |
 
-### Example
+### 示例
 
-This example uses **RGB** to construct several colour values.
+本示例使用**RGB**构造多个颜色值。
 
 ```vb
 Dim Red As Long, RGBValue As Long, I As Long
@@ -44,8 +53,8 @@ I = 75
 RGBValue = RGB(I, 64 + I, 128 + I)    ' Same as RGB(75, 139, 203).
 ```
 
-### See Also
+### 另请参阅
 
-- [RGBA](/official/Reference/VBA/Information/RGBA) function
-- [RGB_R](/official/Reference/VBA/Information/RGB_R), [RGB_G](/official/Reference/VBA/Information/RGB_G), [RGB_B](/official/Reference/VBA/Information/RGB_B) functions
-- [QBColor](/official/Reference/VBA/Information/QBColor), [TranslateColor](/official/Reference/VBA/Information/TranslateColor) functions
+- [RGBA](/official/Reference/VBA/Information/RGBA)函数
+- [RGB_R](/official/Reference/VBA/Information/RGB_R)、[RGB_G](/official/Reference/VBA/Information/RGB_G)、[RGB_B](/official/Reference/VBA/Information/RGB_B)函数
+- [QBColor](/official/Reference/VBA/Information/QBColor)、[TranslateColor](/official/Reference/VBA/Information/TranslateColor)函数

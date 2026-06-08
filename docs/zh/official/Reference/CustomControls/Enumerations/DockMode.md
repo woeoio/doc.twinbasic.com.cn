@@ -1,21 +1,30 @@
----
+﻿---
 title: DockMode
 parent: Enumerations
 permalink: /tB/Packages/CustomControls/Enumerations/DockMode
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e64abd5e-51d6-45fd-bc8c-774b18af85d2'
+  PropagateID: 'e64abd5e-51d6-45fd-bc8c-774b18af85d2'
+  ReservedCode1: '03099ec6-7131-486e-8119-27d22283bde3'
+  ReservedCode2: '03099ec6-7131-486e-8119-27d22283bde3'
 ---
+
 # DockMode
-How a control is positioned relative to its container --- attached to one edge, filling the whole client area, or not docked at all (positioned absolutely by [**Left**](/official/Reference/CustomControls/#controls) / [**Top**](/official/Reference/CustomControls/#controls) / [**Width**](/official/Reference/CustomControls/#controls) / [**Height**](/official/Reference/CustomControls/#controls)). Used by the **Dock** property that every concrete custom control inherits.
+控件相对于其容器的定位方式——附着到一个边缘、填充整个客户区域或不停靠（由 [**Left**](/official/Reference/CustomControls/#controls) / [**Top**](/official/Reference/CustomControls/#controls) / [**Width**](/official/Reference/CustomControls/#controls) / [**Height**](/official/Reference/CustomControls/#controls) 绝对定位）。由每个具体自定义控件继承的 **Dock** 属性使用。
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **tbDockNone** | 0 | Not docked. The control's **Left**, **Top**, **Width**, and **Height** are used directly, modulated by the control's [**Anchors**](/official/Reference/CustomControls/Styles/Anchors) when the container resizes. |
-| **tbDockLeft** | 1 | Attached to the container's left edge. Width is preserved; height is stretched to the container's client area. |
-| **tbDockTop** | 2 | Attached to the container's top edge. Height is preserved; width is stretched. |
-| **tbDockRight** | 3 | Attached to the container's right edge. Width is preserved; height is stretched. |
-| **tbDockBottom** | 4 | Attached to the container's bottom edge. Height is preserved; width is stretched. |
-| **tbDockFill** | 5 | Fills the entire remaining client area, after other docked siblings have claimed their edges. |
+| 常量 | 值 | 说明 |
+|------|----|------|
+| **tbDockNone** | 0 | 不停靠。控件的 **Left**、**Top**、**Width** 和 **Height** 直接使用，由控件的 [**Anchors**](/official/Reference/CustomControls/Styles/Anchors) 在容器调整大小时调节。 |
+| **tbDockLeft** | 1 | 附着到容器左边缘。保留宽度；高度拉伸到容器客户区域。 |
+| **tbDockTop** | 2 | 附着到容器上边缘。保留高度；宽度拉伸。 |
+| **tbDockRight** | 3 | 附着到容器右边缘。保留宽度；高度拉伸。 |
+| **tbDockBottom** | 4 | 附着到容器底边缘。保留高度；宽度拉伸。 |
+| **tbDockFill** | 5 | 填充其他停靠同级声明边缘后的整个剩余客户区域。 |
 
-Order matters when more than one sibling is docked inside the same container: each docked control claims its edge from whatever client area remains *after* its earlier-added siblings have claimed theirs. The control with **Dock = tbDockFill** is therefore added last so that it inherits the residual space:
+当同一容器内有多个同级停靠时顺序很重要：每个停靠控件从*在其之前添加的同级*声明其边缘后的剩余客户区域中声明其边缘。因此 **Dock = tbDockFill** 的控件最后添加以继承残余空间：
 
 ```vb
 Private Sub Form_Load()
@@ -27,4 +36,4 @@ Private Sub Form_Load()
 End Sub
 ```
 
-Setting **Dock** to anything other than **tbDockNone** makes the control's own [**Anchors**](/official/Reference/CustomControls/Styles/Anchors) irrelevant --- docking takes over the position and size completely. Manual positioning resumes when **Dock** is reset to **tbDockNone**.
+将 **Dock** 设为 **tbDockNone** 以外的任何值会使控件自身的 [**Anchors**](/official/Reference/CustomControls/Styles/Anchors) 无关——停靠完全接管位置和大小。当 **Dock** 重置为 **tbDockNone** 时恢复手动定位。

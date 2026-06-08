@@ -1,66 +1,66 @@
 ---
-title: +, +=
+title: "+, +="
 parent: Operators
 permalink: /tB/Core/Plus
 ---
-# + and += operators
+# + 和 += 运算符
 
-Used to sum two numbers, or --- depending on operand types --- to concatenate two strings. The compound form **+=** adds-and-assigns in one step.
+用于将两个数相加，或——取决于操作数类型——连接两个字符串。复合形式**+=**一步完成加法并赋值。
 
-Syntax:
+语法：
 > *result* **=** *expression1* **+** *expression2*  
 > *variable* **+=** *expression*       *(twinBASIC)*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *variable*
-: *(twinBASIC)* Any numeric or **String** variable, or any writable property.
+: *(twinBASIC)* 任意数值或**String**变量，或任何可写属性。
 
 *expression*, *expression1*, *expression2*
-: Any expressions.
+: 任意表达式。
 
-When the **+** operator is used, it may not be obvious whether addition or string concatenation will occur. Use the [**&**](/official/Reference/Core/Concat) operator for concatenation to eliminate ambiguity and produce self-documenting code.
+使用**+**运算符时，可能不清楚是执行加法还是字符串连接。使用[**&**](/official/Reference/Core/Concat)运算符进行连接可以消除歧义并产生自文档化的代码。
 
-If at least one expression is not a **Variant**, the following rules apply:
+如果至少有一个表达式不是**Variant**，则适用以下规则：
 
-| If                                                                              | Then                                                  |
+| 如果                                                                              | 则                                                  |
 |:--------------------------------------------------------------------------------|:------------------------------------------------------|
-| Both expressions are numeric (**Byte**, **Boolean**, **Integer**, **Long**, **LongLong**, **LongPtr**, **Single**, **Double**, **Date**, **Currency**) | Add. |
-| Both expressions are **String**                                                 | Concatenate.                                          |
-| One expression is numeric and the other is any **Variant** except **Null**      | Add.                                                  |
-| One expression is **String** and the other is any **Variant** except **Null**   | Concatenate.                                          |
-| One expression is an **Empty** **Variant**                                      | Return the remaining expression unchanged as *result*.|
-| One expression is numeric and the other is a **String**                         | A `Type mismatch` error occurs.                       |
-| Either expression is **Null**                                                   | *result* is **Null**.                                 |
+| 两个表达式均为数值（**Byte**、**Boolean**、**Integer**、**Long**、**LongLong**、**LongPtr**、**Single**、**Double**、**Date**、**Currency**） | 相加。 |
+| 两个表达式均为**String**                                                 | 连接。                                          |
+| 一个表达式为数值，另一个为除**Null**外的任意**Variant**      | 相加。                                                  |
+| 一个表达式为**String**，另一个为除**Null**外的任意**Variant**   | 连接。                                          |
+| 一个表达式为**Empty** **Variant**                                      | 返回另一个表达式不变作为*result*。|
+| 一个表达式为数值，另一个为**String**                         | 产生`Type mismatch`错误。                       |
+| 任一表达式为**Null**                                                   | *result*为**Null**。                                 |
 
-If both expressions are **Variant** expressions, the following rules apply:
+如果两个表达式均为**Variant**表达式，则适用以下规则：
 
-| If                                                              | Then         |
+| 如果                                                              | 则         |
 |:----------------------------------------------------------------|:-------------|
-| Both **Variant** expressions are numeric                        | Add.         |
-| Both **Variant** expressions are strings                        | Concatenate. |
-| One **Variant** expression is numeric and the other is a string | Add.         |
+| 两个**Variant**表达式均为数值                        | 相加。         |
+| 两个**Variant**表达式均为字符串                        | 连接。 |
+| 一个**Variant**表达式为数值，另一个为字符串 | 相加。         |
 
-For simple arithmetic addition involving only numeric expressions, the data type of *result* is usually the same as that of the most precise expression. The order of precision, from least to most precise, is **Byte**, **Integer**, **Long**, **LongLong**, **Single**, **Double**, **Currency**. The following are exceptions:
+对于仅涉及数值表达式的简单算术加法，*result*的数据类型通常与最精确的表达式相同。精度从低到高的顺序为**Byte**、**Integer**、**Long**、**LongLong**、**Single**、**Double**、**Currency**。以下是例外情况：
 
-| If                                                                                        | Then *result* is                  |
+| 如果                                                                                        | 则 *result* 为                  |
 |:------------------------------------------------------------------------------------------|:----------------------------------|
-| A **Single** and a **Long** are added                                                     | A **Double**.                     |
-| *result* is a **Long**, **Single**, or **Date** variant that overflows its legal range    | Converted to a **Double** variant.|
-| *result* is a **Byte** variant that overflows its legal range                             | Converted to an **Integer** variant.|
-| *result* is an **Integer** variant that overflows its legal range                         | Converted to a **Long** variant.  |
-| A **Date** is added to any data type                                                      | A **Date**.                       |
+| **Single**和**Long**相加                                                     | **Double**。                     |
+| *result*是**Long**、**Single**或**Date**变体，溢出了其合法范围    | 转换为**Double**变体。|
+| *result*是**Byte**变体，溢出了其合法范围                             | 转换为**Integer**变体。|
+| *result*是**Integer**变体，溢出了其合法范围                         | 转换为**Long**变体。  |
+| **Date**与任何数据类型相加                                                      | **Date**。                       |
 
-If one or both expressions are **Null** expressions, *result* is **Null**. If both expressions are **Empty**, *result* is an **Integer**. However, if only one expression is **Empty**, the other expression is returned unchanged as *result*.
+如果一个或两个表达式为**Null**表达式，则*result*为**Null**。如果两个表达式均为**Empty**，则*result*为**Integer**。但是，如果仅一个表达式为**Empty**，则返回另一个表达式不变作为*result*。
 
 ::: info
-The order of precision used by addition and subtraction is not the same as the order of precision used by multiplication.
+加法和减法使用的精度顺序与乘法使用的精度顺序不同。
 :::
 
-### Compound assignment
+### 复合赋值
 
-`x += y` is the twinBASIC shorthand for `x = x + y`. The left-hand side is evaluated once; the result follows the same type-promotion and **Null** / **Empty** rules described above. Like all of twinBASIC's compound-assignment operators, **+=** is a statement, not an expression --- it does not produce a value.
+`x += y`是twinBASIC中`x = x + y`的简写。左侧只计算一次；结果遵循上述相同的类型提升和**Null**/**Empty**规则。与所有twinBASIC的复合赋值运算符一样，**+=**是语句，不是表达式——它不产生值。
 
 ```vb
 Dim Total As Long = 0
@@ -71,9 +71,9 @@ Dim Greeting As String = "Hello"
 Greeting += ", world"           ' Greeting is now "Hello, world".
 ```
 
-### Example
+### 示例
 
-This example uses the **+** operator to sum numbers. The **+** operator can also be used to concatenate strings, but to eliminate ambiguity use the [**&**](/official/Reference/Core/Concat) operator instead.
+本示例使用**+**运算符对数求和。**+**运算符也可用于连接字符串，但为了消除歧义，请改用[**&**](/official/Reference/Core/Concat)运算符。
 
 ```vb
 Dim MyNumber, Var1, Var2
@@ -87,9 +87,9 @@ Var1 = "34": Var2 = "6"         ' Initialize variables with strings.
 MyNumber = Var1 + Var2          ' Returns "346" (string concatenation).
 ```
 
-### See Also
+### 另请参阅
 
-- [**-** operator](/official/Reference/Core/Minus)
-- [**&** operator](/official/Reference/Core/Concat)
-- [**\*** operator](/official/Reference/Core/Multiply)
-- [Operators](/official/Reference/Operators)
+- [**-** 运算符](/official/Reference/Core/Minus)
+- [**&** 运算符](/official/Reference/Core/Concat)
+- [**\*** 运算符](/official/Reference/Core/Multiply)
+- [运算符](/official/Reference/Operators)

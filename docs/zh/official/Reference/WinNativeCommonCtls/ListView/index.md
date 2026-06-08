@@ -2,19 +2,28 @@
 title: ListView
 parent: WinNativeCommonCtls Package
 permalink: /tB/Packages/WinNativeCommonCtls/ListView/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '87b7bd27-eee4-4583-84d1-14150211562a'
+  PropagateID: '87b7bd27-eee4-4583-84d1-14150211562a'
+  ReservedCode1: '6ecb7aa7-46c2-470a-9ec9-506b0d65a6d4'
+  ReservedCode2: '6ecb7aa7-46c2-470a-9ec9-506b0d65a6d4'
 ---
 
-# ListView class
-A **ListView** is a flexible multi-column / icon list with four distinct visual modes selected through the [**View**](#view) property:
+# ListView 类
 
-| [**View**](#view)              | Description                                                                        |
+**ListView** 是一个灵活的多列/图标列表，通过 [**View**](#view) 属性选择四种不同的视觉模式：
+
+| [**View**](#view)              | 描述                                                                        |
 |--------------------------------|------------------------------------------------------------------------------------|
-| **lvwIcon**                    | Large icons in a wrapping grid; each item shows an icon plus its label.            |
-| **lvwSmallIcon**               | Small icons in a wrapping grid.                                                    |
-| **lvwList**                    | A single column of small-icon-plus-label entries, wrapped into multiple columns to fit. |
-| **lvwReport**                  | Multi-column table view with header row; columns are defined through [**ColumnHeaders**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders). |
+| **lvwIcon**                    | 换行网格中的大图标；每项显示图标加标签。            |
+| **lvwSmallIcon**               | 换行网格中的小图标。                                                    |
+| **lvwList**                    | 单列小图标加标签条目，换行成多列以适应宽度。 |
+| **lvwReport**                  | 带标题行的多列表格视图；列通过 [**ColumnHeaders**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) 定义。 |
 
-The two main collections are accessed through properties: [**ListItems**](#listitems) for the rows, and [**ColumnHeaders**](#columnheaders) for the **Report**-view column headers.
+两个主要集合通过属性访问：[**ListItems**](#listitems) 用于行，[**ColumnHeaders**](#columnheaders) 用于 **Report** 视图的列标题。
 
 ```vb
 Private Sub Form_Load()
@@ -39,279 +48,279 @@ Private Sub ListView1_ItemClick(Item As ListItem)
 End Sub
 ```
 
-The control inherits the focusable rect-dockable members from `BaseControlFocusable` --- size, position, **Anchors**, **Dock**, **Font**, **Appearance**, **MousePointer** / **MouseIcon**, **ToolTipText**, **DragMode** / **DragIcon**, **Drag**, **Refresh**, **SetFocus**, **TabIndex** / **TabStop**, **ZOrder**, **CausesValidation**, **VisualStyles**, **hWnd**, **HelpContextID** / **WhatsThisHelpID**.
+控件从 `BaseControlFocusable` 继承可聚焦矩形可停靠成员 --- 大小、位置、**Anchors**、**Dock**、**Font**、**Appearance**、**MousePointer** / **MouseIcon**、**ToolTipText**、**DragMode** / **DragIcon**、**Drag**、**Refresh**、**SetFocus**、**TabIndex** / **TabStop**、**ZOrder**、**CausesValidation**、**VisualStyles**、**hWnd**、**HelpContextID** / **WhatsThisHelpID**。
 
-## Image lists
+## 图像列表
 
-A **ListView** can bind to three independent [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) instances, one per role:
+**ListView** 可以绑定到三个独立的 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) 实例，每个角色一个：
 
-- **[Icons](#icons)** --- large icons rendered in **lvwIcon** view.
-- **[SmallIcons](#smallicons)** --- small icons rendered in **lvwSmallIcon**, **lvwList**, and **lvwReport** views.
-- **[ColumnHeaderIcons](#columnheadericons)** --- small icons rendered inside the report-view column headers, addressed per-column through [**ColumnHeader.Icon**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#icon).
+- **[Icons](#icons)** --- 在 **lvwIcon** 视图中渲染的大图标。
+- **[SmallIcons](#smallicons)** --- 在 **lvwSmallIcon**、**lvwList** 和 **lvwReport** 视图中渲染的小图标。
+- **[ColumnHeaderIcons](#columnheadericons)** --- 在报告视图列标题内渲染的小图标，按列通过 [**ColumnHeader.Icon**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#icon) 寻址。
 
-A [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem) selects its icons through its **Icon** and **SmallIcon** properties, which can be either a 1-based **Long** index or a **String** key into the respective image list.
+[**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem) 通过其 **Icon** 和 **SmallIcon** 属性选择图标，可以是基于1的 **Long** 索引或各自图像列表的 **String** 键。
 
-## Selection and label editing
+## 选择和标签编辑
 
-Selection is single-row by default; setting [**MultiSelect**](#multiselect) to **True** lets the user **Ctrl**-click and **Shift**-click multiple items. The currently focused item is exposed as [**SelectedItem**](#selecteditem) (a [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem)) and [**SelectedItemIndex**](#selecteditemindex) (a **Long**). [**ListItem.Selected**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#selected) reads / writes selection on an individual row.
+默认为单行选择；将 [**MultiSelect**](#multiselect) 设为 **True** 允许用户 **Ctrl**-点击和 **Shift**-点击多项选择。当前聚焦项暴露为 [**SelectedItem**](#selecteditem)（[**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem)）和 [**SelectedItemIndex**](#selecteditemindex)（**Long**）。[**ListItem.Selected**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#selected) 读写单行的选中状态。
 
-[**LabelEdit**](#labeledit) controls inline label editing:
+[**LabelEdit**](#labeledit) 控制内联标签编辑：
 
-- **lvwAutomatic** --- clicking an already-selected item starts an edit (after a short delay; this is the F2 / single-click-and-pause pattern).
-- **lvwManual** --- only programmatic [**StartLabelEdit**](#startlabeledit) calls open an editor.
-- **lvwDisabled** --- labels cannot be edited.
+- **lvwAutomatic** --- 点击已选中项开始编辑（短暂延迟后；即F2 / 单击并暂停模式）。
+- **lvwManual** --- 仅编程调用 [**StartLabelEdit**](#startlabeledit) 打开编辑器。
+- **lvwDisabled** --- 标签不可编辑。
 
-Edit start fires [**BeforeLabelEdit**](#beforelabeledit) (cancellable), and edit end fires [**AfterLabelEdit**](#afterlabeledit) (cancellable, with the proposed new text).
+编辑开始触发 [**BeforeLabelEdit**](#beforelabeledit)（可取消），编辑结束触发 [**AfterLabelEdit**](#afterlabeledit)（可取消，带有建议的新文本）。
 
-## Sorting, column reordering, and the header
+## 排序、列重排和标题
 
-In **lvwReport** view, clicking a column header fires [**ColumnClick**](#columnclick), letting the application implement sorting (the package does not auto-sort). When [**AllowColumnReorder**](#allowcolumnreorder) is **True** in **lvwReport** view, the user can drag column headers to reorder them; the resulting order is reflected through [**ColumnHeader.Position**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#position).
+在 **lvwReport** 视图中，点击列标题触发 [**ColumnClick**](#columnclick)，让应用程序实现排序（包不会自动排序）。当 [**AllowColumnReorder**](#allowcolumnreorder) 在 **lvwReport** 视图中为 **True** 时，用户可以拖动列标题重新排序；结果顺序通过 [**ColumnHeader.Position**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#position) 反映。
 
-[**hWndHeader**](#hwndheader) is the Win32 handle of the embedded `SysHeader32` window, exposed for raw Win32 customization.
+[**hWndHeader**](#hwndheader) 是嵌入的 `SysHeader32` 窗口的Win32句柄，暴露用于原始Win32自定义。
 
-Properties
+属性
 ----------
 
 ### AllowColumnReorder
 
-Whether the user can drag column headers to reorder them. **Boolean**. Default: **False**. Only effective in **lvwReport** view.
+用户是否可以拖动列标题重新排序。**Boolean**。默认：**False**。仅在 **lvwReport** 视图中有效。
 
 ### Appearance
 
-How the control's border is drawn. A [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) member. Default: **vbAppear3d**. Inherited.
+控件边框的绘制方式。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) 的成员。默认：**vbAppear3d**。继承。
 
 ### Arrange
 
-How items are arranged in icon / small-icon view. A member of [**ListArrangeConstants**](#listarrangeconstants). Default: **lvwNone**.
+在图标/小图标视图中如何排列项。[**ListArrangeConstants**](#listarrangeconstants) 的成员。默认：**lvwNone**。
 
 ### BackColor
 
-The background color of the list area. **OLE_COLOR**. Default: **vbWindowBackground**.
+列表区域的背景颜色。**OLE_COLOR**。默认：**vbWindowBackground**。
 
 ### BorderStyle
 
-The control's border style. A [**TreeBorderStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) member: **ccNone** or **ccFixedSingle**. Default: **ccFixedSingle**. The enum is shared with [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/).
+控件的边框样式。[**TreeBorderStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) 的成员：**ccNone** 或 **ccFixedSingle**。默认：**ccFixedSingle**。该枚举与 [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) 共享。
 
 ### CheckBoxes
 
-Whether each row has a leading checkbox. **Boolean**. Default: **False**. When **True**, fires [**ItemCheck**](#itemcheck) on click.
+每行是否有前导复选框。**Boolean**。默认：**False**。为 **True** 时，点击触发 [**ItemCheck**](#itemcheck)。
 
 ### ColumnHeaderIcons
 
-The [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) used for column-header icons in **lvwReport** view. Individual columns reference an icon by setting [**ColumnHeader.Icon**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#icon).
+在 **lvwReport** 视图中用于列标题图标的 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/)。各列通过 [**ColumnHeader.Icon**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#icon) 引用图标。
 
 ### ColumnHeaders
 
-The [**ColumnHeaders**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) collection. Read-only.
+[**ColumnHeaders**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) 集合。只读。
 
 ### FlatScrollBar
 
-Whether the control uses flat (rather than 3D) scrollbars. **Boolean**. Default: **False**.
+控件是否使用平面（而非3D）滚动条。**Boolean**。默认：**False**。
 
 ### FullRowSelect
 
-Whether clicking on any cell in a row selects the entire row (as opposed to clicking only on the first column's text). **Boolean**. Default: **False**. Only meaningful in **lvwReport** view.
+点击行中任何单元格是否选中整行（而非仅点击第一列的文本）。**Boolean**。默认：**False**。仅在 **lvwReport** 视图中有意义。
 
 ### GridLines
 
-Whether gridlines are drawn between rows and columns. **Boolean**. Default: **False**. Only meaningful in **lvwReport** view.
+行和列之间是否绘制网格线。**Boolean**。默认：**False**。仅在 **lvwReport** 视图中有意义。
 
 ### HideColumnHeaders
 
-Whether the column header row is hidden in **lvwReport** view. **Boolean**. Default: **False**.
+在 **lvwReport** 视图中列标题行是否隐藏。**Boolean**。默认：**False**。
 
 ### HideSelection
 
-Whether selection highlight is hidden when the control does not have focus. **Boolean**. Default: **True**.
+控件没有焦点时选择高亮是否隐藏。**Boolean**。默认：**True**。
 
 ### HotTracking
 
-Whether items are highlighted as the mouse hovers over them (and tracked-click selection is enabled). **Boolean**. Default: **False**.
+鼠标悬停时项是否高亮（并启用跟踪点击选择）。**Boolean**。默认：**False**。
 
 ### hWnd
 
-The Win32 handle of the listview window. **LongPtr**, read-only.
+列表视图窗口的Win32句柄。**LongPtr**，只读。
 
 ### hWndHeader
 
-The Win32 handle of the embedded column-header window (`SysHeader32`). **LongPtr**, read-only. Tagged `[Hidden]` `[NonBrowsable]` --- exposed only for advanced Win32 customization (e.g. subclassing the header).
+嵌入的列标题窗口（`SysHeader32`）的Win32句柄。**LongPtr**，只读。标记为 `[Hidden]` `[NonBrowsable]` --- 仅为高级Win32自定义（如子类化标题）暴露。
 
 ### Icons
 
-The [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) used for large icons in **lvwIcon** view. Assignment increments the bound-count on the **ImageList** (and decrements the previous one's); see the [bound-count caveat](/official/Reference/WinNativeCommonCtls/ImageList/#binding-to-consumers).
+在 **lvwIcon** 视图中用于大图标的 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/)。赋值递增 **ImageList** 的绑定计数（并递减前一个的）；参见[绑定计数注意事项](/official/Reference/WinNativeCommonCtls/ImageList/#binding-to-consumers)。
 
 ### LabelEdit
 
-How inline label editing is triggered. A member of [**ListLabelEditConstants**](#listlabeleditconstants). Default: **lvwAutomatic**.
+内联标签编辑如何触发。[**ListLabelEditConstants**](#listlabeleditconstants) 的成员。默认：**lvwAutomatic**。
 
 ### LabelWrap
 
-Whether item labels wrap to multiple lines in **lvwIcon** view. **Boolean**. Default: **True**.
+在 **lvwIcon** 视图中项标签是否换行到多行。**Boolean**。默认：**True**。
 
 ### ListItems
 
-The [**ListItems**](/official/Reference/WinNativeCommonCtls/ListView/ListItems) collection --- the rows of the list. Read-only.
+[**ListItems**](/official/Reference/WinNativeCommonCtls/ListView/ListItems) 集合 --- 列表的行。只读。
 
 ### MultiSelect
 
-Whether the user can select multiple items. **Boolean**. Default: **False**.
+用户是否可以选择多个项。**Boolean**。默认：**False**。
 
 ### SelectedItem
 
-The currently focused [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem), or **Nothing** if no row is focused. Read-only --- to change selection, assign to [**ListItem.Selected**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#selected).
+当前聚焦的 [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem)，如果没有行聚焦则为 **Nothing**。只读 --- 要更改选择，赋值给 [**ListItem.Selected**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#selected)。
 
 ### SelectedItemIndex
 
-The 1-based index of the currently focused row, or `-1` if no row is focused. **Long**, read-only.
+当前聚焦行的基于1的索引，如果没有行聚焦则为 `-1`。**Long**，只读。
 
 ### SmallIcons
 
-The [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) used for small icons in **lvwSmallIcon**, **lvwList**, and **lvwReport** views.
+在 **lvwSmallIcon**、**lvwList** 和 **lvwReport** 视图中用于小图标的 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/)。
 
 ### TextBackground
 
-Whether item-label text has an opaque background. A member of [**ListTextBackgroundConstants**](#listtextbackgroundconstants). Default: **lvwTransparent**.
+项标签文本是否有不透明背景。[**ListTextBackgroundConstants**](#listtextbackgroundconstants) 的成员。默认：**lvwTransparent**。
 
 ### View
 
-The visual mode. A member of [**ListViewConstants**](#listviewconstants). Default: **lvwIcon**.
+视觉模式。[**ListViewConstants**](#listviewconstants) 的成员。默认：**lvwIcon**。
 
-Methods
+方法
 -------
 
 ### GetFirstVisible
 
-Returns the first [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem) currently visible in the viewport. Useful for virtualized scenarios where the application updates row content based on what the user is looking at.
+返回当前视口中可见的第一个 [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem)。适用于虚拟化场景，应用程序根据用户正在查看的内容更新行内容。
 
-Syntax: *object*.**GetFirstVisible** **As ListItem**
+语法：*object*.**GetFirstVisible** **As ListItem**
 
 ### StartLabelEdit
 
-Opens the inline editor on the currently selected row. Used when [**LabelEdit**](#labeledit) is **lvwManual**.
+在当前选中的行上打开内联编辑器。当 [**LabelEdit**](#labeledit) 为 **lvwManual** 时使用。
 
-Syntax: *object*.**StartLabelEdit**
+语法：*object*.**StartLabelEdit**
 
-Events
+事件
 ------
 
 ### AfterLabelEdit
 
-Raised when an inline label edit completes. Set *Cancel* to **True** to revert; *NewString* holds the user's proposed new text.
+内联标签编辑完成时触发。将 *Cancel* 设为 **True** 以恢复；*NewString* 保存用户建议的新文本。
 
-Syntax: *object*\_**AfterLabelEdit**( *Cancel* **As Boolean**, *NewString* **As String** )
+语法：*object*\_**AfterLabelEdit**（*Cancel* **As Boolean**，*NewString* **As String**）
 
 ### BeforeLabelEdit
 
-Raised when an inline label edit is about to start. Set *Cancel* to **True** to block the edit.
+内联标签编辑即将开始时触发。将 *Cancel* 设为 **True** 以阻止编辑。
 
-Syntax: *object*\_**BeforeLabelEdit**( *Cancel* **As Boolean** )
+语法：*object*\_**BeforeLabelEdit**（*Cancel* **As Boolean**）
 
 ### Click
 
-Raised on a mouse click inside the control. Distinct from [**ItemClick**](#itemclick), which fires only when the click hits a row.
+在控件内鼠标点击时触发。与 [**ItemClick**](#itemclick) 不同，后者仅在点击命中行时触发。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### ColumnClick
 
-Raised when the user clicks a column header in **lvwReport** view.
+用户在 **lvwReport** 视图中点击列标题时触发。
 
-Syntax: *object*\_**ColumnClick**( *ColumnHeader* **As ColumnHeader** )
+语法：*object*\_**ColumnClick**（*ColumnHeader* **As ColumnHeader**）
 
 ### DblClick
 
-Raised on a double-click inside the control.
+在控件内双击时触发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop, DragOver
 
-Inherited drag-drop events.
+继承的拖放事件。
 
 ### Initialize
 
-Raised after the control's window has been created.
+控件窗口创建后触发。
 
 ### ItemCheck
 
-Raised when the user toggles the checkbox on a row (only when [**CheckBoxes**](#checkboxes) is **True**).
+用户切换行上的复选框时触发（仅在 [**CheckBoxes**](#checkboxes) 为 **True** 时）。
 
-Syntax: *object*\_**ItemCheck**( *Item* **As ListItem** )
+语法：*object*\_**ItemCheck**（*Item* **As ListItem**）
 
 ### ItemClick
 
-Raised when a row becomes selected (via mouse click or keyboard navigation).
+当行被选中时触发（通过鼠标点击或键盘导航）。
 
-Syntax: *object*\_**ItemClick**( *Item* **As ListItem** )
+语法：*object*\_**ItemClick**（*Item* **As ListItem**）
 
 ### KeyDown, KeyPress, KeyUp
 
-Inherited keyboard events.
+继承的键盘事件。
 
 ### MouseDown, MouseMove, MouseUp
 
-Inherited mouse events.
+继承的鼠标事件。
 
 ### OLECompleteDrag, OLEDragDrop, OLEDragOver, OLEGiveFeedback, OLESetData, OLEStartDrag
 
-Inherited OLE drag-and-drop events.
+继承的OLE拖放事件。
 
 ### Scroll
 
 ::: info
-The **Scroll** event is declared on the control but tagged `[Unimplemented]` in the current source. It is reserved for a future release; do not rely on it.
+**Scroll** 事件在控件上声明但当前源码中标记为 `[Unimplemented]`。保留用于未来版本；请勿依赖它。
 :::
 
 ### Validate
 
-Inherited validation event.
+继承的验证事件。
 
 ## ListViewConstants
 
-Determines the visual mode of a **ListView**. Declared on the **ListView** class.
+确定 **ListView** 的视觉模式。在 **ListView** 类上声明。
 
-| Member                | Value | Description                                                          |
+| 成员                | 值 | 描述                                                          |
 |-----------------------|-------|----------------------------------------------------------------------|
-| **lvwIcon**           | 0 | Large icons in a wrapping grid.                            |
-| **lvwSmallIcon** | 1 | Small icons in a wrapping grid.                            |
-| **lvwList**           | 2 | Single-column list (wrapping into multiple columns).        |
-| **lvwReport**       | 3 | Multi-column report view with header row.                   |
+| **lvwIcon**           | 0 | 换行网格中的大图标。                            |
+| **lvwSmallIcon** | 1 | 换行网格中的小图标。                            |
+| **lvwList**           | 2 | 单列列表（换行成多列）。        |
+| **lvwReport**       | 3 | 带标题行的多列报告视图。                   |
 
 ## ListArrangeConstants
 
-Determines how items are auto-arranged in icon / small-icon view. Declared on the **ListView** class.
+确定在图标/小图标视图中如何自动排列项。在 **ListView** 类上声明。
 
-| Member                 | Value | Description                                            |
+| 成员                 | 值 | 描述                                            |
 |------------------------|-------|--------------------------------------------------------|
-| **lvwNone**         | 0 | No auto-arrangement; items stay where they were placed. |
-| **lvwAutoLeft** | 1 | Items auto-flow left-to-right.                          |
-| **lvwAutoTop**   | 2 | Items auto-flow top-to-bottom.                          |
+| **lvwNone**         | 0 | 无自动排列；项保持放置位置。 |
+| **lvwAutoLeft** | 1 | 项自动从左到右流动。                          |
+| **lvwAutoTop**   | 2 | 项自动从上到下流动。                          |
 
 ## ListTextBackgroundConstants
 
-Determines whether item-label text has an opaque or transparent background. Declared on the **ListView** class.
+确定项标签文本是否具有不透明或透明背景。在 **ListView** 类上声明。
 
-| Member                | Value | Description                                                       |
+| 成员                | 值 | 描述                                                       |
 |-----------------------|-------|-------------------------------------------------------------------|
-| **lvwTransparent** | 0 | Item text overlays the list background unchanged.   |
-| **lvwOpaque**           | 1 | Item text is drawn with an opaque background matching [**BackColor**](#backcolor). |
+| **lvwTransparent** | 0 | 项文本直接叠加在列表背景上。   |
+| **lvwOpaque**           | 1 | 项文本以匹配 [**BackColor**](#backcolor) 的不透明背景绘制。 |
 
 ## ListLabelEditConstants
 
-Determines when inline label editing is triggered. Declared on the **ListView** class.
+确定何时触发内联标签编辑。在 **ListView** 类上声明。
 
-| Member             | Value | Description                                                                |
+| 成员             | 值 | 描述                                                                |
 |--------------------|-------|----------------------------------------------------------------------------|
-| **lvwAutomatic** | 0 | F2 or click-and-pause on a selected row starts an edit. |
-| **lvwManual**       | 1 | Only [**StartLabelEdit**](#startlabeledit) opens an editor. |
-| **lvwDisabled**   | 2 | Label editing is disabled entirely. |
+| **lvwAutomatic** | 0 | F2或点击并暂停选中行开始编辑。 |
+| **lvwManual**       | 1 | 仅 [**StartLabelEdit**](#startlabeledit) 打开编辑器。 |
+| **lvwDisabled**   | 2 | 完全禁用标签编辑。 |
 
-## See Also
+## 另见
 
-- [ListItem](/official/Reference/WinNativeCommonCtls/ListView/ListItem) -- a single row
-- [ListItems](/official/Reference/WinNativeCommonCtls/ListView/ListItems) -- the collection of rows
-- [ColumnHeader](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) -- a single column header (Report view)
-- [ColumnHeaders](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) -- the column header collection
-- [ImageList](/official/Reference/WinNativeCommonCtls/ImageList/) -- the picture source for [**Icons**](#icons), [**SmallIcons**](#smallicons), and [**ColumnHeaderIcons**](#columnheadericons)
-- [TreeBorderStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) -- the [**BorderStyle**](#borderstyle) enum shared with [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/)
-- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbListView** lives
+- [ListItem](/official/Reference/WinNativeCommonCtls/ListView/ListItem) --- 单行
+- [ListItems](/official/Reference/WinNativeCommonCtls/ListView/ListItems) --- 行集合
+- [ColumnHeader](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) --- 单个列标题（Report视图）
+- [ColumnHeaders](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders) --- 列标题集合
+- [ImageList](/official/Reference/WinNativeCommonCtls/ImageList/) --- [**Icons**](#icons)、[**SmallIcons**](#smallicons) 和 [**ColumnHeaderIcons**](#columnheadericons) 的图片来源
+- [TreeBorderStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) --- 与 [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) 共享的 [**BorderStyle**](#borderstyle) 枚举
+- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) --- **vbListView** 所在位置

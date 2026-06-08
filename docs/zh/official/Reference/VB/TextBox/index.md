@@ -8,7 +8,7 @@ permalink: /tB/Packages/VB/TextBox/
 
 A **TextBox** is a Win32 native edit control that lets the user enter and edit text. It can be configured as a single-line field (default) or a multi-line editor with optional scroll bars, can mask its content for password entry, restrict input to digits, and display a placeholder "cue banner" when empty.
 
-The control is normally placed on a [**Form**](/official/Reference/VB/Form/) or **UserControl** at design time. The default property is [**Text**](#text) and the default-designer event is [**Change**](#change).
+The control is normally placed on a [**Form**](/en/official/Reference/VB/Form/) or **UserControl** at design time. The default property is [**Text**](#text) and the default-designer event is [**Change**](#change).
 
 ```vb
 Private Sub Form_Load()
@@ -64,7 +64,7 @@ When [**NumbersOnly**](#numbersonly) is **True**, the edit control silently reje
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control's [**Text**](#text) to a field of a [**Data**](/official/Reference/VB/Data/) control's recordset. The bound value is read as a string on each row change (a **Null** field becomes an empty string), and the current [**Text**](#text) is written back when the row is saved. Modifying [**Text**](#text) --- either by user input or by code --- sets [**DataChanged**](#datachanged) and marks the recordset row as dirty.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control's [**Text**](#text) to a field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset. The bound value is read as a string on each row change (a **Null** field becomes an empty string), and the current [**Text**](#text) is written back when the row is saved. Modifying [**Text**](#text) --- either by user input or by code --- sets [**DataChanged**](#datachanged) and marks the recordset row as dirty.
 
 ## Properties
 
@@ -75,7 +75,7 @@ Horizontal alignment of the text within the control.
 Syntax: *object*.**Alignment** [ = *value* ]
 
 *value*
-: A member of [**AlignmentConstants**](/official/Reference/VBRUN/Constants/AlignmentConstants): **vbLeftJustify** (0, default), **vbRightJustify** (1), or **vbCenter** (2). Centred and right-aligned text require [**MultiLine**](#multiline) to be **True** when the platform's edit control does not natively support those alignments in single-line mode; tB supports them in both modes.
+: A member of [**AlignmentConstants**](/en/official/Reference/VBRUN/Constants/AlignmentConstants): **vbLeftJustify** (0, default), **vbRightJustify** (1), or **vbCenter** (2). Centred and right-aligned text require [**MultiLine**](#multiline) to be **True** when the platform's edit control does not natively support those alignments in single-line mode; tB supports them in both modes.
 
 ### Anchors
 
@@ -83,7 +83,7 @@ The set of edges of the parent that the text box's corresponding edges follow wh
 
 ### Appearance
 
-Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder** --- chooses between a sunken 3-D edge and a thin flat border.
+Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder** --- chooses between a sunken 3-D edge and a thin flat border.
 
 ### BackColor
 
@@ -91,7 +91,7 @@ The background colour of the edit area, as an **OLE_COLOR**. Defaults to the sys
 
 ### BorderStyle
 
-Whether the text box is drawn with a border. A member of [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0) or **vbFixedSingleBorder** (1, default). The exact appearance of the border depends on [**Appearance**](#appearance).
+Whether the text box is drawn with a border. A member of [**ControlBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0) or **vbFixedSingleBorder** (1, default). The exact appearance of the border depends on [**Appearance**](#appearance).
 
 ### CausesValidation
 
@@ -99,11 +99,11 @@ Determines whether the previously focused control's [**Validate**](#validate) ev
 
 ### Container
 
-The control that hosts this text box --- typically the form, a [**Frame**](/official/Reference/VB/Frame/), or a [**PictureBox**](/official/Reference/VB/PictureBox/). Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the text box.
+The control that hosts this text box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or a [**PictureBox**](/en/official/Reference/VB/PictureBox/). Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the text box.
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a text box. Always **vbTextBox**.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a text box. Always **vbTextBox**.
 
 ### DataChanged
 
@@ -131,11 +131,11 @@ When the [**DataSource**](#datasource) exposes more than one recordset, the name
 
 ### DataSource
 
-A reference to a [**Data**](/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### Dock
 
-Where the text box is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked text boxes ignore [**Anchors**](#anchors).
+Where the text box is docked within its container. A member of [**DockModeConstants**](/en/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked text boxes ignore [**Anchors**](#anchors).
 
 ### DragIcon
 
@@ -143,7 +143,7 @@ A **StdPicture** used as the mouse cursor while the control is being drag-and-dr
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/en/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
 
 ### Enabled
 
@@ -217,7 +217,7 @@ Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
 Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
 :::
 
-A member of [**LinkModeConstants**](/official/Reference/VBRUN/Constants/LinkModeConstants).
+A member of [**LinkModeConstants**](/en/official/Reference/VBRUN/Constants/LinkModeConstants).
 
 ### LinkTimeout
 
@@ -245,7 +245,7 @@ A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer)
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
 
 ### MultiLine
 
@@ -261,11 +261,11 @@ When **True**, the edit control rejects keystrokes other than the decimal digits
 
 ### OLEDragMode
 
-Whether the control's selected text can act as an automatic OLE drag source. A member of [**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants): **vbOLEDragManual** (0, default --- call [**OLEDrag**](#oledrag) from code) or **vbOLEDragAutomatic** (1).
+Whether the control's selected text can act as an automatic OLE drag source. A member of [**OLEDragConstants**](/en/official/Reference/VBRUN/Constants/OLEDragConstants): **vbOLEDragManual** (0, default --- call [**OLEDrag**](#oledrag) from code) or **vbOLEDragAutomatic** (1).
 
 ### OLEDropMode
 
-How the control responds to OLE drops. A member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone**, **vbOLEDropManual**, or **vbOLEDropAutomatic** (which inserts the dropped text at the caret without raising [**OLEDragDrop**](#oledragdrop)).
+How the control responds to OLE drops. A member of [**OLEDropConstants**](/en/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone**, **vbOLEDropManual**, or **vbOLEDropAutomatic** (which inserts the dropped text at the caret without raising [**OLEDragDrop**](#oledragdrop)).
 
 ### Opacity
 
@@ -273,7 +273,7 @@ The control's opacity as a percentage (0--100, default 100). Values outside the 
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
 
 ### PasswordChar
 
@@ -287,7 +287,7 @@ Reserved for compatibility with VB6; not currently implemented in twinBASIC.
 
 ### ScrollBars
 
-Which scroll bars the multi-line text box displays. A member of [**ScrollBarConstants**](/official/Reference/VBRUN/Constants/ScrollBarConstants): **vbSBNone** (0, default), **vbHorizontal** (1), **vbVertical** (2), or **vbBoth** (3). Ignored when [**MultiLine**](#multiline) is **False**. Changing this at run time recreates the underlying window.
+Which scroll bars the multi-line text box displays. A member of [**ScrollBarConstants**](/en/official/Reference/VBRUN/Constants/ScrollBarConstants): **vbSBNone** (0, default), **vbHorizontal** (1), **vbVertical** (2), or **vbBoth** (3). Ignored when [**MultiLine**](#multiline) is **False**. Changing this at run time recreates the underlying window.
 
 When the vertical scroll bar is enabled in a wrapping multi-line box, the horizontal scroll bar disables word wrap --- lines extend past the right edge instead of wrapping.
 
@@ -376,7 +376,7 @@ Begins, completes, or cancels a manual drag-and-drop operation. Typically called
 Syntax: *object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *optional* A member of [**DragConstants**](/en/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
 
 ### LinkExecute
 
@@ -445,7 +445,7 @@ Brings the control to the front or back of its sibling stack.
 Syntax: *object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
 
 ## Events
 

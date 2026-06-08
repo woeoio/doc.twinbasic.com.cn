@@ -1,31 +1,40 @@
 ---
-title: WinServicesLib Package
+title: "WinServicesLib 包"
 parent: Packages
 nav_order: 10
 permalink: /tB/Packages/WinServicesLib/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '54043392-0823-4951-bc54-4d897d683c04'
+  PropagateID: '54043392-0823-4951-bc54-4d897d683c04'
+  ReservedCode1: '58bbc3da-75d0-45af-afbe-0c4f398e7921'
+  ReservedCode2: '58bbc3da-75d0-45af-afbe-0c4f398e7921'
 ---
 
-# WinServicesLib Package
-The **WinServicesLib** built-in package wraps the Windows Service Control Manager so a twinBASIC EXE can run as one or more Windows services. The same EXE typically does double duty as the install / control-panel tool when launched normally and as the service host when launched by the SCM; both modes coexist in a single `Sub Main`. The package handles the SCM handshake, the service-thread dispatch, the control-code routing, and the install / uninstall registry plumbing.
+# WinServicesLib 包
 
-The package is a built-in package shipped with twinBASIC. Add it through Project → References (**Ctrl-T**) → Available Packages.
+**WinServicesLib** 内置包封装了Windows服务控制管理器，使 twinBASIC EXE可以作为一个或多个Windows服务运行。同一EXE通常在正常启动时兼作安装/控制面板工具，在由SCM启动时作为服务宿主；两种模式共存于单个 `Sub Main` 中。该包处理SCM握手、服务线程调度、控制代码路由和安装/卸载的注册表管道。
 
-## What a Windows service is
+该包是随 twinBASIC 一起发布的内置包。通过 Project → References（**Ctrl-T**）→ Available Packages 添加。
 
-A *Windows service* is a long-running background process supervised by the **Service Control Manager (SCM)**. Services can start before any user logs in, run under dedicated accounts (`LocalSystem`, `LocalService`, `NetworkService`, or any explicit user), and respond to lifecycle commands --- *Start*, *Stop*, *Pause*, *Continue* --- issued from the Services control-panel applet (`services.msc`), the `sc.exe` command-line tool, or programmatic equivalents.
+## 什么是Windows服务
 
-A service-hosting EXE communicates with the SCM through a small set of Win32 entry points: `StartServiceCtrlDispatcherW` to hand the process over to the SCM, `RegisterServiceCtrlHandlerExW` to hook a control-code callback, `SetServiceStatus` to report state transitions, and `CreateServiceW` / `DeleteService` to register / unregister the service in the system database. **WinServicesLib** wraps all of these --- the consumer writes one class per service, declares it through the package's coordinator, and the package handles every Win32 detail.
+*Windows服务*是由**服务控制管理器（SCM）**监督的长时间运行的后台进程。服务可以在任何用户登录之前启动，在专用账户（`LocalSystem`、`LocalService`、`NetworkService` 或任何显式用户）下运行，并响应从服务控制面板小程序（`services.msc`）、`sc.exe` 命令行工具或编程等效方式发出的生命周期命令——*Start*、*Stop*、*Pause*、*Continue*。
 
-## Lifecycle
+服务托管EXE通过一小部分Win32入口点与SCM通信：`StartServiceCtrlDispatcherW` 将进程移交给SCM，`RegisterServiceCtrlHandlerExW` 钩住控制代码回调，`SetServiceStatus` 报告状态转换，`CreateServiceW` / `DeleteService` 在系统数据库中注册/注销服务。**WinServicesLib** 封装了所有这些——消费者为每个服务写一个类，通过包的协调器声明它，包处理每个Win32细节。
 
-A service-hosting EXE goes through four phases:
+## 生命周期
 
-1. **Configure** --- at startup, declare every service the EXE knows how to host by calling [**Services.ConfigureNew**](/official/Reference/WinServicesLib/Services#configurenew) and filling the returned [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager). Configuration is purely in-memory and does not touch the SCM; it builds the map the dispatcher will use *if* the EXE is launched as a service host.
-2. **Install** (one-time, elevated) --- register the configured services in the system database via [**ServiceManager.Install**](/official/Reference/WinServicesLib/ServiceManager#install) or [**Services.InstallAll**](/official/Reference/WinServicesLib/Services#installall). This writes registry entries under `HKLM\SYSTEM\CurrentControlSet\Services\<Name>` pointing at the EXE and requires administrator rights. Usually run from an installer.
-3. **Run as a service** (when the SCM launches the EXE) --- the EXE's `Sub Main` detects it was launched as a service host (typically by inspecting `Command` for a known argument like `"-startService"`) and calls [**Services.RunServiceDispatcher**](/official/Reference/WinServicesLib/Services#runservicedispatcher). This blocks the main thread inside `StartServiceCtrlDispatcherW` until the SCM signals shutdown. The SCM spawns a separate service thread per service and calls into the package's dispatcher trampoline; the trampoline reports `StartPending`, then invokes the user's [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) on the service thread.
-4. **Run normally** (when a user launches the EXE) --- the EXE's `Sub Main` does *not* see the service-host argument and proceeds to whatever UI / CLI logic the EXE provides for installation, status display, or interactive testing. The same configured [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) instances are still reachable through [**Services.GetConfiguredService**](/official/Reference/WinServicesLib/Services#getconfiguredservice) and the [**For Each**](/official/Reference/WinServicesLib/Services#_newenum) enumerator, which is what enables a single-EXE install-and-host design.
+服务托管EXE经历四个阶段：
 
-The canonical `Sub Main` skeleton:
+1. **配置**——启动时，通过调用 [**Services.ConfigureNew**](/official/Reference/WinServicesLib/Services#configurenew) 并填充返回的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 来声明EXE知道如何托管的每个服务。配置纯粹在内存中，不触及SCM；它构建调度器在EXE*如果*作为服务宿主启动时将使用的映射。
+2. **安装**（一次性，需提升权限）——通过 [**ServiceManager.Install**](/official/Reference/WinServicesLib/ServiceManager#install) 或 [**Services.InstallAll**](/official/Reference/WinServicesLib/Services#installall) 在系统数据库中注册已配置的服务。这会在 `HKLM\SYSTEM\CurrentControlSet\Services\<Name>` 下写入指向EXE的注册表条目，需要管理员权限。通常从安装程序运行。
+3. **作为服务运行**（当SCM启动EXE时）——EXE的 `Sub Main` 检测到它作为服务宿主启动（通常通过检查 `Command` 中的已知参数如 `"-startService"`）并调用 [**Services.RunServiceDispatcher**](/official/Reference/WinServicesLib/Services#runservicedispatcher)。这会阻塞主线程在 `StartServiceCtrlDispatcherW` 内部直到SCM发出关闭信号。SCM为每个服务生成一个单独的服务线程并调用包的调度器跳板；跳板报告 `StartPending`，然后调用用户在服务线程上的 [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint)。
+4. **正常运行**（当用户启动EXE时）——EXE的 `Sub Main` *不会*看到服务宿主参数，并继续执行EXE为安装、状态显示或交互测试提供的任何UI/CLI逻辑。相同的已配置 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 实例仍可通过 [**Services.GetConfiguredService**](/official/Reference/WinServicesLib/Services#getconfiguredservice) 和 [**For Each**](/official/Reference/WinServicesLib/Services#_newenum) 枚举器访问，这就是使单EXE安装即托管设计成为可能的原因。
+
+规范的 `Sub Main` 骨架：
 
 ```vb
 Module Startup
@@ -40,24 +49,24 @@ Module Startup
         End With
 
         If InStr(Command, "-startService") > 0 Then
-            Services.RunServiceDispatcher       ' blocks until the SCM signals shutdown
+            Services.RunServiceDispatcher       ' 阻塞直到SCM发出关闭信号
         Else
-            MainForm.Show                       ' control-panel / install UI
+            MainForm.Show                       ' 控制面板/安装UI
         End If
     End Sub
 End Module
 ```
 
-The `-startService` discriminator is the conventional way for the EXE to know which mode it is in. The `InstallCmdLine` field embeds this argument so the SCM passes it back when launching the service; the user-launched path sees no such argument and falls through to the UI branch.
+`-startService` 鉴别参数是EXE知道自己处于哪种模式的常规方式。`InstallCmdLine` 字段嵌入此参数，以便SCM在启动服务时传回；用户启动的路径不会看到此类参数，会落入UI分支。
 
-## The two-thread split
+## 双线程分离
 
-When the SCM launches the EXE as a service host, twinBASIC's runtime runs **two threads** for each service:
+当SCM将EXE作为服务宿主启动时，twinBASIC的运行时为每个服务运行**两个线程**：
 
-- The **service thread** --- the SCM-spawned thread that runs the user's [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint). This is where the service does its actual work. The thread is created by `StartServiceCtrlDispatcherW`'s machinery; it is *not* the main thread of the EXE.
-- The **dispatcher thread** --- the EXE's main thread, which is what the SCM invokes when it has a control code to deliver (*Stop*, *Pause*, *Continue*, …). The package routes the control through `RegisterServiceCtrlHandlerExW` to a trampoline that calls the user's [**ITbService.ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate).
+- **服务线程**——由SCM生成的运行用户 [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 的线程。这是服务做实际工作的地方。该线程由 `StartServiceCtrlDispatcherW` 的机制创建；它*不是*EXE的主线程。
+- **调度器线程**——EXE的主线程，也就是当SCM有控制代码要传递（*Stop*、*Pause*、*Continue*、…）时调用的线程。包通过 `RegisterServiceCtrlHandlerExW` 将控制路由到调用用户 [**ITbService.ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) 的跳板。
 
-The two methods therefore run *concurrently*: while [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) is doing the service's work on the service thread, [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) waits idle on the dispatcher thread, and the SCM wakes it on demand to deliver a control code. The two methods must coordinate through shared `Public` flags on the service class --- `IsStopping`, `IsPaused`, and similar --- because the package cannot stop the service thread except through the user's own code path.
+因此两个方法*并发*运行：当 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 在服务线程上做服务工作时，[**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) 在调度器线程上空闲等待，SCM按需唤醒它以传递控制代码。两个方法必须通过服务类上的共享 `Public` 标志——`IsStopping`、`IsPaused` 等——进行协调，因为包无法通过用户自己的代码路径之外的方式停止服务线程。
 
 ```vb
 Class MyService
@@ -69,7 +78,7 @@ Class MyService
             Implements ITbService.EntryPoint
         ServiceManager.ReportStatus vbServiceStatusRunning
         Do Until IsStopping
-            ' …do work, then yield with WaitForSingleObject / Sleep / etc.
+            ' …做工作，然后用 WaitForSingleObject / Sleep 等让出
         Loop
         ServiceManager.ReportStatus vbServiceStatusStopped
     End Sub
@@ -82,44 +91,44 @@ Class MyService
         Select Case dwControl
             Case vbServiceControlStop, vbServiceControlShutdown
                 ServiceManager.ReportStatus vbServiceStatusStopPending
-                IsStopping = True       ' wakes EntryPoint's loop on the other thread
+                IsStopping = True       ' 唤醒另一个线程上的 EntryPoint 循环
         End Select
     End Sub
 
     Sub StartupFailed(ByVal ServiceManager As ServiceManager) _
             Implements ITbService.StartupFailed
-        ' …optional failure-reporting hook
+        ' …可选的失败报告钩子
     End Sub
 End Class
 ```
 
-The shared-flag pattern is the documented coordination mechanism --- there is no built-in cancellation primitive. For services that host an inherently message-loop-driven object (a [**NamedPipeServer**](/official/Reference/WinNamedPipesLib/NamedPipeServer), a window-message handler, …) that object's own *Stop*-signal method is usually called from [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate); see [the WinNamedPipesLib service-host idiom](/official/Reference/WinNamedPipesLib/#service-host-idiom) for a worked example.
+共享标志模式是文档记录的协调机制——没有内置的取消原语。对于托管本质上由消息循环驱动的对象（[**NamedPipeServer**](/official/Reference/WinNamedPipesLib/NamedPipeServer)、窗口消息处理程序、…）的服务，该对象自己的 *Stop* 信号方法通常从 [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) 调用；参见 [WinNamedPipesLib 服务托管惯用法](/official/Reference/WinNamedPipesLib/#service-host-idiom)获取完整示例。
 
-## Integration with the sister "winlibs" packages
+## 与姐妹"winlibs"包的集成
 
-`WinServicesLib` is most often used together with [**WinEventLogLib**](/official/Reference/WinEventLogLib/) and [**WinNamedPipesLib**](/official/Reference/WinNamedPipesLib/) --- Windows services typically need a place to write diagnostic events (the Windows Event Log) and a way to communicate with non-service processes (named pipes). The three packages integrate well:
+`WinServicesLib` 最常与 [**WinEventLogLib**](/official/Reference/WinEventLogLib/) 和 [**WinNamedPipesLib**](/official/Reference/WinNamedPipesLib/) 一起使用——Windows服务通常需要一个地方来写入诊断事件（Windows事件日志）和一种与非服务进程通信的方式（命名管道）。三个包集成良好：
 
-- **Logging** --- every service class can mix in the [**EventLog**](/official/Reference/WinEventLogLib/EventLog) members through the [composition-delegation idiom](/official/Reference/WinEventLogLib/#composition-delegation-idiom) (`Implements EventLog(Of EVENTS, CATEGORIES) Via EventLog = New EventLog(...)`), so [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) / [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) read as plain method calls inside `EntryPoint` and `ChangeState`. The events fire under the service account (typically `LocalSystem`), which the Event Viewer renders against the message-table resource embedded in the EXE.
-- **IPC** --- a [**NamedPipeServer**](/official/Reference/WinNamedPipesLib/NamedPipeServer) hosted inside the service uses [**ManualMessageLoopEnter**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) as the [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint)'s blocking primitive, and [**ManualMessageLoopLeave**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) from [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) becomes the *Stop*-signal mechanism. See [Hosting inside a Windows service](/official/Reference/WinNamedPipesLib/#service-host-idiom) for the complete pattern, including pause / continue and the dispatcher-thread / service-thread interaction.
+- **日志记录**——每个服务类可以通过[组合委托惯用法](/official/Reference/WinEventLogLib/#composition-delegation-idiom)（`Implements EventLog(Of EVENTS, CATEGORIES) Via EventLog = New EventLog(...)`）混入 [**EventLog**](/official/Reference/WinEventLogLib/EventLog) 成员，因此 [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) / [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) 在 `EntryPoint` 和 `ChangeState` 中读来就像普通方法调用。事件在服务账户（通常为 `LocalSystem`）下触发，事件查看器根据EXE中嵌入的消息表资源渲染。
+- **IPC**——托管在服务内的 [**NamedPipeServer**](/official/Reference/WinNamedPipesLib/NamedPipeServer) 使用 [**ManualMessageLoopEnter**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) 作为 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 的阻塞原语，从 [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) 调用 [**ManualMessageLoopLeave**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) 成为 *Stop* 信号机制。参见[在Windows服务中托管](/official/Reference/WinNamedPipesLib/#service-host-idiom)了解完整模式，包括暂停/继续和调度器线程/服务线程交互。
 
-## Installation and elevation
+## 安装与提升权限
 
-[**Install**](/official/Reference/WinServicesLib/ServiceManager#install) and [**Uninstall**](/official/Reference/WinServicesLib/ServiceManager#uninstall) (and their bulk-helpers [**Services.InstallAll**](/official/Reference/WinServicesLib/Services#installall) / [**Services.UninstallAll**](/official/Reference/WinServicesLib/Services#uninstallall)) call `CreateServiceW` / `DeleteService`, which require an SCM handle opened with `SC_MANAGER_CREATE_SERVICE`. Both succeed only when the calling process runs with **administrator rights**. The typical project structure:
+[**Install**](/official/Reference/WinServicesLib/ServiceManager#install) 和 [**Uninstall**](/official/Reference/WinServicesLib/ServiceManager#uninstall)（及其批量辅助方法 [**Services.InstallAll**](/official/Reference/WinServicesLib/Services#installall) / [**Services.UninstallAll**](/official/Reference/WinServicesLib/Services#uninstallall)）调用 `CreateServiceW` / `DeleteService`，需要以 `SC_MANAGER_CREATE_SERVICE` 打开的SCM句柄。两者仅在调用进程以**管理员权限**运行时成功。典型项目结构：
 
-- A standalone installer EXE (or installer mode inside the same EXE, gated by a `-install` command-line argument) runs elevated and calls [**Install**](/official/Reference/WinServicesLib/ServiceManager#install) / [**Uninstall**](/official/Reference/WinServicesLib/ServiceManager#uninstall) plus a one-time call to [**EventLog.Register**](/official/Reference/WinEventLogLib/EventLog#register).
-- The service-host EXE itself does not need elevation at run-time (the SCM launches it under whatever account the service is configured for).
-- The control-panel / interactive UI does not need elevation either --- it can use [**Services.LaunchService**](/official/Reference/WinServicesLib/Services#launchservice) and [**Services.ControlService**](/official/Reference/WinServicesLib/Services#controlservice) freely, as long as the user has the standard *Start* / *Stop* permissions on the relevant service (the default ACL grants this to **LocalSystem**, **Administrators**, and the running interactive user for *interactive* services).
+- 独立安装程序EXE（或同一EXE内的安装模式，以 `-install` 命令行参数控制）以提升权限运行并调用 [**Install**](/official/Reference/WinServicesLib/ServiceManager#install) / [**Uninstall**](/official/Reference/WinServicesLib/ServiceManager#uninstall) 加一次性 [**EventLog.Register**](/official/Reference/WinEventLogLib/EventLog#register) 调用。
+- 服务宿主EXE本身运行时不需要提升权限（SCM以服务配置的任何账户启动它）。
+- 控制面板/交互式UI也不需要提升权限——它可以使用 [**Services.LaunchService**](/official/Reference/WinServicesLib/Services#launchservice) 和 [**Services.ControlService**](/official/Reference/WinServicesLib/Services#controlservice)，只要用户对相关服务有标准的 *Start* / *Stop* 权限（默认ACL授予 **LocalSystem**、**Administrators** 和运行中的交互用户对*交互*服务的此权限）。
 
-Calling [**Install**](/official/Reference/WinServicesLib/ServiceManager#install) while running inside the twinBASIC IDE will fail with an SCM-access error --- the IDE is rarely elevated. Either run the compiled EXE as administrator, or wrap the call in an `If App.IsInIDE() Then Err.Raise 5, , "Run the compiled EXE as administrator."` guard.
+在twinBASIC IDE内运行时调用 [**Install**](/official/Reference/WinServicesLib/ServiceManager#install) 会因SCM访问错误而失败——IDE很少以提升权限运行。以管理员身份运行编译后的EXE，或将调用包装在 `If App.IsInIDE() Then Err.Raise 5, , "Run the compiled EXE as administrator."` 守卫中。
 
-## Classes and interface
+## 类与接口
 
-- [Services](/official/Reference/WinServicesLib/Services) -- the predeclared singleton coordinator: [**ConfigureNew**](/official/Reference/WinServicesLib/Services#configurenew), [**RunServiceDispatcher**](/official/Reference/WinServicesLib/Services#runservicedispatcher), the bulk install / uninstall helpers, plus the runtime control methods ([**LaunchService**](/official/Reference/WinServicesLib/Services#launchservice), [**ControlService**](/official/Reference/WinServicesLib/Services#controlservice), [**QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice))
-- [ServiceManager](/official/Reference/WinServicesLib/ServiceManager) -- one per configured service; holds the fields the SCM cares about (name, description, type, start-mode, command-line, dependencies, ...) plus the [**ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) call the service uses to inform the SCM of state transitions
-- [ServiceCreator](/official/Reference/WinServicesLib/ServiceCreator) -- the generic [**ServiceCreator**](/official/Reference/WinServicesLib/ServiceCreator)`(Of T)` factory the dispatcher uses to instantiate each service class on demand; *T* must implement [**ITbService**](/official/Reference/WinServicesLib/ITbService)
-- [ServiceState](/official/Reference/WinServicesLib/ServiceState) -- a read-only state snapshot returned by [**Services.QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice), giving the SCM-reported state and process ID of an installed service
-- [ITbService](/official/Reference/WinServicesLib/ITbService) -- the interface every service class implements: [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint), [**StartupFailed**](/official/Reference/WinServicesLib/ITbService#startupfailed), [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate)
+- [Services](/official/Reference/WinServicesLib/Services) -- 预声明单例协调器：[**ConfigureNew**](/official/Reference/WinServicesLib/Services#configurenew)、[**RunServiceDispatcher**](/official/Reference/WinServicesLib/Services#runservicedispatcher)、批量安装/卸载辅助方法，以及运行时控制方法（[**LaunchService**](/official/Reference/WinServicesLib/Services#launchservice)、[**ControlService**](/official/Reference/WinServicesLib/Services#controlservice)、[**QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice)）
+- [ServiceManager](/official/Reference/WinServicesLib/ServiceManager) -- 每个已配置服务一个；持有SCM关心的字段（名称、描述、类型、启动模式、命令行、依赖项、…）以及服务用于通知SCM状态转换的 [**ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 调用
+- [ServiceCreator](/official/Reference/WinServicesLib/ServiceCreator) -- 调度器用于按需实例化每个服务类的通用 [**ServiceCreator**](/official/Reference/WinServicesLib/ServiceCreator)`(Of T)` 工厂；*T* 必须实现 [**ITbService**](/official/Reference/WinServicesLib/ITbService)
+- [ServiceState](/official/Reference/WinServicesLib/ServiceState) -- 由 [**Services.QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice) 返回的只读状态快照，给出已安装服务的SCM报告状态和进程ID
+- [ITbService](/official/Reference/WinServicesLib/ITbService) -- 每个服务类实现的接口：[**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint)、[**StartupFailed**](/official/Reference/WinServicesLib/ITbService#startupfailed)、[**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate)
 
-## Enumerations
+## 枚举
 
-- [Enumerations](/official/Reference/WinServicesLib/Enumerations/) -- four user-facing enumerations: [**ServiceTypeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants), [**ServiceStartConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants), [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants), [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants)
+- [枚举](/official/Reference/WinServicesLib/Enumerations/) -- 四个面向用户的枚举：[**ServiceTypeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants)、[**ServiceStartConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants)、[**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants)、[**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants)

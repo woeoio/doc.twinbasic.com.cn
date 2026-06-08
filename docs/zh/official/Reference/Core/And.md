@@ -2,23 +2,32 @@
 title: And
 parent: Operators
 permalink: /tB/Core/And
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '544b1760-4033-4f07-a750-2488515450a8'
+  PropagateID: '544b1760-4033-4f07-a750-2488515450a8'
+  ReservedCode1: '780ee1c5-3a14-4687-b70c-06405ea519ab'
+  ReservedCode2: '780ee1c5-3a14-4687-b70c-06405ea519ab'
 ---
-# And operator
 
-Used to perform a bitwise conjunction on two expressions.
+# And 运算符
 
-Syntax:
+用于对两个表达式执行按位合取运算。
+
+语法：
 > *result* **=** *expression1* **And** *expression2*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *expression1*, *expression2*
-: Any expressions.
+: 任意表达式。
 
-If both expressions evaluate to **True**, *result* is **True**. If either expression evaluates to **False**, *result* is **False**. The following table illustrates how *result* is determined:
+如果两个表达式求值均为 **True**，则 *result* 为 **True**。如果任一表达式求值为 **False**，则 *result* 为 **False**。下表说明了 *result* 的确定方式：
 
-| If *expression1* is | And *expression2* is | The *result* is |
+| 如果 *expression1* 为 | 且 *expression2* 为 | 则 *result* 为 |
 |:-----|:-----|:-----|
 | **True**  | **True**  | **True**  |
 | **True**  | **False** | **False** |
@@ -30,9 +39,9 @@ If both expressions evaluate to **True**, *result* is **True**. If either expres
 | **Null**  | **False** | **False** |
 | **Null**  | **Null**  | **Null**  |
 
-The **And** operator performs a bitwise comparison of identically positioned bits in two numeric expressions and sets the corresponding bit in *result* according to the following table:
+**And** 运算符对两个数值表达式中相同位置的位执行按位比较，并根据下表在 *result* 中设置相应的位：
 
-| If bit in *expression1* is | And bit in *expression2* is | The *result* is |
+| 如果 *expression1* 中的位为 | 且 *expression2* 中的位为 | 则 *result* 为 |
 |:-----:|:-----:|:-----:|
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
@@ -40,12 +49,12 @@ The **And** operator performs a bitwise comparison of identically positioned bit
 | 1 | 1 | 1 |
 
 ::: info
-**And** evaluates *both* operands every time, even when *expression1* alone determines the result. Use [**AndAlso**](/official/Reference/Core/AndAlso) for short-circuit evaluation --- for example, when *expression2* is expensive, has side effects, or would fail without the guard provided by *expression1*.
+**And** 每次都会求值*两个*操作数，即使仅 *expression1* 就能确定结果。使用 [**AndAlso**](/official/Reference/Core/AndAlso) 进行短路求值——例如，当 *expression2* 计算开销大、有副作用，或在没有 *expression1* 提供保护时会失败的情况。
 :::
 
-### Example
+### 示例
 
-This example uses the **And** operator to perform a logical conjunction on two expressions.
+本示例使用 **And** 运算符对两个表达式执行逻辑合取运算。
 
 ```vb
 Dim A, B, C, D, MyCheck
@@ -56,12 +65,12 @@ MyCheck = A > B And B > D         ' Returns Null.
 MyCheck = A And B                 ' Returns 8 (bitwise comparison).
 ```
 
-### See Also
+### 另请参阅
 
-- [**AndAlso** operator](/official/Reference/Core/AndAlso)
-- [**Or** operator](/official/Reference/Core/Or)
-- [**Not** operator](/official/Reference/Core/Not)
-- [**Xor** operator](/official/Reference/Core/Xor)
-- [**Eqv** operator](/official/Reference/Core/Eqv)
-- [**Imp** operator](/official/Reference/Core/Imp)
-- [Operators](/official/Reference/Operators)
+- [**AndAlso** 运算符](/official/Reference/Core/AndAlso)
+- [**Or** 运算符](/official/Reference/Core/Or)
+- [**Not** 运算符](/official/Reference/Core/Not)
+- [**Xor** 运算符](/official/Reference/Core/Xor)
+- [**Eqv** 运算符](/official/Reference/Core/Eqv)
+- [**Imp** 运算符](/official/Reference/Core/Imp)
+- [运算符](/official/Reference/Operators)

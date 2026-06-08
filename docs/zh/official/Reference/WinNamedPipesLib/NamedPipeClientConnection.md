@@ -1,16 +1,25 @@
 ---
 title: NamedPipeClientConnection
-parent: WinNamedPipesLib Package
+parent: "WinNamedPipesLib 包"
 permalink: /tB/Packages/WinNamedPipesLib/NamedPipeClientConnection
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ddb7dd3f-5f89-4eb9-936e-874ad6b130ee'
+  PropagateID: 'ddb7dd3f-5f89-4eb9-936e-874ad6b130ee'
+  ReservedCode1: '0560135d-dcdb-447a-8173-a11421979b2c'
+  ReservedCode2: '0560135d-dcdb-447a-8173-a11421979b2c'
 ---
 
-# NamedPipeClientConnection class
-One client-side connection to a named pipe. Produced by [**NamedPipeClientManager.Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect). Carries the connection-lifecycle events ([**Connected**](#connected), [**Disconnected**](#disconnected)) and the message events ([**MessageReceived**](#messagereceived), [**MessageSent**](#messagesent)), plus the [**AsyncRead**](#asyncread) / [**AsyncWrite**](#asyncwrite) / [**AsyncClose**](#asyncclose) methods that trigger them.
+# NamedPipeClientConnection 类
 
-The class is tagged `[COMCreatable(False)]` and its constructor takes a package-private interface --- reach instances only through [**NamedPipeClientManager.Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect).
+一个到命名管道的客户端连接。由 [**NamedPipeClientManager.Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect) 产生。承载连接生命周期事件（[**Connected**](#connected)、[**Disconnected**](#disconnected)）和消息事件（[**MessageReceived**](#messagereceived)、[**MessageSent**](#messagesent)），以及触发它们的 [**AsyncRead**](#asyncread) / [**AsyncWrite**](#asyncwrite) / [**AsyncClose**](#asyncclose) 方法。
+
+该类标记为 `[COMCreatable(False)]`，其构造函数接受包私有接口——只能通过 [**NamedPipeClientManager.Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect) 获取实例。
 
 ::: important
-The package `_README.txt` states: *"you MUST call **AsyncClose** on the client side, otherwise the connection is left alive when the object goes out of scope"*. Either call [**AsyncClose**](#asyncclose) explicitly before dropping the last reference, **or** let the object terminate cleanly through its `Class_Terminate` (which calls [**AsyncClose**](#asyncclose) automatically). Holding the reference forever --- in a module-level **Collection**, for example --- without calling [**AsyncClose**](#asyncclose) keeps the pipe handle open and the IOCP thread alive.
+包的 `_README.txt` 声明：*"你必须在客户端调用 **AsyncClose**，否则当对象超出作用域时连接仍然存活"*。在丢弃最后一个引用之前显式调用 [**AsyncClose**](#asyncclose)，**或者**让对象通过其 `Class_Terminate`（自动调用 [**AsyncClose**](#asyncclose)）干净地终止。永远持有引用——例如在模块级 **Collection** 中——而不调用 [**AsyncClose**](#asyncclose) 会使管道句柄保持打开且IOCP线程保持活动。
 :::
 
 ```vb
@@ -35,100 +44,100 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 ```
 
-See the package [overview](/official/Reference/WinNamedPipesLib/) for the IOCP / event-marshalling architecture, the cookie correlation pattern, and the transient lifetime of `Data() As Byte` inside events.
+参见包[概述](/official/Reference/WinNamedPipesLib/)了解IOCP/事件封送架构、cookie关联模式和事件中 `Data() As Byte` 的瞬时生命周期。
 
-## Properties
+## 属性
 
 ### CustomData
 
-A per-connection opaque slot the consumer can attach state to --- typically a session object or a pending-replies dictionary tied to this one connection. **Variant**, default **Empty**. The package never reads or writes this field.
+消费者可附加状态的每连接不透明槽——通常是与该连接关联的会话对象或待回复字典。**Variant**，默认 **Empty**。包从不读取或写入此字段。
 
 ### Handle
 
-The underlying Win32 file handle returned by `CreateFileW("\\.\pipe\<PipeName>")`. **LongPtr**. Exposed for low-level / debugging use --- most consumers can ignore it. Do not call `CloseHandle` on this value directly; use [**AsyncClose**](#asyncclose) so the IOCP loop and the parent manager's bookkeeping stay consistent.
+由 `CreateFileW("\\.\pipe\<PipeName>")` 返回的底层Win32文件句柄。**LongPtr**。为低级/调试用途暴露——大多数消费者可以忽略。不要直接对此值调用 `CloseHandle`；使用 [**AsyncClose**](#asyncclose) 以保持IOCP循环和父管理器簿记的一致性。
 
 ### PipeName
 
-The leaf pipe name this connection was opened against --- the same value that was passed to [**NamedPipeClientManager.Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect). **String**. Read-only in practice; the package sets it from the constructor argument and never changes it.
+此连接所打开的叶管道名称——与传递给 [**NamedPipeClientManager.Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect) 的值相同。**String**。实际上只读；包从构造函数参数设置它且从不更改。
 
-## Events
+## 事件
 
 ### Connected
 
-Fires once the asynchronous `CreateFileW` started by [**NamedPipeClientManager.Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect) has succeeded and the pipe is ready for message exchange.
+当由 [**NamedPipeClientManager.Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect) 启动的异步 `CreateFileW` 成功且管道准备好进行消息交换时触发一次。
 
-Syntax: *connection*_**Connected**()
+语法：*connection*_**Connected**()
 
 ### Disconnected
 
-Fires once the pipe has dropped *and* every outstanding asynchronous I/O against the connection has returned. The connection object is no longer usable for I/O after this event.
+当管道已断开*且*对连接的每个未完成异步I/O已返回后触发一次。此事件后连接对象不再可用于I/O。
 
-Syntax: *connection*_**Disconnected**()
+语法：*connection*_**Disconnected**()
 
 ### MessageReceived
 
-Fires when a complete message has been read from the pipe.
+当从管道读取完整消息时触发。
 
-Syntax: *connection*_**MessageReceived**(**ByRef** *Cookie* **As Variant**, **ByRef** *Data*() **As Byte**)
+语法：*connection*_**MessageReceived**(**ByRef** *Cookie* **As Variant**, **ByRef** *Data*() **As Byte**)
 
 *Cookie*
-: The opaque correlation value originally passed to the [**AsyncRead**](#asyncread) that produced this read --- or **Empty** if the read came from the auto-issued reads triggered by [**NamedPipeClientManager.ContinuouslyReadFromPipe**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#continuouslyreadfrompipe).
+: 最初传递给产生此读取的 [**AsyncRead**](#asyncread) 的不透明关联值——如果读取来自 [**NamedPipeClientManager.ContinuouslyReadFromPipe**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#continuouslyreadfrompipe) 触发的自动发起读取则为 **Empty**。
 
 *Data*
-: The message payload. See [Working with `Data() As Byte` in events](/official/Reference/WinNamedPipesLib/#working-with-data-as-byte-in-events) on the package overview for the transient-buffer lifetime caveat --- copy the bytes out before the handler returns if they are needed later. The [recommended capture mechanism](/official/Reference/WinNamedPipesLib/#propertybag-carrier) is to assign *Data* to a fresh [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/)'s **Contents**, which deep-copies the bytes and provides typed multi-field access in one step.
+: 消息载荷。参见包概述上的[在事件中使用 `Data() As Byte`](/official/Reference/WinNamedPipesLib/#working-with-data-as-byte-in-events)了解瞬时缓冲区生命周期注意事项——如果稍后需要字节，请在处理程序返回之前将其复制出来。[推荐的捕获机制](/official/Reference/WinNamedPipesLib/#propertybag-carrier)是将 *Data* 赋值给新的 [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/) 的 **Contents**，这会深拷贝字节并一步提供类型化的多字段访问。
 
 ### MessageSent
 
-Fires when a previously-issued [**AsyncWrite**](#asyncwrite) has completed.
+当之前发出的 [**AsyncWrite**](#asyncwrite) 已完成时触发。
 
-Syntax: *connection*_**MessageSent**(**ByRef** *Cookie* **As Variant**)
+语法：*connection*_**MessageSent**(**ByRef** *Cookie* **As Variant**)
 
 *Cookie*
-: The opaque correlation value that was passed to the originating [**AsyncWrite**](#asyncwrite) call.
+: 传递给发起 [**AsyncWrite**](#asyncwrite) 调用的不透明关联值。
 
-## Methods
+## 方法
 
 ### AsyncClose
 
-Cancels every outstanding I/O against this connection and closes the underlying pipe handle. Eventually triggers the [**Disconnected**](#disconnected) event once the cancellation completes. Automatically invoked from `Class_Terminate` when the last reference to the connection drops.
+取消对此连接的每个未完成I/O并关闭底层管道句柄。取消完成后最终触发 [**Disconnected**](#disconnected) 事件。当连接的最后一个引用丢弃时自动从 `Class_Terminate` 调用。
 
-Syntax: *connection*.**AsyncClose**
+语法：*connection*.**AsyncClose**
 
 ::: important
-See the class intro: the README requires that either this method runs (explicitly, or through `Class_Terminate`) before the connection is considered finished.
+参见类简介：README要求此方法运行（显式地或通过 `Class_Terminate`）才能认为连接完成。
 :::
 
 ### AsyncRead
 
-Manually issues an asynchronous read against this connection.
+手动对此连接发出异步读取。
 
-Syntax: *connection*.**AsyncRead** [ *Cookie* [, *OverlappedStruct* ] ]
+语法：*connection*.**AsyncRead** [ *Cookie* [, *OverlappedStruct* ] ]
 
 *Cookie*
-: *optional* A **Variant** correlation value, passed back as the *Cookie* parameter of the matching [**MessageReceived**](#messagereceived) event. Default **Empty**.
+: *可选* **Variant** 关联值，作为匹配的 [**MessageReceived**](#messagereceived) 事件的 *Cookie* 参数传回。默认 **Empty**。
 
 *OverlappedStruct*
-: *optional* A **LongPtr** to a pre-allocated `OVERLAPPED_CUSTOM` structure. **Internal use only** --- the IOCP machinery passes this when re-issuing a read after `ERROR_MORE_DATA`. Consumer code should always omit this parameter.
+: *可选* 指向预分配的 `OVERLAPPED_CUSTOM` 结构的 **LongPtr**。**仅供内部使用**——IOCP机制在 `ERROR_MORE_DATA` 后重新发出读取时传递此参数。消费者代码应始终省略此参数。
 
-Only needed when the parent manager's [**ContinuouslyReadFromPipe**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#continuouslyreadfrompipe) is **False**; otherwise the IOCP loop keeps a read pending automatically and explicit calls are redundant.
+仅当父管理器的 [**ContinuouslyReadFromPipe**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#continuouslyreadfrompipe) 为 **False** 时需要；否则IOCP循环自动保持待处理读取，显式调用是冗余的。
 
 ### AsyncWrite
 
-Sends a message to the server.
+向服务器发送消息。
 
-Syntax: *connection*.**AsyncWrite** *Data*() [, *Cookie* ]
+语法：*connection*.**AsyncWrite** *Data*() [, *Cookie* ]
 
 *Data*
-: *required* A **Byte()** array containing the bytes to send. An uninitialised or zero-length array is a no-op. For typed multi-field payloads the recommended encoding is [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/) --- see [Recommended payload encoding: `PropertyBag`](/official/Reference/WinNamedPipesLib/#propertybag-carrier) on the package overview.
+: *必需* 包含要发送字节的 **Byte()** 数组。未初始化或零长度数组为无操作。对于类型化的多字段载荷，推荐编码为 [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/)——参见包概述上的[推荐的载荷编码：`PropertyBag`](/official/Reference/WinNamedPipesLib/#propertybag-carrier)。
 
 *Cookie*
-: *optional* A **Variant** correlation value, passed back as the *Cookie* parameter of the matching [**MessageSent**](#messagesent) event. Default **Empty**.
+: *可选* **Variant** 关联值，作为匹配的 [**MessageSent**](#messagesent) 事件的 *Cookie* 参数传回。默认 **Empty**。
 
-Returns immediately; the actual transmission runs through the IOCP loop. The completion fires [**MessageSent**](#messagesent) on this connection.
+立即返回；实际传输通过IOCP循环运行。完成时触发此连接上的 [**MessageSent**](#messagesent)。
 
-## See Also
+## 另见
 
-- [WinNamedPipesLib package](/official/Reference/WinNamedPipesLib/) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, the **AsyncClose** rule
-- [Recommended payload encoding: `PropertyBag`](/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- the deep-copy capture pattern for transient *Data* in events
-- [NamedPipeClientManager class](/official/Reference/WinNamedPipesLib/NamedPipeClientManager) -- the manager that produced this connection
-- [NamedPipeServerConnection class](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) -- the server-side counterpart
+- [WinNamedPipesLib 包](/official/Reference/WinNamedPipesLib/) -- 概述、IOCP/事件封送架构、cookie模式、`Data()` 生命周期注意事项、**AsyncClose** 规则
+- [推荐的载荷编码：`PropertyBag`](/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- 事件中瞬时 *Data* 的深拷贝捕获模式
+- [NamedPipeClientManager 类](/official/Reference/WinNamedPipesLib/NamedPipeClientManager) -- 产生此连接的管理器
+- [NamedPipeServerConnection 类](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) -- 服务器端对应项

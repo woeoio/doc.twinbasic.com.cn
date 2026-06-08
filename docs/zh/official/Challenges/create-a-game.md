@@ -1,5 +1,5 @@
-﻿---
-title: Create a Game
+---
+title: "创建游戏"
 parent: Challenges
 nav_order: 2
 permalink: /Challenges/2
@@ -7,73 +7,73 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'b2aaa5a3-6294-4661-86de-28d437466356'
-  PropagateID: 'b2aaa5a3-6294-4661-86de-28d437466356'
-  ReservedCode1: 'd92885fe-66ca-4755-bc3d-7029019730ab'
-  ReservedCode2: 'd92885fe-66ca-4755-bc3d-7029019730ab'
+  ProduceID: 'ddb0bd6f-a50e-4fbe-894f-fc1e8287f634'
+  PropagateID: 'ddb0bd6f-a50e-4fbe-894f-fc1e8287f634'
+  ReservedCode1: '5f9db350-4748-45d3-875e-e0b967dc0cc9'
+  ReservedCode2: '5f9db350-4748-45d3-875e-e0b967dc0cc9'
 ---
 
-# 🎮 twinBASIC Monthly Challenge #2 - February
+# 🎮 twinBASIC 月度挑战 #2 - 二月
 
-**Create a Game**
+**创建游戏**
 
-Build **any game you like** using twinBASIC.
+使用twinBASIC构建**任何你喜欢的游戏**。
 
-This can be a simple card game, arcade game, puzzle, or something more experimental.  Creativity is encouraged - there is no "right" genre or style.
+可以是简单的卡牌游戏、街机游戏、益智游戏，或更具实验性的作品。鼓励创意——没有"正确"的类型或风格。
 
-## 📦 Submission Rules
+## 📦 提交规则
 
-- Built using twinBASIC
-- Full source code must be provided, but licence choice is unrestricted
-- Submission must be a *single* `.twinproj` file (external image and music resource files allowed if necessary)
-- Produces a **single Windows EXE**
-- Runs on **Windows 10 and later**
-- Game may be windowed or fullscreen
-- Music is optional
-- ❌ Not a direct or near-direct port of an existing VB6 game
+- 使用twinBASIC构建
+- 必须提供完整源代码，但许可证选择不受限制
+- 提交必须是*单个* `.twinproj` 文件（必要时允许外部图片和音乐资源文件）
+- 生成**单个Windows EXE**
+- 在 **Windows 10 及更高版本**上运行
+- 游戏可以是窗口模式或全屏模式
+- 音乐为可选项
+- ❌ 不能是现有VB6游戏的直接或近乎直接的移植
 
-## 🎵 Bonus Points
+## 🎵 额外加分
 
-- Inclusion of music or sound effects
-- Inclusion of controller support (e.g. XInput)
-- Use of **GDI+ package** ⁠[GDI+ Package](https://discord.com/channels/927638153546829845/1460777854714515728)
-- Use of **OpenGL** ⁠[twinBASIC + WinDevLib OpenGL De…](https://discord.com/channels/927638153546829845/1464785863702610053)
-- Clever or efficient rendering techniques
-- Use of newer twinBASIC features (e.g. delegates, generics)
-- Clean architecture and well-documented code
-- Polished UI, UX, or game feel
-- Interesting technical tricks (collision detection, AI, etc.)
+- 包含音乐或音效
+- 包含控制器支持（如XInput）
+- 使用 **GDI+包** ⁠[GDI+ Package](https://discord.com/channels/927638153546829845/1460777854714515728)
+- 使用 **OpenGL** ⁠[twinBASIC + WinDevLib OpenGL De…](https://discord.com/channels/927638153546829845/1464785863702610053)
+- 巧妙或高效的渲染技术
+- 使用较新的twinBASIC特性（如委托、泛型）
+- 整洁的架构和文档完善的代码
+- 精致的UI、UX或游戏手感
+- 有趣的技术技巧（碰撞检测、AI等）
 
-## 🎁 Prize
+## 🎁 奖品
 
-**£100 twinBASIC account credit**
+**£100 twinBASIC账户额度**
 
-- Non-transferable
-- No cash alternative
-- Can only be used towards future twinBASIC licences
+- 不可转让
+- 无现金替代
+- 仅可用于未来的twinBASIC许可证
 
-## 🏆 Judging
+## 🏆 评审
 
-Entries will be judged across multiple categories, including:
+参赛作品将在多个类别中评审，包括：
 
-- Originality and creativity
-- Technical execution
-- Performance
-- Visual presentation
-- Code quality and structure
-- Overall polish and fun factor
+- 原创性和创意
+- 技术执行
+- 性能
+- 视觉表现
+- 代码质量和结构
+- 整体完成度和趣味性
 
-Bonus points may be awarded at the discretion of the twinBASIC team.
+额外加分由twinBASIC团队酌情授予。
 
-**Winner selected at the sole discretion of the twinBASIC team within 7 days after the entry deadline.**
+**获奖者由twinBASIC团队在提交截止后7天内全权决定。**
 
-## ⏰ Deadline
+## ⏰ 截止日期
 
-Entries must be received by:
+参赛作品须在以下时间前提交：
 
-🗓️ 1st March --- 12:00 PM (GMT)
+🗓️ 3月1日 --- 12:00 PM (GMT)
 
-Submissions will be locked after the deadline.
+截止日期后提交将锁定。
 
 🔗: [https://discord.com/channels/927638153546829845/1467429513456783498](https://discord.com/channels/927638153546829845/1467429513456783498)
 

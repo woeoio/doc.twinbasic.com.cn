@@ -1,5 +1,5 @@
 ---
-title: Building and Deployment
+title: "构建与部署"
 parent: Documentation Development
 nav_order: 2
 permalink: /Documentation/Development/Building
@@ -7,142 +7,142 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '4df6c716-d6dc-4127-a1a6-df6011438ddb'
-  PropagateID: '4df6c716-d6dc-4127-a1a6-df6011438ddb'
-  ReservedCode1: '7c43789c-e087-4385-8e94-4286dc4e9b80'
-  ReservedCode2: '7c43789c-e087-4385-8e94-4286dc4e9b80'
+  ProduceID: '170f4253-0879-4327-bafb-c039a3f3338c'
+  PropagateID: '170f4253-0879-4327-bafb-c039a3f3338c'
+  ReservedCode1: 'abef244a-76d6-421b-84c1-94c5f82263e8'
+  ReservedCode2: 'abef244a-76d6-421b-84c1-94c5f82263e8'
 ---
 
-# Building and Deployment
+# 构建与部署
 
-The day-to-day workflow for editing documentation: requirements, building, serving locally, link checking, Mermaid diagrams, screenshots, and the deployment to [docs.twinbasic.com](https://docs.twinbasic.com). Aimed at content contributors --- if you are modifying the build pipeline itself, see [tbdocs Internals](/official/Documentation/Builder) instead.
+编辑文档的日常工作流程：需求、构建、本地服务、链接检查、Mermaid 图表、截图以及部署到 [docs.twinbasic.com](https://docs.twinbasic.com)。面向内容贡献者 --- 如果你正在修改构建管线本身，请参阅 [tbdocs 内部机制](/official/Documentation/Builder)。
 
-## Development environment
+## 开发环境
 
-The documentation is rendered to HTML by `tbdocs`, a custom Node.js static site generator that lives under [`builder/`](https://github.com/twinbasic/documentation/tree/main/builder). The day-to-day commands below are Windows batch files that wrap the generator; their POSIX equivalents are listed alongside.
+文档由 `tbdocs` 渲染为 HTML，这是一个自定义的 Node.js 静态站点生成器，位于 [`builder/`](https://github.com/twinbasic/documentation/tree/main/builder) 下。下面的日常命令是封装该生成器的 Windows 批处理文件；其 POSIX 等效版本列在旁边。
 
-1. Ensure the [requirements](#requirements) below are met.
+1. 确保满足下面的[需求](#requirements)。
 
-2. Fork [https://github.com/twinbasic/documentation][docs-repo] to your own GitHub account if you plan on making any changes, or for convenience. Skip this if you only want to build the docs locally without contributing changes.
+2. 如果你计划进行任何更改，请将 [https://github.com/twinbasic/documentation][docs-repo] 分叉到你自己的 GitHub 账户，或为了方便起见分叉。如果你只想在本地构建文档而不贡献更改，则跳过此步。
 
-3. Clone either your fork or the [documentation repository itself][docs-repo].
+3. 克隆你的分叉或[文档仓库本身][docs-repo]。
 
-### Requirements
+### 需求
 
-- **Node.js 22+** for `tbdocs` itself. The site builds offline with no Ruby toolchain.
-- **`npm ci`** at the repository root installs everything: the static site generator's deps, the PDF renderer's deps, and `puppeteer` (shared by both the PDF renderer and mermaid's `.mmd` → `.svg` regenerator). A single `package.json` at the repo root carries the whole dependency set. The `build.bat` / `serve.bat` wrappers assume the install has run.
-- **Chromium** is required whenever an `.mmd` diagram needs regenerating and whenever the PDF book is rendered. It is downloaded once by `npx puppeteer browsers install chrome --install-deps`. A missing Chromium during a build downgrades to a warning and reuses the on-disk `.svg`, so first-time setups that skip the install step still build (just without diagram updates).
+- **Node.js 22+** 用于 `tbdocs` 本身。站点离线构建，无需 Ruby 工具链。
+- **`npm ci`** 在仓库根目录安装所有内容：静态站点生成器的依赖、PDF 渲染器的依赖和 `puppeteer`（由 PDF 渲染器和 mermaid 的 `.mmd` → `.svg` 重新生成器共用）。仓库根目录的一个 `package.json` 承载整个依赖集。`build.bat` / `serve.bat` 封装脚本假定安装已经运行。
+- **Chromium** 在需要重新生成 `.mmd` 图表和渲染 PDF 书籍时是必需的。通过 `npx puppeteer browsers install chrome --install-deps` 一次性下载。构建期间缺少 Chromium 会降级为警告并复用磁盘上的 `.svg`，因此跳过安装步骤的首次设置仍然可以构建（只是没有图表更新）。
 
-## Building
+## 构建
 
-To render the documentation from `.md` files into the `_site/` (online), `_site-offline/` (offline mirror), and `_site-pdf/` (sparse PDF source) folders:
+将文档从 `.md` 文件渲染到 `_site/`（在线）、`_site-offline/`（离线镜像）和 `_site-pdf/`（稀疏 PDF 源）文件夹：
 
     build.bat
 
-or directly:
+或直接运行：
 
     node builder\tbdocs.mjs --src docs
 
-A single `tbdocs` run produces all three trees. The `also_build_offline` and `also_build_pdf` keys in `_config.yml` toggle the sibling outputs; the `--no-offline` and `--no-pdf` flags do the same from the command line if you only want `_site/`.
+单次 `tbdocs` 运行生成全部三棵树。`_config.yml` 中的 `also_build_offline` 和 `also_build_pdf` 键切换同级输出；`--no-offline` 和 `--no-pdf` 标志在命令行上做同样的事情，如果你只需要 `_site/`。
 
-The full set of `tbdocs` CLI flags --- every flag, what each one does, when to use it --- lives on the [Tools and Scripts](/official/Documentation/Tools#tbdocs) page.
+`tbdocs` CLI 标志的完整集合 --- 每个标志、其作用、何时使用 --- 位于[工具与脚本](/official/Documentation/Tools#tbdocs)页面。
 
-## Building and local serving
+## 构建与本地服务
 
-The simplest local preview is `build.bat` followed by opening the rendered files in any browser. To get a localhost server instead:
+最简单的本地预览是运行 `build.bat` 然后在任意浏览器中打开渲染的文件。要使用本地主机服务器：
 
     serve.bat
 
-This runs `tbdocs --serve`: after an initial build, an HTTP server binds to port 4000 (pass `--port <N>` to use a different port), a recursive source-tree watcher fires a debounced rebuild on each file change, and any browser tab open on the page auto-reloads via SSE after each successful rebuild. Only failures (4xx, 5xx, server exceptions) are logged --- successful requests are silent. Ctrl+C exits cleanly.
+这运行 `tbdocs --serve`：初始构建后，HTTP 服务器绑定到端口 4000（传入 `--port <N>` 使用不同端口），递归源树监视器在每次文件更改时触发防抖重建，任何打开该页面的浏览器标签页在每次成功重建后通过 SSE 自动重新加载。只记录失败（4xx、5xx、服务器异常）--- 成功的请求是无声的。Ctrl+C 干净退出。
 
-Serve writes to `docs/_serve/`, completely disjoint from `build.bat`'s `_site/` family. That separation means a one-off `build.bat` invocation (e.g., to refresh `_site-pdf/` for `book.bat`, or to re-check `_site-offline/` link integrity) never touches the tree the live preview is serving, and the preview keeps showing whatever serve last rebuilt.
+Serve 写入 `docs/_serve/`，与 `build.bat` 的 `_site/` 系列完全分离。这种分离意味着一次性 `build.bat` 调用（例如，为 `book.bat` 刷新 `_site-pdf/`，或重新检查 `_site-offline/` 的链接完整性）永远不会触及实时预览正在服务的树，预览始终显示 serve 上次重建的内容。
 
-## Checking link integrity
+## 检查链接完整性
 
-Before checking link integrity, the documentation must be built:
+在检查链接完整性之前，必须先构建文档：
 
     check.bat
 
-This runs two passes of `scripts/check_links.mjs`: one against `_site/` (the online tree) and one against `_site-offline/` (the `file://`-browsable mirror) with `--forbid 'https://docs.twinbasic.com'` to also flag any surviving live-site link --- the offline mirror should never navigate back to the live docs site. Both checks also assert HTML well-formedness, duplicate-`id` detection, anchor resolution, accessibility hints, and (for the online tree) the sitemap and search-index integrity. The same two checks run in CI on every pull request and on every push to `staging`.
+这运行两轮 `scripts/check_links.mjs`：一轮针对 `_site/`（在线树），一轮针对 `_site-offline/`（`file://` 可浏览的镜像），使用 `--forbid 'https://docs.twinbasic.com'` 同时标记任何残留的在线站点链接 --- 离线镜像不应导航回在线文档站点。两项检查还断言 HTML 格式良好性、重复 `id` 检测、锚点解析、可访问性提示以及（对于在线树）站点地图和搜索索引完整性。相同的两项检查在 CI 中每个拉取请求和每次推送到 `staging` 时运行。
 
-A clean `check.bat` run is the bar for "ready to commit".
+干净的 `check.bat` 运行是"准备好提交"的标准。
 
-## Mermaid diagrams
+## Mermaid 图表
 
-Mermaid diagrams live as `.mmd` source files under `docs/assets/images/mmd/` and are referenced from markdown as `.svg`:
+Mermaid 图表以 `.mmd` 源文件形式存放在 `docs/assets/images/mmd/` 下，并在 markdown 中以 `.svg` 引用：
 
     ![Diagram](/assets/images/mmd/<hash>.svg)
 
-`tbdocs` regenerates each `.svg` from its `.mmd` sibling when the SVG is missing or older than its source --- editing a `.mmd` by one character regenerates the SVG on the next build. Both files belong in git; the `.mmd` is the canonical source, the `.svg` is the build artifact that the browser actually loads.
+`tbdocs` 在 SVG 缺失或比其源文件更旧时，从 `.mmd` 同级文件重新生成每个 `.svg` --- 编辑 `.mmd` 一个字符后下次构建即重新生成 SVG。两个文件都属于 git；`.mmd` 是规范源，`.svg` 是浏览器实际加载的构建产物。
 
-The renderer drives `puppeteer` + the `mermaid` package directly (both regular dependencies in the repo-root `package.json`). One headless Chromium covers the whole batch --- previously the project shelled out to `@mermaid-js/mermaid-cli` which forked a fresh node + Chrome process per diagram and shipped its own bundled puppeteer-core. The direct path keeps the dependency tree smaller, removes the per-file process startup overhead, and uses the same Chromium cache as `render-book.mjs`. Two failure modes are handled distinctly:
+渲染器直接驱动 `puppeteer` + `mermaid` 包（两者都是仓库根 `package.json` 中的常规依赖）。一个无头 Chromium 覆盖整个批次 --- 以前项目通过 shell 调用 `@mermaid-js/mermaid-cli`，这会为每个图表分叉一个新的 node + Chrome 进程并附带自己捆绑的 puppeteer-core。直接路径使依赖树更小，消除了每文件进程启动开销，并使用与 `render-book.mjs` 相同的 Chromium 缓存。两种失败模式有不同的处理：
 
-- **Setup failures** (no puppeteer, no Chrome, no mermaid) emit a one-line warning, retain the existing on-disk SVGs, and let the build exit 0 --- a fresh checkout without `npm install` or a sandbox without Chromium doesn't break unrelated work.
-- **Content failures** (broken `.mmd` syntax, render exception) emit the parser error verbatim, leave that diagram's previous SVG in place, continue rendering the rest of the batch, and flip `process.exitCode = 1` so CI catches the bad diagram.
+- **设置失败**（无 puppeteer、无 Chrome、无 mermaid）发出一行警告，保留磁盘上现有的 SVG，并让构建以退出码 0 退出 --- 没有 `npm install` 的新签出或没有 Chromium 的沙箱不会中断无关工作。
+- **内容失败**（损坏的 `.mmd` 语法、渲染异常）逐字发出解析器错误，保留该图表之前的 SVG，继续渲染批次的其余部分，并设置 `process.exitCode = 1` 以便 CI 捕获损坏的图表。
 
-In serve mode the watcher ignores writes to `assets/images/mmd/*.svg`. The `.mmd` is the source of truth; the `.svg` is the build artifact mermaid emits back under `srcRoot`. Without the filter, each `.mmd` edit would fire two rebuilds (one on the edit, one on the SVG write) and the browser would reload twice for one user change.
+在 serve 模式下，监视器忽略对 `assets/images/mmd/*.svg` 的写入。`.mmd` 是事实来源；`.svg` 是 mermaid 回写到 `srcRoot` 下的构建产物。没有此过滤器，每次 `.mmd` 编辑会触发两次重建（一次在编辑时，一次在 SVG 写入时），浏览器为一次用户更改重载两次。
 
-## Deploying to docs.twinbasic.com
+## 部署到 docs.twinbasic.com
 
-1. Push your changes to your GitHub fork of the [documentation repository][docs-repo].
+1. 将你的更改推送到你的 GitHub 分叉的[文档仓库][docs-repo]。
 
-2. [Open a new pull request in the documentation repository][docs-pr].
+2. [在文档仓库中开一个新的拉取请求][docs-pr]。
 
-3. Click **compare across forks**.
+3. 点击**跨分叉比较**。
 
-4. Select your repository and branch to merge from.
+4. 选择你的仓库和要合并的分支。
 
    ![img](Images/compare-changes.png)
 
-5. Create the pull request.
+5. 创建拉取请求。
 
    ![img](Images/create-pull-request.png)
 
-   A maintainer will merge the pull request into the documentation repository. You may wish to mention an outstanding request on the [#docs][hash-docs] channel, although the [#github-docs][hash-github-docs] channel provides automated notifications of pull requests. Normally, a maintainer will get a notification of a new pull request via Discord, and will merge it or comment with a request for changes.
+   维护者会将拉取请求合并到文档仓库。你可能希望在 [#docs][hash-docs] 频道上提及待处理的请求，尽管 [#github-docs][hash-github-docs] 频道提供拉取请求的自动通知。通常，维护者会通过 Discord 收到新拉取请求的通知，并会合并它或评论要求修改。
 
-   **The steps below are done by maintainers.**
+   **以下步骤由维护者完成。**
 
-6. Review, then merge the pull request or comment with required changes.
+6. 审查，然后合并拉取请求或评论要求修改。
 
    ![img](Images/merge-pull-request.png)
 
    ![img](Images/confirm-merge.png)
 
-7. Select the **Build & deploy docs** action.
+7. 选择 **Build & deploy docs** 操作。
    ![img](Images/choose-workflow.png){width="75%"}
 
-8. Manually run the build and deployment workflow if a release snapshot is needed. (Pushes to `staging` deploy to Pages automatically; only the manual run additionally cuts a GitHub release with the offline-browsable site copy attached as a zip and the PDF book attached.)
+8. 如果需要发布快照，手动运行构建和部署工作流。（推送到 `staging` 会自动部署到 Pages；只有手动运行会额外创建一个 GitHub Release，附带离线可浏览站点副本的 zip 和 PDF 书籍附件。）
    ![img](Images/run-workflow.png){width="50%"}
 
-## Editing screenshots
+## 编辑截图
 
-One way to edit screenshots is to use an integrated vector / pixel program like [Affinity][af]<sup>1</sup>. A possible workflow:
+编辑截图的一种方式是使用集成矢量/像素程序，如 [Affinity][af]<sup>1</sup>。可能的工作流程：
 
-1. <kbd>PrtSc</kbd> to capture the screenshot.
+1. <kbd>PrtSc</kbd> 截取屏幕截图。
 
-2. In Affinity, <kbd>Ctrl-Alt-Shift-N</kbd> (File, New from Clipboard) to get the entire screenshot into the program.
+2. 在 Affinity 中，<kbd>Ctrl-Alt-Shift-N</kbd>（文件，从剪贴板新建）将整个截图导入程序。
 
-3. Use the Vector Crop tool (from the Vector studio) to crop the screenshot down to the relevant part.
+3. 使用矢量裁剪工具（来自 Vector 工作室）将截图裁剪到相关部分。
 
    ![img](Images/af-vector-studio.png) ![img](Images/af-vector-crop-tool.png)
 
-4. Select the cropped image and copy it to the clipboard with <kbd>Ctrl-C</kbd>.
+4. 选择裁剪后的图像并用 <kbd>Ctrl-C</kbd> 复制到剪贴板。
 
-5. Create a new file from clipboard again to open a document with just the cropped screenshot <kbd>Ctrl-Alt-Shift-N</kbd> (File, New from Clipboard).
+5. 再次从剪贴板创建新文件，打开仅包含裁剪截图的文档 <kbd>Ctrl-Alt-Shift-N</kbd>（文件，从剪贴板新建）。
 
-6. Close the file you opened in step 2.
+6. 关闭在第 2 步中打开的文件。
 
-7. Add arrows and labels as needed. Those can be copy-pasted from other `.af` files in this repository.
+7. 根据需要添加箭头和标签。这些可以从本仓库中其他 `.af` 文件复制粘贴。
 
-8. Export to PNG via <kbd>Ctrl-Alt-Shift-W</kbd> (File, Export, Export...).
+8. 通过 <kbd>Ctrl-Alt-Shift-W</kbd>（文件，导出，导出...）导出为 PNG。
 
 ::: info
-It is a convention to put the `.af` ("source") files in the `_Images` folder, and the exported `.png` files in the `Images` folder. Only the latter is published to the website. The former is preserved as the source for easy editing and updates.
+约定是将 `.af`（"源"）文件放在 `_Images` 文件夹中，导出的 `.png` 文件放在 `Images` 文件夹中。只有后者发布到网站。前者作为源保留，以便于编辑和更新。
 :::
 
 ---
 
-<sup>1</sup> Affinity is a free-as-in-beer suite that combines a vector editor, a bitmap editor, and a publishing layout editor. A Canva account is required to download; the accounts are free.
+<sup>1</sup> Affinity 是一个免费套件，集成了矢量编辑器、位图编辑器和排版布局编辑器。需要 Canva 账户才能下载；账户是免费的。
 
 [af]: https://www.affinity.studio/download
 [docs-pr]: https://github.com/twinbasic/documentation/compare

@@ -2,18 +2,27 @@
 title: Timer
 parent: DateTime Module
 permalink: /tB/Modules/DateTime/Timer
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '27cf2724-1392-4075-863f-ae627a860205'
+  PropagateID: '27cf2724-1392-4075-863f-ae627a860205'
+  ReservedCode1: 'c44c4f34-2a9c-4071-a405-68bb076aedab'
+  ReservedCode2: 'c44c4f34-2a9c-4071-a405-68bb076aedab'
 ---
+
 # Timer
 
-Returns a **Single** representing the number of seconds elapsed since midnight.
+返回一个 **Single**，表示自午夜以来经过的秒数。
 
-Syntax: **Timer**
+语法：**Timer**
 
-The **Timer** function returns fractional portions of a second.
+**Timer** 函数返回秒的小数部分。
 
-### Example
+### 示例
 
-This example uses the **Timer** function to measure elapsed time.
+此示例使用 **Timer** 函数测量经过的时间。
 
 ```vb
 Dim Start As Single, Finish As Single
@@ -23,7 +32,7 @@ Finish = Timer                  ' Record end time.
 Debug.Print "Elapsed: " & Finish - Start & " seconds"
 ```
 
-### See Also
+### 另请参阅
 
-- [Time](/official/Reference/VBA/DateTime/Time) property
-- [Now](/official/Reference/VBA/DateTime/Now) function
+- [Time](/official/Reference/VBA/DateTime/Time) 属性
+- [Now](/official/Reference/VBA/DateTime/Now) 函数

@@ -2,41 +2,50 @@
 title: CType
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/CType
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cbaed920-32bd-42a9-92f4-acb3b699cb59'
+  PropagateID: 'cbaed920-32bd-42a9-92f4-acb3b699cb59'
+  ReservedCode1: '08fd5286-c78d-4ae4-bc46-cd277c4cbf6c'
+  ReservedCode2: '08fd5286-c78d-4ae4-bc46-cd277c4cbf6c'
 ---
+
 # CType
 
-Performs an explicit type conversion to a type chosen by the caller.
+执行到由调用者选择的类型的显式类型转换。
 
-Syntax: **CType(Of** *type* **)** **(** *value* **)**
+语法：**CType(Of** *type* **)** **(** *value* **)**
 
 *type*
-: *required* The type to convert *value* to. Any type known to the compiler is accepted, including built-in types, **Enum** types, classes, interfaces, and user-defined types.
+: *必需* 要将 *value* 转换为的类型。接受编译器已知的任何类型，包括内置类型、**Enum** 类型、类、接口和用户自定义类型。
 
 *value*
-: *required* The expression being converted.
+: *必需* 要转换的表达式。
 
-The return type matches *type*.
+返回类型与 *type* 匹配。
 
 ::: info
-**CType** is a twinBASIC extension; VBA has no equivalent.
+**CType** 是 twinBASIC 扩展；VBA 没有等效项。
 :::
 
-**CType** has two roles:
+**CType** 有两个作用：
 
-1. **As an explicit cast**, used wherever an implicit conversion would either be disallowed or produce a compiler warning. It conveys the same intent as [**CInt**](/official/Reference/VBA/Conversion/CInt), [**CLng**](/official/Reference/VBA/Conversion/CLng), and the rest of the C-prefix functions, but for any target type --- most usefully when the target is an **Enum** or an interface. For example, assigning a numeric literal or another **Enum** member to an **Enum**-typed variable triggers a compiler warning that **CType** silences:
+1. **作为显式转换**，在任何隐式转换会被禁止或产生编译器警告的地方使用。它表达了与 [**CInt**](/official/Reference/VBA/Conversion/CInt)、[**CLng**](/official/Reference/VBA/Conversion/CLng) 和其余 C 前缀函数相同的意图，但适用于任何目标类型——最常用的是目标为 **Enum** 或接口的情况。例如，将数值字面量或另一个 **Enum** 成员赋值给 **Enum** 类型的变量会触发编译器警告，而 **CType** 可以消除此警告：
 
    ```vb
    Dim day As VbDayOfWeek
    day = CType(Of VbDayOfWeek)(1)
    ```
 
-2. **As a pointer-to-UDT cast**, used to view the memory pointed to by a **LongPtr** as a particular user-defined type without copying it. See [Enhanced Pointer Functionality](/official/Features/Language/Pointers#ctypeof-type) for the canonical examples.
+2. **作为指针到 UDT 的转换**，用于将 **LongPtr** 指向的内存视为特定的用户自定义类型而不进行复制。参见[增强指针功能](/official/Features/Language/Pointers#ctypeof-type)中的规范示例。
 
-In both roles **CType** is an operator-like form recognized by the compiler; it isn't called like a regular function and the unparameterized name `CType` cannot be assigned to a function reference.
+在这两种角色中，**CType** 都是编译器识别的类似运算符的形式；它不像常规函数那样被调用，未参数化的名称 `CType` 不能赋值给函数引用。
 
-### See Also
+### 另请参阅
 
-- [Enhanced Pointer Functionality](/official/Features/Language/Pointers#ctypeof-type)
-- [Generics](/official/Features/Language/Generics)
-- [Compiler Warnings](/official/Features/Compiler-IDE/Compiler-Warnings)
-- [CBool](/official/Reference/VBA/Conversion/CBool), [CByte](/official/Reference/VBA/Conversion/CByte), [CInt](/official/Reference/VBA/Conversion/CInt), [CLng](/official/Reference/VBA/Conversion/CLng), [CDbl](/official/Reference/VBA/Conversion/CDbl), [CStr](/official/Reference/VBA/Conversion/CStr), [CVar](/official/Reference/VBA/Conversion/CVar) functions
+- [增强指针功能](/official/Features/Language/Pointers#ctypeof-type)
+- [泛型](/official/Features/Language/Generics)
+- [编译器警告](/official/Features/Compiler-IDE/Compiler-Warnings)
+- [CBool](/official/Reference/VBA/Conversion/CBool)、[CByte](/official/Reference/VBA/Conversion/CByte)、[CInt](/official/Reference/VBA/Conversion/CInt)、[CLng](/official/Reference/VBA/Conversion/CLng)、[CDbl](/official/Reference/VBA/Conversion/CDbl)、[CStr](/official/Reference/VBA/Conversion/CStr)、[CVar](/official/Reference/VBA/Conversion/CVar) 函数

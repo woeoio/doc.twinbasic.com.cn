@@ -2,40 +2,49 @@
 title: Rate
 parent: Financial Module
 permalink: /tB/Modules/Financial/Rate
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '97da36c0-ca1b-473f-bfa8-80656b4e344f'
+  PropagateID: '97da36c0-ca1b-473f-bfa8-80656b4e344f'
+  ReservedCode1: '7817ad5c-b09d-42ae-b0c6-0347b50590f4'
+  ReservedCode2: '7817ad5c-b09d-42ae-b0c6-0347b50590f4'
 ---
+
 # Rate
 
-Returns a **Double** specifying the interest rate per period for an annuity.
+返回一个**Double**值，指定年金每期的利率。
 
-Syntax: **Rate(** *nper*, *pmt*, *pv* [ **,** *fv* [ **,** *type* [ **,** *guess* ] ] ] **)**
+语法：**Rate(** *nper*, *pmt*, *pv* [ **,** *fv* [ **,** *type* [ **,** *guess* ] ] ] **)**
 
 *nper*
-: *required* **Double** specifying total number of payment periods in the annuity. For example, monthly payments on a four-year car loan total 4 * 12 (or 48) payment periods.
+: *必需* **Double**，指定年金的总付款期数。例如，四年期汽车贷款的按月付款总期数为4 * 12（即48）期。
 
 *pmt*
-: *required* **Double** specifying payment to be made each period. Payments usually contain principal and interest that doesn't change over the life of the annuity.
+: *必需* **Double**，指定每期应付金额。付款通常包含在年金期限内不变的本金和利息。
 
 *pv*
-: *required* **Double** specifying present value, or value today, of a series of future payments or receipts. For example, when borrowing money to buy a car, the loan amount is the present value to the lender of the monthly car payments to be made.
+: *必需* **Double**，指定一系列未来付款或收入的现值。例如，贷款买车时，贷款金额就是贷款人未来每月车贷还款的现值。
 
 *fv*
-: *optional* **Variant** specifying future value or cash balance remaining after the final payment. For example, the future value of a loan is $0 because that's its value after the final payment. However, to save $50,000 over 18 years for a child's education, $50,000 is the future value. If omitted, 0 is assumed.
+: *可选* **Variant**，指定最终付款后的未来值或现金余额。例如，贷款的未来值为$0，因为这是最终付款后的价值。但如果要在18年内为孩子的教育储蓄$50,000，则$50,000就是未来值。如果省略，则默认为0。
 
 *type*
-: *optional* **Variant** specifying when payments are due. 0 means payments are due at the end of the period; 1 means payments are due at the beginning. If omitted, 0 is assumed.
+: *可选* **Variant**，指定付款到期时间。0表示期末付款；1表示期初付款。如果省略，则默认为0。
 
 *guess*
-: *optional* **Variant** specifying an estimate of the value to be returned by **Rate**. If omitted, *guess* is 0.1 (10 percent).
+: *可选* **Variant**，指定**Rate**返回值的估计值。如果省略，*guess*为0.1（10%）。
 
-An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).
+年金是在一段时间内进行的一系列固定现金支付。年金可以是贷款（如住房抵押贷款）或投资（如月度储蓄计划）。
 
-For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.
+对于所有参数，支出的现金（如储蓄存款）用负数表示；收入的现金（如股息支票）用正数表示。
 
-**Rate** is calculated by iteration. Starting with the value of *guess*, **Rate** cycles through the calculation until the result is accurate to within 0.00001 percent. If **Rate** can't find a result after 20 tries, it fails. If the default 10 percent fails, try a different value for *guess*.
+**Rate**通过迭代计算。从*guess*的值开始，**Rate**循环计算直到结果精确到0.00001%以内。如果**Rate**在20次尝试后仍未找到结果，则计算失败。如果默认的10%失败，请尝试为*guess*提供不同的值。
 
-### Example
+### 示例
 
-This example uses the **Rate** function to calculate the interest rate of a loan given the total number of payments (`TotPmts`), the amount of the loan payment (`Payment`), the present value or principal of the loan (`PVal`), the future value of the loan (`FVal`), a number that indicates whether the payment is due at the beginning or end of the payment period (`PayType`), and an approximation of the expected interest rate (`Guess`).
+本示例使用**Rate**函数计算贷款利率，提供的参数包括：总付款期数(`TotPmts`)、贷款付款金额(`Payment`)、贷款现值或本金(`PVal`)、贷款未来值(`FVal`)、指示付款是在期初还是期末到期的数字(`PayType`)以及预期利率的近似值(`Guess`)。
 
 ```vb
 Dim Fmt, FVal, Guess, PVal, Payment, TotPmts, PayType, APR
@@ -53,6 +62,6 @@ APR = (Rate(TotPmts, -Payment, PVal, FVal, PayType, Guess) * 12) * 100
 MsgBox "Your interest rate is " & Format(CInt(APR), Fmt) & " percent."
 ```
 
-### See Also
+### 另请参阅
 
-- [FV](/official/Reference/VBA/Financial/FV), [IRR](/official/Reference/VBA/Financial/IRR), [NPer](/official/Reference/VBA/Financial/NPer), [Pmt](/official/Reference/VBA/Financial/Pmt), [PV](/official/Reference/VBA/Financial/PV) functions
+- [FV](/official/Reference/VBA/Financial/FV)、[IRR](/official/Reference/VBA/Financial/IRR)、[NPer](/official/Reference/VBA/Financial/NPer)、[Pmt](/official/Reference/VBA/Financial/Pmt)、[PV](/official/Reference/VBA/Financial/PV)函数

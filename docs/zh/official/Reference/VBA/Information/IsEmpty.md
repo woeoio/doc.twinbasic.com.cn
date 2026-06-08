@@ -2,21 +2,30 @@
 title: IsEmpty
 parent: Information Module
 permalink: /tB/Modules/Information/IsEmpty
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4d366889-aae1-47a4-a969-e1fe8e2c598c'
+  PropagateID: '4d366889-aae1-47a4-a969-e1fe8e2c598c'
+  ReservedCode1: '676a4041-355d-4504-a958-9a60ed860572'
+  ReservedCode2: '676a4041-355d-4504-a958-9a60ed860572'
 ---
+
 # IsEmpty
 
-Returns a **Boolean** indicating whether a **Variant** has been initialized.
+返回一个**Boolean**，指示**Variant**是否已初始化。
 
-Syntax: **IsEmpty(** *expression* **)**
+语法：**IsEmpty(** *expression* **)**
 
 *expression*
-: *required* A **Variant** containing a numeric or string expression. Most often, *expression* is a single variable name, since **IsEmpty** only returns meaningful information for **Variant**s.
+: *必需* **Variant**，包含数值或字符串表达式。大多数情况下，*expression*是单个变量名，因为**IsEmpty**仅对**Variant**返回有意义的信息。
 
-**IsEmpty** returns **True** if the variable is uninitialized or has been explicitly set to **Empty**; otherwise, it returns **False**. **False** is always returned if *expression* contains more than one variable.
+如果变量未初始化或已显式设置为**Empty**，**IsEmpty**返回**True**；否则返回**False**。如果*expression*包含多个变量，则始终返回**False**。
 
-### Example
+### 示例
 
-This example uses **IsEmpty** to determine whether a variable has been initialized.
+本示例使用**IsEmpty**确定变量是否已初始化。
 
 ```vb
 Dim MyVar As Variant
@@ -30,6 +39,6 @@ MyVar = Empty
 MyCheck = IsEmpty(MyVar)              ' True.
 ```
 
-### See Also
+### 另请参阅
 
-- [IsNull](/official/Reference/VBA/Information/IsNull), [IsMissing](/official/Reference/VBA/Information/IsMissing) functions
+- [IsNull](/official/Reference/VBA/Information/IsNull)、[IsMissing](/official/Reference/VBA/Information/IsMissing)函数

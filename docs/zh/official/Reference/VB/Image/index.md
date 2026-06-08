@@ -1,14 +1,25 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '66060a7a-957e-4e97-bb08-32bf4ac0ac71'
+  PropagateID: '66060a7a-957e-4e97-bb08-32bf4ac0ac71'
+  ReservedCode1: '43423b64-3c3c-4f38-8bdb-afc3158d1ed4'
+  ReservedCode2: '43423b64-3c3c-4f38-8bdb-afc3158d1ed4'
+---
+
 ---
 title: Image
 parent: VB Package
 permalink: /tB/Packages/VB/Image/
 ---
 
-# Image class
+# Image 类
 
-An **Image** is a windowless lightweight control for displaying a picture --- a bitmap, JPEG, GIF, PNG, icon, cursor, or Windows metafile. It is the small, efficient alternative to [**PictureBox**](/official/Reference/VB/PictureBox/): no underlying Win32 window, no drawing surface, no child controls, no focus --- just a rectangle on the parent that paints whatever is in [**Picture**](#picture). Image controls are ideal for logos, decorative artwork, custom-drawn buttons, glyph rows, and any other place where a heavy **PictureBox** would be overkill.
+**Image**是无窗口轻量级控件，用于显示图片——位图、JPEG、GIF、PNG、图标、光标或Windows图元文件。它是[**PictureBox**](/official/Reference/VB/PictureBox/)的小巧高效替代：没有底层Win32窗口、没有绘图表面、没有子控件、没有焦点——只有父级上的一个矩形，绘制[**Picture**](#picture)中的内容。Image控件非常适合logo、装饰图、自定义绘制按钮、字形行以及任何使用重量级**PictureBox**显得过重的地方。
 
-The default property is [**Picture**](#picture) and the default event is [**Click**](#click).
+默认属性是[**Picture**](#picture)，默认事件是[**Click**](#click)。
 
 ```vb
 Private Sub Form_Load()
@@ -23,339 +34,339 @@ End Sub
 ```
 
 
-## Windowless rendering
+## 无窗口渲染
 
-An **Image** has no `hWnd`. The framework paints it directly onto its parent's drawing surface during the parent's paint cycle, so the control is much cheaper than a [**PictureBox**](/official/Reference/VB/PictureBox/) and adds no Win32 window of its own. The trade-offs are the same as for any windowless control:
+**Image**没有`hWnd`。框架在父级的绘制周期中将其直接绘制到父级的绘图表面上，因此控件比[**PictureBox**](/official/Reference/VB/PictureBox/)开销小得多，不添加自己的Win32窗口。其权衡与任何无窗口控件相同：
 
-- No focus, no keyboard input, no `KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`.
-- No `hWnd` to pass to API functions, and no `SetFocus`.
-- Cannot host child controls.
+- 无焦点、无键盘输入、无`KeyDown` / `KeyPress` / `KeyUp` / `GotFocus` / `LostFocus` / `Validate`。
+- 没有可传递给API函数的`hWnd`，也没有`SetFocus`。
+- 不能承载子控件。
 
-For anything that needs those, use [**PictureBox**](/official/Reference/VB/PictureBox/) instead.
+对于需要这些功能的场景，请改用[**PictureBox**](/official/Reference/VB/PictureBox/)。
 
-## Stretch and auto-sizing
+## 拉伸和自动调整尺寸
 
-[**Stretch**](#stretch) is the master switch for sizing behaviour:
+[**Stretch**](#stretch)是尺寸行为的主开关：
 
-- **Stretch = False** (default): the picture is drawn at its natural pixel size and the **Image** auto-resizes itself to match every time a new [**Picture**](#picture) is assigned. The user may still resize the control manually --- once that happens the picture is clipped or padded around the natural bounds (it is *not* re-stretched).
-- **Stretch = True**: the picture is scaled to fill the **Image**'s rectangle. The resampling algorithm is chosen by [**StretchMode**](#stretchmode); aspect ratio is *not* preserved.
+- **Stretch = False**（默认）：图片以其自然像素尺寸绘制，每次赋值新的[**Picture**](#picture)时**Image**自动调整自身大小以匹配。用户仍可手动调整控件大小——一旦如此，图片会被裁剪或在自然边界周围填充（*不会*重新拉伸）。
+- **Stretch = True**：图片被缩放以填充**Image**的矩形。重采样算法由[**StretchMode**](#stretchmode)选择；不保持宽高比。
 
-Metafiles (`vbPicTypeMetafile`, `vbPicTypeEMetafile`) are vector --- they always scale to fit and the aspect ratio is preserved regardless of [**Stretch**](#stretch).
+图元文件（`vbPicTypeMetafile`、`vbPicTypeEMetafile`）是矢量的——它们始终缩放以适应且无论[**Stretch**](#stretch)设置如何都保持宽高比。
 
-[**PictureDpiScaling**](#picturedpiscaling), when **True**, multiplies the natural pixel dimensions by the current DPI scale factor before drawing --- useful for keeping a logo the same physical size on a high-DPI monitor as on a 96-DPI one.
+[**PictureDpiScaling**](#picturedpiscaling)为**True**时，在绘制前将自然像素尺寸乘以当前DPI缩放因子——有助于使logo在高DPI显示器上与96-DPI显示器上保持相同的物理尺寸。
 
-## Rotation
+## 旋转
 
-[**Angle**](#angle) rotates the rendered picture, in degrees, anti-clockwise around the top-left corner of the control's rectangle. `0` is the natural orientation; `90` is a quarter turn anti-clockwise; values between `0` and `360` give arbitrary rotations. The control's bounding rectangle does not change --- large rotation angles can therefore push the visible picture outside the rectangle. Hit-testing for [**Click**](#click), [**MouseDown**](#mousedown), and the other mouse events still uses the unrotated rectangle.
+[**Angle**](#angle)以度为单位围绕控件矩形的左上角逆时针旋转渲染图片。`0`为自然方向；`90`为逆时针旋转四分之一圈；`0`到`360`之间的值给出任意旋转。控件的边界矩形不变——因此大旋转角度可能将可见图片推出矩形。[**Click**](#click)、[**MouseDown**](#mousedown)和其他鼠标事件的命中测试仍使用未旋转的矩形。
 
-## Border
+## 边框
 
-[**BorderStyle**](#borderstyle) chooses between no border (the default) and a single sunken border drawn around the rectangle. When a border is present, [**Appearance**](#appearance) selects between a 3-D and a flat (monochrome) version of it.
+[**BorderStyle**](#borderstyle)选择无边框（默认）和围绕矩形绘制的单凹陷边框。当边框存在时，[**Appearance**](#appearance)选择3-D和平面（单色）版本。
 
-## Source-side and destination-side OLE drag-drop
+## 源端和目标端OLE拖放
 
-The **Image** control supports both ends of an OLE drag-drop operation:
+**Image**控件支持OLE拖放操作的两端：
 
-- [**OLEDragMode**](#oledragmode) controls the source side. With **vbOLEDragAutomatic**, holding the mouse over the **Image** and beginning a drag automatically copies the current [**Picture**](#picture) into the resulting **DataObject**. With **vbOLEDragManual** (default) drags must be initiated by calling [**OLEDrag**](#oledrag) from a [**MouseDown**](#mousedown) handler.
-- [**OLEDropMode**](#oledropmode) controls the destination side. With **vbOLEDropManual** the [**OLEDragOver**](#oledragover) and [**OLEDragDrop**](#oledragdrop) events fire and the application decides what to do. **vbOLEDropAutomatic** is not supported on an **Image** and assigning it raises run-time error 5.
+- [**OLEDragMode**](#oledragmode)控制源端。使用**vbOLEDragAutomatic**时，在**Image**上方按住鼠标并开始拖动会自动将当前[**Picture**](#picture)复制到结果**DataObject**中。使用**vbOLEDragManual**（默认）时，拖动必须通过从[**MouseDown**](#mousedown)处理程序调用[**OLEDrag**](#oledrag)来发起。
+- [**OLEDropMode**](#oledropmode)控制目标端。使用**vbOLEDropManual**时，[**OLEDragOver**](#oledragover)和[**OLEDragDrop**](#oledragdrop)事件触发，由应用程序决定如何处理。**vbOLEDropAutomatic**在**Image**上不受支持，赋值它会导致运行时错误5。
 
-## Data binding
+## 数据绑定
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the [**Picture**](#picture) to a field of a [**Data**](/official/Reference/VB/Data/) control's recordset. The bound field is read as binary picture data on each move; assigning **Nothing** to **Picture** writes a null-equivalent back to the recordset, and any other assignment serialises the picture's bytes back through the bound field.
+设置[**DataSource**](#datasource)和[**DataField**](#datafield)将[**Picture**](#picture)连接到[**Data**](/official/Reference/VB/Data/)控件记录集的字段。绑定字段在每次移动时作为二进制图片数据读取；将**Nothing**赋值给**Picture**会将空值等效写回记录集，任何其他赋值会通过绑定字段序列化图片的字节。
 
-## Properties
+## 属性
 
 ### Anchors
 
-The set of edges of the parent that the **Image**'s corresponding edges follow when the parent resizes. Read-only --- assign individual `.Left`, `.Top`, `.Right`, `.Bottom` flags through the returned **Anchors** object.
+决定**Image**的哪些边随父级对应边调整的边集合。只读——通过返回的**Anchors**对象设置各个`.Left`、`.Top`、`.Right`、`.Bottom`标志。
 
 ### Angle
 
-The rotation of the rendered picture, in degrees, anti-clockwise around the top-left of the control's rectangle. **Double**, default `0`.
+渲染图片的旋转角度，以度为单位，围绕控件矩形的左上角逆时针旋转。**Double**，默认`0`。
 
 ### Appearance
 
-The style of the border, as a member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder**.
+边框的样式，作为[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。仅在[**BorderStyle**](#borderstyle)为**vbFixedSingleBorder**时有意义。
 
 ### BorderStyle
 
-The style of border drawn around the rectangle. A member of [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0, default) or **vbFixedSingleBorder** (1).
+绘制在矩形周围的边框样式。[**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants)的成员：**vbNoBorder**（0，默认）或**vbFixedSingleBorder**（1）。
 
 ### Container
 
-The control that hosts this **Image** --- typically the form, a [**Frame**](/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
+承载此**Image**的控件——通常是窗体、[**Frame**](/official/Reference/VB/Frame/)或**UserControl**。用**Get**读取，用**Set**更改。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as an image. Always **vbImage**.
+标识此控件为图像的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbImage**。
 
 ### DataChanged
 
-Whether the bound [**Picture**](#picture) has been written to since the last save or refresh from the [**DataSource**](#datasource). **Boolean**. Setting **DataChanged** = **True** also marks the bound recordset as dirty.
+绑定的[**Picture**](#picture)自上次从[**DataSource**](#datasource)保存或刷新以来是否已被写入。**Boolean**。设置**DataChanged** = **True**也会将绑定记录集标记为脏。
 
 ### DataField
 
-The name of the field, in the recordset of the bound [**DataSource**](#datasource), whose binary value is mirrored by [**Picture**](#picture). **String**.
+绑定的[**DataSource**](#datasource)记录集中由[**Picture**](#picture)镜像的字段名称。**String**。
 
 ### DataFormat
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
 ### DataMember
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
 ### DataSource
 
-A reference to a [**Data**](/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+对[**Data**](/official/Reference/VB/Data/)控件（或其他**DataSource**提供者）的引用，其记录集为[**DataField**](#datafield)提供值。用**Set**设置。
 
 ### Dock
 
-Where the **Image** is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked images ignore [**Anchors**](#anchors).
+**Image**在其容器中的停靠位置。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants)的成员：**vbDockNone**（默认）、**vbDockLeft**、**vbDockTop**、**vbDockRight**、**vbDockBottom**或**vbDockFill**。停靠的图像忽略[**Anchors**](#anchors)。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the control is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+在控件被拖放时用作鼠标光标的**StdPicture**（参见[**Drag**](#drag)和[**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the control should drag itself (the manual VB-drag form, distinct from OLE drag) when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+控件是否应在用户按住鼠标时自行拖动（手动VB拖动形式，与OLE拖动不同）。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants)的成员：**vbManual**（0，默认——从代码调用[**Drag**](#drag)）或**vbAutomatic**（1）。
 
 ### Enabled
 
-Determines whether the control accepts mouse input. A disabled **Image** still paints normally but ignores mouse events. **Boolean**, default **True**.
+决定控件是否接受鼠标输入。禁用的**Image**仍正常绘制但忽略鼠标事件。**Boolean**，默认**True**。
 
 ### Height
 
-The control's height, in twips by default (or in the container's **ScaleMode** units). **Double**. When [**Stretch**](#stretch) is **False** and a new [**Picture**](#picture) is assigned, the height auto-resizes to the picture's natural pixel height.
+控件的高度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Double**。当[**Stretch**](#stretch)为**False**且赋值新[**Picture**](#picture)时，高度自动调整到图片的自然像素高度。
 
 ### Index
 
-When the control is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当控件是控件数组的一部分时，此实例在数组中的**Long**零基索引。在非数组实例上读取**Index**会引发运行时错误343（*对象不是数组*）。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the control. **Double**.
+从容器左边缘到控件左边缘的水平距离。**Double**。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the control.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针在控件上方时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+指针在控件上方时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Name
 
-The unique design-time name of the control on its parent form. Read-only at run time.
+控件在其父窗体上的唯一设计时名称。运行时只读。
 
 ### OLEDragMode
 
-Whether an OLE drag is started automatically when the user begins dragging the **Image**. A member of [**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants): **vbOLEDragManual** (0, default --- application calls [**OLEDrag**](#oledrag)) or **vbOLEDragAutomatic** (1 --- the framework copies the current [**Picture**](#picture) into the resulting **DataObject** automatically).
+当用户开始拖动**Image**时是否自动启动OLE拖动。[**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants)的成员：**vbOLEDragManual**（0，默认——应用程序调用[**OLEDrag**](#oledrag)）或**vbOLEDragAutomatic**（1——框架自动将当前[**Picture**](#picture)复制到结果**DataObject**中）。
 
 ### OLEDropMode
 
-How the **Image** responds to OLE drops arriving on it. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** (0, default) or **vbOLEDropManual** (1). Automatic drop is not supported on an **Image**; assigning **vbOLEDropAutomatic** raises run-time error 5 (*Invalid procedure call or argument*).
+**Image**如何响应到达其上的OLE放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants)的受限成员：**vbOLEDropNone**（0，默认）或**vbOLEDropManual**（1）。**Image**不支持自动放置；赋值**vbOLEDropAutomatic**会引发运行时错误5（*无效的过程调用或参数*）。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the control. Read-only.
+对最终包含此控件的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）的引用。只读。
 
 ### Picture
 
-The **StdPicture** rendered by the control. **Default property.**
+控件渲染的**StdPicture**。**默认属性。**
 
-Syntax: `Set` *object*.**Picture** = *picture*
+语法：`Set` *object*.**Picture** = *picture*
 
-Assigning **Nothing** restores an empty picture rather than removing the surface. Assigning a new picture while [**Stretch**](#stretch) is **False** auto-resizes the control to the picture's natural pixel dimensions; while [**Stretch**](#stretch) is **True** the existing rectangle is preserved and the new picture is scaled to fit.
+赋值**Nothing**恢复空图片而非移除表面。在[**Stretch**](#stretch)为**False**时赋值新图片会自动调整控件到图片的自然像素尺寸；在[**Stretch**](#stretch)为**True**时保留现有矩形并将新图片缩放以适应。
 
 ### PictureDpiScaling
 
-When **True**, the picture's natural pixel dimensions are multiplied by the current DPI scale factor before being drawn (and used by the auto-size logic). **Boolean**, default **False**.
+当**True**时，图片的自然像素尺寸在绘制前（并被自动调整尺寸逻辑使用）乘以当前DPI缩放因子。**Boolean**，默认**False**。
 
 ### Stretch
 
-Whether the picture is scaled to fill the control's rectangle (**True**) or rendered at its natural size with the control auto-sized to fit (**False**, default). See [Stretch and auto-sizing](#stretch-and-auto-sizing) for the full rules. Metafiles always scale regardless of this setting.
+图片是否被缩放以填充控件矩形（**True**）或以自然尺寸渲染并自动调整控件以适应（**False**，默认）。完整规则见[拉伸和自动调整尺寸](#stretch-and-auto-sizing)。图元文件无论此设置如何始终缩放。
 
 ### StretchMode
 
-The resampling algorithm used when [**Stretch**](#stretch) is **True** and the picture is scaled. A member of `Image.StretchModeConstants`:
+当[**Stretch**](#stretch)为**True**且图片被缩放时使用的重采样算法。`Image.StretchModeConstants`的成员：
 
-| Constant                  | Value | Algorithm                                                                |
-|---------------------------|-------|--------------------------------------------------------------------------|
-| **vbStretchHalftone**     | 0     | GDI `STRETCH_HALFTONE` (default --- good general-purpose quality).         |
-| **vbStretchColorOnColor** | 1     | GDI `STRETCH_COLORONCOLOR` (fastest, lowest quality --- nearest neighbour). |
-| **vbStretchLanczos8**     | 2     | Custom Lanczos resampler with an 8-lobe kernel (highest quality, slowest). |
-| **vbStretchLanczos3**     | 3     | Custom Lanczos resampler with a 3-lobe kernel (high quality).            |
-| **vbStretchBicubic**      | 4     | Custom bicubic resampler.                                                |
-| **vbStretchBilinear**     | 5     | Custom bilinear resampler.                                               |
+| 常量                          | 值 | 算法                                                                     |
+|-------------------------------|----|--------------------------------------------------------------------------|
+| **vbStretchHalftone**         | 0  | GDI `STRETCH_HALFTONE`（默认——良好的通用质量）。                        |
+| **vbStretchColorOnColor**     | 1  | GDI `STRETCH_COLORONCOLOR`（最快、最低质量——最近邻）。                   |
+| **vbStretchLanczos8**         | 2  | 自定义Lanczos重采样器，8瓣核（最高质量，最慢）。                         |
+| **vbStretchLanczos3**         | 3  | 自定义Lanczos重采样器，3瓣核（高质量）。                                 |
+| **vbStretchBicubic**          | 4  | 自定义双三次重采样器。                                                   |
+| **vbStretchBilinear**         | 5  | 自定义双线性重采样器。                                                   |
 
-The Lanczos, bicubic, and bilinear modes only apply to bitmaps that actually need resizing --- metafiles and unscaled bitmaps fall back to the GDI mode.
+Lanczos、双三次和双线性模式仅适用于实际需要调整尺寸的位图——图元文件和未缩放的位图回退到GDI模式。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the control. Ignored by the framework.
+应用程序可用于将自定义数据与控件关联的自由格式**String**。框架忽略此属性。
 
 ### ToolTipText
 
-A multi-line **String** displayed as a tooltip when the user hovers over the control.
+用户悬停在控件上方时作为工具提示显示的多行**String**。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the control. **Double**.
+从容器顶部到控件顶部的垂直距离。**Double**。
 
 ### Visible
 
-Whether the control is shown. **Boolean**, default **True**.
+控件是否显示。**Boolean**，默认**True**。
 
 ### WhatsThisHelpID
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC. See [**ShowWhatsThis**](#showwhatsthis).
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。参见[**ShowWhatsThis**](#showwhatsthis)。
 :::
 
 ### Width
 
-The control's width, in twips by default (or in the container's **ScaleMode** units). **Double**. When [**Stretch**](#stretch) is **False** and a new [**Picture**](#picture) is assigned, the width auto-resizes to the picture's natural pixel width.
+控件的宽度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Double**。当[**Stretch**](#stretch)为**False**且赋值新[**Picture**](#picture)时，宽度自动调整到图片的自然像素宽度。
 
-## Methods
+## 方法
 
 ### Drag
 
-Begins, completes, or cancels a manual VB-style drag operation. Distinct from OLE drag --- see [**OLEDrag**](#oledrag).
+开始、完成或取消手动VB样式拖动操作。与OLE拖动不同——参见[**OLEDrag**](#oledrag)。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants)的成员：**vbCancel**（0）、**vbBeginDrag**（1，默认）或**vbEndDrag**（2）。
 
 ### Move
 
-Repositions and optionally resizes the control in a single call.
+在单次调用中重新定位并可选地调整控件的尺寸。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from this **Image**, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject** (or, if the source has already been pre-populated, begins the drag immediately).
+从此**Image**发起OLE拖动操作，引发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**（或者，如果源已被预填充，则立即开始拖动）。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### Refresh
 
-Forces an immediate repaint of the **Image**'s rectangle on the parent's drawing surface.
+强制立即重绘**Image**在父级绘图表面上的矩形。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### ShowWhatsThis
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### ZOrder
 
-Brings the **Image** to the front or back of the windowless-sibling stack within its container.
+将**Image**带到容器内无窗口同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront**（0，默认）或**vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Click
 
-Raised when the user single-clicks the control's rectangle. **Default event.**
+当用户单击控件矩形时引发。**默认事件。**
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks the control's rectangle.
+当用户双击控件矩形时引发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop
 
-Raised on the destination control when a manual VB-style drag operation ends over it.
+当手动VB样式拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual VB-style drag operation is in progress.
+当手动VB样式拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### Initialize
 
-Raised once, after the control has been connected to its container's paint cycle but before it is first painted. Useful for last-minute setup that depends on container state.
+在控件已连接到其容器的绘制周期但首次绘制之前引发一次。适用于依赖容器状态的最后一刻设置。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the control.
+当用户在控件上方按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the control.
+当光标在控件上方移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the control.
+当用户在控件上方释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+当OLE拖动操作完成时在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+当用户在目标控件上放置数据时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+当OLE拖动经过目标控件时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+在拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标请求已注册但尚未提供的格式的数据时在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects.
+在OLE拖动开始时在源控件上引发，以便应用程序填充**DataObject**并选择允许的效果。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )

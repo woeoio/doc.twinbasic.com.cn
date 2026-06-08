@@ -2,16 +2,25 @@
 title: Deftype
 parent: Statements
 permalink: /tB/Core/Deftype
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd01b2e66-0aab-4a42-acdb-6da3e8883cd5'
+  PropagateID: 'd01b2e66-0aab-4a42-acdb-6da3e8883cd5'
+  ReservedCode1: '802c86c2-95eb-4c8f-90c8-0ffb9d29ba55'
+  ReservedCode2: '802c86c2-95eb-4c8f-90c8-0ffb9d29ba55'
 ---
-# DefBool, DefByte, DefInt, DefLng, DefLngLng, DefLngPtr, DefCur, DefSng, DefDbl, DefDec, DefDate, DefStr, DefObj, DefVar
 
-Used at the module level to set the default data type for variables, arguments passed to procedures, and the return type for **Function** and **Property Get** procedures whose names start with the specified characters.
+# DefBool、DefByte、DefInt、DefLng、DefLngLng、DefLngPtr、DefCur、DefSng、DefDbl、DefDec、DefDate、DefStr、DefObj、DefVar
+
+在模块级别用于为名称以指定字符开头的变量、传递给过程的参数以及 **Function** 和 **Property Get** 过程的返回类型设置默认数据类型。
 
 ::: warning
-The **Def**_type_ family of statements is deprecated. They are supported for compatibility with legacy code, but new code should declare every variable, argument, and return type explicitly with **As** *type*. Combined with [**Option Explicit**](/official/Reference/Core/Option#Explicit), explicit declarations make code far easier to read and maintain.
+**Def**_type_ 系列语句已弃用。它们仅为与遗留代码兼容而受支持，新代码应使用 **As** *type* 显式声明每个变量、参数和返回类型。结合 [**Option Explicit**](/official/Reference/Core/Option#Explicit)，显式声明使代码更易于阅读和维护。
 :::
 
-Syntax:
+语法：
 
 - > **DefBool** *letterrange* [ **,** *letterrange* ] **. . .**
 - > **DefByte** *letterrange* [ **,** *letterrange* ] **. . .**
@@ -29,11 +38,11 @@ Syntax:
 - > **DefVar** *letterrange* [ **,** *letterrange* ] **. . .**
 
 *letterrange*
-: A single letter, or a hyphenated range *letter1*-*letter2*. The letters specify the leading character of names that adopt the default type. Case is not significant.
+: 单个字母，或连字符范围 *letter1*-*letter2*。字母指定采用默认类型的名称的首字母。不区分大小写。
 
-The statement name determines the data type:
+语句名决定数据类型：
 
-| Statement | Data type |
+| 语句 | 数据类型 |
 |:----------|:----------|
 | **DefBool**   | **Boolean** |
 | **DefByte**   | **Byte** |
@@ -50,7 +59,7 @@ The statement name determines the data type:
 | **DefObj**    | **Object** |
 | **DefVar**    | **Variant** |
 
-For example, in the following fragment, `Message` is a **String** variable:
+例如，在以下片段中，`Message` 是 **String** 变量：
 
 ```vb
 DefStr A-Q
@@ -58,21 +67,21 @@ DefStr A-Q
 Message = "Out of stack space."
 ```
 
-A **Def**_type_ statement affects only the module where it is used. The default data type for variables, arguments, and return types of items not declared explicitly and not covered by a **Def**_type_ statement is **Variant**.
+**Def**_type_ 语句仅影响使用它的模块。未显式声明且未被 **Def**_type_ 语句覆盖的变量、参数和返回类型的默认数据类型为 **Variant**。
 
-A letter range usually defines the data type for variables that begin with letters in the first 128 characters of the character set. However, the range A-Z sets the default to the specified data type for *all* names, including those starting with characters from the extended part of the character set (128-255).
+字母范围通常为字符集前128个字符中以这些字母开头的变量定义数据类型。但是，范围A-Z为*所有*名称设置指定的数据类型，包括以字符集扩展部分（128-255）的字符开头的名称。
 
-After the range A-Z has been specified, subranges cannot be further redefined by using **Def**_type_ statements. Once a range has been specified, including a previously defined letter in another **Def**_type_ statement is an error. The data type of any variable --- defined or not --- can still be explicitly specified by using a [**Dim**](/official/Reference/Core/Dim) statement with an **As** *type* clause:
+指定范围A-Z后，子范围不能再使用 **Def**_type_ 语句重新定义。一旦指定了范围，在另一个 **Def**_type_ 语句中包含先前定义的字母将产生错误。任何变量——无论是否已定义——的数据类型仍可以通过使用带 **As** *type* 子句的 [**Dim**](/official/Reference/Core/Dim) 语句显式指定：
 
 ```vb
 DefInt A-Z
 Dim TaxRate As Double   ' explicit declaration overrides the default
 ```
 
-**Def**_type_ statements don't affect elements of user-defined types --- those must be explicitly declared.
+**Def**_type_ 语句不影响用户自定义类型的元素——那些必须显式声明。
 
-### See Also
+### 另请参阅
 
-- [**Dim** statement](/official/Reference/Core/Dim)
-- [**Option** statement](/official/Reference/Core/Option) (for **Option Explicit**)
-- [**Type** statement](/official/Reference/Core/Type)
+- [**Dim** 语句](/official/Reference/Core/Dim)
+- [**Option** 语句](/official/Reference/Core/Option)（关于 **Option Explicit**）
+- [**Type** 语句](/official/Reference/Core/Type)

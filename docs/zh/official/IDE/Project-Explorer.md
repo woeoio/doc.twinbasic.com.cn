@@ -1,95 +1,103 @@
 ---
-title: Project Explorer
+title: "项目资源管理器"
 parent: IDE
 permalink: /tB/IDE/Project/Explorer
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '401ec886-c346-4cd1-ac7a-53c40334ba14'
+  PropagateID: '401ec886-c346-4cd1-ac7a-53c40334ba14'
+  ReservedCode1: '8a9d783b-520f-4abd-8fab-e8c8a4bf7c18'
+  ReservedCode2: '8a9d783b-520f-4abd-8fab-e8c8a4bf7c18'
 ---
 
-# Project Explorer
+# 项目资源管理器
 
 ![Project Explorer](Images/ProjectExplorer.png "Project Explorer")
 ![Project Explorer Sample](Images/ProjectExplorer_Sample.png "Project Explorer Sample")
 
-![Folder](Images/Folder.png "Folder") ImportedTypeLibraries  
-![Folder](Images/Folder.png "Folder") Miscellaneous  
-![Folder](Images/Folder.png "Folder") Packages  
-![Folder](Images/Folder.png "Folder") References  
-![Folder](Images/Folder.png "Folder") Resources  
-![Folder](Images/Folder.png "Folder") Sources  
+![Folder](Images/Folder.png "Folder") ImportedTypeLibraries
+![Folder](Images/Folder.png "Folder") Miscellaneous
+![Folder](Images/Folder.png "Folder") Packages
+![Folder](Images/Folder.png "Folder") References
+![Folder](Images/Folder.png "Folder") Resources
+![Folder](Images/Folder.png "Folder") Sources
 
-When a Project is open contextual icons will appear.
+项目打开时会出现上下文图标。
 
 ![Project Explorer Header](Images/ProjectExplorer_Header.png "Project Explorer Header")
 
-## ![](Images/Settings.png) Project Settings
+## ![](Images/Settings.png) 项目设置
 
-- [Info](/official/IDE/Project-Settings)
+- [信息](/official/IDE/Project-Settings)
 
-## ![](Images/Toggle.png) Toggle file view (<kbd>CTRL</kbd> + <kbd>R</kbd>)
+## ![](Images/Toggle.png) 切换文件视图 (<kbd>CTRL</kbd> + <kbd>R</kbd>)
 
 
-## ![](Images/Add.png) Add...
+## ![](Images/Add.png) 添加...
 
-Same as Right-Click
+与右键相同
 
-## Right-Click - Add
+## 右键 - 添加
 
 ![Right-Click Add](Images/RightClick-Add.png "Right-Click Add")
 
-- ![Folder](Images/Folder.png "Folder") Add Folder
-- ![](Images/tB-Green.png) Add Windows Form
-- ![](Images/tB-Green.png) Add Windows MDI Form
-- ![](Images/tB-Green.png) Add Windows UserControl
-- ![](Images/tB-Green.png) Add Windows PropertyPage
-- ![](Images/tB-Green.png) Add Windows Report
+- ![Folder](Images/Folder.png "Folder") 添加文件夹
+- ![](Images/tB-Green.png) 添加 Windows 窗体
+- ![](Images/tB-Green.png) 添加 Windows MDI 窗体
+- ![](Images/tB-Green.png) 添加 Windows UserControl
+- ![](Images/tB-Green.png) 添加 Windows 属性页
+- ![](Images/tB-Green.png) 添加 Windows 报表
 
 ---
 
-- ![](Images/tB-Green.png) Add CustomControls Form
+- ![](Images/tB-Green.png) 添加 CustomControls 窗体
 
 ---
 
-- ![Module](Images/tB-Red.png "Module") Add Module (.TWIN supporting Unicode)
-- ![Class](Images/tB-Red.png "Class") Add Class (.TWIN supporting Unicode)
+- ![Module](Images/tB-Red.png "Module") 添加模块 (.TWIN 支持 Unicode)
+- ![Class](Images/tB-Red.png "Class") 添加类 (.TWIN 支持 Unicode)
 
 ---
 
-- ![Module](Images/tB-Blue.png "Module (BAS)") Add Module (.BAS)
-- ![Class](Images/tB-Orange.png "Class (CLS)") Add Class (.CLS)
+- ![Module](Images/tB-Blue.png "Module (BAS)") 添加模块 (.BAS)
+- ![Class](Images/tB-Orange.png "Class (CLS)") 添加类 (.CLS)
 
 ---
 
-- ![File](Images/File-Green.png "File") Add Other File
+- ![File](Images/File-Green.png "File") 添加其他文件
 
 ---
 
-- ![File](Images/File-Green.png "File") Import
+- ![File](Images/File-Green.png "File") 导入
 
 ---
 
-- Add Resource: Visual Styles Manifest
-- Add Resource: String Table
-- Add Resource: MESSAGETABLE
+- 添加资源：视觉样式清单
+- 添加资源：字符串表
+- 添加资源：MESSAGETABLE
 
-## ![](Images/Folder.png) Folder
-## ![](Images/tB-Green.png) Windows Form
+## ![](Images/Folder.png) 文件夹
+## ![](Images/tB-Green.png) Windows 窗体
 [tbForm](/official/IDE/tbForm)
 
-## ![](Images/tB-Green.png) Windows MDI Form
+## ![](Images/tB-Green.png) Windows MDI 窗体
 ## ![](Images/UserControl.png) Windows UserControl
-## ![](Images/tB-Green.png) Windows PropertyPage
-## ![](Images/tB-Green.png) Windows Report
+## ![](Images/tB-Green.png) Windows 属性页
+## ![](Images/tB-Green.png) Windows 报表
 [tbReport](/official/IDE/tbReport)
 
-## ![](Images/tB-Green.png) CustomControls Forms
+## ![](Images/tB-Green.png) CustomControls 窗体
 ![Add CustomControls Form Popup](Images/RightClick-Add-CustomControlsForm-Popup.png "Add CustomControls Form Popup")
 
-## ![](Images/tB-Red.png) Module
-## ![](Images/tB-Red.png) Class
-## ![](Images/File-Green.png) Other File
-## ![](Images/File-Green.png) Import
-## Resource: Visual Styles Manifest
+## ![](Images/tB-Red.png) 模块
+## ![](Images/tB-Red.png) 类
+## ![](Images/File-Green.png) 其他文件
+## ![](Images/File-Green.png) 导入
+## 资源：视觉样式清单
 
-See ![Folder](Images/Folder.png "Folder") `/.../Resources/MANIFEST/#1.xml`
+参见 ![Folder](Images/Folder.png "Folder") `/.../Resources/MANIFEST/#1.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -116,9 +124,9 @@ See ![Folder](Images/Folder.png "Folder") `/.../Resources/MANIFEST/#1.xml`
 </assembly>
 ```
 
-## Resource: String Table
+## 资源：字符串表
 
-See ![Folder](Images/Folder.png "Folder") `/.../Resources/STRING/Strings.json`
+参见 ![Folder](Images/Folder.png "Folder") `/.../Resources/STRING/Strings.json`
 
 ```json
 [
@@ -141,9 +149,9 @@ See ![Folder](Images/Folder.png "Folder") `/.../Resources/STRING/Strings.json`
 ]
 ```
 
-## Resource: MESSAGETABLE
+## 资源：MESSAGETABLE
 
-See ![Folder](Images/Folder.png "Folder") `/.../Resources/MESSAGETABLE/Strings.json`
+参见 ![Folder](Images/Folder.png "Folder") `/.../Resources/MESSAGETABLE/Strings.json`
 
 ```json
 {

@@ -1,24 +1,33 @@
-﻿---
+---
 title: VbIMEStatus
 parent: Constants Module
 permalink: /tB/Modules/Constants/VbIMEStatus
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'bbd07c79-f662-49e0-ae57-400757c179e3'
+  PropagateID: 'bbd07c79-f662-49e0-ae57-400757c179e3'
+  ReservedCode1: '7086a6ac-8f6f-4d65-9bb5-62ca90a1de3e'
+  ReservedCode2: '7086a6ac-8f6f-4d65-9bb5-62ca90a1de3e'
 ---
+
 # VbIMEStatus
 
-Input Method Editor mode constants. Each value is exposed under both the legacy `vbIME...` name and the newer `vbIMEMode...` name; the two names with the same value are interchangeable.
+输入法编辑器模式常量。每个值同时以旧版 `vbIME...` 名称和较新的 `vbIMEMode...` 名称公开；具有相同值的两个名称可互换使用。
 
-The constants applicable to a given mode depend on the system locale. Values 4--8 apply to Japanese locales, and values 9 and 10 apply to Korean locales.
+适用于给定模式的常量取决于系统区域设置。值 4--8 适用于日语区域，值 9 和 10 适用于韩语区域。
 
-| Constants | Value | Description |
-|-----------|-------|-------------|
-| **vbIMENoOp** / **vbIMEModeNoControl** | 0 | Don't control the IME (default). |
-| **vbIMEOn** / **vbIMEModeOn** | 1 | IME on. |
-| **vbIMEOff** / **vbIMEModeOff** | 2 | IME off. |
-| **vbIMEDisable** / **vbIMEModeDisable** | 3 | IME disabled. |
-| **vbIMEHiragana** / **vbIMEModeHiragana** | 4 | Full-width Hiragana mode. |
-| **vbIMEKatakanaDbl** / **vbIMEModeKatakana** | 5 | Full-width Katakana mode. |
-| **vbIMEKatakanaSng** / **vbIMEModeKatakanaHalf** | 6 | Half-width Katakana mode. |
-| **vbIMEAlphaDbl** / **vbIMEModeAlphaFull** | 7 | Full-width Alphanumeric mode. |
-| **vbIMEAlphaSng** / **vbIMEModeAlpha** | 8 | Half-width Alphanumeric mode. |
-| **vbIMEModeHangulFull** | 9 | Full-width Hangul mode. |
-| **vbIMEModeHangul** | 10 | Half-width Hangul mode. |
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **vbIMENoOp** / **vbIMEModeNoControl** | 0 | 不控制 IME（默认）。 |
+| **vbIMEOn** / **vbIMEModeOn** | 1 | IME 开启。 |
+| **vbIMEOff** / **vbIMEModeOff** | 2 | IME 关闭。 |
+| **vbIMEDisable** / **vbIMEModeDisable** | 3 | IME 禁用。 |
+| **vbIMEHiragana** / **vbIMEModeHiragana** | 4 | 全角平假名模式。 |
+| **vbIMEKatakanaDbl** / **vbIMEModeKatakana** | 5 | 全角片假名模式。 |
+| **vbIMEKatakanaSng** / **vbIMEModeKatakanaHalf** | 6 | 半角片假名模式。 |
+| **vbIMEAlphaDbl** / **vbIMEModeAlphaFull** | 7 | 全角字母数字模式。 |
+| **vbIMEAlphaSng** / **vbIMEModeAlpha** | 8 | 半角字母数字模式。 |
+| **vbIMEModeHangulFull** | 9 | 全角韩文模式。 |
+| **vbIMEModeHangul** | 10 | 半角韩文模式。 |

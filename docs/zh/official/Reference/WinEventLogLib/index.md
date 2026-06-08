@@ -1,5 +1,5 @@
 ---
-title: WinEventLogLib Package
+title: "WinEventLogLib 包"
 parent: Packages
 nav_order: 8
 permalink: /tB/Packages/WinEventLogLib/
@@ -7,24 +7,25 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'cc81060f-6a8b-4ed7-9bfa-c1c40ef93312'
-  PropagateID: 'cc81060f-6a8b-4ed7-9bfa-c1c40ef93312'
-  ReservedCode1: 'bc1b23aa-da40-4c75-b908-ddcb6145d94f'
-  ReservedCode2: 'bc1b23aa-da40-4c75-b908-ddcb6145d94f'
+  ProduceID: '163fe8fd-58a9-4eee-b3da-62d1ed2ebc4c'
+  PropagateID: '163fe8fd-58a9-4eee-b3da-62d1ed2ebc4c'
+  ReservedCode1: '5ac10d35-a577-44a8-a0ba-c7529b62c3ac'
+  ReservedCode2: '5ac10d35-a577-44a8-a0ba-c7529b62c3ac'
 ---
 
-# WinEventLogLib Package
-The **WinEventLogLib** built-in package writes entries to the Windows Event Log from twinBASIC. Define two enumerations --- one naming the event IDs the application can report, one naming the categories those events belong to --- and the generic [**EventLog**](/official/Reference/WinEventLogLib/EventLog) class handles registration, registry setup, and the per-event `ReportEventW` call.
+# WinEventLogLib 包
 
-The package is a built-in package shipped with twinBASIC. Add it through Project → References (**Ctrl-T**) → Available Packages.
+**WinEventLogLib** 内置包从 twinBASIC 向Windows事件日志写入条目。定义两个枚举——一个命名应用程序可报告的事件ID，一个命名这些事件所属的类别——通用 [**EventLog**](/official/Reference/WinEventLogLib/EventLog) 类负责注册、注册表设置和每次事件的 `ReportEventW` 调用。
 
-## Lifecycle
+该包是随 twinBASIC 一起发布的内置包。通过 Project → References（**Ctrl-T**）→ Available Packages 添加。
 
-A typical use has three stages:
+## 生命周期
 
-1. **Declare** two enumerations --- the event IDs and the categories --- anywhere in the project. The assigned values become the numeric **Event ID** and **Category** columns visible in `eventvwr.msc`.
-2. **Register** once, with administrator rights, at install time. Construct an [**EventLog**](/official/Reference/WinEventLogLib/EventLog) instance and call [**Register**](/official/Reference/WinEventLogLib/EventLog#register); this writes the source key under `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\<LogName>` and points the registry's **EventMessageFile** and **CategoryMessageFile** entries at the running EXE. Without this step, the Event Viewer shows *"The description for Event ID X cannot be found"* for every entry.
-3. **Log** at runtime, without elevation. Construct the same [**EventLog**](/official/Reference/WinEventLogLib/EventLog) with the same *LogName* and call [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) or [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) whenever the application has something to report.
+典型使用有三个阶段：
+
+1. **声明**两个枚举——事件ID和类别——在项目中的任何位置。赋值成为 `eventvwr.msc` 中可见的数字 **Event ID** 和 **Category** 列。
+2. **注册**一次，安装时需要管理员权限。构造 [**EventLog**](/official/Reference/WinEventLogLib/EventLog) 实例并调用 [**Register**](/official/Reference/WinEventLogLib/EventLog#register)；这会在 `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\<LogName>` 下写入源键，并将注册表的 **EventMessageFile** 和 **CategoryMessageFile** 条目指向正在运行的EXE。没有此步骤，事件查看器会为每个条目显示 *"The description for Event ID X cannot be found"*。
+3. **记录**在运行时，无需提升权限。用相同的 *LogName* 构造相同的 [**EventLog**](/official/Reference/WinEventLogLib/EventLog)，然后在应用程序有内容需要报告时调用 [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) 或 [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure)。
 
 ```vb
 Public Enum MyEventIds
@@ -38,26 +39,26 @@ Public Enum MyCategories
     Network = 2
 End Enum
 
-' One-time install step (requires admin):
+' 一次性安装步骤（需要管理员权限）：
 Sub Install()
     Dim Log As New EventLog(Of MyEventIds, MyCategories)("MyService")
     Log.Register
 End Sub
 
-' Runtime use (no admin required):
+' 运行时使用（无需管理员权限）：
 Sub OnServiceStart()
     Dim Log As New EventLog(Of MyEventIds, MyCategories)("MyService")
     Log.LogSuccess StartupOk, General, "Service started", App.ModulePath
 End Sub
 ```
 
-The same EXE that calls [**Register**](/official/Reference/WinEventLogLib/EventLog#register) must be the one that calls [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) / [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) --- the registered **EventMessageFile** points at `App.ModulePath`, and the Event Viewer reads message strings out of that file when rendering entries.
+调用 [**Register**](/official/Reference/WinEventLogLib/EventLog#register) 的同一EXE必须是后来调用 [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) / [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) 的那个——注册的 **EventMessageFile** 指向 `App.ModulePath`，事件查看器在渲染条目时从该文件读取消息字符串。
 
-For service / long-running classes that should expose [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) / [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) / [**Register**](/official/Reference/WinEventLogLib/EventLog#register) as if those methods were their own, see the [composition-delegation idiom](#composition-delegation-idiom) below.
+对于应该将 [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) / [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) / [**Register**](/official/Reference/WinEventLogLib/EventLog#register) 暴露为自身方法的服务/长期运行类，参见下方的[组合委托惯用法](#composition-delegation-idiom)。
 
-## Composition-delegation idiom
+## 组合委托惯用法
 
-A class can mix [**EventLog**](/official/Reference/WinEventLogLib/EventLog)`(Of T1, T2)` in through twinBASIC's [`Implements ... Via`](/official/Features/Language/Inheritance) composition syntax and inherit its public members unqualified:
+类可以通过 twinBASIC 的 [`Implements ... Via`](/official/Features/Language/Inheritance) 组合语法将 [**EventLog**](/official/Reference/WinEventLogLib/EventLog)`(Of T1, T2)` 混入，并无条件地继承其公共成员：
 
 ```vb
 Class MyService
@@ -65,33 +66,33 @@ Class MyService
         EventLog = New EventLog(Of MESSAGETABLE.EVENTS, MESSAGETABLE.CATEGORIES)("Application\" & CurrentComponentName)
 
     Sub Run()
-        LogSuccess service_started, status_changed, CurrentComponentName    ' forwarded through the field above
+        LogSuccess service_started, status_changed, CurrentComponentName    ' 通过上面的字段转发
         ' ...
         LogSuccess service_ended,   status_changed, CurrentComponentName
     End Sub
 End Class
 ```
 
-The `Implements <Class> Via <field> = <expression>` clause declares a private field, evaluates the constructor expression once on first use, and forwards every public member of [**EventLog**](/official/Reference/WinEventLogLib/EventLog) --- [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess), [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure), and [**Register**](/official/Reference/WinEventLogLib/EventLog#register) --- through that field. Inside `MyService` the three methods read as if they were declared on the class itself.
+`Implements <Class> Via <field> = <expression>` 子句声明一个私有字段，在首次使用时评估构造函数表达式一次，并通过该字段转发 [**EventLog**](/official/Reference/WinEventLogLib/EventLog) 的每个公共成员——[**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess)、[**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) 和 [**Register**](/official/Reference/WinEventLogLib/EventLog#register)。在 `MyService` 内部，这三个方法看起来就像是在类本身上声明的一样。
 
-Two things to remember:
+需要记住的两点：
 
-- The *T1* / *T2* type arguments must match between the `Implements` declaration and the constructor expression --- the compiler enforces this.
-- Using `"Application\" & CurrentComponentName` as the *LogName* makes the log path automatically track the class name at compile time; renaming the class renames the source it logs to.
+- *T1* / *T2* 类型参数在 `Implements` 声明和构造函数表达式之间必须匹配——编译器会强制执行此约束。
+- 使用 `"Application\" & CurrentComponentName` 作为 *LogName* 会使日志路径在编译时自动跟踪类名；重命名类会重命名它记录日志的源。
 
-This is the canonical mix-in pattern for [**WinServicesLib**](/official/Reference/WinServicesLib/) service classes (every service class in a project that shares one set of event IDs inherits logging methods without per-class boilerplate). The same pattern works for any class that wants the [**EventLog**](/official/Reference/WinEventLogLib/EventLog) members available directly.
+这是 [**WinServicesLib**](/official/Reference/WinServicesLib/) 服务类的规范混入模式（共享一组事件ID的项目中的每个服务类继承日志方法而无需按类编写样板代码）。相同的模式适用于任何想要直接使用 [**EventLog**](/official/Reference/WinEventLogLib/EventLog) 成员的类。
 
-A class can use `Implements ... Via` on [**EventLog**](/official/Reference/WinEventLogLib/EventLog)`(Of T1, T2)` only **once**. When several classes in the same project need to share logging, declare a single module with one event-ID enum and one category enum and `Implements ... Via` against that pair from every class. Multiple unrelated message tables are still possible --- they just have to be reached through explicitly-named [**EventLog**](/official/Reference/WinEventLogLib/EventLog) fields rather than the `Implements ... Via` shortcut.
+一个类只能对 [**EventLog**](/official/Reference/WinEventLogLib/EventLog)`(Of T1, T2)` 使用一次 `Implements ... Via`。当同一项目中的多个类需要共享日志记录时，声明一个具有一个事件ID枚举和一个类别枚举的单一模块，并从每个类通过 `Implements ... Via` 针对该枚举对进行委托。多个不相关的消息表仍然可行——它们只需要通过显式命名的 [**EventLog**](/official/Reference/WinEventLogLib/EventLog) 字段而非 `Implements ... Via` 快捷方式来访问。
 
-## Message resources
+## 消息资源
 
-The Windows Event Log stores only numeric **Event ID** and **Category** values; the human-readable strings live in a message-table resource embedded in the EXE pointed to by the registered **EventMessageFile** / **CategoryMessageFile** entries. Without this resource the Event Viewer cannot render entries and instead shows *"The description for Event ID X cannot be found"*.
+Windows事件日志仅存储数字 **Event ID** 和 **Category** 值；人类可读的字符串位于注册的 **EventMessageFile** / **CategoryMessageFile** 条目指向的EXE中嵌入的消息表资源中。没有此资源，事件查看器无法渲染条目，而是显示 *"The description for Event ID X cannot be found"*。
 
-For the generic [**EventLog**](/official/Reference/WinEventLogLib/EventLog)`(Of T1, T2)` class, the *T1* (event IDs) and *T2* (categories) enum declarations are the source of those strings --- the class points the registry at the running EXE and the Event Viewer looks for a message-table resource keyed by the enum member values. Authoring the resource directly (a `.mc` file fed to `mc.exe`, embedded as a resource section) is one route; the convention shown below keeps the enums, the message strings, and the resource emission in lockstep from a single JSON file using twinBASIC's [`[PopulateFrom]`](/official/Reference/Attributes#populatefrom) enum-population attribute.
+对于通用 [**EventLog**](/official/Reference/WinEventLogLib/EventLog)`(Of T1, T2)` 类，*T1*（事件ID）和 *T2*（类别）枚举声明是这些字符串的来源——该类将注册表指向正在运行的EXE，事件查看器按枚举成员值查找消息表资源。直接编写资源（馈送给 `mc.exe` 的 `.mc` 文件，作为资源节嵌入）是一种途径；下面展示的惯例使用 twinBASIC 的 [`[PopulateFrom]`](/official/Reference/Attributes#populatefrom) 枚举填充属性，从单个JSON文件保持枚举、消息字符串和资源发射的同步。
 
-### The `[PopulateFrom("json", ...)]` convention
+### `[PopulateFrom("json", ...)]` 惯例
 
-Declare a module with two empty enum stubs, each tagged with [`[PopulateFrom]`](/official/Reference/Attributes#populatefrom) pointing at a project-relative JSON resource:
+声明一个包含两个空枚举存根的模块，每个存根用 [`[PopulateFrom]`](/official/Reference/Attributes#populatefrom) 标记，指向项目相对路径的JSON资源：
 
 ```vb
 Module MESSAGETABLE
@@ -105,9 +106,9 @@ Module MESSAGETABLE
 End Module
 ```
 
-The five [`[PopulateFrom]`](/official/Reference/Attributes#populatefrom) arguments are: the resource format (`"json"`), the project-relative path to the file, the JSON array to read entries from (`"events"` for the events stub, `"categories"` for the categories stub), the field name supplying each enum member's identifier, and the field name supplying its numeric value.
+五个 [`[PopulateFrom]`](/official/Reference/Attributes#populatefrom) 参数分别是：资源格式（`"json"`）、项目相对路径的文件路径、从中读取条目的JSON数组（`"events"` 对应事件存根，`"categories"` 对应类别存根）、提供每个枚举成员标识符的字段名，以及提供其数字值的字段名。
 
-`Resources/MESSAGETABLE/Strings.json` has one entry per event and one per category. Each entry has three fields --- a numeric `id`, an enum-member `name`, and the per-locale message text under an `LCID_XXXX` key:
+`Resources/MESSAGETABLE/Strings.json` 为每个事件和每个类别各有一个条目。每个条目有三个字段——数字 `id`、枚举成员 `name` 和 `LCID_XXXX` 键下的每个区域设置的消息文本：
 
 ```json
 {
@@ -122,31 +123,29 @@ The five [`[PopulateFrom]`](/official/Reference/Attributes#populatefrom) argumen
 }
 ```
 
-The compiler reads the JSON at build time and populates each enum body --- `Enum EVENTS` ends up with `service_started = -1073610751`, `service_startup_failed = -1073610750`, … --- while emitting the message-table resource into the produced EXE. The `LCID_0000` strings (locale-neutral) become the message templates; substitute / add `LCID_0409` (US English), `LCID_040C` (French), etc. for localised projects.
+编译器在构建时读取JSON并填充每个枚举体——`Enum EVENTS` 最终包含 `service_started = -1073610751`、`service_startup_failed = -1073610750`、…——同时将消息表资源发射到生成的EXE中。`LCID_0000` 字符串（区域设置中立）成为消息模板；替换/添加 `LCID_0409`（美式英语）、`LCID_040C`（法语）等用于本地化项目。
 
-Once the JSON, the enum stubs, and the registry entries written by [**Register**](/official/Reference/WinEventLogLib/EventLog#register) are in place, a runtime call
+一旦JSON、枚举存根和 [**Register**](/official/Reference/WinEventLogLib/EventLog#register) 写入的注册表条目到位，运行时调用
 
 ```vb
 Dim Log As New EventLog(Of MESSAGETABLE.EVENTS, MESSAGETABLE.CATEGORIES)("Application\" & CurrentComponentName)
 Log.LogSuccess service_started, status_changed, "MyService"
 ```
 
-writes an event the Event Viewer renders as *"MyService service started"* --- the `%1` placeholder filled from the [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) *AdditionalStrings* `ParamArray`, the `status_changed` category resolved against the message table, both keyed by the numeric values the enums define.
+将写入一条事件，事件查看器渲染为 *"MyService service started"*——`%1` 占位符从 [**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) 的 *AdditionalStrings* `ParamArray` 填充，`status_changed` 类别根据消息表解析，两者都由枚举定义的数字值键控。
 
-The negative event-ID values in the JSON (`-1073610751` etc.) follow the Win32 documented event-ID bit layout --- the high bits encode severity, facility, and customer-defined flags. See Microsoft's *"Event Identifiers"* reference for the encoding; pick fresh IDs for new events and don't reuse identifiers across products.
+JSON中的负事件ID值（`-1073610751` 等）遵循Win32文档记录的事件ID位布局——高位编码严重级别、设施和客户定义标志。参见Microsoft的 *"Event Identifiers"* 参考了解编码方式；为新事件选择新的ID，不要跨产品重用标识符。
 
-## Log Type
+## 日志类型
 
-[**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) and [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) are the only entry points currently exposed; they write **Information**-type and **Error**-type entries respectively. The names follow the Win32 SDK's `EVENTLOG_SUCCESS` (= 0, the *information* event type) and `EVENTLOG_ERROR_TYPE` (= 1) constants verbatim --- *not* the Audit Success / Audit Failure event types familiar from the Security log.
+[**LogSuccess**](/official/Reference/WinEventLogLib/EventLog#logsuccess) 和 [**LogFailure**](/official/Reference/WinEventLogLib/EventLog#logfailure) 是目前暴露的唯一入口点；它们分别写入 **Information** 类型和 **Error** 类型的条目。名称遵循Win32 SDK的 `EVENTLOG_SUCCESS`（= 0，即*信息*事件类型）和 `EVENTLOG_ERROR_TYPE`（= 1）常量的字面名称——*不是* 安全日志中熟悉的审核成功/审核失败事件类型。
 
-The three other Windows Event Log entry types --- **Warning**, **Audit Success**, and **Audit Failure** --- are not yet reachable through the public API.
+其他三种Windows事件日志条目类型——**Warning**、**Audit Success** 和 **Audit Failure**——目前无法通过公共API访问。
 
-## Classes
+## 类
 
-- [EventLog](/official/Reference/WinEventLogLib/EventLog) -- the generic event-log source -- open / register / log entries against one event log, parameterised by an event-ID enum and a category enum
+- [EventLog](/official/Reference/WinEventLogLib/EventLog) -- 通用事件日志源——针对一个事件日志的打开/注册/记录条目，由事件ID枚举和类别枚举参数化
 
-## Modules
+## 模块
 
-- [EventLogHelperPublic](/official/Reference/WinEventLogLib/EventLogHelperPublic) -- the low-level registry helper underlying [**EventLog.Register**](/official/Reference/WinEventLogLib/EventLog#register); call it directly only when a category count must be supplied without using the generic class
-
-> AI生成
+- [EventLogHelperPublic](/official/Reference/WinEventLogLib/EventLogHelperPublic) -- [**EventLog.Register**](/official/Reference/WinEventLogLib/EventLog#register) 底层的低级注册表辅助模块；仅在必须在不使用通用类的情况下提供类别计数时直接调用

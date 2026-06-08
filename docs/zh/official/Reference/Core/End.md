@@ -2,50 +2,58 @@
 title: End
 parent: Statements
 permalink: /tB/Core/End
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '92bc5f20-f9b9-4236-a60e-b706495ca1b0'
+  PropagateID: '92bc5f20-f9b9-4236-a60e-b706495ca1b0'
+  ReservedCode1: '5e5f9bf0-5986-4fa1-91e5-2402ccd9c07e'
+  ReservedCode2: '5e5f9bf0-5986-4fa1-91e5-2402ccd9c07e'
 ---
 
 # End
 
-Ends a procedure or block.
+结束过程或块。
 
-Syntax:
+语法：
 
 - **End**  
-  Terminates execution immediately. Never required by itself but may be placed anywhere in a procedure to end code execution, close files opened with the [**Open**](/official/Reference/Core/Open) statement, and to clear variables.
+  立即终止执行。本身从不是必需的，但可以放在过程中任何位置以结束代码执行、关闭用 [**Open**](/official/Reference/Core/Open) 语句打开的文件并清除变量。
 
 - **End Function**  
-  Required to end a [**Function**](/official/Reference/Core/Function) statement.
+  结束 [**Function**](/official/Reference/Core/Function) 语句所必需。
   
 - **End If**  
-  Required to end a block [**If...Then...Else**](/official/Reference/Core/If-Then-Else) statement.
+  结束块 [**If...Then...Else**](/official/Reference/Core/If-Then-Else) 语句所必需。
   
 - **End Property**  
-  Required to end a [**Property Get**](/official/Reference/Core/Property), [**Property Let**](/official/Reference/Core/Property), and [**Property Set**](/official/Reference/Core/Property) procedure.
+  结束 [**Property Get**](/official/Reference/Core/Property)、[**Property Let**](/official/Reference/Core/Property) 和 [**Property Set**](/official/Reference/Core/Property) 过程所必需。
   
 - **End Select**  
-  Required to end a [**Select Case**](/official/Reference/Core/Select-Case) statement.
+  结束 [**Select Case**](/official/Reference/Core/Select-Case) 语句所必需。
 
 - **End Sub**
-  Required to end a [**Sub**](/official/Reference/Core/Sub) statement.
+  结束 [**Sub**](/official/Reference/Core/Sub) 语句所必需。
 
 - **End Type**
-  Required to end a user-defined type (UDT) definition ([**Type**](/official/Reference/Core/Type) statement).
+  结束用户自定义类型(UDT)定义（[**Type**](/official/Reference/Core/Type) 语句）所必需。
 
 - **End With**
-  Required to end a [**With**](/official/Reference/Core/With) statement.
+  结束 [**With**](/official/Reference/Core/With) 语句所必需。
 
-When executed, the **End** statement resets all module-level variables and all static local variables in all modules. To preserve the value of these variables, use the [**Stop**](/official/Reference/Core/Stop) statement instead --- execution can then resume while preserving the value of those variables.
+执行时，**End** 语句重置所有模块中所有模块级变量和所有静态局部变量。要保留这些变量的值，请改用 [**Stop**](/official/Reference/Core/Stop) 语句——然后可以在保留这些变量值的情况下恢复执行。
 
 ::: important
 
-The **End** statement stops code execution abruptly, without invoking the Unload, QueryUnload, or Terminate event, or any other Visual Basic code. Code placed in the Unload, QueryUnload, and Terminate events of forms and class modules is not executed. Objects created from class modules are destroyed, files opened by using the **Open** statement are closed, and memory used by the program is freed. Object references held by other programs are invalidated.
+**End** 语句突然停止代码执行，不调用Unload、QueryUnload或Terminate事件，也不调用任何其他Visual Basic代码。窗体和类模块的Unload、QueryUnload和Terminate事件中的代码不会被执行。从类模块创建的对象被销毁，使用 **Open** 语句打开的文件被关闭，程序使用的内存被释放。其他程序持有的对象引用变为无效。
 :::
 
-The **End** statement provides a way to force the program to halt. For normal termination of a Visual Basic program, all forms should be unloaded. The program closes as soon as there are no other programs holding references to objects created from public class modules and no code executing.
+**End** 语句提供了一种强制程序停止的方式。对于Visual Basic程序的正常终止，应卸载所有窗体。当没有其他程序持有对公共类模块创建的对象的引用且没有代码在执行时，程序关闭。
 
-### Example
+### 示例
 
-This example uses the **End** statement to end code execution if the user enters an invalid password.
+本示例使用 **End** 语句在用户输入无效密码时结束代码执行。
 
 ```vb
 Sub Form_Load 

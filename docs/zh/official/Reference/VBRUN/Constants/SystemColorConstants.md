@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '536ce40e-b850-4d9c-815f-87acb8b89abc'
+  PropagateID: '536ce40e-b850-4d9c-815f-87acb8b89abc'
+  ReservedCode1: 'edb7e184-398d-40f8-a4a4-37470f165f1a'
+  ReservedCode2: 'edb7e184-398d-40f8-a4a4-37470f165f1a'
+---
+
 ---
 title: SystemColorConstants
 parent: Constants Module
@@ -5,41 +16,41 @@ permalink: /tB/Packages/VBRUN/Constants/SystemColorConstants
 ---
 # SystemColorConstants
 
-Reference values for system palette entries --- the colours the user has chosen for various standard parts of the Windows UI. Values have the high bit set so that the runtime can distinguish them from RGB colours; pass them through [**TranslateColor**](/official/Reference/VBA/Information/TranslateColor) to obtain a plain RGB value.
+系统调色板条目的引用值——用户为Windows UI各标准部分选择的颜色。值设置了高位，以便运行时将其与RGB颜色区分；可通过[**TranslateColor**](/official/Reference/VBA/Information/TranslateColor)获取普通RGB值。
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbScrollBars** | &H80000000 | Scroll-bar colour. |
-| **vbDesktop** | &H80000001 | Desktop colour. |
-| **vbActiveTitleBar** | &H80000002 | Active window's title-bar colour. |
-| **vbInactiveTitleBar** | &H80000003 | Inactive window's title-bar colour. |
-| **vbMenuBar** | &H80000004 | Menu-bar background. |
-| **vbWindowBackground** | &H80000005 | Window background (typically white in the classic palette). |
-| **vbWindowFrame** | &H80000006 | Window frame. |
-| **vbMenuText** | &H80000007 | Menu text colour. |
-| **vbWindowText** | &H80000008 | Window text colour. |
-| **vbTitleBarText** | &H80000009 | Active window's title-bar text. |
-| **vbActiveTitleBarText** | &H80000009 | Same as **vbTitleBarText**. |
-| **vbActiveBorder** | &H8000000A | Active window's border colour. |
-| **vbInactiveBorder** | &H8000000B | Inactive window's border colour. |
-| **vbApplicationWorkspace** | &H8000000C | Application workspace (MDI parent background). |
-| **vbHighlight** | &H8000000D | Highlighted item background (selection colour). |
-| **vbHighlightText** | &H8000000E | Highlighted item text. |
-| **vbButtonFace** | &H8000000F | Button face. |
-| **vb3DFace** | &H8000000F | Same as **vbButtonFace**. |
-| **vbButtonShadow** | &H80000010 | Button shadow (the shaded edge). |
-| **vb3Dshadow** | &H80000010 | Same as **vbButtonShadow**. |
-| **vbGrayText** | &H80000011 | Disabled (grayed) text. |
-| **vbButtonText** | &H80000012 | Button text. |
-| **vbInactiveCaptionText** | &H80000013 | Inactive window's title-bar text. |
-| **vbInactiveTitleBarText** | &H80000013 | Same as **vbInactiveCaptionText**. |
-| **vb3DHighlight** | &H80000014 | 3-D highlight (the bright edge). |
-| **vb3DDKShadow** | &H80000015 | 3-D dark shadow. |
-| **vb3DLight** | &H80000016 | 3-D light edge. |
-| **vbInfoText** | &H80000017 | Tool-tip text colour. |
-| **vbInfoBackground** | &H80000018 | Tool-tip background colour. |
-| **vbHotTrackText** | &H8000001A | Hot-tracked item text. |
-| **vbActiveTitleBarGradient** | &H8000001B | Active title-bar gradient end colour. |
-| **vbInactiveTitleBarGradient** | &H8000001C | Inactive title-bar gradient end colour. |
-| **vbMenuHighlight** | &H8000001D | Menu-item highlight (hover) colour. |
-| **vbMenuBarFlat** | &H8000001E | Flat-style menu-bar background. |
+| **vbScrollBars** | &H80000000 | 滚动条颜色。 |
+| **vbDesktop** | &H80000001 | 桌面颜色。 |
+| **vbActiveTitleBar** | &H80000002 | 活动窗口标题栏颜色。 |
+| **vbInactiveTitleBar** | &H80000003 | 非活动窗口标题栏颜色。 |
+| **vbMenuBar** | &H80000004 | 菜单栏背景。 |
+| **vbWindowBackground** | &H80000005 | 窗口背景（经典调色板中通常为白色）。 |
+| **vbWindowFrame** | &H80000006 | 窗口边框。 |
+| **vbMenuText** | &H80000007 | 菜单文本颜色。 |
+| **vbWindowText** | &H80000008 | 窗口文本颜色。 |
+| **vbTitleBarText** | &H80000009 | 活动窗口标题栏文本。 |
+| **vbActiveTitleBarText** | &H80000009 | 同 **vbTitleBarText**。 |
+| **vbActiveBorder** | &H8000000A | 活动窗口边框颜色。 |
+| **vbInactiveBorder** | &H8000000B | 非活动窗口边框颜色。 |
+| **vbApplicationWorkspace** | &H8000000C | 应用程序工作区（MDI父窗口背景）。 |
+| **vbHighlight** | &H8000000D | 高亮项背景（选中颜色）。 |
+| **vbHighlightText** | &H8000000E | 高亮项文本。 |
+| **vbButtonFace** | &H8000000F | 按钮表面。 |
+| **vb3DFace** | &H8000000F | 同 **vbButtonFace**。 |
+| **vbButtonShadow** | &H80000010 | 按钮阴影（阴影边缘）。 |
+| **vb3Dshadow** | &H80000010 | 同 **vbButtonShadow**。 |
+| **vbGrayText** | &H80000011 | 禁用（灰色）文本。 |
+| **vbButtonText** | &H80000012 | 按钮文本。 |
+| **vbInactiveCaptionText** | &H80000013 | 非活动窗口标题栏文本。 |
+| **vbInactiveTitleBarText** | &H80000013 | 同 **vbInactiveCaptionText**。 |
+| **vb3DHighlight** | &H80000014 | 3D高亮（亮边边缘）。 |
+| **vb3DDKShadow** | &H80000015 | 3D深色阴影。 |
+| **vb3DLight** | &H80000016 | 3D浅色边缘。 |
+| **vbInfoText** | &H80000017 | 工具提示文本颜色。 |
+| **vbInfoBackground** | &H80000018 | 工具提示背景颜色。 |
+| **vbHotTrackText** | &H8000001A | 热追踪项文本。 |
+| **vbActiveTitleBarGradient** | &H8000001B | 活动标题栏渐变终止颜色。 |
+| **vbInactiveTitleBarGradient** | &H8000001C | 非活动标题栏渐变终止颜色。 |
+| **vbMenuHighlight** | &H8000001D | 菜单项高亮（悬停）颜色。 |
+| **vbMenuBarFlat** | &H8000001E | 平面式菜单栏背景。 |

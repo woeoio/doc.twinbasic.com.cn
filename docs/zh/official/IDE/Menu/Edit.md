@@ -1,46 +1,54 @@
 ---
-title: Edit
+title: 编辑
 parent: Menu
 nav_order: 2
 permalink: /tB/IDE/Project/Menu/Edit
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a73d89eb-48c3-47c0-9e6b-b721b40ca898'
+  PropagateID: 'a73d89eb-48c3-47c0-9e6b-b721b40ca898'
+  ReservedCode1: '3aeeed1b-f6ee-42d0-b22b-15da45439389'
+  ReservedCode2: '3aeeed1b-f6ee-42d0-b22b-15da45439389'
 ---
 
-# Edit Menu
+# 编辑菜单
 
 ![Edit Menu](Images/Menu_Edit.png "Edit Menu")
 
-- Undo <kbd>CTRL</kbd> + <kbd>Z</kbd>
-- Redo <kbd>CTRL</kbd> + <kbd>Y</kbd>
+- 撤销 <kbd>CTRL</kbd> + <kbd>Z</kbd>
+- 重做 <kbd>CTRL</kbd> + <kbd>Y</kbd>
 ---
-- Cut <kbd>CTRL</kbd> + <kbd>X</kbd> / <kbd>SHIFT</kbd> + <kbd>DELETE</kbd>
-- Copy <kbd>CTRL</kbd> + <kbd>C</kbd> / <kbd>CTRL</kbd> + <kbd>INSERT</kbd>
-- Paste <kbd>CTRL</kbd> + <kbd>V</kbd>
-- Delete <kbd>DELETE</kbd>
-- Select All <kbd>CTRL</kbd> + <kbd>A</kbd>
+- 剪切 <kbd>CTRL</kbd> + <kbd>X</kbd> / <kbd>SHIFT</kbd> + <kbd>DELETE</kbd>
+- 复制 <kbd>CTRL</kbd> + <kbd>C</kbd> / <kbd>CTRL</kbd> + <kbd>INSERT</kbd>
+- 粘贴 <kbd>CTRL</kbd> + <kbd>V</kbd>
+- 删除 <kbd>DELETE</kbd>
+- 全选 <kbd>CTRL</kbd> + <kbd>A</kbd>
 ---
-- Find... <kbd>CTRL</kbd> + <kbd>F</kbd>
-- Replace... <kbd>CTRL</kbd> + <kbd>H</kbd>
-- Find In Project... <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>Y</kbd>
+- 查找... <kbd>CTRL</kbd> + <kbd>F</kbd>
+- 替换... <kbd>CTRL</kbd> + <kbd>H</kbd>
+- 在项目中查找... <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>Y</kbd>
 ---
-- Indent <kbd>CTRL</kbd> + <kbd>]</kbd>
-- Outdent <kbd>CTRL</kbd> + <kbd>[</kbd>
-- Format Selection
-- Format Document
+- 缩进 <kbd>CTRL</kbd> + <kbd>]</kbd>
+- 减少缩进 <kbd>CTRL</kbd> + <kbd>[</kbd>
+- 格式化选定内容
+- 格式化文档
 ---
-- Quick Find... <kbd>ALT</kbd> + <kbd>F</kbd>
-- Quick Replace... <kbd>ALT</kbd> + <kbd>H</kbd>
-- Select All Matchtes <kbd>ALT</kbd> + <kbd>A</kbd>
+- 快速查找... <kbd>ALT</kbd> + <kbd>F</kbd>
+- 快速替换... <kbd>ALT</kbd> + <kbd>H</kbd>
+- 全选匹配项 <kbd>ALT</kbd> + <kbd>A</kbd>
 ---
-- Fold <kbd>CTRL</kbd> + <kbd>{</kbd>
-- Fold Procedures <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>ARROWLEFT</kbd>
-- Fold All
-- Unfold <kbd>CTRL</kbd> + <kbd>}</kbd>
-- Unfold Procedures <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>ARROWRIGHT</kbd>
-- Unfold All
+- 折叠 <kbd>CTRL</kbd> + <kbd>{</kbd>
+- 折叠过程 <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>ARROWLEFT</kbd>
+- 全部折叠
+- 展开 <kbd>CTRL</kbd> + <kbd>}</kbd>
+- 展开过程 <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>ARROWRIGHT</kbd>
+- 全部展开
 ---
-- Go To Line/Column...
+- 转到行/列...
 ---
-- Transform To Uppercase
-- Transform To Lowercase
-- TransformTo Titlecase
-- Transform To Snakecase
+- 转换为大写
+- 转换为小写
+- 转换为标题大小写
+- 转换为蛇形命名

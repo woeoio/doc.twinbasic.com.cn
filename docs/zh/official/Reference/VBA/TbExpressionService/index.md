@@ -1,23 +1,31 @@
----
+﻿---
 title: TbExpressionService
 parent: VBA Package
 nav_order: 12
 permalink: /tB/Modules/TbExpressionService/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '08d7a26f-56ac-4756-9b13-1c7d30f71ffb'
+  PropagateID: '08d7a26f-56ac-4756-9b13-1c7d30f71ffb'
+  ReservedCode1: 'd5d7f24c-0b82-4e48-bbab-e4332012fd76'
+  ReservedCode2: 'd5d7f24c-0b82-4e48-bbab-e4332012fd76'
 ---
 
-# TbExpressionService class
+# TbExpressionService 类
 
-**TbExpressionService** is twinBASIC's runtime expression engine: a way to take twinBASIC-syntax expressions supplied as ordinary strings and compile and evaluate them on the fly, without going through a separate build step. It powers calculators, formula columns in reports, scriptable property bindings, and any other feature that needs to turn user-supplied text into a value.
+**TbExpressionService** 是 twinBASIC 的运行时表达式引擎：一种将作为普通字符串提供的 twinBASIC 语法表达式即时编译和求值的方式，无需经过单独的构建步骤。它驱动计算器、报表中的公式列、可脚本化属性绑定以及任何需要将用户提供的文本转换为值的功能。
 
-It is exposed as one class and two interfaces:
+它暴露为一个类和两个接口：
 
-- [**TbExpressionService**](#tbexpressionservice-class) -- the engine; instantiate one with **New**, register its binders, then [**Compile**](/official/Reference/VBA/TbExpressionService/Compile) expressions against it.
-- [**ITbExpression**](#itbexpression-interface) -- a compiled expression handle returned by [**Compile**](/official/Reference/VBA/TbExpressionService/Compile), evaluated with [**Evaluate**](/official/Reference/VBA/TbExpressionService/Evaluate).
-- [**ITbCustomBinder**](#itbcustombinder-interface) -- implement this to provide fully custom symbol resolution.
+- [**TbExpressionService**](#tbexpressionservice-class) -- 引擎；用 **New** 实例化一个，注册其绑定器，然后对其 [**Compile**](/official/Reference/VBA/TbExpressionService/Compile) 表达式。
+- [**ITbExpression**](#itbexpression-interface) -- 由 [**Compile**](/official/Reference/VBA/TbExpressionService/Compile) 返回的编译表达式句柄，通过 [**Evaluate**](/official/Reference/VBA/TbExpressionService/Evaluate) 求值。
+- [**ITbCustomBinder**](#itbcustombinder-interface) -- 实现此接口以提供完全自定义的符号解析。
 
-## Compiling and evaluating an expression
+## 编译和求值表达式
 
-Create a **TbExpressionService**, register at least one binder, then call [**Compile**](/official/Reference/VBA/TbExpressionService/Compile) to get back an [**ITbExpression**](#itbexpression-interface). The same compiled expression can be evaluated as many times as needed, so reuse it whenever the source text doesn't change.
+创建一个 **TbExpressionService**，注册至少一个绑定器，然后调用 [**Compile**](/official/Reference/VBA/TbExpressionService/Compile) 获取一个 [**ITbExpression**](#itbexpression-interface)。同一个编译表达式可以根据需要求值任意次数，因此在源文本不变时应重用它。
 
 ```vb
 Sub Demo()
@@ -29,11 +37,11 @@ Sub Demo()
 End Sub
 ```
 
-## Binding to user objects
+## 绑定用户对象
 
-Anything beyond the standard library --- application objects, configuration values, helper functions, recordset fields --- has to be made visible to the engine through a *binder*.
+标准库之外的任何内容——应用程序对象、配置值、辅助函数、记录集字段——都必须通过*绑定器*对引擎可见。
 
-The simplest form is [**AddCustomBinderObject**](/official/Reference/VBA/TbExpressionService/AddCustomBinderObject), which takes a name and an object and exposes the object's public members under that name. Pass the **IsAppObject** flag to make the object behave like an Office host's **Application**: its members become reachable both qualified (`Report.Title`) and unqualified (`Title`).
+最简单的形式是 [**AddCustomBinderObject**](/official/Reference/VBA/TbExpressionService/AddCustomBinderObject)，它接受一个名称和一个对象，并在该名称下暴露对象的公共成员。传入 **IsAppObject** 标志可使对象的行为类似于 Office 宿主的 **Application**：其成员既可以通过限定名访问（`Report.Title`），也可以通过非限定名访问（`Title`）。
 
 ```vb
 Sub UseCustomObject()
@@ -46,39 +54,39 @@ Sub UseCustomObject()
 End Sub
 ```
 
-For full control over symbol resolution --- for example, to look up names dynamically against a recordset, virtualize a name into something other than a member access, or fall through to a custom default --- implement [**ITbCustomBinder**](#itbcustombinder-interface) and register it with [**AddCustomBinder**](/official/Reference/VBA/TbExpressionService/AddCustomBinder). Multiple binders can coexist; the engine consults them in registration order until one returns a non-**Nothing** result.
+要完全控制符号解析——例如，针对记录集动态查找名称、将名称虚拟化为成员访问之外的其他形式，或回退到自定义默认值——请实现 [**ITbCustomBinder**](#itbcustombinder-interface) 并使用 [**AddCustomBinder**](/official/Reference/VBA/TbExpressionService/AddCustomBinder) 注册它。多个绑定器可以共存；引擎按注册顺序查询它们，直到有一个返回非 **Nothing** 结果。
 
-## TbExpressionService class
+## TbExpressionService 类
 
-`New TbExpressionService` returns the default interface, **ITbExpressionService**. Multiple services can coexist; each has its own list of binders and is independent of the others.
+`New TbExpressionService` 返回默认接口 **ITbExpressionService**。多个服务可以共存；每个都有自己的绑定器列表，彼此独立。
 
-### Members
+### 成员
 
-- [Compile](/official/Reference/VBA/TbExpressionService/Compile) -- parses an expression string and returns it as an executable **ITbExpression**
-- [AddStdLibraryBinder](/official/Reference/VBA/TbExpressionService/AddStdLibraryBinder) -- registers the built-in binder for the standard runtime library (**Sin**, **Sqr**, **Len**, **CStr**, ...)
-- [AddCustomBinderObject](/official/Reference/VBA/TbExpressionService/AddCustomBinderObject) -- exposes a live object's members under a chosen name, optionally as an unqualified application object
-- [AddCustomBinder](/official/Reference/VBA/TbExpressionService/AddCustomBinder) -- registers a user-supplied [**ITbCustomBinder**](#itbcustombinder-interface) implementation
+- [Compile](/official/Reference/VBA/TbExpressionService/Compile) -- 解析表达式字符串并返回可执行的 **ITbExpression**
+- [AddStdLibraryBinder](/official/Reference/VBA/TbExpressionService/AddStdLibraryBinder) -- 注册标准运行时库的内置绑定器（**Sin**、**Sqr**、**Len**、**CStr**、...）
+- [AddCustomBinderObject](/official/Reference/VBA/TbExpressionService/AddCustomBinderObject) -- 在选定名称下暴露活动对象的成员，可选择作为非限定应用程序对象
+- [AddCustomBinder](/official/Reference/VBA/TbExpressionService/AddCustomBinder) -- 注册用户提供的 [**ITbCustomBinder**](#itbcustombinder-interface) 实现
 
 ### ExpressionEngineBinderFlags
 
-Flags accepted by [**AddCustomBinderObject**](/official/Reference/VBA/TbExpressionService/AddCustomBinderObject):
+[**AddCustomBinderObject**](/official/Reference/VBA/TbExpressionService/AddCustomBinderObject) 接受的标志：
 
-| Constant | Value | Description |
+| 常量 | 值 | 描述 |
 |----------|-------|-------------|
-| **IsAppObject** | 1 | Members of the bound object are reachable without the qualifying name, the way an Office host's **Application** members are. |
+| **IsAppObject** | 1 | 绑定对象的成员无需限定名即可访问，类似于 Office 宿主的 **Application** 成员。 |
 
-## ITbExpression interface
+## ITbExpression 接口
 
-A handle to a compiled expression. Returned by [**Compile**](/official/Reference/VBA/TbExpressionService/Compile) and by an [**ITbCustomBinder.Bind**](/official/Reference/VBA/TbExpressionService/Bind) implementation. Calling [**Evaluate**](/official/Reference/VBA/TbExpressionService/Evaluate) runs the expression against the current state of its bindings and returns the result; the same instance can be evaluated as many times as needed.
+编译表达式的句柄。由 [**Compile**](/official/Reference/VBA/TbExpressionService/Compile) 和 [**ITbCustomBinder.Bind**](/official/Reference/VBA/TbExpressionService/Bind) 实现返回。调用 [**Evaluate**](/official/Reference/VBA/TbExpressionService/Evaluate) 会根据其绑定的当前状态运行表达式并返回结果；同一实例可以根据需要求值任意次数。
 
-### Members
+### 成员
 
-- [Evaluate](/official/Reference/VBA/TbExpressionService/Evaluate) -- runs the compiled expression and returns its result
+- [Evaluate](/official/Reference/VBA/TbExpressionService/Evaluate) -- 运行编译表达式并返回其结果
 
-## ITbCustomBinder interface
+## ITbCustomBinder 接口
 
-Implement this interface to register a fully custom resolver with [**AddCustomBinder**](/official/Reference/VBA/TbExpressionService/AddCustomBinder). The engine calls [**Bind**](/official/Reference/VBA/TbExpressionService/Bind) during compilation for each unresolved symbol it encounters in the expression source, supplying the symbol name and the number of arguments at the call site, and expects an **ITbExpression** that produces the value when **Evaluate** is called --- or **Nothing** to defer to the next binder.
+实现此接口以使用 [**AddCustomBinder**](/official/Reference/VBA/TbExpressionService/AddCustomBinder) 注册完全自定义的解析器。引擎在编译期间对表达式源中遇到的每个未解析符号调用 [**Bind**](/official/Reference/VBA/TbExpressionService/Bind)，提供符号名称和调用点的参数数量，并期望返回一个 **ITbExpression**，在调用 **Evaluate** 时产生该值——或返回 **Nothing** 以推迟到下一个绑定器。
 
-### Members
+### 成员
 
-- [Bind](/official/Reference/VBA/TbExpressionService/Bind) -- resolves a symbol reference to an **ITbExpression**, or returns **Nothing** to defer to the next binder
+- [Bind](/official/Reference/VBA/TbExpressionService/Bind) -- 将符号引用解析为 **ITbExpression**，或返回 **Nothing** 以推迟到下一个绑定器

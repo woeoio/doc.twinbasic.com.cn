@@ -1,11 +1,19 @@
----
+﻿---
 title: Corners
 parent: Styles
 permalink: /tB/Packages/CustomControls/Styles/Corners
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '74855688-ec4e-43d1-9afc-719a668f1dbc'
+  PropagateID: '74855688-ec4e-43d1-9afc-719a668f1dbc'
+  ReservedCode1: 'cf94a6ad-c56d-408f-a486-196fdf66586f'
+  ReservedCode2: 'cf94a6ad-c56d-408f-a486-196fdf66586f'
 ---
 
-# Corners class
-The four corners of a rendered region. Each corner is an independent [**Corner**](#corner-class) sub-object --- the shape and radius can vary corner by corner --- letting a control round one corner while notching another. Accessed as `<state>.Corners`, [**CellRenderingOptions.Corners**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions#corners), and the slider's `<sliderState>.BackgroundCorners` / `BlockCorners`.
+# Corners 类
+渲染区域的四个角。每个角是独立的 [**Corner**](#corner-class) 子对象——形状和半径可以逐角不同——使控件可以圆化一个角同时凹口另一个角。通过 `<state>.Corners`、[**CellRenderingOptions.Corners**](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions#corners) 以及滑块的 `<sliderState>.BackgroundCorners` / `BlockCorners` 访问。
 
 ```vb
 With btnGo.NormalState.Corners
@@ -14,7 +22,7 @@ With btnGo.NormalState.Corners
 End With
 ```
 
-The three [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape) values can mix on a single control. Setting [**TopLeft**](#topleft), [**TopRight**](#topright), [**BottomLeft**](#bottomleft), and [**BottomRight**](#bottomright) individually gives full control over the silhouette:
+三个 [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape) 值可以在单个控件上混合使用。单独设置 [**TopLeft**](#topleft)、[**TopRight**](#topright)、[**BottomLeft**](#bottomleft) 和 [**BottomRight**](#bottomright) 可完全控制轮廓：
 
 ```vb
 With btnTab.NormalState.Corners
@@ -25,58 +33,58 @@ With btnTab.NormalState.Corners
 End With
 ```
 
-A circular control is just a square one with all four corners set to [**tbCurve**](/official/Reference/CustomControls/Enumerations/CornerShape#tbCurve) and a radius greater than or equal to half the control's smaller dimension --- that is what the `Circle` button in the package's sample forms uses.
+圆形控件就是将所有四个角设为 [**tbCurve**](/official/Reference/CustomControls/Enumerations/CornerShape#tbCurve) 且半径大于等于控件较小维度一半的方形控件——包示例窗体中的 `Circle` 按钮正是如此。
 
-## Properties
+## 属性
 
 ### BottomLeft
 
-The [**Corner**](#corner-class) sub-object that controls the bottom-left corner.
+控制左下角的 [**Corner**](#corner-class) 子对象。
 
 ### BottomRight
 
-The [**Corner**](#corner-class) sub-object that controls the bottom-right corner.
+控制右下角的 [**Corner**](#corner-class) 子对象。
 
 ### TopLeft
 
-The [**Corner**](#corner-class) sub-object that controls the top-left corner.
+控制左上角的 [**Corner**](#corner-class) 子对象。
 
 ### TopRight
 
-The [**Corner**](#corner-class) sub-object that controls the top-right corner.
+控制右上角的 [**Corner**](#corner-class) 子对象。
 
-## Methods
+## 方法
 
 ### SetAll
 
-Sets all four corners to the same shape and radius in a single call. Equivalent to assigning the same values to each of [**TopLeft**](#topleft), [**TopRight**](#topright), [**BottomLeft**](#bottomleft), and [**BottomRight**](#bottomright).
+在单次调用中将所有四个角设为相同的形状和半径。等同于为 [**TopLeft**](#topleft)、[**TopRight**](#topright)、[**BottomLeft**](#bottomleft) 和 [**BottomRight**](#bottomright) 各赋相同的值。
 
-Syntax: *object*.**SetAll** *Shape*, *Radius*
+语法：*object*.**SetAll** *Shape*, *Radius*
 
 *Shape*
-: *required* A member of [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape).
+: *必需* [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape) 的成员。
 
 *Radius*
-: *required* A [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount) giving the curve / notch / cut-out radius.
+: *必需* [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)，给出曲线/凹口/切角的半径。
 
-## Events
+## 事件
 
 ### OnChanged
 
-Raised whenever any of the four corner sub-objects changes --- either through a direct property set on the **Corners** object or through a propagated **OnChanged** from one of the **Corner** sub-objects.
+四个角子对象中任一个更改时触发——无论是通过 **Corners** 对象上的直接属性设置还是通过 **Corner** 子对象传播的 **OnChanged**。
 
-## Corner class
+## Corner 类
 
-A single corner of a [**Corners**](#) object. Has a [**Shape**](#shape) (curve, notch, or cut-out) and a [**Radius**](#radius) (in pixels).
+[**Corners**](#) 对象的单个角。具有 [**Shape**](#shape)（曲线、凹口或切角）和 [**Radius**](#radius)（像素）。
 
 ### Radius
 
-The corner's radius in pixels. The interpretation depends on [**Shape**](#shape): for **tbCurve** it is the radius of the quarter-circle, for **tbNotched** the cut depth, and for **tbCutOut** the depth of the carved-out region. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Default: 0 (a sharp 90° corner regardless of **Shape**).
+角的半径（像素）。含义取决于 [**Shape**](#shape)：对于 **tbCurve** 是四分之一圆的半径，对于 **tbNotched** 是切割深度，对于 **tbCutOut** 是挖空区域的深度。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。默认：0（无论 **Shape** 如何都是直角 90° 角）。
 
 ### Shape
 
-How the corner is drawn. A member of [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape): **tbCurve** (default), **tbNotched**, or **tbCutOut**.
+角的绘制方式。[**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape) 的成员：**tbCurve**（默认）、**tbNotched** 或 **tbCutOut**。
 
 ### OnChanged
 
-Raised when either [**Shape**](#shape) or [**Radius**](#radius) is assigned. The parent [**Corners**](#) listens for this event and re-raises its own.
+[**Shape**](#shape) 或 [**Radius**](#radius) 被赋值时触发。父 [**Corners**](#) 监听此事件并重新触发自身的。

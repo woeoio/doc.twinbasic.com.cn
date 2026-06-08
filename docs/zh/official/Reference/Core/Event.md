@@ -2,35 +2,44 @@
 title: Event
 parent: Statements
 permalink: /tB/Core/Event
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6ccc3c16-a22c-4ac8-b093-d8be92d3f1b7'
+  PropagateID: '6ccc3c16-a22c-4ac8-b093-d8be92d3f1b7'
+  ReservedCode1: 'b47aae0f-c497-4bee-944b-fc8d803be99c'
+  ReservedCode2: 'b47aae0f-c497-4bee-944b-fc8d803be99c'
 ---
+
 # Event
 
-Declares a user-defined event.
+声明用户自定义事件。
 
-Syntax: [ **Public** ] **Event** *procedurename* [ (*arglist*) ]
+语法：[ **Public** ] **Event** *procedurename* [ (*arglist*) ]
 
 **Public**
-: *optional*. Specifies that the **Event** is visible throughout the project. **Events** types are **Public** by default. Note that events can only be raised in the module in which they are declared.
+: *可选*。指定 **Event** 在整个项目中可见。**Event** 类型默认为 **Public**。注意事件只能在声明它们的模块中引发。
 
 *procedurename*
-: Name of the event; follows standard variable naming conventions.
+: 事件的名称；遵循标准变量命名约定。
 
 *arglist*
 : [ **ByVal** \| **ByRef** ] *varname* \[ **()** ] [ **As** *type* ]
    
    **ByVal**
-   : *optional* Indicates that the argument is passed by value.
+   : *可选* 指示参数按值传递。
    
    **ByRef**
-   : *optional* Indicates that the argument is passed by reference. **ByRef** is the default, unlike in Visual Basic .NET.
+   : *可选* 指示参数按引用传递。**ByRef** 是默认方式，与Visual Basic .NET不同。
    
    *varname*
-   : Name of the variable representing the argument being passed to the procedure; follows standard variable naming conventions.
+   : 表示传递给过程的参数的变量名称；遵循标准变量命名约定。
    
    *type*
-   : *optional* Data type of the argument passed to the procedure; may be Byte, Boolean, Integer, Long, Currency, Single, Double, Decimal, Date, String (variable length only), Object, Variant, a user-defined type (UDT), or an object type.
+   : *可选* 传递给过程的参数的数据类型；可以是Byte、Boolean、Integer、Long、Currency、Single、Double、Decimal、Date、String（仅限变长）、Object、Variant、用户自定义类型(UDT)或对象类型。
 
-After the event has been declared, use the [**RaiseEvent**](/official/Reference/Core/RaiseEvent) statement to fire the event. A syntax error occurs if an **Event** declaration appears in a standard module. An event can't be declared to return a value. A typical event might be declared and raised as shown in the following fragments.
+声明事件后，使用 [**RaiseEvent**](/official/Reference/Core/RaiseEvent) 语句触发事件。如果 **Event** 声明出现在标准模块中，将产生语法错误。事件不能声明为返回值。典型的事件声明和触发如下片段所示。
 
 ```vb
 ' Declare an event at module level of a class module 
@@ -42,17 +51,17 @@ Sub
 End Sub
 ```
 
-Event arguments are declared the same way as procedure arguments, with the following exceptions: events cannot have named arguments, **Optional** arguments, or **ParamArray** arguments. Events don't have return values.
+事件参数的声明方式与过程参数相同，但有以下例外：事件不能有命名参数、**Optional** 参数或 **ParamArray** 参数。事件没有返回值。
 
-### Example
+### 示例
 
-The following example uses events to count off seconds during a demonstration of the fastest 100-meter race. The code illustrates all of the event-related methods, properties, and statements, including the **Event** statement.
+以下示例使用事件在最快100米赛跑演示期间倒数秒数。代码说明了所有与事件相关的方法、属性和语句，包括 **Event** 语句。
 
-The class that raises an event is the event source, and the classes that implement the event are the sinks. An event source can have multiple sinks for the events it generates. When the class raises the event, that event is fired on every class that has elected to sink events for that instance of the object.
+引发事件的类是事件源，实现事件的类是接收器。一个事件源可以有多个接收器来处理它生成的事件。当类引发事件时，该事件会在每个选择接收该对象实例事件的类上触发。
 
-The example also uses a form (`Form1`) with a button (`Command1`), a label (`Label1`), and two text boxes (`Text1` and `Text2`). When the button is clicked, the first text box displays "From Now" and the second starts to count seconds. When the full time (9.84 seconds) has elapsed, the first text box displays "Until Now" and the second displays "9.84".
+示例还使用了包含按钮（`Command1`）、标签（`Label1`）和两个文本框（`Text1` 和 `Text2`）的窗体（`Form1`）。当按钮被点击时，第一个文本框显示"From Now"，第二个文本框开始计数秒数。当完整时间（9.84秒）过去后，第一个文本框显示"Until Now"，第二个显示"9.84"。
 
-The code specifies the initial and terminal states of the form. It also contains the code executed when events are raised.
+代码指定了窗体的初始和终止状态。还包含引发事件时执行的代码。
 
 ```vb
 Class Form1
@@ -88,9 +97,7 @@ Class Form1
 End Class
 ```
 
-The remaining code is in a class module named TimerState. The **Event** statements declare the procedures initiated when events are raised.
-
-VB
+其余代码在名为TimerState的类模块中。**Event** 语句声明了事件引发时启动的过程。
 
 ```vb
 Class TimerState

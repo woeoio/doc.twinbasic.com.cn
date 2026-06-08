@@ -2,35 +2,44 @@
 title: Filter
 parent: Strings Module
 permalink: /tB/Modules/Strings/Filter
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '98eb12e5-58f0-4c12-b5ff-258952d9ef93'
+  PropagateID: '98eb12e5-58f0-4c12-b5ff-258952d9ef93'
+  ReservedCode1: '8830c7b5-93f4-4382-9a48-810c2b2f97b3'
+  ReservedCode2: '8830c7b5-93f4-4382-9a48-810c2b2f97b3'
 ---
+
 # Filter
 
-Returns a zero-based array containing a subset of a string array based on a specified filter criteria.
+返回一个从零开始的数组，包含基于指定筛选条件的字符串数组的子集。
 
-Syntax: **Filter(** *sourcearray*, *match* [ **,** *include* [ **,** *compare* ] ] **)**
+语法：**Filter(** *sourcearray*, *match* [ **,** *include* [ **,** *compare* ] ] **)**
 
 *sourcearray*
-: *required* One-dimensional array of strings to be searched.
+: *必需* 要搜索的一维字符串数组。
 
 *match*
-: *required* String to search for.
+: *必需* 要搜索的字符串。
 
 *include*
-: *optional* **Boolean** value indicating whether to return substrings that include or exclude *match*. If *include* is **True**, **Filter** returns the subset of the array that contains *match* as a substring. If *include* is **False**, **Filter** returns the subset of the array that does not contain *match* as a substring.
+: *可选* **Boolean**值，指示是否返回包含或排除*match*的子字符串。如果*include*为**True**，**Filter**返回包含*match*作为子字符串的数组子集。如果*include*为**False**，**Filter**返回不包含*match*作为子字符串的数组子集。
 
 *compare*
-: *optional* Numeric value indicating the kind of string comparison to use. See settings below.
+: *可选* 数值，指示要使用的字符串比较类型。参见下面的设置。
 
-The *compare* argument can have the following values:
+*compare*参数可以取以下值：
 
-| Constant               | Value | Description                                                                              |
-|------------------------|-------|------------------------------------------------------------------------------------------|
-| **vbUseCompareOption** | -1    | Performs a comparison by using the setting of the [**Option Compare**](/official/Reference/Core/Option) statement. |
-| **vbBinaryCompare**    | 0     | Performs a binary comparison.                                                            |
-| **vbTextCompare**      | 1     | Performs a textual comparison.                                                           |
+| 常量                   | 值  | 描述                                                                             |
+|------------------------|-----|----------------------------------------------------------------------------------|
+| **vbUseCompareOption** | -1  | 使用[**Option Compare**](/official/Reference/Core/Option)语句的设置进行比较。    |
+| **vbBinaryCompare**    | 0   | 执行二进制比较。                                                                  |
+| **vbTextCompare**      | 1   | 执行文本比较。                                                                    |
 
-The array returned by the **Filter** function contains only enough elements to contain the number of matched items.
+**Filter**函数返回的数组仅包含足够的元素来容纳匹配项的数量。
 
-### See Also
+### 另请参阅
 
-- [Join](/official/Reference/VBA/Strings/Join), [Split](/official/Reference/VBA/Strings/Split) functions
+- [Join](/official/Reference/VBA/Strings/Join)、[Split](/official/Reference/VBA/Strings/Split)函数

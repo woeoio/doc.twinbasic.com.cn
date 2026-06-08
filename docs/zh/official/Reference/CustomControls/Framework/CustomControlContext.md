@@ -1,13 +1,21 @@
----
+﻿---
 title: CustomControlContext
 parent: Framework
 permalink: /tB/Packages/CustomControls/Framework/CustomControlContext
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7f29fbd8-cd21-4ef9-afb2-b04e2ea6d962'
+  PropagateID: '7f29fbd8-cd21-4ef9-afb2-b04e2ea6d962'
+  ReservedCode1: '95f6b70e-28a8-4e3c-a984-039dd5d18a0c'
+  ReservedCode2: '95f6b70e-28a8-4e3c-a984-039dd5d18a0c'
 ---
 
-# CustomControlContext class
-The callback object passed to a custom control's [**Initialize**](/official/Reference/CustomControls/Framework/ICustomControl#initialize). Holds the connection back into the framework --- used to deserialize designer-set property values, request repaints, create timers, and move the keyboard focus between elements the control has drawn.
+# CustomControlContext 类
+传递给自定义控件 [**Initialize**](/official/Reference/CustomControls/Framework/ICustomControl#initialize) 的回调对象。保持回到框架的连接——用于反序列化设计器设置的属性值、请求重绘、创建定时器以及在控件绘制的元素之间移动键盘焦点。
 
-Custom controls store the **CustomControlContext** in a private field (typically called **ControlContext**) so that they can call back into the framework at any point after **Initialize** has returned. The form-class counterpart [**CustomFormContext**](/official/Reference/CustomControls/Framework/CustomFormContext) extends this with **Show** and **Close**.
+自定义控件将 **CustomControlContext** 存储在私有字段中（通常名为 **ControlContext**），以便在 **Initialize** 返回后的任何时刻回调框架。窗体类对应类 [**CustomFormContext**](/official/Reference/CustomControls/Framework/CustomFormContext) 扩展了 **Show** 和 **Close**。
 
 ```vb
 Private Sub OnInitialize(ByVal Ctx As CustomControls.CustomControlContext) _
@@ -23,35 +31,35 @@ Private Sub OnInitialize(ByVal Ctx As CustomControls.CustomControlContext) _
 End Sub
 ```
 
-## Methods
+## 方法
 
 ### ChangeFocusedElement
 
-Asks the framework to move the keyboard focus to a particular `ElementTabIndex` value, as if the user had pressed **TAB** until reaching that point. Used by [**WaynesGrid**](/official/Reference/CustomControls/WaynesGrid/) when a cell is selected programmatically --- the grid changes its **SelectedCellX** / **SelectedCellY** and then calls this method so that the form-level focus tracking matches.
+请求框架将键盘焦点移至特定 `ElementTabIndex` 值，如同用户按 **TAB** 直至到达该位置。[**WaynesGrid**](/official/Reference/CustomControls/WaynesGrid/) 在以编程方式选择单元格时使用此方法——网格更改其 **SelectedCellX** / **SelectedCellY** 然后调用此方法，使窗体级焦点跟踪与之匹配。
 
-Syntax: *object*.**ChangeFocusedElement** *ElementTabIndex*
+语法：*object*.**ChangeFocusedElement** *ElementTabIndex*
 
 *ElementTabIndex*
-: *required* A **Long** matching the **ElementTabIndex** of an element that was added to the canvas in the most recent paint pass.
+: *必需* **Long**，匹配最近一次绘制过程中添加到画布的元素的 **ElementTabIndex**。
 
 ### CreateTimer
 
-Returns a new [**CustomControlTimer**](/official/Reference/CustomControls/Framework/CustomControlTimer) bound to this control's lifetime. The timer is **Disabled** on creation; the caller sets [**Interval**](/official/Reference/CustomControls/Framework/CustomControlTimer#interval), subscribes to the timer's **OnTimer** event, and sets [**Enabled**](/official/Reference/CustomControls/Framework/CustomControlTimer#enabled) to **True** to start it.
+返回一个新的 [**CustomControlTimer**](/official/Reference/CustomControls/Framework/CustomControlTimer)，绑定到此控件的生命周期。定时器创建时为**禁用**状态；调用者设置 [**Interval**](/official/Reference/CustomControls/Framework/CustomControlTimer#interval)，订阅定时器的 **OnTimer** 事件，并将 [**Enabled**](/official/Reference/CustomControls/Framework/CustomControlTimer#enabled) 设为 **True** 以启动。
 
-Syntax: *object*.**CreateTimer** ( ) **As stdole.IUnknown**
+语法：*object*.**CreateTimer** ( ) **As stdole.IUnknown**
 
-The framework returns the timer typed as **stdole.IUnknown**; cast with `CType(Of CustomControlTimer)(…)` to get a strongly-typed reference. [**WaynesTimer**](/official/Reference/CustomControls/WaynesTimer) and [**WaynesSlider**](/official/Reference/CustomControls/WaynesSlider/) both use this pattern.
+框架以 **stdole.IUnknown** 类型返回定时器；用 `CType(Of CustomControlTimer)(…)` 转换以获取强类型引用。[**WaynesTimer**](/official/Reference/CustomControls/WaynesTimer) 和 [**WaynesSlider**](/official/Reference/CustomControls/WaynesSlider/) 都使用此模式。
 
 ### GetSerializer
 
-Returns the [**SerializeInfo**](/official/Reference/CustomControls/Framework/SerializeInfo) handle for this control instance. The serializer exposes the deserialization entry point and the run-time / design-time mode flags.
+返回此控件实例的 [**SerializeInfo**](/official/Reference/CustomControls/Framework/SerializeInfo) 句柄。序列化器暴露反序列化入口点和运行时/设计时模式标志。
 
-Syntax: *object*.**GetSerializer** ( ) **As SerializeInfo**
+语法：*object*.**GetSerializer** ( ) **As SerializeInfo**
 
 ### Repaint
 
-Tells the framework that the control's appearance has changed and that the canvas should be repainted at the next opportunity. The framework eventually calls back into [**ICustomControl.Paint**](/official/Reference/CustomControls/Framework/ICustomControl#paint); calling **Repaint** multiple times in quick succession produces at most one paint.
+通知框架控件外观已更改，画布应在下次机会时重绘。框架最终回调 [**ICustomControl.Paint**](/official/Reference/CustomControls/Framework/ICustomControl#paint)；快速连续多次调用 **Repaint** 最多只产生一次绘制。
 
-Syntax: *object*.**Repaint** ( )
+语法：*object*.**Repaint** ( )
 
-Every concrete `Waynes…` control hooks the **OnChanged** events on its state and style sub-objects, and calls **Repaint** from the handler --- so a runtime assignment like `btn.NormalState.BackgroundFill.ColorPoints.SetSolidColor vbBlue` triggers an automatic redraw.
+每个具体 `Waynes…` 控件都挂钩其状态和样式子对象上的 **OnChanged** 事件，并从处理程序中调用 **Repaint**——因此运行时赋值如 `btn.NormalState.BackgroundFill.ColorPoints.SetSolidColor vbBlue` 会触发自动重绘。

@@ -2,34 +2,43 @@
 title: QBColor
 parent: Information Module
 permalink: /tB/Modules/Information/QBColor
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f671f233-be5c-4c75-b830-1c3097b2ed1c'
+  PropagateID: 'f671f233-be5c-4c75-b830-1c3097b2ed1c'
+  ReservedCode1: 'd9151067-472a-495c-8f25-590cb391581c'
+  ReservedCode2: 'd9151067-472a-495c-8f25-590cb391581c'
 ---
+
 # QBColor
 
-Returns a **Long** representing the RGB colour code corresponding to the specified colour number.
+返回一个**Long**，表示与指定颜色编号对应的RGB颜色代码。
 
-Syntax: **QBColor(** *color* **)**
+语法：**QBColor(** *color* **)**
 
 *color*
-: *required* A whole number in the range 0--15.
+: *必需* 0--15范围内的整数。
 
-The *color* argument has these settings:
+*color*参数设置如下：
 
-| Number | Colour | Number | Colour |
-|--------|--------|--------|--------|
-| 0 | Black | 8 | Gray |
-| 1 | Blue | 9 | Light Blue |
-| 2 | Green | 10 | Light Green |
-| 3 | Cyan | 11 | Light Cyan |
-| 4 | Red | 12 | Light Red |
-| 5 | Magenta | 13 | Light Magenta |
-| 6 | Yellow | 14 | Light Yellow |
-| 7 | White | 15 | Bright White |
+| 编号 | 颜色 | 编号 | 颜色 |
+|------|------|------|------|
+| 0 | 黑色 | 8 | 灰色 |
+| 1 | 蓝色 | 9 | 亮蓝色 |
+| 2 | 绿色 | 10 | 亮绿色 |
+| 3 | 青色 | 11 | 亮青色 |
+| 4 | 红色 | 12 | 亮红色 |
+| 5 | 品红色 | 13 | 亮品红色 |
+| 6 | 黄色 | 14 | 亮黄色 |
+| 7 | 白色 | 15 | 亮白色 |
 
-The *color* argument represents colour values used by earlier versions of Basic --- Microsoft Visual Basic for MS-DOS and the QuickBASIC compiler. Starting with the least-significant byte, the returned value specifies the red, green, and blue components used to set the corresponding colour in the RGB system, exactly as if [**RGB**](/official/Reference/VBA/Information/RGB) had been called with those components.
+*color*参数代表早期Basic版本——MS-DOS的Microsoft Visual Basic和QuickBASIC编译器——使用的颜色值。从最低有效字节开始，返回值指定了RGB系统中用于设置对应颜色的红、绿、蓝分量，就像用这些分量调用了[**RGB**](/official/Reference/VBA/Information/RGB)一样。
 
-### Example
+### 示例
 
-This example uses **QBColor** to set a form's background colour from a numeric colour code.
+本示例使用**QBColor**从数字颜色代码设置窗体的背景颜色。
 
 ```vb
 Sub ChangeBackColor(ByVal ColorCode As Integer, ByVal MyForm As Form)
@@ -37,7 +46,7 @@ Sub ChangeBackColor(ByVal ColorCode As Integer, ByVal MyForm As Form)
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [RGB](/official/Reference/VBA/Information/RGB), [RGBA](/official/Reference/VBA/Information/RGBA) functions
-- [TranslateColor](/official/Reference/VBA/Information/TranslateColor) function
+- [RGB](/official/Reference/VBA/Information/RGB)、[RGBA](/official/Reference/VBA/Information/RGBA)函数
+- [TranslateColor](/official/Reference/VBA/Information/TranslateColor)函数

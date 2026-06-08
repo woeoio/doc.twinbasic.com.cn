@@ -2,23 +2,32 @@
 title: IsArrayInitialized
 parent: Information Module
 permalink: /tB/Modules/Information/IsArrayInitialized
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ee3a208a-9f6f-4ae0-b98e-44b871ec8145'
+  PropagateID: 'ee3a208a-9f6f-4ae0-b98e-44b871ec8145'
+  ReservedCode1: 'ef7a112b-2c91-45eb-9887-2cd498929afd'
+  ReservedCode2: 'ef7a112b-2c91-45eb-9887-2cd498929afd'
 ---
+
 # IsArrayInitialized
 
-Returns a **Boolean** indicating whether a variable contains an array whose dimensions have been allocated.
+返回一个**Boolean**，指示变量是否包含已分配维度的数组。
 
-Syntax: **IsArrayInitialized(** *varname* **)**
+语法：**IsArrayInitialized(** *varname* **)**
 
 *varname*
-: *required* The array variable to test.
+: *必需* 要测试的数组变量。
 
-A dynamic array declared with empty parentheses (`Dim a() As Long`) holds a special "uninitialized" state until **ReDim** allocates storage for it. **IsArrayInitialized** returns **False** in that state and **True** once the array has dimensions. Calling [**LBound**](/official/Reference/VBA/Information/LBound) or [**UBound**](/official/Reference/VBA/Information/UBound) on an uninitialized array, or accessing any of its elements, raises a run-time error --- so **IsArrayInitialized** is the safe way to test before reading.
+以空括号声明的动态数组(`Dim a() As Long`)在**ReDim**为其分配存储空间之前保持特殊的"未初始化"状态。**IsArrayInitialized**在该状态下返回**False**，在数组具有维度后返回**True**。对未初始化的数组调用[**LBound**](/official/Reference/VBA/Information/LBound)或[**UBound**](/official/Reference/VBA/Information/UBound)，或访问其任何元素，都会引发运行时错误——因此**IsArrayInitialized**是在读取之前进行安全测试的方式。
 
-If *varname* is not an array, **IsArrayInitialized** returns **False**.
+如果*varname*不是数组，**IsArrayInitialized**返回**False**。
 
-### Example
+### 示例
 
-This example tests an array before and after **ReDim**, and again after **Erase** releases its storage.
+本示例在**ReDim**前后以及**Erase**释放存储空间后测试数组。
 
 ```vb
 Dim a() As Long
@@ -29,9 +38,9 @@ Erase a
 Debug.Print IsArrayInitialized(a)     ' False — Erase released the storage.
 ```
 
-### See Also
+### 另请参阅
 
-- [IsArray](/official/Reference/VBA/Information/IsArray) function
-- [IsObject](/official/Reference/VBA/Information/IsObject) function
-- [IsEmpty](/official/Reference/VBA/Information/IsEmpty) function
-- [LBound](/official/Reference/VBA/Information/LBound), [UBound](/official/Reference/VBA/Information/UBound) functions
+- [IsArray](/official/Reference/VBA/Information/IsArray)函数
+- [IsObject](/official/Reference/VBA/Information/IsObject)函数
+- [IsEmpty](/official/Reference/VBA/Information/IsEmpty)函数
+- [LBound](/official/Reference/VBA/Information/LBound)、[UBound](/official/Reference/VBA/Information/UBound)函数

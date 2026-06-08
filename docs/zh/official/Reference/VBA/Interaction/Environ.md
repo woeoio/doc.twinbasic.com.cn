@@ -2,31 +2,40 @@
 title: Environ
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/Environ
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0ad7b521-4f4b-4089-9fc0-c96222ea53c9'
+  PropagateID: '0ad7b521-4f4b-4089-9fc0-c96222ea53c9'
+  ReservedCode1: 'f3d2bb74-1115-4059-a6bb-dfd4e3a378d8'
+  ReservedCode2: 'f3d2bb74-1115-4059-a6bb-dfd4e3a378d8'
 ---
+
 # Environ, Environ$
 
-Returns the value associated with an operating-system environment variable, looked up either by name or by 1-based position in the environment-string table.
+返回与操作系统环境变量关联的值，可按名称或环境字符串表中基于1的位置查找。
 
-Syntax:
+语法：
 
 - **Environ$(** *envstring* **)**, **Environ(** *envstring* **)**
 - **Environ$(** *number* **)**, **Environ(** *number* **)**
 
 *envstring*
-: *required* String expression containing the name of an environment variable.
+: *必需* 字符串表达式，包含环境变量的名称。
 
 *number*
-: *required* Numeric expression giving the 1-based position of an entry in the process environment-string table. *number* may be any numeric expression and is rounded to a whole number before being evaluated.
+: *必需* 数值表达式，给出进程环境字符串表中条目的基于1的位置。*number*可以是任何数值表达式，在求值前四舍五入为整数。
 
-The `$`-suffixed forms return a **String**; the unsuffixed forms return a **Variant** (**String**).
+带`$`后缀的形式返回**String**；不带后缀的形式返回**Variant**（**String**）。
 
-When called with *envstring*, **Environ** returns the value assigned to that environment variable --- that is, the text following the equal sign (`=`) in the environment-string table for that variable. If *envstring* can't be found in the table, a zero-length string (`""`) is returned.
+使用*envstring*调用时，**Environ**返回分配给该环境变量的值——即该变量在环境字符串表中等号(`=`)后面的文本。如果在表中找不到*envstring*，则返回零长度字符串(`""`)。
 
-When called with *number*, **Environ** returns the entire entry at that position, including the variable name, the equal sign, and the value (e.g. `"PATH=C:\Windows;C:\Windows\System32"`). If there is no entry at that position, a zero-length string is returned.
+使用*number*调用时，**Environ**返回该位置的整个条目，包括变量名、等号和值（例如`"PATH=C:\Windows;C:\Windows\System32"`）。如果该位置没有条目，则返回零长度字符串。
 
-### Example
+### 示例
 
-This example iterates over the environment-string table to find the entry number and the value length for `PATH`.
+本示例遍历环境字符串表以查找`PATH`的条目编号和值长度。
 
 ```vb
 Dim EnvString As String, Indx As Long, PathLen As Long

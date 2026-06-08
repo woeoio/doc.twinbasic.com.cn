@@ -1,96 +1,104 @@
 ---
-title: Features
+title: 功能特性
 nav_order: 6
 permalink: /Features/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '33ca6959-250c-4002-9f39-d72ccdde5a31'
+  PropagateID: '33ca6959-250c-4002-9f39-d72ccdde5a31'
+  ReservedCode1: '42171562-0b47-496f-9467-21f784f738e4'
+  ReservedCode2: '42171562-0b47-496f-9467-21f784f738e4'
 ---
 
-# Features
+# 功能特性
 
-This section documents all the features and enhancements that twinBASIC brings compared to VBx and earlier BASIC dialects. 
+本节记录了 twinBASIC 相比 VBx 及更早的 BASIC 方言所提供的全部功能增强和特性。
 
-twinBASIC maintains backward compatibility with VBx syntax while providing these new features. Most enhancements are opt-in, allowing you to gradually adopt them in your projects.
+twinBASIC 在保持与 VBx 语法向后兼容的同时提供这些新功能。大多数增强都是可选的，允许你在项目中逐步采用。
 
-For detailed documentation on each feature, navigate to the specific category listed below.
+如需了解每项功能的详细文档，请导航到下方列出的具体分类。
 
-## Categories
+## 分类
 
-### [Attributes](/official/Features/Attributes-Intro)
+### [特性](/official/Features/Attributes-Intro)
 
-Attributes allow you to annotate Forms, Modules, Classes, Types, Enums, Declares, and procedures with compiler instructions and metadata. These are now visible directly in your code editor.
+特性允许你为窗体、模块、类、类型、枚举、声明和过程添加编译器指令和元数据标注。现在这些内容可以直接在代码编辑器中看到。
 
-### [Language Syntax](/official/Features/Language/)
+### [语言语法](/official/Features/Language/)
 
-twinBASIC introduces numerous language enhancements including:
+twinBASIC 引入了大量语言增强功能，包括：
 
-- New data types: **LongPtr**, **LongLong**, **Decimal**,
-- Native **Interface** and **CoClass** definitions,
-- OOP features with **Implements Via** and **Inherits,**
-- Generics and method overloading,
-- Enhanced operators and literals,
-- Type inference and pointer functionality,
-- UDT enhancements with methods and events.
+- 新数据类型：**LongPtr**、**LongLong**、**Decimal**
+- 原生 **Interface** 和 **CoClass** 定义
+- 通过 **Implements Via** 和 **Inherits** 实现的 OOP 功能
+- 泛型和方法重载
+- 增强的运算符和字面量
+- 类型推断和指针功能
+- 带有方法和事件的 UDT 增强
 
-### [Project Configuration](/official/Features/Project-Configuration/)
+### [项目配置](/official/Features/Project-Configuration/)
 
-twinBASIC offers various project types and configuration options:
+twinBASIC 提供多种项目类型和配置选项：
 
-- Standard DLLs, Console applications, Services, and Kernel drivers
-- Compiler options for optimization and security
-- Entry point override and IAT placement
-- Registration options for ActiveX projects
+- 标准 DLL、控制台应用程序、服务和内核驱动
+- 用于优化和安全的编译器选项
+- 入口点覆盖和 IAT 放置
+- ActiveX 项目的注册选项
 
-### [Standard Library](/official/Features/Standard-Library/)
+### [标准库](/official/Features/Standard-Library/)
 
-Enhancements to the standard library include:
+标准库的增强包括：
 
-- Full Unicode support throughout
-- File I/O with multiple encoding options
-- New built-in functions and App object properties
-- Direct COM error handling access
-- Destructuring assignment for arrays
+- 全面 Unicode 支持
+- 支持多种编码的文件 I/O
+- 新的内置函数和 App 对象属性
+- 直接的 COM 错误处理访问
+- 数组解构赋值
 
-### [GUI Components](/official/Features/GUI-Components/)
+### [GUI 组件](/official/Features/GUI-Components/)
 
-Modernized GUI components featuring:
+现代化的 GUI 组件，包括：
 
-- Enhanced forms with transparency and alpha blending
-- Control anchoring and docking
-- Windowed and windowless controls
-- 64-bit support and DPI awareness
-- New controls (QR Code, Multiframe, CheckMark)
+- 支持透明和 Alpha 混合的增强窗体
+- 控件锚定和停靠
+- 有窗口和无窗口控件
+- 64 位支持和 DPI 感知
+- 新控件（QR Code、Multiframe、CheckMark）
 
-### [Package Management](/official/Features/Packages/)
+### [包管理](/official/Features/Packages/)
 
-twinBASIC[^1] has a centralized package repository, called TWINSERV. Users can publish both public and private packages. Package browsing, downloading, and publishing is seamlessly integrated into the IDE.
+twinBASIC[^1] 拥有一个名为 TWINSERV 的集中式包仓库。用户可以发布公开和私有包。包的浏览、下载和发布无缝集成到 IDE 中。
 
-Packages are collections of components that can be referenced from another twinBASIC project. They are distributed as TWINPACK files that contains everything needed by the components in that package.
+包是可被其他 twinBASIC 项目引用的组件集合。它们以 TWINPACK 文件形式分发，包含该包中组件所需的一切。
 
-[^1]: A service of TWINBASIC LTD offered to the user community.
+[^1]: TWINBASIC LTD 向用户社区提供的服务。
 
-### [Advanced Features](/official/Features/Advanced/)
+### [高级功能](/official/Features/Advanced/)
 
-Advanced programming capabilities:
+高级编程能力：
 
-- Multithreading support via direct API calls
-- Direct assembly insertion with `Emit()`
-- Static linking of OBJ and LIB files
-- Enhanced API declarations (CDecl, variadic args, ByVal UDTs)
-- Parameterized constructors and class exports
+- 通过直接 API 调用的多线程支持
+- 使用 `Emit()` 直接插入汇编代码
+- OBJ 和 LIB 文件的静态链接
+- 增强的 API 声明（CDecl、可变参数、ByVal UDT）
+- 参数化构造函数和类导出
 
-### [Compiler and IDE Features](/official/Features/Compiler-IDE/)
+### [编译器和 IDE 功能](/official/Features/Compiler-IDE/)
 
-Improved development experience:
+改进的开发体验：
 
-- Compiler warnings and strict mode
-- Debug trace logger and stale pointer detection
-- CodeLens for running Subs directly
-- Modern IDE with themes, code folding, and more
-- Package server for code sharing
+- 编译器警告和严格模式
+- 调试跟踪记录器和过期指针检测
+- 用于直接运行 Sub 的 CodeLens
+- 具有主题、代码折叠等功能的现代 IDE
+- 用于代码共享的包服务器
 
 ### [Fusion](/official/Features/Fusion)
 
-Fusion enables 64-bit applications to host 32-bit ActiveX controls (and vice versa) by transparently bridging them through an out-of-process host executable using IPC-based communication.
+Fusion 使 64 位应用程序能够托管 32 位 ActiveX 控件（反之亦然），通过一个外部进程宿主可执行文件透明地桥接它们，使用基于 IPC 的通信。
 
-### [64bit Compilation](/official/Features/64bit)
+### [64位编译](/official/Features/64bit)
 
-twinBASIC can compile native 64bit executables in addition to 32bit, using the **LongPtr** data type and **PtrSafe** keyword for API declarations.
+twinBASIC 除了编译 32 位外，还能编译原生 64 位可执行文件，使用 **LongPtr** 数据类型和 **PtrSafe** 关键字来标记 API 声明。

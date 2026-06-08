@@ -2,27 +2,36 @@
 title: vbaCopyBytesZero
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/vbaCopyBytesZero
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c6919ea0-a33f-478d-98b1-5db4d1425118'
+  PropagateID: 'c6919ea0-a33f-478d-98b1-5db4d1425118'
+  ReservedCode1: '4f178ede-7b0a-4d92-a555-63dc95ab8342'
+  ReservedCode2: '4f178ede-7b0a-4d92-a555-63dc95ab8342'
 ---
+
 # vbaCopyBytesZero
 
-Copies a block of bytes from one address to another, then zeroes the source bytes.
+将一个字节块从一个地址复制到另一个地址，然后将源字节清零。
 
-Syntax: **vbaCopyBytesZero(** *Length* **,** *Dest* **,** *Src* **)** **As LongPtr**
+语法：**vbaCopyBytesZero(** *Length* **,** *Dest* **,** *Src* **)** **As LongPtr**
 
 *Length*
-: *required* **Long**. The number of bytes to copy.
+: *必需* **Long**。要复制的字节数。
 
 *Dest*
-: *required* **LongPtr**. The destination address.
+: *必需* **LongPtr**。目标地址。
 
 *Src*
-: *required* **LongPtr**. The source address. The *Length* bytes starting at *Src* are written with zero after the copy completes.
+: *必需* **LongPtr**。源地址。复制完成后，从*Src*开始的*Length*个字节被写入零。
 
-Equivalent to a [**vbaCopyBytes**](/official/Reference/VBA/HiddenModule/vbaCopyBytes) followed by a memory clear of the source. Useful when moving an owning resource (a BSTR, an interface pointer) without leaving a duplicate behind. The return value is *Dest*.
+等效于先执行[**vbaCopyBytes**](/official/Reference/VBA/HiddenModule/vbaCopyBytes)，再对源进行内存清除。在移动拥有资源（BSTR、接口指针）而不留下副本时非常有用。返回值为*Dest*。
 
-### Example
+### 示例
 
-This example copies four bytes from one buffer to another, then confirms the source is zeroed.
+本示例将四个字节从一个缓冲区复制到另一个，然后确认源已被清零。
 
 ```vb
 Dim src As LongPtr = AllocMem(8)
@@ -36,6 +45,6 @@ FreeMem src
 FreeMem dst
 ```
 
-### See Also
+### 另请参阅
 
-- [vbaCopyBytes](/official/Reference/VBA/HiddenModule/vbaCopyBytes) function
+- [vbaCopyBytes](/official/Reference/VBA/HiddenModule/vbaCopyBytes)函数

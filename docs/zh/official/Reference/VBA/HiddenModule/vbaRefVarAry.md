@@ -6,28 +6,28 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'f8b0574f-b62a-4291-b403-b139a32d0f4a'
-  PropagateID: 'f8b0574f-b62a-4291-b403-b139a32d0f4a'
-  ReservedCode1: 'df036e5d-aeb9-40c6-ae6e-1912f3adbc97'
-  ReservedCode2: 'df036e5d-aeb9-40c6-ae6e-1912f3adbc97'
+  ProduceID: '0d372ab4-e898-4d68-a6cc-9b6c4131a926'
+  PropagateID: '0d372ab4-e898-4d68-a6cc-9b6c4131a926'
+  ReservedCode1: 'dda64aa8-85fd-4ea8-9180-e8d16ab8c4f8'
+  ReservedCode2: 'dda64aa8-85fd-4ea8-9180-e8d16ab8c4f8'
 ---
 
 # vbaRefVarAry
 
-Returns a pointer to the **SAFEARRAY** descriptor stored inside a **Variant** array.
+返回存储在**Variant**数组中的**SAFEARRAY**描述符的指针。
 
-Syntax: **vbaRefVarAry(** *Variant* **)** **As LongPtr**
+语法：**vbaRefVarAry(** *Variant* **)** **As LongPtr**
 
 *Variant*
-: *required* A **Variant** that contains an array, passed by reference.
+: *必需* 包含数组的**Variant**，按引用传递。
 
-The returned address is the location of the **SAFEARRAY*** field inside the **Variant** --- that is, the dereference yields the **SAFEARRAY** pointer that the **Variant** wraps. Useful when calling Win32 APIs that expect to receive or fill a **SAFEARRAY** through a `VARIANT*` argument.
+返回的地址是**Variant**内部**SAFEARRAY***字段的位置——即解引用后得到**Variant**包装的**SAFEARRAY**指针。在调用期望通过`VARIANT*`参数接收或填充**SAFEARRAY**的Win32 API时非常有用。
 
-If *Variant* does not contain an array, the result is undefined.
+如果*Variant*不包含数组，则结果未定义。
 
-### Example
+### 示例
 
-This example retrieves the address of the **SAFEARRAY** descriptor inside a **Variant** array.
+本示例检索**Variant**数组内部的**SAFEARRAY**描述符的地址。
 
 ```vb
 Dim v As Variant
@@ -38,9 +38,7 @@ Dim pSA As LongPtr
 GetMemPtr pSAPtr, pSA          ' dereference: pSA is the SAFEARRAY pointer
 ```
 
-### See Also
+### 另请参阅
 
-- [VarPtr](/official/Reference/VBA/Information/VarPtr) function
-- [vbaAryMove](/official/Reference/VBA/HiddenModule/vbaAryMove) procedure
-
-> AI生成
+- [VarPtr](/official/Reference/VBA/Information/VarPtr)函数
+- [vbaAryMove](/official/Reference/VBA/HiddenModule/vbaAryMove)过程

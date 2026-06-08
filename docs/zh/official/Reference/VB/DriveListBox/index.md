@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/DriveListBox/
 
 # DriveListBox class
 
-A **DriveListBox** is a Win32 native drop-down combo control that auto-populates with the drives reported by the operating system. The user picks one from the list; code reads the chosen drive through [**Drive**](#drive) and typically forwards it to a [**DirListBox**](/official/Reference/VB/DirListBox/) (whose [**Path**](/official/Reference/VB/DirListBox/#path) it can be assigned to directly) to build a file picker alongside a [**FileListBox**](/official/Reference/VB/FileListBox/). The control is normally placed on a **Form** or **UserControl** at design time. The default property is [**Drive**](#drive) and the default event is [**Change**](#change).
+A **DriveListBox** is a Win32 native drop-down combo control that auto-populates with the drives reported by the operating system. The user picks one from the list; code reads the chosen drive through [**Drive**](#drive) and typically forwards it to a [**DirListBox**](/en/official/Reference/VB/DirListBox/) (whose [**Path**](/en/official/Reference/VB/DirListBox/#path) it can be assigned to directly) to build a file picker alongside a [**FileListBox**](/en/official/Reference/VB/FileListBox/). The control is normally placed on a **Form** or **UserControl** at design time. The default property is [**Drive**](#drive) and the default event is [**Change**](#change).
 
 ```vb
 Private Sub Form_Load()
@@ -31,7 +31,7 @@ The list is populated automatically when the underlying window is created, by as
 | `d:` (no brackets)   | Drive present but no volume label (unformatted, or empty CD-ROM).|
 | `z: [\\srv\share]`   | Network drive; UNC path in brackets.                             |
 
-Each entry is owner-drawn with an icon chosen from the drive type --- closed disk, removable, fixed, CD-ROM, network, or RAM disk. The list cannot be edited from code: [**AddItem**](/official/Reference/VB/ComboBox/#additem), [**RemoveItem**](/official/Reference/VB/ComboBox/#removeitem), and [**Clear**](/official/Reference/VB/ComboBox/#clear) are present in the type library for VB6 source compatibility but raise run-time error 438 (*Object doesn't support this property or method*) when called. Call [**Refresh**](#refresh) to re-read the drive set from the OS --- useful after a removable medium is inserted or a network drive is mapped.
+Each entry is owner-drawn with an icon chosen from the drive type --- closed disk, removable, fixed, CD-ROM, network, or RAM disk. The list cannot be edited from code: [**AddItem**](/en/official/Reference/VB/ComboBox/#additem), [**RemoveItem**](/en/official/Reference/VB/ComboBox/#removeitem), and [**Clear**](/en/official/Reference/VB/ComboBox/#clear) are present in the type library for VB6 source compatibility but raise run-time error 438 (*Object doesn't support this property or method*) when called. Call [**Refresh**](#refresh) to re-read the drive set from the OS --- useful after a removable medium is inserted or a network drive is mapped.
 
 [**ListCount**](#listcount) is the number of entries, [**List**](#list) returns the text of any entry by zero-based index, and [**TopIndex**](#topindex) controls vertical scrolling within the drop-down portion when it is open. [**NewIndex**](#newindex) reports the position of the last entry added during population (useful only when re-reading the list from code).
 
@@ -54,7 +54,7 @@ Debug.Print Drive1.Drive    ' "d: [Backup]"  (the displayed text)
 
 ### Appearance
 
-Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
 
 ### BackColor
 
@@ -66,7 +66,7 @@ Determines whether the previously focused control's [**Validate**](#validate) ev
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a drive list box. Always **vbDriveListBox**.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a drive list box. Always **vbDriveListBox**.
 
 ### DragIcon
 
@@ -74,7 +74,7 @@ A **StdPicture** used as the mouse cursor while the control is being drag-and-dr
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/en/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
 
 ### Drive
 
@@ -139,7 +139,7 @@ A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer)
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
 
 ### Name
 
@@ -151,7 +151,7 @@ The zero-based index at which the most recent list-population step inserted an e
 
 ### OLEDropMode
 
-How the control responds to OLE drops. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a DriveListBox.
+How the control responds to OLE drops. A restricted member of [**OLEDropConstants**](/en/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a DriveListBox.
 
 ### Opacity
 
@@ -218,7 +218,7 @@ Begins, completes, or cancels a manual drag-and-drop operation when [**DragMode*
 Syntax: *object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *optional* A member of [**DragConstants**](/en/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
 
 ### Move
 
@@ -263,7 +263,7 @@ Brings the control to the front or back of its sibling stack.
 Syntax: *object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
 
 ## Events
 

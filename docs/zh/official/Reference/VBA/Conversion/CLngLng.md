@@ -2,31 +2,40 @@
 title: CLngLng
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/CLngLng
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '19e43ed5-7b50-4085-9914-5239ab515f9c'
+  PropagateID: '19e43ed5-7b50-4085-9914-5239ab515f9c'
+  ReservedCode1: '8a8785a3-7b37-47a0-a8c9-656b917d060c'
+  ReservedCode2: '8a8785a3-7b37-47a0-a8c9-656b917d060c'
 ---
+
 # CLngLng
 
-Coerces an expression to a **LongLong**.
+将表达式强制转换为 **LongLong**。
 
-Syntax: **CLngLng(** *expression* **)**
+语法：**CLngLng(** *expression* **)**
 
 *expression*
-: *required* Any valid string or numeric expression in the range `-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`. Fractions are rounded.
+: *必需* 范围在 `-9,223,372,036,854,775,808` 到 `9,223,372,036,854,775,807` 之间的任何有效字符串或数值表达式。小数部分会四舍五入。
 
-The return type is **LongLong**. If *expression* is outside the range of a **LongLong**, a run-time error occurs.
+返回类型为 **LongLong**。如果 *expression* 超出 **LongLong** 的范围，将发生运行时错误。
 
-When the fractional part is exactly `0.5`, **CLngLng** always rounds it to the nearest even number. For example, `0.5` rounds to `0`, and `1.5` rounds to `2`. **CLngLng** differs from the [**Fix**](/official/Reference/VBA/Conversion/Fix) and [**Int**](/official/Reference/VBA/Conversion/Int) functions, which truncate, rather than round, the fractional part of a number.
+当小数部分恰好为 `0.5` 时，**CLngLng** 始终舍入到最接近的偶数。例如，`0.5` 舍入为 `0`，`1.5` 舍入为 `2`。**CLngLng** 与 [**Fix**](/official/Reference/VBA/Conversion/Fix) 和 [**Int**](/official/Reference/VBA/Conversion/Int) 函数不同，后者截断而非舍入数字的小数部分。
 
 ::: info
-Conversion functions must be used to explicitly assign **LongLong** to smaller integral types. Implicit conversions of **LongLong** to smaller integrals are not allowed.
+必须使用转换函数显式将 **LongLong** 赋值给较小的整数类型。不允许 **LongLong** 到较小整数类型的隐式转换。
 :::
 
 ::: info
-In VBA, **LongLong** (and therefore **CLngLng**) is restricted to 64-bit hosts. twinBASIC supports **LongLong** in both 32-bit and 64-bit modes --- see [Data Types](/official/Features/Language/Data-Types).
+在 VBA 中，**LongLong**（以及因此 **CLngLng**）仅限于 64 位宿主。twinBASIC 在 32 位和 64 位模式下都支持 **LongLong**——参见[数据类型](/official/Features/Language/Data-Types)。
 :::
 
-### Example
+### 示例
 
-This example uses the **CLngLng** function to convert an expression to a **LongLong**.
+此示例使用 **CLngLng** 函数将表达式转换为 **LongLong**。
 
 ```vb
 Dim someValue As Variant
@@ -36,6 +45,6 @@ longLongValue = CLngLng(someValue)
 MsgBox "The LongLong representation is: " & longLongValue
 ```
 
-### See Also
+### 另请参阅
 
-- [CBool](/official/Reference/VBA/Conversion/CBool), [CByte](/official/Reference/VBA/Conversion/CByte), [CInt](/official/Reference/VBA/Conversion/CInt), [CLng](/official/Reference/VBA/Conversion/CLng), [CLngPtr](/official/Reference/VBA/Conversion/CLngPtr), [CSng](/official/Reference/VBA/Conversion/CSng), [CStr](/official/Reference/VBA/Conversion/CStr), [CVar](/official/Reference/VBA/Conversion/CVar) functions
+- [CBool](/official/Reference/VBA/Conversion/CBool)、[CByte](/official/Reference/VBA/Conversion/CByte)、[CInt](/official/Reference/VBA/Conversion/CInt)、[CLng](/official/Reference/VBA/Conversion/CLng)、[CLngPtr](/official/Reference/VBA/Conversion/CLngPtr)、[CSng](/official/Reference/VBA/Conversion/CSng)、[CStr](/official/Reference/VBA/Conversion/CStr)、[CVar](/official/Reference/VBA/Conversion/CVar) 函数

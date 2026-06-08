@@ -1,13 +1,13 @@
----
+﻿---
 title: WebView2Response
-parent: WebView2 Package
+parent: "WebView2 包"
 permalink: /tB/Packages/WebView2/WebView2Response
 ---
 
-# WebView2Response class
-The response side of a [**WebResourceRequested**](/official/Reference/WebView2/WebView2/#webresourcerequested) event. Fill in any of [**StatusCode**](#statuscode), [**ReasonPhrase**](#reasonphrase), [**Headers**](#headers), or one of the content properties, and the runtime returns that synthesised response to the page instead of going to the network.
+# WebView2Response 类
+[**WebResourceRequested**](/official/Reference/WebView2/WebView2/#webresourcerequested) 事件的响应端。填写 [**StatusCode**](#statuscode)、[**ReasonPhrase**](#reasonphrase)、[**Headers**](#headers) 中的任意一个，或任一内容属性，运行时将向页面返回该合成响应，而非访问网络。
 
-If the event handler does not touch the response (no property is written), the runtime falls through to its normal fetch --- the pending request continues unchanged.
+如果事件处理程序未触碰响应（未写入任何属性），运行时将执行正常获取——待处理请求保持不变。
 
 ```vb
 Private Sub Form_Load()
@@ -25,34 +25,34 @@ Private Sub WebView21_WebResourceRequested( _
 End Sub
 ```
 
-## Properties
+## 属性
 
 ### ContentBytes
 
-The response body as a byte array. Reading returns **Empty** when no body has been set; assigning installs an in-memory stream containing the bytes. Read / write.
+响应体的字节数组。未设置响应体时读取返回 **Empty**；赋值时安装包含该字节的内存流。可读/写。
 
-Syntax: *object*.**ContentBytes** [ = *bytes* ]
+语法：*object*.**ContentBytes** [ = *bytes* ]
 
 *bytes*
-: A **Byte()** array.
+: 一个 **Byte()** 数组。
 
 ### ContentUTF8
 
-The response body as a UTF-8 **String** --- a convenience over [**ContentBytes**](#contentbytes) that performs the `StrConv` round-trip automatically. Read / write.
+响应体的 UTF-8 **String**——是 [**ContentBytes**](#contentbytes) 的便利方法，自动执行 `StrConv` 往返转换。可读/写。
 
-Syntax: *object*.**ContentUTF8** [ = *text* ]
+语法：*object*.**ContentUTF8** [ = *text* ]
 
 *text*
-: A **String** that is converted to UTF-8 bytes before being installed as the response body.
+: 一个 **String**，在安装为响应体之前转换为 UTF-8 字节。
 
 ### Headers
 
-The response's HTTP headers as a [**WebView2ResponseHeaders**](/official/Reference/WebView2/WebView2ResponseHeaders) collection --- add or inspect headers here. Read-only at the property level (the collection itself is mutable).
+响应的 HTTP 头，为 [**WebView2ResponseHeaders**](/official/Reference/WebView2/WebView2ResponseHeaders) 集合——在此添加或检查头。属性层面只读（集合本身可变）。
 
 ### ReasonPhrase
 
-The HTTP reason phrase, e.g. `"OK"`, `"Not Found"`. **String**. Read / write.
+HTTP 原因短语，例如 `"OK"`、`"Not Found"`。**String**。可读/写。
 
 ### StatusCode
 
-The HTTP status code, e.g. `200`, `404`. **Long**. Read / write.
+HTTP 状态码，例如 `200`、`404`。**Long**。可读/写。

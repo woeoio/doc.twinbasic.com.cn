@@ -1,25 +1,34 @@
 ---
-title: Keys
+title: "Keys 方法"
 parent: Collection
 permalink: /tB/Modules/Collection/Keys
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6af33a4e-77df-4fd9-9aae-f7c9d5dd42fc'
+  PropagateID: '6af33a4e-77df-4fd9-9aae-f7c9d5dd42fc'
+  ReservedCode1: 'd1411842-20c3-4557-a2af-35bc427fda3e'
+  ReservedCode2: 'd1411842-20c3-4557-a2af-35bc427fda3e'
 ---
+
 # Keys
 
-Returns a **String** array containing all the keys associated with items in a **Collection** object.
+返回一个 **String** 数组，包含 **Collection** 对象中与项关联的所有键。
 
-Syntax: *object*.**Keys()**
+语法：*object*.**Keys()**
 
 *object*
-: *required* An object expression that evaluates to a **Collection** object.
+: *必需* 一个计算结果为 **Collection** 对象的对象表达式。
 
 ::: info
 
-**Keys** is a twinBASIC extension; the classic VBA **Collection** object has no **Keys** method.
+**Keys** 是 twinBASIC 扩展；经典 VBA 的 **Collection** 对象没有 **Keys** 方法。
 :::
 
-Only items that were added with a **Key** argument appear in the returned array. If no items have keys, the array is empty.
+只有使用 **Key** 参数添加的项才会出现在返回的数组中。如果没有项具有键，则数组为空。
 
-### Example
+### 示例
 
 ```vb
 Dim col As New Collection
@@ -36,10 +45,10 @@ For i = LBound(k) To UBound(k)
 Next i
 ```
 
-### See Also
+### 另请参阅
 
-- [Add](/official/Reference/VBA/Collection/Add) method
-- [Exists](/official/Reference/VBA/Collection/Exists) method
-- [Item](/official/Reference/VBA/Collection/Item) method
-- [Items](/official/Reference/VBA/Collection/Items) method
-- [Count](/official/Reference/VBA/Collection/Count) property
+- [Add](/official/Reference/VBA/Collection/Add) 方法
+- [Exists](/official/Reference/VBA/Collection/Exists) 方法
+- [Item](/official/Reference/VBA/Collection/Item) 方法
+- [Items](/official/Reference/VBA/Collection/Items) 方法
+- [Count](/official/Reference/VBA/Collection/Count) 属性

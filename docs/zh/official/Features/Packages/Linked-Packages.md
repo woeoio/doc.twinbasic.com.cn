@@ -1,43 +1,50 @@
 ---
-title: Linked Packages
+title: "链接包"
 parent: Package Management
 nav_order: 5
 permalink: /Features/Packages/Linked
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cf745c0d-5e9b-4483-8526-caabeceedef6'
+  PropagateID: 'cf745c0d-5e9b-4483-8526-caabeceedef6'
+  ReservedCode1: 'b86b41ec-3c61-4ad7-bb14-65410dd45487'
+  ReservedCode2: 'b86b41ec-3c61-4ad7-bb14-65410dd45487'
 ---
 
-# Linked Packages
+# 链接包
 
-In addition to the standard usage described so far in this section, a package may also be **linked**. When a package is linked, it is not embedded in the .twinproj file-- it is instead stored in a common location accessible to all projects. This has multiple benefits. Some packages are very large, so not storing a copy in every .twinproj file makes them easier to share. Additionally, it allows multiple projects to share the same files, at least in read-only form.\
-While built in compiler packages are linked, this article concerns 3rd party packages.
+除了本节到目前为止描述的标准用法外，包还可以被**链接**。当包被链接时，它不会嵌入在 .twinproj 文件中——而是存储在所有项目都可以访问的公共位置。这有多个好处。有些包非常大，不在每个 .twinproj 文件中存储副本使它们更容易共享。此外，它允许多个项目共享相同文件，至少以只读形式。虽然内置编译器包是链接的，但本文讨论的是第三方包。
 
-## Downloading a package for the first time
+## 首次下载包
 
-When you check the box for a package for the first time on the current machine, it is **Embedded** by default. You'll see a column with that name next to the package name:
+当你首次在当前机器上勾选某个包时，它默认是**Embedded**。你会在包名称旁边看到一列名为 Embedded：
 
 <img width="670" height="169" alt="image" src="https://github.com/user-attachments/assets/1f7e3574-f3c8-4aee-972a-ff161c0e51ac" />
 
-Uncheck the Embedded column and it will be converted to a linked package. A .twinpack file for the package is created in `%APPDATA%\Roaming\twinBASIC\packages`, where it can remain available across tB IDE updates.
+取消勾选 Embedded 列，它将被转换为链接包。该包的 .twinpack 文件会创建在 `%APPDATA%\Roaming\twinBASIC\packages`，在那里它可以跨 tB IDE 更新保持可用。
 
-## Adding a package that has been linked
+## 添加已链接的包
 
-Once you've performed the steps above in one project, the linked package is available to all projects. You add the reference in the same way, through Available Packages, only now you'll be prompted to ask if you want the linked version already on your system, or to redownload it from TWINSERV:
+一旦你在一个项目中执行了上述步骤，链接包就可以被所有项目使用。你通过 Available Packages 以相同方式添加引用，只是现在你会被提示选择使用系统上已有的链接版本，还是从 TWINSERV 重新下载：
 
 <img width="641" height="439" alt="image" src="https://github.com/user-attachments/assets/f48a7254-e5c9-48c5-8099-725c0951ae5f" />
 
-This prompt provides the versions of both, which allows for updating the package if desired. If you do choose to download it again, you'll need to uncheck Embed again to keep it as a linked package. When you do, you'll be prompted to confirm you want to overwrite the local linked copy with the version newly downloaded from the package server:
+此提示提供了两个版本的版本号，允许在需要时更新包。如果你选择重新下载，你需要再次取消勾选 Embed 以保持为链接包。这样做时，你会被提示确认要用从包服务器新下载的版本覆盖本地链接副本：
 
 <img width="635" height="214" alt="image" src="https://github.com/user-attachments/assets/8cf72685-1188-4607-a55a-df16d4280474" />
 
-## Opening a project with missing linked package
+## 打开缺少链接包的项目
 
-Sometimes you may want to open a .twinproj that refers to a linked package you do not currently have a copy of. If this happens, you'll see the standard missing reference message: 
+有时你可能想打开一个引用了你当前没有副本的链接包的 .twinproj。如果发生这种情况，你会看到标准的缺少引用提示：
 
 <img width="539" height="63" alt="image" src="https://github.com/user-attachments/assets/f66fb240-dcb7-46ee-896d-78c3789a7876" />
 
-And it's handled in the same way. **Uncheck the reference** -- "Fix" is not currently implemented. Then, go to the Available Packages tab and select the package-- and as described above, uncheck Embed to convert to a linked package.
+处理方式相同。**取消勾选引用**——"Fix" 目前尚未实现。然后，转到 Available Packages 选项卡并选择该包——如上所述，取消勾选 Embed 以转换为链接包。
 
-## Manual management
+## 手动管理
 
-You can make packages available, delete them, back them up, etc, via the linked packages folder: `%APPDATA%\Roaming\twinBASIC\packages`
+你可以通过链接包文件夹手动管理包：`%APPDATA%\Roaming\twinBASIC\packages`
 
-If you copy a .twinpack file (or a .twinproj) to that location, it will be available as a linked package without needing to be downloaded from the package server. It does not need to exist on the server at all, allowing fully private, local linked packages.
+你可以使包可用、删除它们、备份它们等。如果你将 .twinpack 文件（或 .twinproj）复制到该位置，它将作为链接包可用，无需从包服务器下载。它不需要存在于服务器上，允许完全私有的本地链接包。

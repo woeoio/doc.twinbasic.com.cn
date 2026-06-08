@@ -1,72 +1,80 @@
 ---
-title: New Functions
+title: "新函数"
 parent: Standard Library
 nav_order: 3
 permalink: /Features/Standard-Library/New-Functions
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '8a8dabfd-6c3d-4edc-ba43-6496a74e662e'
+  PropagateID: '8a8dabfd-6c3d-4edc-ba43-6496a74e662e'
+  ReservedCode1: '311b52af-bfbf-4e47-9432-2e494019b716'
+  ReservedCode2: '311b52af-bfbf-4e47-9432-2e494019b716'
 ---
 
-# New Built-in Functions
+# 新内置函数
 
-In addition to the new datatype-related and component name functions already described, the standard builtin `VBA` library now includes many new capabilities.
+除了前面描述的与数据类型相关和组件名称的函数外，标准内置 `VBA` 库现在包含许多新功能。
 
-## New Functions
+## 新函数
 
-- `IsArrayInitialized(variable)` - Determines if an array is initialized. Note: A `Variant` declared as empty array with `Array()` will return `True`.
-- `RGBA(r, g, b, a)` - Like the `RBG()` function, only including the alpha channel.
-- `RBG_R(rgba)`, `RGB_B(rgba)`, `RBG_G(rgba)`, and `RGBA_A(rgba)` - Get the values for individual channels.
-- `TranslateColor(ColorValue, Optional Palette)` - Translates an OLE color value to an RGB color.
-- `ProcessorArchitecture()` - Returns either `vbArchWin32` or `vbArchWin64`, depending on application bitness.
-- `CallByDispId(Object, DispId, CallType, Arguments)` - Similar to `CallByName()`, but uses the dispatch id instead of method name.
-- `RaiseEventByName(Object, Name, Args)` - Invokes an event on class, using arguments specified as a single `Variant` containing an array.
-- `RaiseEventByName2(Object, Name, Arg1, Arg2, ...)` - Invokes an event on class, using arguments specified as a ParamArray.
-- `PictureToByteArray(StdPicture)` - Converts a picture to a byte array; Global.LoadPicture supports loading from byte arrays.
-- `CreateGUID()` - Returns a string with a freshly generated GUID.
-- `AllocMem(size)` and `FreeMem` - allocate and free memory from the process heap.
-- `Int3Breakpoint` - Inserts a true breakpoint helpful for attached external debuggers.
-- `GetDeclaredTypeProgId(Of T)` / `GetDeclaredTypeClsid(Of T)` generics for getting strings of ProgID/CLSID.
-- `GetDeclaredMinEnumValue(Of T)` / `GetDeclaredMaxEnumValue(Of T)` generics.
-- Some `Interlocked*` functions
+- `IsArrayInitialized(variable)` - 判断数组是否已初始化。注意：用 `Array()` 声明为空数组的 `Variant` 将返回 `True`。
+- `RGBA(r, g, b, a)` - 类似 `RBG()` 函数，但包含 alpha 通道。
+- `RBG_R(rgba)`、`RGB_B(rgba)`、`RBG_G(rgba)` 和 `RGBA_A(rgba)` - 获取各通道的值。
+- `TranslateColor(ColorValue, Optional Palette)` - 将 OLE 颜色值转换为 RGB 颜色。
+- `ProcessorArchitecture()` - 根据应用程序位数返回 `vbArchWin32` 或 `vbArchWin64`。
+- `CallByDispId(Object, DispId, CallType, Arguments)` - 类似 `CallByName()`，但使用调度 ID 而非方法名。
+- `RaiseEventByName(Object, Name, Args)` - 在类上触发事件，使用包含数组的单个 `Variant` 参数。
+- `RaiseEventByName2(Object, Name, Arg1, Arg2, ...)` - 在类上触发事件，使用 ParamArray 参数。
+- `PictureToByteArray(StdPicture)` - 将图片转换为字节数组；Global.LoadPicture 支持从字节数组加载。
+- `CreateGUID()` - 返回一个新生成的 GUID 字符串。
+- `AllocMem(size)` 和 `FreeMem` - 从进程堆分配和释放内存。
+- `Int3Breakpoint` - 插入真正的断点，有助于已附加的外部调试器。
+- `GetDeclaredTypeProgId(Of T)` / `GetDeclaredTypeClsid(Of T)` 泛型，用于获取 ProgID/CLSID 字符串。
+- `GetDeclaredMinEnumValue(Of T)` / `GetDeclaredMaxEnumValue(Of T)` 泛型。
+- 一些 `Interlocked*` 函数
 
-## Runtime Functions from msvbvm60.dll
+## 来自 msvbvm60.dll 的运行时函数
 
-tB has built in support for some of the most commonly used runtime functions, for compatibility. These all support both 32 and 64bit. Unless otherwise noted, all of these function in two ways: First, built in native versions that are always present (unless you remove the basic compiler packages), with the most common arrangements of arguments. These don't require a `Declare` statement. If you *do* provide a `Declare` version, tB will allow whatever arrangements of arguments you specify (e.g. `As Any` instead of `As LongPtr`), mapped to an alias if provided.
+tB 内置了对一些最常用运行时函数的支持，以兼容性。这些都同时支持 32 位和 64 位。除非另有说明，所有这些函数以两种方式工作：首先，始终存在的内置原生版本（除非你移除了基本编译器包），具有最常见的参数排列。这些不需要 `Declare` 语句。如果你*确实*提供了 `Declare` 版本，tB 将允许你指定的任何参数排列（例如用 `As Any` 代替 `As LongPtr`），并在提供别名时映射到别名。
 
-### Memory Functions
+### 内存函数
 
-- `GetMem1`, `GetMem2`, `GetMem4`, `GetMem8`, `PutMem1`, `PutMem2`, `PutMem4`, `PutMem8`
-- New additions `GetMemPtr` and `PutMemPtr` pegged to the current pointer size
+- `GetMem1`、`GetMem2`、`GetMem4`、`GetMem8`、`PutMem1`、`PutMem2`、`PutMem4`、`PutMem8`
+- 新增 `GetMemPtr` 和 `PutMemPtr`，对应当前指针大小
 
-### Object Manipulation
+### 对象操作
 
-- `vbaObjSet`, `vbaObjSetAddref`, `vbaCastObj`, and `vbaObjAddref` for manipulating object assignments through pointers.
+- `vbaObjSet`、`vbaObjSetAddref`、`vbaCastObj` 和 `vbaObjAddref`，用于通过指针操作对象赋值。
 
-### Array Operations
+### 数组操作
 
-- `vbaCopyBytes` and `vbaCopyBytesZero`
-- `vbaAryMove` and `vbaRefVarAry` (currently only with a `Declare` statement).
-- tB also has an instrinsic `VarPtr` but will still redirect calls via a declare statement, e.g. aliases used for arrays (though tB's `VarPtr` supports arrays natively).
+- `vbaCopyBytes` 和 `vbaCopyBytesZero`
+- `vbaAryMove` 和 `vbaRefVarAry`（目前仅支持通过 `Declare` 语句）。
+- tB 也有内置的 `VarPtr`，但仍会通过 declare 语句重定向调用，例如用于数组的别名（不过 tB 的 `VarPtr` 原生支持数组）。
 
-## New App Object Properties
+## 新的 App 对象属性
 
-- `App.IsInIDE` - `True` when running from the IDE.
-- `App.IsElevated` - Returns whether the program is currently running with administrator rights.
-- `App.LastBuildPath` - Returns the full path of the last build. Does not persist between compiler/IDE restarts.
-- `App.Build` - For the additional version number field.
-- `App.ModulePath` - Returns the full path of the currently executing module. For example, if placed in a DLL and called from an EXE, the path of the DLL would be returned. Also, the twinBASIC debugger DLL is given when running from the IDE, when the method is in the app itself.
+- `App.IsInIDE` - 从 IDE 运行时为 `True`。
+- `App.IsElevated` - 返回程序当前是否以管理员权限运行。
+- `App.LastBuildPath` - 返回上次构建的完整路径。不在编译器/IDE 重启之间持久保存。
+- `App.Build` - 用于额外的版本号字段。
+- `App.ModulePath` - 返回当前执行模块的完整路径。例如，如果放在 DLL 中并从 EXE 调用，将返回 DLL 的路径。此外，从 IDE 运行且方法在应用本身中时，返回的是 twinBASIC 调试器 DLL。
 
-## COM Error Handling
+## COM 错误处理
 
-### Direct Access to COM Errors
+### 直接访问 COM 错误
 
-You can retrieve the last `HRESULT` to a COM interface call via `Err.LastHResult`; these are usually hidden and mapped to internal errors-- everything in a COM interface normally called a `Sub` is actually an `HRESULT`-returning function.
+你可以通过 `Err.LastHResult` 检索最后一次 COM 接口调用的 `HRESULT`；这些通常被隐藏并映射为内部错误——COM 接口中正常称为 `Sub` 的所有内容实际上是返回 `HRESULT` 的函数。
 
-### Setting Return HRESULT
+### 设置返回 HRESULT
 
-More importantly, you can now **set** the `HRESULT` in interface implementations with `Err.ReturnHResult`. This was a critical missing feature for which sometimes Err.Raise would work, but mostly programmers resorted to complicated vtable-swapping code to redirect to a standard module function. For instance you can now return `S_FALSE` where expected with `Err.ReturnHResult = S_FALSE`.
+更重要的是，你现在可以在接口实现中使用 `Err.ReturnHResult` **设置** `HRESULT`。这是一个关键缺失的功能，以前有时 `Err.Raise` 可以工作，但大多数程序员诉诸于复杂的 v-table 交换代码来重定向到标准模块函数。例如，你现在可以在需要时用 `Err.ReturnHResult = S_FALSE` 返回 `S_FALSE`。
 
-## Destructuring Assignment
+## 解构赋值
 
-This feature allows you to assign the contents of an array to multiple variables in a single line:
+此功能允许你将数组内容在单行中赋值给多个变量：
 
 ```vb
 Dim a As Long, b As Long, c As Long
@@ -78,7 +86,7 @@ Array(a, b, c) = d
 Debug.Print a, b, c
 ```
 
-This would print `1   2   3`. You could also assign multiple variables at once like this and get the same result:
+这将打印 `1   2   3`。你也可以这样一次赋值多个变量并得到相同结果：
 
 ```vb
 Dim a As Long, b As Long, c As Long
@@ -86,7 +94,7 @@ Array(a, b, c) = Array(1, 2, 3)
 Debug.Print a, b, c
 ```
 
-You can now also do assignments like this:
+你现在还可以这样做：
 
 ```vb
 Dim a As Long = 9
@@ -95,4 +103,4 @@ Dim c() As Long = Array(a, b)
 Debug.Print c(1), UBound(c)
 ```
 
-Which prints `7    1`.
+打印 `7    1`。

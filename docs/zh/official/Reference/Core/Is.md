@@ -2,36 +2,45 @@
 title: Is
 parent: Operators
 permalink: /tB/Core/Is
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'b900865a-ecfe-400f-b5eb-36c611b437fe'
+  PropagateID: 'b900865a-ecfe-400f-b5eb-36c611b437fe'
+  ReservedCode1: 'a67bc849-92f0-472c-afff-9c16e4e748a0'
+  ReservedCode2: 'a67bc849-92f0-472c-afff-9c16e4e748a0'
 ---
+
 # Is
 
-Used to compare two object references for identity.
+用于比较两个对象引用的同一性。
 
-Syntax:
+语法：
 > *result* **=** *object1* **Is** *object2*
 
 *result*
-: Any **Boolean** or numeric variable.
+: 任意 **Boolean** 或数值变量。
 
 *object1*, *object2*
-: Any object references.
+: 任意对象引用。
 
-If *object1* and *object2* both refer to the same object, *result* is **True**; if they don't, *result* is **False**. **Is** does not compare values inside the objects --- it compares whether the two references point to the same instance.
+如果 *object1* 和 *object2* 引用同一对象，*result* 为 **True**；否则 *result* 为 **False**。**Is** 不比较对象内部的值——它比较两个引用是否指向同一实例。
 
-Two variables can be made to refer to the same object in several ways. In the following example, A has been set to refer to the same object as B:
+可以通过多种方式使两个变量引用同一对象。以下示例中，A 被设置为引用与 B 相同的对象：
 
 ```vb
 Set A = B
 ```
 
-The following example makes A and B refer to the same object as C:
+以下示例使 A 和 B 引用与 C 相同的对象：
 
 ```vb
 Set A = C
 Set B = C
 ```
 
-A reference compared against **Nothing** with **Is** tells whether the reference is unassigned:
+将引用与 **Nothing** 进行 **Is** 比较可判断引用是否未赋值：
 
 ```vb
 If MyObject Is Nothing Then
@@ -39,20 +48,20 @@ If MyObject Is Nothing Then
 End If
 ```
 
-For the negation of an identity test, twinBASIC also provides the [**IsNot**](/official/Reference/Core/IsNot) operator: `If MyObject IsNot Nothing Then` reads more naturally than `If Not (MyObject Is Nothing) Then`.
+对于同一性测试的否定，twinBASIC还提供了 [**IsNot**](/official/Reference/Core/IsNot) 运算符：`If MyObject IsNot Nothing Then` 比 `If Not (MyObject Is Nothing) Then` 更自然。
 
 ::: info
-The **Is** keyword has two unrelated uses elsewhere in the language:
+**Is** 关键字在语言中还有两个不相关的用途：
 
-- In an **[If...Then...Else](/official/Reference/Core/If-Then-Else)** condition of the form **TypeOf** *objectname* **Is** *objecttype*, **Is** introduces a runtime type test.
-- In a **[Select Case](/official/Reference/Core/Select-Case)** clause of the form **Is** *comparisonoperator* *expression*, **Is** introduces a comparison against the **Select Case** test expression.
+- 在 **[If...Then...Else](/official/Reference/Core/If-Then-Else)** 条件中 **TypeOf** *objectname* **Is** *objecttype* 形式下，**Is** 引入运行时类型测试。
+- 在 **[Select Case](/official/Reference/Core/Select-Case)** 子句中 **Is** *comparisonoperator* *expression* 形式下，**Is** 引入与 **Select Case** 测试表达式的比较。
 
-In both of those constructs the surrounding statement provides the meaning; **Is** there is not the object-identity operator described on this page.
+在这两种构造中，周围语句提供了含义；那里 **Is** 不是本页描述的对象同一性运算符。
 :::
 
-### Example
+### 示例
 
-This example uses the **Is** operator to compare two object references.
+本示例使用 **Is** 运算符比较两个对象引用。
 
 ```vb
 Dim MyObject, YourObject, ThisObject, OtherObject, ThatObject, MyCheck
@@ -65,9 +74,9 @@ MyCheck = ThatObject Is ThisObject    ' Returns False.
 MyCheck = MyObject Is ThatObject    ' Returns False.
 ```
 
-### See Also
+### 另请参阅
 
-- [**IsNot** operator](/official/Reference/Core/IsNot)
-- [**Set** statement](/official/Reference/Core/Set)
-- [**If...Then...Else** statement](/official/Reference/Core/If-Then-Else)
-- [**Select Case** statement](/official/Reference/Core/Select-Case)
+- [**IsNot** 运算符](/official/Reference/Core/IsNot)
+- [**Set** 语句](/official/Reference/Core/Set)
+- [**If...Then...Else** 语句](/official/Reference/Core/If-Then-Else)
+- [**Select Case** 语句](/official/Reference/Core/Select-Case)

@@ -2,28 +2,37 @@
 title: Choose
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/Choose
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'bf07d1a6-7143-40a1-840f-e186f745ff54'
+  PropagateID: 'bf07d1a6-7143-40a1-840f-e186f745ff54'
+  ReservedCode1: '1700c6a5-9563-4b72-8458-e15963f5e915'
+  ReservedCode2: '1700c6a5-9563-4b72-8458-e15963f5e915'
 ---
+
 # Choose
 
-Selects and returns a value from a list of arguments by 1-based index.
+按基于1的索引从参数列表中选择并返回一个值。
 
-Syntax: **Choose(** *index* **,** *choice-1* [ **,** *choice-2* **, ...** [ **,** *choice-n* ] ] **)**
+语法：**Choose(** *index* **,** *choice-1* [ **,** *choice-2* **, ...** [ **,** *choice-n* ] ] **)**
 
 *index*
-: *required* Numeric expression that evaluates to a value between 1 and the number of available choices.
+: *必需* 数值表达式，求值为1到可用选项数之间的值。
 
 *choice*
-: *required* **Variant** expression containing one of the possible choices.
+: *必需* **Variant**表达式，包含一个可能的选项。
 
-If *index* is 1, **Choose** returns *choice-1*; if *index* is 2, it returns *choice-2*; and so on. If *index* is less than 1 or greater than the number of choices listed, **Choose** returns **Null**. Non-integer values of *index* are rounded to the nearest whole number before being evaluated.
+如果*index*为1，**Choose**返回*choice-1*；如果*index*为2，返回*choice-2*；以此类推。如果*index*小于1或大于列出的选项数，**Choose**返回**Null**。*index*的非整数值在求值前四舍五入到最接近的整数。
 
 ::: info
-**Choose** evaluates *every* choice in the list, not only the one it returns. Watch for side effects: a [**MsgBox**](/official/Reference/VBA/Interaction/MsgBox) call inside any of the choices is invoked once per choice, not just for the selected one. To avoid this --- for example, when one of the branches would error out --- use the short-circuiting [**If**](/official/Reference/VBA/Interaction/If) function instead.
+**Choose**会评估列表中的*每个*选项，而不仅仅是它返回的那个。注意副作用：任何选项中的[**MsgBox**](/official/Reference/VBA/Interaction/MsgBox)调用会对每个选项调用一次，而不仅仅是选中的那个。要避免这种情况——例如当某个分支会出错时——请改用短路[**If**](/official/Reference/VBA/Interaction/If)函数。
 :::
 
-### Example
+### 示例
 
-This example uses **Choose** to map a 1-based option index to a name.
+本示例使用**Choose**将基于1的选项索引映射到名称。
 
 ```vb
 Function GetChoice(Ind As Integer) As String
@@ -31,8 +40,8 @@ Function GetChoice(Ind As Integer) As String
 End Function
 ```
 
-### See Also
+### 另请参阅
 
-- [If](/official/Reference/VBA/Interaction/If) function
-- [IIf](/official/Reference/VBA/Interaction/IIf) function
-- [Switch](/official/Reference/VBA/Interaction/Switch) function
+- [If](/official/Reference/VBA/Interaction/If)函数
+- [IIf](/official/Reference/VBA/Interaction/IIf)函数
+- [Switch](/official/Reference/VBA/Interaction/Switch)函数

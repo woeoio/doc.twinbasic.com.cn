@@ -1,31 +1,40 @@
 ---
-title: Error function
+title: "Error 函数"
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/Error
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '5170d3e7-71b6-49f2-b98f-e831a5510fad'
+  PropagateID: '5170d3e7-71b6-49f2-b98f-e831a5510fad'
+  ReservedCode1: 'fb3ce401-79f5-4b4b-ae49-70a6e96de489'
+  ReservedCode2: 'fb3ce401-79f5-4b4b-ae49-70a6e96de489'
 ---
+
 # Error, Error$
 
-Returns the error message that corresponds to a given error number.
+返回与给定错误号对应的错误消息。
 
-Syntax:
+语法：
 
 - **Error$** [ **(** *errornumber* **)** ]
 - **Error** [ **(** *errornumber* **)** ]
 
 *errornumber*
-: *optional* Any valid error number. If *errornumber* is a valid error number but is not defined, **Error** returns the string `"Application-defined or object-defined error"`. If *errornumber* is not valid, an error occurs. If *errornumber* is omitted, the message corresponding to the most recent run-time error is returned. If no run-time error has occurred, or *errornumber* is `0`, **Error** returns a zero-length string (`""`).
+: *可选* 任何有效的错误号。如果 *errornumber* 是有效的错误号但未定义，**Error** 返回字符串 `"Application-defined or object-defined error"`。如果 *errornumber* 无效，将发生错误。如果省略 *errornumber*，则返回与最近一次运行时错误对应的消息。如果未发生过运行时错误，或 *errornumber* 为 `0`，**Error** 返回零长度字符串（`""`）。
 
-The `$`-suffixed form returns a **String**; the unsuffixed form returns a **Variant** (**String**).
+`$` 后缀形式返回 **String**；无后缀形式返回 **Variant** (**String**)。
 
 ::: info
-The **Error** *function* (described here) and the [**Error**](/official/Reference/Core/Error) *statement* share a name but are different language elements. The function returns the message text for an error number; the statement raises a run-time error.
+**Error** *函数*（此处描述的）与 [**Error**](/official/Reference/Core/Error) *语句*同名但是不同的语言元素。函数返回错误号的消息文本；语句引发运行时错误。
 :::
 
-Examine the property settings of the **Err** object to identify the most recent run-time error. The return value of the **Error** function corresponds to the **Description** property of the **Err** object.
+检查 **Err** 对象的属性设置以识别最近的运行时错误。**Error** 函数的返回值对应于 **Err** 对象的 **Description** 属性。
 
-### Example
+### 示例
 
-This example uses the **Error** function to print error messages that correspond to the specified error numbers.
+此示例使用 **Error** 函数打印与指定错误号对应的错误消息。
 
 ```vb
 Private Sub PrintError()
@@ -44,7 +53,7 @@ EOSb: Debug.Print ErrorNumber
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [Error](/official/Reference/Core/Error) statement
-- [CVErr](/official/Reference/VBA/Conversion/CVErr) function
+- [Error](/official/Reference/Core/Error) 语句
+- [CVErr](/official/Reference/VBA/Conversion/CVErr) 函数

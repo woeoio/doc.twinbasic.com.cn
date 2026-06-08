@@ -1,17 +1,26 @@
----
+﻿---
 title: wv2PermissionKind
 parent: Enumerations
 permalink: /tB/Packages/WebView2/Enumerations/wv2PermissionKind
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0849c110-3cf3-47c2-9869-a47685775a3f'
+  PropagateID: '0849c110-3cf3-47c2-9869-a47685775a3f'
+  ReservedCode1: '12f61c91-5c6f-4ee8-aa5f-d1ff055e1751'
+  ReservedCode2: '12f61c91-5c6f-4ee8-aa5f-d1ff055e1751'
 ---
-# wv2PermissionKind
-Identifies which device or browser capability a web page is asking permission to use. Passed as the `PermissionKind` argument of the [**PermissionRequested**](/official/Reference/WebView2/WebView2/#permissionrequested) event. Mirrors the `COREWEBVIEW2_PERMISSION_KIND` enumeration in the Edge WebView2 runtime.
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **wv2UnknownPermission** | 0 | Permission kind not recognised by the runtime. |
-| **wv2Microphone** | 1 | Permission to capture audio from the user's microphone. |
-| **wv2Camera** | 2 | Permission to capture video from the user's camera. |
-| **wv2Geolocation** | 3 | Permission to read the device's geographic location. |
-| **wv2Notifications** | 4 | Permission to show desktop notifications. |
-| **wv2Sensors** | 5 | Permission to read motion, orientation, light, and similar sensors. |
-| **wv2ClipboardRead** | 6 | Permission to read the system clipboard. |
+# wv2PermissionKind
+标识 Web 页面请求使用的设备或浏览器能力。作为 [**PermissionRequested**](/official/Reference/WebView2/WebView2/#permissionrequested) 事件的 `PermissionKind` 参数传递。镜像 Edge WebView2 运行时中的 `COREWEBVIEW2_PERMISSION_KIND` 枚举。
+
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **wv2UnknownPermission** | 0 | 运行时无法识别的权限类型。 |
+| **wv2Microphone** | 1 | 从用户麦克风捕获音频的权限。 |
+| **wv2Camera** | 2 | 从用户摄像头捕获视频的权限。 |
+| **wv2Geolocation** | 3 | 读取设备地理位置的权限。 |
+| **wv2Notifications** | 4 | 显示桌面通知的权限。 |
+| **wv2Sensors** | 5 | 读取运动、方向、光线等传感器的权限。 |
+| **wv2ClipboardRead** | 6 | 读取系统剪贴板的权限。 |

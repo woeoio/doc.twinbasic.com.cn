@@ -1,47 +1,46 @@
 ---
 title: EventLogHelperPublic
-parent: WinEventLogLib Package
+parent: "WinEventLogLib 包"
 permalink: /tB/Packages/WinEventLogLib/EventLogHelperPublic
 AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '475a309e-b509-4dd4-8210-30dc25ff2750'
-  PropagateID: '475a309e-b509-4dd4-8210-30dc25ff2750'
-  ReservedCode1: '8dddc733-c401-41aa-8fdf-535fe2dd9c49'
-  ReservedCode2: '8dddc733-c401-41aa-8fdf-535fe2dd9c49'
+  ProduceID: '004e43a0-8296-44da-9992-1904371bc68a'
+  PropagateID: '004e43a0-8296-44da-9992-1904371bc68a'
+  ReservedCode1: 'bf07f382-f66c-482a-9250-10d3204b0188'
+  ReservedCode2: 'bf07f382-f66c-482a-9250-10d3204b0188'
 ---
 
-# EventLogHelperPublic module
-A single low-level helper that writes the registry entries Windows reads when rendering Event Log messages. Most projects do not call into this module directly --- [**EventLog.Register**](/official/Reference/WinEventLogLib/EventLog#register) wraps the call and automatically supplies the category count from the *T2* type argument. Use **EventLogHelperPublic** only when registering a source outside the generic [**EventLog**](/official/Reference/WinEventLogLib/EventLog) class (for example, when the category count cannot be derived from a declared enum).
+# EventLogHelperPublic 模块
+
+一个低级辅助模块，写入Windows在渲染事件日志消息时读取的注册表条目。大多数项目不直接调用此模块——[**EventLog.Register**](/official/Reference/WinEventLogLib/EventLog#register) 包装了该调用并自动从 *T2* 类型参数提供类别计数。仅在通用 [**EventLog**](/official/Reference/WinEventLogLib/EventLog) 类之外注册源时使用 **EventLogHelperPublic**（例如，当类别计数无法从声明的枚举推导时）。
 
 ## RegisterEventLogInternal
 
-Writes the registry entries that declare the running EXE as the message provider for an event source.
+写入将正在运行的EXE声明为事件源的消息提供程序的注册表条目。
 
-Syntax: **EventLogHelperPublic.RegisterEventLogInternal** *LogPath*, *CategoryCount*
+语法：**EventLogHelperPublic.RegisterEventLogInternal** *LogPath*, *CategoryCount*
 
 *LogPath*
-: *required* A **String** naming the source. A leaf name like `"MyService"` is registered under the **Application** log (rewritten internally to `"Application\MyService"`); a full path like `"System\MyService"` is registered under the named parent log. The trailing segment is the source name displayed in the Event Viewer's **Source** column.
+: *必需* 命名源的 **String**。叶名称如 `"MyService"` 注册在 **Application** 日志下（内部重写为 `"Application\MyService"`）；完整路径如 `"System\MyService"` 注册在命名的父日志下。尾段是事件查看器 **Source** 列中显示的源名称。
 
 *CategoryCount*
-: *required* A **Long** giving the number of categories declared for this source --- the largest value in the corresponding category enum. Stored as the registry's `CategoryCount` DWORD; the Event Viewer uses it to bound category-string lookups in the EXE's message-table resource.
+: *必需* 给出为此源声明的类别数的 **Long**——对应类别枚举中的最大值。存储为注册表的 `CategoryCount` DWORD；事件查看器使用它来限制在EXE的消息表资源中查找类别字符串的范围。
 
-Creates `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\<LogPath>` and writes:
+创建 `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\<LogPath>` 并写入：
 
-- **EventMessageFile** = `App.ModulePath` (the running EXE; **REG_SZ**)
-- **CategoryMessageFile** = `App.ModulePath` (**REG_SZ**)
-- **CategoryCount** = *CategoryCount* (**REG_DWORD**)
+- **EventMessageFile** = `App.ModulePath`（正在运行的EXE；**REG_SZ**）
+- **CategoryMessageFile** = `App.ModulePath`（**REG_SZ**）
+- **CategoryCount** = *CategoryCount*（**REG_DWORD**）
 
 ::: important
-**RegisterEventLogInternal** writes under `HKEY_LOCAL_MACHINE` and requires administrator rights. The usual pattern is to call it once from an elevated installer, not from the application's normal startup path.
+**RegisterEventLogInternal** 写入 `HKEY_LOCAL_MACHINE`，需要管理员权限。通常的做法是从提升的安装程序中调用一次，而不是从应用程序的正常启动路径中调用。
 :::
 
-If the registry key cannot be opened for write, **RegisterEventLogInternal** raises run-time error 5 with the message *"Failed to register event log source (``<LogName>``)"*, where `<LogName>` is the trailing segment of *LogPath*. Typical causes are insufficient privileges and a *LogPath* whose parent log (e.g. `"Application"`, `"System"`) does not exist.
+如果注册表键无法打开以进行写入，**RegisterEventLogInternal** 引发运行时错误5，消息为 *"Failed to register event log source (``<LogName>``)"*，其中 `<LogName>` 是 *LogPath* 的尾段。典型原因是权限不足和 *LogPath* 的父日志（例如 `"Application"`、`"System"`）不存在。
 
-## See Also
+## 另见
 
-- [WinEventLogLib](/official/Reference/WinEventLogLib/) package -- overview, lifecycle, message-resource generation
-- [EventLog](/official/Reference/WinEventLogLib/EventLog) class -- the generic class whose [**Register**](/official/Reference/WinEventLogLib/EventLog#register) method wraps this helper
-
-> AI生成
+- [WinEventLogLib](/official/Reference/WinEventLogLib/) 包 -- 概述、生命周期、消息资源生成
+- [EventLog](/official/Reference/WinEventLogLib/EventLog) 类 -- 其 [**Register**](/official/Reference/WinEventLogLib/EventLog#register) 方法包装了此辅助模块的通用类

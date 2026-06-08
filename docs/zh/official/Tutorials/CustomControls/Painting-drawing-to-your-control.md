@@ -1,18 +1,26 @@
 ---
-title: Painting / Drawing to Your Control
+title: "绘制/绘图到你的控件"
 parent: CustomControls
 nav_order: 4
 permalink: /Tutorials/CustomControls/Painting
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ba08f8de-7f80-44a7-ba4f-d95653a2acd6'
+  PropagateID: 'ba08f8de-7f80-44a7-ba4f-d95653a2acd6'
+  ReservedCode1: '646e42a5-1bdd-4e39-9dee-03a9c2cf738f'
+  ReservedCode2: '646e42a5-1bdd-4e39-9dee-03a9c2cf738f'
 ---
 
+# 绘制/绘图到你的控件
 
-# Painting / Drawing to Your Control
+### ICustomControl.Paint方法
 
-### The ICustomControl.Paint method
-This is by far the most important method of a CustomControl.  It tells the form engine exactly how you want it to render your control. See the [`ICustomControl.Paint`](/official/Reference/CustomControls/Framework/ICustomControl#paint) reference for the host-side contract.
+这是CustomControl最重要的方法。它告诉窗体引擎你希望如何渲染你的控件。参见[`ICustomControl.Paint`](/official/Reference/CustomControls/Framework/ICustomControl#paint)参考了解宿主端契约。
 
 ::: tip
-It is highly advisable to look at and experiment with the sample project provided with twinBASIC before trying to implement your own CustomControl.
+强烈建议在尝试实现自己的CustomControl之前，先查看并实验twinBASIC提供的示例项目。
 :::
 
 ```vb
@@ -20,7 +28,7 @@ Private Sub OnPaint(ByVal Canvas As CustomControls.Canvas)  _
     Implements ICustomControl.Paint
 ```
 
-You are passed a [`Canvas`](/official/Reference/CustomControls/Framework/Canvas) object that offers the following methods:
+你会收到一个[`Canvas`](/official/Reference/CustomControls/Framework/Canvas)对象，它提供以下方法：
 
 ```vb
 Canvas.Width As Long    ' Property-Get
@@ -31,20 +39,21 @@ Canvas.AddElement(Descriptor As ElementDescriptor)
 ```
 
 ::: info
-The current framework spells these members [`RuntimeUICCGetWidth`](/official/Reference/CustomControls/Framework/Canvas#runtimeuiccgetwidth), [`RuntimeUICCGetHeight`](/official/Reference/CustomControls/Framework/Canvas#runtimeuiccgetheight), [`RuntimeUICCGetDpi`](/official/Reference/CustomControls/Framework/Canvas#runtimeuiccgetdpi), [`RuntimeUICCGetDpiScaleFactor`](/official/Reference/CustomControls/Framework/Canvas#runtimeuiccgetdpiscalefactor), and [`RuntimeUICCCanvasAddElement`](/official/Reference/CustomControls/Framework/Canvas#runtimeuicccanvasaddelement). The shorter names shown above are how the API was originally drafted; the underlying behaviour is the same.
+当前框架将这些成员拼写为[`RuntimeUICCGetWidth`](/official/Reference/CustomControls/Framework/Canvas#runtimeuiccgetwidth)、[`RuntimeUICCGetHeight`](/official/Reference/CustomControls/Framework/Canvas#runtimeuiccgetheight)、[`RuntimeUICCGetDpi`](/official/Reference/CustomControls/Framework/Canvas#runtimeuiccgetdpi)、[`RuntimeUICCGetDpiScaleFactor`](/official/Reference/CustomControls/Framework/Canvas#runtimeuiccgetdpiscalefactor)和[`RuntimeUICCCanvasAddElement`](/official/Reference/CustomControls/Framework/Canvas#runtimeuicccanvasaddelement)。上面显示的较短名称是API最初起草时的名称；底层行为是相同的。
 :::
 
-`Canvas.Width` and `Canvas.Height` are the absolute pixel sizes that your control is drawing to.  Unlike your controls Width/Height properties that are not DPI-scaled, the `Canvas.Width` and `Canvas.Height` values **are** DPI-scaled.
+`Canvas.Width` 和 `Canvas.Height` 是你的控件正在绘制的绝对像素大小。与你控件未经DPI缩放的Width/Height属性不同，`Canvas.Width` 和 `Canvas.Height` 的值**已经过**DPI缩放。
 
-The `Canvas.Dpi` property represents the DPI setting in Windows.  If no DPI scaling is in effect, this value is 96.  For example, if you have scaling set at 150% on your monitor, then the `Canvas.Dpi` property will be 144.
+`Canvas.Dpi` 属性表示Windows中的DPI设置。如果没有DPI缩放生效，此值为96。例如，如果你的显示器缩放设置为150%，则 `Canvas.Dpi` 属性将为144。
 
-The `Canvas.DpiScaleFactor` property gives a floating point value representing the DPI scaling percentage.  A value of 1 indicates no scaling.  For example, if you have scaling set at 150% on your monitor, then the `Canvas.DpiScaleFactor` property will be 1.5.
+`Canvas.DpiScaleFactor` 属性给出表示DPI缩放百分比的浮点值。值为1表示无缩放。例如，如果你的显示器缩放设置为150%，则 `Canvas.DpiScaleFactor` 属性将为1.5。
 
-The `Canvas.AddElement` method is used for adding elements to your control.  An *element* is considered to be something that the form-engine will render for you.  For example, you might have a grid control that displays 100 cells at a time.  Each of those cells would be an *element*.  Elements can overlap each over (allowing for opacity/transparency).  The form engine draws them in the order that you call AddElement, meaning that the last element added will have the highest z-order.
+`Canvas.AddElement` 方法用于向你的控件添加元素。*元素*被认为是窗体引擎将为你渲染的内容。例如，你可能有一个一次显示100个单元格的网格控件。每个单元格就是一个*元素*。元素可以相互重叠（允许不透明度/透明度）。窗体引擎按你调用AddElement的顺序绘制它们，这意味着最后添加的元素具有最高的z序。
 
 ***
 ### AddElement(ElementDescriptor)
-The AddElement method takes a single argument; an ElementDescriptor.  ElementDescriptor is a UDT that defines exactly how the element will be drawn and how it reacts to events like mouse clicks.
+
+AddElement方法接受一个参数；ElementDescriptor。ElementDescriptor是一个UDT，精确定义了元素的绘制方式以及它如何响应鼠标点击等事件。
 
 ```vb
 Public Type ElementDescriptor
@@ -73,18 +82,18 @@ End Type
 ```
 
 ***
-### Tips
-- Each time your OnPaint method is called, you start with a blank canvas.
+### 提示
+- 每次OnPaint方法被调用时，你从一块空白画布开始。
 
-- Left/Top/Width/Height can legitimately be outside of the canvas area.  For example, negative Left/Top, or a Width/Height past the Canvas.Width/Canvas.Height has no ill-effects.  The form engine will clip everything appropriately for you, allowing for much simpler designing of your control.
+- Left/Top/Width/Height可以合法地位于画布区域之外。例如，负的Left/Top，或超过Canvas.Width/Canvas.Height的Width/Height不会有不良影响。窗体引擎会为你适当地裁剪所有内容，使得控件设计更加简单。
 
-- You should put thought into making the Paint routine efficient.  Try not to instantiate COM objects, and when drawing multiple similar elements, try to re-use ElementDescriptors by setting up common properties outside of loops (see WaynesGrid for examples of this)
+- 你应该考虑使Paint例程高效。尽量避免实例化COM对象，在绘制多个相似元素时，尝试通过在循环外设置公共属性来重用ElementDescriptor（参见WaynesGrid的示例）
 
-- TrackingIdX and TrackingIdY are important when you have multiple elements within a control.   The two values, when combined, should uniquely represent the element, and must be maintained if your Paint routine is called again.  This is needed for supporting events.  For example, in a grid control, each cell would have a TrackingIdX / TrackingIdY value associated with it, given the X/Y co-ordinates of the cell. 
+- 当控件内有多个元素时，TrackingIdX和TrackingIdY很重要。这两个值组合时应唯一表示该元素，并且在Paint例程再次被调用时必须保持不变。这是支持事件所需的。例如，在网格控件中，每个单元格都有一个与单元格X/Y坐标关联的TrackingIdX/TrackingIdY值。
 
-- Currently, only mouse events are provided, but focus events are coming soon, as well as keyboard events.
+- 目前仅提供鼠标事件，但焦点事件和键盘事件即将推出。
 
-- You can use class-based event handlers by simply using the `AddressOf MyEvent` which is now possible to use even on class members.  You can see this used frequently in the samples, such as WaynesGrid.    All mouse events have the following format:   
+- 你可以通过简单地使用 `AddressOf MyEvent` 来使用基于类的事件处理程序，现在甚至可以在类成员上使用。你可以在示例中看到这种用法，如WaynesGrid。所有鼠标事件具有以下格式：
 
 ```vb
 Class MyCustomControl
@@ -100,14 +109,14 @@ Class MyCustomControl
     End Sub
 ```
 
-EventInfo (MouseEvent) provides mouse information such as the relative X/Y position of the mouse, plus the TrackingX/Y values discussed earlier.
+EventInfo（MouseEvent）提供鼠标信息，如鼠标的相对X/Y位置，以及前面讨论的TrackingX/Y值。
 
-- When you call Canvas.AddElement, your element goes into a render pipeline.  It is **not** immediately painted to the screen.   The render pipeline is compared to the previous render pipeline that was provided by you in the last OnPaint call, and the tB form engine will only redraw areas of the control that have changed.  This allows for efficient painting of controls whilst not needing to be concerned about the finer details of how to do partial repainting.
+- 当你调用Canvas.AddElement时，你的元素进入渲染管线。它**不会**立即绘制到屏幕上。渲染管线会与你在上次OnPaint调用中提供的上一个渲染管线进行比较，tB窗体引擎只会重绘控件中已更改的区域。这使得控件绘制高效，同时无需关心如何进行局部重绘的细节。
 
 ***
-## See also
+## 另见
 
-- [`ICustomControl`](/official/Reference/CustomControls/Framework/ICustomControl) -- the interface every custom control implements
-- [`Canvas`](/official/Reference/CustomControls/Framework/Canvas) -- the drawing surface passed to **Paint**
-- Style helpers used by the `BackgroundFill` / `Borders` / `Corners` / `TextRenderingOptions` fields of an `ElementDescriptor`: [`Fill`](/official/Reference/CustomControls/Styles/Fill), [`Borders`](/official/Reference/CustomControls/Styles/Borders), [`Corners`](/official/Reference/CustomControls/Styles/Corners), [`TextRendering`](/official/Reference/CustomControls/Styles/TextRendering)
-- [CustomControls package reference](/official/Reference/CustomControls/) -- overview of the framework and the built-in `Waynes…` controls (a number of which --- `WaynesGrid`, `WaynesButton`, … --- are exactly the worked examples mentioned above)
+- [`ICustomControl`](/official/Reference/CustomControls/Framework/ICustomControl) —— 每个自定义控件实现的接口
+- [`Canvas`](/official/Reference/CustomControls/Framework/Canvas) —— 传递给**Paint**的绘图面
+- `ElementDescriptor` 的 `BackgroundFill` / `Borders` / `Corners` / `TextRenderingOptions` 字段使用的样式辅助工具：[`Fill`](/official/Reference/CustomControls/Styles/Fill)、[`Borders`](/official/Reference/CustomControls/Styles/Borders)、[`Corners`](/official/Reference/CustomControls/Styles/Corners)、[`TextRendering`](/official/Reference/CustomControls/Styles/TextRendering)
+- [CustomControls包参考](/official/Reference/CustomControls/) —— 框架和内置 `Waynes…` 控件的概述（其中多个——`WaynesGrid`、`WaynesButton`、……——正是上面提到的工作示例）

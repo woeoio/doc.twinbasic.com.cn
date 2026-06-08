@@ -1,80 +1,88 @@
----
+﻿---
 title: WaynesTextBoxState
 parent: WaynesTextBox
 permalink: /tB/Packages/CustomControls/WaynesTextBox/WaynesTextBoxState
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a75a39ea-e5ec-4602-b7f4-6f5fbd175636'
+  PropagateID: 'a75a39ea-e5ec-4602-b7f4-6f5fbd175636'
+  ReservedCode1: 'a24ffdf7-7ac0-42a7-893e-4f2ac2c1e4c1'
+  ReservedCode2: 'a24ffdf7-7ac0-42a7-893e-4f2ac2c1e4c1'
 ---
 
-# WaynesTextBoxState class
-A bundle of the style objects that describe a single visual state of a [**WaynesTextBox**](/official/Reference/CustomControls/WaynesTextBox/). Each textbox holds three parallel instances ([**NormalState**](/official/Reference/CustomControls/WaynesTextBox/#normalstate), [**HoverState**](/official/Reference/CustomControls/WaynesTextBox/#hoverstate), [**FocusedState**](/official/Reference/CustomControls/WaynesTextBox/#focusedstate)); the textbox picks one at each repaint depending on the focus / hover state.
+# WaynesTextBoxState 类
+描述 [**WaynesTextBox**](/official/Reference/CustomControls/WaynesTextBox/) 单个视觉状态的样式对象组合。每个文本框持有三个并行实例（[**NormalState**](/official/Reference/CustomControls/WaynesTextBox/#normalstate)、[**HoverState**](/official/Reference/CustomControls/WaynesTextBox/#hoverstate)、[**FocusedState**](/official/Reference/CustomControls/WaynesTextBox/#focusedstate)）；文本框在每次重绘时根据焦点/悬停状态选择一个。
 
-In addition to the usual background / borders / corners / text-rendering quartet, a **WaynesTextBoxState** adds selection-highlight colours, a caret colour and width, and three decorator fills used for the *ERROR* / *WARNING* / *INFO* literal-substring decorations the textbox draws automatically.
+除常见的背景/边框/角/文本渲染四重奏外，**WaynesTextBoxState** 还增加了选择高亮颜色、插入符颜色和宽度，以及三个装饰器填充用于文本框自动绘制的 *ERROR* / *WARNING* / *INFO* 字面子字符串装饰。
 
-[**InitializeDefaultValues**](#initializedefaultvalues) and [**InitializeDefaultValues_Focused**](#initializedefaultvalues_focused) populate the state with reasonable defaults --- the focused variant uses a different selection background and caret colour.
+[**InitializeDefaultValues**](#initializedefaultvalues) 和 [**InitializeDefaultValues_Focused**](#initializedefaultvalues_focused) 用合理的默认值填充状态——焦点变体使用不同的选择背景和插入符颜色。
 
-The type itself is `Public Class` but is `[COMCreatable(False)]` --- instances are accessed only through the textbox's **NormalState** / **HoverState** / **FocusedState** properties.
+该类型本身为 `Public Class` 但标记为 `[COMCreatable(False)]`——实例只能通过文本框的 **NormalState** / **HoverState** / **FocusedState** 属性访问。
 
-## Properties
+## 属性
 
 ### BackgroundFill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that paints the textbox background. Defaults to solid white.
+绘制文本框背景的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。默认纯白色。
 
 ### Borders
 
-The [**Borders**](/official/Reference/CustomControls/Styles/Borders) drawn around the textbox. Defaults to a 1-pixel black border.
+文本框周围绘制的 [**Borders**](/official/Reference/CustomControls/Styles/Borders)。默认 1 像素黑色边框。
 
 ### CaretFill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that paints the caret. Defaults to solid black in the normal state, orange in the focused state.
+绘制插入符的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。正常状态默认纯黑色，焦点状态默认橙色。
 
 ### CaretWidth
 
-The width of the caret, in pixels. **Long**. Default: 1.
+插入符的宽度（像素）。**Long**。默认：1。
 
 ### Corners
 
-The [**Corners**](/official/Reference/CustomControls/Styles/Corners) that controls the per-corner shape and radius. Defaults to **tbCurve** with a radius of 5.
+控制逐角形状和半径的 [**Corners**](/official/Reference/CustomControls/Styles/Corners)。默认 **tbCurve**，半径 5。
 
 ### DecorationERROR
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) used to draw the inline squiggle decoration when the substring `ERROR` is detected in [**Value**](/official/Reference/CustomControls/WaynesTextBox/#value). Defaults to solid red.
+在 [**Value**](/official/Reference/CustomControls/WaynesTextBox/#value) 中检测到子字符串 `ERROR` 时绘制内联波浪装饰的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。默认纯红色。
 
 ### DecorationINFO
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) used to draw the inline background-highlight decoration when the substring `INFO` is detected in [**Value**](/official/Reference/CustomControls/WaynesTextBox/#value). Defaults to a light blue.
+在 [**Value**](/official/Reference/CustomControls/WaynesTextBox/#value) 中检测到子字符串 `INFO` 时绘制内联背景高亮装饰的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。默认浅蓝色。
 
 ### DecorationWARNING
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) used to draw the inline 2-pixel straight-underline decoration when the substring `WARNING` is detected in [**Value**](/official/Reference/CustomControls/WaynesTextBox/#value). Defaults to a dark blue.
+在 [**Value**](/official/Reference/CustomControls/WaynesTextBox/#value) 中检测到子字符串 `WARNING` 时绘制内联 2 像素直线下划线装饰的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。默认深蓝色。
 
 ### SelectedBackgroundFill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that paints behind selected text. Defaults to mid-grey in the normal state, blue in the focused state.
+绘制选中文本背后背景的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。正常状态默认中灰色，焦点状态默认蓝色。
 
 ### SelectedTextFill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that paints the selected glyphs themselves. Defaults to solid white.
+绘制选中字形本身的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。默认纯白色。
 
 ### TextRendering
 
-The [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) that controls how [**Value**](/official/Reference/CustomControls/WaynesTextBox/#value) is drawn. Defaults to left-aligned with 5-pixel left / right padding and **tbDisallowPartialChars** overflow.
+控制 [**Value**](/official/Reference/CustomControls/WaynesTextBox/#value) 绘制方式的 [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering)。默认左对齐，左右 5 像素内边距，**tbDisallowPartialChars** 溢出。
 
-## Methods
+## 方法
 
 ### InitializeDefaultValues
 
-Populates every field with the package defaults --- used by [**NormalState**](/official/Reference/CustomControls/WaynesTextBox/#normalstate) and [**HoverState**](/official/Reference/CustomControls/WaynesTextBox/#hoverstate).
+用包默认值填充每个字段——由 [**NormalState**](/official/Reference/CustomControls/WaynesTextBox/#normalstate) 和 [**HoverState**](/official/Reference/CustomControls/WaynesTextBox/#hoverstate) 使用。
 
-Syntax: *object*.**InitializeDefaultValues**
+语法：*object*.**InitializeDefaultValues**
 
 ### InitializeDefaultValues_Focused
 
-Calls [**InitializeDefaultValues**](#initializedefaultvalues) first, then overrides [**SelectedBackgroundFill**](#selectedbackgroundfill) and [**CaretFill**](#caretfill) with focus-specific colours.
+先调用 [**InitializeDefaultValues**](#initializedefaultvalues)，然后用焦点特定颜色覆盖 [**SelectedBackgroundFill**](#selectedbackgroundfill) 和 [**CaretFill**](#caretfill)。
 
-Syntax: *object*.**InitializeDefaultValues_Focused**
+语法：*object*.**InitializeDefaultValues_Focused**
 
-## Events
+## 事件
 
 ### OnChanged
 
-Raised whenever any of the contained style objects raises its own **OnChanged**, or when [**CaretWidth**](#caretwidth) is assigned. The parent [**WaynesTextBox**](/official/Reference/CustomControls/WaynesTextBox/) listens for this and requests a repaint.
+任一包含的样式对象触发其自身的 **OnChanged** 或 [**CaretWidth**](#caretwidth) 被赋值时触发。父 [**WaynesTextBox**](/official/Reference/CustomControls/WaynesTextBox/) 监听此事件并请求重绘。

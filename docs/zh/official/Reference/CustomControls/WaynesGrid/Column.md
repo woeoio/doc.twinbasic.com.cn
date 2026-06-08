@@ -1,11 +1,19 @@
----
+﻿---
 title: Column
 parent: WaynesGrid
 permalink: /tB/Packages/CustomControls/WaynesGrid/Column
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '92296d82-df02-40b2-92e5-b2d9dddddae5'
+  PropagateID: '92296d82-df02-40b2-92e5-b2d9dddddae5'
+  ReservedCode1: 'bd19733f-ca1f-4fbc-8395-b4e717af93df'
+  ReservedCode2: 'bd19733f-ca1f-4fbc-8395-b4e717af93df'
 ---
 
-# Column class
-One column of a [**WaynesGrid**](/official/Reference/CustomControls/WaynesGrid/). Has a [**Caption**](#caption) that is shown in the column-header row and a [**Width**](#width) that the user can drag at run time. Elements of [**WaynesGrid.Columns**](/official/Reference/CustomControls/WaynesGrid/#columns).
+# Column 类
+[**WaynesGrid**](/official/Reference/CustomControls/WaynesGrid/) 的一列。具有显示在列标题行中的 [**Caption**](#caption) 和用户可在运行时拖动的 [**Width**](#width)。[**WaynesGrid.Columns**](/official/Reference/CustomControls/WaynesGrid/#columns) 的元素。
 
 ```vb
 ReDim Grid1.Columns(2)
@@ -14,18 +22,18 @@ Grid1.Columns(0).Caption = "ID"
 Grid1.Columns(0).Width = 80
 ```
 
-## Properties
+## 属性
 
 ### Caption
 
-The text shown in the column-header cell. **String**. Default: `"Column"`.
+列标题单元格中显示的文本。**String**。默认：`"Column"`。
 
 ### Width
 
-The column's width in pixels (unscaled by DPI). [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Default: 100. Editable by the user at run time by dragging the resizer bar on the column's right edge; assignments at run time update the grid immediately.
+列的宽度（像素，未经 DPI 缩放）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。默认：100。用户可在运行时通过拖动列右边缘的调整条编辑；运行时赋值立即更新网格。
 
-## Events
+## 事件
 
 ### OnChanged
 
-Raised when [**Caption**](#caption) or [**Width**](#width) is assigned. The parent [**WaynesGrid**](/official/Reference/CustomControls/WaynesGrid/) listens for this and requests a repaint.
+[**Caption**](#caption) 或 [**Width**](#width) 被赋值时触发。父 [**WaynesGrid**](/official/Reference/CustomControls/WaynesGrid/) 监听此事件并请求重绘。

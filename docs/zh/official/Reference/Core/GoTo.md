@@ -2,26 +2,35 @@
 title: GoTo
 parent: Statements
 permalink: /tB/Core/GoTo
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1f075214-04f8-4f82-af6e-24e6527b86b3'
+  PropagateID: '1f075214-04f8-4f82-af6e-24e6527b86b3'
+  ReservedCode1: 'd40e4fb8-fa49-4602-81f3-1accba3dccf7'
+  ReservedCode2: 'd40e4fb8-fa49-4602-81f3-1accba3dccf7'
 ---
+
 # GoTo
 
-Branches unconditionally to a specified line within a procedure.
+无条件分支到过程中指定的行。
 
-Syntax:
+语法：
 > **GoTo** *line*
 
 *line*
-: Any line label or line number.
+: 任何行标签或行号。
 
-**GoTo** can branch only to lines within the procedure where it appears.
+**GoTo** 只能分支到它所在过程中的行。
 
 ::: info
-Too many **GoTo** statements can make code difficult to read and debug. Use structured control statements ([**Do...Loop**](/official/Reference/Core/Do-Loop), [**For...Next**](/official/Reference/Core/For-Next), [**If...Then...Else**](/official/Reference/Core/If-Then-Else), [**Select Case**](/official/Reference/Core/Select-Case)) whenever possible.
+过多的 **GoTo** 语句会使代码难以阅读和调试。尽可能使用结构化控制语句（[**Do...Loop**](/official/Reference/Core/Do-Loop)、[**For...Next**](/official/Reference/Core/For-Next)、[**If...Then...Else**](/official/Reference/Core/If-Then-Else)、[**Select Case**](/official/Reference/Core/Select-Case)）。
 :::
 
-### Example
+### 示例
 
-This example uses the **GoTo** statement to branch to line labels within a procedure.
+本示例使用 **GoTo** 语句分支到过程中的行标签。
 
 ```vb
 Sub GotoStatementDemo()
@@ -41,9 +50,9 @@ LastLine:
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**On...GoTo** statement](/official/Reference/Core/On-GoTo)
-- [**GoSub...Return** statement](/official/Reference/Core/GoSub-Return)
-- [**On Error** statement](/official/Reference/Core/On-Error)
-- [**Select Case** statement](/official/Reference/Core/Select-Case)
+- [**On...GoTo** 语句](/official/Reference/Core/On-GoTo)
+- [**GoSub...Return** 语句](/official/Reference/Core/GoSub-Return)
+- [**On Error** 语句](/official/Reference/Core/On-Error)
+- [**Select Case** 语句](/official/Reference/Core/Select-Case)

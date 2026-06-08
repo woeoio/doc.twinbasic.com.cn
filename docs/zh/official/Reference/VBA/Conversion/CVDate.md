@@ -2,21 +2,30 @@
 title: CVDate
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/CVDate
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ccb20409-c180-4fd3-b8e5-4a0efa479d7b'
+  PropagateID: 'ccb20409-c180-4fd3-b8e5-4a0efa479d7b'
+  ReservedCode1: 'de50625b-4ae3-43ac-af58-4ef1d311382d'
+  ReservedCode2: 'de50625b-4ae3-43ac-af58-4ef1d311382d'
 ---
+
 # CVDate
 
-Converts a valid date and time expression to a **Variant** of subtype **Date**.
+将有效的日期和时间表达式转换为子类型为 **Date** 的 **Variant**。
 
-Syntax: **CVDate(** *expression* **)**
+语法：**CVDate(** *expression* **)**
 
 *expression*
-: *required* Any expression that can be converted to a date --- a date literal, a date/time string, or a number that falls within the range of acceptable dates.
+: *必需* 任何可以转换为日期的表达式——日期字面量、日期/时间字符串，或在可接受日期范围内的数字。
 
-The return type is **Variant** (**Date**). An error occurs if *expression* cannot be converted to a date.
+返回类型为 **Variant** (**Date**)。如果 *expression* 无法转换为日期，将发生错误。
 
-**CVDate** is provided for compatibility with previous versions of Visual Basic. The syntax of **CVDate** is identical to [**CDate**](/official/Reference/VBA/Conversion/CDate); however, **CVDate** returns a **Variant** whose subtype is **Date** instead of an actual **Date** type. Since **Date** is now an intrinsic type, there is no further need for **CVDate** in new code. The same effect can be achieved by converting an expression to a **Date** with [**CDate**](/official/Reference/VBA/Conversion/CDate) and then assigning it to a **Variant**.
+提供 **CVDate** 是为了与先前版本的 Visual Basic 兼容。**CVDate** 的语法与 [**CDate**](/official/Reference/VBA/Conversion/CDate) 相同；但是，**CVDate** 返回的是子类型为 **Date** 的 **Variant**，而非实际的 **Date** 类型。由于 **Date** 现在已是内部类型，新代码不再需要 **CVDate**。通过使用 [**CDate**](/official/Reference/VBA/Conversion/CDate) 将表达式转换为 **Date** 然后赋值给 **Variant**，可以达到相同效果。
 
-### Example
+### 示例
 
 ```vb
 Dim dateString As String
@@ -24,6 +33,6 @@ dateString = "February 28, 1998"
 MsgBox "Date value of " & dateString & " is " & CVDate(dateString)
 ```
 
-### See Also
+### 另请参阅
 
-- [CDate](/official/Reference/VBA/Conversion/CDate), [CVar](/official/Reference/VBA/Conversion/CVar), [CVErr](/official/Reference/VBA/Conversion/CVErr) functions
+- [CDate](/official/Reference/VBA/Conversion/CDate)、[CVar](/official/Reference/VBA/Conversion/CVar)、[CVErr](/official/Reference/VBA/Conversion/CVErr) 函数

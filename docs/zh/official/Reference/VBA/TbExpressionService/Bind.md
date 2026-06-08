@@ -2,33 +2,42 @@
 title: Bind
 parent: TbExpressionService
 permalink: /tB/Modules/TbExpressionService/Bind
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd732a014-b6ff-4035-ad5d-0f0385ee4ac8'
+  PropagateID: 'd732a014-b6ff-4035-ad5d-0f0385ee4ac8'
+  ReservedCode1: '88566010-dea9-4d2b-a5b8-35485867fa97'
+  ReservedCode2: '88566010-dea9-4d2b-a5b8-35485867fa97'
 ---
+
 # Bind
 
-Resolves a symbol referenced in an expression to an [**ITbExpression**](./#itbexpression-interface) that produces its value.
+将表达式中引用的符号解析为产生其值的 [**ITbExpression**](./#itbexpression-interface)。
 
-Syntax: *binder*.**Bind(** *symbol*, *argCount* **)**
+语法：*binder*.**Bind(** *symbol*, *argCount* **)**
 
 *binder*
-: *required* An object expression that evaluates to an [**ITbCustomBinder**](./#itbcustombinder-interface) object.
+: *必需* 计算结果为 [**ITbCustomBinder**](./#itbcustombinder-interface) 对象的对象表达式。
 
 *symbol*
-: *required* A **String** containing the name being looked up --- the identifier as it appears in the source of the expression being compiled.
+: *必需* 包含正在查找的名称的 **String**——即正在编译的表达式源中出现的标识符。
 
 *argCount*
-: *required* A **Long** giving the number of arguments at the call site, or `0` if *symbol* is referenced as a bare value (a property-style access).
+: *必需* 给出调用点参数数量的 **Long**，如果 *symbol* 作为裸值引用（属性式访问）则为 `0`。
 
-The return value is an [**ITbExpression**](./#itbexpression-interface) whose [**Evaluate**](/official/Reference/VBA/TbExpressionService/Evaluate) method produces the value of *symbol* when invoked, or **Nothing** to indicate that this binder cannot resolve *symbol* and the engine should fall through to the next binder.
+返回值是一个 [**ITbExpression**](./#itbexpression-interface)，其 [**Evaluate**](/official/Reference/VBA/TbExpressionService/Evaluate) 方法在调用时产生 *symbol* 的值，或返回 **Nothing** 以指示此绑定器无法解析 *symbol*，引擎应继续查询下一个绑定器。
 
-**Bind** is called by the engine during compilation --- once per unresolved symbol encountered in the expression source --- not at evaluation time. The implementer is expected either to construct an **ITbExpression** that, when later evaluated, produces the value, or to return **Nothing** so that another binder gets a chance.
+**Bind** 在编译期间由引擎调用——对表达式源中遇到的每个未解析符号调用一次——而非在求值时。实现者应构造一个 **ITbExpression**，在稍后求值时产生该值，或返回 **Nothing** 以便另一个绑定器有机会处理。
 
-The *argCount* parameter lets the implementer distinguish a property-style reference (`MyName`, where *argCount* is `0`) from a function-style call (`MyName(1, 2, 3)`, where *argCount* is `3`), and bind them to different things.
+*argCount* 参数使实现者可以区分属性式引用（`MyName`，*argCount* 为 `0`）和函数式调用（`MyName(1, 2, 3)`，*argCount* 为 `3`），并将它们绑定到不同的事物。
 
-A class registers itself as a binder by including `Implements ITbCustomBinder` and then passing itself to [**AddCustomBinder**](/official/Reference/VBA/TbExpressionService/AddCustomBinder).
+类通过包含 `Implements ITbCustomBinder` 然后将其自身传递给 [**AddCustomBinder**](/official/Reference/VBA/TbExpressionService/AddCustomBinder) 来将自身注册为绑定器。
 
-### Example
+### 示例
 
-This **ITbCustomBinder** implementation looks up zero-argument symbols against the current row of an external recordset, deferring to the next binder for everything else.
+此 **ITbCustomBinder** 实现针对外部记录集的当前行查找零参数符号，将其他所有内容推迟到下一个绑定器。
 
 ```vb
 Implements ITbCustomBinder
@@ -48,8 +57,8 @@ Protected Function Bind(ByVal Symbol As String, ByVal ArgCount As Long) As ITbEx
 End Function
 ```
 
-### See Also
+### 另请参阅
 
-- [AddCustomBinder](/official/Reference/VBA/TbExpressionService/AddCustomBinder) method
-- [Evaluate](/official/Reference/VBA/TbExpressionService/Evaluate) method
-- [Compile](/official/Reference/VBA/TbExpressionService/Compile) method
+- [AddCustomBinder](/official/Reference/VBA/TbExpressionService/AddCustomBinder) 方法
+- [Evaluate](/official/Reference/VBA/TbExpressionService/Evaluate) 方法
+- [Compile](/official/Reference/VBA/TbExpressionService/Compile) 方法

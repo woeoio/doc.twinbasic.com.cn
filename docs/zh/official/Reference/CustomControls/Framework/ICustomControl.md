@@ -1,13 +1,21 @@
----
+﻿---
 title: ICustomControl
 parent: Framework
 permalink: /tB/Packages/CustomControls/Framework/ICustomControl
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3c7af408-a200-4297-b8f8-6195f61d568e'
+  PropagateID: '3c7af408-a200-4297-b8f8-6195f61d568e'
+  ReservedCode1: 'cebc26b5-de34-4743-b6da-885fa0bbb755'
+  ReservedCode2: 'cebc26b5-de34-4743-b6da-885fa0bbb755'
 ---
 
-# ICustomControl interface
-The interface every custom control implements. The framework calls **Initialize** once after the control has been instantiated and its serialized property values have been deserialized, **Paint** every time the framework needs to redraw the control's area, and **Destroy** once when the control is being released.
+# ICustomControl 接口
+每个自定义控件实现的接口。框架在控件实例化并反序列化其属性值后调用 **Initialize** 一次，每次需要重绘控件区域时调用 **Paint**，控件被释放时调用 **Destroy** 一次。
 
-The eight concrete `Waynes…` classes in the package all implement this interface, alongside an inherited mixin base class for the standard layout / name members.
+包中的八个具体 `Waynes…` 类都实现了此接口，同时继承了标准布局/名称成员的混入基类。
 
 ```vb
 Class MyControl
@@ -30,34 +38,34 @@ Class MyControl
 End Class
 ```
 
-## Methods
+## 方法
 
 ### Destroy
 
-Called once when the control is being released. The implementation should drop any references it holds to objects that themselves hold references back to it, so that the reference graph can collapse without cycles.
+控件被释放时调用一次。实现应释放其持有的对反向引用自身对象的引用，使引用图可以无环地收缩。
 
-Syntax: *object*.**Destroy** ( )
+语法：*object*.**Destroy** ( )
 
 ### Initialize
 
-Called once after the framework has constructed the control and deserialized any designer-set property values from the form's `.frm` data into the new instance.
+框架构建控件并将窗体 `.frm` 数据中设计器设置的属性值反序列化到新实例后调用一次。
 
-Syntax: *object*.**Initialize** ( *Context* )
+语法：*object*.**Initialize** ( *Context* )
 
 *Context*
-: *required* The [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext) for this control instance. Store it (typically as a class field named **ControlContext**) --- it is the only way to request repaints, create timers, or check the runtime mode after **Initialize** returns.
+: *必需* 此控件实例的 [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext)。保存它（通常作为名为 **ControlContext** 的类字段）——这是 **Initialize** 返回后请求重绘、创建定时器或检查运行时模式的唯一方式。
 
-A common implementation calls **Context.GetSerializer().RuntimeUISrzDeserialize(Me, False)** to load designer-set property values into the instance; if the call returns **False**, no serialized data was found and the control should apply its own defaults.
+常见实现调用 **Context.GetSerializer().RuntimeUISrzDeserialize(Me, False)** 以将设计器属性值加载到实例中；如果调用返回 **False**，则未找到序列化数据，控件应应用自己的默认值。
 
 ### Paint
 
-Called every time the framework needs to redraw the control's client area. The implementation builds one or more `ElementDescriptor` records describing the rectangles to draw and passes each to *Canvas*. **RuntimeUICCCanvasAddElement**.
+每次框架需要重绘控件客户区域时调用。实现构建一个或多个 `ElementDescriptor` 记录描述要绘制的矩形，并通过 *Canvas*.**RuntimeUICCCanvasAddElement** 传递每个描述符。
 
-Syntax: *object*.**Paint** ( *Canvas* )
+语法：*object*.**Paint** ( *Canvas* )
 
 *Canvas*
-: *required* The [**Canvas**](/official/Reference/CustomControls/Framework/Canvas) drawing surface for this paint pass. Its **RuntimeUICCGetWidth**, **RuntimeUICCGetHeight**, and **RuntimeUICCGetDpiScaleFactor** methods supply the size and DPI of the area being painted, in device pixels.
+: *必需* 此绘制过程的 [**Canvas**](/official/Reference/CustomControls/Framework/Canvas) 绘图表面。其 **RuntimeUICCGetWidth**、**RuntimeUICCGetHeight** 和 **RuntimeUICCGetDpiScaleFactor** 方法提供被绘制区域的大小和 DPI，以设备像素为单位。
 
-A descriptor may include event callbacks (`OnClick`, `OnMouseDown`, …) as `AddressOf` pointers; the framework dispatches input back through those pointers without the control needing to subscribe explicitly to anything.
+描述符可以包含事件回调（`OnClick`、`OnMouseDown` 等）作为 `AddressOf` 指针；框架通过这些指针分发输入，控件无需显式订阅任何内容。
 
-A control should request additional repaints by calling [**CustomControlContext.Repaint**](/official/Reference/CustomControls/Framework/CustomControlContext#repaint), not by calling **Paint** directly --- the framework controls when to issue the actual paint pass.
+控件应通过调用 [**CustomControlContext.Repaint**](/official/Reference/CustomControls/Framework/CustomControlContext#repaint) 请求额外重绘，而非直接调用 **Paint**——框架控制何时发出实际绘制过程。

@@ -2,12 +2,21 @@
 title: Function
 parent: Statements
 permalink: /tB/Core/Function
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6fd5c18d-5fb8-4b5c-9b20-ee0037c71e38'
+  PropagateID: '6fd5c18d-5fb8-4b5c-9b20-ee0037c71e38'
+  ReservedCode1: '8c3050ac-876c-45cb-afc7-4d32597d7e7b'
+  ReservedCode2: '8c3050ac-876c-45cb-afc7-4d32597d7e7b'
 ---
+
 # Function
 
-Declares the name, arguments, and code that form the body of a **Function** procedure.
+声明构成 **Function** 过程体的名称、参数和代码。
 
-Syntax:
+语法：
 > [ *attributes* ]  
 > [ **Public** \| **Private** \| **Friend** \| **Protected** ] [ **Static** ] [ **Overridable** ] **Function** *name* [ **(** **Of** *typevars* **)** ] [ **(** *arglist* **)** ] [ **As** *type* ] [ *binding-clause* ]  
 > &nbsp;&nbsp;&nbsp;&nbsp; [ *statements* ] ...  
@@ -19,110 +28,110 @@ Syntax:
 > **End Function**
 
 *attributes*
-: One or more of:  
-[ArrayBoundsChecks](/official/Reference/Attributes#arrayboundschecks), [BindOnlyIfNoArguments](/official/Reference/Attributes#bindonlyifnoarguments), [BindOnlyIfStringSuffix](/official/Reference/Attributes#bindonlyifstringsuffix), [CompileIf](/official/Reference/Attributes#compileif), [ConstantFoldable](/official/Reference/Attributes#constantfoldable), [ConstantFoldableNumericsOnly](/official/Reference/Attributes#constantfoldablenumericsonly), [Debuggable](/official/Reference/Attributes#debuggable), [DebugOnly](/official/Reference/Attributes#debugonly), [Description](/official/Reference/Attributes#description), [EnforceErrors](/official/Reference/Attributes#enforceerrors), [EnforceWarnings](/official/Reference/Attributes#enforcewarnings), [FloatingPointErrorChecks](/official/Reference/Attributes#floatingpointerrorchecks), [IntegerOverflowChecks](/official/Reference/Attributes#integeroverflowchecks), [MustBeQualified](/official/Reference/Attributes#mustbequalified), [RunAfterBuild](/official/Reference/Attributes#runafterbuild), [SimplerByVals](/official/Reference/Attributes#simplerbyvals), [TestCase](/official/Reference/Attributes#testcase), [Unimplemented](/official/Reference/Attributes#unimplemented)
+: 以下一个或多个：  
+[ArrayBoundsChecks](/official/Reference/Attributes#arrayboundschecks)、[BindOnlyIfNoArguments](/official/Reference/Attributes#bindonlyifnoarguments)、[BindOnlyIfStringSuffix](/official/Reference/Attributes#bindonlyifstringsuffix)、[CompileIf](/official/Reference/Attributes#compileif)、[ConstantFoldable](/official/Reference/Attributes#constantfoldable)、[ConstantFoldableNumericsOnly](/official/Reference/Attributes#constantfoldablenumericsonly)、[Debuggable](/official/Reference/Attributes#debuggable)、[DebugOnly](/official/Reference/Attributes#debugonly)、[Description](/official/Reference/Attributes#description)、[EnforceErrors](/official/Reference/Attributes#enforceerrors)、[EnforceWarnings](/official/Reference/Attributes#enforcewarnings)、[FloatingPointErrorChecks](/official/Reference/Attributes#floatingpointerrorchecks)、[IntegerOverflowChecks](/official/Reference/Attributes#integeroverflowchecks)、[MustBeQualified](/official/Reference/Attributes#mustbequalified)、[RunAfterBuild](/official/Reference/Attributes#runafterbuild)、[SimplerByVals](/official/Reference/Attributes#simplerbyvals)、[TestCase](/official/Reference/Attributes#testcase)、[Unimplemented](/official/Reference/Attributes#unimplemented)
 
 **Public**
-: *optional*. Indicates that the **Function** procedure is accessible to all other procedures in all modules. If used in a module that contains an **Option Private**, the procedure is not available outside the project.
+: *可选*。指示 **Function** 过程可被所有模块中的所有其他过程访问。如果在包含 **Option Private** 的模块中使用，则该过程在项目外不可用。
 
 **Private**
-: *optional* Indicates that the **Function** procedure is accessible only to other procedures in the module where it is declared.
+: *可选* 指示 **Function** 过程仅可被声明它的模块中的其他过程访问。
 
 **Friend**
-: *optional* Used only in a class module. Indicates that the **Function** procedure is visible throughout the project, but not visible to a controller of an instance of an object.
+: *可选* 仅在类模块中使用。指示 **Function** 过程在整个项目中可见，但对对象实例的控制器不可见。
 
 **[Protected](/official/Reference/Core/Protected)**
-: *optional* (twinBASIC) Used only in a class. Indicates that the **Function** procedure is accessible from inside the declaring class and from classes that derive from it via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop), but not from outside callers.
+: *可选* (twinBASIC) 仅在类中使用。指示 **Function** 过程可从声明类的内部和通过 [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop) 派生的类访问，但外部调用者不能访问。
 
 **Static**
-: *optional* Indicates that the **Function** procedure's local variables are preserved between calls. The **Static** attribute doesn't affect variables that are declared outside the **Function**, even if they are used in the procedure.
+: *可选* 指示 **Function** 过程的局部变量在调用之间保持其值。**Static** 属性不影响在 **Function** 外部声明的变量，即使它们在过程中使用。
 
 **Overridable**
-: *optional* (twinBASIC) Marks the **Function** as an inheritance hook that classes derived via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop) may replace with an **Overrides** clause. Meaningful only on a member of a class that participates in an **Inherits** hierarchy.
+: *可选* (twinBASIC) 将 **Function** 标记为继承钩子，通过 [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop) 派生的类可以用 **Overrides** 子句替换。仅在参与 **Inherits** 层次结构的类成员上有意义。
 
 *name*
-: Name of the **Function**; follows standard variable naming conventions.
+: **Function** 的名称；遵循标准变量命名约定。
 
 **Of** *typevars*
-: *optional* One or more type variable names; following standard variable naming conventions. The names are separated by commas. Causes the function to be a generic function.
+: *可选* 一个或多个类型变量名；遵循标准变量命名约定。名称用逗号分隔。使函数成为泛型函数。
 
 *arglist*
-: *optional* List of variables representing arguments that are passed to the **Function** procedure when it is called. Multiple variables are separated by commas.
+: *可选* 表示调用 **Function** 过程时传递的参数的变量列表。多个变量用逗号分隔。
 
 **As** *type*
-: *optional* Data type of the value returned by the **Function** procedure; may be Byte, Boolean, Integer, Long, Currency, Single, Double, Decimal, Date, String (except fixed length), Object, Variant, or any user-defined type (UDT).
+: *可选* **Function** 过程返回值的数据类型；可以是Byte、Boolean、Integer、Long、Currency、Single、Double、Decimal、Date、String（定长除外）、Object、Variant或任何用户自定义类型(UDT)。
 
 *binding-clause*
-: *optional* (twinBASIC) One of three trailing clauses that bind this body to a member declared elsewhere:
+: *可选* (twinBASIC) 三种尾部子句之一，将此函数体绑定到在别处声明的成员：
 
-  - **Handles** *object*.*event* [ **,** *object*.*event* … ] --- connects this **Function** as a handler for the named event(s), replacing the traditional `Object_Event` naming convention. See [**Handles** statement](/official/Reference/Core/Handles).
-  - **Implements** *iface*.*member* [ **,** *iface2*.*member2* … ] --- provides the body for the named [**Interface**](/official/Reference/Core/Interface) (or [**Class**](/official/Reference/Core/Class)) member, replacing the traditional `Iface_Member` naming convention. A comma-separated list permits one body to satisfy several interfaces' members at once. See [**Implements** statement](/official/Reference/Core/Implements).
-  - **Overrides** *base*.*member* --- supplies the body for an **Overridable** *member* inherited via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop). Combine with **Overridable** on the same header to allow further-derived classes to override again.
+  - **Handles** *object*.*event* [ **,** *object*.*event* … ]——将此 **Function** 连接为命名事件的处理程序，替代传统的 `Object_Event` 命名约定。参见 [**Handles** 语句](/official/Reference/Core/Handles)。
+  - **Implements** *iface*.*member* [ **,** *iface2*.*member2* … ]——为命名的 [**Interface**](/official/Reference/Core/Interface)（或 [**Class**](/official/Reference/Core/Class)）成员提供实现体，替代传统的 `Iface_Member` 命名约定。逗号分隔的列表允许一个函数体同时满足多个接口的成员。参见 [**Implements** 语句](/official/Reference/Core/Implements)。
+  - **Overrides** *base*.*member*——为通过 [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop) 继承的 **Overridable** *member* 提供实现体。与同一头部的 **Overridable** 组合使用以允许更深层的派生类再次覆盖。
 
 *statements*
-: *optional* Any group of statements to be executed within the **Function** procedure.
+: *可选* 在 **Function** 过程内执行的任何语句组。
 
 **[Let](/official/Reference/Core/Let)**
-: *optional* Assigns a non-object-type return value of the **Function** without exiting the function. The **Let** keyword is optional.
+: *可选* 在不退出函数的情况下赋值 **Function** 的非对象类型返回值。**Let** 关键字可选。
 
 **[Set](/official/Reference/Core/Set)**
-: *optional* Assigns an object-type return value of the **Function** without exiting the function.
+: *可选* 在不退出函数的情况下赋值 **Function** 的对象类型返回值。
 
 **[Return](/official/Reference/Core/Return)** *expression*
-: *optional* Immediately returns from the function with *expression* as the return value. The *expression* is required in this form; a bare **Return** is reserved for the [**GoSub...Return**](/official/Reference/Core/GoSub-Return) construct and does not exit a **Function**.
+: *可选* 立即以 *expression* 作为返回值从函数返回。此形式中 *expression* 是必需的；单独的 **Return** 保留给 [**GoSub...Return**](/official/Reference/Core/GoSub-Return) 构造，不会退出 **Function**。
 
 **[Exit Function](/official/Reference/Core/Exit)**
-: *optional* Immediately returns from the function without setting a return value. Used to leave a function early when no value needs to be returned (the function will yield its default return value: 0 for numeric types, `""` for strings, **Empty** for **Variant**, **Nothing** for object references).
+: *可选* 立即从函数返回而不设置返回值。用于在不需要返回值时提前离开函数（函数将产生其默认返回值：数值类型为0，字符串为 `""`，**Variant** 为 **Empty**，对象引用为 **Nothing**）。
 
 *expression*
-: *optional* Return value of the **Function**.
+: *可选* **Function** 的返回值。
 
 ### *arglist*
 
-Syntax: One or more of  
+语法：一个或多个  
 [ **Optional** ] [ **ByVal** \| **ByRef** ] [ **ParamArray** ] *varname* [ **()** ] [ **As** *type* ] [ **=** *defaultvalue* ]
 
 **Optional**
-: *optional* Indicates that an argument is not required. If used, all subsequent arguments in *arglist* must also be optional and declared by using the **Optional** keyword. **Optional** can't be used for any argument if **ParamArray** is used.
+: *可选* 指示参数不是必需的。如果使用，*arglist* 中所有后续参数也必须是可选的并使用 **Optional** 关键字声明。如果使用了 **ParamArray**，则不能对任何参数使用 **Optional**。
 
 **ByVal**
-: *optional* Indicates that the argument is passed by value.
+: *可选* 指示参数按值传递。
 
 **ByRef**
-: *optional* Indicates that the argument is passed by reference. **ByRef** is the default unlike in Visual Basic .NET.
+: *可选* 指示参数按引用传递。**ByRef** 是默认方式，与Visual Basic .NET不同。
 
 **ParamArray**
-: *optional* Used only as the last argument in *arglist* to indicate that the final argument is an **Optional** array of **Variant** elements. The **ParamArray** keyword permits passing an arbitrary number of arguments. It may not be used with **ByVal**, **ByRef**, or **Optional**.
+: *可选* 仅用作 *arglist* 中的最后一个参数，指示最后一个参数是 **Variant** 元素的 **Optional** 数组。**ParamArray** 关键字允许传递任意数量的参数。不能与 **ByVal**、**ByRef** 或 **Optional** 一起使用。
 
 *varname*
-: Name of the variable representing the argument; follows standard variable naming conventions.
+: 表示参数的变量名称；遵循标准变量命名约定。
 
 *type*
-: *optional* Data type of the argument passed to the procedure; may be **Byte**, **Boolean**, **Integer**, **Long**, **Currency**, **Single**, **Double**, **Decimal**, **Date**, **String** (variable length only), **Object**, **Variant**, a specific object type, or the name of a generic type argument. If the parameter is not **Optional**, a user-defined type may also be specified.  
-If the name of a generic type parameter is used, it becomes bound to the concrete type of the argument passed to the function. The name binding has the scope of the body of the function.
+: *可选* 传递给过程的参数的数据类型；可以是 **Byte**、**Boolean**、**Integer**、**Long**、**Currency**、**Single**、**Double**、**Decimal**、**Date**、**String**（仅限变长）、**Object**、**Variant**、特定对象类型或泛型类型参数的名称。如果参数不是 **Optional**，也可以指定用户自定义类型。  
+如果使用泛型类型参数的名称，它将绑定到传递给函数的参数的具体类型。名称绑定具有函数体的作用域。
 
 *defaultvalue*
-: *optional* Any constant or constant expression. Valid for **Optional** parameters only. If the type is an **Object**, an explicit default value can only be **Nothing**.
+: *可选* 任何常量或常量表达式。仅对 **Optional** 参数有效。如果类型为 **Object**，显式默认值只能为 **Nothing**。
 
-If not explicitly specified by using **Public**, **Private**, or **Friend**, **Function** procedures are public by default.
+如果未使用 **Public**、**Private** 或 **Friend** 显式指定，**Function** 过程默认为公共的。
 
-If **Static** isn't used, the value of local variables is not preserved between calls.
+如果未使用 **Static**，局部变量的值在调用之间不保留。
 
-The **Friend** keyword can only be used in class modules. However, **Friend** procedures can be accessed by procedures in any module of a project. A **Friend** procedure does not appear in the type library of its parent class, nor can a **Friend** procedure be late bound.
+**Friend** 关键字只能在类模块中使用。但 **Friend** 过程可以被项目中任何模块的过程访问。**Friend** 过程不出现在其父类的类型库中，也不能被后期绑定。
 
-**Function** procedures can be recursive; that is, they can call themselves to perform a given task. However, recursion can lead to stack overflow. The **Static** keyword usually isn't used with recursive **Function** procedures.
+**Function** 过程可以递归；即它们可以调用自身来执行给定任务。但递归可能导致栈溢出。**Static** 关键字通常不与递归 **Function** 过程一起使用。
 
-All executable code must be in procedures. A **Function** procedure cannot be defined inside another **Function**, **[Sub](/official/Reference/Core/Sub)**, or **[Property](/official/Reference/Core/Property)** procedure.
+所有可执行代码必须在过程中。**Function** 过程不能定义在另一个 **Function**、[**Sub**](/official/Reference/Core/Sub) 或 [**Property**](/official/Reference/Core/Property) 过程内。
 
-The **[Exit Function](/official/Reference/Core/Exit)** statement and the **[Return](/official/Reference/Core/Return)** *expression* statement both cause an immediate exit from a **Function** procedure. Program execution continues with the statement following the statement that called the **Function** procedure. Any number of these statements can appear anywhere in a **Function** procedure. **Exit Function** is the right choice when the return value has already been assigned (or the default is wanted); **Return** *expression* sets the return value and exits in a single step.
+**[Exit Function](/official/Reference/Core/Exit)** 语句和 **[Return](/official/Reference/Core/Return)** *expression* 语句都会导致立即从 **Function** 过程退出。程序执行继续到调用 **Function** 过程的语句之后的语句。这些语句可以在 **Function** 过程中的任何位置出现任意数量。**Exit Function** 适用于返回值已经赋值（或想要默认值）的情况；**Return** *expression* 在一步中设置返回值并退出。
 
-Like a **Sub** procedure, a **Function** procedure is a separate procedure that can take arguments, perform a series of statements, and change the values of its arguments. However, unlike a **Sub** procedure, a **Function** procedure can appear on the right side of an expression in the same way as any intrinsic function --- such as **Sqr**, **Cos**, or **Chr** --- when the value returned by the function is needed.
+与 **Sub** 过程一样，**Function** 过程是可以接受参数、执行一系列语句并更改其参数值的独立过程。但与 **Sub** 过程不同，当需要函数返回的值时，**Function** 过程可以像任何内部函数——如 **Sqr**、**Cos** 或 **Chr**——一样出现在表达式的右侧。
 
-A **Function** procedure is called by using the function name, followed by the argument list in parentheses, in an expression. See the **[Call](/official/Reference/Core/Call)** statement for specific information about how to call **Function** procedures.
+通过在表达式中使用函数名后跟括号内的参数列表来调用 **Function** 过程。参见 **[Call](/official/Reference/Core/Call)** 语句了解如何调用 **Function** 过程的具体信息。
 
-To return a value from a function, assign the value to the function name, or provide it as an argument to the **Return** statement. Any number of such assignments and **Return** statements can appear anywhere within the procedure. If no value is assigned to *name*, the procedure returns a default value: a numeric function returns 0, a string function returns a zero-length string (""), and a **Variant** function returns **Empty**. A function that returns an object reference returns **Nothing** if no object reference is assigned to *name* (using **Set** or **Return**) within the **Function**.
+要从函数返回值，请将值赋给函数名，或将其作为 **Return** 语句的参数。此类赋值和 **Return** 语句可以在过程中的任何位置出现任意数量。如果没有将值赋给 *name*，过程返回默认值：数值函数返回0，字符串函数返回零长度字符串("")，**Variant** 函数返回 **Empty**。如果函数返回对象引用且在 **Function** 内未使用 **Set** 或 **Return** 将对象引用赋给 *name*，则返回 **Nothing**。
 
-The following example shows how to assign a return value to a function. In this case, **False** is assigned to the name to indicate that some value was not found.
+以下示例展示如何为函数赋返回值。在此例中，将 **False** 赋给函数名以指示未找到某个值。
 
 ```vb
 Function BinarySearch(...) As Boolean 
@@ -136,17 +145,17 @@ Function BinarySearch(...) As Boolean
 End Function
 ```
 
-Variables used in **Function** procedures fall into two categories: those that are explicitly declared within the procedure and those that are not.
+**Function** 过程中使用的变量分为两类：在过程中显式声明的和未显式声明的。
 
-Variables that are explicitly declared in a procedure (using **Dim** or the equivalent) are always local to the procedure. Variables that are used but not explicitly declared in a procedure are also local unless they are explicitly declared at some higher level outside the procedure.
+在过程中显式声明（使用 **Dim** 或等效方式）的变量始终是过程的局部变量。在过程中使用但未显式声明的变量也是局部变量，除非它们在过程外部的更高级别被显式声明。
 
-A procedure can use a variable that is not explicitly declared in the procedure, but a naming conflict can occur if anything defined at the module level has the same name. When a procedure refers to an undeclared variable that has the same name as another procedure, constant, or variable, it is assumed that the procedure refers to that module-level name. Explicitly declare variables to avoid this kind of conflict. Use an **[Option Explicit](/official/Reference/Core/Option#Explicit)** statement to force explicit declaration of variables.
+过程可以使用未在过程中显式声明的变量，但如果模块级别定义了同名的任何内容，则可能发生命名冲突。当过程引用与另一个过程、常量或变量同名的未声明变量时，假定过程引用的是该模块级别的名称。显式声明变量以避免此类冲突。使用 **[Option Explicit](/official/Reference/Core/Option#Explicit)** 语句强制显式声明变量。
 
-Visual Basic may rearrange arithmetic expressions to increase internal efficiency. Avoid using a **Function** procedure in an arithmetic expression when the function changes the value of variables in the same expression. For more information about arithmetic operators, see Operators.
+Visual Basic可能会重新排列算术表达式以提高内部效率。当函数更改同一表达式中变量的值时，避免在算术表达式中使用 **Function** 过程。有关算术运算符的更多信息，参见运算符。
 
-### Example
+### 示例
 
-This example uses the **Function** statement to declare the name, arguments, and code that form the body of a **Function** procedure. The last example uses hard-typed, initialized **Optional** arguments.
+本示例使用 **Function** 语句声明构成 **Function** 过程体的名称、参数和代码。最后一个示例使用强类型、初始化的 **Optional** 参数。
 
 ```vb
 ' The following user-defined function returns the square root of the 
@@ -160,7 +169,7 @@ Function CalculateSquareRoot(NumberArg As Double) As Double
 End Function
 ```
 
-Using the **ParamArray** keyword enables a function to accept a variable number of arguments. In the following definition, it is passed by value.
+使用 **ParamArray** 关键字使函数可以接受可变数量的参数。在以下定义中，它按值传递。
 
 ```vb
 Function CalcSum(ByVal FirstArg As Integer, ParamArray OtherArgs()) 
@@ -173,7 +182,7 @@ Function CalcSum(ByVal FirstArg As Integer, ParamArray OtherArgs())
 End Function
 ```
 
-**Optional** arguments can have default values and types other than **Variant**.
+**Optional** 参数可以有默认值和 **Variant** 以外的类型。
 
 ```vb
 ' If a function's arguments are defined as follows: 

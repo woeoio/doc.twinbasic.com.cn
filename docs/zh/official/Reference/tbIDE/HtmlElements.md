@@ -1,12 +1,20 @@
----
+﻿---
 title: HtmlElements
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/HtmlElements
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4167e783-2af7-417f-823b-2691501b68d1'
+  PropagateID: '4167e783-2af7-417f-823b-2691501b68d1'
+  ReservedCode1: '20d27787-e3c0-48b4-b947-d9e59b2bbda3'
+  ReservedCode2: '20d27787-e3c0-48b4-b947-d9e59b2bbda3'
 ---
 
-# HtmlElements class
+# HtmlElements 类
 
-A child-element collection on an [**HtmlElement**](/official/Reference/tbIDE/HtmlElement). Reached through [**HtmlElement.ChildDomElements**](/official/Reference/tbIDE/HtmlElement#childdomelements). Use [**Add**](#add) to create new children and [**Item**](#item) to look one up by ID after the fact.
+[**HtmlElement**](/official/Reference/tbIDE/HtmlElement) 上的子元素集合。通过 [**HtmlElement.ChildDomElements**](/official/Reference/tbIDE/HtmlElement#childdomelements) 访问。使用 [**Add**](#add) 创建新子元素，使用 [**Item**](#item) 事后按 ID 查找。
 
 ```vb
 With myToolWindow.RootDomElement
@@ -23,39 +31,39 @@ End With
 ```
 
 
-## Methods
+## 方法
 
 ### Add
 
-Creates a new child element under the parent [**HtmlElement**](/official/Reference/tbIDE/HtmlElement) and returns the new [**HtmlElement**](/official/Reference/tbIDE/HtmlElement).
+在父 [**HtmlElement**](/official/Reference/tbIDE/HtmlElement) 下创建新子元素并返回新的 [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)。
 
-Syntax: *htmlElements*.**Add**( *ElementID*, *TagName* ) **As** [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)
+语法：*htmlElements*.**Add**( *ElementID*, *TagName* ) **As** [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)
 
 *ElementID*
-: *required* A DOM `id` for the new element. **String**. Pick distinct IDs across the tool window --- they double as the key for [**Item**](#item) lookups.
+: *必需* 新元素的 DOM `id`。**String**。在工具窗口内选择不同的 ID——它们同时作为 [**Item**](#item) 查找的键。
 
 *TagName*
-: *required* The HTML tag name. **String**. Standard tags (`"div"`, `"span"`, `"input"`, `"h1"`, `"label"`, `"img"`, …) work as expected; the IDE additionally accepts four custom-widget tags described in [Tool-window DOM tags](/official/Reference/tbIDE/#tool-window-dom-tags) on the package overview: `"chartjs"`, `"monaco"`, `"listview"`, `"virtuallistview"`.
+: *必需* HTML 标签名。**String**。标准标签（`"div"`、`"span"`、`"input"`、`"h1"`、`"label"`、`"img"` 等）按预期工作；IDE 额外接受四个自定义控件标签，在包概述的[工具窗口 DOM 标签](/official/Reference/tbIDE/#工具窗口-dom-标签)中描述：`"chartjs"`、`"monaco"`、`"listview"`、`"virtuallistview"`。
 
 ```vb
-' Standard DOM tags:
+' 标准 DOM 标签：
 Set greeting = .ChildDomElements.Add("greeting", "h1")
 Set entry    = .ChildDomElements.Add("entryBox", "input")
 
-' Custom-widget tags (see sample 11 / 12 / 13 / 14):
+' 自定义控件标签（参见示例 11 / 12 / 13 / 14）：
 Set chart      = .ChildDomElements.Add("cpuChart",  "chartjs")
 Set editor     = .ChildDomElements.Add("myEditor",  "monaco")
 Set listview   = .ChildDomElements.Add("itemsList", "listview")
 Set virtList   = .ChildDomElements.Add("bigList",   "virtuallistview")
 ```
 
-## Properties
+## 属性
 
 ### Item
 
-Looks up an existing child element by its ID. **DefaultMember** --- so `elements("greeting")` is equivalent to `elements.Item("greeting")`.
+按 ID 查找现有子元素。**DefaultMember**——因此 `elements("greeting")` 等同于 `elements.Item("greeting")`。
 
-Syntax: *htmlElements*( *ID* ) **As** [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)
+语法：*htmlElements*( *ID* ) **As** [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)
 
 *ID*
-: A **Variant** --- typically the **String** ID assigned at [**Add**](#add) time.
+: 一个 **Variant** —— 通常是 [**Add**](#add) 时分配的 **String** ID。

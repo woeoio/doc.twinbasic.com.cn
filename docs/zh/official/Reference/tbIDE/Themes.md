@@ -1,20 +1,28 @@
----
+﻿---
 title: Themes
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/Themes
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'b8564c33-6f02-43d7-bdde-33efcafa6abf'
+  PropagateID: 'b8564c33-6f02-43d7-bdde-33efcafa6abf'
+  ReservedCode1: '13ab6816-5a97-489d-b9fb-f07bc3793312'
+  ReservedCode2: '13ab6816-5a97-489d-b9fb-f07bc3793312'
 ---
 
-# Themes class
+# Themes 类
 
-The IDE's active-theme state --- reached through [**Host.Themes**](/official/Reference/tbIDE/Host#themes). Pair with the [**Host.OnChangedTheme**](/official/Reference/tbIDE/Host#onchangedtheme) event to refresh any colour-sensitive elements the addin draws inside its tool windows.
+IDE 的活动主题状态——通过 [**Host.Themes**](/official/Reference/tbIDE/Host#themes) 访问。配合 [**Host.OnChangedTheme**](/official/Reference/tbIDE/Host#onchangedtheme) 事件刷新插件在其工具窗口内绘制的任何颜色敏感元素。
 
 ```vb
 Private Sub Host_OnProjectLoaded()
-    ApplyThemeColors                      ' set initial colours based on the current theme
+    ApplyThemeColors                      ' 根据当前主题设置初始颜色
 End Sub
 
 Private Sub Host_OnChangedTheme(ByVal ThemeName As String)
-    ApplyThemeColors                      ' user picked a new theme — re-apply
+    ApplyThemeColors                      ' 用户选择了新主题 — 重新应用
 End Sub
 
 Private Sub ApplyThemeColors()
@@ -26,16 +34,16 @@ End Sub
 ```
 
 
-## Properties
+## 属性
 
 ### ActiveThemeName
 
-The name of the current IDE theme --- e.g. `"Classic"`, `"Dark"`, `"Light"`. **String**, read-only.
+当前 IDE 主题的名称——例如 `"Classic"`、`"Dark"`、`"Light"`。**String**，只读。
 
-The set of available themes is determined by the IDE and may grow in future versions; do not switch on this value with an exhaustive `Select Case`. For binary light-vs-dark colour decisions, use [**ActiveThemeNameGroup**](#activethemenamegroup) instead.
+可用主题集由 IDE 决定，可能在未来版本中增加；不要用穷尽式的 `Select Case` 切换此值。对于浅色/深色的二值颜色决策，改用 [**ActiveThemeNameGroup**](#activethemenamegroup)。
 
 ### ActiveThemeNameGroup
 
-The high-level "family" the current theme belongs to. **String**, read-only --- exactly `"dark"` or `"light"`.
+当前主题所属的高层"族"。**String**，只读——恰好为 `"dark"` 或 `"light"`。
 
-Useful for an addin that wants to flip its own colours between dark-on-light and light-on-dark without parsing [**ActiveThemeName**](#activethemename).
+适用于想要在深色浅底和浅色深底之间切换自身颜色，而无需解析 [**ActiveThemeName**](#activethemename) 的插件。

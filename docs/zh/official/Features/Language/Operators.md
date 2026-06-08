@@ -1,40 +1,48 @@
 ---
-title: Operators
+title: "运算符"
 parent: Language Syntax
 nav_order: 7
 permalink: /Features/Language/Operators
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '434ad294-bf2a-4bf0-b47f-07409a2ef9da'
+  PropagateID: '434ad294-bf2a-4bf0-b47f-07409a2ef9da'
+  ReservedCode1: 'eda610c8-2134-4b66-9161-9069d85014d8'
+  ReservedCode2: 'eda610c8-2134-4b66-9161-9069d85014d8'
 ---
 
-# New Operators
+# 新运算符
 
-twinBASIC introduces several new operators to enhance language capabilities. Reference pages for each individual operator live under [Reference → Operators](/official/Reference/Operators).
+twinBASIC 引入了几个新运算符来增强语言能力。每个运算符的参考页面位于 [参考 → 运算符](/official/Reference/Operators)。
 
-## Bitshift Operators
+## 位移运算符
 
-[`<<`](/official/Reference/Core/LeftShift) and [`>>`](/official/Reference/Core/RightShift) perform left-shift and right-shift operations on a numeric variable. Note that shifts beyond available size result in 0, not wrapping.
+[`<<`](/official/Reference/Core/LeftShift) 和 [`>>`](/official/Reference/Core/RightShift) 对数值变量执行左移和右移操作。注意超出可用大小的位移结果为 0，而不是回绕。
 
-## Short-Circuit Conditional Operators
+## 短路条件运算符
 
-### OrElse and AndAlso
+### OrElse 和 AndAlso
 
-With the regular [`Or`](/official/Reference/Core/Or) and [`And`](/official/Reference/Core/And) statements, both sides are evaluated, even when not necessary. With a short-circuit operator, if the condition is resolved by the first side, the other side is not evaluated. So if you have
-`If Condition1 `[`OrElse`](/official/Reference/Core/OrElse)` Condition2 Then`, if `Condition1` is `True`, then `Condition2` will not be evaluated, and any code called by it will not run. The companion conjunction operator is [`AndAlso`](/official/Reference/Core/AndAlso).
+使用常规的 [`Or`](/official/Reference/Core/Or) 和 [`And`](/official/Reference/Core/And) 语句时，两边都会被计算，即使并非必要。使用短路运算符时，如果条件已由第一边确定，另一边不会被计算。因此如果你有
+`If Condition1 `[`OrElse`](/official/Reference/Core/OrElse)` Condition2 Then`，如果 `Condition1` 为 `True`，则 `Condition2` 不会被计算，由它调用的任何代码也不会运行。配套的合取运算符是 [`AndAlso`](/official/Reference/Core/AndAlso)。
 
-### If() Operator
+### If() 运算符
 
-Short-circuit [`If()`](/official/Reference/Core/If) operator with syntax identical to the traditional [`IIf`](/official/Reference/Core/IIf). This has the additional benefit of not converting variables into a `Variant` if they're the same type; i.e. `If(condition, Long, Long)` the `Long` variables will never become a `Variant`.
+短路 [`If()`](/official/Reference/Core/If) 运算符，语法与传统 [`IIf`](/official/Reference/Core/IIf) 相同。这还有一个额外好处：如果变量是相同类型，不会将它们转换为 `Variant`；即 `If(condition, Long, Long)` 中的 `Long` 变量永远不会变成 `Variant`。
 
-## Assignment Operators
+## 赋值运算符
 
 `+= -= /= \= *= ^= &= <<= >>=`
 
-These are the equivalent of `var = var (operand) (var2)`. So `i += 1` is the equivalent of `i = i + 1`. See [Reference → Operators → Compound Assignment](/official/Reference/Operators#compound-assignment) for the per-operator details.
+这些等价于 `var = var (operand) (var2)`。因此 `i += 1` 等价于 `i = i + 1`。参见 [参考 → 运算符 → 复合赋值](/official/Reference/Operators#compound-assignment) 获取每个运算符的详细信息。
 
-## IsNot Operator
+## IsNot 运算符
 
-The logical opposite of the [`Is`](/official/Reference/Core/Is) operator for testing object equivalence. For example, instead of `If (object Is Nothing) = False` you could now write `If object `[`IsNot`](/official/Reference/Core/IsNot)` Nothing Then`.
+用于测试对象等价性的 [`Is`](/official/Reference/Core/Is) 运算符的逻辑反义。例如，你不再需要写 `If (object Is Nothing) = False`，现在可以写 `If object `[`IsNot`](/official/Reference/Core/IsNot)` Nothing Then`。
 
-## Examples
+## 示例
 
 ```vb
 Dim n As Long = &HFF

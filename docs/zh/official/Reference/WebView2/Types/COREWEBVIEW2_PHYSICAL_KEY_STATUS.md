@@ -1,10 +1,10 @@
----
+﻿---
 title: COREWEBVIEW2_PHYSICAL_KEY_STATUS
 parent: Types
 permalink: /tB/Packages/WebView2/Types/COREWEBVIEW2_PHYSICAL_KEY_STATUS
 ---
 # COREWEBVIEW2_PHYSICAL_KEY_STATUS
-The bit-fields the Win32 `WM_KEYDOWN` / `WM_KEYUP` message family packs into its `lParam`, decoded into a record. The control reads the runtime's `COREWEBVIEW2_PHYSICAL_KEY_STATUS` structure on each accelerator keystroke and distributes it across individual arguments of the [**AcceleratorKeyPressed**](/official/Reference/WebView2/WebView2/#acceleratorkeypressed) event --- application code does not normally create instances of this type directly.
+Win32 `WM_KEYDOWN` / `WM_KEYUP` 消息族打包到其 `lParam` 中的位字段，解码为记录。控件在每次快捷键击键时读取运行时的 `COREWEBVIEW2_PHYSICAL_KEY_STATUS` 结构，并将其分发到 [**AcceleratorKeyPressed**](/official/Reference/WebView2/WebView2/#acceleratorkeypressed) 事件的各个参数——应用程序代码通常不直接创建此类型的实例。
 
 ```vb
 Public Type COREWEBVIEW2_PHYSICAL_KEY_STATUS
@@ -17,27 +17,27 @@ Public Type COREWEBVIEW2_PHYSICAL_KEY_STATUS
 End Type
 ```
 
-## Members
+## 成员
 
 *RepeatCount*
-: How many times the keystroke is auto-repeated as the message is held in the queue.
+: 击键在消息保持在队列中时自动重复的次数。
 
 *ScanCode*
-: The hardware scan code of the pressed key.
+: 所按键的硬件扫描码。
 
 *IsExtendedKey*
-: Non-zero when the key is one of the *extended* keys --- right-hand **Alt** / **Ctrl**, the arrow / **Home** / **End** / **Page Up** / **Page Down** / **Insert** / **Delete** block, **NumLock**, and the numeric-keypad **Enter** and **/**.
+: 当键是*扩展*键时非零——右侧 **Alt** / **Ctrl**、方向键 / **Home** / **End** / **Page Up** / **Page Down** / **Insert** / **Delete** 区、**NumLock**，以及数字小键盘的 **Enter** 和 **/**。
 
 *IsMenuKeyDown*
-: Non-zero when **Alt** was held while the message was generated.
+: 生成消息时 **Alt** 被按住时非零。
 
 *WasKeyDown*
-: Non-zero when the key was already down before this message --- distinguishes the initial keystroke from subsequent auto-repeats.
+: 在此消息之前键已经按下时非零——区分初次击键和后续自动重复。
 
 *IsKeyReleased*
-: Non-zero on the transition message reporting the key going up; zero on key-down messages.
+: 在报告键抬起的转换消息上非零；在键按下消息上为零。
 
-### See Also
+### 另见
 
 - [AcceleratorKeyPressed](/official/Reference/WebView2/WebView2/#acceleratorkeypressed)
 - [wv2KeyEventKind](/official/Reference/WebView2/Enumerations/wv2KeyEventKind)

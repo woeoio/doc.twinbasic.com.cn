@@ -1,12 +1,23 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'db977484-9a5a-4c87-a1cf-891c33bed600'
+  PropagateID: 'db977484-9a5a-4c87-a1cf-891c33bed600'
+  ReservedCode1: '02dd35da-c7c3-45d7-969f-2aab67bd7ff7'
+  ReservedCode2: '02dd35da-c7c3-45d7-969f-2aab67bd7ff7'
+---
+
 ---
 title: App
 parent: VB Package
 permalink: /tB/Packages/VB/App/
 ---
 
-# App class
+# App 类
 
-The **App** class wraps the running application's identity and version metadata, plus a small amount of process-level state (the module handle, the main thread ID, whether the process is running inside the twinBASIC IDE or with elevated privileges, …). It is a singleton --- there is exactly one **App** instance per process, owned by the runtime and exposed through the global **App** property of the [**Global**](/official/Reference/VB/Global/) object. Code reaches it without qualification:
+**App**类包装运行中应用程序的标识和版本元数据，以及少量进程级状态（模块句柄、主线程ID、进程是否在twinBASIC IDE内运行或具有提升权限等）。它是单例——每个进程恰好有一个**App**实例，由运行时拥有，通过[**Global**](/official/Reference/VB/Global/)对象的全局**App**属性公开。代码无需限定即可访问：
 
 ```vb
 Debug.Print "Running from " & App.Path
@@ -20,221 +31,221 @@ End If
 App.HelpFile = App.Path & "\help.chm"
 ```
 
-Most properties are read-only and are populated from the project settings (compiled into the executable's Win32 `VERSIONINFO` resource) at build time. The few read/write properties --- [**Title**](#title) and [**HelpFile**](#helpfile) --- let code change a small amount of run-time state that other parts of the runtime (notably the form caption defaults and the **F1** help dispatcher) consult.
+大多数属性为只读，在构建时从项目设置填充到可执行文件的Win32 `VERSIONINFO`资源中。少数读/写属性——[**Title**](#title)和[**HelpFile**](#helpfile)——允许代码更改少量运行时状态，运行时的其他部分（特别是窗体标题默认值和**F1**帮助分派器）会查询这些状态。
 
 
-## Singleton and access
+## 单例和访问
 
-**App** is not creatable: there is no `New App` and no public coclass to instantiate. The runtime exposes the singleton through the [**App**](/official/Reference/VB/Global/#app) property on the [**Global**](/official/Reference/VB/Global/) app-object, which is itself accessible without qualification. References returned by **App** are cached and stable for the lifetime of the process.
+**App**不可创建：没有`New App`，也没有可实例化的公共coclass。运行时通过[**Global**](/official/Reference/VB/Global/)应用对象上的[**App**](/official/Reference/VB/Global/#app)属性公开此单例，该对象本身无需限定即可访问。**App**返回的引用在进程生命周期内被缓存且稳定。
 
-## File and module location
+## 文件和模块位置
 
-[**Path**](#path) and [**ModulePath**](#modulepath) describe where the executable lives:
+[**Path**](#path)和[**ModulePath**](#modulepath)描述可执行文件所在位置：
 
-- [**Path**](#path) returns the folder containing the EXE, with no trailing backslash (e.g. `"C:\Program Files\MyApp"`).
-- [**ModulePath**](#modulepath) returns the full path to the EXE itself (e.g. `"C:\Program Files\MyApp\MyApp.exe"`).
-- [**EXEName**](#exename) returns the EXE's base name without the extension (e.g. `"MyApp"`).
+- [**Path**](#path)返回包含EXE的文件夹，无尾部反斜杠（例如`"C:\Program Files\MyApp"`）。
+- [**ModulePath**](#modulepath)返回EXE本身的完整路径（例如`"C:\Program Files\MyApp\MyApp.exe"`）。
+- [**EXEName**](#exename)返回EXE的不含扩展名的基本名称（例如`"MyApp"`）。
 
-When the project is running inside the twinBASIC IDE --- `App.IsInIDE` is **True** --- [**Path**](#path) is the folder of the *project file* rather than of a compiled EXE, so it remains useful as a "where the application is" anchor for opening relative resources at design time.
+当项目在twinBASIC IDE中运行时——`App.IsInIDE`为**True**——[**Path**](#path)是*项目文件*的文件夹而非已编译EXE的文件夹，因此它仍然可用作"应用程序所在位置"的锚点，用于在设计时打开相对路径的资源。
 
-[**LastBuildPath**](#lastbuildpath) is a twinBASIC-specific extension that records the path the most recent IDE build wrote its EXE to --- useful for build scripts that need to chain steps after an IDE build.
+[**LastBuildPath**](#lastbuildpath)是twinBASIC特有的扩展，记录最近IDE构建写入EXE的路径——对于需要在IDE构建后链接步骤的构建脚本很有用。
 
-## Version metadata
+## 版本元数据
 
-The version-info properties read straight from the EXE's `VERSIONINFO` resource:
+版本信息属性直接从EXE的`VERSIONINFO`资源读取：
 
-- [**Major**](#major), [**Minor**](#minor), [**Revision**](#revision), and [**Build**](#build) -- the four parts of the four-part version number set in the project's *Make* tab.
-- [**Comments**](#comments), [**CompanyName**](#companyname), [**FileDescription**](#filedescription), [**LegalCopyright**](#legalcopyright), [**LegalTrademarks**](#legaltrademarks), and [**ProductName**](#productname) -- the standard text fields of the same resource.
-- [**Title**](#title) -- the friendly application title shown in tasklist and message-box defaults; readable and writable.
+- [**Major**](#major)、[**Minor**](#minor)、[**Revision**](#revision)和[**Build**](#build)——项目*Make*选项卡中设置的四部分版本号的四个组成部分。
+- [**Comments**](#comments)、[**CompanyName**](#companyname)、[**FileDescription**](#filedescription)、[**LegalCopyright**](#legalcopyright)、[**LegalTrademarks**](#legaltrademarks)和[**ProductName**](#productname)——同一资源的标准文本字段。
+- [**Title**](#title)——在任务列表和消息框默认值中显示的友好应用程序标题；可读可写。
 
-[**hInstance**](#hinstance) and [**ThreadID**](#threadid) expose the underlying Win32 module handle and the ID of the application's main thread --- useful for interop with Windows API functions that need either.
+[**hInstance**](#hinstance)和[**ThreadID**](#threadid)公开底层Win32模块句柄和应用程序主线程的ID——对于需要它们之一的Windows API函数互操作很有用。
 
-## Properties
+## 属性
 
 ### Build
 
-The **Build** component of the application's four-part version number, as set on the project's *Make* tab. **Integer**, read-only.
+应用程序四部分版本号的**Build**组件，在项目*Make*选项卡中设置。**Integer**，只读。
 
 ### Comments
 
-The free-form **Comments** field of the application's `VERSIONINFO` resource. **String**, read-only.
+应用程序`VERSIONINFO`资源的自由格式**Comments**字段。**String**，只读。
 
 ### CompanyName
 
-The **CompanyName** field of the application's `VERSIONINFO` resource. **String**, read-only.
+应用程序`VERSIONINFO`资源的**CompanyName**字段。**String**，只读。
 
 ### EXEName
 
-The base name of the executable --- the file name minus its `.exe` extension and any directory component. **String**, read-only. When running inside the IDE, this is the project's compile-time output name rather than the IDE host's name.
+可执行文件的基本名称——文件名减去其`.exe`扩展名和任何目录部分。**String**，只读。在IDE内运行时，这是项目的编译时输出名称而非IDE宿主的名称。
 
 ### FileDescription
 
-The **FileDescription** field of the application's `VERSIONINFO` resource. **String**, read-only.
+应用程序`VERSIONINFO`资源的**FileDescription**字段。**String**，只读。
 
 ### HelpFile
 
-The full path to the application's help file (`.hlp` or `.chm`). **String**, readable and writable. The runtime consults this property when a control's [**HelpContextID**](/official/Reference/VB/CheckBox/#helpcontextid) is non-zero and the user presses **F1**, and when application code calls `MsgBox` with a help-file argument.
+应用程序帮助文件（`.hlp`或`.chm`）的完整路径。**String**，可读可写。当控件的[**HelpContextID**](/official/Reference/VB/CheckBox/#helpcontextid)非零且用户按下**F1**时，以及应用程序代码调用带帮助文件参数的`MsgBox`时，运行时查询此属性。
 
 ### hInstance
 
-The Win32 module handle (`HINSTANCE`) for the executable. **LongPtr**, read-only. Useful when calling Windows API functions that load resources or create windows on the application's behalf.
+可执行文件的Win32模块句柄（`HINSTANCE`）。**LongPtr**，只读。在调用代表应用程序加载资源或创建窗口的Windows API函数时很有用。
 
 ### IsElevated
 
-**True** if the process is running with administrative privileges (a "Run as administrator" elevation token), **False** otherwise. **Boolean**, read-only.
+如果进程以管理员权限（"以管理员身份运行"提升令牌）运行则为**True**，否则为**False**。**Boolean**，只读。
 
 ### IsInIDE
 
-**True** if the running process is the twinBASIC IDE host rather than a stand-alone compiled executable. **Boolean**, read-only. Useful for code paths that should only run at design time, or for diagnostic logging that should be suppressed in shipping builds.
+如果运行中的进程是twinBASIC IDE宿主而非独立编译的可执行文件则为**True**。**Boolean**，只读。用于仅在设计时运行的代码路径，或应在发布版本中抑制的诊断日志。
 
 ### LastBuildPath
 
-The full path that the IDE wrote the most recent build to. **String**, read-only. Empty when the IDE has not yet produced a build during the current session. twinBASIC-specific --- VB6 had no equivalent.
+IDE写入最近构建的完整路径。**String**，只读。当IDE在当前会话中尚未生成构建时为空。twinBASIC特有——VB6没有对应功能。
 
 ### LegalCopyright
 
-The **LegalCopyright** field of the application's `VERSIONINFO` resource. **String**, read-only.
+应用程序`VERSIONINFO`资源的**LegalCopyright**字段。**String**，只读。
 
 ### LegalTrademarks
 
-The **LegalTrademarks** field of the application's `VERSIONINFO` resource. **String**, read-only.
+应用程序`VERSIONINFO`资源的**LegalTrademarks**字段。**String**，只读。
 
 ### LogMode
 
-The current logging mode, as a member of [**LogModeConstants**](/official/Reference/VBRUN/Constants/LogModeConstants). Read-only.
+当前日志记录模式，作为[**LogModeConstants**](/official/Reference/VBRUN/Constants/LogModeConstants)的成员。只读。
 
 ::: info
-twinBASIC currently reports only **vbLogOff** and **vbLogAuto**, distinguishing IDE-detection cases. The other VB6 logging modes (file, NT event log) are not yet honoured.
+twinBASIC目前仅报告**vbLogOff**和**vbLogAuto**，区分IDE检测情况。其他VB6日志记录模式（文件、NT事件日志）尚未支持。
 :::
 
 ### LogPath
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### Major
 
-The **Major** component of the application's four-part version number. **Integer**, read-only.
+应用程序四部分版本号的**Major**组件。**Integer**，只读。
 
 ### Minor
 
-The **Minor** component of the application's four-part version number. **Integer**, read-only.
+应用程序四部分版本号的**Minor**组件。**Integer**，只读。
 
 ### ModulePath
 
-The full path to the executable file. **String**, read-only. This is what `GetModuleFileName(App.hInstance, …)` would return.
+可执行文件的完整路径。**String**，只读。这是`GetModuleFileName(App.hInstance, …)`会返回的值。
 
 ### NonModalAllowed
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### OleRequestPendingMsgText
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### OleRequestPendingMsgTitle
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### OleRequestPendingTimeout
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### OleServerBusyMsgText
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### OleServerBusyMsgTitle
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### OleServerBusyRaiseError
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### OleServerBusyTimeout
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### Path
 
-The folder containing the executable, with no trailing backslash. **String**, read-only. When running inside the IDE, this is the folder containing the project file rather than the IDE host's folder, so code that opens files relative to the application location works identically at design time and at run time.
+包含可执行文件的文件夹，无尾部反斜杠。**String**，只读。在IDE内运行时，这是包含项目文件的文件夹而非IDE宿主的文件夹，因此相对于应用程序位置打开文件的代码在设计时和运行时行为一致。
 
 ### PrevInstance
 
-**True** if another instance of the application is already running, **False** otherwise. **Boolean**, read-only. Typically tested at startup so the second instance can bring the first to the foreground or exit gracefully.
+如果应用程序的另一个实例已在运行则为**True**，否则为**False**。**Boolean**，只读。通常在启动时测试，以便第二个实例可以将第一个带到前台或优雅退出。
 
 ### ProductName
 
-The **ProductName** field of the application's `VERSIONINFO` resource. **String**, read-only.
+应用程序`VERSIONINFO`资源的**ProductName**字段。**String**，只读。
 
 ### RetainedProject
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### Revision
 
-The **Revision** component of the application's four-part version number. **Integer**, read-only.
+应用程序四部分版本号的**Revision**组件。**Integer**，只读。
 
 ### StartMode
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### TaskVisible
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
 ### ThreadID
 
-The Win32 thread ID of the application's main (UI) thread. **Long**, read-only.
+应用程序主（UI）线程的Win32线程ID。**Long**，只读。
 
 ### Title
 
-The application title shown to the OS (in the tasklist) and used as the default title for `MsgBox`, `InputBox`, and other system dialogs. **String**, readable and writable. Defaults to the executable's [**FileDescription**](#filedescription) (or [**EXEName**](#exename) if no description is set).
+向操作系统显示的应用程序标题（在任务列表中）以及`MsgBox`、`InputBox`和其他系统对话框的默认标题。**String**，可读可写。默认为可执行文件的[**FileDescription**](#filedescription)（如果未设置描述则为[**EXEName**](#exename)）。
 
 ### UnattendedApp
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
-## Methods
+## 方法
 
 ### LogEvent
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
-Syntax: *object*.**LogEvent** *LogBuffer*, *EventType*
+语法：*object*.**LogEvent** *LogBuffer*, *EventType*
 
 ### StartLogging
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于VB6兼容性；twinBASIC中目前未实现。
 :::
 
-Syntax: *object*.**StartLogging** *LogTarget*, *LogModes*
+语法：*object*.**StartLogging** *LogTarget*, *LogModes*

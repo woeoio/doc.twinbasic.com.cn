@@ -1,404 +1,412 @@
 ---
-title: Enumerations
+title: "枚举"
 parent: Reference Section
 nav_order: 9
 permalink: /Reference/Enumerations
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '047d89a3-db32-41d6-957b-2759ce745bfe'
+  PropagateID: '047d89a3-db32-41d6-957b-2759ce745bfe'
+  ReservedCode1: '49ada886-cac2-442f-80e0-ba98e6c31337'
+  ReservedCode2: '49ada886-cac2-442f-80e0-ba98e6c31337'
 ---
 
-# Enumerations
+# 枚举
 
-An *enumeration* defines a named set of integer constants. Passing an enum member instead of a bare integer makes call sites self-documenting and allows the IDE to offer completion for the valid values. Each built-in package groups its enumerations under a dedicated sub-folder; this page indexes all of them.
+*枚举*定义一组命名的整数常量。传递枚举成员而非裸整数使调用点自文档化，并允许IDE补全有效值。每个内置包将其枚举分组在专用子文件夹下；本页索引所有枚举。
 
-The sections below list enumerations [by package](#by-package), followed by an [alphabetical index](#alphabetical-index).
-
----
-
-## By package
-
-### VBA Package
-
-Fifteen enumerations covering window styles, comparison modes, message-box options, variable types, date and time constants, file attributes, and more.
-
-- [**VbAppWinStyle**](/official/Reference/VBA/Constants/VbAppWinStyle) -- window-style values for the *windowstyle* argument of [**Shell**](/official/Reference/VBA/Interaction/Shell)
-- [**VbArchitecture**](/official/Reference/VBA/Constants/VbArchitecture) -- processor-architecture values returned by [**ProcessorArchitecture**](/official/Reference/VBA/Compilation/ProcessorArchitecture)
-- [**VbCalendar**](/official/Reference/VBA/Constants/VbCalendar) -- calendar-type values for the [**Calendar**](/official/Reference/Core/Calendar) property
-- [**VbCallType**](/official/Reference/VBA/Constants/VbCallType) -- procedure-call type flags for **CallByName**
-- [**VbCompareMethod**](/official/Reference/VBA/Constants/VbCompareMethod) -- text-comparison modes for [**InStr**](/official/Reference/VBA/Strings/InStr), [**Replace**](/official/Reference/VBA/Strings/Replace), [**Split**](/official/Reference/VBA/Strings/Split), and similar
-- [**VbDateTimeFormat**](/official/Reference/VBA/Constants/VbDateTimeFormat) -- format codes for [**FormatDateTime**](/official/Reference/VBA/Strings/FormatDateTime)
-- [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) -- day-of-week constants for [**DateAdd**](/official/Reference/VBA/DateTime/DateAdd), [**DateDiff**](/official/Reference/VBA/DateTime/DateDiff), [**Weekday**](/official/Reference/VBA/DateTime/Weekday), and similar
-- [**VbFileAttribute**](/official/Reference/VBA/Constants/VbFileAttribute) -- attribute flags for [**Dir**](/official/Reference/VBA/FileSystem/Dir), [**GetAttr**](/official/Reference/VBA/FileSystem/GetAttr), and [**SetAttr**](/official/Reference/VBA/FileSystem/SetAttr)
-- [**VbFirstWeekOfYear**](/official/Reference/VBA/Constants/VbFirstWeekOfYear) -- first-week-of-year selectors for [**DateDiff**](/official/Reference/VBA/DateTime/DateDiff), [**DatePart**](/official/Reference/VBA/DateTime/DatePart), and [**Weekday**](/official/Reference/VBA/DateTime/Weekday)
-- [**VbIMEStatus**](/official/Reference/VBA/Constants/VbIMEStatus) -- Input Method Editor mode constants
-- [**VbMsgBoxResult**](/official/Reference/VBA/Constants/VbMsgBoxResult) -- identifies the button clicked in a [**MsgBox**](/official/Reference/VBA/Interaction/MsgBox) dialog
-- [**VbMsgBoxStyle**](/official/Reference/VBA/Constants/VbMsgBoxStyle) -- buttons, icons, modality, and other flags for [**MsgBox**](/official/Reference/VBA/Interaction/MsgBox)
-- [**VbStrConv**](/official/Reference/VBA/Constants/VbStrConv) -- conversion-type flags for [**StrConv**](/official/Reference/VBA/Strings/StrConv)
-- [**VbTriState**](/official/Reference/VBA/Constants/VbTriState) -- three-state values for formatting functions such as [**FormatNumber**](/official/Reference/VBA/Strings/FormatNumber) and [**FormatCurrency**](/official/Reference/VBA/Strings/FormatCurrency)
-- [**VbVarType**](/official/Reference/VBA/Constants/VbVarType) -- Variant subtype codes returned by [**VarType**](/official/Reference/VBA/Information/VarType)
-
-### VBRUN Package
-
-Eighty-six enumerations covering every aspect of classic VB6 controls and forms --- alignment, border styles, colours, drag-and-drop, OLE container options, printer settings, window states, and more.
-
-- [**AlignConstants**](/official/Reference/VBRUN/Constants/AlignConstants) -- **Align** property values for picture boxes, toolbars, and data controls
-- [**AlignmentConstants**](/official/Reference/VBRUN/Constants/AlignmentConstants) -- text alignment for label, text-box, and option-button controls
-- [**AlignmentConstantsNoCenter**](/official/Reference/VBRUN/Constants/AlignmentConstantsNoCenter) -- left/right alignment values where centre is not available
-- [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) -- drawing style for the **Appearance** property
-- [**ApplicationStartConstants**](/official/Reference/VBRUN/Constants/ApplicationStartConstants) -- standalone vs. Automation-invoked start-up mode
-- [**AspectTypeConstants**](/official/Reference/VBRUN/Constants/AspectTypeConstants) -- OLE rendering aspect identifiers for **DataObjectFormat**
-- [**AsyncReadConstants**](/official/Reference/VBRUN/Constants/AsyncReadConstants) -- flags for the *AsyncReadOptions* argument of **UserControl.AsyncRead**
-- [**AsyncStatusCodeConstants**](/official/Reference/VBRUN/Constants/AsyncStatusCodeConstants) -- status codes reported during **AsyncReadProgress**
-- [**AsyncTypeConstants**](/official/Reference/VBRUN/Constants/AsyncTypeConstants) -- data kind delivered by **UserControl.AsyncRead**
-- [**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants) -- opaque vs. transparent background fill
-- [**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants) -- line style for the **BorderStyle** property of Shape and Line controls
-- [**ButtonConstants**](/official/Reference/VBRUN/Constants/ButtonConstants) -- style for command buttons with optional image-based appearance
-- [**CheckBoxConstants**](/official/Reference/VBRUN/Constants/CheckBoxConstants) -- state values for the check-box **Value** property
-- [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) -- clipboard format identifiers for **DataObject** and **Clipboard**
-- [**ColorConstants**](/official/Reference/VBRUN/Constants/ColorConstants) -- common named RGB colours
-- [**ComboBoxConstants**](/official/Reference/VBRUN/Constants/ComboBoxConstants) -- style values for the combo-box **Style** property
-- [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants) -- border style for text boxes, picture boxes, and labels
-- [**ControlBorderStyleConstantsCustom**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstantsCustom) -- extended border style including custom-drawn borders
-- [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- identifiers for standard intrinsic control types
-- [**DatabaseTypeConstants**](/official/Reference/VBRUN/Constants/DatabaseTypeConstants) -- database engine for the **DefaultType** property of a Data control
-- [**DataBOFconstants**](/official/Reference/VBRUN/Constants/DataBOFconstants) -- action when the user moves past the start of a recordset
-- [**DataEOFConstants**](/official/Reference/VBRUN/Constants/DataEOFConstants) -- action when the user moves past the end of a recordset
-- [**DataErrorConstants**](/official/Reference/VBRUN/Constants/DataErrorConstants) -- response values for the Data control's **Error** event
-- [**DataValidateConstants**](/official/Reference/VBRUN/Constants/DataValidateConstants) -- action codes in the **Validate** event
-- [**DefaultCursorTypeConstants**](/official/Reference/VBRUN/Constants/DefaultCursorTypeConstants) -- cursor-driver for the Data control's connection
-- [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants) -- dock-edge values for forms and toolbars
-- [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants) -- action values for the **Drag** method
-- [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants) -- automatic vs. manual drag-mode for controls
-- [**DragOverConstants**](/official/Reference/VBRUN/Constants/DragOverConstants) -- state values in the **DragOver** event
-- [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants) -- GDI raster-operation values for the **DrawMode** property
-- [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants) -- line style for the **DrawStyle** property
-- [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants) -- fill pattern for the **FillStyle** property
-- [**FillStyleConstantsEx**](/official/Reference/VBRUN/Constants/FillStyleConstantsEx) -- extended fill patterns including gradient fills
-- [**FormArrangeConstants**](/official/Reference/VBRUN/Constants/FormArrangeConstants) -- arrangement modes for the MDI **Arrange** method
-- [**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants) -- border and frame style for the form's **BorderStyle** property
-- [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants) -- modality values for the *Modal* argument of **Show**
-- [**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants) -- window-state values for a form's **WindowState** property
-- [**HitResultConstants**](/official/Reference/VBRUN/Constants/HitResultConstants) -- return values from a **UserControl**'s **HitTest** event
-- [**KeyCodeConstants**](/official/Reference/VBRUN/Constants/KeyCodeConstants) -- virtual-key codes for **KeyDown** and **KeyUp** events
-- [**LinkModeConstants**](/official/Reference/VBRUN/Constants/LinkModeConstants) -- DDE link-mode values for the **LinkMode** property
-- [**ListBoxConstants**](/official/Reference/VBRUN/Constants/ListBoxConstants) -- style values for the list-box **Style** property
-- [**LoadPictureColorConstants**](/official/Reference/VBRUN/Constants/LoadPictureColorConstants) -- colour depth for **LoadPicture**
-- [**LoadPictureSizeConstants**](/official/Reference/VBRUN/Constants/LoadPictureSizeConstants) -- size selector for **LoadPicture**
-- [**LoadResConstants**](/official/Reference/VBRUN/Constants/LoadResConstants) -- resource-type values for **LoadResPicture**
-- [**LogEventTypeConstants**](/official/Reference/VBRUN/Constants/LogEventTypeConstants) -- severity values for **LogEvent**
-- [**LogModeConstants**](/official/Reference/VBRUN/Constants/LogModeConstants) -- destination and behaviour flags for **App.StartLogging**
-- [**MenuAccelConstants**](/official/Reference/VBRUN/Constants/MenuAccelConstants) -- keyboard-accelerator codes for menu-item shortcuts
-- [**MenuControlConstants**](/official/Reference/VBRUN/Constants/MenuControlConstants) -- alignment and trigger-button flags for **PopupMenu**
-- [**MouseButtonConstants**](/official/Reference/VBRUN/Constants/MouseButtonConstants) -- bit flags for the *Button* argument of mouse events
-- [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants) -- cursor-shape values for the **MousePointer** property
-- [**MultiSelectConstants**](/official/Reference/VBRUN/Constants/MultiSelectConstants) -- multi-selection mode for the list-box **MultiSelect** property
-- [**NegotiatePositionConstants**](/official/Reference/VBRUN/Constants/NegotiatePositionConstants) -- menu placement during OLE in-place activation
-- [**OldLinkModeConstants**](/official/Reference/VBRUN/Constants/OldLinkModeConstants) -- legacy DDE link-mode values retained for compatibility
-- [**OLEContainerActivateConstants**](/official/Reference/VBRUN/Constants/OLEContainerActivateConstants) -- activation trigger for the **AutoActivate** property
-- [**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants) -- combined enumeration of all OLE container option values
-- [**OLEContainerDisplayTypeConstants**](/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants) -- display style for the OLE container **DisplayType** property
-- [**OLEContainerSizeModeConstants**](/official/Reference/VBRUN/Constants/OLEContainerSizeModeConstants) -- sizing rules for the OLE container **SizeMode** property
-- [**OLEContainerTypesAllowedConstants**](/official/Reference/VBRUN/Constants/OLEContainerTypesAllowedConstants) -- object-type filter for **OLETypeAllowed**
-- [**OLEContainerUpdateOptionsConstants**](/official/Reference/VBRUN/Constants/OLEContainerUpdateOptionsConstants) -- update mode for a linked OLE object
-- [**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants) -- OLE drag-mode values for **OLEDragMode**
-- [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants) -- OLE drop-mode values for **OLEDropMode**
-- [**OLEDropEffectConstants**](/official/Reference/VBRUN/Constants/OLEDropEffectConstants) -- bit flags for the *Effect* argument of OLE drag-and-drop events
-- [**PaletteModeConstants**](/official/Reference/VBRUN/Constants/PaletteModeConstants) -- palette-source values for forms and UserControls
-- [**ParentControlsType**](/official/Reference/VBRUN/Constants/ParentControlsType) -- wrapping mode for the **ParentControls** collection
-- [**PictureTypeConstants**](/official/Reference/VBRUN/Constants/PictureTypeConstants) -- subtype values for **stdole.IPictureDisp**
-- [**PrinterObjectConstants**](/official/Reference/VBRUN/Constants/PrinterObjectConstants) -- combined enumeration of all **Printer** object option values
-- [**PrinterObjectConstants_ColorMode**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_ColorMode) -- colour mode for **Printer.ColorMode**
-- [**PrinterObjectConstants_Duplex**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Duplex) -- duplex mode for **Printer.Duplex**
-- [**PrinterObjectConstants_Orientation**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Orientation) -- paper orientation for **Printer.Orientation**
-- [**PrinterObjectConstants_PaperBin**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperBin) -- paper source for **Printer.PaperBin**
-- [**PrinterObjectConstants_PaperSize**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperSize) -- paper size for **Printer.PaperSize**
-- [**PrinterObjectConstants_PrintQuality**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PrintQuality) -- print quality for **Printer.PrintQuality**
-- [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants) -- reason codes for the form's **QueryUnload** event
-- [**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants) -- GDI raster-operation codes for **PaintPicture**
-- [**RecordsetTypeConstants**](/official/Reference/VBRUN/Constants/RecordsetTypeConstants) -- recordset type for a Data control
-- [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants) -- measurement units for the **ScaleMode** property
-- [**ScrollBarConstants**](/official/Reference/VBRUN/Constants/ScrollBarConstants) -- which scrollbars appear on text-box and similar controls
-- [**ShapeConstants**](/official/Reference/VBRUN/Constants/ShapeConstants) -- geometric shape values for the Shape control's **Shape** property
-- [**ShiftConstants**](/official/Reference/VBRUN/Constants/ShiftConstants) -- modifier-key bit flags for mouse and key events
-- [**ShortcutConstants**](/official/Reference/VBRUN/Constants/ShortcutConstants) -- shortcut-key identifiers for menu items
-- [**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants) -- initial position for a form's **StartUpPosition** property
-- [**StorageTypeContants**](/official/Reference/VBRUN/Constants/StorageTypeContants) -- OLE data-storage medium identifiers for **DataObjectFormat**
-- [**SystemColorConstants**](/official/Reference/VBRUN/Constants/SystemColorConstants) -- system-UI colour references (pass through **TranslateColor** for plain RGB)
-- [**VariantTypeConstants**](/official/Reference/VBRUN/Constants/VariantTypeConstants) -- legacy DAO field-type tags retained for compatibility
-- [**VerticalAlignmentConstants**](/official/Reference/VBRUN/Constants/VerticalAlignmentConstants) -- vertical text alignment for cell-style controls
-- [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants) -- position selectors for the **ZOrder** method
-
-### WebView2 Package
-
-Ten enumerations for navigation errors, permissions, download placement, script dialogs, print orientation, and resource-request filtering.
-
-- [**wv2DefaultDownloadCornerAlign**](/official/Reference/WebView2/Enumerations/wv2DefaultDownloadCornerAlign) -- anchors the built-in download-progress dialog to a corner of the control
-- [**wv2ErrorStatus**](/official/Reference/WebView2/Enumerations/wv2ErrorStatus) -- reason a navigation failed (passed in the **NavigationComplete** event)
-- [**wv2HostResourceAccessKind**](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind) -- cross-origin access policy for a virtual hostname mapping
-- [**wv2KeyEventKind**](/official/Reference/WebView2/Enumerations/wv2KeyEventKind) -- keyboard message kind in the **AcceleratorKeyPressed** event
-- [**wv2PermissionKind**](/official/Reference/WebView2/Enumerations/wv2PermissionKind) -- which device or browser capability a page is requesting
-- [**wv2PermissionState**](/official/Reference/WebView2/Enumerations/wv2PermissionState) -- the host's decision on a permission request
-- [**wv2PrintOrientation**](/official/Reference/WebView2/Enumerations/wv2PrintOrientation) -- page orientation for **PrintToPdf**
-- [**wv2ProcessFailedKind**](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind) -- identifies which WebView2 process failed
-- [**wv2ScriptDialogKind**](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind) -- which JavaScript dialog primitive the page is trying to open
-- [**wv2WebResourceContext**](/official/Reference/WebView2/Enumerations/wv2WebResourceContext) -- request kind matched by a web-resource filter
-
-### CustomControls Package
-
-Thirteen enumerations governing the appearance and behaviour of the `Waynes...` custom controls.
-
-- [**BorderStyle**](/official/Reference/CustomControls/Enumerations/BorderStyle) -- Win32 frame style for a **WaynesForm** window
-- [**ColorRGBA**](/official/Reference/CustomControls/Enumerations/ColorRGBA) -- 32-bit ABGR colour value type alias
-- [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape) -- shape of a single corner of a control (square, rounded, cut)
-- [**Customtate**](/official/Reference/CustomControls/Enumerations/Customtate) -- control state flags for custom-state painting
-- [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) -- how a control is positioned relative to its container
-- [**FillPattern**](/official/Reference/CustomControls/Enumerations/FillPattern) -- how colour stops in a **Fill** are applied across the painted area
-- [**FontWeight**](/official/Reference/CustomControls/Enumerations/FontWeight) -- font weight on the standard 100--900 OpenType scale
-- [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount) -- pixel-measurement type alias used throughout the package
-- [**PointSize**](/official/Reference/CustomControls/Enumerations/PointSize) -- typographic-point font-size type alias
-- [**StartupPosition**](/official/Reference/CustomControls/Enumerations/StartupPosition) -- initial position of a **WaynesForm** window when first shown
-- [**TextAlignment**](/official/Reference/CustomControls/Enumerations/TextAlignment) -- horizontal and vertical text alignment within a control
-- [**TextOverflowMode**](/official/Reference/CustomControls/Enumerations/TextOverflowMode) -- how text that does not fit is truncated
-- [**WindowState**](/official/Reference/CustomControls/Enumerations/WindowState) -- minimized, restored, or maximized state of a **WaynesForm**
-
-### CEF Package
-
-Two enumerations for log verbosity and print orientation.
-
-- [**CefLogSeverity**](/official/Reference/CEF/Enumerations/CefLogSeverity) -- minimum severity at which the CEF runtime records messages to its debug log
-- [**cefPrintOrientation**](/official/Reference/CEF/Enumerations/cefPrintOrientation) -- page orientation for **PrintToPdf**
-
-### WinServicesLib Package
-
-Four enumerations covering service type, start mode, control codes, and runtime status.
-
-- [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) -- control codes the SCM can deliver to a running service
-- [**ServiceStartConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants) -- when and how the SCM starts a service
-- [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- runtime-state values a service reports to the SCM
-- [**ServiceTypeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants) -- Win32 service-type values (own process, shared host, kernel driver)
-
-### WinNativeCommonCtls Package
-
-Ten enumerations for the eight native common controls.
-
-- [**DTPickerFormatConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants) -- display format for a **DTPicker** control
-- [**ImlDrawConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants) -- render-style flags for **ListImage.Draw**
-- [**OrientationConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants) -- horizontal / vertical orientation for **Slider** and **UpDown**
-- [**TreeBorderStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) -- border style shared by **TreeView** and **ListView**
-- [**TreeLabelEditConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants) -- when inline label editing is triggered on a **TreeView**
-- [**TreeLineStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants) -- whether the **TreeView** draws lines from root nodes or only child nodes
-- [**TreeRelationshipConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) -- where a new node is inserted relative to an existing node
-- [**TreeSortOrderConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants) -- ascending or descending sort order for **TreeView** and **Node**
-- [**TreeSortTypeConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) -- case-sensitive or case-insensitive sort comparison
-- [**TreeStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants) -- composite visual style of a **TreeView** (buttons, lines, icons)
+以下各节[按包](#按包分组)列出枚举，之后是[字母顺序索引](#字母顺序索引)。
 
 ---
 
-## Alphabetical index
+## 按包分组
+
+### VBA包
+
+15个枚举，涵盖窗口样式、比较模式、消息框选项、变量类型、日期时间常量、文件属性等。
+
+- [**VbAppWinStyle**](/official/Reference/VBA/Constants/VbAppWinStyle) -- [**Shell**](/official/Reference/VBA/Interaction/Shell)的*windowstyle*参数的窗口样式值
+- [**VbArchitecture**](/official/Reference/VBA/Constants/VbArchitecture) -- [**ProcessorArchitecture**](/official/Reference/VBA/Compilation/ProcessorArchitecture)返回的处理器架构值
+- [**VbCalendar**](/official/Reference/VBA/Constants/VbCalendar) -- [**Calendar**](/official/Reference/Core/Calendar)属性的日历类型值
+- [**VbCallType**](/official/Reference/VBA/Constants/VbCallType) -- **CallByName**的过程调用类型标志
+- [**VbCompareMethod**](/official/Reference/VBA/Constants/VbCompareMethod) -- [**InStr**](/official/Reference/VBA/Strings/InStr)、[**Replace**](/official/Reference/VBA/Strings/Replace)、[**Split**](/official/Reference/VBA/Strings/Split)等的文本比较模式
+- [**VbDateTimeFormat**](/official/Reference/VBA/Constants/VbDateTimeFormat) -- [**FormatDateTime**](/official/Reference/VBA/Strings/FormatDateTime)的格式代码
+- [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) -- [**DateAdd**](/official/Reference/VBA/DateTime/DateAdd)、[**DateDiff**](/official/Reference/VBA/DateTime/DateDiff)、[**Weekday**](/official/Reference/VBA/DateTime/Weekday)等的星期常量
+- [**VbFileAttribute**](/official/Reference/VBA/Constants/VbFileAttribute) -- [**Dir**](/official/Reference/VBA/FileSystem/Dir)、[**GetAttr**](/official/Reference/VBA/FileSystem/GetAttr)和[**SetAttr**](/official/Reference/VBA/FileSystem/SetAttr)的属性标志
+- [**VbFirstWeekOfYear**](/official/Reference/VBA/Constants/VbFirstWeekOfYear) -- [**DateDiff**](/official/Reference/VBA/DateTime/DateDiff)、[**DatePart**](/official/Reference/VBA/DateTime/DatePart)和[**Weekday**](/official/Reference/VBA/DateTime/Weekday)的首周选择器
+- [**VbIMEStatus**](/official/Reference/VBA/Constants/VbIMEStatus) -- 输入法编辑器模式常量
+- [**VbMsgBoxResult**](/official/Reference/VBA/Constants/VbMsgBoxResult) -- 标识[**MsgBox**](/official/Reference/VBA/Interaction/MsgBox)对话框中单击的按钮
+- [**VbMsgBoxStyle**](/official/Reference/VBA/Constants/VbMsgBoxStyle) -- [**MsgBox**](/official/Reference/VBA/Interaction/MsgBox)的按钮、图标、模态等标志
+- [**VbStrConv**](/official/Reference/VBA/Constants/VbStrConv) -- [**StrConv**](/official/Reference/VBA/Strings/StrConv)的转换类型标志
+- [**VbTriState**](/official/Reference/VBA/Constants/VbTriState) -- [**FormatNumber**](/official/Reference/VBA/Strings/FormatNumber)和[**FormatCurrency**](/official/Reference/VBA/Strings/FormatCurrency)等格式化函数的三态值
+- [**VbVarType**](/official/Reference/VBA/Constants/VbVarType) -- [**VarType**](/official/Reference/VBA/Information/VarType)返回的Variant子类型代码
+
+### VBRUN包
+
+86个枚举，涵盖经典VB6控件和窗体的各个方面 --- 对齐、边框样式、颜色、拖放、OLE容器选项、打印机设置、窗口状态等。
+
+- [**AlignConstants**](/official/Reference/VBRUN/Constants/AlignConstants) -- 图片框、工具栏和数据控件的**Align**属性值
+- [**AlignmentConstants**](/official/Reference/VBRUN/Constants/AlignmentConstants) -- 标签、文本框和选项按钮控件的文本对齐
+- [**AlignmentConstantsNoCenter**](/official/Reference/VBRUN/Constants/AlignmentConstantsNoCenter) -- 不支持居中的左/右对齐值
+- [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) -- **Appearance**属性的绘制样式
+- [**ApplicationStartConstants**](/official/Reference/VBRUN/Constants/ApplicationStartConstants) -- 独立启动与Automation调用启动模式
+- [**AspectTypeConstants**](/official/Reference/VBRUN/Constants/AspectTypeConstants) -- **DataObjectFormat**的OLE渲染方面标识符
+- [**AsyncReadConstants**](/official/Reference/VBRUN/Constants/AsyncReadConstants) -- **UserControl.AsyncRead**的*AsyncReadOptions*参数标志
+- [**AsyncStatusCodeConstants**](/official/Reference/VBRUN/Constants/AsyncStatusCodeConstants) -- **AsyncReadProgress**期间报告的状态代码
+- [**AsyncTypeConstants**](/official/Reference/VBRUN/Constants/AsyncTypeConstants) -- **UserControl.AsyncRead**传递的数据类型
+- [**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants) -- 不透明与透明背景填充
+- [**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants) -- Shape和Line控件**BorderStyle**属性的线条样式
+- [**ButtonConstants**](/official/Reference/VBRUN/Constants/ButtonConstants) -- 命令按钮样式，可选基于图片的外观
+- [**CheckBoxConstants**](/official/Reference/VBRUN/Constants/CheckBoxConstants) -- 复选框**Value**属性的状态值
+- [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) -- **DataObject**和**Clipboard**的剪贴板格式标识符
+- [**ColorConstants**](/official/Reference/VBRUN/Constants/ColorConstants) -- 常用命名RGB颜色
+- [**ComboBoxConstants**](/official/Reference/VBRUN/Constants/ComboBoxConstants) -- 组合框**Style**属性的样式值
+- [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants) -- 文本框、图片框和标签的边框样式
+- [**ControlBorderStyleConstantsCustom**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstantsCustom) -- 包含自绘边框的扩展边框样式
+- [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- 标准内部控件类型标识符
+- [**DatabaseTypeConstants**](/official/Reference/VBRUN/Constants/DatabaseTypeConstants) -- Data控件**DefaultType**属性的数据库引擎
+- [**DataBOFconstants**](/official/Reference/VBRUN/Constants/DataBOFconstants) -- 用户移动超过记录集起始处时的操作
+- [**DataEOFConstants**](/official/Reference/VBRUN/Constants/DataEOFConstants) -- 用户移动超过记录集末尾处时的操作
+- [**DataErrorConstants**](/official/Reference/VBRUN/Constants/DataErrorConstants) -- Data控件**Error**事件的响应值
+- [**DataValidateConstants**](/official/Reference/VBRUN/Constants/DataValidateConstants) -- **Validate**事件中的操作代码
+- [**DefaultCursorTypeConstants**](/official/Reference/VBRUN/Constants/DefaultCursorTypeConstants) -- Data控件连接的游标驱动程序
+- [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants) -- 窗体和工具栏的停靠边缘值
+- [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants) -- **Drag**方法的操作值
+- [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants) -- 控件的自动与手动拖动模式
+- [**DragOverConstants**](/official/Reference/VBRUN/Constants/DragOverConstants) -- **DragOver**事件中的状态值
+- [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants) -- **DrawMode**属性的GDI光栅操作值
+- [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants) -- **DrawStyle**属性的线条样式
+- [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants) -- **FillStyle**属性的填充图案
+- [**FillStyleConstantsEx**](/official/Reference/VBRUN/Constants/FillStyleConstantsEx) -- 包含渐变填充的扩展填充图案
+- [**FormArrangeConstants**](/official/Reference/VBRUN/Constants/FormArrangeConstants) -- MDI **Arrange**方法的排列模式
+- [**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants) -- 窗体**BorderStyle**属性的边框和框架样式
+- [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants) -- **Show**的*Modal*参数的模态值
+- [**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants) -- 窗体**WindowState**属性的窗口状态值
+- [**HitResultConstants**](/official/Reference/VBRUN/Constants/HitResultConstants) -- **UserControl**的**HitTest**事件返回值
+- [**KeyCodeConstants**](/official/Reference/VBRUN/Constants/KeyCodeConstants) -- **KeyDown**和**KeyUp**事件的虚拟键代码
+- [**LinkModeConstants**](/official/Reference/VBRUN/Constants/LinkModeConstants) -- **LinkMode**属性的DDE链接模式值
+- [**ListBoxConstants**](/official/Reference/VBRUN/Constants/ListBoxConstants) -- 列表框**Style**属性的样式值
+- [**LoadPictureColorConstants**](/official/Reference/VBRUN/Constants/LoadPictureColorConstants) -- **LoadPicture**的颜色深度
+- [**LoadPictureSizeConstants**](/official/Reference/VBRUN/Constants/LoadPictureSizeConstants) -- **LoadPicture**的大小选择器
+- [**LoadResConstants**](/official/Reference/VBRUN/Constants/LoadResConstants) -- **LoadResPicture**的资源类型值
+- [**LogEventTypeConstants**](/official/Reference/VBRUN/Constants/LogEventTypeConstants) -- **LogEvent**的严重性值
+- [**LogModeConstants**](/official/Reference/VBRUN/Constants/LogModeConstants) -- **App.StartLogging**的目标和行为标志
+- [**MenuAccelConstants**](/official/Reference/VBRUN/Constants/MenuAccelConstants) -- 菜单项快捷键的键盘加速键代码
+- [**MenuControlConstants**](/official/Reference/VBRUN/Constants/MenuControlConstants) -- **PopupMenu**的对齐和触发按钮标志
+- [**MouseButtonConstants**](/official/Reference/VBRUN/Constants/MouseButtonConstants) -- 鼠标事件*Button*参数的位标志
+- [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants) -- **MousePointer**属性的光标形状值
+- [**MultiSelectConstants**](/official/Reference/VBRUN/Constants/MultiSelectConstants) -- 列表框**MultiSelect**属性的多选模式
+- [**NegotiatePositionConstants**](/official/Reference/VBRUN/Constants/NegotiatePositionConstants) -- OLE就地激活期间的菜单位置
+- [**OldLinkModeConstants**](/official/Reference/VBRUN/Constants/OldLinkModeConstants) -- 为兼容性保留的旧版DDE链接模式值
+- [**OLEContainerActivateConstants**](/official/Reference/VBRUN/Constants/OLEContainerActivateConstants) -- **AutoActivate**属性的激活触发器
+- [**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants) -- 所有OLE容器选项值的组合枚举
+- [**OLEContainerDisplayTypeConstants**](/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants) -- OLE容器**DisplayType**属性的显示样式
+- [**OLEContainerSizeModeConstants**](/official/Reference/VBRUN/Constants/OLEContainerSizeModeConstants) -- OLE容器**SizeMode**属性的大小调整规则
+- [**OLEContainerTypesAllowedConstants**](/official/Reference/VBRUN/Constants/OLEContainerTypesAllowedConstants) -- **OLETypeAllowed**的对象类型筛选器
+- [**OLEContainerUpdateOptionsConstants**](/official/Reference/VBRUN/Constants/OLEContainerUpdateOptionsConstants) -- 链接OLE对象的更新模式
+- [**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants) -- **OLEDragMode**的OLE拖动模式值
+- [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants) -- **OLEDropMode**的OLE放置模式值
+- [**OLEDropEffectConstants**](/official/Reference/VBRUN/Constants/OLEDropEffectConstants) -- OLE拖放事件*Effect*参数的位标志
+- [**PaletteModeConstants**](/official/Reference/VBRUN/Constants/PaletteModeConstants) -- 窗体和UserControl的调色板来源值
+- [**ParentControlsType**](/official/Reference/VBRUN/Constants/ParentControlsType) -- **ParentControls**集合的包装模式
+- [**PictureTypeConstants**](/official/Reference/VBRUN/Constants/PictureTypeConstants) -- **stdole.IPictureDisp**的子类型值
+- [**PrinterObjectConstants**](/official/Reference/VBRUN/Constants/PrinterObjectConstants) -- 所有**Printer**对象选项值的组合枚举
+- [**PrinterObjectConstants_ColorMode**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_ColorMode) -- **Printer.ColorMode**的颜色模式
+- [**PrinterObjectConstants_Duplex**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Duplex) -- **Printer.Duplex**的双面模式
+- [**PrinterObjectConstants_Orientation**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Orientation) -- **Printer.Orientation**的纸张方向
+- [**PrinterObjectConstants_PaperBin**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperBin) -- **Printer.PaperBin**的纸张来源
+- [**PrinterObjectConstants_PaperSize**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperSize) -- **Printer.PaperSize**的纸张大小
+- [**PrinterObjectConstants_PrintQuality**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PrintQuality) -- **Printer.PrintQuality**的打印质量
+- [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants) -- 窗体**QueryUnload**事件的原因代码
+- [**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants) -- **PaintPicture**的GDI光栅操作代码
+- [**RecordsetTypeConstants**](/official/Reference/VBRUN/Constants/RecordsetTypeConstants) -- Data控件的记录集类型
+- [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants) -- **ScaleMode**属性的度量单位
+- [**ScrollBarConstants**](/official/Reference/VBRUN/Constants/ScrollBarConstants) -- 文本框等控件上显示的滚动条
+- [**ShapeConstants**](/official/Reference/VBRUN/Constants/ShapeConstants) -- Shape控件**Shape**属性的几何形状值
+- [**ShiftConstants**](/official/Reference/VBRUN/Constants/ShiftConstants) -- 鼠标和键盘事件的修饰键位标志
+- [**ShortcutConstants**](/official/Reference/VBRUN/Constants/ShortcutConstants) -- 菜单项的快捷键标识符
+- [**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants) -- 窗体**StartUpPosition**属性的初始位置
+- [**StorageTypeContants**](/official/Reference/VBRUN/Constants/StorageTypeContants) -- **DataObjectFormat**的OLE数据存储介质标识符
+- [**SystemColorConstants**](/official/Reference/VBRUN/Constants/SystemColorConstants) -- 系统UI颜色引用（通过**TranslateColor**转换为纯RGB）
+- [**VariantTypeConstants**](/official/Reference/VBRUN/Constants/VariantTypeConstants) -- 为兼容性保留的旧版DAO字段类型标签
+- [**VerticalAlignmentConstants**](/official/Reference/VBRUN/Constants/VerticalAlignmentConstants) -- 单元格样式控件的垂直文本对齐
+- [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants) -- **ZOrder**方法的位置选择器
+
+### WebView2包
+
+10个枚举，涵盖导航错误、权限、下载位置、脚本对话框、打印方向和资源请求过滤。
+
+- [**wv2DefaultDownloadCornerAlign**](/official/Reference/WebView2/Enumerations/wv2DefaultDownloadCornerAlign) -- 将内置下载进度对话框锚定到控件的角落
+- [**wv2ErrorStatus**](/official/Reference/WebView2/Enumerations/wv2ErrorStatus) -- 导航失败的原因（在**NavigationComplete**事件中传递）
+- [**wv2HostResourceAccessKind**](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind) -- 虚拟主机名映射的跨域访问策略
+- [**wv2KeyEventKind**](/official/Reference/WebView2/Enumerations/wv2KeyEventKind) -- **AcceleratorKeyPressed**事件中的键盘消息类型
+- [**wv2PermissionKind**](/official/Reference/WebView2/Enumerations/wv2PermissionKind) -- 页面正在请求的设备或浏览器功能
+- [**wv2PermissionState**](/official/Reference/WebView2/Enumerations/wv2PermissionState) -- 宿主对权限请求的决定
+- [**wv2PrintOrientation**](/official/Reference/WebView2/Enumerations/wv2PrintOrientation) -- **PrintToPdf**的页面方向
+- [**wv2ProcessFailedKind**](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind) -- 标识哪个WebView2进程失败
+- [**wv2ScriptDialogKind**](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind) -- 页面试图打开的JavaScript对话框类型
+- [**wv2WebResourceContext**](/official/Reference/WebView2/Enumerations/wv2WebResourceContext) -- Web资源过滤器匹配的请求类型
+
+### CustomControls包
+
+13个枚举，控制`Waynes...`自定义控件的外观和行为。
+
+- [**BorderStyle**](/official/Reference/CustomControls/Enumerations/BorderStyle) -- **WaynesForm**窗口的Win32框架样式
+- [**ColorRGBA**](/official/Reference/CustomControls/Enumerations/ColorRGBA) -- 32位ABGR颜色值类型别名
+- [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape) -- 控件单个角的形状（方形、圆角、切角）
+- [**Customtate**](/official/Reference/CustomControls/Enumerations/Customtate) -- 自定义状态绘制的控件状态标志
+- [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) -- 控件相对于其容器的停靠方式
+- [**FillPattern**](/official/Reference/CustomControls/Enumerations/FillPattern) -- **Fill**中颜色停止点如何应用于绘制区域
+- [**FontWeight**](/official/Reference/CustomControls/Enumerations/FontWeight) -- 标准100--900 OpenType刻度上的字重
+- [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount) -- 包中使用的像素度量类型别名
+- [**PointSize**](/official/Reference/CustomControls/Enumerations/PointSize) -- 印刷点字体大小类型别名
+- [**StartupPosition**](/official/Reference/CustomControls/Enumerations/StartupPosition) -- **WaynesForm**首次显示时的初始位置
+- [**TextAlignment**](/official/Reference/CustomControls/Enumerations/TextAlignment) -- 控件内的水平和垂直文本对齐
+- [**TextOverflowMode**](/official/Reference/CustomControls/Enumerations/TextOverflowMode) -- 不适合的文本如何截断
+- [**WindowState**](/official/Reference/CustomControls/Enumerations/WindowState) -- **WaynesForm**的最小化、还原或最大化状态
+
+### CEF包
+
+2个枚举，涵盖日志详细程度和打印方向。
+
+- [**CefLogSeverity**](/official/Reference/CEF/Enumerations/CefLogSeverity) -- CEF运行时记录消息到调试日志的最低严重性
+- [**cefPrintOrientation**](/official/Reference/CEF/Enumerations/cefPrintOrientation) -- **PrintToPdf**的页面方向
+
+### WinServicesLib包
+
+4个枚举，涵盖服务类型、启动模式、控制代码和运行时状态。
+
+- [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) -- SCM可向运行中的服务传递的控制代码
+- [**ServiceStartConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants) -- SCM何时以及如何启动服务
+- [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- 服务向SCM报告的运行时状态值
+- [**ServiceTypeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants) -- Win32服务类型值（独立进程、共享宿主、内核驱动）
+
+### WinNativeCommonCtls包
+
+10个枚举，用于八种原生通用控件。
+
+- [**DTPickerFormatConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants) -- **DTPicker**控件的显示格式
+- [**ImlDrawConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants) -- **ListImage.Draw**的渲染样式标志
+- [**OrientationConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants) -- **Slider**和**UpDown**的水平/垂直方向
+- [**TreeBorderStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) -- **TreeView**和**ListView**共享的边框样式
+- [**TreeLabelEditConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants) -- **TreeView**上何时触发内联标签编辑
+- [**TreeLineStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants) -- **TreeView**是从根节点还是仅从子节点绘制连线
+- [**TreeRelationshipConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) -- 新节点相对于现有节点的插入位置
+- [**TreeSortOrderConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants) -- **TreeView**和**Node**的升序或降序排序
+- [**TreeSortTypeConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) -- 区分大小写或不区分大小写的排序比较
+- [**TreeStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants) -- **TreeView**的复合视觉样式（按钮、连线、图标）
+
+---
+
+## 字母顺序索引
 
 **A**
 
-- [**AlignConstants**](/official/Reference/VBRUN/Constants/AlignConstants) -- **Align** property values (VBRUN)
-- [**AlignmentConstants**](/official/Reference/VBRUN/Constants/AlignmentConstants) -- text alignment for labels and text boxes (VBRUN)
-- [**AlignmentConstantsNoCenter**](/official/Reference/VBRUN/Constants/AlignmentConstantsNoCenter) -- left/right text alignment without centre (VBRUN)
-- [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) -- drawing style for **Appearance** property (VBRUN)
-- [**ApplicationStartConstants**](/official/Reference/VBRUN/Constants/ApplicationStartConstants) -- standalone vs. Automation start mode (VBRUN)
-- [**AspectTypeConstants**](/official/Reference/VBRUN/Constants/AspectTypeConstants) -- OLE rendering aspect identifiers (VBRUN)
-- [**AsyncReadConstants**](/official/Reference/VBRUN/Constants/AsyncReadConstants) -- **UserControl.AsyncRead** option flags (VBRUN)
-- [**AsyncStatusCodeConstants**](/official/Reference/VBRUN/Constants/AsyncStatusCodeConstants) -- **AsyncReadProgress** status codes (VBRUN)
-- [**AsyncTypeConstants**](/official/Reference/VBRUN/Constants/AsyncTypeConstants) -- data kind from **UserControl.AsyncRead** (VBRUN)
+- [**AlignConstants**](/official/Reference/VBRUN/Constants/AlignConstants) -- **Align**属性值（VBRUN）
+- [**AlignmentConstants**](/official/Reference/VBRUN/Constants/AlignmentConstants) -- 标签和文本框的文本对齐（VBRUN）
+- [**AlignmentConstantsNoCenter**](/official/Reference/VBRUN/Constants/AlignmentConstantsNoCenter) -- 不包含居中的左/右文本对齐（VBRUN）
+- [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) -- **Appearance**属性的绘制样式（VBRUN）
+- [**ApplicationStartConstants**](/official/Reference/VBRUN/Constants/ApplicationStartConstants) -- 独立与Automation启动模式（VBRUN）
+- [**AspectTypeConstants**](/official/Reference/VBRUN/Constants/AspectTypeConstants) -- OLE渲染方面标识符（VBRUN）
+- [**AsyncReadConstants**](/official/Reference/VBRUN/Constants/AsyncReadConstants) -- **UserControl.AsyncRead**选项标志（VBRUN）
+- [**AsyncStatusCodeConstants**](/official/Reference/VBRUN/Constants/AsyncStatusCodeConstants) -- **AsyncReadProgress**状态代码（VBRUN）
+- [**AsyncTypeConstants**](/official/Reference/VBRUN/Constants/AsyncTypeConstants) -- **UserControl.AsyncRead**的数据类型（VBRUN）
 
 **B**
 
-- [**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants) -- opaque vs. transparent background (VBRUN)
-- [**BorderStyle**](/official/Reference/CustomControls/Enumerations/BorderStyle) -- Win32 frame style for **WaynesForm** (CustomControls)
-- [**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants) -- line style for Shape and Line controls (VBRUN)
-- [**ButtonConstants**](/official/Reference/VBRUN/Constants/ButtonConstants) -- style for graphical command buttons (VBRUN)
+- [**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants) -- 不透明与透明背景（VBRUN）
+- [**BorderStyle**](/official/Reference/CustomControls/Enumerations/BorderStyle) -- **WaynesForm**的Win32框架样式（CustomControls）
+- [**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants) -- Shape和Line控件的线条样式（VBRUN）
+- [**ButtonConstants**](/official/Reference/VBRUN/Constants/ButtonConstants) -- 图形命令按钮的样式（VBRUN）
 
 **C**
 
-- [**CefLogSeverity**](/official/Reference/CEF/Enumerations/CefLogSeverity) -- CEF debug-log minimum severity (CEF)
-- [**cefPrintOrientation**](/official/Reference/CEF/Enumerations/cefPrintOrientation) -- page orientation for **PrintToPdf** (CEF)
-- [**CheckBoxConstants**](/official/Reference/VBRUN/Constants/CheckBoxConstants) -- check-box **Value** property state (VBRUN)
-- [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) -- clipboard format identifiers (VBRUN)
-- [**ColorConstants**](/official/Reference/VBRUN/Constants/ColorConstants) -- named RGB colours (VBRUN)
-- [**ColorRGBA**](/official/Reference/CustomControls/Enumerations/ColorRGBA) -- 32-bit ABGR colour type alias (CustomControls)
-- [**ComboBoxConstants**](/official/Reference/VBRUN/Constants/ComboBoxConstants) -- combo-box **Style** property values (VBRUN)
-- [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants) -- border style for intrinsic controls (VBRUN)
-- [**ControlBorderStyleConstantsCustom**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstantsCustom) -- extended border style including custom-drawn (VBRUN)
-- [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- standard intrinsic control type identifiers (VBRUN)
-- [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape) -- corner shape (square, rounded, cut) (CustomControls)
-- [**Customtate**](/official/Reference/CustomControls/Enumerations/Customtate) -- control state flags for custom painting (CustomControls)
+- [**CefLogSeverity**](/official/Reference/CEF/Enumerations/CefLogSeverity) -- CEF调试日志最低严重性（CEF）
+- [**cefPrintOrientation**](/official/Reference/CEF/Enumerations/cefPrintOrientation) -- **PrintToPdf**的页面方向（CEF）
+- [**CheckBoxConstants**](/official/Reference/VBRUN/Constants/CheckBoxConstants) -- 复选框**Value**属性状态（VBRUN）
+- [**ClipboardConstants**](/official/Reference/VBRUN/Constants/ClipboardConstants) -- 剪贴板格式标识符（VBRUN）
+- [**ColorConstants**](/official/Reference/VBRUN/Constants/ColorConstants) -- 命名RGB颜色（VBRUN）
+- [**ColorRGBA**](/official/Reference/CustomControls/Enumerations/ColorRGBA) -- 32位ABGR颜色类型别名（CustomControls）
+- [**ComboBoxConstants**](/official/Reference/VBRUN/Constants/ComboBoxConstants) -- 组合框**Style**属性值（VBRUN）
+- [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants) -- 内部控件的边框样式（VBRUN）
+- [**ControlBorderStyleConstantsCustom**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstantsCustom) -- 包含自绘的扩展边框样式（VBRUN）
+- [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- 标准内部控件类型标识符（VBRUN）
+- [**CornerShape**](/official/Reference/CustomControls/Enumerations/CornerShape) -- 角形状（方形、圆角、切角）（CustomControls）
+- [**Customtate**](/official/Reference/CustomControls/Enumerations/Customtate) -- 自定义绘制的控件状态标志（CustomControls）
 
 **D**
 
-- [**DatabaseTypeConstants**](/official/Reference/VBRUN/Constants/DatabaseTypeConstants) -- Data control database engine (VBRUN)
-- [**DataBOFconstants**](/official/Reference/VBRUN/Constants/DataBOFconstants) -- action at beginning of recordset (VBRUN)
-- [**DataEOFConstants**](/official/Reference/VBRUN/Constants/DataEOFConstants) -- action at end of recordset (VBRUN)
-- [**DataErrorConstants**](/official/Reference/VBRUN/Constants/DataErrorConstants) -- Data control **Error** event response values (VBRUN)
-- [**DataValidateConstants**](/official/Reference/VBRUN/Constants/DataValidateConstants) -- action codes in the **Validate** event (VBRUN)
-- [**DefaultCursorTypeConstants**](/official/Reference/VBRUN/Constants/DefaultCursorTypeConstants) -- cursor driver for a Data control connection (VBRUN)
-- [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) -- how a CustomControl is docked (CustomControls)
-- [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants) -- dock-edge values for forms and toolbars (VBRUN)
-- [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants) -- **Drag** method action values (VBRUN)
-- [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants) -- automatic vs. manual drag mode (VBRUN)
-- [**DragOverConstants**](/official/Reference/VBRUN/Constants/DragOverConstants) -- state values in the **DragOver** event (VBRUN)
-- [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants) -- GDI raster-operation for **DrawMode** (VBRUN)
-- [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants) -- line style for **DrawStyle** property (VBRUN)
-- [**DTPickerFormatConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants) -- **DTPicker** display format (WinNativeCommonCtls)
+- [**DatabaseTypeConstants**](/official/Reference/VBRUN/Constants/DatabaseTypeConstants) -- Data控件数据库引擎（VBRUN）
+- [**DataBOFconstants**](/official/Reference/VBRUN/Constants/DataBOFconstants) -- 记录集开始处的操作（VBRUN）
+- [**DataEOFConstants**](/official/Reference/VBRUN/Constants/DataEOFConstants) -- 记录集末尾处的操作（VBRUN）
+- [**DataErrorConstants**](/official/Reference/VBRUN/Constants/DataErrorConstants) -- Data控件**Error**事件响应值（VBRUN）
+- [**DataValidateConstants**](/official/Reference/VBRUN/Constants/DataValidateConstants) -- **Validate**事件中的操作代码（VBRUN）
+- [**DefaultCursorTypeConstants**](/official/Reference/VBRUN/Constants/DefaultCursorTypeConstants) -- Data控件连接的游标驱动程序（VBRUN）
+- [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) -- CustomControl如何停靠（CustomControls）
+- [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants) -- 窗体和工具栏的停靠边缘值（VBRUN）
+- [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants) -- **Drag**方法操作值（VBRUN）
+- [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants) -- 自动与手动拖动模式（VBRUN）
+- [**DragOverConstants**](/official/Reference/VBRUN/Constants/DragOverConstants) -- **DragOver**事件中的状态值（VBRUN）
+- [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants) -- **DrawMode**的GDI光栅操作（VBRUN）
+- [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants) -- **DrawStyle**属性的线条样式（VBRUN）
+- [**DTPickerFormatConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants) -- **DTPicker**显示格式（WinNativeCommonCtls）
 
 **F**
 
-- [**FillPattern**](/official/Reference/CustomControls/Enumerations/FillPattern) -- how colour stops in a **Fill** are applied (CustomControls)
-- [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants) -- fill pattern for **FillStyle** property (VBRUN)
-- [**FillStyleConstantsEx**](/official/Reference/VBRUN/Constants/FillStyleConstantsEx) -- extended fill patterns with gradient fills (VBRUN)
-- [**FontWeight**](/official/Reference/CustomControls/Enumerations/FontWeight) -- font weight on the 100--900 scale (CustomControls)
-- [**FormArrangeConstants**](/official/Reference/VBRUN/Constants/FormArrangeConstants) -- MDI child-window arrangement modes (VBRUN)
-- [**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants) -- form border and frame style (VBRUN)
-- [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants) -- modality for **Show** (VBRUN)
-- [**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants) -- form window state (VBRUN)
+- [**FillPattern**](/official/Reference/CustomControls/Enumerations/FillPattern) -- **Fill**中颜色停止点如何应用（CustomControls）
+- [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants) -- **FillStyle**属性的填充图案（VBRUN）
+- [**FillStyleConstantsEx**](/official/Reference/VBRUN/Constants/FillStyleConstantsEx) -- 包含渐变填充的扩展填充图案（VBRUN）
+- [**FontWeight**](/official/Reference/CustomControls/Enumerations/FontWeight) -- 100--900刻度上的字重（CustomControls）
+- [**FormArrangeConstants**](/official/Reference/VBRUN/Constants/FormArrangeConstants) -- MDI子窗口排列模式（VBRUN）
+- [**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants) -- 窗体边框和框架样式（VBRUN）
+- [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants) -- **Show**的模态性（VBRUN）
+- [**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants) -- 窗体窗口状态（VBRUN）
 
 **H**
 
-- [**HitResultConstants**](/official/Reference/VBRUN/Constants/HitResultConstants) -- **UserControl.HitTest** return values (VBRUN)
+- [**HitResultConstants**](/official/Reference/VBRUN/Constants/HitResultConstants) -- **UserControl.HitTest**返回值（VBRUN）
 
 **I**
 
-- [**ImlDrawConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants) -- **ListImage.Draw** render-style flags (WinNativeCommonCtls)
+- [**ImlDrawConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants) -- **ListImage.Draw**渲染样式标志（WinNativeCommonCtls）
 
 **K**
 
-- [**KeyCodeConstants**](/official/Reference/VBRUN/Constants/KeyCodeConstants) -- virtual-key codes for key events (VBRUN)
+- [**KeyCodeConstants**](/official/Reference/VBRUN/Constants/KeyCodeConstants) -- 键盘事件的虚拟键代码（VBRUN）
 
 **L**
 
-- [**LinkModeConstants**](/official/Reference/VBRUN/Constants/LinkModeConstants) -- DDE link-mode values (VBRUN)
-- [**ListBoxConstants**](/official/Reference/VBRUN/Constants/ListBoxConstants) -- list-box **Style** property values (VBRUN)
-- [**LoadPictureColorConstants**](/official/Reference/VBRUN/Constants/LoadPictureColorConstants) -- **LoadPicture** colour depth (VBRUN)
-- [**LoadPictureSizeConstants**](/official/Reference/VBRUN/Constants/LoadPictureSizeConstants) -- **LoadPicture** size selector (VBRUN)
-- [**LoadResConstants**](/official/Reference/VBRUN/Constants/LoadResConstants) -- **LoadResPicture** resource type (VBRUN)
-- [**LogEventTypeConstants**](/official/Reference/VBRUN/Constants/LogEventTypeConstants) -- **LogEvent** severity values (VBRUN)
-- [**LogModeConstants**](/official/Reference/VBRUN/Constants/LogModeConstants) -- **App.StartLogging** destination flags (VBRUN)
+- [**LinkModeConstants**](/official/Reference/VBRUN/Constants/LinkModeConstants) -- DDE链接模式值（VBRUN）
+- [**ListBoxConstants**](/official/Reference/VBRUN/Constants/ListBoxConstants) -- 列表框**Style**属性值（VBRUN）
+- [**LoadPictureColorConstants**](/official/Reference/VBRUN/Constants/LoadPictureColorConstants) -- **LoadPicture**颜色深度（VBRUN）
+- [**LoadPictureSizeConstants**](/official/Reference/VBRUN/Constants/LoadPictureSizeConstants) -- **LoadPicture**大小选择器（VBRUN）
+- [**LoadResConstants**](/official/Reference/VBRUN/Constants/LoadResConstants) -- **LoadResPicture**资源类型（VBRUN）
+- [**LogEventTypeConstants**](/official/Reference/VBRUN/Constants/LogEventTypeConstants) -- **LogEvent**严重性值（VBRUN）
+- [**LogModeConstants**](/official/Reference/VBRUN/Constants/LogModeConstants) -- **App.StartLogging**目标标志（VBRUN）
 
 **M**
 
-- [**MenuAccelConstants**](/official/Reference/VBRUN/Constants/MenuAccelConstants) -- menu-item keyboard-accelerator codes (VBRUN)
-- [**MenuControlConstants**](/official/Reference/VBRUN/Constants/MenuControlConstants) -- **PopupMenu** alignment and trigger flags (VBRUN)
-- [**MouseButtonConstants**](/official/Reference/VBRUN/Constants/MouseButtonConstants) -- mouse-event *Button* argument bit flags (VBRUN)
-- [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants) -- **MousePointer** property cursor shape (VBRUN)
-- [**MultiSelectConstants**](/official/Reference/VBRUN/Constants/MultiSelectConstants) -- list-box multi-selection mode (VBRUN)
+- [**MenuAccelConstants**](/official/Reference/VBRUN/Constants/MenuAccelConstants) -- 菜单项键盘加速键代码（VBRUN）
+- [**MenuControlConstants**](/official/Reference/VBRUN/Constants/MenuControlConstants) -- **PopupMenu**对齐和触发标志（VBRUN）
+- [**MouseButtonConstants**](/official/Reference/VBRUN/Constants/MouseButtonConstants) -- 鼠标事件*Button*参数位标志（VBRUN）
+- [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants) -- **MousePointer**属性光标形状（VBRUN）
+- [**MultiSelectConstants**](/official/Reference/VBRUN/Constants/MultiSelectConstants) -- 列表框多选模式（VBRUN）
 
 **N**
 
-- [**NegotiatePositionConstants**](/official/Reference/VBRUN/Constants/NegotiatePositionConstants) -- menu placement during OLE in-place activation (VBRUN)
+- [**NegotiatePositionConstants**](/official/Reference/VBRUN/Constants/NegotiatePositionConstants) -- OLE就地激活期间的菜单位置（VBRUN）
 
 **O**
 
-- [**OldLinkModeConstants**](/official/Reference/VBRUN/Constants/OldLinkModeConstants) -- legacy DDE link-mode values (VBRUN)
-- [**OLEContainerActivateConstants**](/official/Reference/VBRUN/Constants/OLEContainerActivateConstants) -- OLE container auto-activation trigger (VBRUN)
-- [**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants) -- combined OLE container option values (VBRUN)
-- [**OLEContainerDisplayTypeConstants**](/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants) -- OLE container display style (VBRUN)
-- [**OLEContainerSizeModeConstants**](/official/Reference/VBRUN/Constants/OLEContainerSizeModeConstants) -- OLE container sizing rules (VBRUN)
-- [**OLEContainerTypesAllowedConstants**](/official/Reference/VBRUN/Constants/OLEContainerTypesAllowedConstants) -- OLE container object-type filter (VBRUN)
-- [**OLEContainerUpdateOptionsConstants**](/official/Reference/VBRUN/Constants/OLEContainerUpdateOptionsConstants) -- OLE container update mode (VBRUN)
-- [**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants) -- **OLEDragMode** property values (VBRUN)
-- [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants) -- **OLEDropMode** property values (VBRUN)
-- [**OLEDropEffectConstants**](/official/Reference/VBRUN/Constants/OLEDropEffectConstants) -- OLE drag-and-drop *Effect* bit flags (VBRUN)
-- [**OrientationConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants) -- horizontal / vertical for **Slider** and **UpDown** (WinNativeCommonCtls)
+- [**OldLinkModeConstants**](/official/Reference/VBRUN/Constants/OldLinkModeConstants) -- 旧版DDE链接模式值（VBRUN）
+- [**OLEContainerActivateConstants**](/official/Reference/VBRUN/Constants/OLEContainerActivateConstants) -- OLE容器自动激活触发器（VBRUN）
+- [**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants) -- 组合的OLE容器选项值（VBRUN）
+- [**OLEContainerDisplayTypeConstants**](/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants) -- OLE容器显示样式（VBRUN）
+- [**OLEContainerSizeModeConstants**](/official/Reference/VBRUN/Constants/OLEContainerSizeModeConstants) -- OLE容器大小调整规则（VBRUN）
+- [**OLEContainerTypesAllowedConstants**](/official/Reference/VBRUN/Constants/OLEContainerTypesAllowedConstants) -- OLE容器对象类型筛选器（VBRUN）
+- [**OLEContainerUpdateOptionsConstants**](/official/Reference/VBRUN/Constants/OLEContainerUpdateOptionsConstants) -- OLE容器更新模式（VBRUN）
+- [**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants) -- **OLEDragMode**属性值（VBRUN）
+- [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants) -- **OLEDropMode**属性值（VBRUN）
+- [**OLEDropEffectConstants**](/official/Reference/VBRUN/Constants/OLEDropEffectConstants) -- OLE拖放*Effect*位标志（VBRUN）
+- [**OrientationConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants) -- **Slider**和**UpDown**的水平/垂直（WinNativeCommonCtls）
 
 **P**
 
-- [**PaletteModeConstants**](/official/Reference/VBRUN/Constants/PaletteModeConstants) -- palette source for forms and UserControls (VBRUN)
-- [**ParentControlsType**](/official/Reference/VBRUN/Constants/ParentControlsType) -- **ParentControls** collection wrapping mode (VBRUN)
-- [**PictureTypeConstants**](/official/Reference/VBRUN/Constants/PictureTypeConstants) -- **IPictureDisp** subtype values (VBRUN)
-- [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount) -- pixel-measurement type alias (CustomControls)
-- [**PointSize**](/official/Reference/CustomControls/Enumerations/PointSize) -- typographic-point font-size type alias (CustomControls)
-- [**PrinterObjectConstants**](/official/Reference/VBRUN/Constants/PrinterObjectConstants) -- combined **Printer** object option values (VBRUN)
-- [**PrinterObjectConstants_ColorMode**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_ColorMode) -- **Printer.ColorMode** values (VBRUN)
-- [**PrinterObjectConstants_Duplex**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Duplex) -- **Printer.Duplex** values (VBRUN)
-- [**PrinterObjectConstants_Orientation**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Orientation) -- **Printer.Orientation** values (VBRUN)
-- [**PrinterObjectConstants_PaperBin**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperBin) -- **Printer.PaperBin** values (VBRUN)
-- [**PrinterObjectConstants_PaperSize**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperSize) -- **Printer.PaperSize** values (VBRUN)
-- [**PrinterObjectConstants_PrintQuality**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PrintQuality) -- **Printer.PrintQuality** values (VBRUN)
+- [**PaletteModeConstants**](/official/Reference/VBRUN/Constants/PaletteModeConstants) -- 窗体和UserControl的调色板来源（VBRUN）
+- [**ParentControlsType**](/official/Reference/VBRUN/Constants/ParentControlsType) -- **ParentControls**集合包装模式（VBRUN）
+- [**PictureTypeConstants**](/official/Reference/VBRUN/Constants/PictureTypeConstants) -- **IPictureDisp**子类型值（VBRUN）
+- [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount) -- 像素度量类型别名（CustomControls）
+- [**PointSize**](/official/Reference/CustomControls/Enumerations/PointSize) -- 印刷点字体大小类型别名（CustomControls）
+- [**PrinterObjectConstants**](/official/Reference/VBRUN/Constants/PrinterObjectConstants) -- 组合的**Printer**对象选项值（VBRUN）
+- [**PrinterObjectConstants_ColorMode**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_ColorMode) -- **Printer.ColorMode**值（VBRUN）
+- [**PrinterObjectConstants_Duplex**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Duplex) -- **Printer.Duplex**值（VBRUN）
+- [**PrinterObjectConstants_Orientation**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Orientation) -- **Printer.Orientation**值（VBRUN）
+- [**PrinterObjectConstants_PaperBin**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperBin) -- **Printer.PaperBin**值（VBRUN）
+- [**PrinterObjectConstants_PaperSize**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperSize) -- **Printer.PaperSize**值（VBRUN）
+- [**PrinterObjectConstants_PrintQuality**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PrintQuality) -- **Printer.PrintQuality**值（VBRUN）
 
 **Q**
 
-- [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants) -- **QueryUnload** event reason codes (VBRUN)
+- [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants) -- **QueryUnload**事件原因代码（VBRUN）
 
 **R**
 
-- [**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants) -- GDI raster-operation codes for **PaintPicture** (VBRUN)
-- [**RecordsetTypeConstants**](/official/Reference/VBRUN/Constants/RecordsetTypeConstants) -- Data control recordset type (VBRUN)
+- [**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants) -- **PaintPicture**的GDI光栅操作代码（VBRUN）
+- [**RecordsetTypeConstants**](/official/Reference/VBRUN/Constants/RecordsetTypeConstants) -- Data控件记录集类型（VBRUN）
 
 **S**
 
-- [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants) -- measurement units for **ScaleMode** (VBRUN)
-- [**ScrollBarConstants**](/official/Reference/VBRUN/Constants/ScrollBarConstants) -- which scrollbars appear on a control (VBRUN)
-- [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) -- SCM control codes for a running service (WinServicesLib)
-- [**ServiceStartConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants) -- service start mode (WinServicesLib)
-- [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- service runtime state values (WinServicesLib)
-- [**ServiceTypeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants) -- Win32 service type (WinServicesLib)
-- [**ShapeConstants**](/official/Reference/VBRUN/Constants/ShapeConstants) -- geometric shape for the Shape control (VBRUN)
-- [**ShiftConstants**](/official/Reference/VBRUN/Constants/ShiftConstants) -- modifier-key bit flags for mouse and key events (VBRUN)
-- [**ShortcutConstants**](/official/Reference/VBRUN/Constants/ShortcutConstants) -- menu-item keyboard shortcut identifiers (VBRUN)
-- [**StartupPosition**](/official/Reference/CustomControls/Enumerations/StartupPosition) -- initial position of a **WaynesForm** (CustomControls)
-- [**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants) -- form **StartUpPosition** property values (VBRUN)
-- [**StorageTypeContants**](/official/Reference/VBRUN/Constants/StorageTypeContants) -- OLE data-storage medium identifiers (VBRUN)
-- [**SystemColorConstants**](/official/Reference/VBRUN/Constants/SystemColorConstants) -- system-UI colour references (VBRUN)
+- [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants) -- **ScaleMode**的度量单位（VBRUN）
+- [**ScrollBarConstants**](/official/Reference/VBRUN/Constants/ScrollBarConstants) -- 控件上显示的滚动条（VBRUN）
+- [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) -- 运行中服务的SCM控制代码（WinServicesLib）
+- [**ServiceStartConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants) -- 服务启动模式（WinServicesLib）
+- [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- 服务运行时状态值（WinServicesLib）
+- [**ServiceTypeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants) -- Win32服务类型（WinServicesLib）
+- [**ShapeConstants**](/official/Reference/VBRUN/Constants/ShapeConstants) -- Shape控件的几何形状（VBRUN）
+- [**ShiftConstants**](/official/Reference/VBRUN/Constants/ShiftConstants) -- 鼠标和键盘事件的修饰键位标志（VBRUN）
+- [**ShortcutConstants**](/official/Reference/VBRUN/Constants/ShortcutConstants) -- 菜单项键盘快捷键标识符（VBRUN）
+- [**StartupPosition**](/official/Reference/CustomControls/Enumerations/StartupPosition) -- **WaynesForm**的初始位置（CustomControls）
+- [**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants) -- 窗体**StartUpPosition**属性值（VBRUN）
+- [**StorageTypeContants**](/official/Reference/VBRUN/Constants/StorageTypeContants) -- OLE数据存储介质标识符（VBRUN）
+- [**SystemColorConstants**](/official/Reference/VBRUN/Constants/SystemColorConstants) -- 系统UI颜色引用（VBRUN）
 
 **T**
 
-- [**TextAlignment**](/official/Reference/CustomControls/Enumerations/TextAlignment) -- horizontal and vertical text alignment (CustomControls)
-- [**TextOverflowMode**](/official/Reference/CustomControls/Enumerations/TextOverflowMode) -- text truncation mode (CustomControls)
-- [**TreeBorderStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) -- **TreeView** and **ListView** border style (WinNativeCommonCtls)
-- [**TreeLabelEditConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants) -- **TreeView** inline-label-editing trigger (WinNativeCommonCtls)
-- [**TreeLineStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants) -- **TreeView** tree-lines scope (WinNativeCommonCtls)
-- [**TreeRelationshipConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) -- **Nodes.Add** insertion position (WinNativeCommonCtls)
-- [**TreeSortOrderConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants) -- **TreeView** / **Node** sort direction (WinNativeCommonCtls)
-- [**TreeSortTypeConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) -- **TreeView** / **Node** sort comparison mode (WinNativeCommonCtls)
-- [**TreeStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants) -- **TreeView** composite visual style (WinNativeCommonCtls)
+- [**TextAlignment**](/official/Reference/CustomControls/Enumerations/TextAlignment) -- 水平和垂直文本对齐（CustomControls）
+- [**TextOverflowMode**](/official/Reference/CustomControls/Enumerations/TextOverflowMode) -- 文本截断模式（CustomControls）
+- [**TreeBorderStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) -- **TreeView**和**ListView**边框样式（WinNativeCommonCtls）
+- [**TreeLabelEditConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants) -- **TreeView**内联标签编辑触发器（WinNativeCommonCtls）
+- [**TreeLineStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants) -- **TreeView**树线范围（WinNativeCommonCtls）
+- [**TreeRelationshipConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) -- **Nodes.Add**插入位置（WinNativeCommonCtls）
+- [**TreeSortOrderConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants) -- **TreeView**/**Node**排序方向（WinNativeCommonCtls）
+- [**TreeSortTypeConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) -- **TreeView**/**Node**排序比较模式（WinNativeCommonCtls）
+- [**TreeStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants) -- **TreeView**复合视觉样式（WinNativeCommonCtls）
 
 **V**
 
-- [**VbAppWinStyle**](/official/Reference/VBA/Constants/VbAppWinStyle) -- window-style values for **Shell** (VBA)
-- [**VbArchitecture**](/official/Reference/VBA/Constants/VbArchitecture) -- processor-architecture values (VBA)
-- [**VbCalendar**](/official/Reference/VBA/Constants/VbCalendar) -- calendar type values (VBA)
-- [**VbCallType**](/official/Reference/VBA/Constants/VbCallType) -- **CallByName** call-type flags (VBA)
-- [**VbCompareMethod**](/official/Reference/VBA/Constants/VbCompareMethod) -- text-comparison mode for string functions (VBA)
-- [**VbDateTimeFormat**](/official/Reference/VBA/Constants/VbDateTimeFormat) -- **FormatDateTime** format codes (VBA)
-- [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) -- day-of-week constants for date functions (VBA)
-- [**VbFileAttribute**](/official/Reference/VBA/Constants/VbFileAttribute) -- file-attribute flags (VBA)
-- [**VbFirstWeekOfYear**](/official/Reference/VBA/Constants/VbFirstWeekOfYear) -- first-week-of-year selectors for date functions (VBA)
-- [**VbIMEStatus**](/official/Reference/VBA/Constants/VbIMEStatus) -- Input Method Editor mode constants (VBA)
-- [**VbMsgBoxResult**](/official/Reference/VBA/Constants/VbMsgBoxResult) -- **MsgBox** button-clicked identifier (VBA)
-- [**VbMsgBoxStyle**](/official/Reference/VBA/Constants/VbMsgBoxStyle) -- **MsgBox** button, icon, and modality flags (VBA)
-- [**VbStrConv**](/official/Reference/VBA/Constants/VbStrConv) -- **StrConv** conversion-type flags (VBA)
-- [**VbTriState**](/official/Reference/VBA/Constants/VbTriState) -- three-state values for formatting functions (VBA)
-- [**VbVarType**](/official/Reference/VBA/Constants/VbVarType) -- **VarType** Variant subtype codes (VBA)
-- [**VariantTypeConstants**](/official/Reference/VBRUN/Constants/VariantTypeConstants) -- legacy DAO field-type tags (VBRUN)
-- [**VerticalAlignmentConstants**](/official/Reference/VBRUN/Constants/VerticalAlignmentConstants) -- vertical text alignment (VBRUN)
+- [**VbAppWinStyle**](/official/Reference/VBA/Constants/VbAppWinStyle) -- **Shell**的窗口样式值（VBA）
+- [**VbArchitecture**](/official/Reference/VBA/Constants/VbArchitecture) -- 处理器架构值（VBA）
+- [**VbCalendar**](/official/Reference/VBA/Constants/VbCalendar) -- 日历类型值（VBA）
+- [**VbCallType**](/official/Reference/VBA/Constants/VbCallType) -- **CallByName**调用类型标志（VBA）
+- [**VbCompareMethod**](/official/Reference/VBA/Constants/VbCompareMethod) -- 字符串函数的文本比较模式（VBA）
+- [**VbDateTimeFormat**](/official/Reference/VBA/Constants/VbDateTimeFormat) -- **FormatDateTime**格式代码（VBA）
+- [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) -- 日期函数的星期常量（VBA）
+- [**VbFileAttribute**](/official/Reference/VBA/Constants/VbFileAttribute) -- 文件属性标志（VBA）
+- [**VbFirstWeekOfYear**](/official/Reference/VBA/Constants/VbFirstWeekOfYear) -- 日期函数的首周选择器（VBA）
+- [**VbIMEStatus**](/official/Reference/VBA/Constants/VbIMEStatus) -- 输入法编辑器模式常量（VBA）
+- [**VbMsgBoxResult**](/official/Reference/VBA/Constants/VbMsgBoxResult) -- **MsgBox**按钮点击标识符（VBA）
+- [**VbMsgBoxStyle**](/official/Reference/VBA/Constants/VbMsgBoxStyle) -- **MsgBox**按钮、图标和模态标志（VBA）
+- [**VbStrConv**](/official/Reference/VBA/Constants/VbStrConv) -- **StrConv**转换类型标志（VBA）
+- [**VbTriState**](/official/Reference/VBA/Constants/VbTriState) -- 格式化函数的三态值（VBA）
+- [**VbVarType**](/official/Reference/VBA/Constants/VbVarType) -- **VarType** Variant子类型代码（VBA）
+- [**VariantTypeConstants**](/official/Reference/VBRUN/Constants/VariantTypeConstants) -- 旧版DAO字段类型标签（VBRUN）
+- [**VerticalAlignmentConstants**](/official/Reference/VBRUN/Constants/VerticalAlignmentConstants) -- 垂直文本对齐（VBRUN）
 
 **W**
 
-- [**WindowState**](/official/Reference/CustomControls/Enumerations/WindowState) -- **WaynesForm** window state (CustomControls)
-- [**wv2DefaultDownloadCornerAlign**](/official/Reference/WebView2/Enumerations/wv2DefaultDownloadCornerAlign) -- download-dialog corner alignment (WebView2)
-- [**wv2ErrorStatus**](/official/Reference/WebView2/Enumerations/wv2ErrorStatus) -- navigation failure reason (WebView2)
-- [**wv2HostResourceAccessKind**](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind) -- virtual-hostname cross-origin access policy (WebView2)
-- [**wv2KeyEventKind**](/official/Reference/WebView2/Enumerations/wv2KeyEventKind) -- accelerator-key event kind (WebView2)
-- [**wv2PermissionKind**](/official/Reference/WebView2/Enumerations/wv2PermissionKind) -- permission request capability identifier (WebView2)
-- [**wv2PermissionState**](/official/Reference/WebView2/Enumerations/wv2PermissionState) -- permission-request decision (WebView2)
-- [**wv2PrintOrientation**](/official/Reference/WebView2/Enumerations/wv2PrintOrientation) -- **PrintToPdf** page orientation (WebView2)
-- [**wv2ProcessFailedKind**](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind) -- failed WebView2 process identifier (WebView2)
-- [**wv2ScriptDialogKind**](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind) -- JavaScript dialog kind (WebView2)
-- [**wv2WebResourceContext**](/official/Reference/WebView2/Enumerations/wv2WebResourceContext) -- web-resource filter request kind (WebView2)
+- [**WindowState**](/official/Reference/CustomControls/Enumerations/WindowState) -- **WaynesForm**窗口状态（CustomControls）
+- [**wv2DefaultDownloadCornerAlign**](/official/Reference/WebView2/Enumerations/wv2DefaultDownloadCornerAlign) -- 下载对话框角对齐（WebView2）
+- [**wv2ErrorStatus**](/official/Reference/WebView2/Enumerations/wv2ErrorStatus) -- 导航失败原因（WebView2）
+- [**wv2HostResourceAccessKind**](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind) -- 虚拟主机名跨域访问策略（WebView2）
+- [**wv2KeyEventKind**](/official/Reference/WebView2/Enumerations/wv2KeyEventKind) -- 加速键事件类型（WebView2）
+- [**wv2PermissionKind**](/official/Reference/WebView2/Enumerations/wv2PermissionKind) -- 权限请求功能标识符（WebView2）
+- [**wv2PermissionState**](/official/Reference/WebView2/Enumerations/wv2PermissionState) -- 权限请求决定（WebView2）
+- [**wv2PrintOrientation**](/official/Reference/WebView2/Enumerations/wv2PrintOrientation) -- **PrintToPdf**页面方向（WebView2）
+- [**wv2ProcessFailedKind**](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind) -- 失败的WebView2进程标识符（WebView2）
+- [**wv2ScriptDialogKind**](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind) -- JavaScript对话框类型（WebView2）
+- [**wv2WebResourceContext**](/official/Reference/WebView2/Enumerations/wv2WebResourceContext) -- Web资源过滤器请求类型（WebView2）
 
 **Z**
 
-- [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants) -- **ZOrder** method position selectors (VBRUN)
+- [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants) -- **ZOrder**方法位置选择器（VBRUN）
 
 ---
 
-### See Also
+### 另见
 
-- [Statements](/official/Reference/Statements) -- alphabetical index of language statements
-- [Procedures and Functions](/official/Reference/Procedures-and-Functions) -- alphabetical index of callable runtime members
-- [Operators](/official/Reference/Operators) -- arithmetic, comparison, logical, and bitwise operators
-- [Packages](/official/Reference/Packages) -- all twelve built-in packages
+- [语句](/official/Reference/Statements) -- 语言语句的字母顺序索引
+- [过程和函数](/official/Reference/Procedures-and-Functions) -- 可调用运行时成员的字母顺序索引
+- [运算符](/official/Reference/Operators) -- 算术、比较、逻辑和位运算符
+- [包](/official/Reference/Packages) -- 全部12个内置包

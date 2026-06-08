@@ -1,16 +1,27 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'b3cfb3d9-145b-4b62-8159-9b1c6780b1dc'
+  PropagateID: 'b3cfb3d9-145b-4b62-8159-9b1c6780b1dc'
+  ReservedCode1: 'f930ba63-f0ee-4094-8d09-0cc633f2d285'
+  ReservedCode2: 'f930ba63-f0ee-4094-8d09-0cc633f2d285'
+---
+
 ---
 title: Frame
 parent: VB Package
 permalink: /tB/Packages/VB/Frame/
 ---
 
-# Frame class
+# Frame 类
 
-A **Frame** is a Win32 native container control that groups a set of related controls inside a captioned border. It serves two distinct purposes --- a visual cue that the enclosed controls belong together, and a logical grouping for [**OptionButton**](/official/Reference/VB/OptionButton/) controls: option buttons inside the same frame are mutually exclusive of one another but independent of option buttons elsewhere on the form. Controls dropped onto a frame at design time become its children, and moving, hiding, disabling, or destroying the frame moves, hides, disables, or destroys the entire group with it.
+**Frame**是Win32原生容器控件，在一组带标题的边框内将一组相关控件分组。它有两个不同的用途——视觉上提示包含的控件属于同一组，以及为[**OptionButton**](/official/Reference/VB/OptionButton/)控件提供逻辑分组：同一框架内的选项按钮互斥，但与窗体上其他位置的选项按钮独立。在设计时拖放到框架上的控件成为其子级，移动、隐藏、禁用或销毁框架会随之移动、隐藏、禁用或销毁整个组。
 
-A frame cannot itself receive the input focus. The mnemonic marker (`&`) in its [**Caption**](#caption) is honoured, but pressing **Alt+** that character moves the focus to the next control in tab order rather than to the frame itself --- exactly like a [**Label**](/official/Reference/VB/Label/).
+框架本身不能接收输入焦点。其[**Caption**](#caption)中的助记标记（`&`）有效，但按**Alt+**该字符会将焦点移到TAB顺序中的下一个控件而非框架本身——与[**Label**](/official/Reference/VB/Label/)完全相同。
 
-The default property is [**Caption**](#caption) and the default event is [**Click**](#click).
+默认属性是[**Caption**](#caption)，默认事件是[**Click**](#click)。
 
 ```vb
 Private Sub Form_Load()
@@ -27,24 +38,24 @@ End Sub
 ```
 
 
-## Container behaviour
+## 容器行为
 
-A frame is a true container: each control inside it has the frame's `hWnd` as its Win32 parent and its coordinates are relative to the frame's client area, not the form. As a result:
+框架是真正的容器：其中每个控件的Win32父级是框架的`hWnd`，其坐标相对于框架的客户区而非窗体。因此：
 
-- Toggling [**Visible**](#visible) or [**Enabled**](#enabled) affects every contained control.
-- Calling [**Move**](#move) re-positions the frame and the children move with it without each child raising its own resize.
-- The frame's [**Anchors**](#anchors) and [**Dock**](#dock) settings let it stretch with its parent so the whole group resizes together.
-- A control's [**Container**](#container) property returns the frame it lives in (and the frame's own [**Container**](#container) returns the form, or another frame, that hosts it).
+- 切换[**Visible**](#visible)或[**Enabled**](#enabled)会影响每个包含的控件。
+- 调用[**Move**](#move)重新定位框架，子控件随其移动而不会各自引发调整大小。
+- 框架的[**Anchors**](#anchors)和[**Dock**](#dock)设置使其随父级拉伸，因此整个组一起调整大小。
+- 控件的[**Container**](#container)属性返回其所在的框架（框架自身的[**Container**](#container)返回承载它的窗体或其他框架）。
 
-## Caption, mnemonics, and the border
+## 标题、助记符和边框
 
-The text in [**Caption**](#caption) is rendered along the top edge of the border by the standard Win32 group-box style. An ampersand in the caption marks the next character as a keyboard mnemonic; use `&&` to display a literal ampersand. Pressing **Alt+** the marked character moves the focus to the next control in tab order --- the frame does not take focus itself.
+[**Caption**](#caption)中的文本由标准Win32分组框样式沿边框的顶部边缘渲染。标题中的和号将下一个字符标记为键盘助记符；使用`&&`显示字面和号。按**Alt+**标记字符将焦点移到TAB顺序中的下一个控件——框架本身不获取焦点。
 
-[**BorderStyle**](#borderstyle) chooses between the standard captioned single-line border (**vbFixedSingleBorder**, the default) and a borderless mode (**vbNoBorder**). In **vbNoBorder** mode the standard group-box rendering is bypassed entirely --- neither the line nor the caption text is drawn --- and the frame becomes a plain rectangular region. [**Appearance**](#appearance) further selects between the 3-D and flat variant of the standard border.
+[**BorderStyle**](#borderstyle)选择标准带标题单线边框（**vbFixedSingleBorder**，默认）和无边框模式（**vbNoBorder**）。在**vbNoBorder**模式下，标准分组框渲染被完全绕过——既不绘制线条也不绘制标题文本——框架成为纯矩形区域。[**Appearance**](#appearance)进一步选择标准边框的3-D和平面变体。
 
-## OptionButton groups
+## OptionButton 分组
 
-Each frame defines its own option-button group. When the user selects an [**OptionButton**](/official/Reference/VB/OptionButton/) whose parent is this frame, every other option button on the same frame is automatically cleared, but option buttons on the form (or in sibling frames) are not affected. Use frames to present multiple independent radio-style choices on the same form:
+每个框架定义自己的选项按钮组。当用户选择父级为此框架的[**OptionButton**](/official/Reference/VB/OptionButton/)时，同一框架上的所有其他选项按钮会自动清除，但窗体上（或同级框架中）的选项按钮不受影响。使用框架在同一窗体上呈现多个独立的单选式选择：
 
 ```vb
 ' Two independent option-button groups on one form:
@@ -52,342 +63,342 @@ Each frame defines its own option-button group. When the user selects an [**Opti
 '   fraColour:  optRed, optGreen, optBlue
 ```
 
-## Transparency and opacity
+## 透明度和不透明度
 
-[**Opacity**](#opacity) and [**TransparencyKey**](#transparencykey) enable Windows' layered-window features. Setting [**Opacity**](#opacity) below 100 makes the frame and its contained controls translucent; setting [**TransparencyKey**](#transparencykey) to a colour makes pixels of that colour fully transparent on screen. Both features require Windows 8 or later when the frame contains child controls --- otherwise only the frame's own background is affected.
+[**Opacity**](#opacity)和[**TransparencyKey**](#transparencykey)启用了Windows的分层窗口功能。将[**Opacity**](#opacity)设置为100以下会使框架及其包含的控件半透明；将[**TransparencyKey**](#transparencykey)设置为某种颜色会使该颜色的像素在屏幕上完全透明。这两个功能在框架包含子控件时需要Windows 8或更高版本——否则仅影响框架自身的背景。
 
-## Properties
+## 属性
 
 ### Anchors
 
-The set of edges of the parent that the frame's corresponding edges follow when the parent resizes. Read-only --- assign individual `.Left`, `.Top`, `.Right`, `.Bottom` flags through the returned **Anchors** object.
+决定框架的哪些边随父级对应边调整的边集合。只读——通过返回的**Anchors**对象设置各个`.Left`、`.Top`、`.Right`、`.Bottom`标志。
 
 ### Appearance
 
-Determines how the frame's border is drawn by the OS. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+决定操作系统绘制框架边框的方式。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。
 
 ### BackColor
 
-The background colour of the frame's client area, as an **OLE_COLOR**. Defaults to the system 3-D face colour. Painted behind contained controls.
+框架客户区的背景色，作为**OLE_COLOR**。默认为系统3D表面颜色。绘制在包含控件的后面。
 
 ### BorderStyle
 
-The style of the frame's border. A member of [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbFixedSingleBorder** (1, default --- the captioned group-box line) or **vbNoBorder** (0). With **vbNoBorder** the caption is also suppressed and the frame becomes a borderless background panel.
+框架边框的样式。[**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants)的成员：**vbFixedSingleBorder**（1，默认——带标题的分组框线条）或**vbNoBorder**（0）。使用**vbNoBorder**时标题也被抑制，框架成为无边框背景面板。
 
 ### Caption
 
-The text rendered along the top edge of the frame's border. **String**. **Default property.**
+沿框架边框顶部边缘渲染的文本。**String**。**默认属性。**
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
-An ampersand marks the next character as a mnemonic; `&&` produces a literal ampersand. The string is read directly from the underlying window --- assigning to **Caption** updates the rendering immediately.
+和号将下一个字符标记为助记符；`&&`产生字面和号。字符串直接从底层窗口读取——赋值给**Caption**会立即更新渲染。
 
 ### ClipControls
 
-Whether child controls are clipped out of the frame's drawing region during paint. **Boolean**, default **True**. Changing **ClipControls** at run time recreates the underlying window.
+在绘制期间子控件是否被裁剪出框架的绘制区域。**Boolean**，默认**True**。在运行时更改**ClipControls**会重新创建底层窗口。
 
 ### Container
 
-The control that hosts this frame --- typically the form, or another frame. Read with **Get**, change with **Set**. Setting **Container** re-parents the frame to a different container at run time.
+承载此框架的控件——通常是窗体或其他框架。用**Get**读取，用**Set**更改。设置**Container**在运行时将框架重新设置为其他容器的子级。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a frame. Always **vbFrame**.
+标识此控件为框架的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbFrame**。
 
 ### Dock
 
-Where the frame is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked frames ignore [**Anchors**](#anchors).
+框架在其容器中的停靠位置。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants)的成员：**vbDockNone**（默认）、**vbDockLeft**、**vbDockTop**、**vbDockRight**、**vbDockBottom**或**vbDockFill**。停靠的框架忽略[**Anchors**](#anchors)。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the frame is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+在框架被拖放时用作鼠标光标的**StdPicture**（参见[**Drag**](#drag)和[**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the frame should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+框架是否应在用户按住鼠标时自行拖动。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants)的成员：**vbManual**（0，默认——从代码调用[**Drag**](#drag)）或**vbAutomatic**（1）。
 
 ### Enabled
 
-Determines whether the frame and its contained controls accept user input. A disabled frame dims its contents and ignores mouse and keyboard interaction. **Boolean**, default **True**. Changing **Enabled** triggers an immediate repaint so the border reflects the new state.
+决定框架及其包含的控件是否接受用户输入。禁用的框架会使内容变暗，忽略鼠标和键盘交互。**Boolean**，默认**True**。更改**Enabled**会触发立即重绘以使边框反映新状态。
 
 ### Font
 
-The **StdFont** used to render [**Caption**](#caption). The convenience properties **FontBold**, **FontItalic**, **FontName**, **FontSize**, **FontStrikethru**, and **FontUnderline** read or write the corresponding members of this object.
+用于渲染[**Caption**](#caption)的**StdFont**。便捷属性**FontBold**、**FontItalic**、**FontName**、**FontSize**、**FontStrikethru**和**FontUnderline**读写此对象的对应成员。
 
 ### FontBold
 
-Shortcut for `Font.Bold`. **Boolean**.
+`Font.Bold`的快捷方式。**Boolean**。
 
 ### FontItalic
 
-Shortcut for `Font.Italic`. **Boolean**.
+`Font.Italic`的快捷方式。**Boolean**。
 
 ### FontName
 
-Shortcut for `Font.Name`. **String**.
+`Font.Name`的快捷方式。**String**。
 
 ### FontSize
 
-Shortcut for `Font.Size`. **Single**, in points.
+`Font.Size`的快捷方式。**Single**，以磅为单位。
 
 ### FontStrikethru
 
-Shortcut for `Font.Strikethrough`. **Boolean**.
+`Font.Strikethrough`的快捷方式。**Boolean**。
 
 ### FontUnderline
 
-Shortcut for `Font.Underline`. **Boolean**.
+`Font.Underline`的快捷方式。**Boolean**。
 
 ### ForeColor
 
-The colour used to draw [**Caption**](#caption), as an **OLE_COLOR**. Defaults to the system button-text colour.
+用于绘制[**Caption**](#caption)的颜色，作为**OLE_COLOR**。默认为系统按钮文本颜色。
 
 ### Height
 
-The frame's height, in twips by default (or in the container's **ScaleMode** units). **Double**.
+框架的高度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Double**。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user invokes context help while the frame has the active control underneath it.
+标识应用程序帮助文件中主题的**Long**，当用户在框架下方有活动控件时调用上下文帮助时检索。
 
 ### hWnd
 
-The Win32 window handle for the frame, as a **LongPtr**. Read-only. Useful for passing to API functions.
+框架的Win32窗口句柄，作为**LongPtr**。只读。适用于传递给API函数。
 
 ### Index
 
-When the frame is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当框架是控件数组的一部分时，此实例在数组中的**Long**零基索引。在非数组实例上读取**Index**会引发运行时错误343（*对象不是数组*）。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the frame. **Double**.
+从容器左边缘到框架左边缘的水平距离。**Double**。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the frame.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针在框架上方时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the frame (and not over a child control with its own setting). A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+指针在框架上方（且不在有自身设置的子控件上方）时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### MultiFramePosition
 
-When the frame is hosted inside a [**MultiFrame**](/official/Reference/VB/MultiFrame/) layout container, the **Long** zero-based position of this frame in the **MultiFrame**'s ordered sequence. Default `-1` (no position assigned). Outside of a **MultiFrame** the value is ignored.
+当框架承载在[**MultiFrame**](/official/Reference/VB/MultiFrame/)布局容器内时，此框架在**MultiFrame**有序序列中的**Long**零基位置。默认`-1`（未分配位置）。在**MultiFrame**外部该值被忽略。
 
 ### MultiFrameSize
 
-When the frame is hosted inside a [**MultiFrame**](/official/Reference/VB/MultiFrame/), its size as a percentage of the **MultiFrame**'s usable extent (`0` for "share evenly"). **Double**. Outside of a **MultiFrame** the value is ignored.
+当框架承载在[**MultiFrame**](/official/Reference/VB/MultiFrame/)内时，其尺寸作为**MultiFrame**可用范围的百分比（`0`表示"均匀共享"）。**Double**。在**MultiFrame**外部该值被忽略。
 
 ### Name
 
-The unique design-time name of the frame on its parent form. Read-only at run time.
+框架在其父窗体上的唯一设计时名称。运行时只读。
 
 ### OLEDropMode
 
-How the frame responds to OLE drops. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a Frame; assigning **vbOLEDropAutomatic** raises run-time error 5.
+框架如何响应OLE放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants)的受限成员：**vbOLEDropNone**或**vbOLEDropManual**。Frame不支持自动放置模式；赋值**vbOLEDropAutomatic**会引发运行时错误5。
 
 ### Opacity
 
-The frame's opacity as a percentage (0--100, default 100). Values outside the range are clamped on **Initialize**. Values below 100 require Windows 8 or later when the frame has child controls; out-of-process child windows are not affected.
+框架的不透明度百分比（0--100，默认100）。超出范围的值在**Initialize**时被钳制。低于100的值在框架有子控件时需要Windows 8或更高版本；进程外子窗口不受影响。
 
 ### OriginalMultiFramePosition
 
-The frame's [**MultiFramePosition**](#multiframeposition) at the moment the [**MultiFrame**](/official/Reference/VB/MultiFrame/) was last reflowed. **Long**, default `-1`. Used internally by the **MultiFrame** layout engine to compact positions after a frame is moved; not normally written from user code.
+[**MultiFrame**](/official/Reference/VB/MultiFrame/)上次重排时框架的[**MultiFramePosition**](#multiframeposition)。**Long**，默认`-1`。由**MultiFrame**布局引擎在框架移动后用于压缩位置；通常不从用户代码写入。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the frame. Read-only. Distinct from [**Container**](#container), which returns the immediate parent (form *or* enclosing frame).
+对最终包含框架的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）的引用。只读。与[**Container**](#container)不同，后者返回直接父级（窗体*或*封闭框架）。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
 ### TabIndex
 
-The position of the frame in the form's TAB-key navigation order. **Long**. The frame itself does not receive focus, but **TabIndex** controls where the frame's mnemonic forwards focus to: **Alt+** the marked character moves to the next focusable control whose **TabIndex** is greater than this one.
+框架在窗体TAB键导航顺序中的位置。**Long**。框架本身不接收焦点，但**TabIndex**控制框架的助记符将焦点转发到哪里：**Alt+**标记字符移到**TabIndex**大于此值的下一个可聚焦控件。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the frame. Ignored by the framework.
+应用程序可用于将自定义数据与框架关联的自由格式**String**。框架忽略此属性。
 
 ### ToolTipText
 
-A multi-line **String** displayed as a tooltip when the user hovers over the frame's border or background.
+用户悬停在框架边框或背景上方时作为工具提示显示的多行**String**。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the frame. **Double**.
+从容器顶部到框架顶部的垂直距离。**Double**。
 
 ### TransparencyKey
 
-An **OLE_COLOR** that, when set, becomes fully transparent in the rendered frame --- clicks pass through to whatever is underneath, and the corresponding pixels do not paint. Default `-1` disables the effect. Requires Windows 8 or later when the frame has child controls.
+设置后成为渲染框架中完全透明的**OLE_COLOR**——点击穿过到下面内容，相应像素不绘制。默认`-1`禁用效果。框架有子控件时需要Windows 8或更高版本。
 
 ### Visible
 
-Whether the frame and its contained controls are shown. **Boolean**, default **True**.
+框架及其包含的控件是否显示。**Boolean**，默认**True**。
 
 ### VisualStyles
 
-Whether the OS theme engine should be used when drawing the frame border and caption. **Boolean**, default **True**.
+绘制框架边框和标题时是否使用操作系统主题引擎。**Boolean**，默认**True**。
 
 ### WhatsThisHelpID
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC. See [**ShowWhatsThis**](#showwhatsthis).
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。参见[**ShowWhatsThis**](#showwhatsthis)。
 :::
 
 ### Width
 
-The frame's width. **Double**.
+框架的宽度。**Double**。
 
-## Methods
+## 方法
 
 ### Drag
 
-Begins, completes, or cancels a manual drag-and-drop operation. Typically called from a [**MouseDown**](#mousedown) handler when [**DragMode**](#dragmode) is **vbManual**.
+开始、完成或取消手动拖放操作。通常在[**DragMode**](#dragmode)为**vbManual**时从[**MouseDown**](#mousedown)处理程序调用。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants)的成员：**vbCancel**（0）、**vbBeginDrag**（1，默认）或**vbEndDrag**（2）。
 
 ### Move
 
-Repositions and optionally resizes the frame in a single call. Contained controls are repositioned with it.
+在单次调用中重新定位并可选地调整框架的尺寸。包含的控件随其重新定位。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the frame, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject**.
+从框架发起OLE拖动操作，引发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### Refresh
 
-Forces an immediate repaint of the frame and its border.
+强制立即重绘框架及其边框。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### SetFocus
 
-Attempts to move the input focus to the frame. Because a frame is not focusable, this call has no observable effect on which control holds the focus, but it is provided for parity with the rest of the control API and for compatibility with code that calls **SetFocus** generically.
+尝试将输入焦点移到框架。由于框架不可聚焦，此调用对哪个控件持有焦点没有可见效果，但提供它是为了与控件API其余部分保持一致，以及与通用调用**SetFocus**的代码兼容。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### ShowWhatsThis
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### ZOrder
 
-Brings the frame to the front or back of its sibling stack within the container.
+将框架带到容器内同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront**（0，默认）或**vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Click
 
-Raised when the user single-clicks the frame's client area or border (i.e. not over any contained control). **Default event.**
+当用户单击框架的客户区或边框（即不在任何包含的控件上方）时引发。**默认事件。**
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks the frame's client area or border.
+当用户双击框架的客户区或边框时引发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over this frame.
+当手动拖动操作在此框架上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the frame while a manual drag operation is in progress over it.
+当手动拖动操作在框架上方进行时在框架上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### Initialize
 
-Raised once, after the frame's underlying window has been created but before any contained controls are populated. Useful for setting initial values that the frame's children will read on their own initialisation.
+在框架的底层窗口已创建但尚未填充任何包含的控件后引发一次。适用于设置框架子级在其自身初始化时将读取的初始值。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the frame's client area or border.
+当用户在框架的客户区或边框上方按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the frame's client area or border.
+当光标在框架的客户区或边框上方移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the frame's client area or border.
+当用户在框架的客户区或边框上方释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseWheel
 
-Raised when the mouse wheel turns over the frame. New in twinBASIC.
+当鼠标滚轮在框架上方转动时引发。twinBASIC新增。
 
-Syntax: *object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
+语法：*object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+当OLE拖动操作完成时在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the frame when the user drops data on it.
+当用户在框架上放置数据时在框架上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the frame while an OLE drag passes over it.
+当OLE拖动经过框架时在框架上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+在拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标请求已注册但尚未提供的格式的数据时在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects.
+在OLE拖动开始时在源控件上引发，以便应用程序填充**DataObject**并选择允许的效果。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )

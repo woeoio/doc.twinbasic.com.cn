@@ -1,23 +1,32 @@
 ---
-title: Width
+title: "Width #"
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/Width
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9e33ae5e-e03a-4310-a474-527f247ec2c9'
+  PropagateID: '9e33ae5e-e03a-4310-a474-527f247ec2c9'
+  ReservedCode1: 'e98028ab-c339-457e-a1b5-c78ac8042eda'
+  ReservedCode2: 'e98028ab-c339-457e-a1b5-c78ac8042eda'
 ---
+
 # Width #
 
-Assigns an output line width to a file opened by the [**Open**](/official/Reference/Core/Open) statement.
+为以[**Open**](/official/Reference/Core/Open)语句打开的文件分配输出行宽。
 
-Syntax: **Width #** *FileNumber* **,** *Width*
+语法：**Width #** *FileNumber* **,** *Width*
 
 *FileNumber*
-: *required* The file number used to open the file.
+: *必需* 用于打开文件的文件号。
 
 *Width*
-: *required* A numeric expression in the range 0--255, inclusive, indicating how many characters appear on a line before a new line is started. If *Width* equals `0`, there is no limit to the length of a line. The default is `0`.
+: *必需* 0--255范围内的数值表达式（包含边界值），指示每行显示多少字符后换行。如果*Width*等于`0`，则行长度没有限制。默认为`0`。
 
-### Example
+### 示例
 
-This example sets the output line width to 5 --- five characters are written per line before the channel wraps.
+本示例将输出行宽设置为5——每行写入5个字符后通道换行。
 
 ```vb
 Dim I As Long
@@ -29,7 +38,7 @@ Next I
 Close #1                             ' Close file.
 ```
 
-### See Also
+### 另请参阅
 
-- [Open](/official/Reference/Core/Open) statement
-- [Print #](/official/Reference/Core/Print) statement
+- [Open](/official/Reference/Core/Open)语句
+- [Print #](/official/Reference/Core/Print)语句

@@ -2,33 +2,42 @@
 title: Left
 parent: Strings Module
 permalink: /tB/Modules/Strings/Left
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cc727448-68d8-4de0-8723-9fa0fc290a75'
+  PropagateID: 'cc727448-68d8-4de0-8723-9fa0fc290a75'
+  ReservedCode1: 'b974377f-f46f-4324-8170-1796cfc23cae'
+  ReservedCode2: 'b974377f-f46f-4324-8170-1796cfc23cae'
 ---
+
 # Left, LeftB
 
-Returns a **String** containing a specified number of characters from the left side of a string.
+返回一个**String**，包含从字符串左侧开始的指定数量的字符。
 
-Syntax:
+语法：
 
 - **Left$(** *string*, *length* **)**, **Left(** *string*, *length* **)**
 - **LeftB$(** *string*, *length* **)**, **LeftB(** *string*, *length* **)**
 
 *string*
-: *required* String expression from which the leftmost characters are returned. If *string* contains **Null**, **Null** is returned.
+: *必需* 从中返回最左侧字符的字符串表达式。如果*string*包含**Null**，则返回**Null**。
 
 *length*
-: *required* **Variant** (**Long**). Numeric expression indicating how many characters to return. If 0, a zero-length string (`""`) is returned. If greater than or equal to the number of characters in *string*, the entire string is returned.
+: *必需* **Variant**（**Long**）。数值表达式，指示要返回的字符数。如果为0，则返回零长度字符串（`""`）。如果大于或等于*string*中的字符数，则返回整个字符串。
 
-The `$`-suffixed forms return a **String**; the unsuffixed forms return a **Variant** (**String**).
+带`$`后缀的形式返回**String**；不带后缀的形式返回**Variant**（**String**）。
 
-To determine the number of characters in *string*, use the [**Len**](/official/Reference/VBA/Strings/Len) function.
+要确定*string*中的字符数，请使用[**Len**](/official/Reference/VBA/Strings/Len)函数。
 
 ::: info
-Use the **LeftB** function with byte data contained in a string. Instead of specifying the number of characters to return, *length* specifies the number of bytes.
+使用**LeftB**函数处理字符串中包含的字节数据。*length*指定的是字节数而非字符数。
 :::
 
-### Example
+### 示例
 
-This example uses the **Left** function to return a specified number of characters from the left side of a string.
+本示例使用**Left**函数从字符串左侧返回指定数量的字符。
 
 ```vb
 Dim AnyString, MyStr
@@ -38,6 +47,6 @@ MyStr = Left(AnyString, 7)   ' Returns "Hello W".
 MyStr = Left(AnyString, 20)  ' Returns "Hello World".
 ```
 
-### See Also
+### 另请参阅
 
-- [Len](/official/Reference/VBA/Strings/Len), [Mid](/official/Reference/VBA/Strings/Mid), [Right](/official/Reference/VBA/Strings/Right) functions
+- [Len](/official/Reference/VBA/Strings/Len)、[Mid](/official/Reference/VBA/Strings/Mid)、[Right](/official/Reference/VBA/Strings/Right)函数

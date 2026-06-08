@@ -1,11 +1,19 @@
----
+﻿---
 title: WaynesLabel
 parent: CustomControls Package
 permalink: /tB/Packages/CustomControls/WaynesLabel
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '49cc13c4-53e4-4eec-bb84-acda94b77559'
+  PropagateID: '49cc13c4-53e4-4eec-bb84-acda94b77559'
+  ReservedCode1: '1a760e4d-0f94-4813-96e0-17a1e46146bd'
+  ReservedCode2: '1a760e4d-0f94-4813-96e0-17a1e46146bd'
 ---
 
-# WaynesLabel class
-A static text-display control. Paints a [**Caption**](#caption) string inside its rectangle using the configured [**TextRendering**](#textrendering), on top of a [**BackgroundFill**](#backgroundfill). The label has no interactive states --- appearance is the same whether the mouse is hovering over it or not.
+# WaynesLabel 类
+静态文本显示控件。使用配置的 [**TextRendering**](#textrendering) 在 [**BackgroundFill**](#backgroundfill) 之上于其矩形内绘制 [**Caption**](#caption) 字符串。标签没有交互状态——无论鼠标是否悬停，外观都相同。
 
 ```vb
 Private Sub Form_Load()
@@ -20,7 +28,7 @@ Private Sub Form_Load()
 End Sub
 ```
 
-Because [**BackgroundFill**](#backgroundfill) and [**TextRendering**](#textrendering) accept the same [**Fill**](/official/Reference/CustomControls/Styles/Fill) gradients and the same [**Outlines**](/official/Reference/CustomControls/Styles/TextRendering#outlines) array as any other control, a label can serve as a banner, header strip, or status panel without dropping a heavier control onto the form. Setting [**TextRendering.OverflowMode**](/official/Reference/CustomControls/Styles/TextRendering#overflowmode) to **tbShrinkToFit** keeps a dynamically-set caption visible even when it is wider than the label:
+由于 [**BackgroundFill**](#backgroundfill) 和 [**TextRendering**](#textrendering) 接受与其他控件相同的 [**Fill**](/official/Reference/CustomControls/Styles/Fill) 渐变和 [**Outlines**](/official/Reference/CustomControls/Styles/TextRendering#outlines) 数组，标签可以作为横幅、标题条或状态面板，而无需在窗体上放置更重的控件。将 [**TextRendering.OverflowMode**](/official/Reference/CustomControls/Styles/TextRendering#overflowmode) 设为 **tbShrinkToFit** 可在动态设置的标题宽于标签时仍保持可见：
 
 ```vb
 With Label1.TextRendering
@@ -35,50 +43,50 @@ Label1.BackgroundFill.SetSimplePattern &H014C99, &H99CCFF, _
         Pattern:=tbGradientNorthWestToSouthEast
 ```
 
-## Properties
+## 属性
 
 ### Anchors
 
-Which sides of the control are attached to its container during resize. [**Anchors**](/official/Reference/CustomControls/Styles/Anchors). Inherited.
+调整大小时控件的哪些边附着到其容器。[**Anchors**](/official/Reference/CustomControls/Styles/Anchors)。继承。
 
 ### BackgroundFill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that paints the label's entire client area.
+绘制标签整个客户区域的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。
 
 ### Caption
 
-The text displayed on the label. **String**. Default: `"Label"`.
+标签上显示的文本。**String**。默认：`"Label"`。
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
 ### Dock
 
-How the control is docked inside its container. A member of [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode). Inherited.
+控件在其容器内的停靠方式。[**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) 的成员。继承。
 
 ### Height
 
-The control's height in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件的高度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Left
 
-The horizontal offset of the control's left edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件左边缘距其容器的水平偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Name
 
-The unique design-time name of the control on its parent form. **String**. Inherited.
+控件在其父窗体上的唯一设计时名称。**String**。继承。
 
 ### TextRendering
 
-The [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) that controls how the [**Caption**](#caption) is drawn --- font, padding, fill, outlines, alignment, and overflow.
+控制 [**Caption**](#caption) 绘制方式的 [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering)——字体、内边距、填充、轮廓、对齐和溢出。
 
 ### Top
 
-The vertical offset of the control's top edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件上边缘距其容器的垂直偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Visible
 
-Whether the control is currently displayed. **Boolean**. Inherited. Default: **True**.
+控件当前是否显示。**Boolean**。继承。默认：**True**。
 
 ### Width
 
-The control's width in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件的宽度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。

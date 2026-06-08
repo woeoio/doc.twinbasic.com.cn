@@ -1,12 +1,20 @@
----
+﻿---
 title: ToolWindow
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/ToolWindow
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c08f44d9-140d-4d36-9392-dbf2218a7606'
+  PropagateID: 'c08f44d9-140d-4d36-9392-dbf2218a7606'
+  ReservedCode1: '08a3ea60-5382-4fa3-badd-33724804ab34'
+  ReservedCode2: '08a3ea60-5382-4fa3-badd-33724804ab34'
 ---
 
-# ToolWindow class
+# ToolWindow 类
 
-A dockable / floating IDE pane whose contents are rendered as HTML. Created by [**ToolWindows.Add**](/official/Reference/tbIDE/ToolWindows#add); the addin populates its DOM through the [**RootDomElement**](#rootdomelement) --- an [**HtmlElement**](/official/Reference/tbIDE/HtmlElement) at the root of the pane --- and shows the pane by setting [**Visible**](#visible) = **True** (tool windows start out invisible).
+一个可停靠/浮动的 IDE 窗格，其内容以 HTML 渲染。由 [**ToolWindows.Add**](/official/Reference/tbIDE/ToolWindows#add) 创建；插件通过 [**RootDomElement**](#rootdomelement)——窗格根部的 [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)——填充其 DOM，并通过设置 [**Visible**](#visible) = **True** 显示窗格（工具窗口初始不可见）。
 
 ```vb
 Private WithEvents myWindow As ToolWindow
@@ -27,85 +35,85 @@ Private Sub Button1_OnClick()
 End Sub
 ```
 
-A `WithEvents` reference receives [**OnClose**](#onclose) when the user dismisses the pane --- typically the addin uses that event to release any per-window state (timers, references to DOM elements …).
+`WithEvents` 引用在用户关闭窗格时接收 [**OnClose**](#onclose)——通常插件使用该事件释放每个窗口的状态（计时器、DOM 元素引用等）。
 
 
-## Tool-window default member --- jQuery-style child lookup
+## 工具窗口默认成员——jQuery 风格子元素查找
 
-[**RootDomElement**](#rootdomelement) is the **DefaultMember** of the **ToolWindow** interface --- so `myToolWindow.(...)` is equivalent to `myToolWindow.RootDomElement.Properties.(...)`. Because [**HtmlElementProperties**](/official/Reference/tbIDE/HtmlElementProperties) is `[COMExtensible(True)]`, a string passed in parenthesis-syntax is resolved against the DOM at run time. The IDE treats CSS-style selectors specially, so:
+[**RootDomElement**](#rootdomelement) 是 **ToolWindow** 接口的 **DefaultMember**——因此 `myToolWindow.(...)` 等同于 `myToolWindow.RootDomElement.Properties.(...)`。由于 [**HtmlElementProperties**](/official/Reference/tbIDE/HtmlElementProperties) 是 `[COMExtensible(True)]`，在括号语法中传入的字符串会在运行时根据 DOM 解析。IDE 对 CSS 样式选择器做特殊处理，因此：
 
 ```vb
-' Find the descendant element whose id is "dataEntry" and read its .Value:
+' 查找 id 为 "dataEntry" 的后代元素并读取其 .Value：
 Dim entered As String = myToolWindow("#dataEntry").Value
 ```
 
-Useful for accessing a single child element by ID without holding a separate `As HtmlElement` reference for it.
+适用于在不持有单独的 `As HtmlElement` 引用的情况下按 ID 访问单个子元素。
 
-## Suggested initial size
+## 建议初始大小
 
-[**RootDomElement**](#rootdomelement) accepts `.Properties.suggestedWidth` and `.Properties.suggestedHeight` (CSS-length strings like `"400px"`). These are *one-shot* hints --- used the **first time** the tool window opens as a floating pane; once the user resizes (or after position persistence kicks in through [**ToolWindows.Add**](/official/Reference/tbIDE/ToolWindows#add)'s persistence ID), the IDE remembers the user's chosen size and the suggested values are ignored.
+[**RootDomElement**](#rootdomelement) 接受 `.Properties.suggestedWidth` 和 `.Properties.suggestedHeight`（CSS 长度字符串，如 `"400px"`）。这些是*一次性*提示——仅在工具窗口**首次**作为浮动窗格打开时使用；一旦用户调整大小（或通过 [**ToolWindows.Add**](/official/Reference/tbIDE/ToolWindows#add) 的持久化 ID 启用位置持久化后），IDE 会记住用户选择的大小，建议值被忽略。
 
 ::: info
-Set `suggestedWidth` / `suggestedHeight` before the first time the pane becomes visible. If the pane has previously been opened by this user (and a persistence ID was supplied to [**ToolWindows.Add**](/official/Reference/tbIDE/ToolWindows#add)), the IDE-remembered size wins.
+在窗格首次变为可见之前设置 `suggestedWidth` / `suggestedHeight`。如果此用户之前已打开过该窗格（且向 [**ToolWindows.Add**](/official/Reference/tbIDE/ToolWindows#add) 提供了持久化 ID），IDE 记住的大小优先。
 :::
 
-## Properties
+## 属性
 
 ### Name
 
-The internal name supplied to [**ToolWindows.Add**](/official/Reference/tbIDE/ToolWindows#add). **String**, read-only.
+提供给 [**ToolWindows.Add**](/official/Reference/tbIDE/ToolWindows#add) 的内部名称。**String**，只读。
 
 ### Resizable
 
-Whether the user is allowed to resize the pane. **Boolean**, read / write. Default **True**.
+是否允许用户调整窗格大小。**Boolean**，可读/写。默认 **True**。
 
-Syntax: *toolWindow*.**Resizable** [ = *value* ]
+语法：*toolWindow*.**Resizable** [ = *value* ]
 
 ### RootDomElement
 
-The root [**HtmlElement**](/official/Reference/tbIDE/HtmlElement) of the pane's DOM. **DefaultMember** --- see [Tool-window default member](#tool-window-default-member--jquery-style-child-lookup) above.
+窗格 DOM 的根 [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)。**DefaultMember**——参见上文的[工具窗口默认成员](#工具窗口默认成员--jquery-风格子元素查找)。
 
-Syntax: *toolWindow*.**RootDomElement** **As** [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)
+语法：*toolWindow*.**RootDomElement** **As** [**HtmlElement**](/official/Reference/tbIDE/HtmlElement)
 
 ### Title
 
-The pane's title-bar text. **String**, read / write. Update at any time to reflect changing state (selection counts, dirty markers, …).
+窗格标题栏文本。**String**，可读/写。随时更新以反映变化的状态（选择计数、脏标记等）。
 
-Syntax: *toolWindow*.**Title** [ = *value* ]
+语法：*toolWindow*.**Title** [ = *value* ]
 
 ### Visible
 
-Whether the pane is shown. **Boolean**, read / write. Default **False** --- newly-created tool windows are invisible until the addin sets this to **True**.
+窗格是否显示。**Boolean**，可读/写。默认 **False**——新创建的工具窗口在插件将此设为 **True** 之前不可见。
 
-Syntax: *toolWindow*.**Visible** [ = *value* ]
+语法：*toolWindow*.**Visible** [ = *value* ]
 
-## Methods
+## 方法
 
 ### ApplyCss
 
-Injects a `<style>` block into the pane's DOM that applies to every element inside the pane. Useful for global CSS --- class selectors, custom-element styling, hover effects --- that would be awkward to set element by element through [**HtmlElementProperties**](/official/Reference/tbIDE/HtmlElementProperties).
+向窗格 DOM 注入一个 `<style>` 块，应用于窗格内的每个元素。适用于全局 CSS——类选择器、自定义元素样式、悬停效果——这些通过 [**HtmlElementProperties**](/official/Reference/tbIDE/HtmlElementProperties) 逐元素设置会比较不便。
 
-Syntax: *toolWindow*.**ApplyCss** *styles*
+语法：*toolWindow*.**ApplyCss** *styles*
 
 *styles*
-: *required* The CSS text. **String**.
+: *必需* CSS 文本。**String**。
 
 ```vb
-' Load CSS from an embedded resource:
+' 从嵌入资源加载 CSS：
 Dim css As String = StrConv(LoadResData("styles.css", "STYLESHEETS"), VbStrConv.vbFromUTF8)
 myToolWindow.ApplyCss css
 ```
 
 ### Close
 
-Closes the pane. The matching [**OnClose**](#onclose) event fires before the call returns.
+关闭窗格。匹配的 [**OnClose**](#onclose) 事件在调用返回前触发。
 
-Syntax: *toolWindow*.**Close**
+语法：*toolWindow*.**Close**
 
-## Events
+## 事件
 
 ### OnClose
 
-Fires when the pane is closed --- either by the user dismissing it or by the addin calling [**Close**](#close). Use this to release any per-window state (timers, references to DOM elements, …).
+当窗格被关闭时触发——无论是用户关闭还是插件调用 [**Close**](#close)。用于释放任何每窗口状态（计时器、DOM 元素引用等）。
 
-Syntax: *toolWindow*_**OnClose**()
+语法：*toolWindow*_**OnClose**()

@@ -1,5 +1,5 @@
-﻿---
-title: Enhanced Pointer Functionality
+---
+title: "增强的指针功能"
 parent: Language Syntax
 nav_order: 10
 permalink: /Features/Language/Pointers
@@ -7,25 +7,25 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '54ec66d5-f385-45c0-9347-5aa600b1a7f4'
-  PropagateID: '54ec66d5-f385-45c0-9347-5aa600b1a7f4'
-  ReservedCode1: '5ca639b2-3e1d-4a3d-8ed2-78af510d659c'
-  ReservedCode2: '5ca639b2-3e1d-4a3d-8ed2-78af510d659c'
+  ProduceID: '28581190-dd0e-4ff6-a8ca-8dc21bf33912'
+  PropagateID: '28581190-dd0e-4ff6-a8ca-8dc21bf33912'
+  ReservedCode1: '9c1ad9d3-f9a9-4bc6-b396-c32c2a95b1ba'
+  ReservedCode2: '9c1ad9d3-f9a9-4bc6-b396-c32c2a95b1ba'
 ---
 
-# Enhanced Pointer Functionality
+# 增强的指针功能
 
-twinBASIC provides several enhancements for working with pointers.
+twinBASIC 为指针操作提供了多项增强。
 
 ## ByVal Nothing
 
-While not strictly new syntax, twinBASIC also adds support for `ByVal Nothing`, to override a `ByRef <interface>` argument and pass a null pointer there.
+虽然不是严格意义上的新语法，twinBASIC 还添加了对 `ByVal Nothing` 的支持，用于覆盖 `ByRef <interface>` 参数并传递空指针。
 
 ## ByVal vbNullPtr
 
-Allows passing null pointers to UDT members of APIs/interfaces. The equivalent behavior in VBx is to declare them `As Any` and then pass `ByVal 0` at call sites.
+允许向 API/接口的 UDT 成员传递空指针。VBx 中的等价行为是将它们声明为 `As Any` 然后在调用点传递 `ByVal 0`。
 
-### Example
+### 示例
 
 ```vb
 Type Foo
@@ -38,14 +38,14 @@ Private Sub CallMyFunc()
 End Sub
 ```
 
-## Substitute Pointers for UDTs
+## 用指针替代 UDT
 
-More generally, in both APIs and local methods, any argument taking a user-defined type can instead be passed a `ByVal LongPtr`, with the new special constant `vbNullPtr` used for a null pointer:
+更一般地，在 API 和本地方法中，任何接受用户定义类型的参数都可以改为传递 `ByVal LongPtr`，并使用新的特殊常量 `vbNullPtr` 表示空指针：
 
 ```vb
 Public Declare PtrSafe Function CreateFileW Lib "kernel32" (ByVal lpFileName As LongPtr, ByVal dwDesiredAccess As Long, ByVal dwShareMode As Long, lpSecurityAttributes As SECURITY_ATTRIBUTES, ByVal dwCreationDisposition As Long, ByVal dwFlagsAndAttributes As Long, ByVal hTemplateFile As LongPtr) As LongPtr
 
-hFile = CreateFileW(StrPtr("name"), 0, 0, ByVal vbNullPtr, '...)
+hFile = CreateFileW(StrPtr("name"), 0, 0, ByVal vbNullPtr, '...')
 '---or---
 Dim pSec As SECURITY_ATTRIBUTES
 Dim lPtr As LongPtr = VarPtr(pSec)
@@ -54,11 +54,11 @@ hFile = CreateFileW(StrPtr("name"), 0, 0, ByVal lPtr, '...)
 
 ## CType(Of ``<type>``)
 
-The `CType(Of <type>)` operator specifies an explicit intent to cast one type to another. This can be used for casting `LongPtr` (or `Long` on 32bit/`LongLong` on 64bit) to a custom user-defined type, with or without making a copy of it, depending on the usage. This allows not just for casting directly without a `CopyMemory` call, but also, setting the members of a UDT represented only by a pointer, without copying memory back and forth.
+`CType(Of <type>)` 运算符指定将一个类型显式转换为另一个类型的意图。这可以用于将 `LongPtr`（或 32 位上的 `Long`/64 位上的 `LongLong`）转换为自定义用户定义类型，是否制作副本取决于用法。这不仅允许直接转换而无需 `CopyMemory` 调用，还可以设置仅由指针表示的 UDT 的成员，无需来回复制内存。
 
-### Example
+### 示例
 
-Consider the following UDTs:
+考虑以下 UDT：
 
 ```vb
 Private Type foo
@@ -74,7 +74,7 @@ Private Type fizz
 End Type
 ```
 
-The following code examples work to manipulate the pointers:
+以下代码示例用于操作指针：
 
 ```vb
 Sub call1()
@@ -91,7 +91,7 @@ Sub test1(ByVal ptr As LongPtr)
 End Sub
 ```
 
-This will print `1  2`.
+这将打印 `1  2`。
 
 ```vb
 Sub call2()
@@ -109,7 +109,7 @@ Sub test2(b As bar)
 End Sub
 ```
 
-This will print `3  4`.
+这将打印 `3  4`。
 
 ```vb
 Sub call3()
@@ -125,19 +125,17 @@ Sub test3(b As bar)
 End Sub
 ```
 
-This will print `4`. Free standing use and nesting is also allowed; the above will print `4`. While the examples here are local code only, this is particularly useful for APIs, where you're forced to work with pointers extensively.
+这将打印 `4`。也允许独立使用和嵌套。虽然这里的示例仅使用本地代码，但这对 API 特别有用，因为你被迫大量使用指针。
 
-## Len/LenB(Of ``<type>``) Support
+## Len/LenB(Of ``<type>``) 支持
 
-The classic `Len` and `LenB` functions can now be used to directly get the length/size of a type, both intrinsic and user-defined, without needing have declared a variable of that type. For instance, to know the pointer size, you can use `LenB(Of LongPtr)`.
+经典的 `Len` 和 `LenB` 函数现在可以直接获取类型（包括内置类型和用户定义类型）的长度/大小，无需声明该类型的变量。例如，要知道指针大小，可以使用 `LenB(Of LongPtr)`。
 
-## Improvements to AddressOf
+## AddressOf 的改进
 
-`AddressOf` can be now be used on class/form/usercontrol members, including from outside the class by specifying the instance. Also, no need for `FARPROC`-type functions, you can use it like `Ptr = AddressOf Func`. So if you have class `CFoo` with member function `bar`, the following is valid:
+`AddressOf` 现在可以用于类/窗体/UserControl 的成员，包括通过指定实例从类外部使用。也不需要 `FARPROC` 类型的函数，你可以像 `Ptr = AddressOf Func` 这样使用。因此如果你有类 `CFoo` 和成员函数 `bar`，以下写法是有效的：
 
 ```vb
 Dim foo1 As New CFoo
 Dim lpfn As LongPtr = AddressOf foo1.bar
 ```
-
-> AI生成

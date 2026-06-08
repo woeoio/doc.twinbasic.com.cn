@@ -1,11 +1,20 @@
 ---
 title: ServiceState
-parent: WinServicesLib Package
+parent: "WinServicesLib 包"
 permalink: /tB/Packages/WinServicesLib/ServiceState
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4b649659-5bf5-44a8-a413-17ec7424a379'
+  PropagateID: '4b649659-5bf5-44a8-a413-17ec7424a379'
+  ReservedCode1: 'fa784292-8b0c-45d1-8719-c94a89a18513'
+  ReservedCode2: 'fa784292-8b0c-45d1-8719-c94a89a18513'
 ---
 
-# ServiceState class
-A read-only snapshot of an installed service's current state as reported by the SCM. Returned by [**Services.QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice); not directly user-instantiable.
+# ServiceState 类
+
+已安装服务当前状态的只读快照，由SCM报告。由 [**Services.QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice) 返回；用户不可直接实例化。
 
 ```vb
 Dim state As ServiceState
@@ -14,9 +23,9 @@ Set state = Services.QueryStateOfService("MyService")
 Debug.Print state.CurrentStateText, "PID " & state.ProcessId
 ```
 
-The snapshot is taken **once at construction time** and never refreshed. To monitor a service over time, call [**Services.QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice) again at each sampling interval --- typically from a low-frequency Timer.
+快照在**构造时一次性**获取，永不刷新。要随时间监控服务，在每个采样间隔再次调用 [**Services.QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice)——通常从低频率Timer。
 
-The constructor opens the SCM with `SC_MANAGER_CONNECT`, opens the service with `SERVICE_QUERY_STATUS`, calls `QueryServiceStatusEx(SC_STATUS_PROCESS_INFO, ...)`, and copies the result into a private buffer. The three failure modes --- SCM open failed, service not installed, status query failed --- all raise run-time error 5 with a descriptive message. Wrap the call in `On Error Resume Next` if the UI needs to distinguish "service exists and is running" from "service is not installed":
+构造函数以 `SC_MANAGER_CONNECT` 打开SCM，以 `SERVICE_QUERY_STATUS` 打开服务，调用 `QueryServiceStatusEx(SC_STATUS_PROCESS_INFO, ...)`，并将结果复制到私有缓冲区。三种失败模式——SCM打开失败、服务未安装、状态查询失败——都引发运行时错误5，附带描述性消息。如果UI需要区分"服务存在且正在运行"和"服务未安装"，用 `On Error Resume Next` 包装调用：
 
 ```vb
 Private Function GetStateText(ByVal serviceName As String) As String
@@ -31,37 +40,37 @@ Private Function GetStateText(ByVal serviceName As String) As String
 End Function
 ```
 
-## Properties
+## 属性
 
 ### CheckPoint
 
-The SCM-reported `dwCheckPoint` value. **Long**.
+SCM报告的 `dwCheckPoint` 值。**Long**。
 
-Services in a *Pending* state ([**StartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending), [**StopPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopPending), [**PausePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusPausePending), [**ContinuePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusContinuePending)) report a periodically-incrementing **CheckPoint** so the SCM can tell a slow-but-progressing transition from a hung service. The package's [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) auto-increments the field while the service is in a pending state and resets it to **0** on [**Running**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning) or [**Stopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped).
+处于 *Pending* 状态（[**StartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending)、[**StopPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopPending)、[**PausePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusPausePending)、[**ContinuePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusContinuePending)）的服务报告周期性递增的 **CheckPoint**，使得SCM可以区分缓慢但正在进行的转换与挂起的服务。包的 [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 在服务处于待处理状态时自动递增该字段，在 [**Running**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning) 或 [**Stopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped) 时重置为 **0**。
 
 ### ControlsAccepted
 
-A bitmask of `SERVICE_ACCEPT_*` flags indicating which control codes the service has told the SCM it accepts. **Long**.
+指示服务告知SCM它接受哪些控制代码的 `SERVICE_ACCEPT_*` 标志位掩码。**Long**。
 
 ::: info
-Although the underlying SCM field is a flag bitmask, the property is typed plain **Long** in this release rather than as a typed enum. The bit values follow the Win32 documented constants --- `SERVICE_ACCEPT_STOP` (1), `SERVICE_ACCEPT_PAUSE_CONTINUE` (2), `SERVICE_ACCEPT_SHUTDOWN` (4), `SERVICE_ACCEPT_PARAMCHANGE` (8), `SERVICE_ACCEPT_NETBINDCHANGE` (16), `SERVICE_ACCEPT_HARDWAREPROFILECHANGE` (32), `SERVICE_ACCEPT_POWEREVENT` (64), `SERVICE_ACCEPT_SESSIONCHANGE` (128), `SERVICE_ACCEPT_PRESHUTDOWN` (256), and so on.
+尽管底层SCM字段是标志位掩码，该属性在此版本中类型为普通 **Long** 而非类型化枚举。位值遵循Win32文档记录的常量——`SERVICE_ACCEPT_STOP`（1）、`SERVICE_ACCEPT_PAUSE_CONTINUE`（2）、`SERVICE_ACCEPT_SHUTDOWN`（4）、`SERVICE_ACCEPT_PARAMCHANGE`（8）、`SERVICE_ACCEPT_NETBINDCHANGE`（16）、`SERVICE_ACCEPT_HARDWAREPROFILECHANGE`（32）、`SERVICE_ACCEPT_POWEREVENT`（64）、`SERVICE_ACCEPT_SESSIONCHANGE`（128）、`SERVICE_ACCEPT_PRESHUTDOWN`（256）等。
 :::
 
 ### CurrentState
 
-The SCM-reported `dwCurrentState` value. **Long**.
+SCM报告的 `dwCurrentState` 值。**Long**。
 
 ::: info
-The property is typed plain **Long** in this release rather than as [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants). The numeric values *do* match the enum (e.g. `4` is [**vbServiceStatusRunning**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning)), so a cast such as `CType(state.CurrentState, ServiceStatusConstants)` recovers typed access if needed. For display purposes [**CurrentStateText**](#currentstatetext) is usually more convenient.
+该属性在此版本中类型为普通 **Long** 而非 [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants)。数值*确实*与枚举匹配（例如 `4` 是 [**vbServiceStatusRunning**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning)），因此类似 `CType(state.CurrentState, ServiceStatusConstants)` 的转换可在需要时恢复类型化访问。显示用途时 [**CurrentStateText**](#currentstatetext) 通常更方便。
 :::
 
 ### CurrentStateText
 
-A human-readable rendering of [**CurrentState**](#currentstate). **String**.
+[**CurrentState**](#currentstate) 的人类可读渲染。**String**。
 
-The mapping:
+映射：
 
-| State value | Text |
+| 状态值 | 文本 |
 |-------------|------|
 | [**vbServiceStatusContinuePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusContinuePending) | `CONTINUING` |
 | [**vbServiceStatusPausePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusPausePending)       | `PAUSING` |
@@ -71,47 +80,47 @@ The mapping:
 | [**vbServiceStatusStopPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopPending)         | `STOPPING` |
 | [**vbServiceStatusStopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped)                 | `STOPPED` |
 
-Any unrecognised state value is rendered as `UNKNOWN STATE (<n>)`.
+任何未识别的状态值渲染为 `UNKNOWN STATE (<n>)`。
 
 ### ExitCode
 
-The SCM-reported `dwWin32ExitCode` value. **Long**.
+SCM报告的 `dwWin32ExitCode` 值。**Long**。
 
-For a normally-stopped service this is **0** (`NO_ERROR`); for a service that stopped due to an error, this is either a Win32 error code or the sentinel `ERROR_SERVICE_SPECIFIC_ERROR` (1066) --- in which case the real code is in [**ServiceSpecificExitCode**](#servicespecificexitcode).
+对于正常停止的服务此值为 **0**（`NO_ERROR`）；对于因错误停止的服务，此值是Win32错误代码或哨兵值 `ERROR_SERVICE_SPECIFIC_ERROR`（1066）——此时真实代码在 [**ServiceSpecificExitCode**](#servicespecificexitcode) 中。
 
 ### Flags
 
-The SCM-reported `dwServiceFlags` value. **Long**.
+SCM报告的 `dwServiceFlags` 值。**Long**。
 
-Only one bit is currently documented --- `SERVICE_RUNS_IN_SYSTEM_PROCESS` (1), set when the service is hosted inside the system process (`services.exe`).
+当前仅文档记录了一个位——`SERVICE_RUNS_IN_SYSTEM_PROCESS`（1），当服务托管在系统进程（`services.exe`）内时设置。
 
 ### ProcessId
 
-The OS process ID hosting the service, or **0** if the service is not running. **Long**.
+托管服务的OS进程ID，如果服务未运行则为 **0**。**Long**。
 
-Useful for cross-referencing against Task Manager or `tasklist /svc` output, and as a quick "is the service alive?" check that avoids string-comparing [**CurrentStateText**](#currentstatetext).
+用于与任务管理器或 `tasklist /svc` 输出交叉引用，以及作为避免字符串比较 [**CurrentStateText**](#currentstatetext) 的快速"服务是否存活"检查。
 
 ### ServiceSpecificExitCode
 
-The SCM-reported `dwServiceSpecificExitCode` value. **Long**.
+SCM报告的 `dwServiceSpecificExitCode` 值。**Long**。
 
-Meaningful only when [**ExitCode**](#exitcode) equals `ERROR_SERVICE_SPECIFIC_ERROR` (1066); otherwise the field is **0** and should be ignored. Services that report custom error codes through [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) populate this field through the package's machinery.
+仅当 [**ExitCode**](#exitcode) 等于 `ERROR_SERVICE_SPECIFIC_ERROR`（1066）时有意义；否则该字段为 **0**，应忽略。通过 [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 报告自定义错误代码的服务通过包的机制填充此字段。
 
 ### Type
 
-The SCM-reported service type. [**ServiceTypeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants).
+SCM报告的服务类型。[**ServiceTypeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants)。
 
-The value the SCM has on file for the service, typically [**tbServiceTypeOwnProcess**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeOwnProcess) or [**tbServiceTypeShareProcess**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeShareProcess) for twinBASIC services.
+SCM为服务记录的值，对于twinBASIC服务通常为 [**tbServiceTypeOwnProcess**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeOwnProcess) 或 [**tbServiceTypeShareProcess**](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants#tbServiceTypeShareProcess)。
 
 ### WaitHint
 
-The SCM-reported `dwWaitHint` value in milliseconds. **Long**.
+SCM报告的 `dwWaitHint` 值（毫秒）。**Long**。
 
-Only meaningful while the service is in a *Pending* state --- it is the upper-bound estimate the service has told the SCM the pending transition will take. The SCM uses [**CheckPoint**](#checkpoint) and **WaitHint** together to determine whether a pending service is making progress.
+仅在服务处于 *Pending* 状态时有意义——它是服务告知SCM待处理转换预计所需时间的上限估计。SCM将 [**CheckPoint**](#checkpoint) 和 **WaitHint** 一起使用来确定待处理的服务是否在取得进展。
 
-## See Also
+## 另见
 
-- [WinServicesLib package](/official/Reference/WinServicesLib/) -- overview, lifecycle
-- [Services.QueryStateOfService method](/official/Reference/WinServicesLib/Services#querystateofservice) -- the only way to obtain a **ServiceState** instance
-- [ServiceStatusConstants enum](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- the values **CurrentState** can take
-- [ServiceTypeConstants enum](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants) -- the values **Type** can take
+- [WinServicesLib 包](/official/Reference/WinServicesLib/) -- 概述、生命周期
+- [Services.QueryStateOfService 方法](/official/Reference/WinServicesLib/Services#querystateofservice) -- 获取 **ServiceState** 实例的唯一方式
+- [ServiceStatusConstants 枚举](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- **CurrentState** 可取的值
+- [ServiceTypeConstants 枚举](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants) -- **Type** 可取的值

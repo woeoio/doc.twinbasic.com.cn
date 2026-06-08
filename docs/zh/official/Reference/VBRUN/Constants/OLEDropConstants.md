@@ -1,18 +1,27 @@
-﻿---
+---
 title: OLEDropConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/OLEDropConstants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '2bc21cc9-45e4-4fec-9b24-58493f99d174'
+  PropagateID: '2bc21cc9-45e4-4fec-9b24-58493f99d174'
+  ReservedCode1: 'e000665c-04aa-47c1-9f6e-1441fd853537'
+  ReservedCode2: 'e000665c-04aa-47c1-9f6e-1441fd853537'
 ---
+
 # OLEDropConstants
 
-Mode values for the **OLEDropMode** property of a control, controlling whether and how the control accepts OLE drop operations.
+控件**OLEDropMode**属性的模式值，控制控件是否以及如何接受OLE放置操作。
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbOLEDropNone** | 0 | The control does not accept OLE drops. |
-| **vbOLEDropManual** | 1 | The control raises **OLEDragOver** and **OLEDragDrop** events; the developer's code decides what to do. |
-| **vbOLEDropAutomatic** | 2 | The control handles drops automatically based on the dropped data's format. |
+| **vbOLEDropNone** | 0 | 控件不接受OLE放置。 |
+| **vbOLEDropManual** | 1 | 控件引发**OLEDragOver**和**OLEDragDrop**事件；由开发者的代码决定如何处理。 |
+| **vbOLEDropAutomatic** | 2 | 控件根据放置数据的格式自动处理放置。 |
 
 ::: info
-Available only when the **FEATURE_OLEDRAGDROP** feature is enabled.
+仅在启用**FEATURE_OLEDRAGDROP**功能时可用。
 :::

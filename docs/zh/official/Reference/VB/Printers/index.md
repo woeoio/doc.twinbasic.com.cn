@@ -1,12 +1,23 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'b94907fa-a358-4b0f-b61b-3a3703345c22'
+  PropagateID: 'b94907fa-a358-4b0f-b61b-3a3703345c22'
+  ReservedCode1: '50fc42f7-d32d-4993-827c-23e9f944c816'
+  ReservedCode2: '50fc42f7-d32d-4993-827c-23e9f944c816'
+---
+
 ---
 title: Printers
 parent: VB Package
 permalink: /tB/Packages/VB/Printers/
 ---
 
-# Printers class
+# Printers 类
 
-A **Printers** object is a read-only collection of every printer installed on the system. It is exposed through the implicit **Printers** global --- there is no user-callable constructor --- and yields a [**Printer**](/official/Reference/VB/Printer/) for each device, keyed by its **DeviceName**. Use it to enumerate the installed devices, or to switch the active printer with `Set Printer = Printers(name)`.
+**Printers**对象是系统上安装的所有打印机的只读集合。它通过隐式**Printers**全局对象公开——没有用户可调用的构造函数——并为每个设备产生一个[**Printer**](/official/Reference/VB/Printer/)，以**DeviceName**为键。使用它枚举已安装的设备，或通过`Set Printer = Printers(name)`切换活动打印机。
 
 ```vb
 Dim p As Printer
@@ -14,50 +25,50 @@ For Each p In Printers
     Debug.Print p.DeviceName, p.DriverName, p.Port
 Next
 
-Set Printer = Printers("HP LaserJet")    ' make this the active printer
+Set Printer = Printers("HP LaserJet")    ' 将此设为活动打印机
 ```
 
 
-## What the collection contains
+## 集合包含的内容
 
-Each entry is a [**Printer**](/official/Reference/VB/Printer/) bound to the corresponding device. These instances are **immutable** descriptors --- they are intended for identification and for handing to `Set Printer = …`, not for running a print job directly. Assigning any of the settings properties on one raises run-time error 383 (*Property is read-only*); calling [**EndDoc**](/official/Reference/VB/Printer/#enddoc), [**KillDoc**](/official/Reference/VB/Printer/#killdoc), [**NewPage**](/official/Reference/VB/Printer/#newpage), [**Print**](/official/Reference/VB/Printer/#print), or the other document-control methods raises run-time error 438 (*Object doesn't support this property or method*). [**TrackDefault**](/official/Reference/VB/Printer/#trackdefault) is always **False** on these instances.
+每个条目是绑定到相应设备的[**Printer**](/official/Reference/VB/Printer/)。这些实例是**不可变**描述符——用于标识和传递给`Set Printer = …`，而不是直接运行打印作业。对其任何设置属性赋值会引发运行时错误383（*属性为只读*）；调用[**EndDoc**](/official/Reference/VB/Printer/#enddoc)、[**KillDoc**](/official/Reference/VB/Printer/#killdoc)、[**NewPage**](/official/Reference/VB/Printer/#newpage)、[**Print**](/official/Reference/VB/Printer/#print)或其他文档控制方法会引发运行时错误438（*对象不支持此属性或方法*）。[**TrackDefault**](/official/Reference/VB/Printer/#trackdefault)在这些实例上始终为**False**。
 
-A driver that advertises a single device over multiple ports produces one [**Printer**](/official/Reference/VB/Printer/) entry per port; only the first such entry is keyed by **DeviceName**, the rest are accessible only by numeric index.
+在多个端口上公告单个设备的驱动程序会为每个端口产生一个[**Printer**](/official/Reference/VB/Printer/)条目；只有第一个条目以**DeviceName**为键，其余只能通过数字索引访问。
 
-## Live enumeration
+## 实时枚举
 
-The collection is **not cached**. Every call to [**Count**](#count), [**Item**](#item), or `For Each` re-reads the system's installed-printers list from the Windows registry's profile section and reconstructs a fresh batch of [**Printer**](/official/Reference/VB/Printer/) instances. A printer added or removed in **Settings → Printers** therefore appears the next time the collection is touched, with no need to refresh anything from code. The trade-off is that consecutive accesses are not cheap --- when enumerating, cache the result if many lookups are needed:
+此集合**不被缓存**。每次调用[**Count**](#count)、[**Item**](#item)或`For Each`都会从Windows注册表的配置文件部分重新读取系统的已安装打印机列表，并重建一批新的[**Printer**](/official/Reference/VB/Printer/)实例。因此，在**设置→打印机**中添加或移除的打印机会在下次访问集合时出现，无需从代码刷新。代价是连续访问并不廉价——枚举时，如果需要大量查找，请缓存结果：
 
 ```vb
-Dim snapshot As Variant : snapshot = Array()      ' or use a Collection
+Dim snapshot As Variant : snapshot = Array()      ' 或使用Collection
 For Each p In Printers
-    snapshot = Array(snapshot, p.DeviceName)      ' (illustrative)
+    snapshot = Array(snapshot, p.DeviceName)      ' （示意）
 Next
 ```
 
-## Indexing
+## 索引
 
-Numeric indexing is **0-based**, in contrast with most VB6 collections, which are 1-based. The first installed printer is `Printers(0)`; the last is `Printers(Printers.Count - 1)`. An index outside that range raises run-time error 9 (*Subscript out of range*).
+数字索引是**从0开始的**，与大多数VB6集合从1开始不同。第一个已安装的打印机是`Printers(0)`；最后一个是`Printers(Printers.Count - 1)`。超出此范围的索引会引发运行时错误9（*下标越范围*）。
 
-String indexing looks up by **DeviceName** --- new in twinBASIC; VB6's **Printers** supports only numeric access. A name that is not present raises the underlying collection's run-time error 5 (*Invalid procedure call or argument*).
+字符串索引按**DeviceName**查找——twinBASIC新增；VB6的**Printers**仅支持数字访问。不存在的名称会引发底层集合的运行时错误5（*无效的过程调用或参数*）。
 
-## Properties
+## 属性
 
 ### Count
 
-The number of installed printer entries. **Long**, read-only. Re-counted on every access --- see [Live enumeration](#live-enumeration).
+已安装打印机条目的数量。**Long**，只读。每次访问时重新计数——参见[实时枚举](#live-enumeration)。
 
-Syntax: *object*.**Count**
+语法：*object*.**Count**
 
 ### Item
 
-Returns the [**Printer**](/official/Reference/VB/Printer/) at the given index. **Default property** --- `Printers(0)` is shorthand for `Printers.Item(0)`.
+返回给定索引处的[**Printer**](/official/Reference/VB/Printer/)。**默认属性**——`Printers(0)`是`Printers.Item(0)`的简写。
 
-Syntax: *object*.**Item**( *Index* ) **As Printer**
+语法：*object*.**Item**( *Index* ) **As Printer**
 
 *Index*
-: *required* A **Variant**. As a **Long**, the zero-based position in the collection (`0` to `Count - 1`); out-of-range values raise run-time error 9. As a **String**, the **DeviceName** of the printer; an unknown name raises run-time error 5.
+: *必需* **Variant**。作为**Long**，集合中从0开始的位置（`0`到`Count - 1`）；超出范围的值引发运行时错误9。作为**String**，打印机的**DeviceName**；未知名称引发运行时错误5。
 
-## See Also
+## 另见
 
-- [Printer](/official/Reference/VB/Printer/) -- the printer object itself, and the implicit **Printer** global.
+- [Printer](/official/Reference/VB/Printer/) -- 打印机对象本身以及隐式**Printer**全局对象。

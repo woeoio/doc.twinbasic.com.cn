@@ -2,15 +2,23 @@
 title: Strings Module
 parent: VBA Package
 permalink: /tB/Modules/Strings/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'af139b7c-4a26-435f-97a4-cfbad371343a'
+  PropagateID: 'af139b7c-4a26-435f-97a4-cfbad371343a'
+  ReservedCode1: '1f3d90d1-d85b-4786-aaab-a069c97df902'
+  ReservedCode2: '1f3d90d1-d85b-4786-aaab-a069c97df902'
 ---
 
-# Strings module
+# Strings模块
 
-The **Strings** module groups together the runtime's text-processing primitives --- measuring strings, looking inside them, building new ones from old ones, splitting and joining arrays of them, and formatting non-string values as text. Most members come in two callable forms: a `$`-suffixed form (e.g. **Left$**) that returns a **String**, and an unsuffixed form (e.g. **Left**) that returns a **Variant** (**String**) and propagates **Null** through the call. Several also have a `B` variant --- **AscB**, **ChrB**, **InStrB**, **LeftB**, **LenB**, **MidB**, **RightB** --- that operates on byte positions rather than character positions, for use with byte-buffer data held in a **String**.
+**Strings**模块将运行时的文本处理原语组合在一起——测量字符串、查找字符串内部、从旧字符串构建新字符串、拆分和连接字符串数组、以及将非字符串值格式化为文本。大多数成员有两种可调用形式：带`$`后缀的形式（例如**Left$**）返回**String**，不带后缀的形式（例如**Left**）返回**Variant**（**String**）并通过调用传播**Null**。一些成员还有`B`变体——**AscB**、**ChrB**、**InStrB**、**LeftB**、**LenB**、**MidB**、**RightB**——它们在字节位置而非字符位置上操作，用于处理保存在**String**中的字节缓冲区数据。
 
-## Length and character codes
+## 长度和字符代码
 
-[**Len**](/official/Reference/VBA/Strings/Len) returns the number of characters in a string, or --- when given a non-string variable --- the number of bytes the variable occupies. [**Asc**](/official/Reference/VBA/Strings/Asc) returns the character code of a string's first character; [**Chr**](/official/Reference/VBA/Strings/Chr) is its inverse, building a single-character string from a code point. The `W` variants ([**AscW**](/official/Reference/VBA/Strings/Asc), [**ChrW**](/official/Reference/VBA/Strings/Chr)) work in Unicode regardless of the system code page.
+[**Len**](/official/Reference/VBA/Strings/Len)返回字符串中的字符数，或者——当给定非字符串变量时——返回变量占用的字节数。[**Asc**](/official/Reference/VBA/Strings/Asc)返回字符串第一个字符的字符代码；[**Chr**](/official/Reference/VBA/Strings/Chr)是其逆操作，从代码点构建单字符字符串。`W`变体（[**AscW**](/official/Reference/VBA/Strings/Asc)、[**ChrW**](/official/Reference/VBA/Strings/Chr)）无论系统代码页如何都在Unicode中工作。
 
 ```vb
 Debug.Print Len("Hello")            ' 5
@@ -18,9 +26,9 @@ Debug.Print Asc("A")                ' 65
 Debug.Print Chr(65)                 ' "A"
 ```
 
-## Searching and comparing
+## 搜索和比较
 
-[**StrComp**](/official/Reference/VBA/Strings/StrComp) compares two strings and returns -1, 0, or 1 to report which is greater (or equal). [**InStr**](/official/Reference/VBA/Strings/InStr) and [**InStrRev**](/official/Reference/VBA/Strings/InStrRev) return the position of one string inside another, scanning forward from a chosen start position or backward from one. All three accept an optional *compare* argument controlling whether the comparison is case-sensitive (**vbBinaryCompare**), case-insensitive (**vbTextCompare**), or governed by the surrounding [**Option Compare**](/official/Reference/Core/Option) setting (**vbUseCompareOption**). Note that **InStrRev** swaps the order of the haystack and needle arguments relative to **InStr**.
+[**StrComp**](/official/Reference/VBA/Strings/StrComp)比较两个字符串，返回-1、0或1来报告哪个更大（或相等）。[**InStr**](/official/Reference/VBA/Strings/InStr)和[**InStrRev**](/official/Reference/VBA/Strings/InStrRev)返回一个字符串在另一个字符串中的位置，分别从选定的起始位置向前扫描或向后扫描。这三者都接受可选的*compare*参数，控制比较是否区分大小写（**vbBinaryCompare**）、不区分大小写（**vbTextCompare**）或由周围的[**Option Compare**](/official/Reference/Core/Option)设置决定（**vbUseCompareOption**）。注意**InStrRev**相对于**InStr**交换了被搜索字符串和搜索字符串参数的顺序。
 
 ```vb
 Debug.Print InStr("Hello, world", "o")           ' 5  (first match, forward)
@@ -28,9 +36,9 @@ Debug.Print InStrRev("Hello, world", "o")        ' 9  (first match, reverse)
 Debug.Print StrComp("ABC", "abc", vbTextCompare) ' 0  (equal under text compare)
 ```
 
-## Substrings, padding, and trimming
+## 子字符串、填充和修剪
 
-[**Left**](/official/Reference/VBA/Strings/Left), [**Mid**](/official/Reference/VBA/Strings/Mid), and [**Right**](/official/Reference/VBA/Strings/Right) extract a substring from the start, middle, or end of a string. **Mid** doubles as an l-value via the [**Mid =**](/official/Reference/Core/Mid-equals) statement, which writes characters back into a string in place. [**Space**](/official/Reference/VBA/Strings/Space) returns a run of spaces and [**String**](/official/Reference/VBA/Strings/String) returns a run of any chosen character --- both useful for padding fixed-width output. [**LTrim**](/official/Reference/VBA/Strings/LTrim), [**RTrim**](/official/Reference/VBA/Strings/RTrim), and [**Trim**](/official/Reference/VBA/Strings/Trim) strip leading, trailing, or both kinds of whitespace from a string.
+[**Left**](/official/Reference/VBA/Strings/Left)、[**Mid**](/official/Reference/VBA/Strings/Mid)和[**Right**](/official/Reference/VBA/Strings/Right)从字符串的开头、中间或末尾提取子字符串。**Mid**还可以通过[**Mid =**](/official/Reference/Core/Mid-equals)语句作为左值使用，将字符就地写回字符串。[**Space**](/official/Reference/VBA/Strings/Space)返回一串空格，[**String**](/official/Reference/VBA/Strings/String)返回一串任意选择的字符——两者都可用于填充固定宽度输出。[**LTrim**](/official/Reference/VBA/Strings/LTrim)、[**RTrim**](/official/Reference/VBA/Strings/RTrim)和[**Trim**](/official/Reference/VBA/Strings/Trim)分别去除字符串的前导空格、尾部空格或两者的空格。
 
 ```vb
 Dim S As String
@@ -40,9 +48,9 @@ Debug.Print Left(Trim(S), 5)        ' "Hello"
 Debug.Print String(3, "*") & " " & Space(2) & "!"   ' "***   !"
 ```
 
-## Case folding and other transformations
+## 大小写转换和其他变换
 
-[**LCase**](/official/Reference/VBA/Strings/LCase) and [**UCase**](/official/Reference/VBA/Strings/UCase) fold a string to lowercase or uppercase. [**StrReverse**](/official/Reference/VBA/Strings/StrReverse) reverses the character order. [**StrConv**](/official/Reference/VBA/Strings/StrConv) bundles a wider set of conversions --- case folding, proper-casing, narrow/wide and Hiragana/Katakana mapping for DBCS locales, and Unicode-to-ANSI byte-array round-tripping --- selected by an additive flag argument.
+[**LCase**](/official/Reference/VBA/Strings/LCase)和[**UCase**](/official/Reference/VBA/Strings/UCase)将字符串转换为小写或大写。[**StrReverse**](/official/Reference/VBA/Strings/StrReverse)反转字符顺序。[**StrConv**](/official/Reference/VBA/Strings/StrConv)捆绑了更广泛的转换集——大小写转换、首字母大写、DBCS区域设置的窄/宽和平假名/片假名映射、以及Unicode与ANSI字节数组的往返转换——通过可叠加的标志参数选择。
 
 ```vb
 Debug.Print UCase("Hello")               ' "HELLO"
@@ -50,9 +58,9 @@ Debug.Print StrReverse("Hello")          ' "olleH"
 Debug.Print StrConv("hello world", vbProperCase)   ' "Hello World"
 ```
 
-## Splitting, joining, replacing, filtering
+## 拆分、连接、替换和过滤
 
-[**Split**](/official/Reference/VBA/Strings/Split) breaks a string apart at a delimiter into a zero-based array of substrings; [**Join**](/official/Reference/VBA/Strings/Join) reverses the operation, gluing an array back together with a chosen separator between elements. [**Replace**](/official/Reference/VBA/Strings/Replace) substitutes one substring for another across a string, optionally limited to a fixed number of replacements or starting from a given offset. [**Filter**](/official/Reference/VBA/Strings/Filter) reduces a string array to only those elements that contain --- or, with *include* set to **False**, do not contain --- a chosen substring.
+[**Split**](/official/Reference/VBA/Strings/Split)按分隔符将字符串拆分为从零开始的子字符串数组；[**Join**](/official/Reference/VBA/Strings/Join)执行相反的操作，用选定的分隔符将数组重新连接在一起。[**Replace**](/official/Reference/VBA/Strings/Replace)在一个字符串中将一个子字符串替换为另一个，可选择限制替换次数或从给定偏移量开始。[**Filter**](/official/Reference/VBA/Strings/Filter)将字符串数组缩减为仅包含——或将*include*设为**False**时不包含——选定子字符串的元素。
 
 ```vb
 Dim Parts() As String
@@ -61,9 +69,9 @@ Debug.Print Join(Parts, " / ")              ' "red / green / blue"
 Debug.Print Replace("red,green,blue", ",", "; ")  ' "red; green; blue"
 ```
 
-## Formatting values as text
+## 将值格式化为文本
 
-[**Format**](/official/Reference/VBA/Strings/Format) is the general-purpose formatter: it takes any expression --- number, date, or string --- together with a named or user-defined format string, and returns the rendered text. The four named-formatter functions [**FormatCurrency**](/official/Reference/VBA/Strings/FormatCurrency), [**FormatNumber**](/official/Reference/VBA/Strings/FormatNumber), [**FormatPercent**](/official/Reference/VBA/Strings/FormatPercent), and [**FormatDateTime**](/official/Reference/VBA/Strings/FormatDateTime) wrap the most common cases with explicit parameters in place of a format string, so the call site reads as the intent rather than as a recipe. [**MonthName**](/official/Reference/VBA/Strings/MonthName) and [**WeekdayName**](/official/Reference/VBA/Strings/WeekdayName) return the localised name (or abbreviation) of a month or day of the week, given its numeric index.
+[**Format**](/official/Reference/VBA/Strings/Format)是通用格式化函数：它接受任何表达式——数字、日期或字符串——连同命名或用户定义的格式字符串，并返回渲染后的文本。四个命名格式化函数[**FormatCurrency**](/official/Reference/VBA/Strings/FormatCurrency)、[**FormatNumber**](/official/Reference/VBA/Strings/FormatNumber)、[**FormatPercent**](/official/Reference/VBA/Strings/FormatPercent)和[**FormatDateTime**](/official/Reference/VBA/Strings/FormatDateTime)封装了最常见的情况，使用显式参数代替格式字符串，使调用处表达的是意图而非配方。[**MonthName**](/official/Reference/VBA/Strings/MonthName)和[**WeekdayName**](/official/Reference/VBA/Strings/WeekdayName)根据数字索引返回月份或星期几的本地化名称（或缩写）。
 
 ```vb
 Debug.Print Format(1234.5, "#,##0.00")         ' "1,234.50"
@@ -72,34 +80,34 @@ Debug.Print FormatDateTime(Now, vbLongDate)    ' "Saturday, May 9, 2026"
 Debug.Print MonthName(1)                       ' "January"
 ```
 
-## Members
+## 成员
 
-- [Asc](/official/Reference/VBA/Strings/Asc) -- returns the character code of the first character in a string
-- [Chr](/official/Reference/VBA/Strings/Chr) -- returns the character associated with a character code
-- [Filter](/official/Reference/VBA/Strings/Filter) -- returns a subset of a string array matching (or not matching) a substring
-- [Format](/official/Reference/VBA/Strings/Format) -- formats an expression according to a format expression
-- [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency) -- formats an expression as a currency string
-- [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime) -- formats an expression as a date/time string
-- [FormatNumber](/official/Reference/VBA/Strings/FormatNumber) -- formats an expression as a numeric string
-- [FormatPercent](/official/Reference/VBA/Strings/FormatPercent) -- formats an expression as a percent string
-- [InStr](/official/Reference/VBA/Strings/InStr) -- returns the position of one string within another
-- [InStrRev](/official/Reference/VBA/Strings/InStrRev) -- returns the position of one string within another, searching from the end
-- [Join](/official/Reference/VBA/Strings/Join) -- concatenates a string array using a given delimiter
-- [LCase](/official/Reference/VBA/Strings/LCase) -- returns a string converted to lowercase
-- [Left](/official/Reference/VBA/Strings/Left) -- returns a leftmost substring of a string
-- [Len](/official/Reference/VBA/Strings/Len) -- returns the length of a string, or the storage size of a variable
-- [LTrim](/official/Reference/VBA/Strings/LTrim) -- removes leading spaces from a string
-- [Mid](/official/Reference/VBA/Strings/Mid) -- returns a substring of a string
-- [MonthName](/official/Reference/VBA/Strings/MonthName) -- returns the name of the specified month
-- [Replace](/official/Reference/VBA/Strings/Replace) -- replaces substrings within a string
-- [Right](/official/Reference/VBA/Strings/Right) -- returns a rightmost substring of a string
-- [RTrim](/official/Reference/VBA/Strings/RTrim) -- removes trailing spaces from a string
-- [Space](/official/Reference/VBA/Strings/Space) -- returns a string of spaces
-- [Split](/official/Reference/VBA/Strings/Split) -- splits a string into a string array on a delimiter
-- [StrComp](/official/Reference/VBA/Strings/StrComp) -- compares two strings
-- [StrConv](/official/Reference/VBA/Strings/StrConv) -- converts a string to a specified format
-- [String](/official/Reference/VBA/Strings/String) -- returns a string of repeating characters
-- [StrReverse](/official/Reference/VBA/Strings/StrReverse) -- reverses the order of characters of a string
-- [Trim](/official/Reference/VBA/Strings/Trim) -- removes leading and trailing spaces from a string
-- [UCase](/official/Reference/VBA/Strings/UCase) -- returns a string converted to uppercase
-- [WeekdayName](/official/Reference/VBA/Strings/WeekdayName) -- returns the name of the specified day of the week
+- [Asc](/official/Reference/VBA/Strings/Asc) —— 返回字符串中第一个字符的字符代码
+- [Chr](/official/Reference/VBA/Strings/Chr) —— 返回与字符代码相关联的字符
+- [Filter](/official/Reference/VBA/Strings/Filter) —— 返回匹配（或不匹配）子字符串的字符串数组子集
+- [Format](/official/Reference/VBA/Strings/Format) —— 根据格式表达式格式化表达式
+- [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency) —— 将表达式格式化为货币字符串
+- [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime) —— 将表达式格式化为日期/时间字符串
+- [FormatNumber](/official/Reference/VBA/Strings/FormatNumber) —— 将表达式格式化为数字字符串
+- [FormatPercent](/official/Reference/VBA/Strings/FormatPercent) —— 将表达式格式化为百分比字符串
+- [InStr](/official/Reference/VBA/Strings/InStr) —— 返回一个字符串在另一个字符串中的位置
+- [InStrRev](/official/Reference/VBA/Strings/InStrRev) —— 从末尾搜索返回一个字符串在另一个字符串中的位置
+- [Join](/official/Reference/VBA/Strings/Join) —— 使用给定分隔符连接字符串数组
+- [LCase](/official/Reference/VBA/Strings/LCase) —— 返回转换为小写的字符串
+- [Left](/official/Reference/VBA/Strings/Left) —— 返回字符串最左侧的子字符串
+- [Len](/official/Reference/VBA/Strings/Len) —— 返回字符串的长度或变量的存储大小
+- [LTrim](/official/Reference/VBA/Strings/LTrim) —— 去除字符串的前导空格
+- [Mid](/official/Reference/VBA/Strings/Mid) —— 返回字符串的子字符串
+- [MonthName](/official/Reference/VBA/Strings/MonthName) —— 返回指定月份的名称
+- [Replace](/official/Reference/VBA/Strings/Replace) —— 替换字符串中的子字符串
+- [Right](/official/Reference/VBA/Strings/Right) —— 返回字符串最右侧的子字符串
+- [RTrim](/official/Reference/VBA/Strings/RTrim) —— 去除字符串的尾部空格
+- [Space](/official/Reference/VBA/Strings/Space) —— 返回由空格组成的字符串
+- [Split](/official/Reference/VBA/Strings/Split) —— 按分隔符将字符串拆分为字符串数组
+- [StrComp](/official/Reference/VBA/Strings/StrComp) —— 比较两个字符串
+- [StrConv](/official/Reference/VBA/Strings/StrConv) —— 将字符串转换为指定格式
+- [String](/official/Reference/VBA/Strings/String) —— 返回由重复字符组成的字符串
+- [StrReverse](/official/Reference/VBA/Strings/StrReverse) —— 反转字符串的字符顺序
+- [Trim](/official/Reference/VBA/Strings/Trim) —— 去除字符串的前导和尾部空格
+- [UCase](/official/Reference/VBA/Strings/UCase) —— 返回转换为大写的字符串
+- [WeekdayName](/official/Reference/VBA/Strings/WeekdayName) —— 返回指定星期几的名称

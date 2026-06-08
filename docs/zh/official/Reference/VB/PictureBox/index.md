@@ -10,9 +10,9 @@ A **PictureBox** is a Win32 native control that combines three roles in one:
 
 1. A **picture display** --- it can show a bitmap, GIF, JPEG, icon, cursor, or metafile loaded into its [**Picture**](#picture) property.
 2. A **drawing surface** --- it exposes the VB6 graphics methods ([**Line**](#line), [**Circle**](#circle), [**PSet**](#pset), [**Print**](#print), [**PaintPicture**](#paintpicture), …) that write into the control's device context.
-3. A **container** --- it can host child controls dropped onto it at design time, much like a [**Frame**](/official/Reference/VB/Frame/), and can be docked or aligned within its parent.
+3. A **container** --- it can host child controls dropped onto it at design time, much like a [**Frame**](/en/official/Reference/VB/Frame/), and can be docked or aligned within its parent.
 
-The control is normally placed on a [**Form**](/official/Reference/VB/Form/), [**Frame**](/official/Reference/VB/Frame/), or **UserControl** at design time. The default property is [**Picture**](#picture); the default-designer event is [**Click**](#click).
+The control is normally placed on a [**Form**](/en/official/Reference/VB/Form/), [**Frame**](/en/official/Reference/VB/Frame/), or **UserControl** at design time. The default property is [**Picture**](#picture); the default-designer event is [**Click**](#click).
 
 ```vb
 Private Sub Form_Load()
@@ -50,11 +50,11 @@ picCanvas.Print "Drawn over a Picture"              ' text at the pen
 
 When [**AutoRedraw**](#autoredraw) is **False** (default) the graphics methods write directly into the visible device context, and the OS may erase that drawing whenever the control is uncovered, resized, or redrawn --- typically the application redraws it from a [**Paint**](#paint) handler.
 
-When [**AutoRedraw**](#autoredraw) is **True**, the graphics methods are recorded into an off-screen persistent bitmap that is automatically blitted onto the control whenever it needs repainting. The control no longer raises [**Paint**](#paint) events; the bitmap is exposed read-only through [**Image**](#image), suitable for saving with **SavePicture** or for assigning to another **PictureBox** or [**Image**](/official/Reference/VB/Image/) control. Toggling **AutoRedraw** from **False** to **True** preserves the current contents; toggling it back to **False** discards the persistent bitmap.
+When [**AutoRedraw**](#autoredraw) is **True**, the graphics methods are recorded into an off-screen persistent bitmap that is automatically blitted onto the control whenever it needs repainting. The control no longer raises [**Paint**](#paint) events; the bitmap is exposed read-only through [**Image**](#image), suitable for saving with **SavePicture** or for assigning to another **PictureBox** or [**Image**](/en/official/Reference/VB/Image/) control. Toggling **AutoRedraw** from **False** to **True** preserves the current contents; toggling it back to **False** discards the persistent bitmap.
 
 ## Coordinate system
 
-A **PictureBox** has its own coordinate system, independent of its parent. [**ScaleMode**](#scalemode) selects a built-in unit ([**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants) --- **vbTwips**, **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**); assigning [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), or [**ScaleHeight**](#scaleheight) (or calling [**Scale**](#scale) with two corner points) switches to **vbUser** and remaps the surface so the assigned values address the corners directly --- useful for mathematical plots where the natural axes don't match pixel coordinates.
+A **PictureBox** has its own coordinate system, independent of its parent. [**ScaleMode**](#scalemode) selects a built-in unit ([**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants) --- **vbTwips**, **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**); assigning [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), or [**ScaleHeight**](#scaleheight) (or calling [**Scale**](#scale) with two corner points) switches to **vbUser** and remaps the surface so the assigned values address the corners directly --- useful for mathematical plots where the natural axes don't match pixel coordinates.
 
 [**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert distances between any two scale modes without changing the active one.
 
@@ -64,7 +64,7 @@ Controls dropped onto a **PictureBox** at design time become its children: their
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) binds the control's [**Picture**](#picture) to a binary field of a [**Data**](/official/Reference/VB/Data/) control's recordset: the field is read on each row change and **LoadPicture** is called on it, and the round-trip byte representation of the current **Picture** is written back when the row is saved. [**DataChanged**](#datachanged) is set whenever the user modifies the displayed picture.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) binds the control's [**Picture**](#picture) to a binary field of a [**Data**](/en/official/Reference/VB/Data/) control's recordset: the field is read on each row change and **LoadPicture** is called on it, and the round-trip byte representation of the current **Picture** is written back when the row is saved. [**DataChanged**](#datachanged) is set whenever the user modifies the displayed picture.
 
 ## Properties
 
@@ -80,7 +80,7 @@ The set of edges of the parent that the picture box's corresponding edges follow
 
 ### Appearance
 
-Determines how the border is drawn by the OS. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder**.
+Determines how the border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder**.
 
 ### AutoRedraw
 
@@ -96,7 +96,7 @@ The background colour of the control's drawing surface, as an **OLE_COLOR**. Def
 
 ### BorderStyle
 
-Whether the picture box is drawn with a border. A member of [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0) or **vbFixedSingleBorder** (1, default). The exact appearance of the border depends on [**Appearance**](#appearance).
+Whether the picture box is drawn with a border. A member of [**ControlBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0) or **vbFixedSingleBorder** (1, default). The exact appearance of the border depends on [**Appearance**](#appearance).
 
 ### CausesValidation
 
@@ -108,11 +108,11 @@ When **True** (default), child controls are clipped out of the picture box's pai
 
 ### Container
 
-The control that hosts this picture box --- typically the form, a [**Frame**](/official/Reference/VB/Frame/), or another picture box. Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the picture box.
+The control that hosts this picture box --- typically the form, a [**Frame**](/en/official/Reference/VB/Frame/), or another picture box. Read with **Get**, change with **Set**. Setting **Container** at run time re-parents the picture box.
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a picture box. Always **vbPictureBox**.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a picture box. Always **vbPictureBox**.
 
 ### CurrentX
 
@@ -140,11 +140,11 @@ When the [**DataSource**](#datasource) exposes more than one recordset, the name
 
 ### DataSource
 
-A reference to a [**Data**](/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### Dock
 
-Where the picture box is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked picture boxes ignore [**Anchors**](#anchors).
+Where the picture box is docked within its container. A member of [**DockModeConstants**](/en/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked picture boxes ignore [**Anchors**](#anchors).
 
 ### DragIcon
 
@@ -152,15 +152,15 @@ A **StdPicture** used as the mouse cursor while the control is being drag-and-dr
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/en/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
 
 ### DrawMode
 
-The raster operation used when drawing through the graphics methods. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen** (13 --- opaque overwrite).
+The raster operation used when drawing through the graphics methods. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen** (13 --- opaque overwrite).
 
 ### DrawStyle
 
-The pen style used for line-drawing methods. A member of [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (0, default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**. Solid is forced when [**DrawWidth**](#drawwidth) is greater than 1.
+The pen style used for line-drawing methods. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (0, default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**. Solid is forced when [**DrawWidth**](#drawwidth) is greater than 1.
 
 ### DrawWidth
 
@@ -176,7 +176,7 @@ The colour used to fill closed shapes drawn by [**Line**](#line) (with the `F` f
 
 ### FillStyle
 
-The pattern used to fill closed shapes. A member of [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSTransparent** (1, default), **vbFSSolid** (0), or one of the hatched styles. **Transparent** suppresses fill entirely, so only the outline is drawn.
+The pattern used to fill closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSTransparent** (1, default), **vbFSSolid** (0), or one of the hatched styles. **Transparent** suppresses fill entirely, so only the outline is drawn.
 
 ### Font
 
@@ -258,7 +258,7 @@ Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
 Reserved for compatibility with VB6 DDE; not currently implemented in twinBASIC.
 :::
 
-A member of [**LinkModeConstants**](/official/Reference/VBRUN/Constants/LinkModeConstants).
+A member of [**LinkModeConstants**](/en/official/Reference/VBRUN/Constants/LinkModeConstants).
 
 ### LinkTimeout
 
@@ -278,7 +278,7 @@ A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer)
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
 
 ### Name
 
@@ -292,7 +292,7 @@ Reserved for compatibility with VB6; not currently implemented in twinBASIC.
 
 ### OLEDragMode
 
-How the picture box initiates OLE drag operations. A member of [**OLEDragConstants**](/official/Reference/VBRUN/Constants/OLEDragConstants): **vbOLEDragManual** (0, default --- call [**OLEDrag**](#oledrag) from code) or **vbOLEDragAutomatic** (1, which starts a drag with the current [**Picture**](#picture) as the payload as soon as the user begins a drag with the mouse).
+How the picture box initiates OLE drag operations. A member of [**OLEDragConstants**](/en/official/Reference/VBRUN/Constants/OLEDragConstants): **vbOLEDragManual** (0, default --- call [**OLEDrag**](#oledrag) from code) or **vbOLEDragAutomatic** (1, which starts a drag with the current [**Picture**](#picture) as the payload as soon as the user begins a drag with the mouse).
 
 ### Opacity
 
@@ -300,7 +300,7 @@ The control's opacity as a percentage (0--100, default 100). Values outside the 
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this control. Read-only. Distinct from [**Container**](#container), which returns the immediate parent.
 
 ### Picture
 
@@ -326,7 +326,7 @@ The X coordinate that maps to the left edge of the drawing surface. **Double**, 
 
 ### ScaleMode
 
-The unit used by [**Left**](#left), [**Top**](#top), [**Width**](#width), [**Height**](#height), [**CurrentX**](#currentx), [**CurrentY**](#currenty), and every graphics method. A member of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbUser** (0), **vbTwips** (1, default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, or **vbCentimeters**.
+The unit used by [**Left**](#left), [**Top**](#top), [**Width**](#width), [**Height**](#height), [**CurrentX**](#currentx), [**CurrentY**](#currenty), and every graphics method. A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbUser** (0), **vbTwips** (1, default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, or **vbCentimeters**.
 
 ### ScaleTop
 
@@ -414,7 +414,7 @@ Begins, completes, or cancels a manual drag-and-drop operation. Typically called
 Syntax: *object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *optional* A member of [**DragConstants**](/en/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
 
 ### Line
 
@@ -541,7 +541,7 @@ Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] ) **As Sing
 : *required* The value to convert. **Single**.
 
 *FromScale*, *ToScale*
-: *optional* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants) members. *FromScale* defaults to the control's current [**ScaleMode**](#scalemode); *ToScale* defaults to **vbTwips**.
+: *optional* [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants) members. *FromScale* defaults to the control's current [**ScaleMode**](#scalemode); *ToScale* defaults to **vbTwips**.
 
 ### ScaleY
 
@@ -580,7 +580,7 @@ Brings the control to the front or back of its sibling stack.
 Syntax: *object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
 
 ### LinkExecute
 

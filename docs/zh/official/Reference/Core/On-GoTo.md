@@ -1,40 +1,49 @@
 ---
-title: On...GoTo, On...GoSub
+title: "On...GoTo, On...GoSub"
 parent: Statements
 permalink: /tB/Core/On-GoTo
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '2cb3fc0b-045a-41d6-8a75-5b562dd93ac2'
+  PropagateID: '2cb3fc0b-045a-41d6-8a75-5b562dd93ac2'
+  ReservedCode1: '9990dbb5-84f3-44d9-b076-74ec61aa3dc3'
+  ReservedCode2: '9990dbb5-84f3-44d9-b076-74ec61aa3dc3'
 ---
+
 # On...GoTo, On...GoSub
 
-Branch to one of several specified lines, depending on the value of an expression.
+根据表达式的值，分支到几个指定行之一。
 
-Syntax:
+语法：
 - > **On** *expression* **GoTo** *destinationlist*
 - > **On** *expression* **GoSub** *destinationlist*
 
 *expression*
-: Any numeric expression that evaluates to a whole number between 0 and 255, inclusive. If *expression* is any number other than a whole number, it is rounded before it is evaluated.
+: 计算结果为0到255之间（含）的整数的任意数值表达式。如果*expression*不是整数，则在计算前进行四舍五入。
 
 *destinationlist*
-: List of line numbers or line labels separated by commas.
+: 以逗号分隔的行号或行标签列表。
 
-The value of *expression* determines which line is branched to in *destinationlist*. If the value of *expression* is less than 1 or greater than the number of items in the list, one of the following results occurs:
+*expression*的值决定分支到*destinationlist*中的哪一行。如果*expression*的值小于1或大于列表中的项数，则产生以下结果之一：
 
-| If *expression* is | Then |
+| 如果 *expression* 为 | 则 |
 |:-----|:-----|
-| Equal to 0 | Control drops to the statement following **On...GoSub** or **On...GoTo**. |
-| Greater than the number of items in the list | Control drops to the statement following **On...GoSub** or **On...GoTo**. |
-| Negative | An error occurs. |
-| Greater than 255 | An error occurs. |
+| 等于0 | 控制落到**On...GoSub**或**On...GoTo**之后的语句。 |
+| 大于列表中的项数 | 控制落到**On...GoSub**或**On...GoTo**之后的语句。 |
+| 为负数 | 产生错误。 |
+| 大于255 | 产生错误。 |
 
-Line numbers and line labels can be mixed in the same list. Any number of line labels and line numbers can be used with **On...GoSub** and **On...GoTo**. However, when more labels or numbers are present than fit on a single line, the line-continuation character must be used to continue the logical line onto the next physical line.
+行号和行标签可以在同一列表中混合使用。**On...GoSub**和**On...GoTo**可以使用任意数量的行标签和行号。但是，当标签或编号多于一行所能容纳时，必须使用行继续符将逻辑行延续到下一个物理行。
 
 ::: tip
-[**Select Case**](/official/Reference/Core/Select-Case) provides a more structured and flexible way to perform multiple branching.
+[**Select Case**](/official/Reference/Core/Select-Case)提供了一种更结构化、更灵活的方式来执行多路分支。
 :::
 
-### Example
+### 示例
 
-This example uses the **On...GoSub** and **On...GoTo** statements to branch to subroutines and line labels, respectively.
+本示例使用**On...GoSub**和**On...GoTo**语句分别分支到子例行程序和行标签。
 
 ```vb
 Sub OnGosubGotoDemo()
@@ -56,8 +65,8 @@ Line2:
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**GoTo** statement](/official/Reference/Core/GoTo)
-- [**GoSub...Return** statement](/official/Reference/Core/GoSub-Return)
-- [**Select Case** statement](/official/Reference/Core/Select-Case)
+- [**GoTo** 语句](/official/Reference/Core/GoTo)
+- [**GoSub...Return** 语句](/official/Reference/Core/GoSub-Return)
+- [**Select Case** 语句](/official/Reference/Core/Select-Case)

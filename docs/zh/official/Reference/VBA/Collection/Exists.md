@@ -1,28 +1,37 @@
 ---
-title: Exists
+title: "Exists 方法"
 parent: Collection
 permalink: /tB/Modules/Collection/Exists
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '21adc86e-14df-4930-ac03-f33e68b4e34f'
+  PropagateID: '21adc86e-14df-4930-ac03-f33e68b4e34f'
+  ReservedCode1: '4855650b-956b-468a-9b4c-343a0f72873d'
+  ReservedCode2: '4855650b-956b-468a-9b4c-343a0f72873d'
 ---
+
 # Exists
 
-Returns **True** if a specified key exists in a **Collection** object; **False** if it does not.
+如果指定的键存在于 **Collection** 对象中，则返回 **True**；否则返回 **False**。
 
-Syntax: *object*.**Exists(** *key* **)**
+语法：*object*.**Exists(** *key* **)**
 
 *object*
-: *required* An object expression that evaluates to a **Collection** object.
+: *必需* 一个计算结果为 **Collection** 对象的对象表达式。
 
 *key*
-: *required* A **String** value identifying the item to locate in the collection.
+: *必需* 一个 **String** 值，标识要在集合中查找的项。
 
 ::: info
 
-**Exists** is a twinBASIC extension; the classic VBA **Collection** object has no **Exists** method. The same effect in VBA requires calling [**Item**](/official/Reference/VBA/Collection/Item) inside an error-handling block.
+**Exists** 是 twinBASIC 扩展；经典 VBA 的 **Collection** 对象没有 **Exists** 方法。在 VBA 中要实现相同效果，需要在错误处理块中调用 [**Item**](/official/Reference/VBA/Collection/Item)。
 :::
 
-Key comparison is governed by the [**KeyCompareMode**](/official/Reference/VBA/Collection/KeyCompareMode) property.
+键比较由 [**KeyCompareMode**](/official/Reference/VBA/Collection/KeyCompareMode) 属性控制。
 
-### Example
+### 示例
 
 ```vb
 Dim MyCollection As New Collection
@@ -38,9 +47,9 @@ If Not MyCollection.Exists("z") Then
 End If
 ```
 
-### See Also
+### 另请参阅
 
-- [Add](/official/Reference/VBA/Collection/Add) method
-- [Item](/official/Reference/VBA/Collection/Item) method
-- [Keys](/official/Reference/VBA/Collection/Keys) method
-- [KeyCompareMode](/official/Reference/VBA/Collection/KeyCompareMode) property
+- [Add](/official/Reference/VBA/Collection/Add) 方法
+- [Item](/official/Reference/VBA/Collection/Item) 方法
+- [Keys](/official/Reference/VBA/Collection/Keys) 方法
+- [KeyCompareMode](/official/Reference/VBA/Collection/KeyCompareMode) 属性

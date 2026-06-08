@@ -1,17 +1,28 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '41a2256c-2478-49ed-bebf-15a740667729'
+  PropagateID: '41a2256c-2478-49ed-bebf-15a740667729'
+  ReservedCode1: 'ba8041e8-a6ef-49a4-b9d5-3b2545ea9b38'
+  ReservedCode2: 'ba8041e8-a6ef-49a4-b9d5-3b2545ea9b38'
 ---
-title: MDIForm
+
+---
+title: "MDIForm MDI窗体"
 parent: VB Package
 permalink: /tB/Packages/VB/MDIForm/
 ---
 
-# MDIForm class
+# MDIForm 类
 
-An **MDIForm** is a top-level Win32 window that hosts an *MDI client area* --- a recessed working surface in which one or more [**Form**](/official/Reference/VB/Form/) instances marked as MDI children appear, each with its own caption bar inside the parent. A twinBASIC project may contain at most one MDI form. Unlike an ordinary [**Form**](/official/Reference/VB/Form/), an MDIForm has no drawing surface, no font properties, and no graphics primitives --- it is purely a frame for its children, plus a host for menus, toolbars, and (optionally) a single background [**Picture**](#picture) drawn behind the children.
+**MDIForm**是一个顶级Win32窗口，承载一个*MDI客户区*——一个凹陷的工作表面，其中出现一个或多个标记为MDI子窗体的[**Form**](/official/Reference/VB/Form/)实例，每个都在父窗口内有自己的标题栏。twinBASIC项目最多可包含一个MDI窗体。与普通[**Form**](/official/Reference/VB/Form/)不同，MDIForm没有绘图表面、没有字体属性、没有图形原语——它纯粹是其子窗体的框架，加上菜单、工具栏和（可选）绘制在子窗体后面的单个背景[**Picture**](#picture)的宿主。
 
-The default property is [**Controls**](#controls) and the default event is [**Load**](#load).
+默认属性是[**Controls**](#controls)，默认事件是[**Load**](#load)。
 
 ```vb
-' In MDIForm1's code-behind:
+' 在MDIForm1的代码隐藏中：
 Private Sub MDIForm_Load()
     Caption = "Editor"
     AutoShowChildren = True
@@ -21,42 +32,42 @@ Private Sub mnuWindowCascade_Click()
     Arrange vbCascade
 End Sub
 
-' In a child form (Form1) marked MDIChild = True:
+' 在标记MDIChild = True的子窗体（Form1）中：
 Private Sub Form_Load()
     Caption = "Untitled"
 End Sub
 
-' In a startup module:
+' 在启动模块中：
 Sub Main()
     MDIForm1.Show
-    Form1.Show                      ' opens inside MDIForm1's client area
+    Form1.Show                      ' 在MDIForm1的客户区内打开
 End Sub
 ```
 
 
-## Lifecycle
+## 生命周期
 
-The MDIForm goes through the same six events as a regular [**Form**](/official/Reference/VB/Form/) from creation to destruction:
+MDIForm从创建到销毁经历与普通[**Form**](/official/Reference/VB/Form/)相同的六个事件：
 
-| Event                            | When                                                                                |
+| 事件                            | 时机                                                                                |
 |----------------------------------|-------------------------------------------------------------------------------------|
-| [**Initialize**](#initialize)    | Before the underlying window exists. The form's children and controls do not yet exist. |
-| [**Load**](#load)                | After the window has been created and the child controls (toolbar bands, status bars, menus) have been instantiated, before the form first appears. |
-| [**Activate**](#activate)        | When the MDI parent or one of its child forms becomes active.                       |
-| [**Deactivate**](#deactivate)    | When activation moves to another window outside the MDI group.                      |
-| [**QueryUnload**](#queryunload)  | Before unload. Setting *Cancel* to non-zero keeps the form open. Closing the MDI parent first runs **QueryUnload** on every open MDI child, then on the parent itself. |
-| [**Unload**](#unload)            | After **QueryUnload** approves. Setting *Cancel* to non-zero keeps the form open.   |
-| [**Terminate**](#terminate)      | After the window has been destroyed and the class instance is released.             |
+| [**Initialize**](#initialize)    | 底层窗口存在之前。窗体的子窗体和控件尚不存在。                                      |
+| [**Load**](#load)                | 窗口创建且子控件（工具栏带、状态栏、菜单）实例化后，窗体首次显示之前。              |
+| [**Activate**](#activate)        | MDI父窗体或其某个子窗体变为活动窗口时。                                             |
+| [**Deactivate**](#deactivate)    | 激活移动到MDI组外的另一个窗口时。                                                   |
+| [**QueryUnload**](#queryunload)  | 卸载之前。将*Cancel*设置为非零值保持窗体打开。关闭MDI父窗体时首先在每个打开的MDI子窗体上运行**QueryUnload**，然后在父窗体自身上运行。 |
+| [**Unload**](#unload)            | **QueryUnload**批准后。将*Cancel*设置为非零值保持窗体打开。                         |
+| [**Terminate**](#terminate)      | 窗口销毁且类实例释放后。                                                            |
 
-## MDI children
+## MDI子窗体
 
-An MDI child is any [**Form**](/official/Reference/VB/Form/) whose **MDIChild** property is **True** (set at design time). Showing or unhiding such a form parents it to the MDI client area: its [**Left**](/official/Reference/VB/Form/#left) and [**Top**](/official/Reference/VB/Form/#top) become relative to the client area's upper-left corner, its title bar is drawn inside the parent rather than on the desktop, and maximising it merges its system menu and minimise/maximise buttons into the parent's title bar.
+MDI子窗体是任何**MDIChild**属性为**True**（在设计时设置）的[**Form**](/official/Reference/VB/Form/)。显示或取消隐藏此类窗体会将其父级设为MDI客户区：其[**Left**](/official/Reference/VB/Form/#left)和[**Top**](/official/Reference/VB/Form/#top)变为相对于客户区左上角，其标题栏绘制在父窗口内部而非桌面上，最大化时其系统菜单和最小化/最大化按钮合并到父窗口的标题栏中。
 
-[**ActiveForm**](#activeform) returns the currently focused child, or **Nothing** when no child is open. [**Activate**](#activate) and [**Deactivate**](#deactivate) on the MDI parent fire only when activation crosses the MDI group's outer boundary; activation moves *within* the group fire **Activate** / **Deactivate** on the affected child forms instead.
+[**ActiveForm**](#activeform)返回当前获得焦点的子窗体，无子窗体打开时返回**Nothing**。MDI父窗体上的[**Activate**](#activate)和[**Deactivate**](#deactivate)仅在激活跨过MDI组的外部边界时引发；激活在组*内部*移动时在受影响的子窗体上引发**Activate** / **Deactivate**。
 
-[**AutoShowChildren**](#autoshowchildren) decides what happens when an MDI child class is loaded but not explicitly shown --- when **True** (default), the child is made visible automatically; when **False**, the child stays hidden until code calls **Show** on it.
+[**AutoShowChildren**](#autoshowchildren)决定MDI子窗体类被加载但未显式显示时发生什么——当为**True**（默认）时，子窗体自动变为可见；当为**False**时，子窗体保持隐藏直到代码对其调用**Show**。
 
-[**Arrange**](#arrange) lays the open children out in a single call: cascade, tile horizontally, tile vertically, or arrange the icons of minimised children along the bottom edge.
+[**Arrange**](#arrange)在单次调用中布局打开的子窗体：层叠、水平平铺、垂直平铺或沿底部边缘排列最小化子窗体的图标。
 
 ```vb
 mnuWindowCascade.Click       => Me.Arrange vbCascade
@@ -65,23 +76,23 @@ mnuWindowTileV.Click         => Me.Arrange vbTileVertical
 mnuWindowArrangeIcons.Click  => Me.Arrange vbArrangeIcons
 ```
 
-## Window appearance
+## 窗口外观
 
-An MDIForm always uses the sizable border style --- there is no [**BorderStyle**](/official/Reference/VB/Form/#borderstyle) property, the title bar is always present, the system menu and minimise / maximise buttons are always shown, and the form always appears in the taskbar. [**Caption**](#caption) sets the title-bar text. [**Icon**](#icon) supplies the small/large icon used by the system menu, the taskbar, and Alt-Tab. [**WindowState**](#windowstate) ([**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants)) reads or sets normal / minimised / maximised state at run time.
+MDIForm始终使用可调整大小的边框样式——没有[**BorderStyle**](/official/Reference/VB/Form/#borderstyle)属性，标题栏始终存在，系统菜单和最小化/最大化按钮始终显示，窗体始终出现在任务栏中。[**Caption**](#caption)设置标题栏文本。[**Icon**](#icon)提供系统菜单、任务栏和Alt-Tab使用的小/大图标。[**WindowState**](#windowstate)（[**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants)）在运行时读取或设置正常/最小化/最大化状态。
 
-[**MinWidth**](#minwidth), [**MinHeight**](#minheight), [**MaxWidth**](#maxwidth), and [**MaxHeight**](#maxheight) constrain the *client area* in twips during interactive resizing. [**Moveable**](#moveable) decides whether the user can drag the form by its title bar.
+[**MinWidth**](#minwidth)、[**MinHeight**](#minheight)、[**MaxWidth**](#maxwidth)和[**MaxHeight**](#maxheight)在交互式调整大小期间以缇为单位约束*客户区*。[**Moveable**](#moveable)决定用户是否可以通过标题栏拖动窗体。
 
-[**Opacity**](#opacity) and [**TransparencyKey**](#transparencykey) enable Windows' layered-window features for translucent forms and cut-out shapes.
+[**Opacity**](#opacity)和[**TransparencyKey**](#transparencykey)启用Windows的分层窗口功能，用于半透明窗体和裁剪形状。
 
-[**BackColor**](#backcolor) paints the MDI client area's background --- defaults to the system **vbApplicationWorkspace** colour rather than 3-D face. [**Picture**](#picture), when set, is drawn over **BackColor** as the client-area backdrop, scaled to fill the area for metafiles and centred at its natural size for bitmaps. [**PictureDpiScaling**](#picturedpiscaling) scales bitmaps by the current DPI factor before drawing. There is no on-screen drawing API on an MDIForm --- the [**Cls**](/official/Reference/VB/Form/#cls), [**Circle**](/official/Reference/VB/Form/#circle), [**Line**](/official/Reference/VB/Form/#line), [**PSet**](/official/Reference/VB/Form/#pset), [**PaintPicture**](/official/Reference/VB/Form/#paintpicture), and **Print** members of the **Form** interface raise run-time error 438 (*Object doesn't support this property or method*) when called on an MDIForm.
+[**BackColor**](#backcolor)绘制MDI客户区的背景——默认为系统**vbApplicationWorkspace**颜色而非3D面色。[**Picture**](#picture)设置后绘制在**BackColor**之上作为客户区背景，元文件缩放以填充区域，位图以其自然大小居中。[**PictureDpiScaling**](#picturedpiscaling)在绘制前按当前DPI因子缩放位图。MDIForm上没有屏幕绘图API——在MDIForm上调用**Form**接口的[**Cls**](/official/Reference/VB/Form/#cls)、[**Circle**](/official/Reference/VB/Form/#circle)、[**Line**](/official/Reference/VB/Form/#line)、[**PSet**](/official/Reference/VB/Form/#pset)、[**PaintPicture**](/official/Reference/VB/Form/#paintpicture)和**Print**成员会引发运行时错误438（*Object doesn't support this property or method*）。
 
-A vertical and a horizontal scroll bar appear automatically when an MDI child is moved or sized so that its rectangle extends beyond the visible client area; this is fixed at design time through the **ScrollBars** property of the MDI parent and is not exposed at run time.
+当MDI子窗体被移动或调整大小使其矩形超出可见客户区时，垂直和水平滚动条自动出现；这通过MDI父窗体的**ScrollBars**属性在设计时固定，运行时不公开。
 
-## Menus and pop-ups
+## 菜单和弹出菜单
 
-Menu structures designed at form-design time appear automatically in the MDIForm's title bar. When an MDI child is maximised, the child's own menu (if any) is merged into the parent's menu bar, replacing it for as long as the child stays maximised. The classic VB6 *window-list* feature --- a menu sub-tree that lists every open MDI child for quick switching --- is supported automatically when a [**Menu**](/official/Reference/VB/Menu/) on the MDIForm has its **WindowList** property set.
+在窗体设计时设计的菜单结构自动出现在MDIForm的标题栏中。当MDI子窗体最大化时，子窗体自己的菜单（如果有）合并到父窗体的菜单栏中，在子窗体保持最大化期间替换父菜单。经典的VB6*窗口列表*功能——列出每个打开的MDI子窗体以便快速切换的菜单子树——在MDIForm上的[**Menu**](/official/Reference/VB/Menu/)设置了**WindowList**属性时自动支持。
 
-[**PopUpMenu**](#popupmenu) displays one of the form's menus as a context-menu pop-up at a specified location, raising the menu's **Click** event when the user picks an item.
+[**PopUpMenu**](#popupmenu)在指定位置将窗体的某个菜单显示为上下文菜单弹出窗口，当用户选择项目时引发菜单的**Click**事件。
 
 ```vb
 Private Sub MDIForm_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -89,488 +100,488 @@ Private Sub MDIForm_MouseDown(Button As Integer, Shift As Integer, X As Single, 
 End Sub
 ```
 
-## Differences from Form
+## 与Form的区别
 
-Because the MDIForm is a frame, not a drawing surface, the following members of the **Form** interface are *not* supported on it --- accessing them raises run-time error 380 (properties) or 438 (methods):
+由于MDIForm是框架而非绘图表面，**Form**接口的以下成员在其上*不受支持*——访问它们会引发运行时错误380（属性）或438（方法）：
 
-| Category                     | Members                                                                              |
+| 类别                         | 成员                                                                              |
 |------------------------------|--------------------------------------------------------------------------------------|
-| Drawing                      | **AutoRedraw**, **ClipControls**, **HasDC**, **hDC**, **Image**, **CurrentX**, **CurrentY**, **DrawMode**, **DrawStyle**, **DrawWidth**, **FillColor**, **FillStyle**, **ForeColor**, **FontTransparent**, **Cls**, **Circle**, **Line**, **PSet**, **PaintPicture** |
-| Font                         | **Font**, **FontName**, **FontSize**, **FontBold**, **FontItalic**, **FontStrikethru**, **FontUnderline**, **TextWidth** |
-| Geometry                     | **ScaleLeft**, **ScaleTop**, **ScaleMode**, **Scale**, **ScaleX**, **ScaleY** ([**ScaleWidth**](#scalewidth) and [**ScaleHeight**](#scaleheight) are supported but read-only) |
-| Window chrome                | **BorderStyle**, **ControlBox**, **MaxButton**, **MinButton**, **ShowInTaskbar**, **WhatsThisButton** |
-| Other                        | **KeyPreview** (and the [**Form**](/official/Reference/VB/Form/)'s **KeyDown** / **KeyUp** / **KeyPress** events do not exist on **MDIForm**), **MDIChild**, **NegotiateMenus**, **Palette**, **PaletteMode**, **PrintForm**, **Point**, **Refresh** (raises 438 on an MDIForm even though it works on a regular Form) |
-| Behaviour quirk              | **TextHeight** returns `0` instead of raising. (VB6 bug retained for compatibility.) |
+| 绘图                         | **AutoRedraw**、**ClipControls**、**HasDC**、**hDC**、**Image**、**CurrentX**、**CurrentY**、**DrawMode**、**DrawStyle**、**DrawWidth**、**FillColor**、**FillStyle**、**ForeColor**、**FontTransparent**、**Cls**、**Circle**、**Line**、**PSet**、**PaintPicture** |
+| 字体                         | **Font**、**FontName**、**FontSize**、**FontBold**、**FontItalic**、**FontStrikethru**、**FontUnderline**、**TextWidth** |
+| 几何                         | **ScaleLeft**、**ScaleTop**、**ScaleMode**、**Scale**、**ScaleX**、**ScaleY**（[**ScaleWidth**](#scalewidth)和[**ScaleHeight**](#scaleheight)受支持但只读） |
+| 窗口装饰                     | **BorderStyle**、**ControlBox**、**MaxButton**、**MinButton**、**ShowInTaskbar**、**WhatsThisButton** |
+| 其他                         | **KeyPreview**（且[**Form**](/official/Reference/VB/Form/)的**KeyDown** / **KeyUp** / **KeyPress**事件在**MDIForm**上不存在）、**MDIChild**、**NegotiateMenus**、**Palette**、**PaletteMode**、**PrintForm**、**Point**、**Refresh**（在MDIForm上引发438，尽管在普通Form上正常工作） |
+| 行为特殊                     | **TextHeight**返回`0`而非引发错误。（保留VB6错误以兼容。）                              |
 
-## Properties
+## 属性
 
 ### ActiveControl
 
-The control on the active MDI child that currently has the input focus, as a **Control** object, or **Nothing** when no child is focused. Read-only.
+活动MDI子窗体上当前拥有输入焦点的控件，类型为**Control**对象，无子窗体获得焦点时为**Nothing**。只读。
 
 ### ActiveForm
 
-The currently active MDI child form, as an **Object**, or **Nothing** when no child is open. Read-only. Updated each time activation moves between children, just before the corresponding [**Activate**](#activate) and [**Deactivate**](#deactivate) events fire on the child forms.
+当前活动的MDI子窗体，类型为**Object**，无子窗体打开时为**Nothing**。只读。每次激活在子窗体之间移动时更新，就在子窗体上相应的[**Activate**](#activate)和[**Deactivate**](#deactivate)事件引发之前。
 
 ### AlwaysShowKeyboardCues
 
-When **True**, the form always shows underlines on access-key characters in [**Caption**](#caption)s and menu items, instead of only displaying them after the user presses **Alt**. **Boolean**, read-only at run time. Set at design time.
+当为**True**时，窗体始终在[**Caption**](#caption)和菜单项的访问键字符上显示下划线，而非仅在用户按**Alt**后显示。**Boolean**，运行时只读。在设计时设置。
 
 ### Appearance
 
-A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。
 
 ::: info
-Retained for VB6 compatibility; the property has no observable effect on an MDI form.
+保留用于VB6兼容；此属性在MDI窗体上无可观察效果。
 :::
 
 ### AutoShowChildren
 
-When **True** (default), loading an MDI child class also shows it; when **False**, child classes can be loaded into memory without becoming visible until code calls **Show** on them. **Boolean**.
+当为**True**（默认）时，加载MDI子窗体类也会显示它；当为**False**时，子窗体类可加载到内存中而不变为可见，直到代码对其调用**Show**。**Boolean**。
 
 ### BackColor
 
-The colour painted in the MDI client area, as an **OLE_COLOR**. Defaults to the system **vbApplicationWorkspace** colour. Used as the canvas behind [**Picture**](#picture) and behind every MDI child's title bar and outer border.
+MDI客户区中绘制的颜色，类型为**OLE_COLOR**。默认为系统**vbApplicationWorkspace**颜色。用作[**Picture**](#picture)和每个MDI子窗体标题栏及外边框后面的画布。
 
 ### Caption
 
-The title-bar text. **String**.
+标题栏文本。**String**。
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
-When an MDI child is maximised, Windows decorates **Caption** with the child's caption in square brackets --- `Editor - [Untitled]` --- and the application normally lets that decoration stay automatic by leaving **Caption** alone.
+当MDI子窗体最大化时，Windows用方括号中的子窗体标题装饰**Caption**——`Editor - [Untitled]`——应用程序通常通过不修改**Caption**来让装饰保持自动。
 
 ### Controls
 
-The collection of every control hosted by this form, indexable by control name or zero-based position. **Default property.** Read-only --- controls are added to the collection by the runtime, not by user code. The collection contains the form's menus, toolbars, status bars, and any aligned controls; MDI children are *not* members of this collection (they are independent top-level forms hosted in the MDI client area, accessible through [**ActiveForm**](#activeform) and the runtime's **Forms** collection).
+此窗体承载的每个控件的集合，可按控件名称或从零开始的位置索引。**默认属性。**只读——控件由运行时添加到集合中，而非用户代码。集合包含窗体的菜单、工具栏、状态栏和任何对齐控件；MDI子窗体*不是*此集合的成员（它们是托管在MDI客户区中的独立顶级窗体，可通过[**ActiveForm**](#activeform)和运行时的**Forms**集合访问）。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a form. Always **vbForm**.
+只读的[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值，将此控件标识为窗体。始终为**vbForm**。
 
 ### Count
 
-The number of controls in [**Controls**](#controls), as a **Long**. Read-only. Equivalent to `Me.Controls.Count`.
+[**Controls**](#controls)中的控件数，类型为**Long**。只读。等同于`Me.Controls.Count`。
 
 ### DpiScaleFactorX
 
-The horizontal DPI scale factor of the monitor the form is currently on, as a **Double**. `1.0` at 96 DPI, `1.25` at 120 DPI, `1.5` at 144 DPI, and so on. Read-only.
+窗体当前所在显示器的水平DPI缩放因子，类型为**Double**。96 DPI时为`1.0`，120 DPI时为`1.25`，144 DPI时为`1.5`，以此类推。只读。
 
 ### DpiScaleFactorY
 
-The vertical DPI scale factor of the monitor the form is currently on. Currently always equal to [**DpiScaleFactorX**](#dpiscalefactorx). Read-only.
+窗体当前所在显示器的垂直DPI缩放因子。当前始终等于[**DpiScaleFactorX**](#dpiscalefactorx)。只读。
 
 ### Enabled
 
-Determines whether the form accepts user input. A disabled MDI parent ignores keyboard and mouse input, dims its title bar, and disables every open MDI child. **Boolean**, default **True**.
+确定窗体是否接受用户输入。禁用的MDI父窗体忽略键盘和鼠标输入，标题栏变暗，并禁用每个打开的MDI子窗体。**Boolean**，默认**True**。
 
 ### Height
 
-The form's outer height, in twips (or in the calling code's **ScaleMode** units). **Double**. Constrained at run time by [**MinHeight**](#minheight) and [**MaxHeight**](#maxheight) when those are non-zero.
+窗体的外部高度，以缇为单位（或使用调用代码的**ScaleMode**单位）。**Double**。运行时受[**MinHeight**](#minheight)和[**MaxHeight**](#maxheight)约束（当它们非零时）。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the form has focus.
+标识应用程序帮助文件中主题的**Long**值，当用户在窗体具有焦点时按**F1**时检索。
 
 ### hWnd
 
-The Win32 window handle for the MDI parent frame, as a **LongPtr**. Read-only. Useful for passing to API functions. The MDI client area is a separate child window with its own handle, accessible through Win32 calls only.
+MDI父框架的Win32窗口句柄，类型为**LongPtr**。只读。可用于传递给API函数。MDI客户区是一个单独的子窗口，有自己的句柄，只能通过Win32调用访问。
 
 ### Icon
 
-The icon shown on the title bar, in the taskbar, and in Alt-Tab. A **StdPicture** of type **vbPicTypeIcon**. Assigning a non-icon picture leaves the icon unchanged.
+标题栏、任务栏和Alt-Tab中显示的图标。**vbPicTypeIcon**类型的**StdPicture**。赋值非图标图片会使图标保持不变。
 
 ### Left
 
-The horizontal position of the form's outer rectangle, in twips (or the calling code's **ScaleMode** units), measured from the left edge of the screen. **Double**.
+窗体外部矩形的水平位置，以缇为单位（或使用调用代码的**ScaleMode**单位），从屏幕左边缘测量。**Double**。
 
 ### LinkMode
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently implemented in twinBASIC.
+保留用于与VB6的DDE功能兼容；目前在twinBASIC中未实现。
 :::
 
 ### LinkTopic
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently implemented in twinBASIC.
+保留用于与VB6的DDE功能兼容；目前在twinBASIC中未实现。
 :::
 
 ### MaxHeight
 
-The maximum height of the form's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+窗体*客户区*的最大高度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时遵守。
 
 ### MaxWidth
 
-The maximum width of the form's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+窗体*客户区*的最大宽度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时遵守。
 
 ### MinHeight
 
-The minimum height of the form's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+窗体*客户区*的最小高度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时遵守。
 
 ### MinWidth
 
-The minimum width of the form's *client area*, in twips. **Double**, default `0` (no limit). Honoured during interactive resizing.
+窗体*客户区*的最小宽度，以缇为单位。**Double**，默认`0`（无限制）。在交互式调整大小时遵守。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the form's frame or client area (and not over a child form's own surface).
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针位于窗体框架或客户区（而非子窗体自身表面）上时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the form's frame or client area. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+指针位于窗体框架或客户区上时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Moveable
 
-Whether the user can drag the form by its title bar. **Boolean**, default **True**.
+用户是否可以通过标题栏拖动窗体。**Boolean**，默认**True**。
 
 ### Name
 
-The unique design-time name of the form. Read-only at run time. Also the class name of the generated form class.
+窗体的唯一设计时名称。运行时只读。也是生成的窗体类的类名。
 
 ### NegotiateToolbars
 
 ::: info
-Reserved for compatibility with VB6's ActiveX-document menu negotiation feature; not currently implemented in twinBASIC.
+保留用于与VB6的ActiveX文档菜单协商功能兼容；目前在twinBASIC中未实现。
 :::
 
 ### OLEDropMode
 
-How the form responds to OLE drops over its frame and client area. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on an MDIForm.
+窗体如何响应其框架和客户区上的OLE放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants)的受限成员：**vbOLEDropNone**或**vbOLEDropManual**。MDIForm不支持自动放置模式。
 
 ### Opacity
 
-The form's opacity as a percentage (0--100, default 100). Values outside the range are clamped on **Initialize**. Values below 100 cause the form to become a layered window; the open MDI children become translucent along with the parent.
+窗体的不透明度百分比（0--100，默认100）。超出范围的值在**Initialize**时被钳制。低于100的值会使窗体变为分层窗口；打开的MDI子窗体随父窗体一起变为半透明。
 
 ### Picture
 
-A **StdPicture** drawn as the MDI client area's background. Painted over [**BackColor**](#backcolor), behind every MDI child. Bitmaps are drawn at their natural size from the upper-left corner; metafiles are stretched to fill the entire client area. Assigning **Nothing** removes the background.
+作为MDI客户区背景绘制的**StdPicture**。绘制在[**BackColor**](#backcolor)之上，每个MDI子窗体之后。位图从左上角以其自然大小绘制；元文件拉伸以填充整个客户区。赋值**Nothing**移除背景。
 
 ### PictureDpiScaling
 
-When **True**, [**Picture**](#picture) is scaled by the current DPI factor before drawing. **Boolean**, default **False**. Has no effect on metafile pictures (they are stretched regardless).
+当为**True**时，[**Picture**](#picture)在绘制前按当前DPI因子缩放。**Boolean**，默认**False**。对元文件图片无效（它们始终拉伸）。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中未实现。
 :::
 
 ### ScaleHeight
 
-The height of the MDI *client area* (the inset region that hosts the children), in twips. **Double**, read-only --- assigning to it raises run-time error 383 (*'ScaleHeight' property is read-only*).
+MDI*客户区*的高度（承载子窗体的凹陷区域），以缇为单位。**Double**，只读——赋值会引发运行时错误383（*'ScaleHeight' property is read-only*）。
 
 ### ScaleWidth
 
-The width of the MDI *client area*, in twips. **Double**, read-only --- assigning to it raises run-time error 383.
+MDI*客户区*的宽度，以缇为单位。**Double**，只读——赋值会引发运行时错误383。
 
 ### StartUpPosition
 
-How the form's initial position is determined the first time it is shown. A member of [**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants): **vbStartUpManual**, **vbStartUpOwner**, **vbStartUpScreen**, or **vbStartUpWindowsDefault** (default). Read-only at run time --- set at design time.
+窗体首次显示时其初始位置的确定方式。[**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants)的成员：**vbStartUpManual**、**vbStartUpOwner**、**vbStartUpScreen**或**vbStartUpWindowsDefault**（默认）。运行时只读——在设计时设置。
 
 ### TabFocusAutoSelect
 
-When **True**, a [**TextBox**](/official/Reference/VB/TextBox/) on this form (or on any of its MDI children) whose own **TabFocusAutoSelect** is also **True** auto-selects its content when the focus enters it via the **TAB** key. **Boolean**, default **False**.
+当为**True**时，此窗体（或其任何MDI子窗体）上自身**TabFocusAutoSelect**也为**True**的[**TextBox**](/official/Reference/VB/TextBox/)在焦点通过**TAB**键进入时自动选择其内容。**Boolean**，默认**False**。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the form. Ignored by the framework.
+应用程序可用于将自定义数据与窗体关联的自由格式**String**。框架忽略此属性。
 
 ### Top
 
-The vertical position of the form's outer rectangle, in twips (or the calling code's **ScaleMode** units), measured from the top edge of the screen. **Double**.
+窗体外部矩形的垂直位置，以缇为单位（或使用调用代码的**ScaleMode**单位），从屏幕上边缘测量。**Double**。
 
 ### TopMost
 
-Whether the form sits in the always-on-top z-order layer. **Boolean**, read-only at run time. Set at design time.
+窗体是否位于始终置顶的Z顺序层。**Boolean**，运行时只读。在设计时设置。
 
 ### TransparencyKey
 
-An **OLE_COLOR** that, when set, becomes fully transparent in the rendered form --- clicks pass through to whatever is underneath, and the corresponding pixels do not paint. Default `-1` disables the effect.
+一个**OLE_COLOR**值，设置后在渲染的窗体中变为完全透明——点击穿透到下方的内容，对应像素不绘制。默认`-1`禁用此效果。
 
 ### Visible
 
-Whether the form is shown. **Boolean**, default **True**. Setting **Visible** to **True** when the form was hidden is equivalent to calling [**Show**](#show) **vbModeless**; setting it to **False** is equivalent to calling [**Hide**](#hide). MDI children remain bound to the parent regardless of visibility --- hiding the parent hides every child as well.
+窗体是否显示。**Boolean**，默认**True**。当窗体隐藏时设置**Visible**为**True**等同于调用[**Show**](#show) **vbModeless**；设置为**False**等同于调用[**Hide**](#hide)。MDI子窗体无论可见性如何都绑定到父窗体——隐藏父窗体也会隐藏所有子窗体。
 
 ### WhatsThisHelp
 
-When **True**, [**WhatsThisMode**](#whatsthismode) enters Windows' "What's This?" cursor mode. **Boolean**, default **False**. The title-bar help-button feature is not available on an MDIForm.
+当为**True**时，[**WhatsThisMode**](#whatsthismode)进入Windows的"这是什么？"光标模式。**Boolean**，默认**False**。标题栏帮助按钮功能在MDIForm上不可用。
 
 ### Width
 
-The form's outer width, in twips (or in the calling code's **ScaleMode** units). **Double**. Constrained at run time by [**MinWidth**](#minwidth) and [**MaxWidth**](#maxwidth) when those are non-zero.
+窗体的外部宽度，以缇为单位（或使用调用代码的**ScaleMode**单位）。**Double**。运行时受[**MinWidth**](#minwidth)和[**MaxWidth**](#maxwidth)约束（当它们非零时）。
 
 ### WindowState
 
-The window's normal/minimised/maximised state. A member of [**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants): **vbNormal** (0, default), **vbMinimized** (1), or **vbMaximized** (2). Setting it at run time updates the window placement immediately if the form is visible.
+窗口的正常/最小化/最大化状态。[**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants)的成员：**vbNormal** (0，默认)、**vbMinimized** (1)或**vbMaximized** (2)。在运行时设置时，如果窗体可见则立即更新窗口位置。
 
-## Methods
+## 方法
 
 ### Arrange
 
-Lays the open MDI children out in a single call.
+在单次调用中布局打开的MDI子窗体。
 
-Syntax: *object*.**Arrange** *Arrangement*
+语法：*object*.**Arrange** *Arrangement*
 
 *Arrangement*
-: *required* A member of [**FormArrangeConstants**](/official/Reference/VBRUN/Constants/FormArrangeConstants): **vbCascade** (0), **vbTileHorizontal** (1), **vbTileVertical** (2), or **vbArrangeIcons** (3 --- line up the icons of minimised children along the bottom of the client area). Other values raise run-time error 5 (*Invalid procedure call or argument*).
+: *必需* [**FormArrangeConstants**](/official/Reference/VBRUN/Constants/FormArrangeConstants)的成员：**vbCascade** (0)、**vbTileHorizontal** (1)、**vbTileVertical** (2)或**vbArrangeIcons** (3——沿客户区底部排列最小化子窗体的图标)。其他值引发运行时错误5（*Invalid procedure call or argument*）。
 
 ### Close
 
-Initiates the form's unload sequence --- [**QueryUnload**](#queryunload), then [**Unload**](#unload), then [**Terminate**](#terminate) --- preceded by the same sequence on every open MDI child. Either of the first two events on either the parent or any child can cancel the close by setting *Cancel* to non-zero. Equivalent to the language statement `Unload Me`.
+启动窗体的卸载序列——[**QueryUnload**](#queryunload)，然后[**Unload**](#unload)，然后[**Terminate**](#terminate)——在之前对每个打开的MDI子窗体执行相同序列。父窗体或任何子窗体上前两个事件中的任何一个都可以通过将*Cancel*设置为非零值来取消关闭。等同于语言语句`Unload Me`。
 
-Syntax: *object*.**Close**
+语法：*object*.**Close**
 
 ### Hide
 
-Hides the form without unloading it. The class instance, its children, and its controls are preserved; calling [**Show**](#show) (or assigning [**Visible**](#visible) = **True**) brings it back. Equivalent to assigning **Visible** = **False**.
+隐藏窗体而不卸载。类实例、其子窗体和控件被保留；调用[**Show**](#show)（或赋值[**Visible**](#visible) = **True**）将其带回。等同于赋值**Visible** = **False**。
 
-Syntax: *object*.**Hide**
+语法：*object*.**Hide**
 
 ### Move
 
-Repositions and optionally resizes the form in a single call.
+在单次调用中重新定位并可选地调整窗体大小。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**值。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the form, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject**.
+从窗体发起OLE拖动操作，引发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### PopUpMenu
 
-Displays a [**Menu**](/official/Reference/VB/Menu/) as a context-menu pop-up at the specified location.
+在指定位置将[**Menu**](/official/Reference/VB/Menu/)显示为上下文菜单弹出窗口。
 
-Syntax: *object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
+语法：*object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
 
 *Menu*
-: *required* The **Menu** control to display. The menu must already exist on the form.
+: *必需* 要显示的**Menu**控件。菜单必须已存在于窗体上。
 
 *Flags*
-: *optional* A combination of [**MenuControlConstants**](/official/Reference/VBRUN/Constants/MenuControlConstants) controlling alignment and which mouse buttons trigger the menu items.
+: *可选* [**MenuControlConstants**](/official/Reference/VBRUN/Constants/MenuControlConstants)的组合，控制对齐和哪些鼠标按钮触发菜单项。
 
 *X*, *Y*
-: *optional* The screen-relative position to anchor the menu at, in twips. Defaults to the current mouse position.
+: *可选* 锚定菜单的屏幕相对位置，以缇为单位。默认为当前鼠标位置。
 
 *DefaultMenu*
-: *optional* The **Menu** sub-item to render in bold as the default action.
+: *可选* 以粗体渲染为默认操作的**Menu**子项。
 
 ### SetFocus
 
-Activates the form. If an MDI child is open, focus moves to whichever control on that child last held it; otherwise focus moves to the parent's frame.
+激活窗体。如果MDI子窗体打开，焦点移到该子窗体上最后持有焦点的控件；否则焦点移到父窗体的框架。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### Show
 
-Makes the form visible. Triggers [**Load**](#load) on the first call.
+使窗体可见。首次调用时触发[**Load**](#load)。
 
-Syntax: *object*.**Show** [ *Modal* [, *OwnerForm* ] ]
+语法：*object*.**Show** [ *Modal* [, *OwnerForm* ] ]
 
 *Modal*
-: *optional* A member of [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants): **vbModeless** (0, default --- the call returns immediately) or **vbModal** (1). MDI parents are normally shown modeless; modal display is accepted but unusual.
+: *可选* [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants)的成员：**vbModeless** (0，默认——调用立即返回)或**vbModal** (1)。MDI父窗体通常以无模式方式显示；模态显示被接受但不常见。
 
 *OwnerForm*
-: *optional* For modal shows, the form that is disabled while this form is up; defaults to the currently active form.
+: *可选* 对于模态显示，此窗体打开时被禁用的窗体；默认为当前活动窗体。
 
 ### ValidateControls
 
-Fires the **Validate** event of the currently active control on the active MDI child. If the handler sets *Cancel* to **True**, **ValidateControls** raises run-time error 380 (*Invalid property value*); the caller can wrap this with `On Error` to detect a failed validation.
+在活动MDI子窗体上引发当前活动控件的**Validate**事件。如果处理程序将*Cancel*设置为**True**，**ValidateControls**会引发运行时错误380（*Invalid property value*）；调用者可以用`On Error`包装以检测验证失败。
 
-Syntax: *object*.**ValidateControls**
+语法：*object*.**ValidateControls**
 
 ### WhatsThisMode
 
-Enters Windows' "What's This?" cursor mode --- the next click on a control raises that control's help instead of activating it. [**WhatsThisHelp**](#whatsthishelp) must be **True**.
+进入Windows的"这是什么？"光标模式——下一次点击控件会引发该控件的帮助而非激活它。[**WhatsThisHelp**](#whatsthishelp)必须为**True**。
 
-Syntax: *object*.**WhatsThisMode**
+语法：*object*.**WhatsThisMode**
 
 ### ZOrder
 
-Brings the form to the front or back of the top-level z-order.
+将窗体置于顶级Z顺序的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront** (0，默认)或**vbSendToBack** (1)。
 
-## Events
+## 事件
 
 ### Activate
 
-Raised when the MDI parent or any of its child forms becomes the active window in the application --- typically right after [**Load**](#load) for the first show, and whenever activation returns to the MDI group from another window.
+当MDI父窗体或其任何子窗体成为应用程序中的活动窗口时引发——通常在首次显示后[**Load**](#load)之后，以及每当激活从另一个窗口返回到MDI组时。
 
-Syntax: *object*\_**Activate**( )
+语法：*object*\_**Activate**( )
 
 ### Click
 
-Raised when the user single-clicks the MDI parent's frame area (i.e. the title bar's hit-test area or directly on the client-area background, with no MDI child covering the spot).
+用户单击MDI父窗体的框架区域（即标题栏点击测试区域或直接在客户区背景上，没有MDI子窗体覆盖的位置）时引发。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DblClick
 
-Raised when the user double-clicks the MDI parent's frame area.
+用户双击MDI父窗体的框架区域时引发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### Deactivate
 
-Raised when the MDI parent loses activation to another window outside the MDI group. Activation moving between the parent and its own children does not raise **Deactivate** on the parent.
+当MDI父窗体的激活移动到MDI组外的另一个窗口时引发。激活在父窗体与其自身子窗体之间移动不会在父窗体上引发**Deactivate**。
 
-Syntax: *object*\_**Deactivate**( )
+语法：*object*\_**Deactivate**( )
 
 ### DPIChange
 
-Raised when the form moves to a monitor with a different DPI scale, *but only* when the application is per-monitor DPI aware (`PROCESS_PER_MONITOR_DPI_AWARE`). The event's *NewDPI* argument gives the new effective DPI; child controls and MDI children re-scale themselves automatically. New in twinBASIC.
+当窗体移动到具有不同DPI比例的显示器时引发，*但仅当*应用程序是每显示器DPI感知的（`PROCESS_PER_MONITOR_DPI_AWARE`）。事件的*NewDPI*参数给出新的有效DPI；子控件和MDI子窗体自动重新缩放。twinBASIC新增。
 
-Syntax: *object*\_**DPIChange**( *NewDPI* **As Long** )
+语法：*object*\_**DPIChange**( *NewDPI* **As Long** )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+手动拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+手动拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### Initialize
 
-Raised once, before the underlying window is created and before any of the form's child controls (or MDI children) exist. Useful for setting initial values on form-level fields. The form's controls cannot be referenced from this event.
+在底层窗口创建之前且窗体的任何子控件（或MDI子窗体）存在之前引发一次。用于设置窗体级字段的初始值。不能从此事件引用窗体的控件。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### LinkClose
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently raised in twinBASIC.
+保留用于与VB6的DDE功能兼容；目前在twinBASIC中不会引发。
 :::
 
 ### LinkError
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently raised in twinBASIC.
+保留用于与VB6的DDE功能兼容；目前在twinBASIC中不会引发。
 :::
 
 ### LinkExecute
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently raised in twinBASIC.
+保留用于与VB6的DDE功能兼容；目前在twinBASIC中不会引发。
 :::
 
 ### LinkOpen
 
 ::: info
-Reserved for compatibility with VB6's DDE feature; not currently raised in twinBASIC.
+保留用于与VB6的DDE功能兼容；目前在twinBASIC中不会引发。
 :::
 
 ### Load
 
-Raised after the MDI parent's window and all aligned child controls (toolbars, status bars, menus) have been created, just before the form first appears on screen. The classic place to populate menus dynamically and perform any initialisation that needs the controls to exist. **Default event.**
+在MDI父窗体的窗口和所有对齐子控件（工具栏、状态栏、菜单）创建后，窗体首次出现在屏幕上之前引发。动态填充菜单和执行需要控件存在的任何初始化的经典位置。**默认事件。**
 
-Syntax: *object*\_**Load**( )
+语法：*object*\_**Load**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the MDI parent's client area (i.e. not over an MDI child).
+用户在MDI父窗体的客户区（即非MDI子窗体上方）按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the MDI parent's client area.
+光标在MDI父窗体的客户区上移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the MDI parent's client area.
+用户在MDI父窗体的客户区上释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseWheel
 
-Raised when the mouse wheel turns over the MDI parent's client area. New in twinBASIC.
+鼠标滚轮在MDI父窗体的客户区上滚动时引发。twinBASIC新增。
 
-Syntax: *object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
+语法：*object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+OLE拖动操作完成时在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+用户将数据放置到目标控件上时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+OLE拖动经过目标控件时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标请求已注册但尚未提供的数据格式时在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects.
+OLE拖动开始时在源控件上引发，以便应用程序填充**DataObject**并选择允许的效果。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
 
 ### QueryUnload
 
-Raised before the form unloads, giving the application a chance to confirm or cancel the close. Setting *Cancel* to non-zero keeps the form (and all its open MDI children) open. When the MDI parent is closing, **QueryUnload** is raised on every open MDI child *before* it is raised on the parent --- any child cancelling stops the cascade.
+在窗体卸载之前引发，给应用程序确认或取消关闭的机会。将*Cancel*设置为非零值保持窗体（及所有打开的MDI子窗体）打开。当MDI父窗体关闭时，**QueryUnload**在每个打开的MDI子窗体上引发*之后*才在父窗体上引发——任何子窗体取消都会停止级联。
 
-Syntax: *object*\_**QueryUnload**( *Cancel* **As Integer**, *UnloadMode* **As Integer** )
+语法：*object*\_**QueryUnload**( *Cancel* **As Integer**, *UnloadMode* **As Integer** )
 
 *Cancel*
-: Set to non-zero (any non-zero value, conventionally **1**) to cancel the close.
+: 设置为非零值（任何非零值，约定为**1**）以取消关闭。
 
 *UnloadMode*
-: A member of [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants) identifying what triggered the close --- the close button, code, Windows shutdown, or the MDI parent closing.
+: [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants)的成员，标识触发关闭的原因——关闭按钮、代码、Windows关机或MDI父窗体关闭。
 
 ### Resize
 
-Raised when the MDI parent is resized --- by the user, by code, by the OS following a [**WindowState**](#windowstate) change, or by initial layout during the first show. The event fires on the parent only; MDI children receive their own **Resize** events when the client-area resize cascades to them.
+当MDI父窗体调整大小时引发——由用户、代码、操作系统在[**WindowState**](#windowstate)更改后或首次显示时的初始布局。事件仅在父窗体上引发；当客户区调整大小级联到MDI子窗体时，子窗体接收自己的**Resize**事件。
 
-Syntax: *object*\_**Resize**( )
+语法：*object*\_**Resize**( )
 
 ### Terminate
 
-Raised after the form's window has been destroyed and the class instance is about to be released. The controls and MDI children are no longer accessible at this point.
+在窗体的窗口销毁且类实例即将释放后引发。此时控件和MDI子窗体不再可访问。
 
-Syntax: *object*\_**Terminate**( )
+语法：*object*\_**Terminate**( )
 
 ### Unload
 
-Raised after [**QueryUnload**](#queryunload) approves and before the form's window is destroyed. Setting *Cancel* to non-zero keeps the form open and prevents the unload.
+在[**QueryUnload**](#queryunload)批准后且窗体窗口销毁之前引发。将*Cancel*设置为非零值保持窗体打开并阻止卸载。
 
-Syntax: *object*\_**Unload**( *Cancel* **As Integer** )
+语法：*object*\_**Unload**( *Cancel* **As Integer** )
 
 *Cancel*
-: Set to non-zero (any non-zero value, conventionally **1**) to cancel the unload.
+: 设置为非零值（任何非零值，约定为**1**）以取消卸载。

@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9681b5d4-549b-4df0-8cea-6d926e76a881'
+  PropagateID: '9681b5d4-549b-4df0-8cea-6d926e76a881'
+  ReservedCode1: 'c02ab705-92dc-4808-bfe2-1c00ce31036e'
+  ReservedCode2: 'c02ab705-92dc-4808-bfe2-1c00ce31036e'
+---
+
 ---
 title: AsyncType
 parent: AsyncProperty
@@ -5,22 +16,22 @@ permalink: /tB/Packages/VBRUN/AsyncProperty/AsyncType
 ---
 # AsyncType
 
-Returns the kind of data being read, as an **AsyncTypeConstants** value. Read-only.
+返回正在读取的数据类型，类型为**AsyncTypeConstants**值。只读。
 
-Syntax: *object*.**AsyncType**
+语法：*object*.**AsyncType**
 
 *object*
-: *required* An object expression that evaluates to an **AsyncProperty** object.
+: *必需* 求值为**AsyncProperty**对象的对象表达式。
 
-The value mirrors the *AsyncType* argument passed to **UserControl.AsyncRead** when the read was started. It also determines the subtype of [**Value**](/official/Reference/VBRUN/AsyncProperty/Value) once the read completes:
+该值反映启动读取时传递给**UserControl.AsyncRead**的*AsyncType*参数。它还决定读取完成后[**Value**](/official/Reference/VBRUN/AsyncProperty/Value)的子类型：
 
-- `vbAsyncTypePicture` (0) --- the data is being delivered as an **stdole.IPictureDisp**.
-- `vbAsyncTypeFile` (1) --- the data is being saved to a temporary file; **Value** holds its path as a **String**.
-- `vbAsyncTypeByteArray` (2) --- the data is being delivered as a **Byte** array.
+- `vbAsyncTypePicture` (0) —— 数据以**stdole.IPictureDisp**形式传递。
+- `vbAsyncTypeFile` (1) —— 数据保存到临时文件；**Value**以**String**形式保存其路径。
+- `vbAsyncTypeByteArray` (2) —— 数据以**Byte**数组形式传递。
 
-### Example
+### 示例
 
-This example checks **AsyncType** in the completion event and assigns the result to the appropriate property.
+此示例在完成事件中检查**AsyncType**并将结果赋给相应属性。
 
 ```vb
 Private Sub UserControl_AsyncReadComplete(AsyncProp As AsyncProperty)
@@ -32,8 +43,8 @@ Private Sub UserControl_AsyncReadComplete(AsyncProp As AsyncProperty)
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [Value](/official/Reference/VBRUN/AsyncProperty/Value) property
-- [PropertyName](/official/Reference/VBRUN/AsyncProperty/PropertyName) property
-- [Target](/official/Reference/VBRUN/AsyncProperty/Target) property
+- [Value](/official/Reference/VBRUN/AsyncProperty/Value) 属性
+- [PropertyName](/official/Reference/VBRUN/AsyncProperty/PropertyName) 属性
+- [Target](/official/Reference/VBRUN/AsyncProperty/Target) 属性

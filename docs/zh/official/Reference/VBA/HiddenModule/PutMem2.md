@@ -2,24 +2,33 @@
 title: PutMem2
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/PutMem2
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3b9d3603-2d13-4233-9ddc-a42c71fd281e'
+  PropagateID: '3b9d3603-2d13-4233-9ddc-a42c71fd281e'
+  ReservedCode1: '6d91ca68-37e8-4149-b050-dd5451450d27'
+  ReservedCode2: '6d91ca68-37e8-4149-b050-dd5451450d27'
 ---
+
 # PutMem2
 
-Writes two bytes to a memory address.
+向内存地址写入两个字节。
 
-Syntax: **PutMem2** *Address* **,** *Value*
+语法：**PutMem2** *Address* **,** *Value*
 
 *Address*
-: *required* **LongPtr**. The address to write to.
+: *必需* **LongPtr**。要写入的地址。
 
 *Value*
-: *required* **Integer**. The 16-bit value to store at *Address*.
+: *必需* **Integer**。要存储在*Address*的16位值。
 
-The bytes are written in the host's native byte order --- little-endian on x86 and x64. The address is written directly with no bounds or alignment check.
+字节按宿主的本机字节序写入——x86和x64上为小端序。直接写入地址，不进行边界或对齐检查。
 
-### Example
+### 示例
 
-This example writes a 16-bit value to a buffer and reads it back.
+本示例向缓冲区写入一个16位值并读回。
 
 ```vb
 Dim buf As LongPtr = AllocMem(4)
@@ -29,7 +38,7 @@ GetMem2 buf, v          ' v = &H1234
 FreeMem buf
 ```
 
-### See Also
+### 另请参阅
 
-- [PutMem1](/official/Reference/VBA/HiddenModule/PutMem1), [PutMem4](/official/Reference/VBA/HiddenModule/PutMem4), [PutMem8](/official/Reference/VBA/HiddenModule/PutMem8), [PutMemPtr](/official/Reference/VBA/HiddenModule/PutMemPtr) procedures
-- [GetMem2](/official/Reference/VBA/HiddenModule/GetMem2) procedure
+- [PutMem1](/official/Reference/VBA/HiddenModule/PutMem1)、[PutMem4](/official/Reference/VBA/HiddenModule/PutMem4)、[PutMem8](/official/Reference/VBA/HiddenModule/PutMem8)、[PutMemPtr](/official/Reference/VBA/HiddenModule/PutMemPtr)过程
+- [GetMem2](/official/Reference/VBA/HiddenModule/GetMem2)过程

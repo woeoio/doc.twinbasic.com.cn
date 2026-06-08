@@ -1,19 +1,27 @@
----
+﻿---
 title: Project
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/Project
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'dccf92b2-628d-41da-b82a-e5e52691b89d'
+  PropagateID: 'dccf92b2-628d-41da-b82a-e5e52691b89d'
+  ReservedCode1: 'd4bc930d-e63a-454e-8d4a-7801b7627e57'
+  ReservedCode2: 'd4bc930d-e63a-454e-8d4a-7801b7627e57'
 ---
 
-# Project class
+# Project 类
 
-The currently-loaded project. Reached through [**Host.CurrentProject**](/official/Reference/tbIDE/Host#currentproject); the IDE swaps the underlying instance when the user switches projects, but the **Project** reference held by the addin remains a stable handle that always reflects the *currently* loaded project's state.
+当前加载的项目。通过 [**Host.CurrentProject**](/official/Reference/tbIDE/Host#currentproject) 访问；当用户切换项目时 IDE 交换底层实例，但插件持有的 **Project** 引用始终是稳定句柄，始终反映*当前*加载项目的状态。
 
-The class groups four kinds of capability:
+该类包含四类功能：
 
-- **Identification** --- [**Name**](#name), [**Path**](#path), [**BaseFolderPath**](#basefolderpath), [**ProjectID**](#projectid), version + architecture + build-output info.
-- **Lifecycle commands** --- [**Save**](#save), [**Close**](#close), [**Build**](#build), [**Clean**](#clean) (the same actions the IDE's File menu exposes).
-- **Programmatic access** --- [**Evaluate**](#evaluate) runs an arbitrary expression against the running project context (the same engine as the DEBUG CONSOLE); [**RootFolder**](#rootfolder) is the entry into the virtual file system.
-- **Persistent storage** --- [**LoadMetaData**](#loadmetadata) / [**SaveMetaData**](#savemetadata) store per-addin key/value pairs inside the `.twinproj` file.
+- **标识** —— [**Name**](#name)、[**Path**](#path)、[**BaseFolderPath**](#basefolderpath)、[**ProjectID**](#projectid)、版本 + 架构 + 构建输出信息。
+- **生命周期命令** —— [**Save**](#save)、[**Close**](#close)、[**Build**](#build)、[**Clean**](#clean)（与 IDE 文件菜单提供的操作相同）。
+- **编程访问** —— [**Evaluate**](#evaluate) 在运行中的项目上下文中运行任意表达式（与调试控制台相同的引擎）；[**RootFolder**](#rootfolder) 是进入虚拟文件系统的入口。
+- **持久存储** —— [**LoadMetaData**](#loadmetadata) / [**SaveMetaData**](#savemetadata) 在 `.twinproj` 文件内存储每插件的键值对。
 
 ```vb
 With Host.CurrentProject
@@ -25,79 +33,79 @@ End With
 ```
 
 
-## Properties
+## 属性
 
 ### Architecture
 
-The project's target processor architecture. **As** [**VbArchitecture**](/official/Reference/VBA/Constants/VbArchitecture) (`vbX86` / `vbX64` / `vbARM` …). Read-only.
+项目的目标处理器架构。**As** [**VbArchitecture**](/official/Reference/VBA/Constants/VbArchitecture)（`vbX86` / `vbX64` / `vbARM` 等）。只读。
 
 ### BaseFolderPath
 
-The folder containing the project's `.twinproj` file --- i.e. the directory part of [**Path**](#path). **String**, read-only.
+包含项目 `.twinproj` 文件的文件夹——即 [**Path**](#path) 的目录部分。**String**，只读。
 
 ### BuildFileExtension
 
-The file extension of the build output (`"exe"`, `"dll"`, `"ocx"`, `"twinpack"`). **String**, read-only. Implied by [**BuildType**](#buildtype).
+构建输出的文件扩展名（`"exe"`、`"dll"`、`"ocx"`、`"twinpack"`）。**String**，只读。由 [**BuildType**](#buildtype) 隐含。
 
 ### BuildOutputPath
 
-The full path of the project's build output, including filename and extension --- the file that [**Build**](#build) writes (or would write) to. **String**, read-only.
+项目构建输出的完整路径，包括文件名和扩展名——[**Build**](#build) 写入（或将写入）的文件。**String**，只读。
 
 ### BuildType
 
-The kind of artefact the project builds. **As** [**VbBuildType**](#vbbuildtype) (see below). Read-only.
+项目构建的产物类型。**As** [**VbBuildType**](#vbbuildtype)（见下文）。只读。
 
 ### Name
 
-The project's display name, as configured in its `Settings`. **String**, read-only.
+项目的显示名称，在其 `Settings` 中配置。**String**，只读。
 
 ### Path
 
-The full path to the project's `.twinproj` file. **String**, read-only.
+项目 `.twinproj` 文件的完整路径。**String**，只读。
 
 ### ProjectID
 
-The project's GUID as a string --- e.g. `"{99DEC38C-75F6-4488-8EE7-2D52D83881D2}"`. **String**, read-only. Stable across renames; useful as a key in addin-side per-project state.
+项目的 GUID 字符串——例如 `"{99DEC38C-75F6-4488-8EE7-2D52D83881D2}"`。**String**，只读。在重命名后保持稳定；可用作插件端每项目状态的键。
 
 ### RootFolder
 
-The root of the project's virtual file system --- the entry point for traversing sources, resources, packages, and other project contents. **As** [**Folder**](/official/Reference/tbIDE/Folder). Read-only.
+项目虚拟文件系统的根——遍历源文件、资源、包和其他项目内容的入口。**As** [**Folder**](/official/Reference/tbIDE/Folder)。只读。
 
 ### VersionBuild, VersionMajor, VersionMinor, VersionRevision
 
-The four components of the project's current version (`Major.Minor.Build.Revision`). **Long**, read-only.
+项目当前版本的四个组成部分（`Major.Minor.Build.Revision`）。**Long**，只读。
 
-## Methods
+## 方法
 
 ### Build
 
-Builds the project. Equivalent to the IDE's File → Make/Build… command. Writes the output to [**BuildOutputPath**](#buildoutputpath); errors raised during compilation appear in the DEBUG CONSOLE the same way they would for a user-initiated build.
+构建项目。等同于 IDE 的"文件 → 生成/构建…"命令。将输出写入 [**BuildOutputPath**](#buildoutputpath)；编译期间引发的错误以与用户发起的构建相同的方式显示在调试控制台中。
 
-Syntax: *project*.**Build**
+语法：*project*.**Build**
 
 ### Clean
 
-Deregisters and deletes any built executables relating to the project --- the inverse of a previous [**Build**](#build).
+注销并删除与项目相关的任何已构建可执行文件——先前 [**Build**](#build) 的逆操作。
 
-Syntax: *project*.**Clean**
+语法：*project*.**Clean**
 
 ### Close
 
-Closes the project. Equivalent to File → Close Project. If the project is dirty the IDE may prompt the user before actually closing.
+关闭项目。等同于"文件 → 关闭项目"。如果项目有未保存的更改，IDE 可能会在实际关闭前提示用户。
 
-Syntax: *project*.**Close**
+语法：*project*.**Close**
 
 ### Evaluate
 
-Evaluates an expression in the context of the currently-loaded project, as if the user had typed it into the DEBUG CONSOLE. Returns the expression's value as a **Variant** (anything from a `Long` to a serialised object, depending on what was evaluated).
+在当前加载的项目上下文中求值表达式，如同用户在调试控制台中键入的一样。返回表达式的值为 **Variant**（从 `Long` 到序列化对象，取决于求值内容）。
 
-Syntax: *project*.**Evaluate**( *EvalString* [, *Options* ] ) **As Variant**
+语法：*project*.**Evaluate**( *EvalString* [, *Options* ] ) **As Variant**
 
 *EvalString*
-: *required* The expression to evaluate. **String**. Any expression valid in the DEBUG CONSOLE works --- arithmetic (`10.5 * 4`), property reads (`MyForm.Caption`), function calls (`MyModule.MyFunc(42)`), and so on.
+: *必需* 要求值的表达式。**String**。在调试控制台有效的任何表达式均可——算术（`10.5 * 4`）、属性读取（`MyForm.Caption`）、函数调用（`MyModule.MyFunc(42)`）等。
 
 *Options*
-: *optional* A [**DebuggerEvaluateOptions**](/official/Reference/tbIDE/Host#debuggerevaluateoptions) value. Default [**NONE**](/official/Reference/tbIDE/Host#DebuggerEvaluateOptions_NONE).
+: *可选* 一个 [**DebuggerEvaluateOptions**](/official/Reference/tbIDE/Host#debuggerevaluateoptions) 值。默认 [**NONE**](/official/Reference/tbIDE/Host#DebuggerEvaluateOptions_NONE)。
 
 ```vb
 On Error Resume Next
@@ -109,42 +117,42 @@ Else
 End If
 ```
 
-Same engine the DEBUG CONSOLE uses, so the same set of identifiers, the same accessibility rules, and the same error semantics apply --- including the run-time errors that arise from inside the evaluated expression. Wrap in `On Error Resume Next` when the expression may raise.
+使用与调试控制台相同的引擎，因此相同的标识符集、相同的可访问性规则和相同的错误语义适用——包括从求值表达式内部引发的运行时错误。当表达式可能引发错误时，用 `On Error Resume Next` 包裹。
 
 ### LoadMetaData
 
-Reads a previously-stored value out of the project's meta-data area inside the `.twinproj` file.
+从 `.twinproj` 文件内的项目元数据区域读取先前存储的值。
 
-Syntax: *project*.**LoadMetaData**( *Key* ) **As String**
+语法：*project*.**LoadMetaData**( *Key* ) **As String**
 
 *Key*
-: *required* The meta-data key. **String**. Returns `""` if no value has been stored under *Key*.
+: *必需* 元数据键。**String**。如果在 *Key* 下未存储任何值，返回 `""`。
 
-The meta-data is associated with the loaded project, not with the addin globally. Closing the project closes the storage too; opening a different project gives a different store. For addin-wide persistence (e.g. addin-level options that should follow the user across projects), use `GetSetting` / `SaveSetting` against the registry --- sample 15 demonstrates that pattern.
+元数据与加载的项目关联，而非全局关联到插件。关闭项目也关闭存储；打开不同的项目会得到不同的存储。对于插件范围的持久性（例如应跨项目跟随用户的插件级选项），使用 `GetSetting` / `SaveSetting` 操作注册表——示例 15 演示了该模式。
 
 ### Save
 
-Saves the project. Equivalent to File → Save Project.
+保存项目。等同于"文件 → 保存项目"。
 
-Syntax: *project*.**Save**
+语法：*project*.**Save**
 
 ### SaveMetaData
 
-Stores a string value under a key inside the project's meta-data area in the `.twinproj` file. The value persists across project re-opens.
+在 `.twinproj` 文件内的项目元数据区域中，在指定键下存储字符串值。该值在项目重新打开后持久存在。
 
-Syntax: *project*.**SaveMetaData** *Key*, *Value*
+语法：*project*.**SaveMetaData** *Key*, *Value*
 
 *Key*
-: *required* The meta-data key. **String**.
+: *必需* 元数据键。**String**。
 
 *Value*
-: *required* The value to store. **String**.
+: *必需* 要存储的值。**String**。
 
 ```vb
-' Persist a user-selected option that should follow the project:
+' 持久保存应跟随项目的用户选择选项：
 Host.CurrentProject.SaveMetaData "MyAddIn.LastUsedFilter", "*.bas"
 
-' Restore it next time the project loads:
+' 下次项目加载时恢复：
 Private Sub Host_OnProjectLoaded()
     Dim lastFilter As String = Host.CurrentProject.LoadMetaData("MyAddIn.LastUsedFilter")
     If Len(lastFilter) = 0 Then lastFilter = "*.twin"
@@ -154,12 +162,12 @@ End Sub
 
 ## VbBuildType
 
-The artefact-kind enum returned by [**BuildType**](#buildtype). Declared inline on the **Project** interface.
+由 [**BuildType**](#buildtype) 返回的产物类型枚举。在 **Project** 接口上内联声明。
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **StandardEXE**                | 0 | A standard Win32 executable. |
-| **StandardDLL**                | 1 | A standard Win32 DLL. Addins themselves are Standard DLL projects. |
-| **ActiveXDLL**                  | 2 | A COM (ActiveX) DLL. |
-| **ActiveXControl**          | 3 | A COM (ActiveX) control --- `.ocx`. |
-| **PackageTWINPACK**        | 4 | A twinBASIC package (`.twinpack`). |
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **StandardEXE**                | 0 | 标准 Win32 可执行文件。 |
+| **StandardDLL**                | 1 | 标准 Win32 DLL。插件本身就是标准 DLL 项目。 |
+| **ActiveXDLL**                  | 2 | COM (ActiveX) DLL。 |
+| **ActiveXControl**          | 3 | COM (ActiveX) 控件——`.ocx`。 |
+| **PackageTWINPACK**        | 4 | twinBASIC 包（`.twinpack`）。 |

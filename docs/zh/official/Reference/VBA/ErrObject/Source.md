@@ -2,31 +2,40 @@
 title: Source
 parent: ErrObject
 permalink: /tB/Modules/ErrObject/Source
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9ddd9b48-de34-4572-b1df-8d80e1a8aafd'
+  PropagateID: '9ddd9b48-de34-4572-b1df-8d80e1a8aafd'
+  ReservedCode1: '5e5625f1-671f-4fe8-a090-62bf0e22306d'
+  ReservedCode2: '5e5625f1-671f-4fe8-a090-62bf0e22306d'
 ---
+
 # Source
 
-Returns or sets a **String** specifying the name of the object or application that originally generated the error. Read/write.
+返回或设置一个 **String**，指定最初生成错误的对象或应用程序的名称。可读/写。
 
-Syntax:
+语法：
 - **Err**.**Source**
 - **Err**.**Source** **=** *errorSource*
 
 *errorSource*
-: A **String** identifying the source of the error. When read, **Source** returns the source for the active error, or a zero-length string if no error is active.
+: 标识错误来源的 **String**。读取时，**Source** 返回活动错误的来源，如果没有活动错误则返回零长度字符串。
 
-The **Source** property holds a string representing the object that generated the error; the expression is usually the object's class name or programmatic ID.
+**Source** 属性保存表示生成错误的对象的字符串；该表达式通常是对象的类名或编程 ID。
 
-Use **Source** to provide information when handling code cannot handle an error generated in an accessed object. For example, when a call into an Automation server raises a `Division by zero` error, the server sets **Err.Number** to its error code for that error and sets **Source** to its programmatic ID.
+当处理代码无法处理被访问对象中生成的错误时，使用 **Source** 提供信息。例如，当对自动化服务器的调用引发 `Division by zero` 错误时，服务器将其错误代码设置为 **Err.Number**，并将其编程 ID 设置为 **Source**。
 
-When generating an error from user code, **Source** is the application's programmatic ID. For class modules, **Source** should contain a name in the form *project.class*.
+从用户代码生成错误时，**Source** 是应用程序的编程 ID。对于类模块，**Source** 应包含 *project.class* 格式的名称。
 
-When an unexpected error occurs, the **Source** property is automatically filled in. For errors in a standard module, **Source** contains the project name. For errors in a class module, **Source** contains a name in *project.class* form.
+当发生意外错误时，**Source** 属性将自动填充。对于标准模块中的错误，**Source** 包含项目名称。对于类模块中的错误，**Source** 包含 *project.class* 格式的名称。
 
-### Example
+### 示例
 
-This example assigns the programmatic ID of an Automation object to the variable `myObjectID`, and then assigns that to the **Source** property of the **Err** object when it generates an error with the [**Raise**](/official/Reference/VBA/ErrObject/Raise) method.
+此示例将自动化对象的编程 ID 赋给变量 `myObjectID`，然后在通过 [**Raise**](/official/Reference/VBA/ErrObject/Raise) 方法生成错误时将其赋给 **Err** 对象的 **Source** 属性。
 
-When handling errors, do not rely on the **Source** property (or any **Err** properties other than [**Number**](/official/Reference/VBA/ErrObject/Number)) for control flow. The intended use of properties other than **Number** is to display detailed information to an end user when an error cannot be handled.
+处理错误时，不要依赖 **Source** 属性（或除 [**Number**](/official/Reference/VBA/ErrObject/Number) 之外的任何 **Err** 属性）来控制程序流程。除 **Number** 之外的其他属性的预期用途是在无法处理错误时向最终用户显示详细信息。
 
 ```vb
 Dim myObjectID As String, myHelpFile As String, myHelpContext As Long
@@ -36,9 +45,9 @@ Err.Raise Number:=vbObjectError + 894, Source:=myObjectID, _
           HelpFile:=myHelpFile, HelpContext:=myHelpContext
 ```
 
-### See Also
+### 另请参阅
 
-- [Number](/official/Reference/VBA/ErrObject/Number) property
-- [Description](/official/Reference/VBA/ErrObject/Description) property
-- [Raise](/official/Reference/VBA/ErrObject/Raise) method
-- [Clear](/official/Reference/VBA/ErrObject/Clear) method
+- [Number](/official/Reference/VBA/ErrObject/Number) 属性
+- [Description](/official/Reference/VBA/ErrObject/Description) 属性
+- [Raise](/official/Reference/VBA/ErrObject/Raise) 方法
+- [Clear](/official/Reference/VBA/ErrObject/Clear) 方法

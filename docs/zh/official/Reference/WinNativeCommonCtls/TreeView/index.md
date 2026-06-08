@@ -2,10 +2,19 @@
 title: TreeView
 parent: WinNativeCommonCtls Package
 permalink: /tB/Packages/WinNativeCommonCtls/TreeView/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fea3721f-598e-4770-9534-d6fa4e917372'
+  PropagateID: 'fea3721f-598e-4770-9534-d6fa4e917372'
+  ReservedCode1: '34efb703-5835-42c3-9d58-46d5197eb26f'
+  ReservedCode2: '34efb703-5835-42c3-9d58-46d5197eb26f'
 ---
 
-# TreeView class
-A **TreeView** is a hierarchical display of [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) objects organized into a tree. Each node can be expanded or collapsed, optionally has a checkbox, and references an icon from an associated [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/). The collection of nodes is accessed through [**Nodes**](#nodes); each [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) has its own siblings, parent, and child navigation properties.
+# TreeView 类
+
+**TreeView** 是以树形组织的 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) 对象的层次显示。每个节点可以展开或折叠，可选具有复选框，并引用关联 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) 中的图标。节点集合通过 [**Nodes**](#nodes) 访问；每个 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) 拥有自己的同级、父级和子级导航属性。
 
 ```vb
 Private Sub Form_Load()
@@ -24,267 +33,267 @@ Private Sub TreeView1_NodeClick(ByVal Node As Node)
 End Sub
 ```
 
-The control inherits the focusable rect-dockable members from `BaseControlFocusable` --- size, position, **Anchors**, **Dock**, **Font**, **Appearance**, **MousePointer** / **MouseIcon**, **ToolTipText**, **DragMode** / **DragIcon**, **Drag**, **Refresh**, **SetFocus**, **TabIndex** / **TabStop**, **ZOrder**, **CausesValidation**, **VisualStyles**, **hWnd**, **HelpContextID** / **WhatsThisHelpID**.
+控件从 `BaseControlFocusable` 继承可聚焦矩形可停靠成员 --- 大小、位置、**Anchors**、**Dock**、**Font**、**Appearance**、**MousePointer** / **MouseIcon**、**ToolTipText**、**DragMode** / **DragIcon**、**Drag**、**Refresh**、**SetFocus**、**TabIndex** / **TabStop**、**ZOrder**、**CausesValidation**、**VisualStyles**、**hWnd**、**HelpContextID** / **WhatsThisHelpID**。
 
-## Style: a composite of buttons / lines / icons / text
+## Style：按钮/线条/图标/文本的组合
 
-[**Style**](#style) is the most-clicked property on this control. It is a single enum value but the eight choices encode a 3-bit combination of which visual elements appear:
+[**Style**](#style) 是此控件最常点击的属性。它是一个单一枚举值，但八个选项编码了3位组合，表示哪些视觉元素出现：
 
-| [**Style**](#style)                                | Buttons | Lines | Icons |
+| [**Style**](#style)                                | 按钮 | 线条 | 图标 |
 |----------------------------------------------------|---------|-------|-------|
 | **tvwTextOnly**                                    | ---       | ---     | ---     |
-| **tvwPictureText**                                 | ---       | ---     | yes   |
-| **tvwPlusMinusText**                               | yes     | ---     | ---     |
-| **tvwPlusMinusPictureText**                        | yes     | ---     | yes   |
-| **tvwTreelinesText**                               | ---       | yes   | ---     |
-| **tvwTreelinesPictureText**                        | ---       | yes   | yes   |
-| **tvwTreelinesPlusMinusText**                      | yes     | yes   | ---     |
-| **tvwTreelinesPlusMinusPictureText** (default)     | yes     | yes   | yes   |
+| **tvwPictureText**                                 | ---       | ---     | 是   |
+| **tvwPlusMinusText**                               | 是     | ---     | ---     |
+| **tvwPlusMinusPictureText**                        | 是     | ---     | 是   |
+| **tvwTreelinesText**                               | ---       | 是   | ---     |
+| **tvwTreelinesPictureText**                        | ---       | 是   | 是   |
+| **tvwTreelinesPlusMinusText**                      | 是     | 是   | ---     |
+| **tvwTreelinesPlusMinusPictureText**（默认）     | 是     | 是   | 是   |
 
-The values are decoded internally into the Win32 `TVS_HASBUTTONS` / `TVS_HASLINES` style bits.
+这些值在内部解码为Win32 `TVS_HASBUTTONS` / `TVS_HASLINES` 样式位。
 
-## Sorting
+## 排序
 
-Sorting is configured at two levels:
+排序在两个层级配置：
 
-- The **TreeView** as a whole sorts its root-level nodes when [**Sorted**](#sorted) is **True**, using [**SortOrder**](#sortorder) and [**SortType**](#sorttype) to control direction and comparison.
-- Each individual [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) has its own [**Sorted**](/official/Reference/WinNativeCommonCtls/TreeView/Node#sorted) / [**SortOrder**](/official/Reference/WinNativeCommonCtls/TreeView/Node#sortorder) / [**SortType**](/official/Reference/WinNativeCommonCtls/TreeView/Node#sorttype) properties, which control how *its* children are sorted, independently of the tree-level setting.
+- **TreeView** 整体在 [**Sorted**](#sorted) 为 **True** 时对其根级节点排序，使用 [**SortOrder**](#sortorder) 和 [**SortType**](#sorttype) 控制方向和比较方式。
+- 每个单独的 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) 拥有自己的 [**Sorted**](/official/Reference/WinNativeCommonCtls/TreeView/Node#sorted) / [**SortOrder**](/official/Reference/WinNativeCommonCtls/TreeView/Node#sortorder) / [**SortType**](/official/Reference/WinNativeCommonCtls/TreeView/Node#sorttype) 属性，独立于树级设置控制*其*子节点的排序。
 
-Toggling either flag triggers an immediate sort. New nodes added after a node has been sorted are inserted into the correct sorted position.
+切换任一标志会立即触发排序。在节点已排序后添加的新节点会插入到正确的排序位置。
 
-## Image lists and image references
+## 图像列表和图像引用
 
-Bind an [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) through [**ImageList**](#imagelist). Each [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) references icons through [**Image**](/official/Reference/WinNativeCommonCtls/TreeView/Node#image) (rendered when the node is not selected) and [**SelectedImage**](/official/Reference/WinNativeCommonCtls/TreeView/Node#selectedimage) (rendered when the node is selected); either accepts a 1-based **Long** index or a **String** key into the bound image list. Omitting [**SelectedImage**](/official/Reference/WinNativeCommonCtls/TreeView/Node#selectedimage) defaults the selected icon to the same as [**Image**](/official/Reference/WinNativeCommonCtls/TreeView/Node#image).
+通过 [**ImageList**](#imagelist) 绑定一个 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/)。每个 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) 通过 [**Image**](/official/Reference/WinNativeCommonCtls/TreeView/Node#image)（节点未选中时渲染）和 [**SelectedImage**](/official/Reference/WinNativeCommonCtls/TreeView/Node#selectedimage)（节点选中时渲染）引用图标；两者接受基于1的 **Long** 索引或绑定图像列表的 **String** 键。省略 [**SelectedImage**](/official/Reference/WinNativeCommonCtls/TreeView/Node#selectedimage) 时，选中图标默认与 [**Image**](/official/Reference/WinNativeCommonCtls/TreeView/Node#image) 相同。
 
-## Checkboxes
+## 复选框
 
-Setting [**CheckBoxes**](#checkboxes) to **True** adds a leading checkbox to every node. The user can click the checkbox or press **Space** while a node is focused to toggle; the [**NodeCheck**](#nodecheck) event then fires. [**Node.Checked**](/official/Reference/WinNativeCommonCtls/TreeView/Node#checked) reads and writes the check state programmatically.
+将 [**CheckBoxes**](#checkboxes) 设为 **True** 为每个节点添加前导复选框。用户可以点击复选框或在节点聚焦时按 **Space** 切换；然后触发 [**NodeCheck**](#nodecheck) 事件。[**Node.Checked**](/official/Reference/WinNativeCommonCtls/TreeView/Node#checked) 以编程方式读写选中状态。
 
-Properties
+属性
 ----------
 
 ### Appearance
 
-How the control's border is drawn. A [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) member. Default: **vbAppear3d**. Inherited.
+控件边框的绘制方式。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants) 的成员。默认：**vbAppear3d**。继承。
 
 ### BorderStyle
 
-The control's border style. A member of [**TreeBorderStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants): **ccNone** or **ccFixedSingle**. Default: **ccFixedSingle**.
+控件的边框样式。[**TreeBorderStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants) 的成员：**ccNone** 或 **ccFixedSingle**。默认：**ccFixedSingle**。
 
 ### CheckBoxes
 
-Whether each node has a leading checkbox. **Boolean**. Default: **False**.
+每个节点是否具有前导复选框。**Boolean**。默认：**False**。
 
 ### DropHighlight
 
-The [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) currently highlighted as a drag-drop target, or **Nothing**. **Node**, read/write.
+当前作为拖放目标高亮的 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node)，或 **Nothing**。**Node**，读/写。
 
 ### FullRowSelect
 
-Whether clicking on the indentation area of a row selects the node (instead of only clicking on its icon or label). **Boolean**. Default: **False**.
+点击行的缩进区域是否选中该节点（而不是仅点击其图标或标签）。**Boolean**。默认：**False**。
 
 ### HideSelection
 
-Whether the selection highlight is hidden when the control does not have focus. **Boolean**. Default: **True**.
+控件没有焦点时是否隐藏选择高亮。**Boolean**。默认：**True**。
 
 ### HotTracking
 
-Whether nodes are highlighted as the mouse hovers over them. **Boolean**. Default: **False**.
+鼠标悬停时节点是否高亮。**Boolean**。默认：**False**。
 
 ### hWnd
 
-The Win32 handle of the treeview window. **LongPtr**, read-only.
+树视图窗口的Win32句柄。**LongPtr**，只读。
 
 ### hWndLabelEdit
 
-The Win32 handle of the currently editing label's textbox window, or `0`. **LongPtr**, read-only.
+当前编辑标签的文本框窗口的Win32句柄，或 `0`。**LongPtr**，只读。
 
 ### ImageList
 
-The [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) used for node icons. Assignment increments the **ImageList**'s bound-count.
+用于节点图标的 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/)。赋值会递增 **ImageList** 的绑定计数。
 
 ### Indentation
 
-The horizontal pixel indent per level of node depth. **Double**, read/write. Default: `20`.
+每个节点深度级别的水平像素缩进。**Double**，读/写。默认：`20`。
 
 ### LabelEdit
 
-How inline label editing is triggered. A member of [**TreeLabelEditConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants): **tvwAutomatic**, **tvwManual**, or **tvwDisabled**. Default: **tvwAutomatic**.
+内联标签编辑如何触发。[**TreeLabelEditConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants) 的成员：**tvwAutomatic**、**tvwManual** 或 **tvwDisabled**。默认：**tvwAutomatic**。
 
 ### LineStyle
 
-Whether tree lines are drawn from root nodes or only from child nodes. A member of [**TreeLineStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants): **tvwTreeLines** or **tvwRootLines**. Default: **tvwRootLines**.
+树线是从根节点绘制还是仅从子节点绘制。[**TreeLineStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants) 的成员：**tvwTreeLines** 或 **tvwRootLines**。默认：**tvwRootLines**。
 
 ### Nodes
 
-The [**Nodes**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) collection. Read-only.
+[**Nodes**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) 集合。只读。
 
 ### PathSeparator
 
-The string inserted between node texts in [**Node.FullPath**](/official/Reference/WinNativeCommonCtls/TreeView/Node#fullpath). **String**. Default: `"\"`.
+在 [**Node.FullPath**](/official/Reference/WinNativeCommonCtls/TreeView/Node#fullpath) 中插入到节点文本之间的字符串。**String**。默认：`"\"`。
 
 ### Scroll
 
-Whether the treeview has scrollbars (when its content extends beyond the visible area). **Boolean**. Default: **True**.
+树视图在其内容超出可见区域时是否具有滚动条。**Boolean**。默认：**True**。
 
 ### SelectedItem
 
-The currently selected [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node), or **Nothing**. Read/write.
+当前选中的 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node)，或 **Nothing**。读/写。
 
 ### SingleSel
 
-Whether only a single node can be expanded at any time (any other expansion automatically collapses sibling subtrees). **Boolean**. Default: **False**.
+是否任何时候只能展开单个节点（任何其他展开会自动折叠同级子树）。**Boolean**。默认：**False**。
 
 ### Sorted
 
-Whether root-level nodes are sorted. **Boolean**. Default: **False**. Per-subtree sorting is controlled through [**Node.Sorted**](/official/Reference/WinNativeCommonCtls/TreeView/Node#sorted) on individual nodes.
+根级节点是否排序。**Boolean**。默认：**False**。每棵子树的排序通过各个节点的 [**Node.Sorted**](/official/Reference/WinNativeCommonCtls/TreeView/Node#sorted) 控制。
 
 ### SortOrder
 
-The sort direction at the root level. A member of [**TreeSortOrderConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants). Default: **tvwAscending**.
+根级的排序方向。[**TreeSortOrderConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants) 的成员。默认：**tvwAscending**。
 
 ### SortType
 
-The string comparison used for sorting at the root level. A member of [**TreeSortTypeConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants): **tvwBinary** (case-sensitive) or **tvwText** (case-insensitive). Default: **tvwText**.
+根级排序使用的字符串比较。[**TreeSortTypeConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) 的成员：**tvwBinary**（区分大小写）或 **tvwText**（不区分大小写）。默认：**tvwText**。
 
 ### Style
 
-The composite visual style --- see [the **Style** table above](#style-a-composite-of-buttons--lines--icons--text). A member of [**TreeStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants). Default: **tvwTreelinesPlusMinusPictureText**.
+组合视觉样式 --- 参见[上方 **Style** 表格](#style-a-composite-of-buttons--lines--icons--text)。[**TreeStyleConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants) 的成员。默认：**tvwTreelinesPlusMinusPictureText**。
 
 ### WheelScrollEvent
 
-Whether mouse-wheel events trigger [**Scroll**](#scroll-event). **Boolean**. Default: **True**.
+鼠标滚轮事件是否触发 [**Scroll**](#scroll-event)。**Boolean**。默认：**True**。
 
-Methods
+方法
 -------
 
 ### GetVisibleCount
 
-Returns the maximum number of fully-visible nodes the current viewport can show. **Long**.
+返回当前视口可以显示的完全可见节点的最大数量。**Long**。
 
-Syntax: *object*.**GetVisibleCount** **As Long**
+语法：*object*.**GetVisibleCount** **As Long**
 
 ### HitTest
 
-Returns the [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) at the given point, or **Nothing** if no node lies under it. Useful for drag-drop hover effects, custom context menus, and right-click handling.
+返回给定位置的 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node)，如果该位置下没有节点则返回 **Nothing**。适用于拖放悬停效果、自定义上下文菜单和右键处理。
 
-Syntax: *object*.**HitTest** ( *x*, *y* ) **As Node**
+语法：*object*.**HitTest**（*x*, *y*）**As Node**
 
 *x*
-: A **Single** horizontal coordinate in the control's coordinate system (twips by default).
+: 控件坐标系中的 **Single** 水平坐标（默认为缇）。
 
 *y*
-: A **Single** vertical coordinate.
+: **Single** 垂直坐标。
 
 ### StartLabelEdit
 
-Opens the inline editor on the currently selected node. Used when [**LabelEdit**](#labeledit) is **tvwManual**.
+在当前选中的节点上打开内联编辑器。当 [**LabelEdit**](#labeledit) 为 **tvwManual** 时使用。
 
-Syntax: *object*.**StartLabelEdit**
+语法：*object*.**StartLabelEdit**
 
-Events
+事件
 ------
 
 ### AfterLabelEdit
 
-Raised when an inline label edit completes. Set *Cancel* to **True** to revert the change.
+内联标签编辑完成时触发。将 *Cancel* 设为 **True** 以恢复更改。
 
-Syntax: *object*\_**AfterLabelEdit**( *Cancel* **As Boolean**, *NewString* **As String** )
+语法：*object*\_**AfterLabelEdit**（*Cancel* **As Boolean**，*NewString* **As String**）
 
 ### BeforeCollapse
 
-Raised before a node is collapsed. Set *Cancel* to **True** to prevent the collapse.
+节点折叠之前触发。将 *Cancel* 设为 **True** 以阻止折叠。
 
-Syntax: *object*\_**BeforeCollapse**( **ByVal** *Node* **As Node**, **ByRef** *Cancel* **As Boolean** )
+语法：*object*\_**BeforeCollapse**（**ByVal** *Node* **As Node**，**ByRef** *Cancel* **As Boolean**）
 
 ### BeforeExpand
 
-Raised before a node is expanded. Set *Cancel* to **True** to prevent the expansion.
+节点展开之前触发。将 *Cancel* 设为 **True** 以阻止展开。
 
-Syntax: *object*\_**BeforeExpand**( **ByVal** *Node* **As Node**, **ByRef** *Cancel* **As Boolean** )
+语法：*object*\_**BeforeExpand**（**ByVal** *Node* **As Node**，**ByRef** *Cancel* **As Boolean**）
 
 ### BeforeLabelEdit
 
-Raised when an inline label edit is about to start. Set *Cancel* to **True** to block the edit.
+内联标签编辑即将开始时触发。将 *Cancel* 设为 **True** 以阻止编辑。
 
-Syntax: *object*\_**BeforeLabelEdit**( *Cancel* **As Boolean** )
+语法：*object*\_**BeforeLabelEdit**（*Cancel* **As Boolean**）
 
 ### Click
 
-Raised on a mouse click inside the control. Distinct from [**NodeClick**](#nodeclick), which fires when the click hits a node.
+在控件内鼠标点击时触发。与 [**NodeClick**](#nodeclick) 不同，后者仅在点击命中节点时触发。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### Collapse
 
-Raised after a node has been collapsed.
+节点折叠后触发。
 
-Syntax: *object*\_**Collapse**( **ByVal** *Node* **As Node** )
+语法：*object*\_**Collapse**（**ByVal** *Node* **As Node**）
 
 ### DblClick
 
-Raised on a double-click inside the control.
+在控件内双击时触发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop, DragOver
 
-Inherited drag-drop events.
+继承的拖放事件。
 
 ### Expand
 
-Raised after a node has been expanded.
+节点展开后触发。
 
-Syntax: *object*\_**Expand**( **ByVal** *Node* **As Node** )
+语法：*object*\_**Expand**（**ByVal** *Node* **As Node**）
 
 ### Initialize
 
-Raised after the control's window has been created.
+控件窗口创建后触发。
 
 ### KeyDown, KeyPress, KeyUp
 
-Inherited keyboard events. Pressing **Space** while [**CheckBoxes**](#checkboxes) is **True** toggles the focused node's check state and fires [**NodeCheck**](#nodecheck).
+继承的键盘事件。[**CheckBoxes**](#checkboxes) 为 **True** 时按 **Space** 切换聚焦节点的选中状态并触发 [**NodeCheck**](#nodecheck)。
 
 ### MouseDown, MouseMove, MouseUp
 
-Inherited mouse events.
+继承的鼠标事件。
 
 ### NodeCheck
 
-Raised when a node's checkbox is toggled --- either by the user clicking it, by **Space** keypress, or by code assigning [**Node.Checked**](/official/Reference/WinNativeCommonCtls/TreeView/Node#checked).
+当节点的复选框被切换时触发 --- 无论是用户点击、**Space** 按键，还是代码赋值 [**Node.Checked**](/official/Reference/WinNativeCommonCtls/TreeView/Node#checked)。
 
-Syntax: *object*\_**NodeCheck**( **ByVal** *Node* **As Node** )
+语法：*object*\_**NodeCheck**（**ByVal** *Node* **As Node**）
 
 ### NodeClick
 
-Raised when a node is clicked. Distinct from [**Click**](#click), which fires on any mouse click in the control regardless of where it occurs.
+当节点被点击时触发。与 [**Click**](#click) 不同，后者在控件内任何鼠标点击时触发无论位置。
 
-Syntax: *object*\_**NodeClick**( **ByVal** *Node* **As Node** )
+语法：*object*\_**NodeClick**（**ByVal** *Node* **As Node**）
 
 ### NodeSelect
 
-Raised when a node becomes the selected node --- either by user click, by keyboard arrow navigation, or by code assigning [**SelectedItem**](#selecteditem).
+当节点成为选中节点时触发 --- 无论是用户点击、键盘方向键导航，还是代码赋值 [**SelectedItem**](#selecteditem)。
 
-Syntax: *object*\_**NodeSelect**( **ByVal** *Node* **As Node** )
+语法：*object*\_**NodeSelect**（**ByVal** *Node* **As Node**）
 
 ### OLECompleteDrag, OLEDragDrop, OLEDragOver, OLEGiveFeedback, OLESetData, OLEStartDrag
 
-Inherited OLE drag-and-drop events.
+继承的OLE拖放事件。
 
 ### Scroll
 
-Raised when the treeview scrolls. New to this twinBASIC implementation; the original VB6 control did not expose this event. Set [**WheelScrollEvent**](#wheelscrollevent) to **False** to suppress firing on mouse-wheel input.
+当树视图滚动时触发。此twinBASIC实现新增；原始VB6控件未暴露此事件。将 [**WheelScrollEvent**](#wheelscrollevent) 设为 **False** 以抑制鼠标滚轮输入时的触发。
 
-Syntax: *object*\_**Scroll**( )
+语法：*object*\_**Scroll**( )
 
 ### Validate
 
-Inherited validation event.
+继承的验证事件。
 
-## See Also
+## 另见
 
-- [Node](/official/Reference/WinNativeCommonCtls/TreeView/Node) -- a single node in the tree
-- [Nodes](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) -- the collection of nodes
-- [ImageList](/official/Reference/WinNativeCommonCtls/ImageList/) -- the picture source for node icons
-- [TreeBorderStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants), [TreeLabelEditConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants), [TreeLineStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants), [TreeStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants), [TreeRelationshipConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants), [TreeSortOrderConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants), [TreeSortTypeConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) -- the seven user-facing TreeView enums
-- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbTreeView** lives
+- [Node](/official/Reference/WinNativeCommonCtls/TreeView/Node) --- 树中的单个节点
+- [Nodes](/official/Reference/WinNativeCommonCtls/TreeView/Nodes) --- 节点集合
+- [ImageList](/official/Reference/WinNativeCommonCtls/ImageList/) --- 节点图标的图片来源
+- [TreeBorderStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants)、[TreeLabelEditConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants)、[TreeLineStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants)、[TreeStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants)、[TreeRelationshipConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants)、[TreeSortOrderConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants)、[TreeSortTypeConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants) --- 七个面向用户的TreeView枚举
+- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) --- **vbTreeView** 所在位置

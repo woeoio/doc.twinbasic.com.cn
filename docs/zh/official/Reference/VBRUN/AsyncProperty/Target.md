@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'aca6b6fb-fa89-4418-be86-6bbc863e91fc'
+  PropagateID: 'aca6b6fb-fa89-4418-be86-6bbc863e91fc'
+  ReservedCode1: 'b4cc121b-5423-45ab-9e31-4ccd0da7d18d'
+  ReservedCode2: 'b4cc121b-5423-45ab-9e31-4ccd0da7d18d'
+---
+
 ---
 title: Target
 parent: AsyncProperty
@@ -5,18 +16,18 @@ permalink: /tB/Packages/VBRUN/AsyncProperty/Target
 ---
 # Target
 
-Returns the URL or file path being read, as a **String**. Read-only.
+返回正在读取的URL或文件路径，类型为**String**。只读。
 
-Syntax: *object*.**Target**
+语法：*object*.**Target**
 
 *object*
-: *required* An object expression that evaluates to an **AsyncProperty** object.
+: *必需* 求值为**AsyncProperty**对象的对象表达式。
 
-The value is the *Target* argument that was passed to **UserControl.AsyncRead** when the read was started --- typically an absolute or relative URL, but local file paths are also accepted. It is the location the data is being fetched from, and remains the same across every **AsyncReadProgress** notification and the final **AsyncReadComplete** event for that read.
+该值是启动读取时传递给**UserControl.AsyncRead**的*Target*参数——通常是绝对或相对URL，但也接受本地文件路径。它是获取数据的位置，在该读取的每个**AsyncReadProgress**通知和最终的**AsyncReadComplete**事件中保持不变。
 
-### Example
+### 示例
 
-This example logs the URL being fetched for each pending read.
+此示例记录每个挂起读取正在获取的URL。
 
 ```vb
 Private Sub UserControl_AsyncReadProgress(AsyncProp As AsyncProperty)
@@ -24,8 +35,8 @@ Private Sub UserControl_AsyncReadProgress(AsyncProp As AsyncProperty)
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [PropertyName](/official/Reference/VBRUN/AsyncProperty/PropertyName) property
-- [Value](/official/Reference/VBRUN/AsyncProperty/Value) property
-- [AsyncType](/official/Reference/VBRUN/AsyncProperty/AsyncType) property
+- [PropertyName](/official/Reference/VBRUN/AsyncProperty/PropertyName) 属性
+- [Value](/official/Reference/VBRUN/AsyncProperty/Value) 属性
+- [AsyncType](/official/Reference/VBRUN/AsyncProperty/AsyncType) 属性

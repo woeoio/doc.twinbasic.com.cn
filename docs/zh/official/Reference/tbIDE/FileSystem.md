@@ -1,32 +1,40 @@
----
+﻿---
 title: FileSystem
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/FileSystem
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cf3e658d-7202-4925-815b-2478d0a15cd7'
+  PropagateID: 'cf3e658d-7202-4925-815b-2478d0a15cd7'
+  ReservedCode1: '1ea9ef9d-aebf-40f9-af38-0bd752132d34'
+  ReservedCode2: '1ea9ef9d-aebf-40f9-af38-0bd752132d34'
 ---
 
-# FileSystem class
+# FileSystem 类
 
-A handle into the IDE's virtual file system --- the abstraction that lets an addin traverse and read source files without touching the on-disk paths. The **FileSystem** is reached through [**Host.FileSystem**](/official/Reference/tbIDE/Host#filesystem). For the more common per-project case, [**Host.CurrentProject.RootFolder**](/official/Reference/tbIDE/Project#rootfolder) is also a [**Folder**](/official/Reference/tbIDE/Folder) and is usually the right entry point --- the global **FileSystem** matters when an addin needs to address files outside the project's own root.
+IDE 虚拟文件系统的句柄——让插件能够在不触及磁盘路径的情况下遍历和读取源文件的抽象。通过 [**Host.FileSystem**](/official/Reference/tbIDE/Host#filesystem) 访问。对于更常见的每项目场景，[**Host.CurrentProject.RootFolder**](/official/Reference/tbIDE/Project#rootfolder) 也是一个 [**Folder**](/official/Reference/tbIDE/Folder)，通常是正确的入口点——当插件需要访问项目自身根目录之外的文件时，全局 **FileSystem** 才有意义。
 
 ```vb
 Dim item As FileSystemItem = Host.FileSystem.ResolvePath("twinbasic:/Sources/MainModule.twin")
 ```
 
-## Properties
+## 属性
 
 ### RootFolder
 
-The root of the virtual file system. **As** [**Folder**](/official/Reference/tbIDE/Folder). Read-only.
+虚拟文件系统的根。**As** [**Folder**](/official/Reference/tbIDE/Folder)。只读。
 
-## Methods
+## 方法
 
 ### ResolvePath
 
-Looks up the [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem) at a given path. The path uses the IDE's `twinbasic:/` URI scheme --- the same scheme that [**FileSystemItem.Path**](/official/Reference/tbIDE/FileSystemItem#path) and [**Editor.Path**](/official/Reference/tbIDE/Editor#path) return.
+查找给定路径处的 [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)。路径使用 IDE 的 `twinbasic:/` URI 方案——与 [**FileSystemItem.Path**](/official/Reference/tbIDE/FileSystemItem#path) 和 [**Editor.Path**](/official/Reference/tbIDE/Editor#path) 返回的方案相同。
 
-Syntax: *fileSystem*.**ResolvePath**( *Path* ) **As** [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)
+语法：*fileSystem*.**ResolvePath**( *Path* ) **As** [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)
 
 *Path*
-: *required* A virtual-FS path. **String**. Must include the `twinbasic:/` prefix.
+: *必需* 一个虚拟文件系统路径。**String**。必须包含 `twinbasic:/` 前缀。
 
-The returned object is a [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem) but is usually castable to its specific kind --- a [**File**](/official/Reference/tbIDE/File) for regular files, a [**Folder**](/official/Reference/tbIDE/Folder) for folders. Test with `TypeOf … Is Folder` before casting when the path's kind is not known statically.
+返回的对象是 [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)，但通常可转换为其具体类型——常规文件为 [**File**](/official/Reference/tbIDE/File)，文件夹为 [**Folder**](/official/Reference/tbIDE/Folder)。当路径的类型在静态上未知时，在转换前用 `TypeOf … Is Folder` 测试。

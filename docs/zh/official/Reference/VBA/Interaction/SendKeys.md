@@ -1,80 +1,78 @@
 ---
+title: SendKeys
+parent: Interaction Module
+permalink: /tB/Modules/Interaction/SendKeys
 AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '47a01f60-c504-47a0-9a46-4022f35618ee'
-  PropagateID: '47a01f60-c504-47a0-9a46-4022f35618ee'
-  ReservedCode1: 'db04dfe2-ff15-4406-b95d-13bf84b959d8'
-  ReservedCode2: 'db04dfe2-ff15-4406-b95d-13bf84b959d8'
+  ProduceID: '9a67bf24-f4d4-4055-96dd-e7eee0fc27c9'
+  PropagateID: '9a67bf24-f4d4-4055-96dd-e7eee0fc27c9'
+  ReservedCode1: '83f7115d-1a41-42d1-843e-76c8ada250bc'
+  ReservedCode2: '83f7115d-1a41-42d1-843e-76c8ada250bc'
 ---
 
----
-title: SendKeys
-parent: Interaction Module
-permalink: /tB/Modules/Interaction/SendKeys
----
 # SendKeys
 
-Sends one or more keystrokes to the active window as if typed at the keyboard.
+向活动窗口发送一个或多个按键，如同从键盘输入。
 
-Syntax: **SendKeys** *string* [ **,** *wait* ]
+语法：**SendKeys** *string* [ **,** *wait* ]
 
 *string*
-: *required* String expression specifying the keystrokes to send.
+: *必需* 字符串表达式，指定要发送的按键。
 
 *wait*
-: *optional* **Boolean** specifying the wait mode. If **False** (default), control is returned to the procedure as soon as the keys have been queued. If **True**, the keystrokes must be processed by the receiving window before control returns.
+: *可选* **Boolean**，指定等待模式。如果为**False**（默认），按键入队后控制权立即返回给过程。如果为**True**，必须在接收窗口处理完按键后控制权才返回。
 
-Each key is represented by one or more characters. To specify a single keyboard character, use the character itself --- for example, `"A"` for the letter A, or `"ABC"` for A, B, then C in sequence.
+每个键由一个或多个字符表示。要指定单个键盘字符，使用字符本身——例如`"A"`表示字母A，或`"ABC"`表示依次输入A、B、C。
 
-The plus sign (`+`), caret (`^`), percent sign (`%`), tilde (`~`), and parentheses `( )` have special meanings to **SendKeys**. To send one of these characters as itself, enclose it in braces: for example, `"{+}"` for the plus sign. Brackets `[ ]` have no special meaning to **SendKeys** itself, but they must be enclosed in braces because other applications may treat them specially during dynamic data exchange (DDE). To send brace characters, use `"{&#8203;{}"` and `"{}&#8203;}"`.
+加号(`+`)、脱字符(`^`)、百分号(`%`)、波浪号(`~`)和括号`( )`对**SendKeys**有特殊含义。要发送这些字符本身，请用大括号括起来：例如`"{+}"`表示加号。方括号`[ ]`对**SendKeys**本身没有特殊含义，但必须用大括号括起来，因为其他应用程序在动态数据交换(DDE)期间可能特殊处理它们。要发送大括号字符，使用`"{​{"`和`"{}​}"`。
 
-To send keys that don't correspond to a printable character, use the codes in the following table:
+要发送不对应可打印字符的键，使用下表中的代码：
 
-| Key | Code |
+| 键 | 代码 |
 |:--|:--|
-| BACKSPACE | `{BACKSPACE}`, `{BS}`, or `{BKSP}` |
+| BACKSPACE | `{BACKSPACE}`、`{BS}`或`{BKSP}` |
 | BREAK | `{BREAK}` |
 | CAPS LOCK | `{CAPSLOCK}` |
-| DEL or DELETE | `{DELETE}` or `{DEL}` |
-| DOWN ARROW | `{DOWN}` |
+| DEL或DELETE | `{DELETE}`或`{DEL}` |
+| 下箭头 | `{DOWN}` |
 | END | `{END}` |
-| ENTER | `{ENTER}` or `~` |
+| ENTER | `{ENTER}`或`~` |
 | ESC | `{ESC}` |
 | HELP | `{HELP}` |
 | HOME | `{HOME}` |
-| INS or INSERT | `{INSERT}` or `{INS}` |
-| LEFT ARROW | `{LEFT}` |
+| INS或INSERT | `{INSERT}`或`{INS}` |
+| 左箭头 | `{LEFT}` |
 | NUM LOCK | `{NUMLOCK}` |
 | PAGE DOWN | `{PGDN}` |
 | PAGE UP | `{PGUP}` |
 | PRINT SCREEN | `{PRTSC}` |
-| RIGHT ARROW | `{RIGHT}` |
+| 右箭头 | `{RIGHT}` |
 | SCROLL LOCK | `{SCROLLLOCK}` |
 | TAB | `{TAB}` |
-| UP ARROW | `{UP}` |
+| 上箭头 | `{UP}` |
 | F1--F16 | `{F1}` … `{F16}` |
 
-To combine a key with SHIFT, CTRL, or ALT, prefix the key code with one or more of the following modifier codes:
+要将键与SHIFT、CTRL或ALT组合，请在键代码前加上以下一个或多个修饰符代码：
 
-| Key | Code |
+| 键 | 代码 |
 |:--|:--|
 | SHIFT | `+` |
 | CTRL | `^` |
 | ALT | `%` |
 
-To hold one or more modifiers down while a sequence of keys is pressed, enclose the keys in parentheses. For example, `"+(EC)"` holds SHIFT down while E and C are pressed.
+要在按下一系列键时保持一个或多个修饰键按下，请将键用括号括起来。例如，`"+(EC)"`在按E和C时保持SHIFT按下。
 
-To repeat a key, use the form `{key number}` --- for example, `"{LEFT 42}"` to press LEFT 42 times, or `"{h 10}"` to type `h` ten times. The space between *key* and *number* is required.
+要重复按键，使用`{key number}`形式——例如`"{LEFT 42}"`按LEFT 42次，或`"{h 10}"`输入`h`十次。*key*和*number*之间的空格是必需的。
 
 ::: info
-**SendKeys** can't send keystrokes to applications that aren't running in Windows, and it cannot send the PRINT SCREEN key (`{PRTSC}`) to any application.
+**SendKeys**无法向不在Windows中运行的应用程序发送按键，也不能向任何应用程序发送PRINT SCREEN键(`{PRTSC}`)。
 :::
 
-### Example
+### 示例
 
-This example uses [**Shell**](/official/Reference/VBA/Interaction/Shell) to launch the Windows Calculator and **SendKeys** to control it: it adds the numbers 1 through 100, takes the running total, then closes Calculator with ALT+F4. Because [**AppActivate**](/official/Reference/VBA/Interaction/AppActivate) changes the focus, the example must be run, not single-stepped.
+本示例使用[**Shell**](/official/Reference/VBA/Interaction/Shell)启动Windows计算器，并使用**SendKeys**控制它：将1到100的数字相加，取累计值，然后用ALT+F4关闭计算器。由于[**AppActivate**](/official/Reference/VBA/Interaction/AppActivate)会更改焦点，示例必须运行而非单步执行。
 
 ```vb
 Dim TaskId As Double, I As Long
@@ -89,9 +87,7 @@ SendKeys "=", True
 SendKeys "%{F4}", True
 ```
 
-### See Also
+### 另请参阅
 
-- [AppActivate](/official/Reference/VBA/Interaction/AppActivate) statement
-- [Shell](/official/Reference/VBA/Interaction/Shell) function
-
-> AI生成
+- [AppActivate](/official/Reference/VBA/Interaction/AppActivate)语句
+- [Shell](/official/Reference/VBA/Interaction/Shell)函数

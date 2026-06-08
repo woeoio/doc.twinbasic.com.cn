@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4c7d48b3-e21f-4c70-bb03-6098b4876266'
+  PropagateID: '4c7d48b3-e21f-4c70-bb03-6098b4876266'
+  ReservedCode1: '9298ef35-17a4-4f17-a9f2-9de7539f5d28'
+  ReservedCode2: '9298ef35-17a4-4f17-a9f2-9de7539f5d28'
+---
+
 ---
 title: AsyncProperty
 parent: VBRUN Package
@@ -5,40 +16,40 @@ nav_order: 20
 permalink: /tB/Packages/VBRUN/AsyncProperty/
 ---
 
-# AsyncProperty class
+# AsyncProperty 类
 
-The **AsyncProperty** object holds the results of an asynchronous read started with **UserControl.AsyncRead**. It is passed to the **AsyncReadComplete** and **AsyncReadProgress** events, where it identifies which read this notification refers to, reports how far the download has got, and --- once complete --- supplies the downloaded value. Every property is read-only: the runtime fills the object in before raising the event.
+**AsyncProperty**对象保存由**UserControl.AsyncRead**启动的异步读取结果。它被传递给**AsyncReadComplete**和**AsyncReadProgress**事件，在其中标识此通知对应的读取，报告下载进度，并在完成时提供下载的值。每个属性均为只读：运行时在引发事件前填充此对象。
 
-## Identifying the read
+## 标识读取
 
-A user control may have several outstanding asynchronous reads at once, so the **AsyncProperty** passed to each event has to identify the one the event is for. [**PropertyName**](/official/Reference/VBRUN/AsyncProperty/PropertyName) returns the name supplied to **AsyncRead** when the request was started --- typically the name of the property the control is going to assign the value to. [**Target**](/official/Reference/VBRUN/AsyncProperty/Target) returns the URL or file path that was being downloaded. [**AsyncType**](/official/Reference/VBRUN/AsyncProperty/AsyncType) returns an **AsyncTypeConstants** value identifying how the data is being delivered --- as a picture, a file, or a byte array.
+用户控件可能同时有多个未完成的异步读取，因此传递给每个事件的**AsyncProperty**必须标识该事件对应的读取。[**PropertyName**](/official/Reference/VBRUN/AsyncProperty/PropertyName)返回启动请求时提供给**AsyncRead**的名称——通常是控件将要赋值的属性名称。[**Target**](/official/Reference/VBRUN/AsyncProperty/Target)返回正在下载的URL或文件路径。[**AsyncType**](/official/Reference/VBRUN/AsyncProperty/AsyncType)返回**AsyncTypeConstants**值，标识数据的传递方式——图片、文件或字节数组。
 
-```vb
+``vb
 Private Sub UserControl_AsyncReadComplete(ByVal Prop As AsyncProperty)
     Select Case Prop.PropertyName
         Case "Picture"
             Set Picture = Prop.Value
         Case "DataFile"
-            ' Prop.Value is the path to the downloaded temporary file.
+            ' Prop.Value是下载的临时文件路径。
     End Select
 End Sub
-```
+``
 
-## The downloaded value
+## 下载的值
 
-Once the read finishes, [**Value**](/official/Reference/VBRUN/AsyncProperty/Value) holds the result. Its concrete subtype is determined by **AsyncType**: an **stdole.IPictureDisp** when the data was requested as a picture, a **String** containing the path of a downloaded temporary file when it was requested as a file, or a **Byte** array when the raw bytes were requested. **Value** is only meaningful in the **AsyncReadComplete** event --- during a progress notification the read has not yet finished.
+读取完成后，[**Value**](/official/Reference/VBRUN/AsyncProperty/Value)保存结果。其具体子类型由**AsyncType**决定：请求数据为图片时为**stdole.IPictureDisp**，请求为文件时为包含下载临时文件路径的**String**，请求原始字节时为**Byte**数组。**Value**仅在**AsyncReadComplete**事件中有意义——在进度通知期间读取尚未完成。
 
-## Tracking progress
+## 跟踪进度
 
-While a read is in progress, the runtime raises **AsyncReadProgress** periodically so the control can update a progress indicator. [**BytesRead**](/official/Reference/VBRUN/AsyncProperty/BytesRead) reports how many bytes have arrived so far, and [**BytesMax**](/official/Reference/VBRUN/AsyncProperty/BytesMax) the total number expected --- though **BytesMax** may be zero when the server has not advertised a content length. [**Status**](/official/Reference/VBRUN/AsyncProperty/Status) returns a human-readable description of the current step ("Connecting", "Receiving response", and so on), and [**StatusCode**](/official/Reference/VBRUN/AsyncProperty/StatusCode) returns the corresponding **AsyncStatusCodeConstants** value for programmatic inspection.
+读取进行中时，运行时定期引发**AsyncReadProgress**，使控件能够更新进度指示器。[**BytesRead**](/official/Reference/VBRUN/AsyncProperty/BytesRead)报告目前已到达的字节数，[**BytesMax**](/official/Reference/VBRUN/AsyncProperty/BytesMax)报告预期总字节数——但当服务器未公布内容长度时**BytesMax**可能为零。[**Status**](/official/Reference/VBRUN/AsyncProperty/Status)返回当前步骤的人类可读描述（"正在连接"、"正在接收响应"等），[**StatusCode**](/official/Reference/VBRUN/AsyncProperty/StatusCode)返回对应的**AsyncStatusCodeConstants**值，供编程检查。
 
-## Members
+## 成员
 
-- [AsyncType](/official/Reference/VBRUN/AsyncProperty/AsyncType) -- returns the kind of data being read (picture, file, or byte array)
-- [BytesMax](/official/Reference/VBRUN/AsyncProperty/BytesMax) -- returns the total number of bytes expected for the read
-- [BytesRead](/official/Reference/VBRUN/AsyncProperty/BytesRead) -- returns the number of bytes that have been read so far
-- [PropertyName](/official/Reference/VBRUN/AsyncProperty/PropertyName) -- returns the name of the property the read is being performed for
-- [Status](/official/Reference/VBRUN/AsyncProperty/Status) -- returns a human-readable description of the current read state
-- [StatusCode](/official/Reference/VBRUN/AsyncProperty/StatusCode) -- returns the **AsyncStatusCodeConstants** value for the current read state
-- [Target](/official/Reference/VBRUN/AsyncProperty/Target) -- returns the URL or path being read
-- [Value](/official/Reference/VBRUN/AsyncProperty/Value) -- returns the downloaded value once the read has completed
+- [AsyncType](/official/Reference/VBRUN/AsyncProperty/AsyncType) -- 返回正在读取的数据类型（图片、文件或字节数组）
+- [BytesMax](/official/Reference/VBRUN/AsyncProperty/BytesMax) -- 返回读取的预期总字节数
+- [BytesRead](/official/Reference/VBRUN/AsyncProperty/BytesRead) -- 返回目前已读取的字节数
+- [PropertyName](/official/Reference/VBRUN/AsyncProperty/PropertyName) -- 返回执行读取的属性名称
+- [Status](/official/Reference/VBRUN/AsyncProperty/Status) -- 返回当前读取状态的人类可读描述
+- [StatusCode](/official/Reference/VBRUN/AsyncProperty/StatusCode) -- 返回当前读取状态的**AsyncStatusCodeConstants**值
+- [Target](/official/Reference/VBRUN/AsyncProperty/Target) -- 返回正在读取的URL或路径
+- [Value](/official/Reference/VBRUN/AsyncProperty/Value) -- 读取完成后返回下载的值

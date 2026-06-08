@@ -1,28 +1,35 @@
 ---
-title: Driving Monaco from twinBASIC
+title: "从twinBASIC驱动Monaco"
 parent: WebView2
 nav_order: 7
 permalink: /Tutorials/WebView2/Driving-Monaco
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '45aceca3-93b5-46dc-a133-4abfb0211bd1'
+  PropagateID: '45aceca3-93b5-46dc-a133-4abfb0211bd1'
+  ReservedCode1: '2451c2ff-bcda-4848-bb7b-a9eab3d240c9'
+  ReservedCode2: '2451c2ff-bcda-4848-bb7b-a9eab3d240c9'
 ---
 
+# 从twinBASIC驱动Monaco
 
-# Driving Monaco from twinBASIC
+结合前面教程所有内容的案例研究：一个包含**两个**[**WebView2**](/official/Reference/WebView2/WebView2/)控件的窗体——左侧是Microsoft Monaco编辑器，右侧是实时HTML预览。用户输入时，Monaco将编辑的源代码发送给twinBASIC，后者将其镜像到预览面板。
 
-A case study combining everything from the previous tutorials: a form with **two** [**WebView2**](/official/Reference/WebView2/WebView2/) controls --- the Microsoft Monaco editor on the left, a live HTML preview on the right. As the user types, Monaco posts the edited source to twinBASIC, which mirrors it into the preview pane.
+完整项目以*示例0——WebView2示例*的形式在新项目对话框中提供（窗体*示例3*）。
 
-The complete project ships as *Sample 0 --- WebView2 Examples* in the New-Project dialog (form *Example 3*).
-
-## Architecture
+## 架构
 
 ![](Images/MonacoArchitecture.svg)
 
-The editor runs as a local web app under a virtual hostname; the preview pane is fed raw HTML through [**NavigateToString**](/official/Reference/WebView2/WebView2/#navigatetostring).
+编辑器作为本地Web应用在虚拟主机名下运行；预览面板通过[**NavigateToString**](/official/Reference/WebView2/WebView2/#navigatetostring)接收原始HTML。
 
-## Setting up the editor's assets
+## 设置编辑器资源
 
-The Monaco editor ships as a ~2 MB collection of JavaScript, CSS, and font files. Drop them into a `Resources` sub-folder of your project --- call it `MONACO_DEMO` --- alongside an `index.html` and a small bootstrap `script.js`. The [Hosting local web assets](/official/Tutorials/WebView2/Hosting-local-web-assets) tutorial describes the layout.
+Monaco编辑器是一个约2MB的JavaScript、CSS和字体文件集合。将它们放入项目的 `Resources` 子文件夹——命名为 `MONACO_DEMO`——连同 `index.html`和一个小的引导 `script.js`。[托管本地Web资源](/official/Tutorials/WebView2/Hosting-local-web-assets)教程描述了布局。
 
-The page itself is a single `<div id='container'>` plus the bootstrap script that listens for an *initial-content* message from the host:
+页面本身是一个 `<div id='container'>` 加上监听宿主*初始内容*消息的引导脚本：
 
 ```html
 <!DOCTYPE html>
@@ -59,9 +66,9 @@ window.chrome.webview.addEventListener('message', (event) => {
 });
 ```
 
-## The BASIC side
+## BASIC端
 
-Drop two `WebView2` controls on a form --- `WebView` (the editor) and `WebViewPreview` (the renderer). The `Ready` handler deploys the assets, registers the virtual host, and navigates:
+在窗体上放置两个 `WebView2` 控件——`WebView`（编辑器）和 `WebViewPreview`（渲染器）。`Ready` 处理程序部署资源、注册虚拟主机并导航：
 
 ```vb
 Private localPath As String
@@ -76,11 +83,11 @@ Private Sub WebView_Ready() Handles WebView.Ready
 End Sub
 ```
 
-(`CopyResourcesFolderContentsToLocalPath` is the helper from [Hosting local web assets](/official/Tutorials/WebView2/Hosting-local-web-assets).)
+（`CopyResourcesFolderContentsToLocalPath` 是[托管本地Web资源](/official/Tutorials/WebView2/Hosting-local-web-assets)中的辅助过程。）
 
-## Pushing the initial content
+## 推送初始内容
 
-Once Monaco has finished loading, the bootstrap script listens for a `message` event containing the HTML to seed the editor with. Fire that message after the editor's [**NavigationComplete**](/official/Reference/WebView2/WebView2/#navigationcomplete):
+Monaco加载完成后，引导脚本监听包含用于填充编辑器的HTML的 `message` 事件。在编辑器的[**NavigationComplete**](/official/Reference/WebView2/WebView2/#navigationcomplete)后发送该消息：
 
 ```vb
 Private Sub WebView_NavigationComplete( _
@@ -95,11 +102,11 @@ Private Sub WebView_NavigationComplete( _
 End Sub
 ```
 
-[**LoadResData**](/official/Reference/VB/Global/#loadresdata) returns the resource bytes; `StrConv(..., vbFromUTF8)` decodes them. [**PostWebMessage**](/official/Reference/WebView2/WebView2/#postwebmessage) hands the string to Monaco's `message` listener; [**NavigateToString**](/official/Reference/WebView2/WebView2/#navigatetostring) seeds the preview pane with the same text rendered as HTML.
+[**LoadResData**](/official/Reference/VB/Global/#loadresdata)返回资源字节；`StrConv(..., vbFromUTF8)` 解码它们。[**PostWebMessage**](/official/Reference/WebView2/WebView2/#postwebmessage)将字符串传递给Monaco的 `message` 监听器；[**NavigateToString**](/official/Reference/WebView2/WebView2/#navigatetostring)用相同文本渲染HTML来填充预览面板。
 
-## Live preview
+## 实时预览
 
-Every keystroke in Monaco fires its `onDidChangeModelContent` callback, which `postMessage`s the new content back to BASIC. That arrives as the [**JsMessage**](/official/Reference/WebView2/WebView2/#jsmessage) event --- feed it straight into the preview:
+Monaco中的每次按键触发其 `onDidChangeModelContent` 回调，该回调将新内容 `postMessage` 回BASIC。这以[**JsMessage**](/official/Reference/WebView2/WebView2/#jsmessage)事件到达——直接送入预览：
 
 ```vb
 Private Sub WebView_JsMessage(ByVal Message As Variant) Handles WebView.JsMessage
@@ -107,11 +114,11 @@ Private Sub WebView_JsMessage(ByVal Message As Variant) Handles WebView.JsMessag
 End Sub
 ```
 
-That's it --- the preview pane re-renders on every edit.
+就是这样——预览面板在每次编辑时重新渲染。
 
-## Detecting a missing Edge runtime
+## 检测缺失的Edge运行时
 
-A reasonable fraction of users will run the application on a machine where the WebView2 Evergreen runtime isn't installed. The [**Error**](/official/Reference/WebView2/WebView2/#error) event reports this case as Win32 error code `&H80070002` (`ERROR_FILE_NOT_FOUND`):
+相当一部分用户将在未安装WebView2 Evergreen运行时的机器上运行应用程序。[**Error**](/official/Reference/WebView2/WebView2/#error)事件将此情况报告为Win32错误代码 `&H80070002`（`ERROR_FILE_NOT_FOUND`）：
 
 ```vb
 Private Sub WebView_Error(ByVal code As Long, ByVal msg As String) _
@@ -128,10 +135,10 @@ Private Sub WebView_Error(ByVal code As Long, ByVal msg As String) _
 End Sub
 ```
 
-It is worth handling this even in single-WebView applications --- the message you show here is the difference between *"nothing happens"* and *"oh, I need to install something"*.
+即使在单WebView应用中也值得处理此情况——你在此显示的消息是"什么都没发生"和"哦，我需要安装什么"之间的区别。
 
-## Where next
+## 下一步
 
-- [Hosting local web assets](/official/Tutorials/WebView2/Hosting-local-web-assets) -- the `CopyResourcesFolderContentsToLocalPath` helper and virtual-host pattern this tutorial builds on.
-- [JavaScript interop](/official/Tutorials/WebView2/JavaScript-interop) -- the three bridges between BASIC and JavaScript.
-- [WebView2 reference](/official/Reference/WebView2/WebView2/) -- every property, method, and event.
+- [托管本地Web资源](/official/Tutorials/WebView2/Hosting-local-web-assets) —— 本教程基于的 `CopyResourcesFolderContentsToLocalPath` 辅助过程和虚拟主机模式。
+- [JavaScript互操作](/official/Tutorials/WebView2/JavaScript-interop) —— BASIC和JavaScript之间的三座桥。
+- [WebView2参考](/official/Reference/WebView2/WebView2/) —— 每个属性、方法和事件。

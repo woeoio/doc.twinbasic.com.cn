@@ -1,80 +1,89 @@
 ---
-title: Comparison
+title: 比较运算符
 parent: Operators
 permalink: /tB/Core/Comparison-Operators
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '02bcf123-2b10-4735-990b-14ffa18f03d9'
+  PropagateID: '02bcf123-2b10-4735-990b-14ffa18f03d9'
+  ReservedCode1: '8209d04a-ac23-4492-b3dd-e0c2214f1f51'
+  ReservedCode2: '8209d04a-ac23-4492-b3dd-e0c2214f1f51'
 ---
-# Comparison operators
 
-Used to compare expressions and return a **Boolean** result.
+# 比较运算符
 
-Syntax:
+用于比较表达式并返回 **Boolean** 结果。
+
+语法：
 > *result* **=** *expression1* *comparisonoperator* *expression2*  
 > *result* **=** *object1* **Is** *object2*  
 > *result* **=** *string* **Like** *pattern*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *expression*
-: Any expression.
+: 任意表达式。
 
 *comparisonoperator*
-: Any of `<`, `<=`, `>`, `>=`, `=`, `<>`.
+: `<`、`<=`、`>`、`>=`、`=`、`<>` 中的任意一个。
 
 *object*
-: Any object reference.
+: 任意对象引用。
 
 *string*
-: Any string expression.
+: 任意字符串表达式。
 
 *pattern*
-: Any string expression or range of characters.
+: 任意字符串表达式或字符范围。
 
-The following table lists the comparison operators and the conditions that determine whether *result* is **True**, **False**, or **Null**:
+下表列出了比较运算符以及确定 *result* 为 **True**、**False** 或 **Null** 的条件：
 
-| Operator                          | **True** if                | **False** if               | **Null** if                              |
+| 运算符                           | **True** 如果                | **False** 如果               | **Null** 如果                              |
 |:----------------------------------|:---------------------------|:---------------------------|:-----------------------------------------|
-| `<`  (Less than)                  | *expression1* < *expression2*  | *expression1* >= *expression2* | *expression1* or *expression2* = **Null** |
-| `<=` (Less than or equal to)      | *expression1* <= *expression2* | *expression1* > *expression2*  | *expression1* or *expression2* = **Null** |
-| `>`  (Greater than)               | *expression1* > *expression2*  | *expression1* <= *expression2* | *expression1* or *expression2* = **Null** |
-| `>=` (Greater than or equal to)   | *expression1* >= *expression2* | *expression1* < *expression2*  | *expression1* or *expression2* = **Null** |
-| `=`  (Equal to)                   | *expression1* = *expression2*  | *expression1* <> *expression2* | *expression1* or *expression2* = **Null** |
-| `<>` (Not equal to)               | *expression1* <> *expression2* | *expression1* = *expression2*  | *expression1* or *expression2* = **Null** |
+| `<`  (小于)                  | *expression1* < *expression2*  | *expression1* >= *expression2* | *expression1* 或 *expression2* = **Null** |
+| `<=` (小于或等于)      | *expression1* <= *expression2* | *expression1* > *expression2*  | *expression1* 或 *expression2* = **Null** |
+| `>`  (大于)               | *expression1* > *expression2*  | *expression1* <= *expression2* | *expression1* 或 *expression2* = **Null** |
+| `>=` (大于或等于)   | *expression1* >= *expression2* | *expression1* < *expression2*  | *expression1* 或 *expression2* = **Null** |
+| `=`  (等于)                   | *expression1* = *expression2*  | *expression1* <> *expression2* | *expression1* 或 *expression2* = **Null** |
+| `<>` (不等于)               | *expression1* <> *expression2* | *expression1* = *expression2*  | *expression1* 或 *expression2* = **Null** |
 
 ::: info
-The [**Is**](/official/Reference/Core/Is) and [**Like**](/official/Reference/Core/Like) operators have their own dedicated comparison semantics and are documented separately.
+[**Is**](/official/Reference/Core/Is) 和 [**Like**](/official/Reference/Core/Like) 运算符有各自专用的比较语义，单独成文。
 :::
 
-The `=` symbol is also the assignment operator (`*variable* = *expression*`). The context --- whether `=` appears in an expression or at the top of a statement --- determines which meaning applies; no explicit choice between them is required.
+`=` 符号也是赋值运算符（`*variable* = *expression*`）。上下文——`=` 出现在表达式中还是语句开头——决定了使用哪种含义；无需显式选择。
 
-When comparing two expressions, determining whether they are being compared as numbers or as strings can be non-obvious. The following table shows how the expressions are compared, or the result when either expression is not a **Variant**:
+比较两个表达式时，判断它们是作为数字还是字符串比较可能并不明显。下表显示了表达式的比较方式，或当任一表达式不是 **Variant** 时的结果：
 
-| If                                                                                       | Then                                                  |
+| 如果                                                                                       | 则                                                  |
 |:-----------------------------------------------------------------------------------------|:------------------------------------------------------|
-| Both expressions are numeric (**Byte**, **Boolean**, **Integer**, **Long**, **LongLong**, **Single**, **Double**, **Date**, **Currency**) | Perform a numeric comparison.                         |
-| Both expressions are **String**                                                          | Perform a string comparison.                          |
-| One expression is numeric and the other is a **Variant** that is, or can be, a number    | Perform a numeric comparison.                         |
-| One expression is numeric and the other is a string **Variant** that can't be converted to a number | A `Type Mismatch` error occurs.                       |
-| One expression is a **String** and the other is any **Variant** except a **Null**        | Perform a string comparison.                          |
-| One expression is **Empty** and the other is a numeric data type                         | Perform a numeric comparison, using 0 as the **Empty** expression. |
-| One expression is **Empty** and the other is a **String**                                | Perform a string comparison, using `""` as the **Empty** expression. |
+| 两个表达式都是数值类型（**Byte**、**Boolean**、**Integer**、**Long**、**LongLong**、**Single**、**Double**、**Date**、**Currency**） | 执行数值比较。                         |
+| 两个表达式都是 **String**                                                          | 执行字符串比较。                          |
+| 一个表达式是数值类型，另一个是 **Variant** 且是或可以是数字    | 执行数值比较。                         |
+| 一个表达式是数值类型，另一个是无法转换为数字的字符串 **Variant** | 发生 `Type Mismatch` 错误。                       |
+| 一个表达式是 **String**，另一个是除 **Null** 外的任意 **Variant**        | 执行字符串比较。                          |
+| 一个表达式是 **Empty**，另一个是数值数据类型                         | 执行数值比较，**Empty** 表达式使用 0。 |
+| 一个表达式是 **Empty**，另一个是 **String**                                | 执行字符串比较，**Empty** 表达式使用 `""`。 |
 
-If *expression1* and *expression2* are both **Variant** expressions, their underlying type determines how they are compared:
+如果 *expression1* 和 *expression2* 都是 **Variant** 表达式，其底层类型决定比较方式：
 
-| If                                                                  | Then                                                  |
+| 如果                                                                  | 则                                                  |
 |:--------------------------------------------------------------------|:------------------------------------------------------|
-| Both **Variant** expressions are numeric                            | Perform a numeric comparison.                         |
-| Both **Variant** expressions are strings                            | Perform a string comparison.                          |
-| One **Variant** expression is numeric and the other is a string     | The numeric expression is less than the string expression. |
-| One **Variant** expression is **Empty** and the other is numeric    | Perform a numeric comparison, using 0 as the **Empty** expression. |
-| One **Variant** expression is **Empty** and the other is a string   | Perform a string comparison, using `""` as the **Empty** expression. |
-| Both **Variant** expressions are **Empty**                          | The expressions are equal.                            |
+| 两个 **Variant** 表达式都是数值                            | 执行数值比较。                         |
+| 两个 **Variant** 表达式都是字符串                            | 执行字符串比较。                          |
+| 一个 **Variant** 表达式是数值，另一个是字符串     | 数值表达式小于字符串表达式。 |
+| 一个 **Variant** 表达式是 **Empty**，另一个是数值    | 执行数值比较，**Empty** 表达式使用 0。 |
+| 一个 **Variant** 表达式是 **Empty**，另一个是字符串   | 执行字符串比较，**Empty** 表达式使用 `""`。 |
+| 两个 **Variant** 表达式都是 **Empty**                          | 表达式相等。                            |
 
-When a **Single** is compared to a **Double**, the **Double** is rounded to the precision of the **Single**. If a **Currency** is compared with a **Single** or **Double**, the **Single** or **Double** is converted to a **Currency**. For **Currency**, any fractional value less than `.0001` may be lost, which can cause two values to compare as equal when they are not.
+当 **Single** 与 **Double** 比较时，**Double** 会被舍入到 **Single** 的精度。如果 **Currency** 与 **Single** 或 **Double** 比较，**Single** 或 **Double** 会被转换为 **Currency**。对于 **Currency**，小于 `.0001` 的小数值可能丢失，这可能导致两个实际不同的值比较结果为相等。
 
-String comparisons are governed by the module's [**Option Compare**](/official/Reference/Core/Option) setting --- **Binary** (the default; case-sensitive, ordinal) or **Text** (case-insensitive, locale-sensitive).
+字符串比较受模块的 [**Option Compare**](/official/Reference/Core/Option) 设置控制——**Binary**（默认；区分大小写，按序比较）或 **Text**（不区分大小写，受区域设置影响）。
 
-### Example
+### 示例
 
 ```vb
 Dim MyResult, Var1, Var2
@@ -93,10 +102,10 @@ Var1 = 0: Var2 = Empty
 MyResult = (Var1 = Var2)        ' Returns True.
 ```
 
-### See Also
+### 另请参阅
 
-- [**Is** operator](/official/Reference/Core/Is)
-- [**IsNot** operator](/official/Reference/Core/IsNot)
-- [**Like** operator](/official/Reference/Core/Like)
-- [**Option** statement](/official/Reference/Core/Option)
-- [Operators](/official/Reference/Operators)
+- [**Is** 运算符](/official/Reference/Core/Is)
+- [**IsNot** 运算符](/official/Reference/Core/IsNot)
+- [**Like** 运算符](/official/Reference/Core/Like)
+- [**Option** 语句](/official/Reference/Core/Option)
+- [运算符](/official/Reference/Operators)

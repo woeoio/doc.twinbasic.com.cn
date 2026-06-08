@@ -1,14 +1,22 @@
 ---
 title: CefBrowser
-parent: CEF Package
+parent: "CEF 包"
 permalink: /tB/Packages/CEF/CefBrowser/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cd2b19c2-5328-4b33-ada1-92768109cac3'
+  PropagateID: 'cd2b19c2-5328-4b33-ada1-92768109cac3'
+  ReservedCode1: 'c06f428e-9e93-4831-8ba3-a6ba52890e15'
+  ReservedCode2: 'c06f428e-9e93-4831-8ba3-a6ba52890e15'
 ---
 
-# CefBrowser class
+# CefBrowser 类
 
-A **CefBrowser** is a twinBASIC control that hosts the Chromium Embedded Framework --- drop one onto a [**Form**](/official/Reference/VB/Form/) and Chromium renders web content inside its rectangle. Application code can navigate to URLs, run JavaScript, exchange messages with the loaded page, register virtual-host folders, and print the document to PDF.
+**CefBrowser** 是一个托管 Chromium Embedded Framework 的 twinBASIC 控件——将一个拖放到 [**Form**](/official/Reference/VB/Form/) 上，Chromium 即可在其矩形内渲染Web内容。应用程序代码可以导航到URL、运行JavaScript、与已加载的页面交换消息、注册虚拟主机文件夹，以及将文档打印为PDF。
 
-The control spawns a separate browser process the first time it is used in a session and communicates with it across an IPC channel; many properties and methods raise *"CefBrowser control is not ready"* (run-time error 5) when called before the [**Ready**](#ready) event has fired.
+该控件在会话中首次使用时会生成一个单独的浏览器进程，并通过IPC通道与其通信；在 [**Ready**](#ready) 事件触发之前调用许多属性和方法会引发 *"CefBrowser control is not ready"*（运行时错误5）。
 
 ```vb
 Private Sub Form_Load()
@@ -25,220 +33,220 @@ Private Sub CefBrowser1_NavigationComplete( _
 End Sub
 ```
 
-The control inherits the rect-dockable members (size, layout, **Anchors**, **Dock**) from `BaseControlRectDockable`. It does *not* inherit a focusable layer, so the keyboard / mouse / focus events available on [**WebView2**](/official/Reference/WebView2/WebView2/) are not part of its API --- keystrokes go straight into the page once Chromium has focus.
+该控件从 `BaseControlRectDockable` 继承了矩形可停靠成员（大小、布局、**Anchors**、**Dock**）。它*不*继承可聚焦层，因此 [**WebView2**](/official/Reference/WebView2/WebView2/) 上可用的键盘/鼠标/焦点事件不属于其API——一旦Chromium获得焦点，按键就直接进入页面。
 
 
-## Lifecycle
+## 生命周期
 
-A **CefBrowser** control progresses through three distinct phases, each triggered by an asynchronous step in the CEF runtime:
+**CefBrowser** 控件经历三个不同的阶段，每个阶段由CEF运行时中的异步步骤触发：
 
-| Event                          | When                                                                                                              |
+| 事件                          | 何时触发                                                                                                              |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| [**Create**](#create)          | After the container window exists, before the CEF runtime is launched. Last chance to set [**EnvironmentOptions**](#environmentoptions). |
-| [**Error**](#error)            | The runtime could not be launched --- typically because `libcef.dll` is missing or the user-data folder is locked. |
-| [**Ready**](#ready)            | The browser process is live and IPC has connected. The control is now fully functional.                            |
+| [**Create**](#create)          | 容器窗口已创建之后，CEF运行时启动之前。设置 [**EnvironmentOptions**](#environmentoptions) 的最后机会。 |
+| [**Error**](#error)            | 运行时无法启动——通常是因为 `libcef.dll` 缺失或用户数据文件夹被锁定。 |
+| [**Ready**](#ready)            | 浏览器进程已运行且IPC已连接。控件现在完全可用。                            |
 
-Calling navigation, scripting, or setting accessors before [**Ready**](#ready) raises run-time error 5 with the message *"CefBrowser control is not ready."* Once **Ready** fires, the control auto-navigates to the [**DocumentURL**](#documenturl) field if it has a non-empty value (the design-time default is `https://www.twinbasic.com`).
+在 [**Ready**](#ready) 之前调用导航、脚本或设置访问器会引发运行时错误5，消息为 *"CefBrowser control is not ready."*。一旦 **Ready** 触发，如果 [**DocumentURL**](#documenturl) 字段有非空值（设计时默认为 `https://www.twinbasic.com`），控件会自动导航到该地址。
 
-The first **CefBrowser** to initialise in a process launches the shared browser helper executable; subsequent **CefBrowser** instances share that helper. Closing the last **CefBrowser** does not terminate the helper --- it lingers for the life of the host process so that a future control can attach to it without re-launching.
+进程中第一个初始化的 **CefBrowser** 启动共享的浏览器辅助可执行文件；后续的 **CefBrowser** 实例共享该辅助程序。关闭最后一个 **CefBrowser** 不会终止辅助程序——它会在宿主进程的整个生命周期内驻留，以便将来的控件可以附加到它而无需重新启动。
 
-## Deferred startup
+## 延迟启动
 
-By default the control launches the browser helper as soon as the form is loaded (the `WS_VISIBLE` style is set on the host window and the first resize event triggers the helper). Set [**CreateInitialized**](#createinitialized) to **False** before the form loads, then call [**Initialize**](#initialize) when the browser should start --- useful when several **CefBrowser** controls live on tabs and the cost of launching the helper should be deferred until the tab is shown.
+默认情况下，控件在窗体加载后立即启动浏览器辅助程序（在宿主窗口上设置 `WS_VISIBLE` 样式，第一次调整大小事件触发辅助程序）。在窗体加载之前将 [**CreateInitialized**](#createinitialized) 设置为 **False**，然后在浏览器应启动时调用 [**Initialize**](#initialize)——这在多个 **CefBrowser** 控件位于选项卡上且应将启动辅助程序的开销推迟到选项卡显示时很有用。
 
-## JavaScript interop
+## JavaScript互操作
 
-The control offers three families of BASIC ↔ JavaScript bridges:
+控件提供三个系列的BASIC ↔ JavaScript桥接：
 
-- **Posting messages** --- [**PostWebMessage**](#postwebmessage) sends a value to the page where it arrives via `window.chrome.webview.addEventListener('message', …)`. The page replies with `window.chrome.webview.postMessage(…)`, which fires the [**JsMessage**](#jsmessage) event.
-- **Executing script** --- [**JsRun**](#jsrun) calls a named JavaScript function and waits for the result, [**JsRunAsync**](#jsrunasync) calls one and fires [**JsAsyncResult**](#jsasyncresult) when the result arrives, and [**ExecuteScript**](#executescript) fires-and-forgets a snippet without awaiting a result.
+- **发布消息**——[**PostWebMessage**](#postwebmessage) 向页面发送值，通过 `window.chrome.webview.addEventListener('message', …)` 到达。页面通过 `window.chrome.webview.postMessage(…)` 回复，触发 [**JsMessage**](#jsmessage) 事件。
+- **执行脚本**——[**JsRun**](#jsrun) 调用命名的JavaScript函数并等待结果，[**JsRunAsync**](#jsrunasync) 调用一个并在结果到达时触发 [**JsAsyncResult**](#jsasyncresult)，[**ExecuteScript**](#executescript) 即发即忘地执行代码片段而不等待结果。
 
-Synchronous [**JsRun**](#jsrun) blocks the BASIC thread until the renderer replies --- which means that re-entrancy from the page (a JavaScript handler that posts back into BASIC during the call) can cause a UI freeze. Use [**JsRunAsync**](#jsrunasync) whenever the call is non-trivial.
+同步的 [**JsRun**](#jsrun) 会阻塞BASIC线程直到渲染器回复——这意味着页面的重入（在调用期间发回BASIC的JavaScript处理程序）可能导致UI冻结。只要调用不是简单的，请使用 [**JsRunAsync**](#jsrunasync)。
 
-## Mapping virtual hostnames
+## 映射虚拟主机名
 
-[**SetVirtualHostNameToFolderMapping**](#setvirtualhostnametofoldermapping) installs a virtual hostname that serves files from a local folder --- so the page can `fetch('https://my.app/index.html')` instead of `file:///...` (avoiding the `file://` origin's CORS restrictions). [**ClearVirtualHostNameToFolderMapping**](#clearvirtualhostnametofoldermapping) removes a mapping.
+[**SetVirtualHostNameToFolderMapping**](#setvirtualhostnametofoldermapping) 安装一个虚拟主机名，该主机名从本地文件夹提供文件——因此页面可以 `fetch('https://my.app/index.html')` 而不是 `file:///...`（避免 `file://` 来源的CORS限制）。[**ClearVirtualHostNameToFolderMapping**](#clearvirtualhostnametofoldermapping) 移除映射。
 
-Properties
+属性
 ----------
 
-The control inherits the standard rect-dockable members from `BaseControlRectDockable` --- size, position, **Anchors**, **Dock**, **Container**, the design-time **Name** / **Index** / **Tag**.
+该控件从 `BaseControlRectDockable` 继承标准的矩形可停靠成员——大小、位置、**Anchors**、**Dock**、**Container**、设计时的 **Name** / **Index** / **Tag**。
 
 ### Anchors
 
-The container-edge anchors that control automatic resizing when the parent **Form** is resized. Inherited from `BaseControlRectDockable`.
+控制父 **Form** 调整大小时自动调整大小的容器边缘锚点。从 `BaseControlRectDockable` 继承。
 
 ### CanGoBack
 
-Whether the browsing history has an entry behind the current document. **Boolean**. Read-only. Available after [**Ready**](#ready).
+浏览历史中当前文档之后是否有条目。**Boolean**。只读。在 [**Ready**](#ready) 后可用。
 
 ### CanGoForward
 
-Whether the browsing history has an entry ahead of the current document. **Boolean**. Read-only. Available after [**Ready**](#ready).
+浏览历史中当前文档之前是否有条目。**Boolean**。只读。在 [**Ready**](#ready) 后可用。
 
 ### CefMajorVersion
 
-The CEF runtime major-version number selected at compile time (`49`, `109`, or `145`). **Long**. Read-only. Resolves from the `CEF_VERSION` conditional-compilation argument on the compiler-package reference --- see [Supported runtimes](/official/Reference/CEF/#supported-runtimes).
+编译时选择的CEF运行时主版本号（`49`、`109` 或 `145`）。**Long**。只读。从编译器包引用上的 `CEF_VERSION` 条件编译参数解析——参见[支持的运行时](/official/Reference/CEF/#supported-runtimes)。
 
 ### Container
 
-The parent **Form** / **Frame** / **PictureBox** / **UserControl** that hosts this control. **Object**. Inherited.
+承载此控件的父 **Form** / **Frame** / **PictureBox** / **UserControl**。**Object**。继承。
 
 ### ControlType
 
-Always **vbCefBrowser** ([**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)). Read-only. Inherited.
+始终为 **vbCefBrowser**（[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)）。只读。继承。
 
 ### CreateInitialized
 
-Whether the browser helper is launched automatically when the form first lays the control out. **Boolean**. Default: **True**. Set to **False** in code (or in the property sheet) to defer the launch until [**Initialize**](#initialize) is called.
+窗体首次布局控件时是否自动启动浏览器辅助程序。**Boolean**。默认：**True**。在代码中（或在属性表中）设置为 **False** 以推迟启动，直到调用 [**Initialize**](#initialize)。
 
 ### DocumentTitle
 
-The current document's `<title>` text. **String**. Read-only. Updated each time the page changes its title --- the [**DocumentTitleChanged**](#documenttitlechanged) event fires on every update.
+当前文档的 `<title>` 文本。**String**。只读。每次页面更改标题时更新——[**DocumentTitleChanged**](#documenttitlechanged) 事件在每次更新时触发。
 
 ### DocumentURL
 
-The current document's URL. **String**. Reading returns the live URL after every navigation; assigning is equivalent to calling [**Navigate**](#navigate). The design-time default is `https://www.twinbasic.com`, used as the auto-navigation target once [**Ready**](#ready) fires.
+当前文档的URL。**String**。读取时在每次导航后返回实时URL；赋值等效于调用 [**Navigate**](#navigate)。设计时默认为 `https://www.twinbasic.com`，作为 [**Ready**](#ready) 触发后的自动导航目标。
 
 ### Dock
 
-How the control docks against its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants). Inherited.
+控件如何停靠到其容器。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants) 的成员。继承。
 
 ### EnvironmentOptions
 
-The [**CefEnvironmentOptions**](/official/Reference/CEF/CefBrowser/EnvironmentOptions) object that configures the runtime --- executable folder, user-data folder, log file, log severity. The control auto-creates one on initialization; assign to its fields before or during the [**Create**](#create) event for them to take effect.
+配置运行时的 [**CefEnvironmentOptions**](/official/Reference/CEF/CefBrowser/EnvironmentOptions) 对象——可执行文件夹、用户数据文件夹、日志文件、日志严重级别。控件在初始化时自动创建一个；在 [**Create**](#create) 事件之前或期间赋值给其字段才能生效。
 
 ### Height
 
-The control's height. **Single**. Inherited.
+控件的高度。**Single**。继承。
 
 ### hWnd
 
-The Win32 window handle of the *container* window that hosts the CEF surface --- not the HWND of the Chromium browser tab itself, which lives in a separate process. **LongPtr**. Read-only.
+承载CEF表面的*容器*窗口的Win32窗口句柄——不是Chromium浏览器选项卡本身的HWND，后者位于单独的进程中。**LongPtr**。只读。
 
 ### Index
 
-The control-array index when the control is part of an array. **Long**. Read-only. Inherited.
+控件是数组一部分时的控件数组索引。**Long**。只读。继承。
 
 ### Left
 
-The control's x-position inside its container. **Single**. Inherited.
+控件在其容器内的x位置。**Single**。继承。
 
 ### Name
 
-The design-time name of the control. **String**. Read-only at run time. Inherited.
+控件的设计时名称。**String**。运行时只读。继承。
 
 ### Parent
 
-The **Form** (or other container) that hosts this control. **Object**. Read-only.
+承载此控件的 **Form**（或其他容器）。**Object**。只读。
 
 ### Tag
 
-A user-defined string stored on the control. **String**. Inherited.
+存储在控件上的用户定义字符串。**String**。继承。
 
 ### Top
 
-The control's y-position inside its container. **Single**. Inherited.
+控件在其容器内的y位置。**Single**。继承。
 
 ### UserAgent
 
-The `User-Agent` string Chromium sends with HTTP requests. **String**. Read/write. The design-time default is empty, in which case Chromium uses its built-in user-agent string. Assigning at run time takes effect immediately.
+Chromium 在HTTP请求中发送的 `User-Agent` 字符串。**String**。读/写。设计时默认为空，此时Chromium使用其内置的user-agent字符串。运行时赋值立即生效。
 
 ### Visible
 
-Whether the control is visible. **Boolean**, default **True**.
+控件是否可见。**Boolean**，默认 **True**。
 
 ### Width
 
-The control's width. **Single**. Inherited.
+控件的宽度。**Single**。继承。
 
 ### ZoomFactor
 
-The overall page zoom factor, where `1.0` is 100%. **Double**. Default: `1.0` (design-time default; reads as `0.0` until the browser is [**Ready**](#ready)).
+整体页面缩放因子，其中 `1.0` 为100%。**Double**。默认：`1.0`（设计时默认；在浏览器 [**Ready**](#ready) 之前读取为 `0.0`）。
 
 ::: info
-Because the value reads as `0.0` until the browser is ready, arithmetic that multiplies the current value silently starts from zero unless the host clamps it to `1` first:
+由于该值在浏览器就绪之前读取为 `0.0`，如果不先将宿主值钳位到 `1`，乘以当前值的算术运算会静默从零开始：
 
 ```vb
 If CefBrowser1.ZoomFactor = 0 Then CefBrowser1.ZoomFactor = 1
-CefBrowser1.ZoomFactor *= 1.1   ' 110% on first click, 121% on second, …
+CefBrowser1.ZoomFactor *= 1.1   ' 首次点击110%，第二次121%，…
 ```
 :::
 
-Methods
+方法
 -------
 
 ### ClearVirtualHostNameToFolderMapping
 
-Removes a virtual hostname → local-folder mapping previously installed by [**SetVirtualHostNameToFolderMapping**](#setvirtualhostnametofoldermapping).
+移除之前由 [**SetVirtualHostNameToFolderMapping**](#setvirtualhostnametofoldermapping) 安装的虚拟主机名→本地文件夹映射。
 
-Syntax: *object*.**ClearVirtualHostNameToFolderMapping** *hostName*
+语法：*对象*.**ClearVirtualHostNameToFolderMapping** *hostName*
 
 *hostName*
-: *required* A **String** matching the hostname passed to **SetVirtualHostNameToFolderMapping**.
+: *必需* 与传递给 **SetVirtualHostNameToFolderMapping** 的主机名匹配的 **String**。
 
 ### ExecuteScript
 
-Evaluates JavaScript in the page without waiting for it to finish and without returning its result. Use [**JsRun**](#jsrun) or [**JsRunAsync**](#jsrunasync) when the return value is needed.
+在页面中评估JavaScript，不等待其完成也不返回其结果。当需要返回值时使用 [**JsRun**](#jsrun) 或 [**JsRunAsync**](#jsrunasync)。
 
-Syntax: *object*.**ExecuteScript** *jsCode*
+语法：*对象*.**ExecuteScript** *jsCode*
 
 *jsCode*
-: *required* A **String** of JavaScript to evaluate in the page's global scope.
+: *必需* 要在页面全局作用域中评估的JavaScript **String**。
 
 ### GoBack
 
-Navigates one entry back in the browsing history. Silently does nothing when [**CanGoBack**](#cangoback) is **False**.
+在浏览历史中后退一个条目。当 [**CanGoBack**](#cangoback) 为 **False** 时静默无操作。
 
-Syntax: *object*.**GoBack**
+语法：*对象*.**GoBack**
 
 ### GoForward
 
-Navigates one entry forward in the browsing history. Silently does nothing when [**CanGoForward**](#cangoforward) is **False**.
+在浏览历史中前进一个条目。当 [**CanGoForward**](#cangoforward) 为 **False** 时静默无操作。
 
-Syntax: *object*.**GoForward**
+语法：*对象*.**GoForward**
 
 ### Initialize
 
-Launches the browser helper process explicitly. Only needed when [**CreateInitialized**](#createinitialized) is **False**; otherwise the helper starts automatically on the first form-layout pass.
+显式启动浏览器辅助程序进程。仅当 [**CreateInitialized**](#createinitialized) 为 **False** 时需要；否则辅助程序在第一次窗体布局时自动启动。
 
-Syntax: *object*.**Initialize**
+语法：*对象*.**Initialize**
 
-A second call after the helper is already running is a no-op.
+辅助程序已运行后的第二次调用为无操作。
 
 ### JsRun
 
-Calls a named JavaScript function with the given arguments and returns the result synchronously. Blocks the BASIC thread until the renderer replies.
+以给定参数调用命名的JavaScript函数并同步返回结果。阻塞BASIC线程直到渲染器回复。
 
-Syntax: *object*.**JsRun** ( *FuncName*, [ *args* ] ) **As Variant**
+语法：*对象*.**JsRun** ( *FuncName*, [ *args* ] ) **As Variant**
 
 *FuncName*
-: *required* A **String** naming the JavaScript function --- e.g. `"document.querySelector"`.
+: *必需* 命名JavaScript函数的 **String**——例如 `"document.querySelector"`。
 
 *args*
-: *optional* Any number of **Variant** arguments. Each is JSON-encoded before being passed to the function.
+: *可选* 任意数量的 **Variant** 参数。每个参数在传递给函数之前进行JSON编码。
 
 ```vb
-' Calls the page-side function `multiplyTheseNumbers(a, b)` and waits for the result.
+' 调用页面端函数 `multiplyTheseNumbers(a, b)` 并等待结果。
 Dim product As Long = CefBrowser1.JsRun("multiplyTheseNumbers", 5, 6)
 Debug.Print product   ' 30
 ```
 
 ::: warning
-A page-side handler that posts back into BASIC during the call can deadlock the UI. Prefer [**JsRunAsync**](#jsrunasync) for non-trivial calls. See the [Re-entrancy tutorial](/official/Tutorials/CEF/Re-entrancy) for the full discussion.
+页面端处理程序在调用期间发回BASIC可能导致UI死锁。对于非简单调用，优先使用 [**JsRunAsync**](#jsrunasync)。完整讨论请参阅[重入性教程](/official/Tutorials/CEF/Re-entrancy)。
 :::
 
 ### JsRunAsync
 
-Calls a named JavaScript function asynchronously and returns immediately. When the result arrives, [**JsAsyncResult**](#jsasyncresult) fires with the result and an error string.
+异步调用命名的JavaScript函数并立即返回。当结果到达时，[**JsAsyncResult**](#jsasyncresult) 触发并附带结果和错误字符串。
 
-Syntax: *object*.**JsRunAsync** *FuncName*, [ *args* ]
+语法：*对象*.**JsRunAsync** *FuncName*, [ *args* ]
 
 *FuncName*
-: *required* A **String** naming the JavaScript function.
+: *必需* 命名JavaScript函数的 **String**。
 
 *args*
-: *optional* Any number of **Variant** arguments, JSON-encoded as in [**JsRun**](#jsrun).
+: *可选* 任意数量的 **Variant** 参数，按 [**JsRun**](#jsrun) 方式进行JSON编码。
 
 ```vb
 Private Sub btnRun_Click()
@@ -255,87 +263,87 @@ Private Sub CefBrowser1_JsAsyncResult( _
 End Sub
 ```
 
-If **JsRunAsync** is called before the renderer IPC has connected, the call is queued and dispatched once the connection is established.
+如果在渲染器IPC连接之前调用 **JsRunAsync**，调用将被排队并在连接建立后分发。
 
 ### Move
 
-Repositions and resizes the control in a single call. Inherited.
+在单次调用中重新定位和调整控件大小。继承。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*对象*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 ### Navigate
 
-Loads a URL into the browser. Fires [**NavigationStarting**](#navigationstarting) and then [**NavigationComplete**](#navigationcomplete). The URI must include the protocol prefix (`http://`, `https://`, `file://`, …) --- there is no automatic prefix insertion.
+将URL加载到浏览器中。触发 [**NavigationStarting**](#navigationstarting) 然后触发 [**NavigationComplete**](#navigationcomplete)。URI必须包含协议前缀（`http://`、`https://`、`file://`、…）——没有自动前缀插入。
 
-Syntax: *object*.**Navigate** *uri*
+语法：*对象*.**Navigate** *uri*
 
 *uri*
-: *required* A **String** with the full URI to load.
+: *必需* 包含要加载的完整URI的 **String**。
 
 ### NavigateToString
 
-Loads the given HTML string as if it had been served from `about:blank`. Fires [**NavigationComplete**](#navigationcomplete) when the document is fully loaded.
+将给定的HTML字符串加载为从 `about:blank` 提供的内容。文档完全加载时触发 [**NavigationComplete**](#navigationcomplete)。
 
-Syntax: *object*.**NavigateToString** *html*
+语法：*对象*.**NavigateToString** *html*
 
 *html*
-: *required* A **String** containing a full HTML document.
+: *必需* 包含完整HTML文档的 **String**。
 
 ### OpenDevToolsWindow
 
-Opens the Chromium DevTools window for the currently loaded page in a separate top-level window.
+在单独的顶级窗口中打开当前已加载页面的Chromium DevTools窗口。
 
-Syntax: *object*.**OpenDevToolsWindow**
+语法：*对象*.**OpenDevToolsWindow**
 
 ### PostWebMessage
 
-Sends a value to the page; it arrives via `window.chrome.webview.addEventListener('message', …)`. The page can reply with `window.chrome.webview.postMessage(…)`, which fires the [**JsMessage**](#jsmessage) event.
+向页面发送值；通过 `window.chrome.webview.addEventListener('message', …)` 到达。页面可以通过 `window.chrome.webview.postMessage(…)` 回复，触发 [**JsMessage**](#jsmessage) 事件。
 
-Syntax: *object*.**PostWebMessage** *Message*
+语法：*对象*.**PostWebMessage** *Message*
 
 *Message*
-: *required* A **Variant** containing the value to send. Strings, numbers, **Boolean**, **Null**, and **Empty** are JSON-encoded for the page; objects and arrays are not currently supported.
+: *必需* 包含要发送的值的 **Variant**。字符串、数字、**Boolean**、**Null** 和 **Empty** 会被JSON编码后发送给页面；对象和数组目前不支持。
 
-If **PostWebMessage** is called before the renderer IPC has connected, the call is queued and dispatched once the connection is established.
+如果在渲染器IPC连接之前调用 **PostWebMessage**，调用将被排队并在连接建立后分发。
 
 ### PrintToPdf
 
-Writes the current document to a PDF file. Fires [**PrintToPdfCompleted**](#printtopdfcompleted) on success or [**PrintToPdfFailed**](#printtopdffailed) on failure.
+将当前文档写入PDF文件。成功时触发 [**PrintToPdfCompleted**](#printtopdfcompleted)，失败时触发 [**PrintToPdfFailed**](#printtopdffailed)。
 
-Syntax: *object*.**PrintToPdf** *outputPath* [, *Orientation* [, *ScaleFactor* [, *PageWidth* [, *PageHeight* [, *MarginTop* [, *MarginBottom* [, *MarginLeft* [, *MarginRight* [, *ShouldPrintBackgrounds* [, *ShouldPrintSelectionOnly* [, *ShouldPrintHeaderAndFooter* [, *HeaderTitle* [, *FooterUri* ] ] ] ] ] ] ] ] ] ] ] ] ]
+语法：*对象*.**PrintToPdf** *outputPath* [, *Orientation* [, *ScaleFactor* [, *PageWidth* [, *PageHeight* [, *MarginTop* [, *MarginBottom* [, *MarginLeft* [, *MarginRight* [, *ShouldPrintBackgrounds* [, *ShouldPrintSelectionOnly* [, *ShouldPrintHeaderAndFooter* [, *HeaderTitle* [, *FooterUri* ] ] ] ] ] ] ] ] ] ] ] ] ]
 
 *outputPath*
-: *required* A **String** with the destination path. Must be a writable absolute file path. An existing file is overwritten.
+: *必需* 包含目标路径的 **String**。必须是可写入的绝对文件路径。已有文件将被覆盖。
 
 *Orientation*
-: *optional* A member of [**cefPrintOrientation**](/official/Reference/CEF/Enumerations/cefPrintOrientation). Default: **cefPrintPortrait**.
+: *可选* [**cefPrintOrientation**](/official/Reference/CEF/Enumerations/cefPrintOrientation) 的成员。默认：**cefPrintPortrait**。
 
 *ScaleFactor*
-: *optional* A **Variant** containing the print scaling factor (e.g. `1.0` for 100%). When omitted, the CEF runtime's default is used.
+: *可选* 包含打印缩放因子的 **Variant**（例如 `1.0` 为100%）。省略时使用CEF运行时的默认值。
 
 *PageWidth*
-: *optional* A **Variant** with the page width in microns. When omitted, the CEF runtime's default is used.
+: *可选* 包含以微米为单位的页面宽度的 **Variant**。省略时使用CEF运行时的默认值。
 
 *PageHeight*
-: *optional* A **Variant** with the page height in microns. When omitted, the CEF runtime's default is used.
+: *可选* 包含以微米为单位的页面高度的 **Variant**。省略时使用CEF运行时的默认值。
 
 *MarginTop* / *MarginBottom* / *MarginLeft* / *MarginRight*
-: *optional* **Variant** values for the page margins in microns. When omitted, the runtime's defaults are used.
+: *可选* 以微米为单位的页边距 **Variant** 值。省略时使用运行时的默认值。
 
 *ShouldPrintBackgrounds*
-: *optional* A **Boolean** controlling whether CSS background colors and images are included in the output. Default: **False**.
+: *可选* 控制输出中是否包含CSS背景颜色和图像的 **Boolean**。默认：**False**。
 
 *ShouldPrintSelectionOnly*
-: *optional* A **Boolean** that limits the output to the current selection. Default: **False**.
+: *可选* 将输出限制为当前选区的 **Boolean**。默认：**False**。
 
 *ShouldPrintHeaderAndFooter*
-: *optional* A **Boolean** controlling whether the page header (title) and footer (URL) are rendered. Default: **True**.
+: *可选* 控制是否渲染页面页眉（标题）和页脚（URL）的 **Boolean**。默认：**True**。
 
 *HeaderTitle*
-: *optional* A **Variant** **String**. When provided, overrides the document title in the header. Otherwise the document's `<title>` is used.
+: *可选* **Variant** **String**。提供时覆盖页眉中的文档标题。否则使用文档的 `<title>`。
 
 *FooterUri*
-: *optional* A **Variant** **String**. When provided, overrides the URL printed in the footer. Otherwise the live document URL is used.
+: *可选* **Variant** **String**。提供时覆盖页脚中打印的URL。否则使用实时文档URL。
 
 ```vb
 Private Sub btnPDF_Click()
@@ -351,21 +359,21 @@ End Sub
 
 ### Reload
 
-Reloads the current document, equivalent to pressing **F5** in the browser.
+重新加载当前文档，等效于在浏览器中按 **F5**。
 
-Syntax: *object*.**Reload**
+语法：*对象*.**Reload**
 
 ### SetVirtualHostNameToFolderMapping
 
-Installs a virtual hostname that serves files from a local folder, so the page can reference local content over an `https://` origin instead of `file://`.
+安装一个从本地文件夹提供文件的虚拟主机名，以便页面可以通过 `https://` 来源而非 `file://` 引用本地内容。
 
-Syntax: *object*.**SetVirtualHostNameToFolderMapping** *hostName*, *folderPath*
+语法：*对象*.**SetVirtualHostNameToFolderMapping** *hostName*, *folderPath*
 
 *hostName*
-: *required* A **String** with the hostname to install (e.g. `"my.app"`).
+: *必需* 包含要安装的主机名的 **String**（例如 `"my.app"`）。
 
 *folderPath*
-: *required* A **String** with the absolute path of the folder whose contents should be served under that hostname. Must end with a trailing path separator.
+: *必需* 包含应在该主机名下提供内容的文件夹绝对路径的 **String**。必须以尾部路径分隔符结尾。
 
 ```vb
 Private Sub CefBrowser1_Ready()
@@ -375,32 +383,32 @@ Private Sub CefBrowser1_Ready()
 End Sub
 ```
 
-Events
+事件
 ------
 
 ### Create
 
-Raised after the container window exists but before the CEF runtime is launched. The host's last chance to populate [**EnvironmentOptions**](#environmentoptions).
+在容器窗口已创建但CEF运行时尚未启动之后触发。宿主填充 [**EnvironmentOptions**](#environmentoptions) 的最后机会。
 
-Syntax: *object*\_**Create**( )
+语法：*对象*\_**Create**( )
 
 ### DocumentTitleChanged
 
-Raised when the document changes its title --- typically right after a navigation, but also when client-side JavaScript writes to `document.title`. Read [**DocumentTitle**](#documenttitle) for the new value.
+当文档更改其标题时触发——通常在导航之后，但也可能在客户端JavaScript写入 `document.title` 时触发。读取 [**DocumentTitle**](#documenttitle) 获取新值。
 
-Syntax: *object*\_**DocumentTitleChanged**( )
+语法：*对象*\_**DocumentTitleChanged**( )
 
 ### DOMContentLoaded
 
-Raised when the page reaches the `DOMContentLoaded` lifecycle event --- the DOM tree is built and JavaScript can safely traverse it, but external resources may still be loading.
+当页面达到 `DOMContentLoaded` 生命周期事件时触发——DOM树已构建，JavaScript可以安全地遍历它，但外部资源可能仍在加载。
 
-Syntax: *object*\_**DOMContentLoaded**( )
+语法：*对象*\_**DOMContentLoaded**( )
 
 ### Error
 
-Raised when the CEF runtime fails to launch --- most commonly because `libcef.dll` was not found at the configured location, or because the user-data folder is locked by another process.
+当CEF运行时启动失败时触发——最常见的原因是 `libcef.dll` 在配置的位置未找到，或用户数据文件夹被另一个进程锁定。
 
-Syntax: *object*\_**Error**( *code* **As Long**, *msg* **As String** )
+语法：*对象*\_**Error**( *code* **As Long**, *msg* **As String** )
 
 ```vb
 Private Sub CefBrowser1_Error(ByVal code As Long, ByVal msg As String)
@@ -410,15 +418,15 @@ End Sub
 
 ### JsAsyncResult
 
-Raised when an earlier [**JsRunAsync**](#jsrunasync) call returns. *ErrString* is a description of any runtime error, or an empty string on success.
+当之前的 [**JsRunAsync**](#jsrunasync) 调用返回时触发。*ErrString* 是任何运行时错误的描述，成功时为空字符串。
 
-Syntax: *object*\_**JsAsyncResult**( *Result* **As Variant**, *Token* **As LongLong**, *ErrString* **As String** )
+语法：*对象*\_**JsAsyncResult**( *Result* **As Variant**, *Token* **As LongLong**, *ErrString* **As String** )
 
 ### JsMessage
 
-Raised when JavaScript on the page calls `window.chrome.webview.postMessage(value)`.
+当页面上的JavaScript调用 `window.chrome.webview.postMessage(value)` 时触发。
 
-Syntax: *object*\_**JsMessage**( *Message* **As Variant** )
+语法：*对象*\_**JsMessage**( *Message* **As Variant** )
 
 ```vb
 Private Sub CefBrowser1_JsMessage(ByVal Message As Variant)
@@ -429,34 +437,34 @@ End Sub
 
 ### NavigationComplete
 
-Raised after a navigation initiated by [**Navigate**](#navigate), [**NavigateToString**](#navigatetostring), or by user interaction in the page has finished.
+当由 [**Navigate**](#navigate)、[**NavigateToString**](#navigatetostring) 或页面中的用户交互发起的导航完成时触发。
 
-Syntax: *object*\_**NavigationComplete**( *IsSuccess* **As Boolean**, *WebErrorStatus* **As Long** )
+语法：*对象*\_**NavigationComplete**( *IsSuccess* **As Boolean**, *WebErrorStatus* **As Long** )
 
 ::: info
-*IsSuccess* and *WebErrorStatus* are part of the event signature but currently return placeholder values (`True` and `0`) --- the underlying CEF callbacks that would populate them have not yet been connected. Use the document state ([**DocumentURL**](#documenturl), [**CanGoBack**](#cangoback)) to determine the outcome.
+*IsSuccess* 和 *WebErrorStatus* 是事件签名的一部分，但目前返回占位值（`True` 和 `0`）——填充它们的底层CEF回调尚未连接。使用文档状态（[**DocumentURL**](#documenturl)、[**CanGoBack**](#cangoback)）来确定结果。
 :::
 
 ### NavigationStarting
 
-Raised before a navigation begins. Set *Cancel* to **True** to abort the navigation; leave it **False** to let it proceed.
+在导航开始之前触发。将 *Cancel* 设置为 **True** 以中止导航；保持 **False** 让其继续。
 
-Syntax: *object*\_**NavigationStarting**( *Uri* **As String**, *IsUserInitiated* **As Boolean**, *IsRedirected* **As Boolean**, *RequestHeaders* **As Object**, *Cancel* **As Boolean** )
+语法：*对象*\_**NavigationStarting**( *Uri* **As String**, *IsUserInitiated* **As Boolean**, *IsRedirected* **As Boolean**, *RequestHeaders* **As Object**, *Cancel* **As Boolean** )
 
 *Uri*
-: The destination URI.
+: 目标URI。
 
 *IsUserInitiated*
-: **True** when the navigation was triggered by a user gesture (click, **Enter** in the address bar); **False** when it was script-initiated.
+: 当导航由用户手势触发时（点击、在地址栏按 **Enter**）为 **True**；脚本发起时为 **False**。
 
 *IsRedirected*
-: **True** when this navigation is a server-side redirect from a previous one.
+: 当此导航是来自之前导航的服务器端重定向时为 **True**。
 
 *RequestHeaders*
-: **Object**. Currently typed as **Object** (the underlying `CefRequestHeaders` collection is a placeholder reserved for future use).
+: **Object**。目前类型为 **Object**（底层 `CefRequestHeaders` 集合是为将来使用预留的占位符）。
 
 *Cancel*
-: Set to **True** to abort the navigation.
+: 设置为 **True** 以中止导航。
 
 ```vb
 Private Sub CefBrowser1_NavigationStarting( _
@@ -469,30 +477,30 @@ End Sub
 
 ### PrintToPdfCompleted
 
-Raised when an earlier [**PrintToPdf**](#printtopdf) call finishes writing the PDF.
+当之前的 [**PrintToPdf**](#printtopdf) 调用完成写入PDF时触发。
 
-Syntax: *object*\_**PrintToPdfCompleted**( )
+语法：*对象*\_**PrintToPdfCompleted**( )
 
 ### PrintToPdfFailed
 
-Raised when an earlier [**PrintToPdf**](#printtopdf) call fails --- e.g. because the output path was not writable.
+当之前的 [**PrintToPdf**](#printtopdf) 调用失败时触发——例如因为输出路径不可写入。
 
-Syntax: *object*\_**PrintToPdfFailed**( )
+语法：*对象*\_**PrintToPdfFailed**( )
 
 ### Ready
 
-Raised after the browser helper process has launched, its IPC channel is connected, and the control is ready to accept navigation and scripting commands. If [**DocumentURL**](#documenturl) has a non-empty value when **Ready** fires (the design-time default is `https://www.twinbasic.com`), the control auto-navigates to it.
+在浏览器辅助程序进程已启动、其IPC通道已连接且控件已准备好接受导航和脚本命令之后触发。如果 [**DocumentURL**](#documenturl) 在 **Ready** 触发时有非空值（设计时默认为 `https://www.twinbasic.com`），控件会自动导航到该地址。
 
-Syntax: *object*\_**Ready**( )
+语法：*对象*\_**Ready**( )
 
 ### SourceChanged
 
-Raised when [**DocumentURL**](#documenturl) has been updated --- typically after a navigation. Used to keep an address-bar control in sync with the browser.
+当 [**DocumentURL**](#documenturl) 已更新时触发——通常在导航之后。用于使地址栏控件与浏览器保持同步。
 
-Syntax: *object*\_**SourceChanged**( *IsNewDocument* **As Boolean** )
+语法：*对象*\_**SourceChanged**( *IsNewDocument* **As Boolean** )
 
 *IsNewDocument*
-: **True** when the change reflects a fresh document load (rather than a same-document fragment / `history.pushState` update).
+: 当更改反映新文档加载（而非同一文档片段 / `history.pushState` 更新）时为 **True**。
 
 ```vb
 Private Sub CefBrowser1_SourceChanged(ByVal IsNewDocument As Boolean)
@@ -500,11 +508,11 @@ Private Sub CefBrowser1_SourceChanged(ByVal IsNewDocument As Boolean)
 End Sub
 ```
 
-## See Also
+## 另见
 
-- [CefEnvironmentOptions](/official/Reference/CEF/CefBrowser/EnvironmentOptions) -- pre-creation configuration exposed through [**EnvironmentOptions**](#environmentoptions)
-- [CefLogSeverity](/official/Reference/CEF/Enumerations/CefLogSeverity) -- the verbosity threshold for the CEF debug log
-- [cefPrintOrientation](/official/Reference/CEF/Enumerations/cefPrintOrientation) -- page orientation passed to [**PrintToPdf**](#printtopdf)
-- [WebView2](/official/Reference/WebView2/WebView2/) -- the WebView2-runtime counterpart with a larger feature set
-- [WebView2 parity](/official/Reference/CEF/#webview2-parity) -- features available on **WebView2** that are not yet exposed on **CefBrowser**
-- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbCefBrowser** lives
+- [CefEnvironmentOptions](/official/Reference/CEF/CefBrowser/EnvironmentOptions) -- 通过 [**EnvironmentOptions**](#environmentoptions) 暴露的预创建配置
+- [CefLogSeverity](/official/Reference/CEF/Enumerations/CefLogSeverity) -- CEF调试日志的详细级别阈值
+- [cefPrintOrientation](/official/Reference/CEF/Enumerations/cefPrintOrientation) -- 传递给 [**PrintToPdf**](#printtopdf) 的页面方向
+- [WebView2](/official/Reference/WebView2/WebView2/) -- 具有更大功能集的WebView2运行时对应项
+- [WebView2 对等性](/official/Reference/CEF/#webview2-parity) -- **WebView2** 上可用但尚未在 **CefBrowser** 上暴露的功能
+- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- **vbCefBrowser** 所在位置

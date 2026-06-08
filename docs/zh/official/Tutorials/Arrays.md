@@ -1,62 +1,69 @@
 ---
-title: Arrays
+title: "数组"
 parent: Tutorials
 permalink: /Tutorials/Arrays
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '5254c09b-7179-45fc-a930-8509c7f80990'
+  PropagateID: '5254c09b-7179-45fc-a930-8509c7f80990'
+  ReservedCode1: 'afd03130-e92b-4a88-a7c1-304f8a085f5b'
+  ReservedCode2: 'afd03130-e92b-4a88-a7c1-304f8a085f5b'
 ---
 
+# 数组
 
-# Arrays
+数组分为两种：
 
-Arrays come in two kinds:
-
-1. Fixed size arrays, whose size specification is a compile-time constant.  
+1. 固定大小数组，其大小规格为编译时常量。
    `Dim MyInts(10) As Integer`
    `Dim MyLongs(10 To 19) As Long`
-2. Dynamic arrays, who aren't initialized initially, and must be (re-)dimensioned prior to use.  
+2. 动态数组，初始时不进行初始化，使用前必须（重新）定义维度。
    `Dim MyLongs() As Long`
 
-Fixed size arrays have lower memory and runtime overhead than dynamic arrays. They perform better as small arrays -- up to 8 cache lines in size, or up to 512 bytes in size.
+固定大小数组的内存和运行时开销低于动态数组。作为小型数组——不超过8个缓存行的大小，即不超过512字节——它们的性能更好。
 
-In arrays larger than that, the overhead of a dynamic array becomes negligible when creating (dimensioning) the array. However, there is still slight runtime overhead on element access, independently of the size of a dynamic array.
+在更大的数组中，创建（定义维度）时动态数组的开销变得可以忽略不计。然而，无论动态数组的大小如何，元素访问仍有轻微的运行时开销。
 
 
-## Array  Declaration Syntax
+## 数组声明语法
 
-Fixed size arrays can only be used for variables or class and UDT fields.  
-Dynamic arrays can be used for variables, fields, parameter types and return types.  
-A fixed size array can be passed as an argument accepting a dynamic array.
+固定大小数组只能用于变量或类和UDT的字段。
+动态数组可用于变量、字段、参数类型和返回类型。
+固定大小数组可以作为接受动态数组的参数传递。
 
 ::: info
 
-Fixed size arrays cannot be used as return types directly. They can be returned when wrapped in a UDT.
+固定大小数组不能直接作为返回类型使用。当包装在UDT中时可以返回。
 :::
 
-* Syntax for variable declarations in procedures  
-  **Dim** | **Static** name **()** [ **As** type ]  -- dynamic array  
-  **Dim** | **Static** name **(** size [ **,** size ... ] **)** [ **As** type ]  -- fixed array
-* Syntax for procedure parameter types; only dynamic arrays are valid and both syntaxes below are equivalent  
+* 过程中变量声明的语法
+  **Dim** | **Static** name **()** [ **As** type ]  -- 动态数组
+  **Dim** | **Static** name **(** size [ **,** size ... ] **)** [ **As** type ]  -- 固定数组
+* 过程参数类型的语法；仅动态数组有效，以下两种语法等价
   name **()** [ **As** type ]   
   name **As** type **()**
-* Syntax for procedure return types; only dynamic arrays are valid  
+* 过程返回类型的语法；仅动态数组有效
   name **As** type **()**
-* Syntax for field declarations in classes  
-  **Dim** | **Private** | **Protected** | **Public** name **()** [ **As** type ]  -- dynamic array  
-  **Dim** | **Private** | **Protected** | **Public** name **(** size [ **,** size ....] **)** [ **As** type ]  -- static array
-* Syntax for field declarations in types (UDTs)  
-  name **()** [ **As** type ]  -- dynamic array  
-  name **(** size [ **,** size ....] **)** [ **As** type ]  -- static array
+* 类中字段声明的语法
+  **Dim** | **Private** | **Protected** | **Public** name **()** [ **As** type ]  -- 动态数组
+  **Dim** | **Private** | **Protected** | **Public** name **(** size [ **,** size ....] **)** [ **As** type ]  -- 静态数组
+* 类型（UDT）中字段声明的语法
+  name **()** [ **As** type ]  -- 动态数组
+  name **(** size [ **,** size ....] **)** [ **As** type ]  -- 静态数组
 
-Each size specification is a range, but the lower bound is optional and defaults to currently active **Option Base**:
+每个大小规格是一个范围，但下界是可选的，默认为当前有效的**Option Base**：
 
-- ubound, e.g.
+- ubound，例如
   `Dim A(10, 20)`
-- lbound **To** ubound  -- range, inclusive of both bounds, e.g.
+- lbound **To** ubound -- 范围，包含两个边界，例如
   `Dim A(1 To 10, 1 To 20)`
 
-Both variants of size specifications can be mixed in one declaration, e.g.  
+两种大小规格变体可以在一个声明中混合使用，例如
 `Dim B(10, 1 To 20)`
 
-Here is how **Option Base** controls the default lower bound of a dimension:
+以下是**Option Base**如何控制维度默认下界的方式：
 
 ```vb
 Option Base 0
@@ -68,7 +75,7 @@ Dim A(10, 20)   ' is equivalent to...
 Dim A(1 To 10, 1 To 20)    ' i.e. a 20 x 10 array
 ```
 
-Only the dynamic arrays can be passed as procedure arguments:
+只有动态数组可以作为过程参数传递：
 
 ```vb
 Sub OkSub1(data() As Byte)     ' Dynamic array parameter
@@ -78,15 +85,15 @@ Sub BadSub1(data(10) As Byte)  ' Invalid, fixed array types are not allowed as p
 Sub BadSub2(data As Byte(10))  ' ... in neither syntax          
 ```
 
-## Dimensioning Dynamic Arrays
+## 定义动态数组维度
 
-A dynamic array is uninitialized after declaration. It cannot be used in any way other than to be dimensioned. Dimensioning is performed by the **ReDim** statement:
+动态数组在声明后处于未初始化状态。除了定义维度外，不能以任何方式使用。维度定义通过**ReDim**语句执行：
 
 ```vb
 Dim array()
 Debug.Assert IsArrayInitialized(array) = False
 Debug.Print LBound(array)  ' raises a runtime error since the array is uninitialized,
-                           ' and no operations are valid on it other than a ReDim
+                            ' and no operations are valid on it other than a ReDim
 
 ReDim array(1 to 10)       ' now the array is initialized
 Debug.Assert IsArrayInitialized(array) = True
@@ -94,16 +101,16 @@ Debug.Assert LBound(array) = 1
 Debug.Assert UBound(array) = 10
 ```
 
-**ReDim** has two operating modes: by default, it discards the existing data in the array. Optionally, it can preserve the existing data to the extent that new dimensions allow it.
+**ReDim**有两种操作模式：默认情况下，它丢弃数组中的现有数据。可选地，它可以在新维度允许的范围内保留现有数据。
 
-Syntax:  
+语法：
 
 * **ReDim** [ **Preserve** ] name **(** size [ **,** size ...] **)**
 
 ::: important
 
-Only the upper bound of an array dimension can be changed with **ReDim Preserve**.
-Non-preserving **ReDim** allows arbitrary changes.
+使用**ReDim Preserve**只能更改数组维度的上界。
+非保留的**ReDim**允许任意更改。
 :::
 
 ```vb
@@ -124,9 +131,9 @@ ReDim a(5 To 8)             ' Change of both bounds of 1st dimension while losin
 Debug.Assert a(5) = 0
 ```
 
-## Determining Array Dimension Bounds
+## 确定数组维度边界
 
-Every dimension of an *initialized* array has an associated lower and upper bound. These bounds are accessed with the **LBound** and **UBound** functions.
+*已初始化*数组的每个维度都有关联的下界和上界。这些边界通过**LBound**和**UBound**函数访问。
 
 ```vb
 Dim array(1 To 10, 3 To 20)
@@ -136,9 +143,9 @@ Debug.Assert LBound(array, 2) = 3   ' 2nd dimension
 Debug.Assert UBound(array, 2) = 20  ' 2nd dimension, upper bound'
 ```
 
-## Determining Array Size
+## 确定数组大小
 
-An attempt to use **LBound** or **UBound** on an uninitialized array causes a runtime error. Thus, a function that determines the number of elements in a given dimension of an array, must first check if the array is initialized:
+对未初始化的数组使用**LBound**或**UBound**会导致运行时错误。因此，确定数组给定维度中元素数量的函数必须首先检查数组是否已初始化：
 
 ```vb
 Sub ArrayLen(Of T)(array() Of T, ByVal dimension% = 1) As Long
@@ -149,11 +156,11 @@ Sub ArrayLen(Of T)(array() Of T, ByVal dimension% = 1) As Long
 End Sub
 ```
 
-See also [Efficient low-level access of a 1D array](#efficient-low-level-access-of-a-1d-array).
+另见[一维数组的高效低级访问](#一维数组的高效低级访问)。
 
-## Array Element Access
+## 数组元素访问
 
-To access array elements, indices for all dimensions should be provided as a parenthesized list after the name of the array variable:
+要访问数组元素，应在数组变量名后以括号列表形式提供所有维度的索引：
 
 ```vb
 Dim array(1 To 10) As Long
@@ -166,7 +173,7 @@ array(1, 2) = 42
 Debug.Assert array(1, 2) = 42
 ```
 
-Array elements are initialized to zero/null, just as all the other types are in twinBASIC:
+数组元素初始化为零/null，与twinBASIC中所有其他类型一样：
 
 ```vb
 Dim intArray(1 To 10) As Integer
@@ -176,9 +183,9 @@ Dim strArray(20 To 25) As String
 Debug.Assert strArray(20) = vbNullString
 ```
 
-## Returning Arrays
+## 返回数组
 
-Any array can be returned as a dynamic array:
+任何数组都可以作为动态数组返回：
 
 ```vb
 Function Fn1() As Long()
@@ -189,7 +196,7 @@ Function Fn1() As Long()
 End Function
 ```
 
-To return a fixed size array, it has to be wrapped in a UDT:
+要返回固定大小数组，必须将其包装在UDT中：
 
 ```vb
 Type Wrapper
@@ -207,15 +214,15 @@ Sub Test()
 End Sub
 ```
 
-## Efficient low-level access of a 1D array
+## 一维数组的高效低级访问
 
-In twinBASIC, array types are implemented as pointers to a pointer to the Windows API **SAFEARRAY** structure.
+在twinBASIC中，数组类型实现为指向Windows API **SAFEARRAY**结构的指针的指针。
 
-This can be used to efficiently access:
+这可以用于高效访问：
 
-- the count of elements in the 1st dimension
-- as the pointer to the data (to the 1st element in the array)
-- the size of the array in bytes
+- 第一维度中的元素计数
+- 指向数据的指针（指向数组中的第一个元素）
+- 数组的字节大小
 
 ```vb
 Function ArrayLen(Of T)(array() As T) As Long
@@ -248,7 +255,7 @@ End Function
 
 ```
 
-These functions are useful to pass arrays and array counts to external **Declare**-d procedures. For example:
+这些函数用于将数组和数组计数传递给外部的**Declare**声明的过程。例如：
 
 ```vb
 Declare Sub SaveData Lib "mylib" (ByVal ptr As LongPtr, ByVal count&)
@@ -264,7 +271,7 @@ Sub Write(array() As Long)
 End Sub
 ```
 
-Without these functions, this would have been more cumbersome:
+如果没有这些函数，这会更加繁琐：
 
 ```vb
 Sub Save(array() As Long)

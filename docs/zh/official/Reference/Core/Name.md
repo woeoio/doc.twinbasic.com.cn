@@ -2,27 +2,36 @@
 title: Name
 parent: Statements
 permalink: /tB/Core/Name
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e84f4cec-92ae-4689-82db-62c3d363e647'
+  PropagateID: 'e84f4cec-92ae-4689-82db-62c3d363e647'
+  ReservedCode1: 'fa3cae0b-fc20-4600-ad33-b30154cb7461'
+  ReservedCode2: 'fa3cae0b-fc20-4600-ad33-b30154cb7461'
 ---
+
 # Name
 
-Renames a disk file, directory, or folder.
+重命名磁盘文件、目录或文件夹。
 
-Syntax:
+语法：
 > **Name** *oldpathname* **As** *newpathname*
 
 *oldpathname*
-: String expression that specifies the existing file name and location; may include directory or folder, and drive.
+: 指定现有文件名和位置的字符串表达式；可以包含目录或文件夹以及驱动器。
 
 *newpathname*
-: String expression that specifies the new file name and location; may include directory or folder, and drive. The file name specified by *newpathname* can't already exist.
+: 指定新文件名和位置的字符串表达式；可以包含目录或文件夹以及驱动器。*newpathname*指定的文件名不能已存在。
 
-The **Name** statement renames a file and moves it to a different directory or folder, if necessary. **Name** can move a file across drives, but it can only rename an existing directory or folder when both *newpathname* and *oldpathname* are located on the same drive. **Name** cannot create a new file, directory, or folder.
+**Name**语句重命名文件，如有必要可将文件移动到不同的目录或文件夹。**Name**可以跨驱动器移动文件，但只有当*newpathname*和*oldpathname*位于同一驱动器时才能重命名现有目录或文件夹。**Name**不能创建新文件、目录或文件夹。
 
-Using **Name** on an open file produces an error. An open file must be closed before renaming it. **Name** arguments cannot include multiple-character (`*`) and single-character (`?`) wildcards.
+对已打开的文件使用**Name**会产生错误。重命名前必须先关闭已打开的文件。**Name**参数不能包含多字符（`*`）和单字符（`?`）通配符。
 
-### Example
+### 示例
 
-This example uses the **Name** statement to rename a file. For purposes of this example, assume that the directories or folders that are specified already exist.
+本示例使用**Name**语句重命名文件。在此示例中，假设指定的目录或文件夹已存在。
 
 ```vb
 Dim oldName, newName
@@ -33,9 +42,9 @@ oldName = "C:\MYDIR\OLDFILE": newName = "C:\YOURDIR\NEWFILE"
 Name oldName As newName ' Move and rename file.
 ```
 
-### See Also
+### 另请参阅
 
-- [**Kill** statement](/official/Reference/VBA/FileSystem/Kill)
-- [**FileCopy** procedure](/official/Reference/VBA/FileSystem/FileCopy)
-- [**MkDir** statement](/official/Reference/VBA/FileSystem/MkDir)
-- [**RmDir** statement](/official/Reference/VBA/FileSystem/RmDir)
+- [**Kill** 语句](/official/Reference/VBA/FileSystem/Kill)
+- [**FileCopy** 过程](/official/Reference/VBA/FileSystem/FileCopy)
+- [**MkDir** 语句](/official/Reference/VBA/FileSystem/MkDir)
+- [**RmDir** 语句](/official/Reference/VBA/FileSystem/RmDir)

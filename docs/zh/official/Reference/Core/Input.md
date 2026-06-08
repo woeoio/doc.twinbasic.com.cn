@@ -1,54 +1,63 @@
 ---
-title: Input #
+title: "Input #"
 parent: Statements
 permalink: /tB/Core/Input
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '00052947-9d8b-46a7-b382-593ff82a71a6'
+  PropagateID: '00052947-9d8b-46a7-b382-593ff82a71a6'
+  ReservedCode1: 'a237abb8-f594-4d2c-956e-b27446843f05'
+  ReservedCode2: 'a237abb8-f594-4d2c-956e-b27446843f05'
 ---
-# Input # statement
 
-Reads data from an open sequential file and assigns the data to variables.
+# Input # 语句
+
+从打开的顺序文件中读取数据并将数据赋值给变量。
 
 ::: info
-This page documents the **Input #** *statement*. The unrelated [**Input** function](/official/Reference/VBA/FileSystem/Input) reads a fixed number of characters from any open file.
+本页记录 **Input #** *语句*。不相关的 [**Input** 函数](/official/Reference/VBA/FileSystem/Input) 从任何打开的文件读取固定数量的字符。
 :::
 
-Syntax:
+语法：
 > **Input** **#** *filenumber* **,** *varlist*
 
 *filenumber*
-: Any valid file number.
+: 任何有效的文件号。
 
 *varlist*
-: Comma-delimited list of variables that are assigned values read from the file. *varlist* can't contain an array variable or an object variable. However, variables that describe an element of an array or user-defined type may be used.
+: 逗号分隔的变量列表，从文件读取的值赋给这些变量。*varlist* 不能包含数组变量或对象变量。但描述数组元素或用户自定义类型的变量可以使用。
 
-Data read with **Input #** is usually written to a file with [**Write #**](/official/Reference/Core/Write). Use this statement only with files opened in **Input** or **Binary** mode. When read, standard string or numeric data is assigned to variables without modification.
+用 **Input #** 读取的数据通常用 [**Write #**](/official/Reference/Core/Write) 写入文件。此语句仅用于以 **Input** 或 **Binary** 模式打开的文件。读取时，标准字符串或数值数据不经修改赋值给变量。
 
-The following table illustrates how other input data is treated:
+下表说明了其他输入数据的处理方式：
 
-| Data | Value assigned to variable |
+| 数据 | 赋给变量的值 |
 |:-----|:-----|
-| Delimiting comma or blank line | **Empty** |
+| 分隔逗号或空行 | **Empty** |
 | `#NULL#` | **Null** |
-| `#TRUE#` or `#FALSE#` | **True** or **False** |
-| `#`*yyyy-mm-dd hh:mm:ss*`#` | The date and/or time represented by the expression |
-| `#ERROR `*errornumber*`#` | *errornumber* (variable is a **Variant** tagged as an error) |
+| `#TRUE#` 或 `#FALSE#` | **True** 或 **False** |
+| `#`*yyyy-mm-dd hh:mm:ss*`#` | 表达式表示的日期和/或时间 |
+| `#ERROR `*errornumber*`#` | *errornumber*（变量为标记为错误的 **Variant**） |
 
-Double quotation marks (`"`) within input data are ignored.
+输入数据中的双引号（`"`）被忽略。
 
 ::: important
-Do not write strings that contain embedded quotation marks (for example, `"1,2""X"`) for use with the **Input #** statement; **Input #** parses this string as two complete and separate strings.
+不要为 **Input #** 语句编写包含嵌入引号的字符串（例如 `"1,2""X"`）；**Input #** 会将此字符串解析为两个完整独立的字符串。
 :::
 
-Data items in a file must appear in the same order as the variables in *varlist* and match variables of the same data type. If a variable is numeric and the data is not numeric, a value of zero is assigned to the variable.
+文件中的数据项必须以 *varlist* 中变量的相同顺序出现，并与相同数据类型的变量匹配。如果变量是数值类型而数据不是数值类型，则将零值赋给变量。
 
-If the end of the file is reached while a data item is being read, the input is terminated and an error occurs.
+如果在读取数据项时到达文件末尾，输入终止并发生错误。
 
 ::: info
-To be able to correctly read data from a file into variables by using **Input #**, use the [**Write #**](/official/Reference/Core/Write) statement instead of the [**Print #**](/official/Reference/Core/Print) statement to write the data to the files. Using **Write #** ensures that each separate data field is properly delimited.
+要能够正确使用 **Input #** 将数据从文件读入变量，请使用 [**Write #**](/official/Reference/Core/Write) 语句而非 [**Print #**](/official/Reference/Core/Print) 语句将数据写入文件。使用 **Write #** 确保每个独立的数据字段被正确分隔。
 :::
 
-### Example
+### 示例
 
-This example uses the **Input #** statement to read data from a file into two variables. This example assumes that `TESTFILE` is a file with a few lines of data written to it by using the **Write #** statement; that is, each line contains a string in quotations and a number separated by a comma, for example, `"Hello", 234`.
+本示例使用 **Input #** 语句从文件读取数据到两个变量。本示例假设 `TESTFILE` 是使用 **Write #** 语句写入几行数据的文件；即每行包含引号中的字符串和用逗号分隔的数字，如 `"Hello", 234`。
 
 ```vb
 Dim MyString, MyNumber
@@ -60,12 +69,12 @@ Loop
 Close #1    ' Close file.
 ```
 
-### See Also
+### 另请参阅
 
-- [**Open** statement](/official/Reference/Core/Open)
-- [**Close** statement](/official/Reference/Core/Close)
-- [**Line Input #** statement](/official/Reference/Core/Line-Input)
-- [**Write #** statement](/official/Reference/Core/Write)
-- [**Print #** statement](/official/Reference/Core/Print)
-- [**Input** function](/official/Reference/VBA/FileSystem/Input)
-- [**EOF** function](/official/Reference/VBA/FileSystem/EOF)
+- [**Open** 语句](/official/Reference/Core/Open)
+- [**Close** 语句](/official/Reference/Core/Close)
+- [**Line Input #** 语句](/official/Reference/Core/Line-Input)
+- [**Write #** 语句](/official/Reference/Core/Write)
+- [**Print #** 语句](/official/Reference/Core/Print)
+- [**Input** 函数](/official/Reference/VBA/FileSystem/Input)
+- [**EOF** 函数](/official/Reference/VBA/FileSystem/EOF)

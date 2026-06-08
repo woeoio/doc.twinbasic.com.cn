@@ -2,25 +2,34 @@
 title: CreateStdPictureFromHandle
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/CreateStdPictureFromHandle
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6ea33ccc-c299-4772-b605-684b09ab0dd2'
+  PropagateID: '6ea33ccc-c299-4772-b605-684b09ab0dd2'
+  ReservedCode1: 'edeb323b-322f-481c-831b-0603bb391d61'
+  ReservedCode2: 'edeb323b-322f-481c-831b-0603bb391d61'
 ---
+
 # CreateStdPictureFromHandle
 
-Wraps a GDI handle in an **stdole.StdPicture** so it can be assigned to a control's **Picture** property or passed to any other **IPicture** consumer.
+将GDI句柄包装在**stdole.StdPicture**中，以便可以将其赋值给控件的**Picture**属性或传递给任何其他**IPicture**消费者。
 
-Syntax: **CreateStdPictureFromHandle(** *Handle* **,** *Type* **,** *TakeOwnership* **)** **As Object**
+语法：**CreateStdPictureFromHandle(** *Handle* **,** *Type* **,** *TakeOwnership* **)** **As Object**
 
 *Handle*
-: *required* **LongPtr**. The GDI handle to wrap --- typically an `HBITMAP`, `HICON`, `HCURSOR`, `HENHMETAFILE`, or `HMETAFILE`.
+: *必需* **LongPtr**。要包装的GDI句柄——通常是`HBITMAP`、`HICON`、`HCURSOR`、`HENHMETAFILE`或`HMETAFILE`。
 
 *Type*
-: *required* **Long**. The picture type. Pass one of the **PictureTypeConstants** values (`vbPicTypeBitmap`, `vbPicTypeIcon`, `vbPicTypeMetafile`, `vbPicTypeEnhMetafile`) corresponding to *Handle*'s flavour.
+: *必需* **Long**。图片类型。传递与*Handle*类型对应的**PictureTypeConstants**值之一（`vbPicTypeBitmap`、`vbPicTypeIcon`、`vbPicTypeMetafile`、`vbPicTypeEnhMetafile`）。
 
 *TakeOwnership*
-: *required* **Boolean**. If **True**, the returned picture takes ownership of *Handle* and frees it when released. If **False**, the caller remains responsible for the handle's lifetime.
+: *必需* **Boolean**。如果为**True**，返回的图片获取*Handle*的所有权并在释放时释放它。如果为**False**，调用者仍负责句柄的生命周期。
 
-The result is a regular **stdole.StdPicture** equivalent to one returned by **LoadPicture**, suitable for assignment to a **Picture** property.
+结果是一个常规的**stdole.StdPicture**，等效于**LoadPicture**返回的对象，适合赋值给**Picture**属性。
 
-### See Also
+### 另请参阅
 
-- [PictureToByteArray](/official/Reference/VBA/HiddenModule/PictureToByteArray) function
-- [ConvertIconToBitmap](/official/Reference/VBA/HiddenModule/ConvertIconToBitmap) function
+- [PictureToByteArray](/official/Reference/VBA/HiddenModule/PictureToByteArray)函数
+- [ConvertIconToBitmap](/official/Reference/VBA/HiddenModule/ConvertIconToBitmap)函数

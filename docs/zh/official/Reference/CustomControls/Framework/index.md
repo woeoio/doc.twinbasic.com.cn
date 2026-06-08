@@ -1,18 +1,26 @@
----
+﻿---
 title: Framework
 parent: CustomControls Package
 permalink: /tB/Packages/CustomControls/Framework/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'dc9e36eb-8a9f-4d23-a670-8feaf5601b7e'
+  PropagateID: 'dc9e36eb-8a9f-4d23-a670-8feaf5601b7e'
+  ReservedCode1: 'd5651cc3-588e-4dde-afe8-6ac58358a84f'
+  ReservedCode2: 'd5651cc3-588e-4dde-afe8-6ac58358a84f'
 ---
 
 # Framework
 
-The framework half of the [**CustomControls**](/official/Reference/CustomControls/) package --- the interfaces, callback objects, and drawing primitives an *author* of a custom control writes against. The eight concrete `Waynes…` controls in the package are themselves built on this framework; the same pieces are available to user code that needs to implement an entirely new custom control.
+[**CustomControls**](/official/Reference/CustomControls/) 包的框架部分——自定义控件*作者*编写时所针对的接口、回调对象和绘图基元。包中的八个具体 `Waynes…` 控件本身就是基于此框架构建的；相同的组件可用于需要实现全新自定义控件的用户代码。
 
-A custom control:
+自定义控件：
 
-1. Implements [**ICustomControl**](/official/Reference/CustomControls/Framework/ICustomControl) (or [**ICustomForm**](/official/Reference/CustomControls/Framework/ICustomForm) for a form-class custom control).
-2. Stores the [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext) passed to it on **Initialize** and uses it to request repaints, create timers, or change the focused element.
-3. Inside **Paint**, builds one or more `ElementDescriptor` records and passes them to the [**Canvas**](/official/Reference/CustomControls/Framework/Canvas) via **RuntimeUICCCanvasAddElement** --- the framework rasterises them, handles input routing, and dispatches events back through the descriptor's `AddressOf`-registered callbacks.
+1. 实现 [**ICustomControl**](/official/Reference/CustomControls/Framework/ICustomControl)（或窗体类自定义控件的 [**ICustomForm**](/official/Reference/CustomControls/Framework/ICustomForm)）。
+2. 存储在 **Initialize** 时传入的 [**CustomControlContext**](/official/Reference/CustomControls/Framework/CustomControlContext)，用于请求重绘、创建定时器或更改焦点元素。
+3. 在 **Paint** 内部，构建一个或多个 `ElementDescriptor` 记录并通过 **RuntimeUICCCanvasAddElement** 传递给 [**Canvas**](/official/Reference/CustomControls/Framework/Canvas)——框架对其进行光栅化、处理输入路由，并通过描述符的 `AddressOf` 注册回调分发事件。
 
 ```vb
 Class MyControl
@@ -36,19 +44,19 @@ Class MyControl
 End Class
 ```
 
-## Interfaces
+## 接口
 
-- [ICustomControl](/official/Reference/CustomControls/Framework/ICustomControl) -- the interface implemented by every concrete custom control: **Initialize**, **Destroy**, **Paint**
-- [ICustomForm](/official/Reference/CustomControls/Framework/ICustomForm) -- the analogous interface for custom form classes
+- [ICustomControl](/official/Reference/CustomControls/Framework/ICustomControl) —— 每个具体自定义控件实现的接口：**Initialize**、**Destroy**、**Paint**
+- [ICustomForm](/official/Reference/CustomControls/Framework/ICustomForm) —— 自定义窗体类的相应接口
 
-## Callback objects
+## 回调对象
 
-- [CustomControlContext](/official/Reference/CustomControls/Framework/CustomControlContext) -- the callback object passed to **Initialize**; **GetSerializer**, **Repaint**, **CreateTimer**, **ChangeFocusedElement**
-- [CustomFormContext](/official/Reference/CustomControls/Framework/CustomFormContext) -- a **CustomControlContext** extended with **Show** and **Close**, passed to a custom form's **Initialize**
-- [CustomControlTimer](/official/Reference/CustomControls/Framework/CustomControlTimer) -- the timer returned by **CustomControlContext.CreateTimer**; **Interval**, **Enabled**, **OnTimer** event
-- [CustomControlsCollection](/official/Reference/CustomControls/Framework/CustomControlsCollection) -- the **Controls** collection on a [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) or any other custom form
+- [CustomControlContext](/official/Reference/CustomControls/Framework/CustomControlContext) —— 传递给 **Initialize** 的回调对象；**GetSerializer**、**Repaint**、**CreateTimer**、**ChangeFocusedElement**
+- [CustomFormContext](/official/Reference/CustomControls/Framework/CustomFormContext) —— 扩展了 **CustomControlContext** 的 **Show** 和 **Close**，传递给自定义窗体的 **Initialize**
+- [CustomControlTimer](/official/Reference/CustomControls/Framework/CustomControlTimer) —— 由 **CustomControlContext.CreateTimer** 返回的定时器；**Interval**、**Enabled**、**OnTimer** 事件
+- [CustomControlsCollection](/official/Reference/CustomControls/Framework/CustomControlsCollection) —— [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) 或任何其他自定义窗体上的 **Controls** 集合
 
-## Drawing primitives
+## 绘图基元
 
-- [Canvas](/official/Reference/CustomControls/Framework/Canvas) -- the drawing surface passed to **Paint**; **RuntimeUICCCanvasAddElement**, plus size and DPI accessors
-- [SerializeInfo](/official/Reference/CustomControls/Framework/SerializeInfo) -- the per-instance serializer returned by **CustomControlContext.GetSerializer**; **RuntimeUISrzDeserialize**, design-mode flags, owner handle, runtime mode
+- [Canvas](/official/Reference/CustomControls/Framework/Canvas) —— 传递给 **Paint** 的绘图表面；**RuntimeUICCCanvasAddElement**，以及大小和 DPI 访问器
+- [SerializeInfo](/official/Reference/CustomControls/Framework/SerializeInfo) —— 由 **CustomControlContext.GetSerializer** 返回的每实例序列化器；**RuntimeUISrzDeserialize**、设计模式标志、所有者句柄、运行时模式

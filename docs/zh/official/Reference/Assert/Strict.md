@@ -6,7 +6,7 @@ permalink: /tB/Packages/Assert/Strict
 
 # Strict module
 
-The **Strict** module of the [**Assert**](/official/Reference/Assert/) package supplies assertions that compare values as if the comparison had been written directly in twinBASIC code, with two exceptions: string comparisons are case-sensitive (regardless of the project's `Option Compare` setting), and object default members are not evaluated. **Strict** matches the language's normal equality semantics for numbers and primitives, plus guarantees a case-sensitive string compare and reference-style equality on objects.
+The **Strict** module of the [**Assert**](/en/official/Reference/Assert/) package supplies assertions that compare values as if the comparison had been written directly in twinBASIC code, with two exceptions: string comparisons are case-sensitive (regardless of the project's `Option Compare` setting), and object default members are not evaluated. **Strict** matches the language's normal equality semantics for numbers and primitives, plus guarantees a case-sensitive string compare and reference-style equality on objects.
 
 
 ## Comparison semantics
@@ -203,7 +203,7 @@ Syntax: **Strict.IsNull** *Value* [, *Message* ]
 *Message*
 : *optional* A **String** included in the failure record if *Value* is not **Null**.
 
-Equivalent to checking [**IsNull**](/official/Reference/VBA/Information/IsNull)`(Value) = True`. To check for the **Nothing** object reference instead, use [**IsNothing**](#isnothing).
+Equivalent to checking [**IsNull**](/en/official/Reference/VBA/Information/IsNull)`(Value) = True`. To check for the **Nothing** object reference instead, use [**IsNothing**](#isnothing).
 
 ### IsNotNull
 
@@ -253,6 +253,6 @@ Syntax: **Strict.NotSequenceEquals** *Expected*, *Actual* [, *FailMessage* ]
 
 ## See Also
 
-- [Exact](/official/Reference/Assert/Exact) -- the strictest comparison flavour: datatypes must match and conversions never happen
-- [Permissive](/official/Reference/Assert/Permissive) -- like **Strict**, but with case-insensitive string comparisons and default-member object equality
-- [Assert package](/official/Reference/Assert/) -- overview of all three modules and the comparison-semantics table
+- [Exact](/en/official/Reference/Assert/Exact) -- the strictest comparison flavour: datatypes must match and conversions never happen
+- [Permissive](/en/official/Reference/Assert/Permissive) -- like **Strict**, but with case-insensitive string comparisons and default-member object equality
+- [Assert package](/en/official/Reference/Assert/) -- overview of all three modules and the comparison-semantics table

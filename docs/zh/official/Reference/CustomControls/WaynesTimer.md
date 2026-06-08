@@ -1,13 +1,21 @@
----
+﻿---
 title: WaynesTimer
 parent: CustomControls Package
 permalink: /tB/Packages/CustomControls/WaynesTimer
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3a657f64-c9fb-416c-a885-7556a7b1ce99'
+  PropagateID: '3a657f64-c9fb-416c-a885-7556a7b1ce99'
+  ReservedCode1: 'ba6e219a-2a87-431c-9080-92e08b73b281'
+  ReservedCode2: 'ba6e219a-2a87-431c-9080-92e08b73b281'
 ---
 
-# WaynesTimer class
-A non-visual timer control. Wraps an internal [**CustomControlTimer**](/official/Reference/CustomControls/Framework/CustomControlTimer) and exposes its [**Interval**](#interval) / [**Enabled**](#enabled) as designer-visible properties --- drop a **WaynesTimer** onto a [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) at design time, set the interval, and handle the [**Timer**](#timer) event to run code on a repeating schedule.
+# WaynesTimer 类
+非可视定时器控件。封装内部 [**CustomControlTimer**](/official/Reference/CustomControls/Framework/CustomControlTimer) 并暴露其 [**Interval**](#interval) / [**Enabled**](#enabled) 作为设计器可见属性——在设计时将 **WaynesTimer** 拖放到 [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) 上，设置间隔，处理 [**Timer**](#timer) 事件即可按重复计划运行代码。
 
-At design time the control paints a 🕑 clock-face glyph centred in its rectangle, on a pale grey background, scaled to fit the control. At run time the control is invisible --- its visible **Width** and **Height** are clamped to 32×32 on initialize but the control itself draws nothing.
+在设计时，控件在其矩形中居中绘制一个 🕑 时钟图标，背景为浅灰色，缩放以适应控件。在运行时控件不可见——其可见的 **Width** 和 **Height** 在初始化时被限制为 32×32，但控件本身不绘制任何内容。
 
 ```vb
 Private Sub Form_Load()
@@ -20,58 +28,58 @@ Private Sub Timer1_Timer()
 End Sub
 ```
 
-## Properties
+## 属性
 
 ### Anchors
 
-Which sides of the control are attached to its container during resize. [**Anchors**](/official/Reference/CustomControls/Styles/Anchors). Inherited. (Has no visual effect at run time since the control draws nothing then.)
+调整大小时控件的哪些边附着到其容器。[**Anchors**](/official/Reference/CustomControls/Styles/Anchors)。继承。（运行时无视觉效果，因为控件不绘制任何内容。）
 
 ### Dock
 
-How the control is docked inside its container. A member of [**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode). Inherited.
+控件在其容器内的停靠方式。[**DockMode**](/official/Reference/CustomControls/Enumerations/DockMode) 的成员。继承。
 
 ### Enabled
 
-Whether the timer is currently running. Setting to **True** starts it; setting to **False** stops it. **Boolean**.
+定时器当前是否正在运行。设置为 **True** 启动；设置为 **False** 停止。**Boolean**。
 
-Syntax: *object*.**Enabled** [ = *value* ]
+语法：*object*.**Enabled** [ = *value* ]
 
 ### Height
 
-The control's height in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited. Forced to 32 on initialize.
+控件的高度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。初始化时强制为 32。
 
 ### Interval
 
-The number of milliseconds between successive [**Timer**](#timer) events. **Long**. A value of 0 means the timer never fires.
+连续 [**Timer**](#timer) 事件之间的毫秒数。**Long**。值为 0 表示定时器永不触发。
 
-Syntax: *object*.**Interval** [ = *value* ]
+语法：*object*.**Interval** [ = *value* ]
 
-Changing **Interval** while the timer is enabled takes effect on the next tick.
+在定时器启用时更改 **Interval** 会在下一次计时生效。
 
 ### Left
 
-The horizontal offset of the control's left edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件左边缘距其容器的水平偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Name
 
-The unique design-time name of the control on its parent form. **String**. Inherited.
+控件在其父窗体上的唯一设计时名称。**String**。继承。
 
 ### Top
 
-The vertical offset of the control's top edge from its container, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+控件上边缘距其容器的垂直偏移量（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Visible
 
-Whether the control is currently displayed. **Boolean**. Inherited. (Has no visual effect at run time.)
+控件当前是否显示。**Boolean**。继承。（运行时无视觉效果。）
 
 ### Width
 
-The control's width in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited. Forced to 32 on initialize.
+控件的宽度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。初始化时强制为 32。
 
-## Events
+## 事件
 
 ### Timer
 
-Raised every [**Interval**](#interval) milliseconds while [**Enabled**](#enabled) is **True**.
+在 [**Enabled**](#enabled) 为 **True** 时每隔 [**Interval**](#interval) 毫秒触发。
 
-Syntax: *object*\_**Timer**( )
+语法：*object*\_**Timer**( )

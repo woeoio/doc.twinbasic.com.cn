@@ -2,22 +2,31 @@
 title: InterlockedExchangePointer
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/InterlockedExchangePointer
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a77082d5-10d0-4737-b2c0-b510067fb8d5'
+  PropagateID: 'a77082d5-10d0-4737-b2c0-b510067fb8d5'
+  ReservedCode1: 'e5abaf93-acab-406d-a69d-105a9e6d529d'
+  ReservedCode2: 'e5abaf93-acab-406d-a69d-105a9e6d529d'
 ---
+
 # InterlockedExchangePointer
 
-Atomically exchanges a pointer-sized value at a memory location and returns the previous value.
+原子地交换内存位置的指针大小值并返回之前的值。
 
-Syntax: **InterlockedExchangePointer(** *Target* **,** *NewValue* **)** **As LongPtr**
+语法：**InterlockedExchangePointer(** *Target* **,** *NewValue* **)** **As LongPtr**
 
 *Target*
-: *required* **LongPtr**. The pointer-sized variable to update, passed by reference.
+: *必需* **LongPtr**。要更新的指针大小变量，按引用传递。
 
 *NewValue*
-: *required* **LongPtr**. The new value to store at *Target*.
+: *必需* **LongPtr**。要存储在*Target*的新值。
 
-The store and the read of the prior value happen as a single atomic operation, observable by other threads as either fully-before or fully-after the call. Wraps the Win32 `InterlockedExchangePointer` intrinsic.
+存储和读取之前的值作为单个原子操作发生，其他线程可观测到该操作要么完全在调用之前，要么完全在调用之后。封装了Win32的`InterlockedExchangePointer`内联函数。
 
-### See Also
+### 另请参阅
 
-- [InterlockedCompareExchangePointer](/official/Reference/VBA/HiddenModule/InterlockedCompareExchangePointer) function
-- [InterlockedCompareExchange32](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange32), [InterlockedCompareExchange64](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange64) functions
+- [InterlockedCompareExchangePointer](/official/Reference/VBA/HiddenModule/InterlockedCompareExchangePointer)函数
+- [InterlockedCompareExchange32](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange32)、[InterlockedCompareExchange64](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange64)函数

@@ -1,31 +1,39 @@
 ---
-title: Language Syntax
+title: "语言语法"
 parent: Features
 nav_order: 2
 permalink: /Features/Language/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1ecd9718-fe19-4570-b4be-61b46eadbaa0'
+  PropagateID: '1ecd9718-fe19-4570-b4be-61b46eadbaa0'
+  ReservedCode1: '698b6ea3-0340-42c2-99a4-583fdd21a69f'
+  ReservedCode2: '698b6ea3-0340-42c2-99a4-583fdd21a69f'
 ---
 
-# Language Syntax
+# 语言语法
 
-twinBASIC introduces numerous enhancements to VBx language syntax, including new data types, improved type systems, and modern programming constructs.
+twinBASIC 为 VBx 语言语法引入了大量增强，包括新数据类型、改进的类型系统和现代编程构造。
 
-## Topics
+## 主题
 
-- [Alias Types](/official/Features/Language/Alias-Types) - alias types, similar to **typedef** in C and **using** in C++
-- [Data Types](/official/Features/Language/Data-Types) - New data types (**LongPtr**, **LongLong**, **Decimal**)
-- [Interfaces and Coclasses](/official/Features/Language/Interfaces-CoClasses) - Native interface and coclass definitions
-- [Inheritance](/official/Features/Language/Inheritance) - **Implements Via** and **Inherits** keywords
-- [Delegates](/official/Features/Language/Delegates) - Function pointers, also called delegates
-- [Generics](/official/Features/Language/Generics) - Generic type support
-- [Overloading](/official/Features/Language/Overloading) - Method overloading capabilities
-- [Operators](/official/Features/Language/Operators) - New operators and syntax
-- [Literals](/official/Features/Language/Literals) - Binary literals and digit grouping
-- [Type Inference](/official/Features/Language/Type-Inference) - **As Any** type inference
-- [Pointers](/official/Features/Language/Pointers) - Enhanced pointer functionality
-- [UDT Enhancements](/official/Features/Language/UDTs) - User-defined type improvements
-- [Loop Control](/official/Features/Language/Loop-Control) - **Continue ...** and **Exit While**
-- [Return Syntax](/official/Features/Language/Return) - Modern **Return** statement
-- [Inline Initialization](/official/Features/Language/Inline-Initialization) - Variable initialization
-- [Handler Methods](/official/Features/Language/Handlers) - **Handles** and **Implements** syntax
-- [Module Organization](/official/Features/Language/Module-Organization) - Code placement flexibility
-- [Comments](/official/Features/Language/Comments) - New code comment syntax
+- [类型别名](/official/Features/Language/Alias-Types) - 类型别名，类似于 C 的 **typedef** 和 C++ 的 **using**
+- [数据类型](/official/Features/Language/Data-Types) - 新数据类型（**LongPtr**、**LongLong**、**Decimal**）
+- [接口和 CoClass](/official/Features/Language/Interfaces-CoClasses) - 原生接口和 CoClass 定义
+- [继承](/official/Features/Language/Inheritance) - **Implements Via** 和 **Inherits** 关键字
+- [委托](/official/Features/Language/Delegates) - 函数指针，也称为委托
+- [泛型](/official/Features/Language/Generics) - 泛型类型支持
+- [重载](/official/Features/Language/Overloading) - 方法重载能力
+- [运算符](/official/Features/Language/Operators) - 新运算符和语法
+- [字面量](/official/Features/Language/Literals) - 二进制字面量和数字分组
+- [类型推断](/official/Features/Language/Type-Inference) - **As Any** 类型推断
+- [指针](/official/Features/Language/Pointers) - 增强的指针功能
+- [UDT 增强](/official/Features/Language/UDTs) - 用户定义类型改进
+- [循环控制](/official/Features/Language/Loop-Control) - **Continue ...** 和 **Exit While**
+- [Return 语法](/official/Features/Language/Return) - 现代 **Return** 语句
+- [内联初始化](/official/Features/Language/Inline-Initialization) - 变量初始化
+- [Handler 方法](/official/Features/Language/Handlers) - **Handles** 和 **Implements** 语法
+- [模块组织](/official/Features/Language/Module-Organization) - 代码放置灵活性
+- [注释](/official/Features/Language/Comments) - 新的代码注释语法

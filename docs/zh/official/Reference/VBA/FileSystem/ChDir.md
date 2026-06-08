@@ -2,17 +2,26 @@
 title: ChDir
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/ChDir
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '361d3f25-c235-45ae-921e-15da0037506f'
+  PropagateID: '361d3f25-c235-45ae-921e-15da0037506f'
+  ReservedCode1: '181108a3-d30c-4e81-9fb4-ac787503b25a'
+  ReservedCode2: '181108a3-d30c-4e81-9fb4-ac787503b25a'
 ---
+
 # ChDir
 
-Changes the current directory or folder.
+更改当前目录或文件夹。
 
-Syntax: **ChDir** *path*
+语法：**ChDir** *path*
 
 *path*
-: *required* A string expression that identifies which directory or folder becomes the new default directory or folder. The *path* may include the drive. If no drive is specified, **ChDir** changes the default directory or folder on the current drive.
+: *必需* 字符串表达式，标识哪个目录或文件夹成为新的默认目录或文件夹。*path*可以包含驱动器。如果未指定驱动器，**ChDir**将更改当前驱动器上的默认目录或文件夹。
 
-The **ChDir** statement changes the default directory but not the default drive. For example, if the default drive is C, the following statement changes the default directory on drive D, but C remains the default drive:
+**ChDir**语句更改默认目录但不更改默认驱动器。例如，如果默认驱动器是C，以下语句更改驱动器D上的默认目录，但C仍然是默认驱动器：
 
 ```vb
 ChDir "D:\TMP" ' Make "D:\TMP" the current folder. 
@@ -35,14 +44,14 @@ On MacOS, the default drive name is "HD" and portions of the pathname are separa
 
 -->
 
-### See Also
+### 另请参阅
 
-- [ChDrive](/official/Reference/VBA/FileSystem/ChDrive), [MkDir](/official/Reference/VBA/FileSystem/MkDir), [RmDir](/official/Reference/VBA/FileSystem/RmDir) statements
-- [CurDir](/official/Reference/VBA/FileSystem/CurDir), [Dir](/official/Reference/VBA/FileSystem/Dir) functions
+- [ChDrive](/official/Reference/VBA/FileSystem/ChDrive)、[MkDir](/official/Reference/VBA/FileSystem/MkDir)、[RmDir](/official/Reference/VBA/FileSystem/RmDir)语句
+- [CurDir](/official/Reference/VBA/FileSystem/CurDir)、[Dir](/official/Reference/VBA/FileSystem/Dir)函数
 
-### Example
+### 示例
 
-This example uses the **ChDir** statement to change the current directory or folder.
+本示例使用**ChDir**语句更改当前目录或文件夹。
 
 ```vb
 ' Change current directory or folder to "MYDIR".

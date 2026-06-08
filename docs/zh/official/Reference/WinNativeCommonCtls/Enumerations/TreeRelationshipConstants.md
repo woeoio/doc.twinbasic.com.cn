@@ -2,20 +2,28 @@
 title: TreeRelationshipConstants
 parent: Enumerations
 permalink: /tB/Packages/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd5bf2198-0fb7-4005-b959-137c7a12c553'
+  PropagateID: 'd5bf2198-0fb7-4005-b959-137c7a12c553'
+  ReservedCode1: '03b10c00-7529-41b9-8c21-79c161bf1c32'
+  ReservedCode2: '03b10c00-7529-41b9-8c21-79c161bf1c32'
 ---
 
 # TreeRelationshipConstants
-Describes where a new node is inserted relative to an existing node. Passed as the *Relationship* parameter of [**Nodes.Add**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes#add).
+描述新节点相对于现有节点的插入位置。作为 [**Nodes.Add**](/official/Reference/WinNativeCommonCtls/TreeView/Nodes#add) 的 *Relationship* 参数传递。
 
-| Member               | Value | Description                                                                              |
+| 成员               | 值 | 描述                                                                              |
 |----------------------|-------|------------------------------------------------------------------------------------------|
-| **tvwFirst**       | 0 | The new node becomes the first sibling of *Relative*'s parent --- i.e. the leftmost peer.    |
-| **tvwLast**         | 1 | The new node becomes the last sibling of *Relative*'s parent --- i.e. the rightmost peer.    |
-| **tvwNext**         | 2 | The new node is inserted immediately after *Relative*, as its next sibling.               |
-| **tvwPrevious** | 3 | The new node is inserted immediately before *Relative*, as its previous sibling.          |
-| **tvwChild**       | 4 | The new node becomes a child of *Relative*.                                               |
+| **tvwFirst**       | 0 | 新节点成为 *Relative* 父级的第一个同级 —— 即最左边的同级节点。    |
+| **tvwLast**         | 1 | 新节点成为 *Relative* 父级的最后一个同级 —— 即最右边的同级节点。    |
+| **tvwNext**         | 2 | 新节点紧接在 *Relative* 之后插入，作为其下一个同级节点。               |
+| **tvwPrevious** | 3 | 新节点紧接在 *Relative* 之前插入，作为其上一个同级节点。          |
+| **tvwChild**       | 4 | 新节点成为 *Relative* 的子节点。                                               |
 
-## See Also
+## 另见
 
-- [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/) -- consumer
-- [Nodes.Add](/official/Reference/WinNativeCommonCtls/TreeView/Nodes#add) -- the consuming method
+- [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/) —— 使用者
+- [Nodes.Add](/official/Reference/WinNativeCommonCtls/TreeView/Nodes#add) —— 使用该枚举的方法

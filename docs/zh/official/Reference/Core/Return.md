@@ -2,30 +2,39 @@
 title: Return
 parent: Statements
 permalink: /tB/Core/Return
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3322aab2-deeb-49b2-a0f9-d418af42e797'
+  PropagateID: '3322aab2-deeb-49b2-a0f9-d418af42e797'
+  ReservedCode1: '555f695e-b22e-4f38-91a1-b11c4568de31'
+  ReservedCode2: '555f695e-b22e-4f38-91a1-b11c4568de31'
 ---
+
 # Return
 
-Returns control from the current point of execution to its caller. The **Return** keyword has two distinct uses, distinguished by form and context:
+将控制从当前执行点返回给调用者。**Return**关键字有两种不同的用法，通过形式和上下文区分：
 
-- **Bare `Return`** --- valid only as the companion to [**GoSub**](/official/Reference/Core/GoSub-Return). Inside a **GoSub** subroutine, **Return** branches back to the statement immediately following the most recently executed **GoSub**.
-- **`Return` *expression*** --- valid only inside a [**Function**](/official/Reference/Core/Function) or [**Property Get**](/official/Reference/Core/Property) procedure (twinBASIC extension). It exits the procedure with *expression* as the return value.
+- **裸`Return`**——仅作为[**GoSub**](/official/Reference/Core/GoSub-Return)的配套使用。在**GoSub**子例程中，**Return**分支回到最近执行的**GoSub**之后紧接着的语句。
+- **`Return` *expression***——仅在[**Function**](/official/Reference/Core/Function)或[**Property Get**](/official/Reference/Core/Property)过程内部有效（twinBASIC扩展）。它以*expression*作为返回值退出过程。
 
-To exit a [**Sub**](/official/Reference/Core/Sub), [**Function**](/official/Reference/Core/Function), [**Property Get**](/official/Reference/Core/Property), [**Property Let**](/official/Reference/Core/Property), or [**Property Set**](/official/Reference/Core/Property) procedure *without* returning a value, use [**Exit Sub**](/official/Reference/Core/Exit), **Exit Function**, or **Exit Property** --- there is no bare-`Return` procedure-exit form.
+要在*不*返回值的情况下退出[**Sub**](/official/Reference/Core/Sub)、[**Function**](/official/Reference/Core/Function)、[**Property Get**](/official/Reference/Core/Property)、[**Property Let**](/official/Reference/Core/Property)或[**Property Set**](/official/Reference/Core/Property)过程，请使用[**Exit Sub**](/official/Reference/Core/Exit)、**Exit Function**或**Exit Property**——没有裸`Return`的过程退出形式。
 
-Syntax:
+语法：
 - > **Return**
 - > **Return** *expression*
 
 *expression*
-: In a [**Function**](/official/Reference/Core/Function) or **Property Get** procedure, the value to return to the caller. The type of *expression* must be compatible with the procedure's declared return type. *expression* must be present in this form --- it cannot be omitted.
+: 在[**Function**](/official/Reference/Core/Function)或**Property Get**过程中，返回给调用者的值。*expression*的类型必须与过程声明的返回类型兼容。此形式中*expression*必须存在——不能省略。
 
 ::: info
-The **Return** *expression* form is a twinBASIC extension. Classic VBA reserves **Return** exclusively for the [**GoSub...Return**](/official/Reference/Core/GoSub-Return) construct, and the only way to set a function's return value is to assign to the function name (e.g., `MyFunc = expr`). twinBASIC supports both styles.
+**Return** *expression*形式是twinBASIC扩展。经典VBA将**Return**专门保留给[**GoSub...Return**](/official/Reference/Core/GoSub-Return)构造，设置函数返回值的唯一方式是赋值给函数名（例如`MyFunc = expr`）。twinBASIC支持两种风格。
 :::
 
-### Example
+### 示例
 
-Returning a value from a **Function** by using **Return** *expression*:
+使用**Return** *expression*从**Function**返回值：
 
 ```vb
 Function Square(N As Double) As Double
@@ -35,7 +44,7 @@ End Function
 Debug.Print Square(7)   ' 49
 ```
 
-Exiting a **Sub** early --- note the use of **Exit Sub**, not bare **Return**:
+提前退出**Sub**——注意使用**Exit Sub**，而非裸**Return**：
 
 ```vb
 Sub LogIfEnabled(ByVal Message As String)
@@ -44,7 +53,7 @@ Sub LogIfEnabled(ByVal Message As String)
 End Sub
 ```
 
-Returning from a **GoSub** subroutine --- bare **Return** here resumes execution at the statement following the **GoSub**. See [**GoSub...Return**](/official/Reference/Core/GoSub-Return) for the full pattern.
+从**GoSub**子例程返回——此处的裸**Return**在**GoSub**之后的语句处恢复执行。完整模式见[**GoSub...Return**](/official/Reference/Core/GoSub-Return)。
 
 ```vb
 Sub GosubDemo()
@@ -59,10 +68,10 @@ Halve:
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**GoSub...Return** statement](/official/Reference/Core/GoSub-Return)
-- [**Exit** statement](/official/Reference/Core/Exit)
-- [**Sub** statement](/official/Reference/Core/Sub)
-- [**Function** statement](/official/Reference/Core/Function)
-- [**Property** statement](/official/Reference/Core/Property)
+- [**GoSub...Return** 语句](/official/Reference/Core/GoSub-Return)
+- [**Exit** 语句](/official/Reference/Core/Exit)
+- [**Sub** 语句](/official/Reference/Core/Sub)
+- [**Function** 语句](/official/Reference/Core/Function)
+- [**Property** 语句](/official/Reference/Core/Property)

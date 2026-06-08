@@ -2,17 +2,25 @@
 title: TreeLabelEditConstants
 parent: Enumerations
 permalink: /tB/Packages/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '2ea110aa-f7df-4522-a331-fa2bf17411df'
+  PropagateID: '2ea110aa-f7df-4522-a331-fa2bf17411df'
+  ReservedCode1: 'eb51577e-64f4-4449-81bd-be6795d9688d'
+  ReservedCode2: 'eb51577e-64f4-4449-81bd-be6795d9688d'
 ---
 
 # TreeLabelEditConstants
-Controls when inline label editing is triggered on a [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/). Used by [**TreeView.LabelEdit**](/official/Reference/WinNativeCommonCtls/TreeView/#labeledit).
+控制 [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) 上内联标签编辑何时触发。由 [**TreeView.LabelEdit**](/official/Reference/WinNativeCommonCtls/TreeView/#labeledit) 使用。
 
-| Member               | Value | Description                                                                       |
+| 成员               | 值 | 描述                                                                       |
 |----------------------|-------|-----------------------------------------------------------------------------------|
-| **tvwAutomatic** | 0 | Clicking an already-selected node opens the inline editor (after a short pause). |
-| **tvwManual**       | 1 | Only programmatic [**StartLabelEdit**](/official/Reference/WinNativeCommonCtls/TreeView/#startlabeledit) calls open the editor. |
-| **tvwDisabled**   | 2 | Label editing is disabled.                                                       |
+| **tvwAutomatic** | 0 | 单击已选中的节点会打开内联编辑器（短暂暂停后）。 |
+| **tvwManual**       | 1 | 仅通过编程方式调用 [**StartLabelEdit**](/official/Reference/WinNativeCommonCtls/TreeView/#startlabeledit) 才能打开编辑器。 |
+| **tvwDisabled**   | 2 | 标签编辑被禁用。                                                       |
 
-## See Also
+## 另见
 
-- [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/) -- consumer
+- [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/) —— 使用者

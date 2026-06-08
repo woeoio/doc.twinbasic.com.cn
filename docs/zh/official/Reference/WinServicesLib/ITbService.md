@@ -1,17 +1,26 @@
 ---
 title: ITbService
-parent: WinServicesLib Package
+parent: "WinServicesLib 包"
 permalink: /tB/Packages/WinServicesLib/ITbService
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '20bcde18-c07c-4168-8f29-a88e55ecacd4'
+  PropagateID: '20bcde18-c07c-4168-8f29-a88e55ecacd4'
+  ReservedCode1: '2e1bd02b-b340-4647-a5ae-300950f320c5'
+  ReservedCode2: '2e1bd02b-b340-4647-a5ae-300950f320c5'
 ---
 
-# ITbService interface
-The contract every service class in a **WinServicesLib** project implements. Three subs, each invoked at a specific point in the service's lifecycle:
+# ITbService 接口
 
-- [**EntryPoint**](#entrypoint) -- runs the service's actual work.
-- [**StartupFailed**](#startupfailed) -- invoked when the SCM handshake fails before [**EntryPoint**](#entrypoint) can run.
-- [**ChangeState**](#changestate) -- invoked when the SCM delivers a control code (*Stop*, *Pause*, *Continue*, …).
+每个 **WinServicesLib** 项目中的服务类必须实现的契约。三个子过程，每个在服务生命周期的特定点被调用：
 
-The package's [**ServiceCreator**](/official/Reference/WinServicesLib/ServiceCreator)`(Of T)` factory creates one instance per service start; the dispatcher trampoline holds the instance for the lifetime of the service and routes the three lifecycle subs to it.
+- [**EntryPoint**](#entrypoint) -- 运行服务的实际工作。
+- [**StartupFailed**](#startupfailed) -- 当SCM握手在 [**EntryPoint**](#entrypoint) 可以运行之前失败时调用。
+- [**ChangeState**](#changestate) -- 当SCM传递控制代码（*Stop*、*Pause*、*Continue*、…）时调用。
+
+包的 [**ServiceCreator**](/official/Reference/WinServicesLib/ServiceCreator)`(Of T)` 工厂为每次服务启动创建一个实例；调度器跳板在服务的整个生命周期内持有该实例，并将三个生命周期子过程路由到它。
 
 ```vb
 [COMCreatable(False)]
@@ -24,7 +33,7 @@ Class MyService
             Implements ITbService.EntryPoint
         ServiceManager.ReportStatus vbServiceStatusRunning
         Do Until IsStopping
-            ' ...do work, then yield with WaitForSingleObject / Sleep / etc.
+            ' ...做工作，然后用 WaitForSingleObject / Sleep 等让出
         Loop
         ServiceManager.ReportStatus vbServiceStatusStopped
     End Sub
@@ -43,83 +52,83 @@ Class MyService
 
     Sub StartupFailed(ByVal ServiceManager As ServiceManager) _
             Implements ITbService.StartupFailed
-        ' …optional failure-reporting hook
+        ' …可选的失败报告钩子
     End Sub
 End Class
 ```
 
 ::: important
-[**EntryPoint**](#entrypoint) runs on the **service thread**. [**ChangeState**](#changestate) runs on the **dispatcher thread** (the EXE's main thread). The two methods execute concurrently and must coordinate through shared `Public` flags on the class --- see [The two-thread split](/official/Reference/WinServicesLib/#two-thread-split) on the package overview.
+[**EntryPoint**](#entrypoint) 运行在**服务线程**上。[**ChangeState**](#changestate) 运行在**调度器线程**（EXE的主线程）上。两个方法并发执行，必须通过类上的共享 `Public` 标志进行协调——参见包概述上的[双线程分离](/official/Reference/WinServicesLib/#two-thread-split)。
 :::
 
-## Methods
+## 方法
 
 ### ChangeState
 
-Invoked by the SCM dispatcher thread when a control code is delivered to the service.
+当控制代码传递给服务时，由SCM调度器线程调用。
 
-Syntax: *service*.**ChangeState** *ServiceManager*, *dwControl*, *dwEventType*, *lpEventData*
+语法：*service*.**ChangeState** *ServiceManager*, *dwControl*, *dwEventType*, *lpEventData*
 
 *ServiceManager*
-: The [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) for this service --- the same instance passed to [**EntryPoint**](#entrypoint). The implementation calls [**ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) on it to acknowledge the pending transition.
+: 此服务的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)——与传递给 [**EntryPoint**](#entrypoint) 的实例相同。实现在其上调用 [**ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 以确认待处理的转换。
 
 *dwControl*
-: A [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) value identifying the control. Standard codes the SCM may deliver include [**vbServiceControlStop**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlStop), [**vbServiceControlShutdown**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlShutdown), [**vbServiceControlPause**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPause), [**vbServiceControlContinue**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlContinue), [**vbServiceControlInterrogate**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlInterrogate), and the event-bearing codes ([**vbServiceControlSessionChange**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlSessionChange), [**vbServiceControlPowerEvent**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPowerEvent), [**vbServiceControlDeviceEvent**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlDeviceEvent), [**vbServiceControlHardwareProfileChange**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlHardwareProfileChange)). User-defined codes in the range 128--255 can also be delivered through [**Services.ControlService**](/official/Reference/WinServicesLib/Services#controlservice).
+: 标识控制的 [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) 值。SCM可能传递的标准代码包括 [**vbServiceControlStop**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlStop)、[**vbServiceControlShutdown**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlShutdown)、[**vbServiceControlPause**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPause)、[**vbServiceControlContinue**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlContinue)、[**vbServiceControlInterrogate**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlInterrogate)，以及承载事件的代码（[**vbServiceControlSessionChange**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlSessionChange)、[**vbServiceControlPowerEvent**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPowerEvent)、[**vbServiceControlDeviceEvent**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlDeviceEvent)、[**vbServiceControlHardwareProfileChange**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlHardwareProfileChange)）。128--255范围内的用户定义代码也可以通过 [**Services.ControlService**](/official/Reference/WinServicesLib/Services#controlservice) 传递。
 
 *dwEventType*
-: A **Long** holding the event-type sub-code for the codes that have one. **0** otherwise. See Microsoft's `HandlerEx` documentation for the per-code interpretation.
+: 包含具有子代码的代码的事件类型子代码的 **Long**。否则为 **0**。参见Microsoft的 `HandlerEx` 文档了解每个代码的解释。
 
 *lpEventData*
-: A **LongPtr** to an event-specific data structure for the codes that have one. `vbNullPtr` otherwise.
+: 对于具有事件特定数据结构的代码，为指向该结构的 **LongPtr**。否则为 `vbNullPtr`。
 
-The typical pattern is a `Select Case dwControl` that handles the codes the service cares about and ignores the rest. The minimum a service needs to handle is *Stop*:
+典型模式是 `Select Case dwControl` 处理服务关心的代码并忽略其余代码。服务至少需要处理 *Stop*：
 
 ```vb
 Select Case dwControl
     Case vbServiceControlStop, vbServiceControlShutdown
         ServiceManager.ReportStatus vbServiceStatusStopPending
-        IsStopping = True       ' signal the service thread
+        IsStopping = True       ' 向服务线程发出信号
 End Select
 ```
 
-[**ChangeState**](#changestate) **does not stop** [**EntryPoint**](#entrypoint) --- it only delivers the SCM's request. The user's code is responsible for the actual shutdown logic, typically by setting a shared `Public` flag the service thread polls (`IsStopping`) or by calling a signal method on a blocking primitive that [**EntryPoint**](#entrypoint) owns (`NamedPipeServer.ManualMessageLoopLeave`, `SetEvent` on a Win32 event handle, ...).
+[**ChangeState**](#changestate) **不会停止** [**EntryPoint**](#entrypoint)——它只传递SCM的请求。用户的代码负责实际的关闭逻辑，通常通过设置服务线程轮询的共享 `Public` 标志（`IsStopping`）或调用 [**EntryPoint**](#entrypoint) 拥有的阻塞原语上的信号方法（`NamedPipeServer.ManualMessageLoopLeave`、Win32事件句柄上的 `SetEvent`、…）。
 
-The method runs on a different thread than [**EntryPoint**](#entrypoint); see [The two-thread split](/official/Reference/WinServicesLib/#two-thread-split) for the coordination rules.
+该方法在与 [**EntryPoint**](#entrypoint) 不同的线程上运行；参见[双线程分离](/official/Reference/WinServicesLib/#two-thread-split)了解协调规则。
 
 ### EntryPoint
 
-The service's main routine. Invoked by the package's dispatcher trampoline on the SCM-spawned service thread once the SCM handshake has completed and the trampoline has reported [**vbServiceStatusStartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending).
+服务的主例程。在SCM握手完成且跳板已报告 [**vbServiceStatusStartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending) 后，由包的调度器跳板在SCM生成的服务线程上调用。
 
-Syntax: *service*.**EntryPoint** *ServiceManager*
+语法：*service*.**EntryPoint** *ServiceManager*
 
 *ServiceManager*
-: The [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) for this service. Contains the configuration that was set during `Sub Main` plus the runtime [**LaunchArgs**](/official/Reference/WinServicesLib/ServiceManager#launchargs) the SCM passed in. The implementation calls [**ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) on it for every state transition.
+: 此服务的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)。包含在 `Sub Main` 期间设置的配置以及SCM传入的运行时 [**LaunchArgs**](/official/Reference/WinServicesLib/ServiceManager#launchargs)。实现为其调用 [**ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 进行每个状态转换。
 
-The body of **EntryPoint** is the service's actual work. The minimum responsibilities:
+**EntryPoint** 的主体是服务的实际工作。最低职责：
 
-1. Optionally validate startup conditions (typically by inspecting [**LaunchArgs**](/official/Reference/WinServicesLib/ServiceManager#launchargs)). Failure paths should call `ServiceManager.ReportStatus vbServiceStatusStopped, <ExitCode>` and `Exit Sub`.
-2. Call `ServiceManager.ReportStatus vbServiceStatusRunning` once steady-state is reached.
-3. Run the service's long-running loop. The loop typically blocks on something (a `WaitForSingleObject` on a manual-reset event, a `NamedPipeServer.ManualMessageLoopEnter`, a custom message loop, ...) and breaks out when [**ChangeState**](#changestate) signals shutdown through a shared flag.
-4. Call `ServiceManager.ReportStatus vbServiceStatusStopped` before returning.
+1. 可选地验证启动条件（通常通过检查 [**LaunchArgs**](/official/Reference/WinServicesLib/ServiceManager#launchargs)）。失败路径应调用 `ServiceManager.ReportStatus vbServiceStatusStopped, <ExitCode>` 和 `Exit Sub`。
+2. 一旦达到稳定状态即调用 `ServiceManager.ReportStatus vbServiceStatusRunning`。
+3. 运行服务的长时间运行循环。循环通常阻塞在某个东西上（手动重置事件上的 `WaitForSingleObject`、`NamedPipeServer.ManualMessageLoopEnter`、自定义消息循环、…），当 [**ChangeState**](#changestate) 通过共享标志发出关闭信号时跳出。
+4. 返回前调用 `ServiceManager.ReportStatus vbServiceStatusStopped`。
 
-After the **EntryPoint** sub returns, the service thread exits and the SCM marks the service as stopped.
+**EntryPoint** 子过程返回后，服务线程退出，SCM将服务标记为已停止。
 
 ::: important
-**EntryPoint** runs on the **service thread**, not the dispatcher thread. The two threads execute concurrently for the lifetime of the service. Shared `Public` flags on the implementing class (`IsStopping`, `IsPaused`, …) coordinate state changes triggered from [**ChangeState**](#changestate).
+**EntryPoint** 运行在**服务线程**上，而非调度器线程。两个线程在服务生命周期内并发执行。实现类上的共享 `Public` 标志（`IsStopping`、`IsPaused`、…）协调从 [**ChangeState**](#changestate) 触发的状态变更。
 :::
 
 ### StartupFailed
 
-Invoked when the SCM handshake fails before [**EntryPoint**](#entrypoint) can run.
+当SCM握手在 [**EntryPoint**](#entrypoint) 可以运行之前失败时调用。
 
-Syntax: *service*.**StartupFailed** *ServiceManager*
+语法：*service*.**StartupFailed** *ServiceManager*
 
 *ServiceManager*
-: The [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) for this service.
+: 此服务的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)。
 
-This sub fires when `RegisterServiceCtrlHandlerExW` returns a zero handle --- typically because the service was launched outside the SCM context, or the SCM's `RegisterServiceCtrlHandlerExW` rejected the registration. The service has no SCM status handle in this state, so [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) cannot be called from inside **StartupFailed** --- calling it raises run-time error 5.
+此子过程在 `RegisterServiceCtrlHandlerExW` 返回零句柄时触发——通常是因为服务在SCM上下文之外启动，或SCM的 `RegisterServiceCtrlHandlerExW` 拒绝了注册。服务在此状态下没有SCM状态句柄，因此 [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 不能从 **StartupFailed** 内部调用——调用它会引发运行时错误5。
 
-The typical implementation is a logging-only hook so the failure is recorded somewhere a developer can find it later:
+典型实现是仅记录日志的钩子，以便开发人员稍后可以找到失败：
 
 ```vb
 Sub StartupFailed(ByVal ServiceManager As ServiceManager) _
@@ -128,12 +137,12 @@ Sub StartupFailed(ByVal ServiceManager As ServiceManager) _
 End Sub
 ```
 
-If there is no useful failure-reporting hook to add, an empty implementation is fine --- the SCM has already abandoned the start attempt at this point and no recovery is possible.
+如果没有有用的失败报告钩子可以添加，空实现也可以——SCM此时已经放弃了启动尝试，无法恢复。
 
-## See Also
+## 另见
 
-- [WinServicesLib package](/official/Reference/WinServicesLib/) -- overview, lifecycle, [the two-thread split](/official/Reference/WinServicesLib/#two-thread-split)
-- [ServiceManager class](/official/Reference/WinServicesLib/ServiceManager) -- the per-service object passed into every method
-- [ServiceCreator(Of T) class](/official/Reference/WinServicesLib/ServiceCreator) -- the factory that creates an **ITbService** instance for each service start
-- [ServiceControlCodeConstants enum](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) -- the values **ChangeState** dispatches on
-- [ServiceStatusConstants enum](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- the values **EntryPoint** reports through [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus)
+- [WinServicesLib 包](/official/Reference/WinServicesLib/) -- 概述、生命周期、[双线程分离](/official/Reference/WinServicesLib/#two-thread-split)
+- [ServiceManager 类](/official/Reference/WinServicesLib/ServiceManager) -- 传入每个方法的每服务对象
+- [ServiceCreator(Of T) 类](/official/Reference/WinServicesLib/ServiceCreator) -- 为每次服务启动创建 **ITbService** 实例的工厂
+- [ServiceControlCodeConstants 枚举](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) -- **ChangeState** 分发的值
+- [ServiceStatusConstants 枚举](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) -- **EntryPoint** 通过 [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 报告的值

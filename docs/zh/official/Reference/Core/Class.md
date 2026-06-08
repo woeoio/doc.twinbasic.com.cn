@@ -2,14 +2,21 @@
 title: Class
 parent: Statements
 permalink: /tB/Core/Class
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4706d98f-6346-4ddf-9f0b-2c18f58f3fa3'
+  PropagateID: '4706d98f-6346-4ddf-9f0b-2c18f58f3fa3'
+  ReservedCode1: '98824ccd-2ce3-4bb5-bb26-145e050ebdf7'
+  ReservedCode2: '98824ccd-2ce3-4bb5-bb26-145e050ebdf7'
 ---
 
 # Class
 
+定义类。类是创建对象的模板——类是对象类型，与值类型相对。对象通过引用持有并采用引用计数。当不再有引用指向对象时——即进程中没有变量引用它们时——对象占用的内存会被释放。
 
-Defines a class. Classes are templates from which objects are created --- classes are object types, as opposed to value types. Objects are held by reference and are reference-counted. The memory an object occupies is freed when there are no more references to it --- when no variables in the process refer to them.
-
-Syntax:
+语法：
 
 > [ *attributes* ]  
 > [ **Public** \| **Private** ] **Class** *name* [ **(** **Of** *typevars* **)** ]  
@@ -19,42 +26,42 @@ Syntax:
 > **End Class**
 
 *attributes*
-: *optional* One or more of:  
-[ArrayBoundsChecks](/official/Reference/Attributes#arrayboundschecks), [ClassId](/official/Reference/Attributes#classid), [COMCreatable](/official/Reference/Attributes#comcreatable), [CustomControl](/official/Reference/Attributes#customcontrol), [Description](/official/Reference/Attributes#description), [FloatingPointErrorChecks](/official/Reference/Attributes#floatingpointerrorchecks), [FormDesignerId](/official/Reference/Attributes#formdesignerid), [Hidden](/official/Reference/Attributes#hidden), [IntegerOverflowChecks](/official/Reference/Attributes#integeroverflowchecks), [PredeclaredID](/official/Reference/Attributes#predeclaredid)
+: *可选* 以下一个或多个：  
+[ArrayBoundsChecks](/official/Reference/Attributes#arrayboundschecks)、[ClassId](/official/Reference/Attributes#classid)、[COMCreatable](/official/Reference/Attributes#comcreatable)、[CustomControl](/official/Reference/Attributes#customcontrol)、[Description](/official/Reference/Attributes#description)、[FloatingPointErrorChecks](/official/Reference/Attributes#floatingpointerrorchecks)、[FormDesignerId](/official/Reference/Attributes#formdesignerid)、[Hidden](/official/Reference/Attributes#hidden)、[IntegerOverflowChecks](/official/Reference/Attributes#integeroverflowchecks)、[PredeclaredID](/official/Reference/Attributes#predeclaredid)
 
 **Public**
-: *optional* (twinBASIC) In an ActiveX project, marks the class as exported into the type library so that consumers in other projects can create and use it.
+: *可选* (twinBASIC) 在ActiveX项目中，将类标记为导出到类型库，使其他项目的使用者可以创建和使用它。
 
 **Private**
-: *optional* (twinBASIC) In an ActiveX project, withholds the class from the type library: it remains usable within the project but is not exported. The conventional pairing with [**CoClass**](/official/Reference/Core/CoClass) --- a public **CoClass** as the consumer-visible contract paired with a `Private Class` as the hidden implementation --- relies on this modifier.
+: *可选* (twinBASIC) 在ActiveX项目中，不将类导出到类型库：它在项目内仍可使用但不导出。与 [**CoClass**](/official/Reference/Core/CoClass) 的常规搭配——一个公共 **CoClass** 作为使用者可见的契约，配对一个 `Private Class` 作为隐藏的实现——依赖此修饰符。
 
 *name*
-: The identifier naming the class.
+: 命名类的标识符。
 
 **Of** *typevars*
-: *optional* (twinBASIC) One or more type variable names, separated by commas, that make the class a *generic class*. Each type variable can be referenced in member declarations as if it were a regular type. See [Generics](/official/Features/Language/Generics).
+: *可选* (twinBASIC) 一个或多个用逗号分隔的类型变量名，使类成为*泛型类*。每个类型变量可以在成员声明中像常规类型一样被引用。参见[泛型](/official/Features/Language/Generics)。
 
 **Inherits** *baseclass*
-: *optional* (twinBASIC) Names a single base class whose **Public** and [**Protected**](/official/Reference/Core/Protected) members are inherited by *name*. The **Inherits** line, when present, must appear immediately after the **Class** header and before any other member. **Inherits** enables [**Overridable**](/official/Reference/Core/Sub) / **Overrides** members, explicit `*baseclass*.New(...)` chained constructor calls from inside `Sub New`, and **Protected** member visibility. See [Inheritance](/official/Features/Language/Inheritance).
+: *可选* (twinBASIC) 指定一个基类，其 **Public** 和 [**Protected**](/official/Reference/Core/Protected) 成员被 *name* 继承。**Inherits** 行（如果存在）必须紧跟在 **Class** 头部之后、任何其他成员之前。**Inherits** 启用 [**Overridable**](/official/Reference/Core/Sub) / **Overrides** 成员、从 `Sub New` 内部的显式 `*baseclass*.New(...)` 链式构造函数调用，以及 **Protected** 成员可见性。参见[继承](/official/Features/Language/Inheritance)。
 
 *classmember*
-: *optional* Any of the following:
+: *可选* 以下任意项：
 
-  - [constant](/official/Reference/Glossary#constant) defined using [**Const**](/official/Reference/Core/Const),
-  - [variable](/official/Reference/Glossary#variable) defined using [**Public**](/official/Reference/Core/Public), [**Protected**](/official/Reference/Core/Protected), [**Private**](/official/Reference/Core/Private), or [**Dim**](/official/Reference/Core/Dim),
-  - [procedure](/official/Reference/Glossary#procedure) defined using [**Sub**](/official/Reference/Core/Sub), [**Function**](/official/Reference/Core/Function), or [**Property**](/official/Reference/Core/Property) --- including the special instance constructor `Sub New(`*args*`)`, which the runtime invokes when the class is created with [**New**](/official/Reference/Core/New),
-  - [user-defined type (UDTs)](/official/Reference/Glossary#user-defined-type) defined using [**Type**](/official/Reference/Core/Type),
-  - (twinBASIC) [**Implements**](/official/Reference/Core/Implements) clauses, listing interfaces or classes whose members this class provides bodies for.
+  - 使用 [**Const**](/official/Reference/Core/Const) 定义的[常量](/official/Reference/Glossary#constant)，
+  - 使用 [**Public**](/official/Reference/Core/Public)、[**Protected**](/official/Reference/Core/Protected)、[**Private**](/official/Reference/Core/Private) 或 [**Dim**](/official/Reference/Core/Dim) 定义的[变量](/official/Reference/Glossary#variable)，
+  - 使用 [**Sub**](/official/Reference/Core/Sub)、[**Function**](/official/Reference/Core/Function) 或 [**Property**](/official/Reference/Core/Property) 定义的[过程](/official/Reference/Glossary#procedure)——包括特殊的实例构造函数 `Sub New(`*args*`)`，当使用 [**New**](/official/Reference/Core/New) 创建类时运行时将调用它，
+  - 使用 [**Type**](/official/Reference/Core/Type) 定义的[用户自定义类型(UDT)](/official/Reference/Glossary#user-defined-type)，
+  - (twinBASIC) [**Implements**](/official/Reference/Core/Implements) 子句，列出了此类提供实现的接口或类的成员。
 
-In `.twin` files, a **Class** block may share a file with [**Interface**](/official/Reference/Core/Interface), [**CoClass**](/official/Reference/Core/CoClass), and [**Alias**](/official/Reference/Core/Alias) declarations (which appear *before* the **Class** block) and with a [**Module**](/official/Reference/Core/Module) block. In legacy `.cls` files the class is implicit and the **Class**/**End Class** keywords are not written.
+在 `.twin` 文件中，**Class** 块可以与 [**Interface**](/official/Reference/Core/Interface)、[**CoClass**](/official/Reference/Core/CoClass) 和 [**Alias**](/official/Reference/Core/Alias) 声明（出现在 **Class** 块*之前*）以及 [**Module**](/official/Reference/Core/Module) 块共享同一文件。在传统 `.cls` 文件中，类是隐式的，不写 **Class**/**End Class** 关键字。
 
-### See Also
+### 另请参阅
 
-- [**Module** statement](/official/Reference/Core/Module)
-- [**Interface** statement](/official/Reference/Core/Interface)
-- [**CoClass** statement](/official/Reference/Core/CoClass)
-- [**Implements** statement](/official/Reference/Core/Implements)
-- [**Protected** statement](/official/Reference/Core/Protected)
-- [**New** statement](/official/Reference/Core/New)
-- [Inheritance](/official/Features/Language/Inheritance)
-- [Generics](/official/Features/Language/Generics)
+- [**Module** 语句](/official/Reference/Core/Module)
+- [**Interface** 语句](/official/Reference/Core/Interface)
+- [**CoClass** 语句](/official/Reference/Core/CoClass)
+- [**Implements** 语句](/official/Reference/Core/Implements)
+- [**Protected** 语句](/official/Reference/Core/Protected)
+- [**New** 语句](/official/Reference/Core/New)
+- [继承](/official/Features/Language/Inheritance)
+- [泛型](/official/Features/Language/Generics)

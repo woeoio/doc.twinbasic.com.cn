@@ -1,13 +1,22 @@
 ---
 title: NamedPipeClientManager
-parent: WinNamedPipesLib Package
+parent: "WinNamedPipesLib 包"
 permalink: /tB/Packages/WinNamedPipesLib/NamedPipeClientManager
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e1dc8c7b-91e4-4492-b708-e03e5796acfb'
+  PropagateID: 'e1dc8c7b-91e4-4492-b708-e03e5796acfb'
+  ReservedCode1: 'da7f4276-c745-4f89-95c8-e9d1e9fe7e4d'
+  ReservedCode2: 'da7f4276-c745-4f89-95c8-e9d1e9fe7e4d'
 ---
 
-# NamedPipeClientManager class
-The client-side coordinator. Owns a Windows I/O Completion Port and a pool of worker threads shared by every [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) it produces, and returns them through [**Connect**](#connect). One [**NamedPipeClientManager**](/official/Reference/WinNamedPipesLib/) typically lives for the lifetime of the consuming process and manages many connections --- to one or several servers --- through that shared IOCP infrastructure. Instantiate with **New**.
+# NamedPipeClientManager 类
 
-Configure the public fields (all four have reasonable defaults), call [**Connect**](#connect) for each pipe the application wants to dial, and respond to the [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) events. The first [**Connect**](#connect) lazily creates the completion port and starts the worker threads; subsequent calls reuse them.
+客户端协调器。拥有一个Windows I/O完成端口和一个由其产生的每个 [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) 共享的工作线程池，并通过 [**Connect**](#connect) 返回它们。一个 [**NamedPipeClientManager**](/official/Reference/WinNamedPipesLib/) 通常在消费进程的整个生命周期内存在，通过共享的IOCP基础设施管理许多连接——到一个或多个服务器。使用 **New** 实例化。
+
+配置公共字段（四个都有合理默认值），为应用程序想要拨号的每个管道调用 [**Connect**](#connect)，并响应 [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) 事件。第一次 [**Connect**](#connect) 延迟创建完成端口并启动工作线程；后续调用重用它们。
 
 ```vb
 Private manager As NamedPipeClientManager
@@ -24,58 +33,58 @@ Private Sub connection_Connected()
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-    connection.AsyncClose                ' required — see README
-    manager.Stop                         ' or just let the manager go out of scope
+    connection.AsyncClose                ' 必需——参见 README
+    manager.Stop                         ' 或直接让管理器超出作用域
 End Sub
 ```
 
-See the package [overview](/official/Reference/WinNamedPipesLib/) for the IOCP / event-marshalling architecture, the cookie correlation pattern, the transient lifetime of `Data() As Byte` inside events, and the mandatory `AsyncClose` rule for client connections.
+参见包[概述](/official/Reference/WinNamedPipesLib/)了解IOCP/事件封送架构、cookie关联模式、事件中 `Data() As Byte` 的瞬时生命周期，以及客户端连接的强制性 `AsyncClose` 规则。
 
-## Properties
+## 属性
 
-The four configuration fields are read once on the first [**Connect**](#connect) call and propagated to every [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) created through this manager. Subsequent changes affect connections opened thereafter but **not** connections that already exist --- set the fields before the first [**Connect**](#connect).
+四个配置字段在第一次 [**Connect**](#connect) 调用时读取一次并传播到通过此管理器创建的每个 [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection)。后续更改影响之后打开的连接但**不影响**已存在的连接——在第一次 [**Connect**](#connect) 之前设置这些字段。
 
 ### ContinuouslyReadFromPipe
 
-When **True** (the default), each [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) keeps a read pending against its pipe at all times --- every [**MessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) is followed by an automatic `AsyncRead` issued from inside the IOCP thread. Set to **False** to handle reads one-at-a-time; each [**MessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) handler must then call [**NamedPipeClientConnection.AsyncRead**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncread) to receive the next message. **Boolean**, default **True**.
+当 **True**（默认）时，每个 [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) 始终对其管道保持一个待处理读取——每个 [**MessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) 之后，IOCP线程内部会发出一个自动的 `AsyncRead`。设置为 **False** 以逐个处理读取；每个 [**MessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) 处理程序必须随后调用 [**NamedPipeClientConnection.AsyncRead**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncread) 来接收下一条消息。**Boolean**，默认 **True**。
 
 ### FreeThreadingEvents
 
-Controls where the [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) events are raised. When **False** (the default), the IOCP worker threads marshal each event to the main UI thread through the manager's hidden message-only window, and the consuming process must be pumping a Win32 message loop. When **True**, events fire directly on whichever IOCP worker thread received the completion --- no message-loop dependency, but the consumer's event handlers must be thread-safe. **Boolean**, default **False**.
+控制 [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) 事件在何处引发。当 **False**（默认）时，IOCP工作线程通过管理器的隐藏仅消息窗口将每个事件封送到主UI线程，消费进程必须正在泵送Win32消息循环。当 **True** 时，事件直接在接收到完成的IOCP工作线程上触发——无消息循环依赖，但消费者的事件处理程序必须是线程安全的。**Boolean**，默认 **False**。
 
 ### MessageBufferSize
 
-The size, in bytes, of the per-completion `ReadFile` buffer initially allocated for each client connection. **Long**, default **131072** (128 KiB). Does not cap the maximum message size --- on `ERROR_MORE_DATA` the IOCP loop allocates a larger overflow buffer and re-issues the read --- but the initial size affects throughput for sustained large-message traffic.
+为每个客户端连接初始分配的每完成 `ReadFile` 缓冲区大小（字节）。**Long**，默认 **131072**（128 KiB）。不限制最大消息大小——在 `ERROR_MORE_DATA` 时IOCP循环分配更大的溢出缓冲区并重新发出读取——但初始大小影响持续大消息流量的吞吐量。
 
 ### NumThreadsIOCP
 
-The number of IOCP worker threads created when [**Connect**](#connect) is first called. **Long**, default **1**. One thread is enough for most scenarios; raise this to allow concurrent event handlers under [**FreeThreadingEvents**](#freethreadingevents) = **True**, or to keep up with heavy traffic on multi-core hardware.
+首次调用 [**Connect**](#connect) 时创建的IOCP工作线程数。**Long**，默认 **1**。一个线程对于大多数场景足够；提高此值以允许多个 [**FreeThreadingEvents**](#freethreadingevents) = **True** 下的并发事件处理程序，或者在多核硬件上跟上大流量。
 
-## Methods
+## 方法
 
 ### Connect
 
-Opens an asynchronous connection to a named pipe on the local machine.
+打开到本地计算机上命名管道的异步连接。
 
-Syntax: *manager*.**Connect**( *PipeName* ) **As NamedPipeClientConnection**
+语法：*manager*.**Connect**( *PipeName* ) **As NamedPipeClientConnection**
 
 *PipeName*
-: *required* The leaf name of the pipe to dial --- the package prepends `\\.\pipe\` itself. Raises run-time error 5 *"cannot start without specifying a pipe name"* if empty.
+: *必需* 要拨号的管道叶名称——包自行添加 `\\.\pipe\` 前缀。如果为空则引发运行时错误5 *"cannot start without specifying a pipe name"*。
 
-Lazy on first call: creates the completion port and starts [**NumThreadsIOCP**](#numthreadsiocp) worker threads. Returns immediately with a [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) in the not-yet-connected state. The actual `CreateFileW` runs asynchronously on an IOCP worker and fires [**Connected**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#connected) on the returned object once the pipe is open.
+首次调用时延迟创建：创建完成端口并启动 [**NumThreadsIOCP**](#numthreadsiocp) 个工作线程。立即返回处于尚未连接状态的 [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection)。实际 `CreateFileW` 在IOCP工作线程上异步运行，管道打开后触发返回对象上的 [**Connected**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#connected)。
 
-Raises run-time error 5 *"unable to create an IOCP port"* if `CreateIoCompletionPort` fails on the first call.
+首次调用时如果 `CreateIoCompletionPort` 失败则引发运行时错误5 *"unable to create an IOCP port"*。
 
 ### FindNamedPipes
 
-Enumerates the named pipes currently published on the local machine.
+枚举本地计算机上当前发布的命名管道。
 
-Syntax: *manager*.**FindNamedPipes** ( [ *Pattern* ] ) **As Collection**
+语法：*manager*.**FindNamedPipes** ( [ *Pattern* ] ) **As Collection**
 
 *Pattern*
-: *optional* A wildcard pattern matched against the leaf pipe name (no `\\.\pipe\` prefix; the package adds it). `*` matches any sequence, `?` matches any single character. Default `"*"` --- return every pipe.
+: *可选* 与管道叶名称匹配的通配符模式（不带 `\\.\pipe\` 前缀；包会添加）。`*` 匹配任意序列，`?` 匹配任意单个字符。默认 `"*"`——返回每个管道。
 
-Returns a **Collection** of **String** values, each a leaf pipe name suitable to pass to [**Connect**](#connect). Useful as a discovery step when the consumer doesn't know the exact server name in advance:
+返回 **String** 值的 **Collection**，每个都是适合传递给 [**Connect**](#connect) 的叶管道名称。用作消费者事先不知道确切服务器名称时的发现步骤：
 
 ```vb
 Dim names As Collection = manager.FindNamedPipes("MyService_*")
@@ -85,25 +94,25 @@ For Each name In names
 Next
 ```
 
-The package does not publish an event when pipes appear or disappear, so dynamic UIs that list available servers typically refresh the list from a low-frequency [**Timer**](/official/Reference/VB/Timer/) --- see [Discovering pipes](/official/Reference/WinNamedPipesLib/#discovering-pipes) on the package overview for the polling-loop pattern that preserves the user's current selection across refreshes.
+包不发布管道出现或消失的事件，因此列出可用服务器的动态UI通常从低频率的 [**Timer**](/official/Reference/VB/Timer/) 刷新列表——参见包概述上的[发现管道](/official/Reference/WinNamedPipesLib/#discovering-pipes)了解在刷新间保留用户当前选择的轮询循环模式。
 
 ### Stop
 
-Cancels every outstanding I/O on every connection produced by this manager, posts the IOCP shutdown sentinel to each worker, waits for the threads to exit, closes every pipe handle, and frees the completion port. Idempotent: calling [**Stop**](#stop) on a manager that has not connected anything --- or has already been stopped --- is a no-op. Automatically invoked from `Class_Terminate`, so a manager going out of scope closes resources implicitly.
+取消此管理器产生的每个连接上每个未完成的I/O，向每个工作线程发送IOCP关闭哨兵，等待线程退出，关闭每个管道句柄，并释放完成端口。幂等：在未连接任何内容或已停止的管理器上调用 [**Stop**](#stop) 为无操作。自动从 `Class_Terminate` 调用，因此超出作用域的管理器隐式关闭资源。
 
-Syntax: *manager*.**Stop**
+语法：*manager*.**Stop**
 
-[**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) objects produced by this manager remain valid as references after [**Stop**](#stop), but their underlying pipe handles are closed and they cannot perform I/O.
+[**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) 对象在 [**Stop**](#stop) 后作为引用仍然有效，但其底层管道句柄已关闭，无法执行I/O。
 
 ### New
 
-Constructs a manager in the not-yet-connected state. Creates the hidden `STATIC`-class message window used to marshal IOCP-thread completions back to the UI thread.
+在尚未连接的状态下构造管理器。创建用于将IOCP线程完成封送回UI线程的隐藏 `STATIC` 类消息窗口。
 
-Syntax: **New NamedPipeClientManager**
+语法：**New NamedPipeClientManager**
 
-## See Also
+## 另见
 
-- [WinNamedPipesLib package](/official/Reference/WinNamedPipesLib/) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, **AsyncClose** rule
-- [Discovering pipes](/official/Reference/WinNamedPipesLib/#discovering-pipes) -- the **Timer**-driven polling loop that powers dynamic pipe-listing UIs
-- [NamedPipeClientConnection class](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) -- the per-connection object returned by [**Connect**](#connect)
-- [NamedPipeServer class](/official/Reference/WinNamedPipesLib/NamedPipeServer) -- the server-side counterpart
+- [WinNamedPipesLib 包](/official/Reference/WinNamedPipesLib/) -- 概述、IOCP/事件封送架构、cookie模式、`Data()` 生命周期注意事项、**AsyncClose** 规则
+- [发现管道](/official/Reference/WinNamedPipesLib/#discovering-pipes) -- 驱动动态管道列表UI的 **Timer** 轮询循环
+- [NamedPipeClientConnection 类](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) -- 由 [**Connect**](#connect) 返回的每连接对象
+- [NamedPipeServer 类](/official/Reference/WinNamedPipesLib/NamedPipeServer) -- 服务器端对应项

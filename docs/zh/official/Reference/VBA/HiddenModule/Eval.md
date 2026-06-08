@@ -2,27 +2,36 @@
 title: Eval
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/Eval
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '2674000f-3506-48d4-a0df-cf4cd38589a1'
+  PropagateID: '2674000f-3506-48d4-a0df-cf4cd38589a1'
+  ReservedCode1: '708fd20f-2d75-4621-a4a3-89af00e5bb3a'
+  ReservedCode2: '708fd20f-2d75-4621-a4a3-89af00e5bb3a'
 ---
+
 # Eval
 
-Compiles and evaluates a twinBASIC expression supplied as a string, returning the result as a **Variant**.
+编译并计算以字符串形式提供的twinBASIC表达式，将结果作为**Variant**返回。
 
-Syntax: **Eval(** *Expression* **)** **As Variant**
+语法：**Eval(** *Expression* **)** **As Variant**
 
 *Expression*
-: *required* **String**. A twinBASIC expression that resolves to a value --- for example, `"2 + 2"`, `"Sqr(2)"`, or `"UCase(""hello"")"`.
+: *必需* **String**。一个可解析为值的twinBASIC表达式——例如`"2 + 2"`、`"Sqr(2)"`或`"UCase(""hello"")"`。
 
-A fresh [**TbExpressionService**](/official/Reference/VBA/TbExpressionService/) is built for every call, with the standard library binder registered so the standard runtime functions ([**Sin**](/official/Reference/VBA/Math/Sin), [**Sqr**](/official/Reference/VBA/Math/Sqr), [**Len**](/official/Reference/VBA/Strings/Len), [**CStr**](/official/Reference/VBA/Conversion/CStr), and the rest) are visible. The expression is then compiled and evaluated once, and the service is discarded.
+每次调用都会构建一个新的[**TbExpressionService**](/official/Reference/VBA/TbExpressionService/)，并注册标准库绑定器，使标准运行时函数（[**Sin**](/official/Reference/VBA/Math/Sin)、[**Sqr**](/official/Reference/VBA/Math/Sqr)、[**Len**](/official/Reference/VBA/Strings/Len)、[**CStr**](/official/Reference/VBA/Conversion/CStr)等）可见。表达式随后被编译和计算一次，服务即被丢弃。
 
-For repeated evaluation of the same source, or for expressions that need to see application objects, construct the service explicitly and reuse a compiled [**ITbExpression**](/official/Reference/VBA/TbExpressionService/#itbexpression-interface).
+对于重复计算同一源代码，或需要访问应用程序对象的表达式，请显式构建服务并重用已编译的[**ITbExpression**](/official/Reference/VBA/TbExpressionService/#itbexpression-interface)。
 
-### Example
+### 示例
 
 ```vb
 Debug.Print Eval("2 * (Sqr(2) + 1)")    ' 4.82842712474619
 Debug.Print Eval("UCase(""hello"")")     ' "HELLO"
 ```
 
-### See Also
+### 另请参阅
 
-- [ExpressionService module](/official/Reference/VBA/TbExpressionService/)
+- [ExpressionService模块](/official/Reference/VBA/TbExpressionService/)

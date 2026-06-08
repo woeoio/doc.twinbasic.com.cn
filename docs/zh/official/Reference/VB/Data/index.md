@@ -1,12 +1,23 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'db6ee4ed-b437-4c26-be57-d1782d9ac2b1'
+  PropagateID: 'db6ee4ed-b437-4c26-be57-d1782d9ac2b1'
+  ReservedCode1: 'e69cc9a1-abe3-428c-9106-54f73d7dabe0'
+  ReservedCode2: 'e69cc9a1-abe3-428c-9106-54f73d7dabe0'
 ---
-title: Data
+
+---
+title: "Data 数据控件"
 parent: VB Package
 permalink: /tB/Packages/VB/Data/
 ---
 
-# Data class
+# Data 类
 
-A **Data** control is a Win32 native control that opens a DAO database and exposes a single recordset to other controls on the form through data binding. It draws a strip of four arrow-shaped buttons --- **Move-First**, **Move-Previous**, **Move-Next**, **Move-Last** --- with a centred [**Caption**](#caption) between them, and lets the user step through the recordset with the mouse. The control is normally placed on a **Form** or **UserControl** at design time. Setting [**DatabaseName**](#databasename) and [**RecordSource**](#recordsource) is enough to populate it; the recordset opens automatically the first time the control is created. The default event is [**Validate**](#validate); the control has no usable default property.
+**Data**控件是一个Win32原生控件，用于打开DAO数据库并通过数据绑定向窗体上的其他控件公开单个记录集。它绘制一条包含四个箭头按钮的条——**Move-First**、**Move-Previous**、**Move-Next**、**Move-Last**——中间居中显示[**Caption**](#caption)，允许用户用鼠标浏览记录集。该控件通常在设计时放置在**Form**或**UserControl**上。设置[**DatabaseName**](#databasename)和[**RecordSource**](#recordsource)即可填充控件；记录集在控件首次创建时自动打开。默认事件是[**Validate**](#validate)；该控件没有可用的默认属性。
 
 ```vb
 Private Sub Form_Load()
@@ -25,413 +36,413 @@ End Sub
 ```
 
 
-## Connecting to a database
+## 连接数据库
 
-[**DefaultType**](#defaulttype) selects the database engine ([**DatabaseTypeConstants**](/official/Reference/VBRUN/Constants/DatabaseTypeConstants)):
+[**DefaultType**](#defaulttype)选择数据库引擎（[**DatabaseTypeConstants**](/official/Reference/VBRUN/Constants/DatabaseTypeConstants)）：
 
-| Constant       | Value | Engine                                               |
-|----------------|-------|------------------------------------------------------|
-| **vbUseJet**   | 2     | Microsoft Jet (the classic VB6 default).             |
-| **vbUseODBC**  | 1     | An ODBC data source.                                 |
-| **vbUseACE**   | 3     | The Microsoft Access ACE engine. New in twinBASIC.   |
+| 常量            | 值 | 引擎                                             |
+|-----------------|-----|--------------------------------------------------|
+| **vbUseJet**    | 2   | Microsoft Jet（经典VB6默认值）。                   |
+| **vbUseODBC**   | 1   | ODBC数据源。                                      |
+| **vbUseACE**    | 3   | Microsoft Access ACE引擎。twinBASIC新增。           |
 
-[**DatabaseName**](#databasename) gives the path to the database file (for Jet/ACE) or the DSN (for ODBC); [**Connect**](#connect) is the connection string. The Jet-flavoured default `"Access 2000;"` is rewritten to `"MS Access;"` before the database is opened, matching the VB6 behaviour. [**Exclusive**](#exclusive) and [**ReadOnly**](#readonly) are passed through to **OpenDatabase**, and [**Options**](#options) is the DAO option bit-mask. [**DefaultCursorType**](#defaultcursortype) is consulted only when **DefaultType** is **vbUseODBC**.
+[**DatabaseName**](#databasename)提供数据库文件路径（用于Jet/ACE）或DSN（用于ODBC）；[**Connect**](#connect)是连接字符串。Jet风格的默认值`"Access 2000;"`在数据库打开前被改写为`"MS Access;"`，与VB6行为匹配。[**Exclusive**](#exclusive)和[**ReadOnly**](#readonly)传递给**OpenDatabase**，[**Options**](#options)是DAO选项位掩码。[**DefaultCursorType**](#defaultcursortype)仅在**DefaultType**为**vbUseODBC**时使用。
 
-[**RecordSource**](#recordsource) is the table name (or SQL statement) opened against the database, and [**RecordsetType**](#recordsettype) chooses between table, dynaset, and snapshot ([**RecordsetTypeConstants**](/official/Reference/VBRUN/Constants/RecordsetTypeConstants)). Calling [**Refresh**](#refresh) reopens the recordset using the current values of these properties --- typically after one of them is changed at run time.
+[**RecordSource**](#recordsource)是针对数据库打开的表名（或SQL语句），[**RecordsetType**](#recordsettype)在表、动态集和快照之间选择（[**RecordsetTypeConstants**](/official/Reference/VBRUN/Constants/RecordsetTypeConstants)）。调用[**Refresh**](#refresh)使用这些属性的当前值重新打开记录集——通常在运行时更改其中一个属性后调用。
 
-The opened objects are exposed read-only as [**Database**](#database) and read/write as [**Recordset**](#recordset). Assigning a new value to **Recordset** disconnects from the current database, adopts the new recordset, and re-binds every dependent control.
+打开的对象以只读方式通过[**Database**](#database)公开，以读写方式通过[**Recordset**](#recordset)公开。为**Recordset**赋新值会断开与当前数据库的连接，采用新的记录集，并重新绑定所有依赖控件。
 
-## Bound controls
+## 绑定控件
 
-Other controls become *data-bound* by setting their **DataSource** to this **Data** control and their **DataField** to the name of a field in [**Recordset**](#recordset). A bound control reads its value from that field whenever the current record changes, and writes user edits back into the field as part of the next save. The **Data** control mediates both directions, raising [**Reposition**](#reposition) after the bound controls have re-synced and [**Validate**](#validate) before any operation that would discard pending edits.
+其他控件通过将其**DataSource**设置为此**Data**控件、将其**DataField**设置为[**Recordset**](#recordset)中的字段名来成为*数据绑定*控件。绑定控件在当前记录更改时从该字段读取值，并在下次保存时将用户编辑写回字段。**Data**控件调解双向操作，在绑定控件重新同步后引发[**Reposition**](#reposition)，在丢弃未保存编辑的操作之前引发[**Validate**](#validate)。
 
 ```vb
-' At design time these are normally set in the property sheet,
-' but they can also be assigned in code:
+' 设计时这些通常在属性窗口中设置，
+' 但也可以在代码中赋值：
 Set txtTitle.DataSource = Data1
 txtTitle.DataField = "Title"
 Set chkInPrint.DataSource = Data1
 chkInPrint.DataField = "InPrint"
 ```
 
-## Navigation and end-of-file behaviour
+## 导航和文件末尾行为
 
-The four buttons step through the recordset with **MoveFirst**, **MovePrevious**, **MoveNext**, and **MoveLast**. [**BOFAction**](#bofaction) controls what happens when the user moves past the first record ([**DataBOFconstants**](/official/Reference/VBRUN/Constants/DataBOFconstants)): **vbMoveFirst** (default) snaps back to the first record; **vbBOF** lets the recordset sit on the BOF marker. [**EOFAction**](#eofaction) controls what happens past the last record ([**DataEOFConstants**](/official/Reference/VBRUN/Constants/DataEOFConstants)): **vbMoveLast** (default), **vbEOF**, or **vbAddNew** --- which clears every bound control and starts a new record.
+四个按钮通过**MoveFirst**、**MovePrevious**、**MoveNext**和**MoveLast**浏览记录集。[**BOFAction**](#bofaction)控制用户移过第一条记录时发生什么（[**DataBOFconstants**](/official/Reference/VBRUN/Constants/DataBOFconstants)）：**vbMoveFirst**（默认）跳回第一条记录；**vbBOF**让记录集停留在BOF标记上。[**EOFAction**](#eofaction)控制移过最后一条记录时发生什么（[**DataEOFConstants**](/official/Reference/VBRUN/Constants/DataEOFConstants)）：**vbMoveLast**（默认）、**vbEOF**或**vbAddNew**——后者清除所有绑定控件并开始新记录。
 
-## The validate / save cycle
+## 验证/保存周期
 
-Whenever the control is about to leave the current record --- through a navigation button, a programmatic move, **Refresh**, **Update**, **Delete**, or unloading the form --- it fires [**Validate**](#validate) with an *Action* argument from [**DataValidateConstants**](/official/Reference/VBRUN/Constants/DataValidateConstants) and a *Save* flag indicating whether bound controls hold unsaved edits. Setting *Action* to **vbDataActionCancel** (0) cancels the operation and keeps the current record. If *Save* is non-zero on return and the operation proceeds, the bound controls are flushed back into the recordset before the move occurs.
+每当控件即将离开当前记录——通过导航按钮、编程移动、**Refresh**、**Update**、**Delete**或卸载窗体——它会引发[**Validate**](#validate)，带有来自[**DataValidateConstants**](/official/Reference/VBRUN/Constants/DataValidateConstants)的*Action*参数和指示绑定控件是否持有未保存编辑的*Save*标志。将*Action*设置为**vbDataActionCancel** (0)取消操作并保留当前记录。如果返回时*Save*非零且操作继续执行，绑定控件会在移动发生前将数据写回记录集。
 
-[**Reposition**](#reposition) is raised after a successful move, with the bound controls already showing the new record. [**UpdateControls**](#updatecontrols) re-pulls the current record into the bound controls without firing **Reposition**, and [**UpdateRecord**](#updaterecord) is reserved for explicit save-without-move (currently unimplemented).
+[**Reposition**](#reposition)在成功移动后引发，此时绑定控件已显示新记录。[**UpdateControls**](#updatecontrols)在不引发**Reposition**的情况下将当前记录重新拉取到绑定控件中，[**UpdateRecord**](#updaterecord)保留用于显式保存而不移动（当前未实现）。
 
-## Properties
+## 属性
 
 ### Appearance
 
-Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+确定操作系统如何绘制控件的边框。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。
 
 ### BackColor
 
-The fill colour of the band behind the [**Caption**](#caption), as an **OLE_COLOR**. Defaults to the system window-background colour.
+[**Caption**](#caption)后面条带的填充颜色，类型为**OLE_COLOR**。默认为系统窗口背景色。
 
 ### BOFAction
 
-Controls what happens when the user moves past the start of the recordset. A member of [**DataBOFconstants**](/official/Reference/VBRUN/Constants/DataBOFconstants): **vbMoveFirst** (0, default --- snap back to the first record) or **vbBOF** (1 --- let the recordset sit on the beginning-of-file marker, leaving bound controls cleared).
+控制用户移过记录集开头时发生什么。[**DataBOFconstants**](/official/Reference/VBRUN/Constants/DataBOFconstants)的成员：**vbMoveFirst** (0，默认——跳回第一条记录)或**vbBOF** (1——让记录集停留在文件开头标记上，绑定控件保持清空)。
 
 ### Caption
 
-The text drawn in the band between the navigation buttons. **String**, default `"Data"`. The string is read directly from the underlying window --- assigning to **Caption** is reflected immediately.
+导航按钮之间条带中绘制的文本。**String**，默认`"Data"`。字符串直接从底层窗口读取——赋值给**Caption**会立即反映。
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
 ### CausesValidation
 
-Determines whether the previously focused control's **Validate** event runs before this control receives the focus. **Boolean**, default **True**. This refers to the *previous* control's validation; for the **Data** control's own [**Validate**](#validate) event, see the [validate / save cycle](#the-validate--save-cycle) section above.
+确定先前获得焦点的控件的**Validate**事件是否在此控件获得焦点之前运行。**Boolean**，默认**True**。这指的是*先前*控件的验证；关于**Data**控件自身的[**Validate**](#validate)事件，请参见上方的[验证/保存周期](#the-validate--save-cycle)部分。
 
 ### Connect
 
-The connection string passed to **OpenDatabase**. **String**, default `"Access 2000;"`. The default value is rewritten to `"MS Access;"` before the database is opened, matching the VB6 behaviour. Used together with [**DatabaseName**](#databasename), [**Exclusive**](#exclusive), [**ReadOnly**](#readonly), and [**Options**](#options).
+传递给**OpenDatabase**的连接字符串。**String**，默认`"Access 2000;"`。默认值在数据库打开前被改写为`"MS Access;"`，与VB6行为匹配。与[**DatabaseName**](#databasename)、[**Exclusive**](#exclusive)、[**ReadOnly**](#readonly)和[**Options**](#options)一起使用。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a Data control. Always **vbDataControl**.
+只读的[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值，将此控件标识为Data控件。始终为**vbDataControl**。
 
 ### Database
 
-The currently open DAO database. Read-only --- assign to [**Recordset**](#recordset) or call [**Refresh**](#refresh) to change it.
+当前打开的DAO数据库。只读——赋值给[**Recordset**](#recordset)或调用[**Refresh**](#refresh)来更改。
 
 ### DatabaseName
 
-The path to the database file (for **vbUseJet** and **vbUseACE**) or the DSN (for **vbUseODBC**). **String**. Combined with [**Connect**](#connect), [**Exclusive**](#exclusive), [**ReadOnly**](#readonly), and [**Options**](#options) to open the database the first time the control is realised, or whenever [**Refresh**](#refresh) is called.
+数据库文件路径（用于**vbUseJet**和**vbUseACE**）或DSN（用于**vbUseODBC**）。**String**。与[**Connect**](#connect)、[**Exclusive**](#exclusive)、[**ReadOnly**](#readonly)和[**Options**](#options)组合使用，在控件首次实例化或调用[**Refresh**](#refresh)时打开数据库。
 
 ### DefaultCursorType
 
-The cursor driver to use when [**DefaultType**](#defaulttype) is **vbUseODBC**. A member of [**DefaultCursorTypeConstants**](/official/Reference/VBRUN/Constants/DefaultCursorTypeConstants): **vbUseDefaultCursor** (0, default), **vbUseODBCCursor** (1), or **vbUseServersideCursor** (2). Ignored for Jet and ACE connections.
+当[**DefaultType**](#defaulttype)为**vbUseODBC**时使用的游标驱动程序。[**DefaultCursorTypeConstants**](/official/Reference/VBRUN/Constants/DefaultCursorTypeConstants)的成员：**vbUseDefaultCursor** (0，默认)、**vbUseODBCCursor** (1)或**vbUseServersideCursor** (2)。Jet和ACE连接忽略此属性。
 
 ### DefaultType
 
-The database engine to use. A member of [**DatabaseTypeConstants**](/official/Reference/VBRUN/Constants/DatabaseTypeConstants): **vbUseJet** (2, default), **vbUseODBC** (1), or **vbUseACE** (3 --- new in twinBASIC, uses the Access ACE engine). Read once when the recordset is opened.
+要使用的数据库引擎。[**DatabaseTypeConstants**](/official/Reference/VBRUN/Constants/DatabaseTypeConstants)的成员：**vbUseJet** (2，默认)、**vbUseODBC** (1)或**vbUseACE** (3——twinBASIC新增，使用Access ACE引擎)。在记录集打开时读取一次。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the control is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+控件被拖放时用作鼠标光标的**StdPicture**（参见[**Drag**](#drag)和[**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+控件是否应在用户按住鼠标时自动拖动。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants)的成员：**vbManual** (0，默认——从代码调用[**Drag**](#drag))或**vbAutomatic** (1)。
 
 ### Enabled
 
-Determines whether the control accepts user input. A disabled **Data** control still shows its caption but draws the navigation buttons dimmed and ignores keyboard and mouse interaction. **Boolean**, default **True**.
+确定控件是否接受用户输入。禁用的**Data**控件仍显示标题，但将导航按钮绘制为变暗状态并忽略键盘和鼠标交互。**Boolean**，默认**True**。
 
 ### EOFAction
 
-Controls what happens when the user moves past the end of the recordset. A member of [**DataEOFConstants**](/official/Reference/VBRUN/Constants/DataEOFConstants): **vbMoveLast** (0, default --- snap back to the last record), **vbEOF** (1 --- sit on the end-of-file marker), or **vbAddNew** (2 --- clear all bound controls and start a new record ready for editing).
+控制用户移过记录集末尾时发生什么。[**DataEOFConstants**](/official/Reference/VBRUN/Constants/DataEOFConstants)的成员：**vbMoveLast** (0，默认——跳回最后一条记录)、**vbEOF** (1——停留在文件末尾标记上)或**vbAddNew** (2——清除所有绑定控件并开始新记录以便编辑)。
 
 ### Exclusive
 
-When **True**, the database is opened with exclusive access (no other process or **Data** control can open it). **Boolean**, default **False**.
+当为**True**时，数据库以独占方式打开（其他进程或**Data**控件无法打开它）。**Boolean**，默认**False**。
 
 ### Font
 
-The **StdFont** used to render [**Caption**](#caption). The convenience properties **FontName**, **FontSize**, **FontBold**, **FontItalic**, **FontStrikethru**, and **FontUnderline** read or write the corresponding members of this object.
+用于渲染[**Caption**](#caption)的**StdFont**。便捷属性**FontName**、**FontSize**、**FontBold**、**FontItalic**、**FontStrikethru**和**FontUnderline**读写此对象的相应成员。
 
 ### ForeColor
 
-The text colour for the caption, as an **OLE_COLOR**. Defaults to the system window-text colour. A disabled control draws the caption in the system grey-text colour instead.
+标题的文本颜色，类型为**OLE_COLOR**。默认为系统窗口文本色。禁用的控件使用系统灰色文本色绘制标题。
 
 ### Height
 
-The control's height, in twips by default (or in the container's **ScaleMode** units). **Single**.
+控件的高度，默认以缇为单位（或使用容器的**ScaleMode**单位）。**Single**。
 
 ### hWnd
 
-The Win32 window handle for the underlying control, as a **LongPtr**. Read-only. Useful for passing to API functions.
+底层控件的Win32窗口句柄，类型为**LongPtr**。只读。可用于传递给API函数。
 
 ### Index
 
-When the control is part of a control array, the **Long** zero-based index of this instance within the array. Read-only at run time.
+当控件是控件数组的一部分时，此实例在数组中的从零开始的**Long**索引。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the control. **Single**.
+从容器的左边缘到控件左边缘的水平距离。**Single**。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the control.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针位于控件上时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+指针位于控件上时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Name
 
-The unique design-time name of the control on its parent form. Read-only at run time.
+控件在其父窗体上的唯一设计时名称。运行时只读。
 
 ### Negotiate
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中未实现。
 :::
 
 ### OLEDropMode
 
-How the control responds to OLE drops. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a **Data** control.
+控件如何响应OLE放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants)的受限成员：**vbOLEDropNone**或**vbOLEDropManual**。**Data**控件不支持自动放置模式。
 
 ### Options
 
-A bit-mask of DAO **OpenRecordset** options (e.g. `dbReadOnly`, `dbAppendOnly`, `dbDenyWrite`). **Long**, default `0`. Read once when the recordset is opened.
+DAO **OpenRecordset**选项的位掩码（如`dbReadOnly`、`dbAppendOnly`、`dbDenyWrite`）。**Long**，默认`0`。在记录集打开时读取一次。
 
 ### Parent
 
-A reference to the **Form** (or **UserControl**) that contains this control. Read-only.
+对包含此控件的**Form**（或**UserControl**）的引用。只读。
 
 ### ReadOnly
 
-When **True**, the database is opened read-only and edits to bound fields are prevented. **Boolean**, default **False**. Note that this is a reserved word in twinBASIC and must be referenced through a member access (`Data1.ReadOnly`) or escaped (`[ReadOnly]`) in declarations.
+当为**True**时，数据库以只读方式打开，阻止对绑定字段的编辑。**Boolean**，默认**False**。注意这是twinBASIC中的保留字，必须通过成员访问（`Data1.ReadOnly`）或在声明中转义（`[ReadOnly]`）来引用。
 
 ### Recordset
 
-The DAO recordset currently populating the bound controls. **Object** (a `DAO.Recordset` at run time).
+当前填充绑定控件的DAO记录集。**Object**（运行时为`DAO.Recordset`）。
 
-Syntax: *object*.**Recordset** [ = *recordset* ]
+语法：*object*.**Recordset** [ = *recordset* ]
 
-Reading **Recordset** returns the open recordset, or **Nothing** if the control has not yet connected. Setting **Recordset** with **Set** detaches from the current database, adopts the supplied recordset (and its parent database), copies its [**DatabaseName**](#databasename), [**Connect**](#connect), [**ReadOnly**](#readonly), [**RecordsetType**](#recordsettype), and [**RecordSource**](#recordsource) values back onto the control, re-binds every dependent field, and raises [**Reposition**](#reposition).
+读取**Recordset**返回打开的记录集，如果控件尚未连接则返回**Nothing**。使用**Set**设置**Recordset**会断开与当前数据库的连接，采用提供的记录集（及其父数据库），将其[**DatabaseName**](#databasename)、[**Connect**](#connect)、[**ReadOnly**](#readonly)、[**RecordsetType**](#recordsettype)和[**RecordSource**](#recordsource)值复制回控件，重新绑定所有依赖字段，并引发[**Reposition**](#reposition)。
 
 ### RecordsetType
 
-The kind of recordset to open. A member of [**RecordsetTypeConstants**](/official/Reference/VBRUN/Constants/RecordsetTypeConstants): **vbRSTypeTable** (0), **vbRSTypeDynaset** (1, default), or **vbRSTypeSnapShot** (2). Read once when the recordset is opened.
+要打开的记录集类型。[**RecordsetTypeConstants**](/official/Reference/VBRUN/Constants/RecordsetTypeConstants)的成员：**vbRSTypeTable** (0)、**vbRSTypeDynaset** (1，默认)或**vbRSTypeSnapShot** (2)。在记录集打开时读取一次。
 
 ### RecordSource
 
-The table name, query name, or SQL statement that supplies the recordset. **String**. Read once when the recordset is opened.
+提供记录集的表名、查询名或SQL语句。**String**。在记录集打开时读取一次。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中未实现。
 :::
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**.
+控件在窗体TAB键导航顺序中的位置。**Long**。
 
 ### TabStop
 
-Whether the user can reach the control by pressing the **TAB** key. **Boolean**, default **True**. A disabled control is skipped regardless of this setting.
+用户是否可以通过按**TAB**键到达控件。**Boolean**，默认**True**。禁用的控件无论此设置如何都会被跳过。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the control. Ignored by the framework.
+应用程序可用于将自定义数据与控件关联的自由格式**String**。框架忽略此属性。
 
 ### ToolTipText
 
-A multi-line **String** displayed as a tooltip when the user hovers over the control.
+当用户将鼠标悬停在控件上时作为工具提示显示的多行**String**。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the control. **Single**.
+从容器顶部到控件顶部的垂直距离。**Single**。
 
 ### Visible
 
-Whether the control is shown. **Boolean**, default **True**.
+控件是否显示。**Boolean**，默认**True**。
 
 ### VisualStyles
 
-Whether the OS theme engine should be used when drawing the navigation buttons. **Boolean**, default **True**.
+绘制导航按钮时是否使用操作系统主题引擎。**Boolean**，默认**True**。
 
 ### WhatsThisHelpID
 
-A **Long** identifying a "What's This?" help-pop-up topic in the application's help file. See [**ShowWhatsThis**](#showwhatsthis).
+标识应用程序帮助文件中"这是什么？"弹出帮助主题的**Long**值。参见[**ShowWhatsThis**](#showwhatsthis)。
 
 ### Width
 
-The control's width. **Single**.
+控件的宽度。**Single**。
 
-## Methods
+## 方法
 
 ### Drag
 
-Begins, completes, or cancels a manual drag-and-drop operation. Typically called from a [**MouseDown**](#mousedown) handler when [**DragMode**](#dragmode) is **vbManual**.
+开始、完成或取消手动拖放操作。通常在[**DragMode**](#dragmode)为**vbManual**时从[**MouseDown**](#mousedown)处理程序中调用。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants)的成员：**vbCancel** (0)、**vbBeginDrag** (1，默认)或**vbEndDrag** (2)。
 
 ### Move
 
-Repositions and optionally resizes the control in a single call.
+在单次调用中重新定位并可选地调整控件大小。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**值。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the control, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject**.
+从控件发起OLE拖动操作，引发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### Refresh
 
-Saves any pending edits in bound controls, closes the current recordset, and reopens it from the current values of [**DatabaseName**](#databasename), [**Connect**](#connect), [**RecordSource**](#recordsource), [**RecordsetType**](#recordsettype), [**Exclusive**](#exclusive), [**ReadOnly**](#readonly), and [**Options**](#options). Bound controls are then re-synced and [**Reposition**](#reposition) is raised.
+保存绑定控件中所有未保存的编辑，关闭当前记录集，并使用[**DatabaseName**](#databasename)、[**Connect**](#connect)、[**RecordSource**](#recordsource)、[**RecordsetType**](#recordsettype)、[**Exclusive**](#exclusive)、[**ReadOnly**](#readonly)和[**Options**](#options)的当前值重新打开。绑定控件随后重新同步并引发[**Reposition**](#reposition)。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### SetFocus
 
-Moves the input focus to the control. The control must be both [**Visible**](#visible) and [**Enabled**](#enabled), or run-time error 5 (*Invalid procedure call or argument*) is raised.
+将输入焦点移至控件。控件必须同时[**Visible**](#visible)和[**Enabled**](#enabled)，否则引发运行时错误5（*Invalid procedure call or argument*）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### ShowWhatsThis
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中未实现。
 :::
 
-Displays the topic identified by [**WhatsThisHelpID**](#whatsthishelpid) as a "What's This?" pop-up.
+以"这是什么？"弹出的方式显示由[**WhatsThisHelpID**](#whatsthishelpid)标识的主题。
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### UpdateControls
 
-Re-reads the values of the current record into every bound control, discarding any unsaved edits. Useful as a manual "revert" when validation has rejected an edit. Does not raise [**Reposition**](#reposition).
+将当前记录的值重新读入所有绑定控件，丢弃任何未保存的编辑。当验证拒绝编辑时作为手动"还原"很有用。不引发[**Reposition**](#reposition)。
 
-Syntax: *object*.**UpdateControls**
+语法：*object*.**UpdateControls**
 
 ### UpdateRecord
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC. In VB6 this saves bound-control edits to the recordset without firing [**Validate**](#validate). Until it is implemented, force a save by calling **Recordset.Update** directly, or trigger a navigation/refresh that goes through the [validate / save cycle](#the-validate--save-cycle).
+保留用于与VB6兼容；目前在twinBASIC中未实现。在VB6中，这会将绑定控件的编辑保存到记录集而不引发[**Validate**](#validate)。在实现之前，可通过直接调用**Recordset.Update**强制保存，或触经过[验证/保存周期](#the-validate--save-cycle)的导航/刷新。
 :::
 
-Syntax: *object*.**UpdateRecord**
+语法：*object*.**UpdateRecord**
 
 ### ZOrder
 
-Brings the control to the front or back of its sibling stack.
+将控件置于其同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront** (0，默认)或**vbSendToBack** (1)。
 
-## Events
+## 事件
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+手动拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+手动拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### Error
 
 ::: info
-Reserved for compatibility with VB6; not currently raised in twinBASIC. In VB6 this event is raised when an asynchronous DAO operation fails outside of a code path the application can intercept; it is not needed for synchronous errors that arise through normal `On Error` handling.
+保留用于与VB6兼容；目前在twinBASIC中不会引发。在VB6中，当异步DAO操作在应用程序可拦截的代码路径之外失败时引发此事件；通过正常的`On Error`处理产生的同步错误不需要此事件。
 :::
 
-Syntax: *object*\_**Error**( *DataErr* **As Integer**, *Response* **As Integer** )
+语法：*object*\_**Error**( *DataErr* **As Integer**, *Response* **As Integer** )
 
 ### Initialize
 
-Raised once, immediately after the underlying window is created and before the recordset is opened. Useful for setting [**DatabaseName**](#databasename), [**RecordSource**](#recordsource), or [**Connect**](#connect) from code in time for the first connection. New in twinBASIC --- VB6 had no equivalent on the **Data** control.
+在底层窗口创建后且记录集打开前立即引发一次。用于从代码及时设置[**DatabaseName**](#databasename)、[**RecordSource**](#recordsource)或[**Connect**](#connect)以进行首次连接。twinBASIC新增——VB6在**Data**控件上没有等效功能。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the control.
+用户在控件上按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the control.
+光标在控件上移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the control.
+用户在控件上释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseWheel
 
-Raised when the mouse wheel turns over the control. New in twinBASIC.
+鼠标滚轮在控件上滚动时引发。twinBASIC新增。
 
-Syntax: *object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
+语法：*object*\_**MouseWheel**( *Delta* **As Integer**, *Horizontal* **As Boolean** )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+OLE拖动操作完成时在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+用户将数据放置到目标控件上时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+OLE拖动经过目标控件时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标请求已注册但尚未提供的数据格式时在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects.
+OLE拖动开始时在源控件上引发，以便应用程序填充**DataObject**并选择允许的效果。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
 
 ### Reposition
 
-Raised after the current record has changed --- through a navigation button, a programmatic move on [**Recordset**](#recordset), an assignment to **Recordset**, or [**Refresh**](#refresh) --- and after every bound control has been re-synced to the new record. The point at which to update derived UI such as a "Record *n* of *m*" caption.
+在当前记录更改后引发——通过导航按钮、对[**Recordset**](#recordset)的编程移动、对**Recordset**的赋值或[**Refresh**](#refresh)——且每个绑定控件已重新同步到新记录之后。这是更新派生UI（如"第 *n* 条，共 *m* 条"标题）的时机。
 
-Syntax: *object*\_**Reposition**( )
+语法：*object*\_**Reposition**( )
 
 ### Resize
 
 ::: info
-Reserved for compatibility with VB6; not currently raised in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中不会引发。
 :::
 
-Syntax: *object*\_**Resize**( )
+语法：*object*\_**Resize**( )
 
 ### Validate
 
-Raised before any operation that would leave the current record --- a navigation button, a programmatic move, **Update**, **Delete**, **Refresh**, **Find**, an **AddNew**, an explicit close, or unloading the form. **Default event.**
+在任何将离开当前记录的操作之前引发——导航按钮、编程移动、**Update**、**Delete**、**Refresh**、**Find**、**AddNew**、显式关闭或卸载窗体。**默认事件。**
 
-Syntax: *object*\_**Validate**( *Action* **As Integer**, *Save* **As Integer** )
+语法：*object*\_**Validate**( *Action* **As Integer**, *Save* **As Integer** )
 
 *Action*
-: A member of [**DataValidateConstants**](/official/Reference/VBRUN/Constants/DataValidateConstants) identifying the operation that triggered validation. Setting *Action* to **vbDataActionCancel** (0) cancels the operation and keeps the current record.
+: [**DataValidateConstants**](/official/Reference/VBRUN/Constants/DataValidateConstants)的成员，标识触发验证的操作。将*Action*设置为**vbDataActionCancel** (0)取消操作并保留当前记录。
 
 *Save*
-: Non-zero on entry when bound controls hold unsaved edits. Set it to zero before returning to discard those edits without writing them back; leave it non-zero to flush them into the recordset before the operation proceeds.
+: 进入时，当绑定控件持有未保存编辑时为非零。返回前将其设置为零可丢弃这些编辑而不写回；保持非零可在操作继续执行前将编辑写入记录集。

@@ -1,16 +1,24 @@
----
+﻿---
 title: WebView2RequestHeaders
-parent: WebView2 Package
+parent: "WebView2 包"
 permalink: /tB/Packages/WebView2/WebView2RequestHeaders
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '53f43093-1949-4d2f-8902-ac479402d073'
+  PropagateID: '53f43093-1949-4d2f-8902-ac479402d073'
+  ReservedCode1: '4dfa700a-f00b-454a-9dbc-1eb5130834d6'
+  ReservedCode2: '4dfa700a-f00b-454a-9dbc-1eb5130834d6'
 ---
 
-# WebView2RequestHeaders class
-The mutable HTTP-request-header collection for a navigation or a web-resource request. Reached two ways:
+# WebView2RequestHeaders 类
+导航或 Web 资源请求的可变 HTTP 请求头集合。两种访问方式：
 
-- As the **RequestHeaders** argument of the [**NavigationStarting**](/official/Reference/WebView2/WebView2/#navigationstarting) event --- the headers about to be sent for the page navigation. Mutations made before the event handler returns are transmitted.
-- Through [**WebView2Request.Headers**](/official/Reference/WebView2/WebView2Request#headers) when handling a [**WebResourceRequested**](/official/Reference/WebView2/WebView2/#webresourcerequested) event.
+- 作为 [**NavigationStarting**](/official/Reference/WebView2/WebView2/#navigationstarting) 事件的 **RequestHeaders** 参数——即将为页面导航发送的头。在事件处理程序返回前所做的更改会被传输。
+- 通过 [**WebView2Request.Headers**](/official/Reference/WebView2/WebView2Request#headers) 在处理 [**WebResourceRequested**](/official/Reference/WebView2/WebView2/#webresourcerequested) 事件时访问。
 
-The collection is enumerable: a `For Each` loop yields one [**WebView2Header**](/official/Reference/WebView2/WebView2Header) per entry.
+集合可枚举：`For Each` 循环对每个条目产出一个 [**WebView2Header**](/official/Reference/WebView2/WebView2Header)。
 
 ```vb
 Private Sub WebView21_NavigationStarting( _
@@ -26,59 +34,59 @@ Private Sub WebView21_NavigationStarting( _
 End Sub
 ```
 
-## Methods
+## 方法
 
 ### AppendHeader
 
-Sets the value of a header --- replacing the existing value if present, otherwise adding it. The underlying runtime call is `SetHeader`, so existing values for the named header are overwritten rather than appended; the method's name preserves twinBASIC's wrapping convention.
+设置头的值——如已存在则替换，否则添加。底层运行时调用是 `SetHeader`，因此已存在的同名头值会被覆盖而非追加；方法名保留了 twinBASIC 的封装约定。
 
-Syntax: *object*.**AppendHeader** *name*, *value*
+语法：*object*.**AppendHeader** *name*, *value*
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
 *value*
-: *required* A **String** header value.
+: *必需* 一个 **String** 头部值。
 
 ### Contains
 
-Indicates whether a header with the given name is present in the collection.
+指示集合中是否存在具有给定名称的头。
 
-Syntax: *object*.**Contains** ( *name* ) **As Boolean**
+语法：*object*.**Contains** ( *name* ) **As Boolean**
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
 ### GetHeader
 
-Returns the value of the named header.
+返回指定名称头的值。
 
-Syntax: *object*.**GetHeader** ( *name* ) **As String**
+语法：*object*.**GetHeader** ( *name* ) **As String**
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
 ### GetHeaders
 
-Returns a [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) iterator restricted to the headers that match *name* --- useful for headers that may have multiple values.
+返回一个 [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) 迭代器，限定为匹配 *name* 的头——适用于可能有多个值的头。
 
-Syntax: *object*.**GetHeaders** ( *name* ) **As WebView2HeadersCollection**
+语法：*object*.**GetHeaders** ( *name* ) **As WebView2HeadersCollection**
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
 ### RemoveHeader
 
-Removes the named header from the collection.
+从集合中移除指定名称的头。
 
-Syntax: *object*.**RemoveHeader** *name*
+语法：*object*.**RemoveHeader** *name*
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
-## Iteration
+## 迭代
 
-A `For Each` loop over the collection produces every header in turn:
+对集合执行 `For Each` 循环依次产出每个头：
 
 ```vb
 Dim h As WebView2Header
@@ -87,4 +95,4 @@ For Each h In RequestHeaders
 Next
 ```
 
-The enumerator is forward-only and cannot be reset. See [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) for the iteration object.
+枚举器是仅向前的且无法重置。参见 [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) 了解迭代对象。

@@ -2,13 +2,21 @@
 title: Do...Loop
 parent: Statements
 permalink: /tB/Core/Do-Loop
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '2840f531-7540-4905-be72-4941fdca4d55'
+  PropagateID: '2840f531-7540-4905-be72-4941fdca4d55'
+  ReservedCode1: '3ac0deeb-d524-4549-b58e-4f72d63af992'
+  ReservedCode2: '3ac0deeb-d524-4549-b58e-4f72d63af992'
 ---
 
 # Do...Loop
 
-Repeats a block of statements while a condition is **True** or until a condition becomes **True**.
+当条件为 **True** 时或直到条件变为 **True** 时重复执行语句块。
 
-Syntax:
+语法：
 - > **Do** [{ **While** \| **Until** } *condition* ]  
   > &nbsp;&nbsp;&nbsp;&nbsp;[ *statements* ]  
   > &nbsp;&nbsp;&nbsp;&nbsp;[ **Exit Do** \| **Continue Do**  ]  
@@ -21,20 +29,20 @@ Syntax:
   > **Loop** [{ **While** \| **Until** } *condition* ]
 
 *condition*
-: *optional* Numeric expression or string expression that is **True** or **False**. If *condition* is Null, *condition* is treated as **False**.
+: *可选* 求值为 **True** 或 **False** 的数值表达式或字符串表达式。如果 *condition* 为Null，则 *condition* 被视为 **False**。
 
 *statements*
-: One or more statements that are repeated while, or until, *condition* is **True**.
+: 当条件为 **True** 时或直到条件变为 **True** 时重复执行的一条或多条语句。
 
-Any number of [**Exit Do**](/official/Reference/Core/Exit) statements may be placed anywhere in the **Do…Loop** as an alternate way to exit a **Do…Loop**. **Exit Do** is often used after evaluating some condition, for example, **If…Then**, in which case the **Exit Do** statement transfers control to the statement immediately following the **Loop**.
+可以在 **Do…Loop** 中任意位置放置任意数量的 [**Exit Do**](/official/Reference/Core/Exit) 语句作为退出 **Do…Loop** 的替代方式。**Exit Do** 通常在评估某个条件后使用，例如 **If…Then**，此时 **Exit Do** 语句将控制权转移到紧接在 **Loop** 之后的语句。
 
-When used within nested **Do…Loop** statements, **Exit Do** transfers control to the loop that is one nested level above the loop where **Exit Do** occurs.
+在嵌套的 **Do…Loop** 语句中使用时，**Exit Do** 将控制权转移到比出现 **Exit Do** 的循环高一层嵌套的循环。
 
-Any number of [**Continue Do**](/official/Reference/Core/Continue) statements may be placed anywhere in the **Do…Loop** to skip the rest of the statements and proceed with a new iteration.
+可以在 **Do…Loop** 中任意位置放置任意数量的 [**Continue Do**](/official/Reference/Core/Continue) 语句，以跳过剩余语句并开始新的迭代。
 
-### Example
+### 示例
 
-This example shows how **Do...Loop** statements can be used. The inner **Do...Loop** statement loops 10 times, asks the user if it should keep going, sets the value of the flag to **False** when they select **No**, and exits prematurely by using the **Exit Do** statement. The outer loop exits immediately upon checking the value of the flag.
+本示例展示如何使用 **Do...Loop** 语句。内部 **Do...Loop** 语句循环10次，询问用户是否继续，当用户选择 **No** 时将标志值设为 **False**，并通过 **Exit Do** 语句提前退出。外层循环在检查标志值后立即退出。
 
 ```vb
 Public Sub LoopExample()
@@ -55,15 +63,15 @@ Public Sub LoopExample()
 End Sub
 ```
 
-## Using Do...Loop statements
+## 使用 Do...Loop 语句
 
-Use **Do...Loop** statements to run a block of statements an indefinite number of times. The statements are repeated either while a condition is **True** or until a condition becomes **True**.
+使用 **Do...Loop** 语句可以不限次数地运行语句块。语句在条件为 **True** 时或直到条件变为 **True** 时重复执行。
 
-### Repeating statements while a condition is True
+### 当条件为 True 时重复语句
 
-There are two ways to use the **While** keyword to check a condition in a **Do...Loop** statement. The condition can be checked before entering the loop, or after the loop has run at least once.
+有两种方式使用 **While** 关键字在 **Do...Loop** 语句中检查条件。可以在进入循环之前检查条件，或在循环至少运行一次之后检查条件。
 
-In the following `ChkFirstWhile` procedure, the condition is checked before entering the loop. If `myNum` is set to 9 instead of 20, the statements inside the loop will never run. In the `ChkLastWhile` procedure, the statements inside the loop run only once before the condition becomes **False**.
+在以下 `ChkFirstWhile` 过程中，条件在进入循环之前检查。如果 `myNum` 设为9而非20，循环内的语句将永远不会执行。在 `ChkLastWhile` 过程中，循环内的语句在条件变为 **False** 之前只执行一次。
 
 ```vb
 Sub ChkFirstWhile() 
@@ -87,9 +95,9 @@ Sub ChkLastWhile()
 End Sub
 ```
 
-### Repeating statements until a condition becomes True
+### 直到条件变为 True 时重复语句
 
-There are two ways to use the **Until** keyword to check a condition in a **Do...Loop** statement. The condition can be checked before entering the loop (as shown in the `ChkFirstUntil` procedure), or after the loop has run at least once (as shown in the `ChkLastUntil` procedure). Looping continues while the condition remains **False**.
+有两种方式使用 **Until** 关键字在 **Do...Loop** 语句中检查条件。可以在进入循环之前检查条件（如 `ChkFirstUntil` 过程所示），或在循环至少运行一次之后检查条件（如 `ChkLastUntil` 过程所示）。当条件仍为 **False** 时继续循环。
 
 ```vb
 Sub ChkFirstUntil() 
@@ -113,11 +121,11 @@ Sub ChkLastUntil()
 End Sub
 ```
 
-### Exiting a Do...Loop statement from inside the loop
+### 从循环内部退出 Do...Loop 语句
 
-The [**Exit Do**](/official/Reference/Core/Exit) statement exits a **Do...Loop** from inside. For example, to exit an endless loop, use the **Exit Do** statement in the **True** statement block of either an [**If...Then...Else**](/official/Reference/Core/If-Then-Else) statement or a [**Select Case**](/official/Reference/Core/Select-Case) statement. If the condition is **False**, the loop will run as usual.
+[**Exit Do**](/official/Reference/Core/Exit) 语句从内部退出 **Do...Loop**。例如，要退出无限循环，可在 [**If...Then...Else**](/official/Reference/Core/If-Then-Else) 语句或 [**Select Case**](/official/Reference/Core/Select-Case) 语句的 **True** 语句块中使用 **Exit Do** 语句。如果条件为 **False**，循环将正常运行。
 
-In the following example `myNum` is assigned a value that creates an endless loop. The **If...Then...Else** statement checks for this condition, and then exits, preventing endless looping.
+在以下示例中，`myNum` 被赋予一个创建无限循环的值。**If...Then...Else** 语句检查此条件然后退出，防止无限循环。
 
 ```vb
 Sub ExitExample() 
@@ -134,5 +142,5 @@ End Sub
 
 ::: info
 
-To stop an endless loop, press ESC or CTRL+BREAK.
+要停止无限循环，请按ESC或CTRL+BREAK。
 :::

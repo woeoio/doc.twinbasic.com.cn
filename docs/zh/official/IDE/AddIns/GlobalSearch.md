@@ -1,39 +1,47 @@
 ---
-title: Global Search
+title: 全局搜索
 parent: Add Ins
 nav_order: 1
 permalink: /tB/IDE/AddIns/GlobalSearch
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '702add10-cd54-475a-aae7-6d7d7a099eb7'
+  PropagateID: '702add10-cd54-475a-aae7-6d7d7a099eb7'
+  ReservedCode1: '8c39141a-c6ef-4401-85ee-11d30d11f325'
+  ReservedCode2: '8c39141a-c6ef-4401-85ee-11d30d11f325'
 ---
 
-## Global Search
+## 全局搜索
 
-This AddIn is supplied with the twinBASIC IDE.
+此外接程序随 twinBASIC IDE 附带。
 
-Latest Release
+最新版本
 : v1.0.0.0
 
-Developer
+开发者
 : twinBASIC
 
-The global search add in will contain a [Toolbar](/official/IDE/Toolbar) item.
+全局搜索外接程序将包含一个[工具栏](/official/IDE/Toolbar)项。
 
 ![Global Search (Toolbar)](Images/Toolbar_GlobalSearch.png "Global Search (Toolbar)")
 
 ![Global Search](Images/GlobalSearch.png "Global Search")
 
-Options
+选项
 
-- In packages
-- Match case
-- Whole word
-- Exclude comments
+- 在包中搜索
+- 区分大小写
+- 全字匹配
+- 排除注释
 
-Type a search term i.e. Button1 into the text field and a list of matches will be returned.
+在文本字段中输入搜索词（如 Button1），将返回匹配结果列表。
 
 ![Global Search](Images/GlobalSearch_2.png "Global Search")
 
-## Download
+## 下载
 
-This add-in is bundled with twinBASIC. You can download it from [https://github.com/twinbasic/twinbasic/releases][tB]
+此外接程序与 twinBASIC 捆绑在一起。可以从 [https://github.com/twinbasic/twinbasic/releases][tB] 下载。
 
 [tB]: https://github.com/twinbasic/twinbasic/releases

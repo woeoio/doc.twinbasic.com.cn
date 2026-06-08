@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6ecdcb34-bd99-4359-8dda-1e5309cdb41c'
+  PropagateID: '6ecdcb34-bd99-4359-8dda-1e5309cdb41c'
+  ReservedCode1: '04a0c493-944b-47a7-911a-684a303d51a8'
+  ReservedCode2: '04a0c493-944b-47a7-911a-684a303d51a8'
+---
+
 ---
 title: ForeColor
 parent: AmbientProperties
@@ -5,18 +16,18 @@ permalink: /tB/Packages/VBRUN/AmbientProperties/ForeColor
 ---
 # ForeColor
 
-Returns the foreground colour the container would like its embedded controls to use by default, as an **stdole.OLE_COLOR**. Read-only.
+返回容器希望其嵌入控件默认使用的前景色，类型为**stdole.OLE_COLOR**。只读。
 
-Syntax: *object*.**ForeColor**
+语法：*object*.**ForeColor**
 
 *object*
-: *required* An object expression that evaluates to an **AmbientProperties** object.
+: *必需* 求值为**AmbientProperties**对象的对象表达式。
 
-A control that does not have its own foreground colour explicitly set should draw its text and other foreground elements using this colour, so that it remains legible against the container's [**BackColor**](/official/Reference/VBRUN/AmbientProperties/BackColor). The value is an **OLE_COLOR**: an RGB value, a system-colour reference, or a palette-index reference. Pass it through [**TranslateColor**](/official/Reference/VBA/Information/TranslateColor) to obtain a plain RGB value if needed.
+未显式设置自身前景色的控件应使用此颜色绘制文本和其他前景元素，使其在容器的[**BackColor**](/official/Reference/VBRUN/AmbientProperties/BackColor)上保持可读。该值为**OLE_COLOR**：RGB值、系统颜色引用或调色板索引引用。如需获取普通RGB值，可通过[**TranslateColor**](/official/Reference/VBA/Information/TranslateColor)转换。
 
-### Example
+### 示例
 
-This example responds to an ambient **ForeColor** change and applies it to the control's text color.
+此示例响应环境**ForeColor**更改并将其应用于控件的文本颜色。
 
 ```vb
 Private Sub UserControl_AmbientChanged(PropertyName As String)
@@ -27,8 +38,8 @@ Private Sub UserControl_AmbientChanged(PropertyName As String)
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [BackColor](/official/Reference/VBRUN/AmbientProperties/BackColor) property
-- [Font](/official/Reference/VBRUN/AmbientProperties/Font) property
-- [Palette](/official/Reference/VBRUN/AmbientProperties/Palette) property
+- [BackColor](/official/Reference/VBRUN/AmbientProperties/BackColor) 属性
+- [Font](/official/Reference/VBRUN/AmbientProperties/Font) 属性
+- [Palette](/official/Reference/VBRUN/AmbientProperties/Palette) 属性

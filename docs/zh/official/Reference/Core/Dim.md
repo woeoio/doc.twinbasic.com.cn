@@ -2,63 +2,71 @@
 title: Dim
 parent: Statements
 permalink: /tB/Core/Dim
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e5930af3-cc95-494b-b041-a62335aec71e'
+  PropagateID: 'e5930af3-cc95-494b-b041-a62335aec71e'
+  ReservedCode1: '2a567a57-421e-4318-beb9-0cb8a1feff83'
+  ReservedCode2: '2a567a57-421e-4318-beb9-0cb8a1feff83'
 ---
 
 # Dim
 
-Declares variables and allocates storage space.
+声明变量并分配存储空间。
 
-Syntax: **Dim** [ **WithEvents** ] *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ] [ **=** *expression* ] [ **,** [ **WithEvents** ] *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ] [ **=** *expression* ] ] **. . .**
+语法：**Dim** [ **WithEvents** ] *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ] [ **=** *expression* ] [ **,** [ **WithEvents** ] *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ] [ **=** *expression* ] ] **. . .**
 
 **WithEvents**
 
-: *optional* Keyword that specifies that *varname* is an object variable used to respond to events triggered by an ActiveX object. **WithEvents** is valid only in class modules. Any number of individual variables may be declared by using **WithEvents**, but arrays cannot be declared with **WithEvents**. **New** cannot be combined with **WithEvents**.
+: *可选* 关键字，指定 *varname* 是用于响应ActiveX对象触发事件的对象变量。**WithEvents** 仅在类模块中有效。可以使用 **WithEvents** 声明任意数量的单独变量，但不能用 **WithEvents** 声明数组。**New** 不能与 **WithEvents** 组合使用。
 
 *varname*
 
-: Name of the variable; follows standard variable naming conventions.
+: 变量的名称；遵循标准变量命名约定。
 
 *subscripts*
 
-: *optional* Dimensions of an array variable; up to 60 multiple dimensions may be declared. The *subscripts* argument uses the following syntax: [ *lower* **To** ] *upper* [ , [ *lower* **To** ] *upper* ] **. . .**. When not explicitly stated in *lower*, the lower bound of an array is controlled by the [**Option Base**](/official/Reference/Core/Option#Base) statement. The lower bound is zero if no **Option Base** statement is present.
+: *可选* 数组变量的维度；最多可声明60个多维维度。*subscripts* 参数使用以下语法：[ *lower* **To** ] *upper* [ , [ *lower* **To** ] *upper* ] **. . .**。当未在 *lower* 中显式指定时，数组的下界由 [**Option Base**](/official/Reference/Core/Option#Base) 语句控制。如果没有 **Option Base** 语句，下界为零。
 
 **New**
 
-: *optional* Keyword that enables implicit creation of an object. When **New** is used to declare the object variable, a new instance of the object is created on first reference to it, so the **Set** statement is not required to assign the object reference. The **New** keyword can't be used to declare variables of any intrinsic data type or to declare instances of dependent objects, and it can't be used with **WithEvents**.
+: *可选* 关键字，启用对象的隐式创建。当使用 **New** 声明对象变量时，在首次引用时创建对象的新实例，因此不需要使用 **Set** 语句来分配对象引用。**New** 关键字不能用于声明任何内部数据类型的变量或依赖对象的实例，也不能与 **WithEvents** 一起使用。
 
 *type*
 
-: *optional*. Data type of the variable; may be **Byte**, **Boolean**, **Integer**, **Long**, **LongLong**, **LongPtr**, **Currency**, **Single**, **Double**, **Decimal**, **Date**, **String** (for variable-length strings), **String** *length* (for fixed-length strings), **Object**, **Variant**, a user-defined type (UDT), an object type, or **Any** (twinBASIC; type is inferred from *expression* --- see [Type Inference](/official/Features/Language/Type-Inference)). Use a separate **As** *type* clause for each declared variable.
+: *可选*。变量的数据类型；可以是 **Byte**、**Boolean**、**Integer**、**Long**、**LongLong**、**LongPtr**、**Currency**、**Single**、**Double**、**Decimal**、**Date**、**String**（变长字符串）、**String** *length*（定长字符串）、**Object**、**Variant**、用户自定义类型(UDT)、对象类型或 **Any**（twinBASIC；类型从 *expression* 推断——参见[类型推断](/official/Features/Language/Type-Inference)）。对每个声明的变量使用单独的 **As** *type* 子句。
 
 *expression*
 
-: *optional*. (twinBASIC) Initial value assigned to the variable at declaration. Equivalent to a separate assignment statement immediately after the **Dim** --- `Dim i As Long = 1` is the same as `Dim i As Long: i = 1`. For object types, `= New *type* ( *args* )` constructs an instance (and may pass custom-constructor arguments). When *type* is **Any**, *expression* is required and determines the inferred type. See [Inline Variable Initialization](/official/Features/Language/Inline-Initialization).
+: *可选*。(twinBASIC) 声明时赋给变量的初始值。等效于紧接在 **Dim** 之后的单独赋值语句——`Dim i As Long = 1` 与 `Dim i As Long: i = 1` 相同。对于对象类型，`= New *type* ( *args* )` 构造一个实例（并可传递自定义构造函数参数）。当 *type* 为 **Any** 时，*expression* 是必需的并决定推断的类型。参见[内联变量初始化](/official/Features/Language/Inline-Initialization)。
 
-Variables declared with **Dim** at the module level are available to all procedures within the module. At the procedure level, variables are available only within the procedure.
+在模块级别使用 **Dim** 声明的变量对该模块内所有过程可用。在过程级别，变量仅在该过程内可用。
 
-Use the **Dim** statement at the module or procedure level to declare the data type of a variable. For example, the following statement declares a variable as an **Integer**.
+在模块或过程级别使用 **Dim** 语句声明变量的数据类型。例如，以下语句声明一个 **Integer** 类型的变量。
 
 ```vb
 Dim NumberOfEmployees As Integer 
 ```
 
-Also use a **Dim** statement to declare the object type of a variable. The following declares a variable for a new instance of a worksheet.
+也可以使用 **Dim** 语句声明变量的对象类型。以下声明一个工作表新实例的变量。
 
 ```vb
 Dim X As New Worksheet 
 ```
 
-If the **New** keyword is not used when declaring an object variable, the variable that refers to the object must be assigned an existing object by using the **Set** statement before it can be used. Until it is assigned an object, the declared object variable has the special value **Nothing**, which indicates that it doesn't refer to any particular instance of an object.
+如果声明对象变量时未使用 **New** 关键字，则必须在可以使用之前使用 **Set** 语句为引用该对象的变量分配现有对象。在分配对象之前，声明的对象变量具有特殊值 **Nothing**，表示它不引用任何特定对象实例。
 
-The **Dim** statement with empty parentheses also declares a dynamic array. After declaring a dynamic array, use the [**ReDim**](/official/Reference/Core/ReDim) statement within a procedure to define the number of dimensions and elements in the array. Redeclaring a dimension for an array variable whose size was explicitly specified in a [**Private**](/official/Reference/Core/Private), [**Public**](/official/Reference/Core/Public), or **Dim** statement raises an error.
+带有空括号的 **Dim** 语句也声明动态数组。声明动态数组之后，在过程中使用 [**ReDim**](/official/Reference/Core/ReDim) 语句定义数组的维度和元素数。在 [**Private**](/official/Reference/Core/Private)、[**Public**](/official/Reference/Core/Public) 或 **Dim** 语句中显式指定了大小的数组变量重新声明维度会引发错误。
 
-When no data type or object type is specified, and there is no [**Deftype**](/official/Reference/Core/Deftype) statement in the module, the variable is **Variant** by default. When variables are initialized, a numeric variable is initialized to 0, a variable-length string is initialized to a zero-length string (""), and a fixed-length string is filled with zeros. **Variant** variables are initialized to Empty. Each element of a user-defined type variable is initialized as if it were a separate variable.
+当未指定数据类型或对象类型，且模块中没有 [**Deftype**](/official/Reference/Core/Deftype) 语句时，变量默认为 **Variant**。变量初始化时，数值变量初始化为0，变长字符串初始化为零长度字符串("")，定长字符串用零填充。**Variant** 变量初始化为Empty。用户自定义类型变量的每个元素像单独变量一样初始化。
 
-By convention, a **Dim** statement inside a procedure is placed at the beginning of the procedure.
+按照惯例，过程中的 **Dim** 语句放在过程的开头。
 
-### Example
+### 示例
 
-This example shows the **Dim** statement used to declare variables. It also shows the **Dim** statement used to declare arrays. The default lower bound for array subscripts is 0 and can be overridden at the module level by using the **Option Base** statement.
+本示例展示使用 **Dim** 语句声明变量。也展示了使用 **Dim** 语句声明数组。数组下标的默认下界为0，可以通过模块级别的 **Option Base** 语句覆盖。
 
 ```vb
 ' AnyValue and MyValue are declared as Variant by default with values 

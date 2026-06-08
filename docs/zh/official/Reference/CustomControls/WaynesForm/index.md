@@ -1,15 +1,23 @@
----
+﻿---
 title: WaynesForm
 parent: CustomControls Package
 permalink: /tB/Packages/CustomControls/WaynesForm/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3a41634f-9962-4019-9cf3-fe347ad9dade'
+  PropagateID: '3a41634f-9962-4019-9cf3-fe347ad9dade'
+  ReservedCode1: 'e436588d-dc28-4c2e-9cc1-58cae48a9edc'
+  ReservedCode2: 'e436588d-dc28-4c2e-9cc1-58cae48a9edc'
 ---
 
-# WaynesForm class
-The top-level form class that hosts the package's custom controls. A **WaynesForm** is the equivalent of a `Form` from the [**VB**](/official/Reference/VB/) package, but instead of being a Win32 native window with controls overlaid on top, it is an owner-drawn surface that paints itself and its child controls through the [**CustomControls**](/official/Reference/CustomControls/) framework.
+# WaynesForm 类
+承载包的自定义控件的顶级窗体类。**WaynesForm** 等同于 [**VB**](/official/Reference/VB/) 包中的 `Form`，但它不是承载控件覆盖在上面的 Win32 原生窗口，而是通过 [**CustomControls**](/official/Reference/CustomControls/) 框架绘制自身及其子控件的自绘表面。
 
-Within the current release of the package every form created with the designer is hard-coded to use **WaynesForm** as its root class; other base form classes are planned but not yet supported.
+在包当前版本中，使用设计器创建的每个窗体都硬编码使用 **WaynesForm** 作为其根类；其他基窗体类已计划但尚不支持。
 
-A form has a [**Caption**](#caption) (shown in the Win32 title bar), a [**BackgroundFill**](#backgroundfill) (painted across its entire client area), and a [**WindowsOptions**](#windowsoptions) sub-object that controls the surrounding Win32 frame --- border style, window state, taskbar visibility, minimize / maximize buttons, and so on. Call [**Show**](#show) to display the form; call [**Close**](#close) to close it.
+窗体具有 [**Caption**](#caption)（显示在 Win32 标题栏中）、[**BackgroundFill**](#backgroundfill)（绘制在其整个客户区域）和 [**WindowsOptions**](#windowsoptions) 子对象控制周围的 Win32 框架——边框样式、窗口状态、任务栏可见性、最小化/最大化按钮等。调用 [**Show**](#show) 显示窗体；调用 [**Close**](#close) 关闭窗体。
 
 ```vb
 Private Sub Form_Load()
@@ -23,7 +31,7 @@ Private Sub Form_Load()
 End Sub
 ```
 
-[**BackgroundFill**](#backgroundfill) is an ordinary [**Fill**](/official/Reference/CustomControls/Styles/Fill), so the form can display a gradient backdrop or a solid colour --- this is what the package's `HelloWorld` sample form uses to give itself a soft top-to-bottom wash:
+[**BackgroundFill**](#backgroundfill) 是普通的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)，因此窗体可以显示渐变背景或纯色——包的 `HelloWorld` 示例窗体正是使用此功能给自己一个柔和的上到下渐变：
 
 ```vb
 Private Sub Form_Load()
@@ -32,81 +40,81 @@ Private Sub Form_Load()
 End Sub
 ```
 
-## Modal display
+## 模态显示
 
-The current release supports modal display only. Calling [**Show**](#show) with **vbModeless** writes a debug-print message and otherwise does nothing --- call **Show vbModal** to display the form.
+当前版本仅支持模态显示。使用 **vbModeless** 调用 [**Show**](#show) 会输出调试打印消息，否则无效——调用 **Show vbModal** 显示窗体。
 
-## Properties
+## 属性
 
 ### BackgroundFill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that paints the form's entire client area. Defaults to a solid light-grey ([**WAYNESCOLOR_LIGHTGREY**](#) --- `&HD0D0D0`).
+绘制窗体整个客户区域的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。默认为纯浅灰色（[**WAYNESCOLOR_LIGHTGREY**](#) —— `&HD0D0D0`）。
 
 ### Caption
 
-The text shown in the Win32 title bar of the form. **String**.
+窗体 Win32 标题栏中显示的文本。**String**。
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
 ### Controls
 
-The [**CustomControlsCollection**](/official/Reference/CustomControls/Framework/CustomControlsCollection) of every control hosted on the form. Inherited from the form base. Read-only --- iterate or look up by index / name to access individual controls.
+窗体上承载的所有控件的 [**CustomControlsCollection**](/official/Reference/CustomControls/Framework/CustomControlsCollection)。从窗体基类继承。只读——通过迭代或按索引/名称查找来访问单个控件。
 
 ### FormDesignerId
 
-A **String** holding the unique GUID that associates this form instance with its designer-saved metadata. Inherited from the form base. Application code does not normally read or write this --- the framework populates it.
+保存将此窗体实例与其设计器保存元数据关联的唯一 GUID 的 **String**。从窗体基类继承。应用程序代码通常不读写此属性——由框架填充。
 
 ### Height
 
-The form's height in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+窗体的高度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Left
 
-The form's left position in pixels --- honoured only when [**WindowsOptions.StartUpPosition**](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions#startupposition) is **tbStartUpManual**. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+窗体的左边位置（像素）——仅在 [**WindowsOptions.StartUpPosition**](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions#startupposition) 为 **tbStartUpManual** 时生效。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Name
 
-The form's name within the project. **String**. Inherited.
+窗体在项目中的名称。**String**。继承。
 
 ### Top
 
-The form's top position in pixels --- honoured only when [**WindowsOptions.StartUpPosition**](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions#startupposition) is **tbStartUpManual**. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+窗体的顶部位置（像素）——仅在 [**WindowsOptions.StartUpPosition**](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions#startupposition) 为 **tbStartUpManual** 时生效。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### Width
 
-The form's width in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Inherited.
+窗体的宽度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。继承。
 
 ### WindowsOptions
 
-The [**WindowsFormOptions**](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions) that controls the Win32 frame --- border style, window state, taskbar visibility, minimize / maximize buttons, system menu.
+控制 Win32 框架的 [**WindowsFormOptions**](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions)——边框样式、窗口状态、任务栏可见性、最小化/最大化按钮、系统菜单。
 
-## Methods
+## 方法
 
 ### Close
 
-Closes the form's underlying window.
+关闭窗体的底层窗口。
 
-Syntax: *object*.**Close**
+语法：*object*.**Close**
 
 ### Show
 
-Shows the form. The current release supports modal display only --- calling with **vbModeless** writes a debug message and otherwise does nothing.
+显示窗体。当前版本仅支持模态显示——使用 **vbModeless** 调用会输出调试消息，否则无效。
 
-Syntax: *object*.**Show** [ *Modal* ]
+语法：*object*.**Show** [ *Modal* ]
 
 *Modal*
-: *optional* A member of [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants). Pass **vbModal** for the supported modal display; **vbModeless** is currently a no-op.
+: *可选* [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants) 的成员。传 **vbModal** 用于支持的模态显示；**vbModeless** 目前无效。
 
 ### StartupShow
 
-Shows the form unconditionally --- used by the framework to display the project's startup form. Application code can call it but [**Show**](#show) is the normal entry point.
+无条件显示窗体——由框架用于显示项目的启动窗体。应用程序代码可以调用它，但 [**Show**](#show) 是正常入口。
 
-Syntax: *object*.**StartupShow**
+语法：*object*.**StartupShow**
 
-## Events
+## 事件
 
 ### Click
 
-Raised when the user clicks on the form's background --- i.e. on a region not occupied by a hosted control.
+用户点击窗体背景时触发——即未被承载控件占据的区域。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )

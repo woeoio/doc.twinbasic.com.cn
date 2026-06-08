@@ -2,27 +2,35 @@
 title: With
 parent: Statements
 permalink: /tB/Core/With
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '51df9f8a-6e96-4293-97b6-7299b208580f'
+  PropagateID: '51df9f8a-6e96-4293-97b6-7299b208580f'
+  ReservedCode1: 'ca8f70cf-4dbd-48e6-856e-921f41cce1d6'
+  ReservedCode2: 'ca8f70cf-4dbd-48e6-856e-921f41cce1d6'
 ---
 
 # With
 
-Executes a series of statements on a single object or a user-defined type.
+对单个对象或用户自定义类型执行一系列语句。
 
-Syntax:
+语法：
 
 > **With** *object*  
 > &nbsp;&nbsp;&nbsp;&nbsp;[ *statements* ]  
 > **End With**
 
 *object*
-: Name of an object or a user-defined type.
+: 对象或用户自定义类型的名称。
 
 *statements*
-: *optional* One or more statements to be executed on *object*.
+: *可选* 要对*object*执行的一个或多个语句。
 
-The **With** statement permits a series of statements on a specified object without requalifying the name of the object. For example, to change a number of different properties on a single object, place the property assignment statements within the **With** control structure, referring to the object once instead of referring to it with each property assignment.
+**With**语句允许对指定对象执行一系列语句而无需重新限定对象名称。例如，要更改单个对象的多个不同属性，将属性赋值语句放在**With**控制结构中，只需引用对象一次而不是在每个属性赋值时都引用。
 
-The following example illustrates use of the **With** statement to assign values to several properties of the same object.
+以下示例说明使用**With**语句为同一对象的多个属性赋值。
 
 ```vb
 With MyLabel
@@ -33,18 +41,18 @@ End With
 ```
 
 ::: info
-Once a **With** block is entered, *object* can't be changed. As a result, a single **With** statement cannot affect a number of different objects.
+一旦进入**With**块，*object*就不能被更改。因此，单个**With**语句不能影响多个不同的对象。
 :::
 
-**With** statements can be nested by placing one **With** block within another. However, because members of outer **With** blocks are masked within the inner **With** blocks, a fully qualified object reference must be supplied in an inner **With** block to any member of an object in an outer **With** block.
+**With**语句可以通过将一个**With**块放在另一个**With**块内来嵌套。但是，由于外部**With**块的成员在内部**With**块中被遮蔽，在内部**With**块中必须提供完全限定的对象引用来访问外部**With**块中对象的任何成员。
 
 ::: important
-Jumping into or out of **With** blocks is not recommended. If statements in a **With** block are executed, but either the **With** or **End With** statement is not executed, a temporary variable containing a reference to the object remains in memory until the procedure exits.
+不建议跳入或跳出**With**块。如果**With**块中的语句被执行，但**With**或**End With**语句未被执行，则包含对象引用的临时变量会保留在内存中，直到过程退出。
 :::
 
-### Example
+### 示例
 
-This example uses the **With** statement to execute a series of statements on a single object. The object and its properties are generic names used for illustration purposes only.
+本示例使用**With**语句对单个对象执行一系列语句。对象及其属性是仅用于说明的通用名称。
 
 ```vb
 With MyObject

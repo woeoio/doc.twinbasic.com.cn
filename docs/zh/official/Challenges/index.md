@@ -1,25 +1,25 @@
-﻿---
-title: Challenges
+---
+title: "挑战赛"
 nav_order: 12
 permalink: /Challenges
 AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'abe22774-5624-4afa-add4-e9538da5c11c'
-  PropagateID: 'abe22774-5624-4afa-add4-e9538da5c11c'
-  ReservedCode1: 'dd31a00c-2c4b-4eb4-808a-4e71f9d80f9b'
-  ReservedCode2: 'dd31a00c-2c4b-4eb4-808a-4e71f9d80f9b'
+  ProduceID: '01afce29-a4d0-4f26-a1b2-41626c06412f'
+  PropagateID: '01afce29-a4d0-4f26-a1b2-41626c06412f'
+  ReservedCode1: '55f5eee4-b051-4263-89e8-4250fb4542d3'
+  ReservedCode2: '55f5eee4-b051-4263-89e8-4250fb4542d3'
 ---
 
-# Challenges
+# 挑战赛
 
-From **#general** on Discord:
+来自Discord **#general**频道：
 
-[From Wayne](https://discord.com/channels/927638153546829845/927638154192748606/1457062373465788671) in Discord:
+来自Discord上[Wayne的发言](https://discord.com/channels/927638153546829845/927638154192748606/1457062373465788671)：
 
-> As we start 2026, we're introducing monthly twinBASIC challenges, giving you the chance to win a £100 account credit redeemable against future twinBASIC licences.
+> 在2026年开始之际，我们将推出twinBASIC月度挑战赛，让你有机会赢得£100账户额度，可用于未来的twinBASIC许可证。
 
-See this on [twinBASIC Update: January 6, 2026](https://nolongerset.com/twinbasic-update-january-6-2026/) from Mike Wolfe.
+另见Mike Wolfe的 [twinBASIC Update: January 6, 2026](https://nolongerset.com/twinbasic-update-january-6-2026/)。
 
 > AI生成

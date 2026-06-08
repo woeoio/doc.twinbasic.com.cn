@@ -2,47 +2,56 @@
 title: Lock, Unlock
 parent: Statements
 permalink: /tB/Core/Lock
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e7828a2e-e447-405f-b96b-43623deb4850'
+  PropagateID: 'e7828a2e-e447-405f-b96b-43623deb4850'
+  ReservedCode1: '2036f6b6-9df6-426e-9298-d813a0156a06'
+  ReservedCode2: '2036f6b6-9df6-426e-9298-d813a0156a06'
 ---
+
 # Lock, Unlock
 
-Controls access by other processes to all or part of a file opened with the [**Open**](/official/Reference/Core/Open) statement.
+控制其他进程对使用 [**Open**](/official/Reference/Core/Open) 语句打开的文件的全部或部分的访问。
 
-Syntax:
+语法：
 - > **Lock** [ **#** ] *filenumber* **,** [ *recordrange* ]
 - > **Unlock** [ **#** ] *filenumber* **,** [ *recordrange* ]
 
 *filenumber*
-: Any valid file number.
+: 任何有效的文件号。
 
 *recordrange*
-: *optional* The range of records to lock or unlock. The *recordrange* settings are:
+: *可选* 要锁定或解锁的记录范围。*recordrange* 设置为：
 
   > *recnumber* \| [ *start* ] **To** *end*
 
   *recnumber*
-  : Record number (**Random** mode files) or byte number (**Binary** mode files) at which locking or unlocking begins.
+  : 开始锁定或解锁的记录号（**Random** 模式文件）或字节号（**Binary** 模式文件）。
 
   *start*
-  : Number of the first record or byte to lock or unlock.
+  : 要锁定或解锁的第一条记录或字节的编号。
 
   *end*
-  : Number of the last record or byte to lock or unlock.
+  : 要锁定或解锁的最后一条记录或字节的编号。
 
-The **Lock** and **Unlock** statements are used in environments where several processes might need access to the same file.
+**Lock** 和 **Unlock** 语句用于多个进程可能需要访问同一文件的环境。
 
-**Lock** and **Unlock** statements are always used in pairs. The arguments to **Lock** and **Unlock** must match exactly.
+**Lock** 和 **Unlock** 语句总是成对使用。**Lock** 和 **Unlock** 的参数必须完全匹配。
 
-The first record or byte in a file is at position 1, the second record or byte is at position 2, and so on. When just one record is specified, only that record is locked or unlocked. When a range of records is specified and a starting record (*start*) is omitted, all records from the first record to the end of the range (*end*) are locked or unlocked. Using **Lock** without *recnumber* locks the entire file; using **Unlock** without *recnumber* unlocks the entire file.
+文件中的第一条记录或字节位于位置1，第二条位于位置2，依此类推。当只指定一条记录时，仅锁定或解锁该记录。当指定记录范围且省略起始记录（*start*）时，从第一条记录到范围末尾（*end*）的所有记录被锁定或解锁。使用不带 *recnumber* 的 **Lock** 锁定整个文件；使用不带 *recnumber* 的 **Unlock** 解锁整个文件。
 
-If the file has been opened for sequential input or output, **Lock** and **Unlock** affect the entire file, regardless of the range specified by *start* and *end*.
+如果文件已为顺序输入或输出打开，**Lock** 和 **Unlock** 影响整个文件，无论 *start* 和 *end* 指定的范围如何。
 
 ::: important
-Be sure to remove all locks with an **Unlock** statement before closing a file or quitting the program. Failure to remove locks produces unpredictable results.
+在关闭文件或退出程序之前，务必用 **Unlock** 语句移除所有锁定。未能移除锁定会产生不可预测的结果。
 :::
 
-### Example
+### 示例
 
-This example illustrates the use of the **Lock** and **Unlock** statements. While a record is being modified, access by other processes to the record is denied. This example assumes that `TESTFILE` is a file containing five records of the user-defined type `Record`.
+本示例说明 **Lock** 和 **Unlock** 语句的使用。当记录被修改时，其他进程对该记录的访问被拒绝。本示例假设 `TESTFILE` 是包含用户自定义类型 `Record` 的五条记录的文件。
 
 ```vb
 Type Record    ' Define user-defined type.
@@ -63,9 +72,9 @@ Unlock #1, RecordNumber    ' Unlock current record.
 Close #1    ' Close file.
 ```
 
-### See Also
+### 另请参阅
 
-- [**Open** statement](/official/Reference/Core/Open)
-- [**Close** statement](/official/Reference/Core/Close)
-- [**Get** statement](/official/Reference/Core/Get)
-- [**Put** statement](/official/Reference/Core/Put)
+- [**Open** 语句](/official/Reference/Core/Open)
+- [**Close** 语句](/official/Reference/Core/Close)
+- [**Get** 语句](/official/Reference/Core/Get)
+- [**Put** 语句](/official/Reference/Core/Put)

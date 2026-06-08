@@ -2,29 +2,38 @@
 title: IsObject
 parent: Information Module
 permalink: /tB/Modules/Information/IsObject
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e4b9c219-2575-459a-9015-efe79529ebab'
+  PropagateID: 'e4b9c219-2575-459a-9015-efe79529ebab'
+  ReservedCode1: 'da19d395-b9af-4383-8e40-433df1a58c96'
+  ReservedCode2: 'da19d395-b9af-4383-8e40-433df1a58c96'
 ---
+
 # IsObject
 
-Returns a **Boolean** indicating whether an identifier represents an object variable.
+返回一个**Boolean**，指示标识符是否表示对象变量。
 
-Syntax: **IsObject(** *identifier* **)**
+语法：**IsObject(** *identifier* **)**
 
 *identifier*
-: *required* A variable name.
+: *必需* 变量名。
 
-**IsObject** is useful only for determining whether a **Variant** holds **VarType vbObject**. This is the case if the **Variant** actually references --- or once referenced --- an object, or if it contains **Nothing**.
+**IsObject**仅用于确定**Variant**是否持有**VarType vbObject**。当**Variant**实际引用——或曾经引用——一个对象，或包含**Nothing**时属于这种情况。
 
-**IsObject** returns **True** if *identifier* is a variable declared with **Object** type or any valid class type, or if *identifier* is a **Variant** of **VarType vbObject**, or a user-defined object; otherwise, it returns **False**.
+如果*identifier*是用**Object**类型或任何有效类类型声明的变量，或是**VarType vbObject**的**Variant**，或是用户自定义对象，**IsObject**返回**True**；否则返回**False**。
 
-**IsObject** returns **True** even if the variable has been set to **Nothing**. Use error trapping to be sure that an object reference is valid before dereferencing it.
+即使变量已设置为**Nothing**，**IsObject**仍返回**True**。在取消引用对象引用之前，请使用错误捕获来确保其有效。
 
 ::: info
-twinBASIC also exposes a generic form, **IsObject(Of *T*)**, which is useful for compile-time verification of generic type specifiers. The non-generic call uses special internal bindings and so may not behave like a regular function.
+twinBASIC还公开了泛型形式**IsObject(Of *T*)**，用于泛型类型说明符的编译时验证。非泛型调用使用特殊的内部绑定，因此其行为可能不像常规函数。
 :::
 
-### Example
+### 示例
 
-This example uses **IsObject** to determine whether an identifier represents an object variable. *MyObject* and *YourObject* are object variables of the same type, used here for illustration.
+本示例使用**IsObject**确定标识符是否表示对象变量。*MyObject*和*YourObject*是相同类型的对象变量，在此用于说明。
 
 ```vb
 Dim MyInt As Integer                  ' Declare variables.
@@ -38,7 +47,7 @@ MyCheck = IsObject(Empty)             ' Returns False.
 MyCheck = IsObject(Null)              ' Returns False.
 ```
 
-### See Also
+### 另请参阅
 
-- [VarType](/official/Reference/VBA/Information/VarType), [TypeName](/official/Reference/VBA/Information/TypeName) functions
-- [IsArray](/official/Reference/VBA/Information/IsArray) function
+- [VarType](/official/Reference/VBA/Information/VarType)、[TypeName](/official/Reference/VBA/Information/TypeName)函数
+- [IsArray](/official/Reference/VBA/Information/IsArray)函数

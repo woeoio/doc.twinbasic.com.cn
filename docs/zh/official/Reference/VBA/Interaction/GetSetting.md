@@ -2,37 +2,45 @@
 title: GetSetting
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/GetSetting
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a161ba6b-6cd3-4b17-89a5-4997172fe426'
+  PropagateID: 'a161ba6b-6cd3-4b17-89a5-4997172fe426'
+  ReservedCode1: '98374588-1907-48c1-b41d-2a0d58aec637'
+  ReservedCode2: '98374588-1907-48c1-b41d-2a0d58aec637'
 ---
 
 # GetSetting
 
-Returns a string key setting value from an application's entry in the Windows registry. <!-- or (on the Macintosh) information in the application's initialization file. -->
+从Windows注册表中应用程序条目返回字符串键设置值。
 
-Syntax: **GetSetting(** *appname* **,** *section* **,** *key* [ **,** *default* ] **)**
+语法：**GetSetting(** *appname* **,** *section* **,** *key* [ **,** *default* ] **)**
 
 *appname* 
 
-: String expression containing the name of the application or project whose key setting is requested. <!-- On the Macintosh, this is the filename of the initialization file in the Preferences folder in the System folder.-->
+: 字符串表达式，包含请求其键设置的应用程序或项目的名称。
 
 *section*
 
-:  String expression containing the name of the section where the key setting is found.
+:  字符串表达式，包含键设置所在节的名称。
 
 *key*
 
-:  String expression containing the name of the key setting to return.
+:  字符串表达式，包含要返回的键设置的名称。
 
 *default*
 
-: *optional* Variant expression containing the value to return if no value is set in the key setting. If omitted, *default* is assumed to be a zero-length string ("").
+: *可选* Variant表达式，包含当键设置中没有设置值时要返回的值。如果省略，*default*假定为零长度字符串("")。
 
-If any of the items named in the **GetSetting** arguments don't exist, **GetSetting** returns the value of *default*.
+如果**GetSetting**参数中命名的任何项不存在，**GetSetting**返回*default*的值。
 
-The root of these registry settings is: `Computer\HKEY_CURRENT_USER\Software\VB and VBA Program Settings`.
+这些注册表设置的根路径为：`Computer\HKEY_CURRENT_USER\Software\VB and VBA Program Settings`。
 
-### Example
+### 示例
 
-This example first uses the [**SaveSetting**](/official/Reference/VBA/Interaction/SaveSetting) statement to make entries in the Windows registry for the application specified as *appname*, and then uses the **GetSetting** function to display one of the settings. Because the *default* argument is specified, some value is guaranteed to be returned. Note that *section* names can't be retrieved with **GetSetting**. Finally, the [**DeleteSetting**](/official/Reference/VBA/Interaction/DeleteSetting) statement removes all the application's entries.
+本示例首先使用[**SaveSetting**](/official/Reference/VBA/Interaction/SaveSetting)语句在Windows注册表中为指定为*appname*的应用程序创建条目，然后使用**GetSetting**函数显示其中一个设置。由于指定了*default*参数，保证会返回某个值。注意*section*名称不能用**GetSetting**检索。最后，[**DeleteSetting**](/official/Reference/VBA/Interaction/DeleteSetting)语句删除所有应用程序条目。
 
 ```vb
 ' Variant to hold 2-dimensional array returned by GetSetting.

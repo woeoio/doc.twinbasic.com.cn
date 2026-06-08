@@ -2,35 +2,44 @@
 title: Len
 parent: Strings Module
 permalink: /tB/Modules/Strings/Len
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6fd485d3-ba76-4221-8d04-4e377fa77e45'
+  PropagateID: '6fd485d3-ba76-4221-8d04-4e377fa77e45'
+  ReservedCode1: '23f986c7-6694-484b-8887-1055f1435f17'
+  ReservedCode2: '23f986c7-6694-484b-8887-1055f1435f17'
 ---
+
 # Len, LenB
 
-Returns a **Long** containing the number of characters in a string or the number of bytes required to store a variable.
+返回一个**Long**，包含字符串中的字符数或存储变量所需的字节数。
 
-Syntax:
+语法：
 
 - **Len(** *string* **)**, **Len(** *varname* **)**
 - **LenB(** *string* **)**, **LenB(** *varname* **)**
 
 *string*
-: Any valid string expression. If *string* contains **Null**, **Null** is returned.
+: 任意有效的字符串表达式。如果*string*包含**Null**，则返回**Null**。
 
 *varname*
-: Any valid variable name. If *varname* contains **Null**, **Null** is returned. If *varname* is a **Variant**, **Len** treats it the same as a **String** and always returns the number of characters it contains.
+: 任意有效的变量名。如果*varname*包含**Null**，则返回**Null**。如果*varname*是**Variant**，**Len**将其视为**String**，始终返回其包含的字符数。
 
-One (and only one) of the two possible arguments must be specified. With user-defined types, **Len** returns the size as it will be written to the file.
+必须指定两个可能参数中的一个（且仅一个）。对于用户定义类型，**Len**返回写入文件时的大小。
 
 ::: info
-Use the **LenB** function with byte data contained in a string, as in double-byte character set (DBCS) languages. Instead of returning the number of characters in a string, **LenB** returns the number of bytes used to represent that string. With user-defined types, **LenB** returns the in-memory size, including any padding between elements.
+使用**LenB**函数处理字符串中包含的字节数据，如双字节字符集（DBCS）语言。**LenB**不返回字符串中的字符数，而是返回用于表示该字符串的字节数。对于用户定义类型，**LenB**返回内存中的大小，包括元素之间的任何填充。
 :::
 
 ::: info
-**Len** may not be able to determine the actual number of storage bytes required when used with variable-length strings in user-defined data types.
+当在用户定义数据类型中使用可变长度字符串时，**Len**可能无法确定所需的实际存储字节数。
 :::
 
-### Example
+### 示例
 
-This example uses **Len** to return the number of characters in a string or the number of bytes required to store a variable. The `Type...End Type` block defining `CustomerRecord` must be preceded by the keyword **Private** if it appears in a class module. In a standard module, a **Type** statement can be **Public**.
+本示例使用**Len**返回字符串中的字符数或存储变量所需的字节数。如果在类模块中出现，定义`CustomerRecord`的`Type...End Type`块前面必须加上**Private**关键字。在标准模块中，**Type**语句可以是**Public**。
 
 ```vb
 Type CustomerRecord            ' Define user-defined type.
@@ -49,6 +58,6 @@ MyLen = Len(MyString)        ' Returns 11.
 MyLen = Len(MyCur)           ' Returns 8.
 ```
 
-### See Also
+### 另请参阅
 
-- [Left](/official/Reference/VBA/Strings/Left), [Mid](/official/Reference/VBA/Strings/Mid), [Right](/official/Reference/VBA/Strings/Right) functions
+- [Left](/official/Reference/VBA/Strings/Left)、[Mid](/official/Reference/VBA/Strings/Mid)、[Right](/official/Reference/VBA/Strings/Right)函数

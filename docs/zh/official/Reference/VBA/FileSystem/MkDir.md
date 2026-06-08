@@ -2,24 +2,33 @@
 title: MkDir
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/MkDir
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9ed22c00-8aef-4e4a-bfa8-b1ceb571ec2e'
+  PropagateID: '9ed22c00-8aef-4e4a-bfa8-b1ceb571ec2e'
+  ReservedCode1: '36cd6ebc-bad9-40d7-b6c6-2700ea2cc7b8'
+  ReservedCode2: '36cd6ebc-bad9-40d7-b6c6-2700ea2cc7b8'
 ---
+
 # MkDir
 
-Creates a new directory or folder.
+创建新目录或文件夹。
 
-Syntax: **MkDir** *path*
+语法：**MkDir** *path*
 
 *path*
-: A string expression that identifies the directory or folder to be created. The *path* may include the drive. If no drive is specified, **MkDir** creates the new directory or folder on the current drive.
+: 字符串表达式，标识要创建的目录或文件夹。*path*可以包含驱动器。如果未指定驱动器，**MkDir**将在当前驱动器上创建新目录或文件夹。
 
-### See Also
+### 另请参阅
 
-- [ChDir](/official/Reference/VBA/FileSystem/ChDir), [ChDrive](/official/Reference/VBA/FileSystem/ChDrive), [RmDir](/official/Reference/VBA/FileSystem/RmDir) statements
-- [CurDir](/official/Reference/VBA/FileSystem/CurDir), [Dir](/official/Reference/VBA/FileSystem/Dir) functions
+- [ChDir](/official/Reference/VBA/FileSystem/ChDir)、[ChDrive](/official/Reference/VBA/FileSystem/ChDrive)、[RmDir](/official/Reference/VBA/FileSystem/RmDir)语句
+- [CurDir](/official/Reference/VBA/FileSystem/CurDir)、[Dir](/official/Reference/VBA/FileSystem/Dir)函数
 
-### Example
+### 示例
 
-This example uses the **MkDir** statement to create a directory or folder. If the drive is not specified, the new directory or folder is created on the current drive.
+本示例使用**MkDir**语句创建目录或文件夹。如果未指定驱动器，则在当前驱动器上创建新目录或文件夹。
 
 ```vb
 MkDir "MYDIR"   ' Make new directory or folder.

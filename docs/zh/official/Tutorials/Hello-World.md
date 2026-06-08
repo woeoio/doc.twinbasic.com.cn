@@ -1,36 +1,43 @@
 ---
-title: Hello World
+title: "Hello World"
 parent: Tutorials
 permalink: /Tutorials/Hello-World
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '841d9b11-96db-403e-81f7-a6805eb8d918'
+  PropagateID: '841d9b11-96db-403e-81f7-a6805eb8d918'
+  ReservedCode1: 'a9a90d51-8199-4951-9943-c7e4f22bdda3'
+  ReservedCode2: 'a9a90d51-8199-4951-9943-c7e4f22bdda3'
 ---
-
 
 # Hello World
 
-In this tutorial you will create a Standard EXE project, place a button on a form, and write one line of code that shows a message box when the button is clicked. By the end you will have built and run your first twinBASIC application.
+在本教程中，你将创建一个标准EXE项目，在窗体上放置一个按钮，编写一行代码，使得点击按钮时显示一个消息框。完成后你将构建并运行你的第一个twinBASIC应用程序。
 
 
-## Create the project
+## 创建项目
 
-Open twinBASIC and choose **File → New Project → Standard EXE**. The IDE creates a new project with one form, `Form1`, already open in the designer.
+打开twinBASIC，选择**文件 → 新建项目 → 标准EXE**。IDE会创建一个新项目，其中包含一个已在设计器中打开的窗体 `Form1`。
 
 <!-- screenshot: New Project dialog with Standard EXE selected -->
 
-Standard EXE is the most common project type. It produces a Windows executable with a form-based user interface --- the same kind of application that VB6 developers have built for decades.
+标准EXE是最常见的项目类型。它生成一个带有基于窗体用户界面的Windows可执行文件——正是VB6开发者数十年来构建的同类应用程序。
 
-## Add a button
+## 添加按钮
 
-Look at the Toolbox panel on the left side of the IDE. It lists every control available in the current project. If the Toolbox is not visible, open it with **View → Toolbox**.
+查看IDE左侧的工具箱面板。它列出了当前项目中可用的所有控件。如果工具箱不可见，通过**视图 → 工具箱**打开它。
 
-Find the **CommandButton** entry in the Toolbox and double-click it. A button appears on `Form1` with the default name `Command1` and the caption `Command1`.
+在工具箱中找到**CommandButton**条目并双击。一个按钮出现在 `Form1` 上，默认名称为 `Command1`，标题为 `Command1`。
 
 <!-- screenshot: Form1 with a CommandButton in the designer -->
 
-You can drag the button to reposition it, or drag its handles to resize it. For this tutorial the default size and position are fine.
+你可以拖动按钮来重新定位，或拖动其手柄来调整大小。本教程中使用默认大小和位置即可。
 
-## Write the click handler
+## 编写点击处理程序
 
-Double-click the button in the designer. The IDE switches to the Code Editor and generates a skeleton for the button's **Click** event:
+在设计器中双击按钮。IDE切换到代码编辑器，并为按钮的**Click**事件生成一个框架：
 
 ```vb
 Private Sub Command1_Click()
@@ -38,13 +45,13 @@ Private Sub Command1_Click()
 End Sub
 ```
 
-Place your cursor on the blank line inside the Sub and type:
+将光标放在Sub内的空行上，输入：
 
 ```vb
 MsgBox "Hello, World!"
 ```
 
-The complete handler looks like this:
+完整的处理程序如下：
 
 ```vb
 Private Sub Command1_Click()
@@ -52,25 +59,25 @@ Private Sub Command1_Click()
 End Sub
 ```
 
-[**MsgBox**](/official/Reference/VBA/Interaction/MsgBox) displays a standard Windows message box with the text you pass to it. It pauses execution until the user dismisses the dialog.
+[**MsgBox**](/official/Reference/VBA/Interaction/MsgBox)显示一个标准的Windows消息框，内容为你传递给它的文本。它会暂停执行，直到用户关闭对话框。
 
-## Run the application
+## 运行应用程序
 
-Press **F5** (or choose **Run → Start**). The form appears as a regular window on your desktop. Click the **Command1** button. A message box pops up with the text "Hello, World!".
+按**F5**（或选择**运行 → 启动**）。窗体以常规窗口的形式出现在桌面上。点击**Command1**按钮。一个消息框弹出，显示文本"Hello, World!"。
 
 <!-- screenshot: MsgBox dialog showing "Hello, World!" -->
 
-Click **OK** to close the message box, then close the form to stop the application and return to the IDE.
+点击**确定**关闭消息框，然后关闭窗体以停止应用程序并返回IDE。
 
-## What just happened
+## 刚才发生了什么
 
-When you double-clicked the button in the designer, the IDE created an event-handler Sub named after the control and the event --- `Command1_Click`. twinBASIC calls this Sub automatically whenever the button receives a Click message from Windows.
+当你在设计器中双击按钮时，IDE创建了一个以控件和事件命名的处理程序Sub——`Command1_Click`。每当按钮收到来自Windows的Click消息时，twinBASIC会自动调用此Sub。
 
-**MsgBox** is a function from the [VBA runtime library](/official/Reference/VBA/Interaction/MsgBox), which is part of every twinBASIC project by default. It wraps the Win32 `MessageBox` API and handles the dialog lifecycle for you.
+**MsgBox**是[VBA运行时库](/official/Reference/VBA/Interaction/MsgBox)中的函数，默认包含在每个twinBASIC项目中。它封装了Win32 `MessageBox` API并为你处理对话框生命周期。
 
-The form itself is an operating-system window. Controls like **CommandButton** are child windows hosted inside it. The IDE's designer lets you position and configure these controls visually; the Code Editor is where you write the logic that responds to their events.
+窗体本身是一个操作系统窗口。**CommandButton**等控件是托管在其中的子窗口。IDE的设计器让你可以可视化地定位和配置这些控件；代码编辑器是你编写响应其事件逻辑的地方。
 
-## Where to go next
+## 下一步
 
-- [**Forms basics**](/official/Tutorials/Forms) --- adding multiple controls, setting properties, writing event handlers, and building a temperature converter.
-- [**Arrays**](/official/Tutorials/Arrays) --- fixed and dynamic arrays, bounds, and multi-dimensional shapes.
+- [**窗体基础**](/official/Tutorials/Forms) —— 添加多个控件、设置属性、编写事件处理程序，并构建一个温度转换器。
+- [**数组**](/official/Tutorials/Arrays) —— 固定数组和动态数组、边界和多维结构。

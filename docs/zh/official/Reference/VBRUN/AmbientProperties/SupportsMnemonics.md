@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f52595c5-72ab-4239-ba86-e68185008190'
+  PropagateID: 'f52595c5-72ab-4239-ba86-e68185008190'
+  ReservedCode1: 'bc72b29b-20d1-41d3-a835-ffa757e234fd'
+  ReservedCode2: 'bc72b29b-20d1-41d3-a835-ffa757e234fd'
+---
+
 ---
 title: SupportsMnemonics
 parent: AmbientProperties
@@ -5,29 +16,29 @@ permalink: /tB/Packages/VBRUN/AmbientProperties/SupportsMnemonics
 ---
 # SupportsMnemonics
 
-Returns whether the container will dispatch keyboard mnemonics to embedded controls, as a **Boolean**. Read-only.
+返回容器是否将键盘助记符分派给嵌入控件，类型为**Boolean**。只读。
 
-Syntax: *object*.**SupportsMnemonics**
+语法：*object*.**SupportsMnemonics**
 
 *object*
-: *required* An object expression that evaluates to an **AmbientProperties** object.
+: *必需* 求值为**AmbientProperties**对象的对象表达式。
 
-A mnemonic is the underlined letter in a caption such as `&File` --- it gives the user a way to invoke the control with **Alt+F**. When **SupportsMnemonics** is **True**, the container forwards mnemonic keystrokes to the control; the control should then underline its mnemonic letter when displaying the caption. When the property is **False**, the host will not forward mnemonics, and the control should display its caption without underlining.
+助记符是标题中如`&File`里带下划线的字母——它为用户提供通过**Alt+F**调用控件的方式。当**SupportsMnemonics**为**True**时，容器将助记符按键转发给控件；控件在显示标题时应为助记字母添加下划线。当属性为**False**时，宿主不会转发助记符，控件应显示不带下划线的标题。
 
-### Example
+### 示例
 
-This example responds to a **SupportsMnemonics** change and triggers a repaint to update the caption underlining.
+此示例响应**SupportsMnemonics**更改，触发重绘以更新标题下划线。
 
 ```vb
 Private Sub UserControl_AmbientChanged(PropertyName As String)
     Select Case PropertyName
         Case "SupportsMnemonics"
-            UserControl.Refresh    ' repaint to underline or suppress the mnemonic character
+            UserControl.Refresh    ' 重绘以添加或隐藏助记字符下划线
     End Select
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [DisplayAsDefault](/official/Reference/VBRUN/AmbientProperties/DisplayAsDefault) property
-- [MessageReflect](/official/Reference/VBRUN/AmbientProperties/MessageReflect) property
+- [DisplayAsDefault](/official/Reference/VBRUN/AmbientProperties/DisplayAsDefault) 属性
+- [MessageReflect](/official/Reference/VBRUN/AmbientProperties/MessageReflect) 属性

@@ -2,20 +2,29 @@
 title: Erl
 parent: Information Module
 permalink: /tB/Modules/Information/Erl
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'af2a47a4-30f2-4a01-905c-13f462443fb8'
+  PropagateID: 'af2a47a4-30f2-4a01-905c-13f462443fb8'
+  ReservedCode1: '7dc75e57-488e-4ddf-8ded-dbd7e1105b56'
+  ReservedCode2: '7dc75e57-488e-4ddf-8ded-dbd7e1105b56'
 ---
+
 # Erl
 
-Returns a **Long** containing the line number of the most recently executed statement at which a run-time error was raised.
+返回一个**Long**，包含引发运行时错误的最近执行语句的行号。
 
-Syntax: **Erl** [ **()** ]
+语法：**Erl** [ **()** ]
 
-A *line number* is a numeric label that prefixes a statement, such as the `110:` in `110: x = 1 / 0`. They are a relic of older Basic dialects, retained mainly so that error handlers can report where a fault occurred. **Erl** is set to that label when an error is raised inside the labelled statement, and reset to **0** when the active error handler exits via **Resume**, **Resume Next**, or any **Exit** statement.
+*行号*是语句前缀的数字标签，例如`110:`在`110: x = 1 / 0`中。它们是旧版Basic方言的遗留特性，保留主要是为了让错误处理程序能报告故障发生的位置。当错误在标记语句内引发时，**Erl**设置为该标签，当活动错误处理程序通过**Resume**、**Resume Next**或任何**Exit**语句退出时，**Erl**重置为**0**。
 
-If the statement that raised the error has no preceding line number, **Erl** returns **0**.
+如果引发错误的语句没有前面的行号，**Erl**返回**0**。
 
-### Example
+### 示例
 
-This example uses **Erl** to log the line number where a run-time error was raised.
+本示例使用**Erl**记录引发运行时错误的行号。
 
 ```vb
 Sub Demo()
@@ -28,7 +37,7 @@ Handler:
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [Err](/official/Reference/VBA/Information/Err) property
-- [On Error](/official/Reference/Core/On-Error) statement
+- [Err](/official/Reference/VBA/Information/Err)属性
+- [On Error](/official/Reference/Core/On-Error)语句

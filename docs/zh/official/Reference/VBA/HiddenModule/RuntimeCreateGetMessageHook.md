@@ -5,13 +5,13 @@ permalink: /tB/Modules/HiddenModule/RuntimeCreateGetMessageHook
 ---
 # RuntimeCreateGetMessageHook
 
-Creates a fresh [**IGetMessageHook**](./#igetmessagehook-interface) for filtering Windows messages destined for a chosen window and (optionally) its descendants.
+创建一个新的[**IGetMessageHook**](./#igetmessagehook-interface)，用于过滤发送到选定窗口及其（可选）后代的Windows消息。
 
-Syntax: **RuntimeCreateGetMessageHook()** **As IGetMessageHook**
+语法：**RuntimeCreateGetMessageHook()** **As IGetMessageHook**
 
-The returned hook starts dormant. Subscribe a callback for one or more message types with [**RegisterMessage**](/official/Reference/VBA/HiddenModule/RegisterMessage), then call [**Start**](/official/Reference/VBA/HiddenModule/Start) to activate the subscriptions and [**Stop**](/official/Reference/VBA/HiddenModule/Stop) to remove them.
+返回的钩子初始为休眠状态。使用[**RegisterMessage**](/official/Reference/VBA/HiddenModule/RegisterMessage)为一个或多个消息类型订阅回调，然后调用[**Start**](/official/Reference/VBA/HiddenModule/Start)激活订阅，调用[**Stop**](/official/Reference/VBA/HiddenModule/Stop)移除订阅。
 
-### Example
+### 示例
 
 ```vb
 Const WM_LBUTTONDOWN = &H201
@@ -24,7 +24,7 @@ Sub HookClicks()
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [IGetMessageHook interface](./#igetmessagehook-interface)
-- [GetMessageHookHelper module](./#getmessagehookhelper-module)
+- [IGetMessageHook接口](./#igetmessagehook-interface)
+- [GetMessageHookHelper模块](./#getmessagehookhelper-module)

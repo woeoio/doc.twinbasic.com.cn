@@ -2,27 +2,36 @@
 title: Kill
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/Kill
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7a0834c9-511a-442f-96be-c2fa0b418c3a'
+  PropagateID: '7a0834c9-511a-442f-96be-c2fa0b418c3a'
+  ReservedCode1: '4d86ce36-ef2a-4341-8066-1d2205769286'
+  ReservedCode2: '4d86ce36-ef2a-4341-8066-1d2205769286'
 ---
+
 # Kill
 
-Deletes files from a disk.
+从磁盘删除文件。
 
-Syntax: **Kill** *pathname*
+语法：**Kill** *pathname*
 
 *pathname*
-: *required* String expression that specifies one or more file names to be deleted. The *pathname* may include the directory or folder, and the drive.
+: *必需* 字符串表达式，指定要删除的一个或多个文件名。*pathname*可以包含目录或文件夹以及驱动器。
 
-**Kill** supports the use of multiple-character (`*`) and single-character (`?`) wildcards to specify multiple files.
+**Kill**支持使用多字符(`*`)和单字符(`?`)通配符指定多个文件。
 
-An error occurs when **Kill** is used to delete an open file.
+使用**Kill**删除打开的文件时会产生错误。
 
 ::: info
-To delete directories, use the [**RmDir**](/official/Reference/VBA/FileSystem/RmDir) statement.
+要删除目录，请使用[**RmDir**](/official/Reference/VBA/FileSystem/RmDir)语句。
 :::
 
-### Example
+### 示例
 
-This example uses the **Kill** statement to delete a file from a disk.
+本示例使用**Kill**语句从磁盘删除文件。
 
 ```vb
 ' Assume TESTFILE is a file containing some data.
@@ -32,7 +41,7 @@ Kill "TestFile"   ' Delete file.
 Kill "*.TXT"
 ```
 
-### See Also
+### 另请参阅
 
-- [Dir](/official/Reference/VBA/FileSystem/Dir) function
-- [RmDir](/official/Reference/VBA/FileSystem/RmDir), [MkDir](/official/Reference/VBA/FileSystem/MkDir) statements
+- [Dir](/official/Reference/VBA/FileSystem/Dir)函数
+- [RmDir](/official/Reference/VBA/FileSystem/RmDir)、[MkDir](/official/Reference/VBA/FileSystem/MkDir)语句

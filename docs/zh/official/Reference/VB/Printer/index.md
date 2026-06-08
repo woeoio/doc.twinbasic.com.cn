@@ -1,14 +1,25 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9a961419-b110-4a82-b9bb-cbc83bed7a32'
+  PropagateID: '9a961419-b110-4a82-b9bb-cbc83bed7a32'
+  ReservedCode1: '338535d4-5d4d-4e4b-93f7-f197ea8df2c9'
+  ReservedCode2: '338535d4-5d4d-4e4b-93f7-f197ea8df2c9'
 ---
-title: Printer
+
+---
+title: "Printer 打印机"
 parent: VB Package
 permalink: /tB/Packages/VB/Printer/
 ---
 
-# Printer class
+# Printer 类
 
-A **Printer** object encapsulates one Windows printer device, exposing a drawing surface that records the application's graphics calls and forwards them to the spooler as a print job. The implicit **Printer** is mutable and tracks the system default printer; the entries of the [**Printers**](/official/Reference/VB/Printers/) collection are read-only descriptors of the installed devices, useful for enumeration or for switching the active printer with `Set Printer = Printers("HP LaserJet")`.
+**Printer**对象封装一个Windows打印机设备，暴露一个绘图表面，记录应用程序的图形调用并将其作为打印作业转发到后台打印处理器。隐式**Printer**是可变的，跟踪系统默认打印机；[**Printers**](/official/Reference/VB/Printers/)集合的条目是已安装设备的只读描述符，用于枚举或使用`Set Printer = Printers("HP LaserJet")`切换活动打印机。
 
-A print job begins implicitly the first time the application calls a drawing or text method on the **Printer** ([**Print**](#print), [**Line**](#line), [**Circle**](#circle), [**PSet**](#pset), [**PaintPicture**](#paintpicture), …), and is finalised by [**EndDoc**](#enddoc). [**NewPage**](#newpage) advances to a fresh page within the same job; [**KillDoc**](#killdoc) aborts the job without finishing the current page.
+打印作业在应用程序首次在**Printer**上调用绘图或文本方法（[**Print**](#print)、[**Line**](#line)、[**Circle**](#circle)、[**PSet**](#pset)、[**PaintPicture**](#paintpicture)等）时隐式开始，由[**EndDoc**](#enddoc)完成。[**NewPage**](#newpage)在同一作业中前进到新页面；[**KillDoc**](#killdoc)在不完成当前页的情况下中止作业。
 
 ```vb
 Printer.FontSize = 12
@@ -18,12 +29,12 @@ Printer.Print "Second page."
 Printer.EndDoc
 ```
 
-User code never instantiates a **Printer** directly --- the class is marked `[COMCreatable(False)]` and its public API has no useful constructor. The two access paths are the implicit **Printer** global and the [**Printers**](/official/Reference/VB/Printers/) collection.
+用户代码从不直接实例化**Printer**——该类标记为`[COMCreatable(False)]`，其公共API没有有用的构造函数。两条访问路径是隐式**Printer**全局对象和[**Printers**](/official/Reference/VB/Printers/)集合。
 
 
-## The default Printer and the Printers collection
+## 默认Printer和Printers集合
 
-twinBASIC exposes a single implicit **Printer** object, accessible by name from anywhere in user code, plus a [**Printers**](/official/Reference/VB/Printers/) collection enumerating every printer installed on the system:
+twinBASIC暴露一个隐式**Printer**对象，可从用户代码的任何位置按名称访问，以及一个[**Printers**](/official/Reference/VB/Printers/)集合，枚举系统上安装的每台打印机：
 
 ```vb
 Dim p As Printer
@@ -32,9 +43,9 @@ For Each p In Printers
 Next
 ```
 
-By default the implicit **Printer** has [**TrackDefault**](#trackdefault) **True**: every property read consults the current system-default printer, so the application reflects changes the user makes in **Settings → Printers** without restarting. Writing to a settings property, calling **Set Printer = Printers(i)**, or starting a print job locks **TrackDefault** to **False** and pins the object to a specific device.
+默认情况下，隐式**Printer**的[**TrackDefault**](#trackdefault)为**True**：每次属性读取都会查询当前系统默认打印机，因此应用程序无需重启即可反映用户在"设置→打印机"中所做的更改。写入设置属性、调用**Set Printer = Printers(i)**或开始打印作业会将**TrackDefault**锁定为**False**并将对象固定到特定设备。
 
-The entries returned by [**Printers**](/official/Reference/VB/Printers/) are immutable --- assigning to one of their properties raises run-time error 383 (*Property is read-only*), and the document-control methods raise error 438 (*Object doesn't support this property or method*). To print to one of them, copy it onto the implicit **Printer** with **Set**:
+[**Printers**](/official/Reference/VB/Printers/)返回的条目是不可变的——对其属性赋值会引发运行时错误383（*Property is read-only*），文档控制方法会引发错误438（*Object doesn't support this property or method*）。要打印到其中一台，使用**Set**将其复制到隐式**Printer**上：
 
 ```vb
 Set Printer = Printers("HP LaserJet")
@@ -43,32 +54,32 @@ Printer.Print "Hello on landscape paper."
 Printer.EndDoc
 ```
 
-`Set Printer = …` does not replace the implicit instance --- it forwards the new device's identity onto the existing object, ending any active print job and discarding the cached device context in the process.
+`Set Printer = …`不会替换隐式实例——它将新设备的标识转发到现有对象上，在此过程中结束任何活动打印作业并丢弃缓存的设备上下文。
 
-## Print-job lifecycle
+## 打印作业生命周期
 
-The methods that manage the job --- [**EndDoc**](#enddoc), [**KillDoc**](#killdoc), [**NewPage**](#newpage) --- and the implicit "start-on-first-output" rule together form a small state machine:
+管理作业的方法——[**EndDoc**](#enddoc)、[**KillDoc**](#killdoc)、[**NewPage**](#newpage)——以及隐式的"首次输出时启动"规则共同形成一个小型状态机：
 
-| State              | How it advances                                                                                          |
-|--------------------|----------------------------------------------------------------------------------------------------------|
-| No job in progress | The next drawing or text method starts a new job and a fresh page.                                       |
-| Page in progress   | [**NewPage**](#newpage) emits the page and starts another; [**EndDoc**](#enddoc) emits it and finishes.  |
-| Anywhere           | [**KillDoc**](#killdoc) aborts the job without emitting whatever is on the current page.                 |
+| 状态               | 推进方式                                                                                          |
+|--------------------|----------------------------------------------------------------------------------------------------|
+| 无进行中的作业     | 下一个绘图或文本方法开始新作业和新页面。                                                           |
+| 页面进行中         | [**NewPage**](#newpage)发出当前页面并开始另一页；[**EndDoc**](#enddoc)发出当前页面并完成作业。    |
+| 任何状态           | [**KillDoc**](#killdoc)在不发出当前页面内容的情况下中止作业。                                      |
 
-[**Page**](#page) reports the current page number (starting at 1). Property setters that affect page geometry --- [**PaperSize**](#papersize), [**Orientation**](#orientation), [**Copies**](#copies), [**Width**](#width), [**Height**](#height), [**Duplex**](#duplex), [**PaperBin**](#paperbin), [**ColorMode**](#colormode), [**PrintQuality**](#printquality), [**Zoom**](#zoom) --- must be assigned on a blank page; doing so mid-page raises error 396 (*'PropertyName' cannot be set within a page*).
+[**Page**](#page)报告当前页码（从1开始）。影响页面几何的属性赋值——[**PaperSize**](#papersize)、[**Orientation**](#orientation)、[**Copies**](#copies)、[**Width**](#width)、[**Height**](#height)、[**Duplex**](#duplex)、[**PaperBin**](#paperbin)、[**ColorMode**](#colormode)、[**PrintQuality**](#printquality)、[**Zoom**](#zoom)——必须在空白页面上赋值；在页面进行中赋值会引发错误396（*'PropertyName' cannot be set within a page*）。
 
-## Coordinate system
+## 坐标系统
 
-A **Printer** has its own coordinate system, configured through [**ScaleMode**](#scalemode), the [**Scale\***](#scaleleft) properties, and [**Scale**](#scale). The default mode is **vbTwips**, with the surface spanning the physical paper area. Drawing primitives consume coordinates in the current units; [**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert distances between any two scale modes without changing the active one.
+**Printer**有自己的坐标系统，通过[**ScaleMode**](#scalemode)、[**Scale\***](#scaleleft)属性和[**Scale**](#scale)配置。默认模式为**vbTwips**，表面覆盖物理纸张区域。绘图原语使用当前单位消耗坐标；[**ScaleX**](#scalex)和[**ScaleY**](#scaley)在任意两种缩放模式之间转换距离而不改变活动模式。
 
 ```vb
 Printer.ScaleMode = vbInches
-Printer.Line (0.5, 0.5)-(8, 10.5), vbBlack, B   ' 1/2-inch margin rectangle
+Printer.Line (0.5, 0.5)-(8, 10.5), vbBlack, B   ' 1/2英寸边距矩形
 ```
 
-## Printing to a file
+## 打印到文件
 
-Assigning a path to [**OutputFile**](#outputfile) **before** the job starts redirects the raw spool output to that file instead of the printer device. The file holds the printer-driver-specific bytes that would otherwise be sent over the port --- typically a `.prn` file that can later be copied to a port with the **COPY /B** command.
+在作业开始**之前**将路径赋值给[**OutputFile**](#outputfile)会将原始后台输出重定向到该文件而非打印机设备。文件包含打印机驱动程序特定的字节，否则这些字节将通过端口发送——通常是`.prn`文件，稍后可使用**COPY /B**命令复制到端口。
 
 ```vb
 Printer.OutputFile = "C:\Spool\report.prn"
@@ -76,384 +87,384 @@ Printer.Print "Captured to file"
 Printer.EndDoc
 ```
 
-## Properties
+## 属性
 
 ### ColorMode
 
-Whether the printer should print in colour or monochrome.
+打印机是否应以彩色或单色打印。
 
-Syntax: *object*.**ColorMode** [ = *value* ]
+语法：*object*.**ColorMode** [ = *value* ]
 
 *value*
-: A member of [**PrinterObjectConstants_ColorMode**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_ColorMode): **vbPRCMMonochrome** (1) or **vbPRCMColor** (2). Other values raise error 380.
+: [**PrinterObjectConstants_ColorMode**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_ColorMode)的成员：**vbPRCMMonochrome** (1)或**vbPRCMColor** (2)。其他值引发错误380。
 
 ### Copies
 
-The number of copies to print. **Integer**. The maximum value supported by the driver is checked through the device-capabilities API: values greater than the maximum raise error 380, and a driver that does not advertise a maximum raises error 483 (*Printer driver does not support specified property*).
+要打印的份数。**Integer**。驱动程序支持的最大值通过设备能力API检查：大于最大值的值引发错误380，不公布最大值的驱动程序引发错误483（*Printer driver does not support specified property*）。
 
 ### CurrentX
 
-The horizontal pen position used by [**Print**](#print), [**Line**](#line), [**Circle**](#circle), and [**PSet**](#pset) when they omit a starting coordinate. **Double**, in the current [**ScaleMode**](#scalemode) units. Updated automatically by each drawing call.
+[**Print**](#print)、[**Line**](#line)、[**Circle**](#circle)和[**PSet**](#pset)省略起始坐标时使用的水平画笔位置。**Double**，采用当前[**ScaleMode**](#scalemode)单位。每次绘图调用后自动更新。
 
 ### CurrentY
 
-The vertical pen position. **Double**. See [**CurrentX**](#currentx).
+垂直画笔位置。**Double**。参见[**CurrentX**](#currentx)。
 
 ### DeviceName
 
-The friendly name of the bound printer, as it appears in the Windows printer dialog. **String**, read-only. While [**TrackDefault**](#trackdefault) is **True**, this returns the *current* default printer rather than a cached value.
+绑定打印机的友好名称，如Windows打印机对话框中所示。**String**，只读。当[**TrackDefault**](#trackdefault)为**True**时，返回*当前*默认打印机而非缓存值。
 
 ### DrawMode
 
-The raster operation applied when drawing-method output is combined with the page. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen** (opaque overwrite). Re-applied automatically after a printer change.
+绘图方法输出与页面组合时应用的光栅操作。[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员，默认**vbCopyPen**（不透明覆盖）。打印机更改后自动重新应用。
 
 ### DrawStyle
 
-The pen pattern used by line-drawing methods. A member of [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (0, default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**. Solid is forced when [**DrawWidth**](#drawwidth) is greater than 1.
+线条绘制方法使用的画笔图案。[**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants)的成员：**vbSolid** (0，默认)、**vbDash**、**vbDot**、**vbDashDot**、**vbDashDotDot**、**vbInvisible**或**vbInsideSolid**。当[**DrawWidth**](#drawwidth)大于1时强制为实线。
 
 ### DrawWidth
 
-The pen thickness, in pixels, used by [**Line**](#line), [**Circle**](#circle), and [**PSet**](#pset). **Long**, default 1.
+[**Line**](#line)、[**Circle**](#circle)和[**PSet**](#pset)使用的画笔粗细，以像素为单位。**Long**，默认1。
 
 ### DriverName
 
-The name of the device driver that handles the bound printer. **String**, read-only. While [**TrackDefault**](#trackdefault) is **True**, this returns the *current* default printer's driver.
+处理绑定打印机的设备驱动程序名称。**String**，只读。当[**TrackDefault**](#trackdefault)为**True**时，返回*当前*默认打印机的驱动程序。
 
 ### Duplex
 
-Whether the printer should print on one or both sides of the paper.
+打印机是否应在纸张的一面或两面打印。
 
-Syntax: *object*.**Duplex** [ = *value* ]
+语法：*object*.**Duplex** [ = *value* ]
 
 *value*
-: A member of [**PrinterObjectConstants_Duplex**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Duplex): **vbPRDPSimplex** (1), **vbPRDPHorizontal** (2), or **vbPRDPVertical** (3). Values that exceed the driver's reported duplex capability raise error 380. Simplex is always accepted, even when the driver does not advertise duplex support.
+: [**PrinterObjectConstants_Duplex**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Duplex)的成员：**vbPRDPSimplex** (1)、**vbPRDPHorizontal** (2)或**vbPRDPVertical** (3)。超过驱动程序报告的双面打印能力的值引发错误380。简单单面始终被接受，即使驱动程序不公布双面打印支持。
 
 ### FillColor
 
-The colour used to fill closed shapes drawn by [**Line**](#line) (with the `F` flag) and [**Circle**](#circle), as an **OLE_COLOR**. Default **0** (black). Honoured only when [**FillStyle**](#fillstyle) is not **vbFSTransparent**.
+用于填充[**Line**](#line)（带`F`标志时）和[**Circle**](#circle)绘制的闭合形状的颜色，类型为**OLE_COLOR**。默认**0**（黑色）。仅在[**FillStyle**](#fillstyle)不为**vbFSTransparent**时有效。
 
 ### FillStyle
 
-The pattern used to fill closed shapes. A member of [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSTransparent** (1, default), **vbFSSolid** (0), or one of the hatched styles. **Transparent** suppresses fill entirely, so only the outline is drawn.
+用于填充闭合形状的图案。[**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants)的成员：**vbFSTransparent** (1，默认)、**vbFSSolid** (0)或某种影线样式。**Transparent**完全抑制填充，因此只绘制轮廓。
 
 ### Font
 
-The **StdFont** used to render [**Print**](#print) output and measured by [**TextWidth**](#textwidth) / [**TextHeight**](#textheight). The convenience properties [**FontName**](#fontname), [**FontSize**](#fontsize), [**FontBold**](#fontbold), [**FontItalic**](#fontitalic), [**FontStrikethru**](#fontstrikethru), [**FontUnderline**](#fontunderline), and [**FontTransparent**](#fonttransparent) read or write members of this object. Assigning a string to **Font** is a shortcut for assigning to **Font.Name**; assigning an **StdFont** with **Set** replaces the underlying font object.
+用于渲染[**Print**](#print)输出和由[**TextWidth**](#textwidth) / [**TextHeight**](#textheight)测量的**StdFont**。便捷属性[**FontName**](#fontname)、[**FontSize**](#fontsize)、[**FontBold**](#fontbold)、[**FontItalic**](#fontitalic)、[**FontStrikethru**](#fontstrikethru)、[**FontUnderline**](#fontunderline)和[**FontTransparent**](#fonttransparent)读写此对象的成员。将字符串赋值给**Font**是赋值给**Font.Name**的快捷方式；使用**Set**赋值**StdFont**替换底层字体对象。
 
-On a printer obtained from [**Printers**](/official/Reference/VB/Printers/), **Font** can still be read (a fresh, mutable **StdFont** is returned), but reassigning it raises error 383.
+在从[**Printers**](/official/Reference/VB/Printers/)获取的打印机上，**Font**仍可读取（返回一个新的可变**StdFont**），但重新赋值会引发错误383。
 
 ### FontBold
 
-Shortcut for [**Font**](#font)`.Bold`. **Boolean**.
+[**Font**](#font)`.Bold`的快捷方式。**Boolean**。
 
 ### FontCount
 
-The number of typefaces installed on the printer. **Long**, read-only. Used together with [**Fonts**](#fonts) to enumerate them.
+打印机上安装的字型数量。**Long**，只读。与[**Fonts**](#fonts)一起使用进行枚举。
 
 ### FontItalic
 
-Shortcut for [**Font**](#font)`.Italic`. **Boolean**.
+[**Font**](#font)`.Italic`的快捷方式。**Boolean**。
 
 ### FontName
 
-Shortcut for [**Font**](#font)`.Name`. **String**.
+[**Font**](#font)`.Name`的快捷方式。**String**。
 
 ### Fonts
 
-Indexed access to the names of the typefaces installed on the printer.
+对打印机上安装的字型名称的索引访问。
 
-Syntax: *object*.**Fonts**( *Index* ) **As String**
+语法：*object*.**Fonts**( *Index* ) **As String**
 
 *Index*
-: *required* A zero-based **Long** in the range `0 .. FontCount - 1`. Out-of-range indices return an empty string rather than raising an error.
+: *必需* 从零开始的**Long**，范围`0 .. FontCount - 1`。超出范围的索引返回空字符串而非引发错误。
 
 ### FontSize
 
-Shortcut for [**Font**](#font)`.Size`, the point size. **Single**.
+[**Font**](#font)`.Size`的快捷方式，磅值。**Single**。
 
 ### FontStrikethru
 
-Shortcut for [**Font**](#font)`.Strikethrough`. **Boolean**.
+[**Font**](#font)`.Strikethrough`的快捷方式。**Boolean**。
 
 ### FontTransparent
 
-When **True** (default), text drawn by [**Print**](#print) leaves the background pixels untouched between glyphs; when **False**, the glyphs' background is filled with the printer's drawn background colour. **Boolean**.
+当为**True**（默认）时，[**Print**](#print)绘制的文本在字形之间保留背景像素不变；当为**False**时，字形的背景以打印机的绘制背景色填充。**Boolean**。
 
 ### FontUnderline
 
-Shortcut for [**Font**](#font)`.Underline`. **Boolean**.
+[**Font**](#font)`.Underline`的快捷方式。**Boolean**。
 
 ### ForeColor
 
-The colour used by the drawing-method pen (lines, circles, points) and by [**Print**](#print) text. **OLE_COLOR**.
+绘图方法画笔（线条、圆形、点）和[**Print**](#print)文本使用的颜色。**OLE_COLOR**。
 
 ### hDC
 
-The Win32 device-context handle for the printer's drawing surface, as a **LongPtr**. Read-only.
+打印机绘图表面的Win32设备上下文句柄，类型为**LongPtr**。只读。
 
-Reading **hDC** the first time creates the device context --- calling the driver's **CreateDC** and preparing the surface for drawing --- but does **not** start the spool job. The spooler is engaged only when the first drawing call runs, so reading **hDC** for, say, a **GetDeviceCaps** query is non-committal: nothing is printed if the application never calls a drawing method afterwards.
+首次读取**hDC**会创建设备上下文——调用驱动程序的**CreateDC**并准备绘图表面——但**不会**启动后台打印作业。后台打印处理器仅在第一个绘图调用运行时启动，因此读取**hDC**进行例如**GetDeviceCaps**查询是非承诺性的：如果应用程序之后从不调用绘图方法，则不会打印任何内容。
 
 ### Height
 
-The physical page height, in twips. **Long**. Assigning a value overrides the driver's reported paper height and forces [**PaperSize**](#papersize) to a custom size; the new value can be read back through `Height` itself.
+物理页面高度，以缇为单位。**Long**。赋值会覆盖驱动程序报告的纸张高度并强制[**PaperSize**](#papersize)为自定义大小；新值可通过`Height`本身读回。
 
 ### Orientation
 
-The page orientation.
+页面方向。
 
-Syntax: *object*.**Orientation** [ = *value* ]
+语法：*object*.**Orientation** [ = *value* ]
 
 *value*
-: A member of [**PrinterObjectConstants_Orientation**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Orientation): **vbPRORPortrait** (1) or **vbPRORLandscape** (2). Assigning landscape on a driver that does not advertise the **DC_ORIENTATION** capability raises error 380; portrait is always accepted.
+: [**PrinterObjectConstants_Orientation**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_Orientation)的成员：**vbPRORPortrait** (1)或**vbPRORLandscape** (2)。在不公布**DC_ORIENTATION**能力的驱动程序上赋值横向会引发错误380；纵向始终被接受。
 
 ### OutputFile
 
-The path of a file to capture the raw spooled bytes into, instead of sending them to the printer device. **String**. New in twinBASIC. Must be set before the first drawing call; assigning while a job is active has no effect on the running job. Read-only on a printer obtained from [**Printers**](/official/Reference/VB/Printers/).
+用于捕获原始后台字节而非发送到打印机设备的文件路径。**String**。twinBASIC新增。必须在第一次绘图调用之前设置；在作业活动时赋值对运行中的作业没有影响。在从[**Printers**](/official/Reference/VB/Printers/)获取的打印机上只读。
 
 ### Page
 
-The page currently being composed, starting at 1 when the job begins. **Long**, read-only. Reset to 1 by [**EndDoc**](#enddoc) and [**KillDoc**](#killdoc); incremented by [**NewPage**](#newpage).
+当前正在编写的页码，作业开始时从1起。**Long**，只读。由[**EndDoc**](#enddoc)和[**KillDoc**](#killdoc)重置为1；由[**NewPage**](#newpage)递增。
 
 ### PaperBin
 
-The paper source the printer should pull from.
+打印机应从哪个纸盒取纸。
 
-Syntax: *object*.**PaperBin** [ = *value* ]
+语法：*object*.**PaperBin** [ = *value* ]
 
 *value*
-: A member of [**PrinterObjectConstants_PaperBin**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperBin) --- for example **vbPRBNUpper**, **vbPRBNManual**, **vbPRBNCassette**. The value must be one of the bins the driver enumerates through **DC_BINS**; an unsupported value raises error 380.
+: [**PrinterObjectConstants_PaperBin**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperBin)的成员——例如**vbPRBNUpper**、**vbPRBNManual**、**vbPRBNCassette**。该值必须是驱动程序通过**DC_BINS**枚举的纸盒之一；不支持的值引发错误380。
 
 ### PaperSize
 
-The paper size to print on.
+要打印的纸张大小。
 
-Syntax: *object*.**PaperSize** [ = *value* ]
+语法：*object*.**PaperSize** [ = *value* ]
 
 *value*
-: A member of [**PrinterObjectConstants_PaperSize**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperSize) --- for example **vbPRPSLetter**, **vbPRPSA4**, **vbPRPSEnv10**. Assigning to [**Width**](#width) or [**Height**](#height) forces this property to **vbPRPSUser** (256).
+: [**PrinterObjectConstants_PaperSize**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PaperSize)的成员——例如**vbPRPSLetter**、**vbPRPSA4**、**vbPRPSEnv10**。对[**Width**](#width)或[**Height**](#height)赋值会将此属性强制为**vbPRPSUser** (256)。
 
 ### Port
 
-The name of the port that connects to the printer (e.g. `LPT1:`, `USB001`, `IP_192.168.1.50`). **String**, read-only. While [**TrackDefault**](#trackdefault) is **True**, this returns the *current* default printer's port.
+连接到打印机的端口名称（如`LPT1:`、`USB001`、`IP_192.168.1.50`）。**String**，只读。当[**TrackDefault**](#trackdefault)为**True**时，返回*当前*默认打印机的端口。
 
 ### PrintQuality
 
-The print resolution.
+打印分辨率。
 
-Syntax: *object*.**PrintQuality** [ = *value* ]
+语法：*object*.**PrintQuality** [ = *value* ]
 
 *value*
-: An **Integer** --- either a positive DPI value supported by the driver, or a member of [**PrinterObjectConstants_PrintQuality**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PrintQuality): **vbPRPQDraft** (-1), **vbPRPQLow** (-2), **vbPRPQMedium** (-3), or **vbPRPQHigh** (-4). Zero, or values below -4, raise error 380.
+: **Integer**——驱动程序支持的正DPI值，或[**PrinterObjectConstants_PrintQuality**](/official/Reference/VBRUN/Constants/PrinterObjectConstants_PrintQuality)的成员：**vbPRPQDraft** (-1)、**vbPRPQLow** (-2)、**vbPRPQMedium** (-3)或**vbPRPQHigh** (-4)。零或低于-4的值引发错误380。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中未实现。
 :::
 
 ### ScaleHeight
 
-The vertical extent of the printer's drawing surface in [**ScaleMode**](#scalemode) units. **Double**. Assigning a value switches [**ScaleMode**](#scalemode) to **vbUser** and rescales the vertical axis so the page maps to the new height.
+以[**ScaleMode**](#scalemode)单位表示的打印机绘图表面垂直范围。**Double**。赋值会将[**ScaleMode**](#scalemode)切换为**vbUser**并重新缩放垂直轴，使页面映射到新高度。
 
 ### ScaleLeft
 
-The X coordinate that maps to the left edge of the printable area. **Double**, default 0. Assigning a value switches [**ScaleMode**](#scalemode) to **vbUser**.
+映射到可打印区域左边缘的X坐标。**Double**，默认0。赋值会将[**ScaleMode**](#scalemode)切换为**vbUser**。
 
 ### ScaleMode
 
-The unit used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), and every drawing method. A member of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbUser** (0), **vbTwips** (1, default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, or **vbCentimeters**. Switching away from **vbUser** resets [**ScaleLeft**](#scaleleft) and [**ScaleTop**](#scaletop) to 0.
+[**CurrentX**](#currentx)、[**CurrentY**](#currenty)和每个绘图方法使用的单位。[**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)的成员：**vbUser** (0)、**vbTwips** (1，默认)、**vbPoints**、**vbPixels**、**vbCharacters**、**vbInches**、**vbMillimeters**或**vbCentimeters**。从**vbUser**切换开时将[**ScaleLeft**](#scaleleft)和[**ScaleTop**](#scaletop)重置为0。
 
 ### ScaleTop
 
-The Y coordinate that maps to the top edge of the printable area. **Double**, default 0. Assigning a value switches [**ScaleMode**](#scalemode) to **vbUser**.
+映射到可打印区域上边缘的Y坐标。**Double**，默认0。赋值会将[**ScaleMode**](#scalemode)切换为**vbUser**。
 
 ### ScaleWidth
 
-The horizontal extent of the printer's drawing surface in [**ScaleMode**](#scalemode) units. **Double**. Assigning a value switches [**ScaleMode**](#scalemode) to **vbUser**.
+以[**ScaleMode**](#scalemode)单位表示的打印机绘图表面水平范围。**Double**。赋值会将[**ScaleMode**](#scalemode)切换为**vbUser**。
 
 ### TrackDefault
 
-When **True**, every property read consults the current system-default printer; when **False**, the **Printer** is locked to the specific device identified by [**DeviceName**](#devicename), [**DriverName**](#drivername), and [**Port**](#port). **Boolean**.
+当为**True**时，每次属性读取查询当前系统默认打印机；当为**False**时，**Printer**锁定到由[**DeviceName**](#devicename)、[**DriverName**](#drivername)和[**Port**](#port)标识的特定设备。**Boolean**。
 
-Setting **TrackDefault** to **False** captures the current default device into the cached identifiers so subsequent reads stop drifting. Setting it back to **True** finishes any active print job (as if [**EndDoc**](#enddoc) had been called) and clears the cached device context. Always **False** on a printer obtained from [**Printers**](/official/Reference/VB/Printers/), and read-only there.
+将**TrackDefault**设置为**False**会将当前默认设备捕获到缓存标识符中，使后续读取停止漂移。将其设回**True**会结束任何活动打印作业（如同调用了[**EndDoc**](#enddoc)）并清除缓存的设备上下文。在从[**Printers**](/official/Reference/VB/Printers/)获取的打印机上始终为**False**，且只读。
 
 ### TwipsPerPixelX
 
-The number of twips that correspond to one device pixel, horizontally --- useful for custom DPI-aware sizing. **Double**, read-only.
+水平方向上一个设备像素对应的缇数——用于自定义DPI感知的尺寸调整。**Double**，只读。
 
 ### TwipsPerPixelY
 
-The vertical counterpart of [**TwipsPerPixelX**](#twipsperpixelx). **Double**, read-only.
+[**TwipsPerPixelX**](#twipsperpixelx)的垂直对应属性。**Double**，只读。
 
 ### Width
 
-The physical page width, in twips. **Long**. Assigning a value overrides the driver's reported paper width and forces [**PaperSize**](#papersize) to a custom size; the new value can be read back through `Width` itself.
+物理页面宽度，以缇为单位。**Long**。赋值会覆盖驱动程序报告的纸张宽度并强制[**PaperSize**](#papersize)为自定义大小；新值可通过`Width`本身读回。
 
 ### Zoom
 
-The print-scaling percentage applied by the driver. **Integer**, default 100. Values greater than 100 enlarge the output; values less than 100 shrink it. Zero and negative values raise error 380.
+驱动程序应用的打印缩放百分比。**Integer**，默认100。大于100的值放大输出；小于100的值缩小输出。零和负值引发错误380。
 
-## Methods
+## 方法
 
 ### Circle
 
-Draws a circle, ellipse, or elliptical arc on the current page.
+在当前页面上绘制圆形、椭圆形或椭圆弧。
 
-Syntax: *object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, *Color* [, *Start* [, *End* [, *Aspect* ] ] ] ]
+语法：*object*.**Circle** [ **Step** ] ( *X*, *Y* ), *Radius* [, *Color* [, *Start* [, *End* [, *Aspect* ] ] ] ]
 
 *X*, *Y*
-: *required* Coordinates of the centre in [**ScaleMode**](#scalemode) units. **Single**. **Step** makes them relative to [**CurrentX**](#currentx) / [**CurrentY**](#currenty).
+: *必需* 中心坐标，采用[**ScaleMode**](#scalemode)单位。**Single**。**Step**使它们相对于[**CurrentX**](#currentx) / [**CurrentY**](#currenty)。
 
 *Radius*
-: *required* The radius along the X axis. **Single**.
+: *必需* 沿X轴的半径。**Single**。
 
 *Color*
-: *optional* An **OLE_COLOR** for the outline. Defaults to [**ForeColor**](#forecolor).
+: *可选* 轮廓的**OLE_COLOR**。默认为[**ForeColor**](#forecolor)。
 
-*Start*, *End*
-: *optional* Start and end angles in radians (0 to 2π). Negative values connect the arc end-point to the centre with a chord. Omitted draws a full circle.
+*Start*、*End*
+: *可选* 起始和结束角度，以弧度为单位（0到2π）。负值将弧端点连接到中心形成弦。省略则绘制完整圆形。
 
 *Aspect*
-: *optional* The Y/X aspect ratio. **1.0** for a circle (default); other values give an ellipse.
+: *可选* Y/X纵横比。**1.0**为圆形（默认）；其他值为椭圆形。
 
-If no job is in progress, **Circle** implicitly starts one.
+如果没有进行中的作业，**Circle**隐式启动一个。
 
 ### EndDoc
 
-Finalises the current print job, sending whatever is on the current page to the spooler and releasing the underlying GDI document. Has no effect when no job is in progress.
+完成当前打印作业，将当前页面上的内容发送到后台打印处理器并释放底层GDI文档。没有进行中的作业时无效果。
 
-Syntax: *object*.**EndDoc**
+语法：*object*.**EndDoc**
 
 ### KillDoc
 
-Aborts the current print job, discarding any in-progress page output. Releases the device context immediately, without further interaction with the spooler beyond an **AbortDoc** call.
+中止当前打印作业，丢弃任何进行中的页面输出。立即释放设备上下文，除**AbortDoc**调用外不再与后台打印处理器交互。
 
-Syntax: *object*.**KillDoc**
+语法：*object*.**KillDoc**
 
 ### Line
 
-Draws a straight line, a rectangle outline, or a filled rectangle.
+绘制直线、矩形轮廓或填充矩形。
 
-Syntax: *object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] **-** [ **Step** ] ( *X2*, *Y2* ) [, *Color* [, **B** [**F**] ] ]
+语法：*object*.**Line** [ [ **Step** ] ( *X1*, *Y1* ) ] **-** [ **Step** ] ( *X2*, *Y2* ) [, *Color* [, **B** [**F**] ] ]
 
 *X1*, *Y1*
-: *optional* Start coordinates. **Single**. If omitted, the line starts at [**CurrentX**](#currentx) / [**CurrentY**](#currenty). **Step** makes them relative to the pen.
+: *可选* 起始坐标。**Single**。如果省略，线条从[**CurrentX**](#currentx) / [**CurrentY**](#currenty)开始。**Step**使它们相对于画笔。
 
 *X2*, *Y2*
-: *required* End coordinates. **Single**. **Step** makes them relative to the start point.
+: *必需* 结束坐标。**Single**。**Step**使它们相对于起始点。
 
 *Color*
-: *optional* An **OLE_COLOR** for the line. Defaults to [**ForeColor**](#forecolor).
+: *可选* 线条的**OLE_COLOR**。默认为[**ForeColor**](#forecolor)。
 
 *B*
-: *optional* Draws a rectangle whose opposite corners are *(X1, Y1)* and *(X2, Y2)* instead of a line.
+: *可选* 绘制以*(X1, Y1)*和*(X2, Y2)*为对角的矩形而非线条。
 
 *F*
-: *optional* Only valid with **B**. Fills the rectangle with [**FillColor**](#fillcolor) at the current [**FillStyle**](#fillstyle).
+: *可选* 仅在带**B**时有效。以[**FillColor**](#fillcolor)和当前[**FillStyle**](#fillstyle)填充矩形。
 
-If no job is in progress, **Line** implicitly starts one.
+如果没有进行中的作业，**Line**隐式启动一个。
 
 ### NewPage
 
-Emits the current page to the spooler and begins a new blank page. [**Page**](#page) is incremented; [**CurrentX**](#currentx) and [**CurrentY**](#currenty) are reset to 0. If no job is in progress, **NewPage** implicitly starts one before emitting the first page break.
+将当前页面发送到后台打印处理器并开始新的空白页面。[**Page**](#page)递增；[**CurrentX**](#currentx)和[**CurrentY**](#currenty)重置为0。如果没有进行中的作业，**NewPage**在发出第一个分页符之前隐式启动一个。
 
-Syntax: *object*.**NewPage**
+语法：*object*.**NewPage**
 
 ### PaintPicture
 
-Draws a picture onto the current page, optionally scaling, clipping, or applying a raster operation.
+将图片绘制到当前页面上，可选缩放、裁剪或应用光栅操作。
 
-Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* ] ] ] ] ] ] ]
+语法：*object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1* [, *X2* [, *Y2* [, *Width2* [, *Height2* [, *Opcode* ] ] ] ] ] ] ]
 
 *Picture*
-: *required* An **IPictureDisp** to paint.
+: *必需* 要绘制的**IPictureDisp**。
 
 *X1*, *Y1*
-: *required* Destination top-left in [**ScaleMode**](#scalemode) units.
+: *必需* 目标左上角，采用[**ScaleMode**](#scalemode)单位。
 
 *Width1*, *Height1*
-: *optional* Destination size. Defaults to the picture's natural size.
+: *可选* 目标大小。默认为图片的自然大小。
 
 *X2*, *Y2*, *Width2*, *Height2*
-: *optional* Source rectangle within *Picture*. Defaults to the whole picture.
+: *可选* *Picture*内的源矩形。默认为整个图片。
 
 *Opcode*
-: *optional* A raster-operation code passed through to **BitBlt** --- for example **&HCC0020** (`vbSrcCopy`, default) or **&H660046** (`vbSrcInvert`).
+: *可选* 传递给**BitBlt**的光栅操作代码——例如**&HCC0020**（`vbSrcCopy`，默认）或**&H660046**（`vbSrcInvert`）。
 
-If no job is in progress, **PaintPicture** implicitly starts one.
+如果没有进行中的作业，**PaintPicture**隐式启动一个。
 
 ### Print
 
-Writes text to the current page using [**Font**](#font), starting at [**CurrentX**](#currentx) / [**CurrentY**](#currenty) and advancing them as it goes. Dispatched through the **Print** statement so multiple expressions can be separated by `;` (no spacing) or `,` (tab to next print zone). **Spc(n)** inserts *n* spaces and **Tab(n)** moves to print column *n*.
+使用[**Font**](#font)将文本写入当前页面，从[**CurrentX**](#currentx) / [**CurrentY**](#currenty)开始并随着写入推进。通过**Print**语句分派，因此多个表达式可以用`;`（无间距）或`,`（跳到下一个打印区域）分隔。**Spc(n)**插入*n*个空格，**Tab(n)**移动到打印列*n*。
 
-Syntax: *object*.**Print** \[ *expressionlist* \] \[ **;** \| **,** \]
+语法：*object*.**Print** \[ *expressionlist* \] \[ **;** \| **,** \]
 
-A trailing `;` or `,` suppresses the newline so the next [**Print**](#print) call continues on the same line. If no job is in progress, **Print** implicitly starts one.
+末尾的`;`或`,`抑制换行，使下一个[**Print**](#print)调用继续在同一行。如果没有进行中的作业，**Print**隐式启动一个。
 
 ### PSet
 
-Sets a single pixel on the current page.
+在当前页面上设置单个像素。
 
-Syntax: *object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
+语法：*object*.**PSet** [ **Step** ] ( *X*, *Y* ) [, *Color* ]
 
 *X*, *Y*
-: *required* Coordinates in [**ScaleMode**](#scalemode) units. **Single**. **Step** makes them relative to [**CurrentX**](#currentx) / [**CurrentY**](#currenty).
+: *必需* 坐标，采用[**ScaleMode**](#scalemode)单位。**Single**。**Step**使它们相对于[**CurrentX**](#currentx) / [**CurrentY**](#currenty)。
 
 *Color*
-: *optional* An **OLE_COLOR**. Defaults to [**ForeColor**](#forecolor).
+: *可选* **OLE_COLOR**。默认为[**ForeColor**](#forecolor)。
 
-If no job is in progress, **PSet** implicitly starts one.
+如果没有进行中的作业，**PSet**隐式启动一个。
 
 ### Scale
 
-Defines a user coordinate system for the page. Calling **Scale** with no arguments resets [**ScaleMode**](#scalemode) to **vbTwips** and clears [**ScaleLeft**](#scaleleft) / [**ScaleTop**](#scaletop).
+为页面定义用户坐标系。不带参数调用**Scale**将[**ScaleMode**](#scalemode)重置为**vbTwips**并清除[**ScaleLeft**](#scaleleft) / [**ScaleTop**](#scaletop)。
 
-Syntax: *object*.**Scale** [ ( *X1*, *Y1* ) **-** ( *X2*, *Y2* ) ]
+语法：*object*.**Scale** [ ( *X1*, *Y1* ) **-** ( *X2*, *Y2* ) ]
 
 *X1*, *Y1*
-: *required* (with the second pair) The coordinate that maps to the top-left corner --- sets [**ScaleLeft**](#scaleleft) and [**ScaleTop**](#scaletop).
+: *必需*（与第二对一起）映射到左上角的坐标——设置[**ScaleLeft**](#scaleleft)和[**ScaleTop**](#scaletop)。
 
 *X2*, *Y2*
-: *required* The coordinate that maps to the bottom-right corner --- sets [**ScaleWidth**](#scalewidth) = `X2 - X1` and [**ScaleHeight**](#scaleheight) = `Y2 - Y1`. [**ScaleMode**](#scalemode) becomes **vbUser**.
+: *必需* 映射到右下角的坐标——设置[**ScaleWidth**](#scalewidth) = `X2 - X1`和[**ScaleHeight**](#scaleheight) = `Y2 - Y1`。[**ScaleMode**](#scalemode)变为**vbUser**。
 
-Calling **Scale** with coordinates implicitly starts a print job (matching VB6 behaviour); calling it without arguments does not.
+带坐标调用**Scale**隐式启动打印作业（匹配VB6行为）；不带参数调用不会。
 
 ### ScaleX
 
-Converts a horizontal distance from one scale mode to another, without changing the printer's [**ScaleMode**](#scalemode).
+将水平距离从一种缩放模式转换为另一种，不改变打印机的[**ScaleMode**](#scalemode)。
 
-Syntax: *object*.**ScaleX**( *Width*, *FromScale* [, *ToScale* ] ) **As Double**
+语法：*object*.**ScaleX**( *Width*, *FromScale* [, *ToScale* ] ) **As Double**
 
 *Width*
-: *required* The value to convert. **Double**.
+: *必需* 要转换的值。**Double**。
 
 *FromScale*
-: *required* A [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants) member identifying the unit of *Width*. Unlike on a [**PictureBox**](/official/Reference/VB/PictureBox/) or [**Form**](/official/Reference/VB/Form/), this argument has no default on a **Printer** --- omitting it raises error 448 (*Named argument not found*).
+: *必需* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)成员，标识*Width*的单位。与[**PictureBox**](/official/Reference/VB/PictureBox/)或[**Form**](/official/Reference/VB/Form/)不同，此参数在**Printer**上没有默认值——省略会引发错误448（*Named argument not found*）。
 
 *ToScale*
-: *optional* A [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants) member identifying the unit of the result; defaults to the printer's current [**ScaleMode**](#scalemode).
+: *可选* [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants)成员，标识结果的单位；默认为打印机当前的[**ScaleMode**](#scalemode)。
 
 ### ScaleY
 
-The vertical counterpart of [**ScaleX**](#scalex), for heights.
+[**ScaleX**](#scalex)的垂直对应方法，用于高度。
 
-Syntax: *object*.**ScaleY**( *Height*, *FromScale* [, *ToScale* ] ) **As Double**
+语法：*object*.**ScaleY**( *Height*, *FromScale* [, *ToScale* ] ) **As Double**
 
 ### TextHeight
 
-Measures the height of the given string when rendered in the current [**Font**](#font), in [**ScaleMode**](#scalemode) units --- including the line-spacing leading, so the result is suitable for advancing [**CurrentY**](#currenty) between rows of text. Embedded line breaks are honoured.
+以当前[**Font**](#font)渲染给定字符串时的高度，采用[**ScaleMode**](#scalemode)单位——包括行间距前端留白，因此结果适合用于在文本行之间推进[**CurrentY**](#currenty)。嵌入的换行符被遵循。
 
-Syntax: *object*.**TextHeight**( *Str* **As String** ) **As Double**
+语法：*object*.**TextHeight**( *Str* **As String** ) **As Double**
 
 ### TextWidth
 
-Measures the width of the given string when rendered in the current [**Font**](#font), in [**ScaleMode**](#scalemode) units. Returns the longest line width when *Str* contains embedded line breaks.
+以当前[**Font**](#font)渲染给定字符串时的宽度，采用[**ScaleMode**](#scalemode)单位。当*Str*包含嵌入的换行符时返回最长行的宽度。
 
-Syntax: *object*.**TextWidth**( *Str* **As String** ) **As Double**
+语法：*object*.**TextWidth**( *Str* **As String** ) **As Double**
 
-## See Also
+## 另请参见
 
-- [Printers](/official/Reference/VB/Printers/) -- read-only collection of every installed printer.
-- [Form.PrintForm](/official/Reference/VB/Form/#printform) -- sends a screenshot of a form to the implicit **Printer**.
-- [Report.PrintReport](/official/Reference/VB/Report/#printreport) -- sends every page of a banded report to the implicit **Printer**.
-- [PrinterObjectConstants](/official/Reference/VBRUN/Constants/PrinterObjectConstants) -- combined enumeration of printer option values.
+- [Printers](/official/Reference/VB/Printers/) -- 每台已安装打印机的只读集合。
+- [Form.PrintForm](/official/Reference/VB/Form/#printform) -- 将窗体截图发送到隐式**Printer**。
+- [Report.PrintReport](/official/Reference/VB/Report/#printreport) -- 将分区报表的每页发送到隐式**Printer**。
+- [PrinterObjectConstants](/official/Reference/VBRUN/Constants/PrinterObjectConstants) -- 打印机选项值的组合枚举。

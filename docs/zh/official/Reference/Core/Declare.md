@@ -2,18 +2,26 @@
 title: Declare
 parent: Statements
 permalink: /tB/Core/Declare
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '80c9162c-ca41-4ecf-8807-2a607a30692a'
+  PropagateID: '80c9162c-ca41-4ecf-8807-2a607a30692a'
+  ReservedCode1: 'bc1b0fdf-d2b4-495e-a174-cc701b714d6b'
+  ReservedCode2: 'bc1b0fdf-d2b4-495e-a174-cc701b714d6b'
 ---
 
 # Declare
 
-Declares references to external procedures in a dynamic-link library (DLL) at the module level.
+在模块级别声明对动态链接库(DLL)中外部过程的引用。
 
 ::: info
 
-**Declare** statements with the PtrSafe keyword is the recommended syntax. **Declare** statements that include **PtrSafe** work correctly in twinBASIC and VBA version 7 development environment on both 32-bit and 64-bit platforms only after all data types in the **Declare** statement (parameters and return values) that need to store 64-bit quantities are updated to use LongLong for 64-bit integrals or LongPtr for pointers and handles.
+带有PtrSafe关键字的 **Declare** 语句是推荐的语法。包含 **PtrSafe** 的 **Declare** 语句只有在将 **Declare** 语句中需要存储64位量的所有数据类型（参数和返回值）更新为对64位整数使用LongLong、对指针和句柄使用LongPtr之后，才能在twinBASIC和VBA版本7开发环境的32位和64位平台上正常工作。
 :::
 
-To ensure backwards compatibility with VBA version 6 and earlier, use the following construct:
+为确保与VBA版本6及更早版本的向后兼容，请使用以下结构：
 
 ```vb
 #If VBA7 Then 
@@ -25,10 +33,10 @@ Declare Sub...
 
 ::: info
 
-For code to run when built for 64-bit targets, all **Declare** statements must include the **PtrSafe** keyword, and all data types in the **Declare** statement (parameters and return values) that need to store 64-bit quantities must be updated to use **LongLong** for 64-bit integrals or **LongPtr** for pointers and handles.
+要在为64位目标构建时运行代码，所有 **Declare** 语句必须包含 **PtrSafe** 关键字，且 **Declare** 语句中需要存储64位量的所有数据类型（参数和返回值）必须更新为对64位整数使用 **LongLong**、对指针和句柄使用 **LongPtr**。
 :::
 
-Syntax:
+语法：
 
 - > [ *attributes* ]  
   > [ **Public** \| **Private** ] **Declare** [ **PtrSafe** ] **Sub** *name* **Lib** "*libname*" [ **(** [ *arglist* ] **)** ]
@@ -41,65 +49,65 @@ Syntax:
 
 
 *attributes*
-: *optional* One or more of:  
-[Description](/official/Reference/Attributes#description), [DLLStackCheck](/official/Reference/Attributes#dllstackcheck), [PreserveSig](/official/Reference/Attributes#preservesig), [SetDllDirectory](/official/Reference/Attributes#setdlldirectory), [UseGetLastError](/official/Reference/Attributes#usegetlasterror)
+: *可选* 以下一个或多个：  
+[Description](/official/Reference/Attributes#description)、[DLLStackCheck](/official/Reference/Attributes#dllstackcheck)、[PreserveSig](/official/Reference/Attributes#preservesig)、[SetDllDirectory](/official/Reference/Attributes#setdlldirectory)、[UseGetLastError](/official/Reference/Attributes#usegetlasterror)
 
 **Public**
-: *optional* Used to declare procedures that are available to all other procedures in all modules.
+: *可选* 用于声明对所有模块中所有其他过程可用的过程。
 
 **Private**
-: *optional* Used to declare procedures that are available only within the module where the declaration is made.
+: *可选* 用于声明仅在声明所在模块内可用的过程。
 
 **PtrSafe**
-: *required in 64-bits* The PtrSafe keyword asserts that a Declare statement is safe to run in 64-bit versions of Microsoft Office.
+: *64位必填* PtrSafe关键字断言Declare语句可以在64位版本的Microsoft Office中安全运行。
 
 **Sub / Function**
-: Indicates whether the procedure returns a value (**Function**) or not (**Sub**).
+: 指示过程是否返回值（**Function**）或不返回值（**Sub**）。
 
 *name*
-: Any valid procedure name. Note that DLL entry points are case-sensitive.
+: 任何有效的过程名称。注意DLL入口点区分大小写。
 
 *libname*
-: Name of the DLL or code resource that contains the declared procedure.
+: 包含所声明过程的DLL或代码资源的名称。
 
 **Alias** *aliasname*
-: *optional* Indicates that the procedure being called has another name in the DLL. This is useful when the external procedure name is the same as a keyword. Alias also applies when a DLL procedure has the same name as a public variable, constant, or any other procedure in the same scope. Alias is also useful when any characters in the DLL procedure name aren't allowed by the DLL naming convention.  
-*aliasname* names the procedure in the DLL or code resource. If the first character is not a number sign (**#**), *aliasname* is the name of the procedure's entry point in the DLL. If (**#**) is the first character, all characters that follow must indicate the ordinal number of the procedure's entry point.
+: *可选* 指示被调用的过程在DLL中有另一个名称。当外部过程名与关键字相同时很有用。当DLL过程与同一作用域中的公共变量、常量或任何其他过程同名时，Alias也适用。当DLL过程名中有不符合DLL命名约定的字符时，Alias也很有用。  
+*aliasname* 命名DLL或代码资源中的过程。如果第一个字符不是数字符号（**#**），*aliasname* 是DLL中过程入口点的名称。如果第一个字符是（**#**），后续所有字符必须指示过程入口点的序号。
 
 *arglist* 
-: *optional* List of variables representing arguments that are passed to the procedure when it is called.
+: *可选* 表示调用过程时传递的参数的变量列表。
 
 *type*
-: *optional* Data type of the value returned by a **Function** procedure; may be Byte, Boolean, Integer, Long, LongLong, LongPtr, Currency, Single, Double, Decimal, Date, String (variable length only), Variant, a user-defined type (UDT), or an object type. **LongLong** is a valid declared type only on 64-bit platforms.
+: *可选* **Function** 过程返回值的数据类型；可以是Byte、Boolean、Integer、Long、LongLong、LongPtr、Currency、Single、Double、Decimal、Date、String（仅限变长）、Variant、用户自定义类型(UDT)或对象类型。**LongLong** 仅在64位平台上是有效的声明类型。
 
 ### arglist
 
-The *arglist* argument has the following syntax and parts:
+*arglist* 参数的语法和组成部分如下：
 
-Syntax: [ **Optional** ] [ **ByVal** \| **ByRef** ] [ **ParamArray** ] *varname* [ **( )** ] [ **As** *type* ]
+语法：[ **Optional** ] [ **ByVal** \| **ByRef** ] [ **ParamArray** ] *varname* [ **( )** ] [ **As** *type* ]
 
 **Optional**
-: *optional* Indicates that an argument is not required. If used, all subsequent arguments in *arglist* must also be optional and declared by using the **Optional** keyword. **Optional** can't be used for any argument if **ParamArray** is used.
+: *可选* 指示参数不是必需的。如果使用，*arglist* 中所有后续参数也必须是可选的并使用 **Optional** 关键字声明。如果使用了 **ParamArray**，则不能对任何参数使用 **Optional**。
 
 **ByVal**
-: *optional* Indicates that the argument is passed by value.
+: *可选* 指示参数按值传递。
 
 **ByRef**
-: *optional* Indicates that the argument is passed by reference. **ByRef** is the default unlike in Visual Basic .NET.
+: *可选* 指示参数按引用传递。**ByRef** 是默认方式，与Visual Basic .NET不同。
 
 **ParamArray**
-: *optional* Used only as the last argument in arglist to indicate that the final argument is an **Optional** array of **Variant** elements. The **ParamArray** keyword permits passing an arbitrary number of arguments. The ParamArray keyword can't be used with **ByVal**, **ByRef**, or **Optional**.
+: *可选* 仅用作arglist中的最后一个参数，指示最后一个参数是 **Variant** 元素的 **Optional** 数组。**ParamArray** 关键字允许传递任意数量的参数。ParamArray关键字不能与 **ByVal**、**ByRef** 或 **Optional** 一起使用。
 
 *varname*
-: Name of the variable representing the argument being passed to the procedure; follows standard variable naming conventions.
+: 表示传递给过程的参数的变量名称；遵循标准变量命名约定。
 
 **( )**
-: Required for array variables. Indicates that *varname* is an array.
+: 数组变量必需。指示 *varname* 是数组。
 
 *type*
-: *optional* Data type of the argument passed to the procedure; may be **Byte**, **Boolean**, **Integer**, **Long**, **LongLong**, **LongPtr**, **Currency**, **Single**, **Double**, **Decimal**, **Date**, **String** (variable length only), **Object**, **Variant**, a user-defined type (UDT), or an object type. (**LongLong** is a valid declared type only on 64-bit platforms.)
+: *可选* 传递给过程的参数的数据类型；可以是 **Byte**、**Boolean**、**Integer**、**Long**、**LongLong**、**LongPtr**、**Currency**、**Single**、**Double**、**Decimal**、**Date**、**String**（仅限变长）、**Object**、**Variant**、用户自定义类型(UDT)或对象类型。（**LongLong** 仅在64位平台上是有效的声明类型。）
 
-When an argument list is included, the number and type of arguments are checked each time the procedure is called. The First sub in the following example takes one **Long** argument, whereas the Second sub takes no arguments:
+当包含参数列表时，每次调用过程时都会检查参数的数量和类型。以下示例中，第一个Sub接受一个 **Long** 参数，而第二个Sub不接受参数：
 
 ```vb
 Declare Sub First Lib "MyLib" (X As Long)
@@ -108,13 +116,13 @@ Declare Sub Second Lib "MyLib" ()
 
 ::: info
 
-- Fixed-length strings cannot appear in the argument list of a **Declare** statement; only variable-length strings can be passed to procedures. Fixed-length strings can appear as procedure arguments, but they are converted to variable-length strings before being passed.
-- The **vbNullString** constant is used when calling external procedures, where the external procedure requires a string whose value is zero. This is not the same thing as a zero-length string ("").
+- 定长字符串不能出现在 **Declare** 语句的参数列表中；只能向过程传递变长字符串。定长字符串可以作为过程参数出现，但在传递之前会被转换为变长字符串。
+- **vbNullString** 常量在调用外部过程时使用，当外部过程需要值为零的字符串时。这与零长度字符串("")不同。
 :::
 
-### Example
+### 示例
 
-This example shows how the **Declare** statement is used at the module level of a standard module to declare a reference to an external procedure in a dynamic-link library (DLL). **Declare** statements can be placed in class modules when they are **Private**.
+本示例展示如何在标准模块的模块级别使用 **Declare** 语句声明对动态链接库(DLL)中外部过程的引用。**Declare** 语句在为 **Private** 时可以放在类模块中。
 
 ```vb
 ' In 32-bit Microsoft Windows systems, specify the library USER32.DLL.

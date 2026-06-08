@@ -1,12 +1,20 @@
----
+﻿---
 title: HtmlEventProperties
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/HtmlEventProperties
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '77a5f168-e78b-407f-9376-eade227beb58'
+  PropagateID: '77a5f168-e78b-407f-9376-eade227beb58'
+  ReservedCode1: '67c4cd41-15fc-4f1f-ab2b-ff7e3e2066bb'
+  ReservedCode2: '67c4cd41-15fc-4f1f-ab2b-ff7e3e2066bb'
 ---
 
-# HtmlEventProperties class
+# HtmlEventProperties 类
 
-The dynamic event-payload bag passed to every [**HtmlElement.AddEventListener**](/official/Reference/tbIDE/HtmlElement#addeventlistener) callback. Conceptually the IDE-side equivalent of the JavaScript `Event` object --- fields like `.key`, `.target.id`, `.target.value`, `.index` are accessed dynamically through the bag's `[COMExtensible(True)]` resolution.
+传递给每个 [**HtmlElement.AddEventListener**](/official/Reference/tbIDE/HtmlElement#addeventlistener) 回调的动态事件负载包。概念上是 JavaScript `Event` 对象的 IDE 端等价物——`.key`、`.target.id`、`.target.value`、`.index` 等字段通过包的 `[COMExtensible(True)]` 解析动态访问。
 
 ```vb
 Private Sub MyButtonClicked(ByVal eventInfo As HtmlEventProperties)
@@ -19,16 +27,16 @@ End Sub
 ```
 
 ::: important
-This interface is **`[COMExtensible(True)]`**. Field names are resolved against the underlying event object at run time. The standard DOM event properties (`.target` → the element that fired the event; `.key`, `.code`, `.altKey`, `.ctrlKey`, `.shiftKey` for keyboard events; `.clientX`, `.clientY` for mouse events; `.index` for the IDE's listview events; …) are forwarded as-is to the JavaScript-side event object. See MDN's DOM Event documentation for the standard fields.
+此接口是 **`[COMExtensible(True)]`**。字段名在运行时根据底层事件对象解析。标准 DOM 事件属性（`.target` → 触发事件的元素；键盘事件的 `.key`、`.code`、`.altKey`、`.ctrlKey`、`.shiftKey`；鼠标事件的 `.clientX`、`.clientY`；IDE 列表视图事件的 `.index` 等）原样转发自 JavaScript 端事件对象。标准字段请参阅 MDN 的 DOM Event 文档。
 :::
 
 
-## Custom-data fan-out from `raiseEvent()`
+## 来自 `raiseEvent()` 的自定义数据扇出
 
-When inline HTML inside a tool window calls the IDE-side `raiseEvent(eventName, event, stopPropagation, ...customData)` helper, the trailing *customData* values flow through to the addin's listener as `eventInfo.customData0`, `eventInfo.customData1`, …, numerically indexed from zero. This is the mechanism the listview / virtual listview use to attach per-row context (file path, line number, …) to their item events.
+当工具窗口内的行内 HTML 调用 IDE 端的 `raiseEvent(eventName, event, stopPropagation, ...customData)` 辅助函数时，尾部的 *customData* 值作为 `eventInfo.customData0`、`eventInfo.customData1` 等流向插件的监听器，从零开始数字索引。这是列表视图/虚拟列表视图用于将逐行上下文（文件路径、行号等）附加到其项事件的机制。
 
 ```vb
-' Inline HTML — sample 15:
+' 行内 HTML — 示例 15：
 '   <div class="match" onclick="raiseEvent('onClickMatch', event, true, 'C:/file.twin', 42, 8)">…</div>
 
 Private Sub OnClickMatch(ByVal eventInfo As HtmlEventProperties)
@@ -39,9 +47,9 @@ Private Sub OnClickMatch(ByVal eventInfo As HtmlEventProperties)
 End Sub
 ```
 
-## Asynchronous events (`setAsyncResult`)
+## 异步事件（`setAsyncResult`）
 
-Some events --- notably the virtual listview's `onAsyncGetItemHTML` --- are *asynchronous*: the IDE asks the addin to produce content for a specific argument and expects the answer back through the event object itself. The argument arrives on the event as `eventInfo.asyncArgument`, and the listener responds by calling `eventInfo.setAsyncResult(answer)`:
+某些事件——特别是虚拟列表视图的 `onAsyncGetItemHTML`——是*异步的*：IDE 要求插件为特定参数生成内容，并期望通过事件对象本身返回答案。参数以 `eventInfo.asyncArgument` 到达事件，监听器通过调用 `eventInfo.setAsyncResult(answer)` 响应：
 
 ```vb
 Private Sub OnAsyncGetItemHTML(ByVal eventInfo As HtmlEventProperties)
@@ -50,19 +58,19 @@ Private Sub OnAsyncGetItemHTML(ByVal eventInfo As HtmlEventProperties)
 End Sub
 ```
 
-This is the standard `[COMExtensible(True)]` resolution at work --- `setAsyncResult` is not declared on the interface, it is dispatched through the dynamic mechanism just like `.key` or `.target` would be. See sample 14 (`WaynesVirtualListViewAddIn`) for the full pattern, including the cache-invalidation companion call `listview.notifyChangedItem(idx)`.
+这是标准 `[COMExtensible(True)]` 解析在起作用——`setAsyncResult` 没有在接口上声明，它像 `.key` 或 `.target` 一样通过动态机制分派。完整模式（包括缓存失效配套调用 `listview.notifyChangedItem(idx)`）请参见示例 14（`WaynesVirtualListViewAddIn`）。
 
-## Default member
+## 默认成员
 
-The interface's **DefaultMember** is [**Item**](#item) --- so `eventInfo("target")` is equivalent to `eventInfo.Item("target")`. The `.target.id` shorthand desugars accordingly.
+接口的 **DefaultMember** 是 [**Item**](#item)——因此 `eventInfo("target")` 等同于 `eventInfo.Item("target")`。`.target.id` 简写相应地脱糖。
 
-## Properties
+## 属性
 
 ### Item
 
-Looks up a field by name. Returns an [**HtmlEventProperty**](/official/Reference/tbIDE/HtmlEventProperty), which includes the field's value plus a nested [**Properties**](/official/Reference/tbIDE/HtmlEventProperty#properties) for further drill-down.
+按名称查找字段。返回一个 [**HtmlEventProperty**](/official/Reference/tbIDE/HtmlEventProperty)，其中包含字段的值加上用于进一步下钻的嵌套 [**Properties**](/official/Reference/tbIDE/HtmlEventProperty#properties)。
 
-Syntax: *eventInfo*( *DomPropertyName* ) **As** [**HtmlEventProperty**](/official/Reference/tbIDE/HtmlEventProperty)
+语法：*eventInfo*( *DomPropertyName* ) **As** [**HtmlEventProperty**](/official/Reference/tbIDE/HtmlEventProperty)
 
 *DomPropertyName*
-: *required* The field name. **String**.
+: *必需* 字段名称。**String**。

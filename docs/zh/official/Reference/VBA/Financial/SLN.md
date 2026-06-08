@@ -2,27 +2,36 @@
 title: SLN
 parent: Financial Module
 permalink: /tB/Modules/Financial/SLN
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '497713ab-4059-4405-a992-b2636d204143'
+  PropagateID: '497713ab-4059-4405-a992-b2636d204143'
+  ReservedCode1: 'e94c2989-3db1-4d2e-b598-d464e177be4b'
+  ReservedCode2: 'e94c2989-3db1-4d2e-b598-d464e177be4b'
 ---
+
 # SLN
 
-Returns a **Double** specifying the straight-line depreciation of an asset for a single period.
+返回一个**Double**值，指定资产在单个期间的直线折旧额。
 
-Syntax: **SLN(** *cost*, *salvage*, *life* **)**
+语法：**SLN(** *cost*, *salvage*, *life* **)**
 
 *cost*
-: *required* **Double** specifying initial cost of the asset.
+: *必需* **Double**，指定资产的初始成本。
 
 *salvage*
-: *required* **Double** specifying value of the asset at the end of its useful life.
+: *必需* **Double**，指定资产在使用寿命结束时的价值。
 
 *life*
-: *required* **Double** specifying length of the useful life of the asset.
+: *必需* **Double**，指定资产使用寿命的长度。
 
-The depreciation period must be expressed in the same unit as the *life* argument. All arguments must be positive numbers.
+折旧期间必须以与*life*参数相同的单位表示。所有参数必须为正数。
 
-### Example
+### 示例
 
-This example uses the **SLN** function to return the straight-line depreciation of an asset for a single period given the asset's initial cost (`InitCost`), the salvage value at the end of the asset's useful life (`SalvageVal`), and the total life of the asset in years (`LifeTime`).
+本示例使用**SLN**函数返回资产在单个期间的直线折旧额，提供的参数包括：资产的初始成本(`InitCost`)、资产使用寿命结束时的残值(`SalvageVal`)以及资产的总寿命年数(`LifeTime`)。
 
 ```vb
 Dim Fmt, InitCost, SalvageVal, MonthLife, LifeTime, PDepr
@@ -43,6 +52,6 @@ PDepr = SLN(InitCost, SalvageVal, LifeTime)
 MsgBox "The depreciation is " & Format(PDepr, Fmt) & " per year."
 ```
 
-### See Also
+### 另请参阅
 
-- [DDB](/official/Reference/VBA/Financial/DDB), [SYD](/official/Reference/VBA/Financial/SYD) functions
+- [DDB](/official/Reference/VBA/Financial/DDB)、[SYD](/official/Reference/VBA/Financial/SYD)函数

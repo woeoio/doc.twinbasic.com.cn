@@ -1,77 +1,85 @@
 ---
-title: Attributes
+title: "属性"
 parent: Reference Section
 nav_order: 6
 permalink: /tB/Core/Attributes
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c9ccc6b0-4d9f-4781-b8c1-d3eda9513afb'
+  PropagateID: 'c9ccc6b0-4d9f-4781-b8c1-d3eda9513afb'
+  ReservedCode1: 'b9c92ae6-6a42-4f25-bc76-59ee51a81783'
+  ReservedCode2: 'b9c92ae6-6a42-4f25-bc76-59ee51a81783'
 ---
 
-# Attributes
+# 属性
 
-Attributes have two major functions: 
+属性有两个主要功能：
 
-- they can act as instructions to compiler to influence how code is generated, or 
-- to annotate Forms, Modules, Classes, Types, Enums, Declares, and [procedures](/official/Reference/Glossary#procedure) i.e. Subs/Functions/Properties. 
+- 它们可以作为给编译器的指令来影响代码生成方式，或
+- 用于标注窗体、模块、类、类型、枚举、Declares和[过程](/official/Reference/Glossary#procedure)，即Sub/Function/Properties。
 
-Previously in VBx, these attributes, such as the procedure description, hidden, default member, and others, were set via hidden text the IDE's editor didn't show you, configured via the Procedure Attributes dialog or some other places. In tB, these are all visible in the code editor. The legacy ones from VBx are supported for compatibility, but new attributes use the following syntax:   
-`[Attribute]` or `[Attribute(value)]`
+以前在VBx中，这些属性（如过程描述、隐藏、默认成员等）是通过IDE编辑器不显示的隐藏文本设置的，通过"过程属性"对话框或其他地方配置。在tB中，这些都在代码编辑器中可见。VBx的旧属性出于兼容性而受支持，但新属性使用以下语法：
+`[Attribute]`或`[Attribute(value)]`
 
-In attributes that take an optional boolean argument, the value of the argument is taken to be **True** if no value is provided. This does not mean that the default value of the attribute is True, just that if the attribute is specified within the braces with no value, its value will be set to True. Different boolean-valued attributes have different default values. Those values apply unless the user has explicitly provided the attribute.
+在接受可选布尔参数的属性中，如果未提供值，则参数值取为**True**。这不意味着属性的默认值为True，只是如果属性在方括号内指定但没有值，其值将被设为True。不同的布尔值属性有不同的默认值。这些默认值在用户未显式提供属性时适用。
 
-Multiple attributes can be specified in the same square braces, separated by comma:   
+多个属性可以在同一方括号内指定，用逗号分隔：
 `[Attribute1, Attribute2(param), Attribute3]`
 
 ---
 
-The available attributes are listed below in alphabetic order. Not every attribute applies to every language element. The applicability of each attribute is given below its syntax.
+可用属性按字母顺序列出如下。并非每个属性都适用于每个语言元素。每个属性的适用范围在其语法下方给出。
 ---
 
-## AppObject  (optional Bool)
+## AppObject  (可选 Bool)
 
-Syntax: **[AppObject** [ **( True** \| **False )** ] **]**
+语法：**[AppObject** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**CoClass**](/official/Reference/Core/CoClass)
+适用于：[**CoClass**](/official/Reference/Core/CoClass)
 
-Legacy VB attribute: *VB_GlobalNameSpace*
+旧版VB属性：*VB_GlobalNameSpace*
 
-Indicates the class is part of the global namespace. You should not include this attribute without a full understanding of the meaning. The **Global** class is an AppObject.
+指示该类属于全局命名空间。在未完全理解其含义的情况下，不应包含此属性。**Global**类是一个AppObject。
 
-For more details, see [this VBA documentation page](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/189fb41b-cc3a-4999-a6d2-ba89f72d2870).
+更多细节参见[此VBA文档页](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/189fb41b-cc3a-4999-a6d2-ba89f72d2870)。
 
-## ArrayBoundsChecks  (optional Bool)
+## ArrayBoundsChecks  (可选 Bool)
 
-Syntax: **[ArrayBoundsChecks** [ **( True** \| **False )** ] **]**
+语法：**[ArrayBoundsChecks** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Class**](/official/Reference/Core/Class), [**Module**](/official/Reference/Core/Module), [procedure](/official/Reference/Glossary#procedure)
+适用于：[**Class**](/official/Reference/Core/Class)、[**Module**](/official/Reference/Core/Module)、[过程](/official/Reference/Glossary#procedure)
 
-Disables or enables array element access bounds checking within the scope of a class, module, or a single procedure/method. Used on performance-critical routines.
+在类、模块或单个过程/方法的范围内禁用或启用数组元素访问边界检查。用于性能关键的例程。
 
-## BindOnlyIfNoArguments  (optional Bool)
+## BindOnlyIfNoArguments  (可选 Bool)
 
-Syntax: **[BindOnlyIfNoArguments** [ **( True** \| **False )** ] **]**
+语法：**[BindOnlyIfNoArguments** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedure](/official/Reference/Glossary#procedure)
+适用于：[过程](/official/Reference/Glossary#procedure)
 
-Only binds this name to a callsite when no arguments are present. Normally false, but see below for an exception.
+仅在不存在参数时将此名称绑定到调用点。通常为False，但下面有一个例外。
 
-This attribute resolves the cases where compiler's special treatment of certain procedure names conflicts with a procedure of the same name that shouldn't be treated specially. This currently affects procedures named `Left`. Such procedures get an implicit `[BindOnlyIfNoArguments(True)]` assigned by the compiler. If the user wants to have a procedure of this name, it should include `[BindOnlyIfNoArguments(False)]`.
+此属性解决编译器对某些过程名称的特殊处理与不应被特殊处理的同名过程之间的冲突。目前这影响名为`Left`的过程。此类过程会被编译器隐式分配`[BindOnlyIfNoArguments(True)]`。如果用户希望拥有此名称的过程，应包含`[BindOnlyIfNoArguments(False)]`。
 
-## BindOnlyIfStringSuffix  (optional Bool)
+## BindOnlyIfStringSuffix  (可选 Bool)
 
-Syntax: **[BindOnlyIfStringSuffix** [ **( True** \| **False )** ] **]**
+语法：**[BindOnlyIfStringSuffix** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedure](/official/Reference/Glossary#procedure)
+适用于：[过程](/official/Reference/Glossary#procedure)
 
 ## ClassId  (String)
 
-Syntax: **[ClassId("** 00000000-0000-0000-0000-000000000000 **")]**
+语法：**[ClassId("** 00000000-0000-0000-0000-000000000000 **")]**
 
-Applicable to:  [**Class**](/official/Reference/Core/Class)
+适用于：[**Class**](/official/Reference/Core/Class)
 
-Assigns a COM CLSID to a class. For details, [see this COM documentation page](https://learn.microsoft.com/en-us/windows/win32/com/com-class-objects-and-clsids).
+为类分配COM CLSID。详情参见[此COM文档页](https://learn.microsoft.com/en-us/windows/win32/com/com-class-objects-and-clsids)。
 
 ## ClassInterface
 
-twinBASIC doesn't supports this attribute directly. It supports its values under different names. See:
+twinBASIC不直接支持此属性。它以不同名称支持其值。参见：
 
 * [DualInterface](#dualinterface)
 * [DispInterface](#dispinterface)
@@ -79,13 +87,13 @@ twinBASIC doesn't supports this attribute directly. It supports its values under
 
 ## CoClassCustomConstructor  (String)
 
-Syntax: **[CoClassCustomConstructor("** fully qualified path to factory method **")]**
+语法：**[CoClassCustomConstructor("** 工厂方法的完全限定路径 **")]**
 
-Applicable to: [**CoClass**](/official/Reference/Core/CoClass)
+适用于：[**CoClass**](/official/Reference/Core/CoClass)
 
-Allows custom logic for creating and returning a new instance of the coclass' implementation.
+允许自定义逻辑来创建并返回coclass实现的新实例。
 
-Example:
+示例：
 
 ```vb
 [CoClassId("7980D953-10BF-478C-93BB-DD0093315D96")]
@@ -96,15 +104,15 @@ Public CoClass Foo
 End CoClass
 ```
 
-For an overview of coclasses in tB, see [Defining coclasses](/official/Features/Language/Interfaces-CoClasses#defining-coclasses).
+关于tB中coclasses的概述，参见[定义coclasses](/official/Features/Language/Interfaces-CoClasses#defining-coclasses)。
 
 ## CoClassId  (String)
 
-Syntax: **[CoClassId("** 00000000-0000-0000-0000-000000000000 **")]**
+语法：**[CoClassId("** 00000000-0000-0000-0000-000000000000 **")]**
 
-Applicable to: [**CoClass**](/official/Reference/Core/CoClass)
+适用于：[**CoClass**](/official/Reference/Core/CoClass)
 
-In addition to interfaces, twinBASIC also allows defining coclasses -- creatable classes that implement one or more defined interfaces. Like interfaces, these too must be in .twin files and not legacy .bas/.cls files, and must appear prior to the `Class` or `Module` statement. The generic form is:
+除了接口，twinBASIC还允许定义coclasses --- 实现一个或多个已定义接口的可创建类。与接口一样，这些也必须在.twin文件中而非旧版.bas/.cls文件中，且必须出现在`Class`或`Module`语句之前。通用形式如下：
 
 ```vb
 [CoClassId("00000000-0000-0000-0000-000000000000")]
@@ -116,107 +124,107 @@ CoClass <name>
 End CoClass
 ```
 
-The methods are [procedures](/official/Reference/Glossary#procedure).
+方法是[过程](/official/Reference/Glossary#procedure)。
 
-For an overview of coclasses in tB, see [Defining coclasses](/official/Features/Language/Interfaces-CoClasses#defining-coclasses).
+关于tB中coclasses的概述，参见[定义coclasses](/official/Features/Language/Interfaces-CoClasses#defining-coclasses)。
 
-## COMControl  (optional Bool)
+## COMControl  (可选 Bool)
 
-Syntax: **[COMControl** [ **( True** \| **False )** ] **]**
+语法：**[COMControl** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Interface**](/official/Reference/Core/Interface)
+适用于：[**Interface**](/official/Reference/Core/Interface)
 
-## COMCreatable  (optional Bool)
+## COMCreatable  (可选 Bool)
 
-Syntax: **[COMCreatable** [ **( True** \| **False )** ] **]**
+语法：**[COMCreatable** [ **( True** \| **False )** ] **]**
 
-Applicable to:  [**Class**](/official/Reference/Core/Class), [**CoClass**](/official/Reference/Core/CoClass)
+适用于：[**Class**](/official/Reference/Core/Class)、[**CoClass**](/official/Reference/Core/CoClass)
 
-Indicates that this coclass can be created with the [**New**](/official/Reference/Core/New) keyword.
+指示此coclass可以使用[**New**](/official/Reference/Core/New)关键字创建。
 
-## COMExtensible  (optional Bool)
+## COMExtensible  (可选 Bool)
 
-Syntax: **[COMExtensible** [ **( True** \| **False )** ] **]**
+语法：**[COMExtensible** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Interface**](/official/Reference/Core/Interface), [procedure in an Interface](/official/Reference/Glossary#procedure)
+适用于：[**Interface**](/official/Reference/Core/Interface)、[接口中的过程](/official/Reference/Glossary#procedure)
 
-Specifies whether new members added at runtime can be called by name through an interface implementing **IDispatch**. This attribute is set to **False** by default.
+指定运行时添加的新成员是否可以通过实现**IDispatch**的接口按名称调用。此属性默认为**False**。
 
-## ComImport  (optional Bool)
+## ComImport  (可选 Bool)
 
-Syntax: **[ComImport** [ **( True** \| **False )** ] **]**
+语法：**[ComImport** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Interface**](/official/Reference/Core/Interface)
+适用于：[**Interface**](/official/Reference/Core/Interface)
 
-Specifies that an interface is an import from an external COM library, for instance, the Windows shell.
+指定接口是从外部COM库导入的，例如Windows Shell。
 
 ## CompileIf  (Bool)
 
-Syntax: **[CompileIf(** condition **)]**
+语法：**[CompileIf(** 条件 **)]**
 
-Applicable to: [procedure definitions](/official/Reference/Glossary#procedure)
+适用于：[过程定义](/official/Reference/Glossary#procedure)
 
-Controls the conditional compilation of a procedure definition. Has no default value.
+控制过程定义的条件编译。没有默认值。
 
 ## CompilerOptions  (String)
 
-Syntax: **[CompilerOptions( "** options **" )]**
+语法：**[CompilerOptions( "** 选项 **" )]**
 
-Applicable to: [procedure definitions](/official/Reference/Glossary#procedure)
+适用于：[过程定义](/official/Reference/Glossary#procedure)
 
-Typical use would be `[CompilerOptions("+llvm,+optimize,+optimizesize")]` ⁠to compile the procedure using built-in LLVMinstead of the default compiler, with chosen optimizations. Compiler options available:
+典型用法是`[CompilerOptions("+llvm,+optimize,+optimizesize")]`以使用内置LLVM而非默认编译器编译过程，并选择优化。可用编译器选项：
 
-- **+llvm** - uses LLVM to compile this procedure. This feature is experimental at the moment, and cannot be used to compile functions with "complex" argument/variable types, such as objects, strings and dynamic arrays. The LLVM compiler back-end is built into twinBASIC. It is not necessary to have LLVM separately installed, and any such installation is ignored by twinBASIC.
-- **+optimize** - enables optimization during compilation of this procedure
-- **+optimizesize** - optimize this procedure for small code size, potentially at the expense of slower speed of the procedure
-- **+optimizespeed** - optimize this procedure for fast speed, potentially at the expense of larger code size post-compilation
+- **+llvm** - 使用LLVM编译此过程。此功能目前为实验性，不能用于编译带有"复杂"参数/变量类型（如对象、字符串和动态数组）的函数。LLVM编译器后端内置于twinBASIC。无需单独安装LLVM，twinBASIC会忽略任何此类安装。
+- **+optimize** - 在编译此过程时启用优化
+- **+optimizesize** - 优化此过程以获得更小的代码大小，可能以过程速度变慢为代价
+- **+optimizespeed** - 优化此过程以获得更快的速度，可能以编译后更大的代码体积为代价
 
-## ConstantFoldable  (optional Bool)
+## ConstantFoldable  (可选 Bool)
 
-Syntax: **[ConstantFoldable** [ **( True** \| **False )** ] **]**
+语法：**[ConstantFoldable** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Function**](/official/Reference/Core/Function)
+适用于：[**Function**](/official/Reference/Core/Function)
 
-Specify this attribute for functions where when called with non-variable input, will be computed at compile time, rather than runtime. For example, a function to converted string literals to ANSI. The result would never change, so the resulting ANSI string is stored, rather than recomputing every run. Such functions are also called *pure functions*, because their output only depends on the arguments, and not on the state of the program.
+为使用非变量输入调用时将在编译时而非运行时计算的函数指定此属性。例如，将字符串字面量转换为ANSI的函数。结果永远不会改变，因此存储生成的ANSI字符串，而非每次运行重新计算。此类函数也称为*纯函数*，因为其输出仅取决于参数，而不取决于程序状态。
 
-## ConstantFoldableNumericsOnly  (optional Bool)
+## ConstantFoldableNumericsOnly  (可选 Bool)
 
-Syntax: **[ConstantFoldableNumericsOnly** [ **( True** \| **False )** ] **]**
+语法：**[ConstantFoldableNumericsOnly** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Function**](/official/Reference/Core/Function)
+适用于：[**Function**](/official/Reference/Core/Function)
 
-A limited case of [constant foldable attribute](#constantfoldable), which applies only if the function was called with a numeric parameter.
+[常量折叠属性](#constantfoldable)的有限情况，仅在函数使用数值参数调用时适用。
 
 ## CustomControl  (String)
 
-Syntax: **[Description("** image file name **")]**
+语法：**[Description("** 图片文件名 **")]**
 
-Applicable to: [**Class**](/official/Reference/Core/Class)
+适用于：[**Class**](/official/Reference/Core/Class)
 
-## Debuggable  (optional Bool)
+## Debuggable  (可选 Bool)
 
-Syntax: **[Debuggable** [ **( True** \| **False )** ] **]**
+语法：**[Debuggable** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Module**](/official/Reference/Core/Module), [procedure in a **Class** or **Module**](/official/Reference/Glossary#procedure)
+适用于：[**Module**](/official/Reference/Core/Module)、[**Class**或**Module**中的过程](/official/Reference/Glossary#procedure)
 
-When false, turns of breakpoints and stepping for the method or module. The default value is **True**.
+为False时，关闭方法或模块的断点和单步执行。默认值为**True**。
 
-## DebugOnly  (optional Bool)
+## DebugOnly  (可选 Bool)
 
-Syntax: **[DebugOnly** [ **( True** \| **False )** ] **]**
+语法：**[DebugOnly** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedure definitions](/official/Reference/Glossary#procedure)
+适用于：[过程定义](/official/Reference/Glossary#procedure)
 
-Excludes calls to this procedure from the Build. They are only available when running from the IDE, i.e. debugging.
+将对此过程的调用从Build中排除。它们仅在从IDE运行（即调试）时可用。
 
-## DefaultMember (optional Bool)
+## DefaultMember (可选 Bool)
 
 
-Syntax: **[DefaultMember** [ **(** **True** \| **False** **)** ] **]**
+语法：**[DefaultMember** [ **(** **True** \| **False** **)** ] **]**
 
-Applicable to: [procedure in a **Class**](/official/Reference/Glossary#procedure)
+适用于：[**Class**中的过程](/official/Reference/Glossary#procedure)
 
-Default members are accessed under the instance of the object itself, without specifying their name. For example, a class that offers indexable elements may have an **Item** property that is the default member:
+默认成员在对象实例本身下访问，无需指定其名称。例如，提供可索引元素的类可能有一个**Item**属性作为默认成员：
 
 ```vb
 Class MyCollection
@@ -240,157 +248,157 @@ End Sub
 
 ## Description  (String) 
 
-Syntax: **[Description("** arbitrary text **")]**
+语法：**[Description("** 任意文本 **")]**
 
-Applicable to: [**Class**](/official/Reference/Core/Class), [**CoClass**](/official/Reference/Core/CoClass), [**Const**](/official/Reference/Core/Const), [**Declare** (API declaration)](/official/Reference/Core/Declare), [**Interface**](/official/Reference/Core/Interface), [**Module**](/official/Reference/Core/Module), [**Type** (UDT)](/official/Reference/Core/Type)
+适用于：[**Class**](/official/Reference/Core/Class)、[**CoClass**](/official/Reference/Core/CoClass)、[**Const**](/official/Reference/Core/Const)、[**Declare** (API声明)](/official/Reference/Core/Declare)、[**Interface**](/official/Reference/Core/Interface)、[**Module**](/official/Reference/Core/Module)、[**Type** (UDT)](/official/Reference/Core/Type)
 
-Provides a description in information popups in the IDE, and is exported as a `helpstring` attribute in the type library (if applicable).
+在IDE信息弹出窗口中提供描述，并作为`helpstring`属性导出到类型库（如适用）。
 
 ## DispId  (Integer)
 
-Syntax: **[DispId(** 123 **)]**
+语法：**[DispId(** 123 **)]**
 
-Applicable to: [procedure in an Interface](/official/Reference/Glossary#procedure)
+适用于：[接口中的过程](/official/Reference/Glossary#procedure)
 
-Defines a dispatch ID associated with the procedure when exposed via **IDispatch**.
+定义通过**IDispatch**公开时与过程关联的调度ID。
 
 ## DispInterface
 
-Syntax: **[DispInterface]**
+语法：**[DispInterface]**
 
-Applicable to: [**Interface**](/official/Reference/Core/Interface) in a **Library**
+适用于：**Library**中的[**Interface**](/official/Reference/Core/Interface)
 
 ::: info
-This attribute is generated in the **Library** modules that twinBASIC generates for COM references in a project. It cannot be manually created.
+此属性在twinBASIC为项目中的COM引用生成的**Library**模块中生成。它不能手动创建。
 :::
 
-Indicates that the interface exposes methods via **IDispatch** late-binding. This is the default. Note that [**DualInterface**](#dualinterface) can also be specified, giving much improved performance over that of **IDispatch**-based interfaces.
+指示接口通过**IDispatch**后期绑定公开方法。这是默认值。注意也可以指定[**DualInterface**](#dualinterface)，与基于**IDispatch**的接口相比性能大幅提升。
 
-## DllExport  (optional Bool)
+## DllExport  (可选 Bool)
 
-Syntax: **[DllExport** [ **( True** \| **False )** ] **]**
+语法：**[DllExport** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedures](/official/Reference/Glossary#procedure) and variables in a module.
+适用于：模块中的[过程](/official/Reference/Glossary#procedure)和变量。
 
-It's possible to export a function or variable from standard modules. Example:
+可以从标准模块导出函数或变量。示例：
 
 ```vb
 [DllExport]
 Public Const MyExportedSymbol As Long = &H00000001
 ```
 
-## DLLStackCheck  (optional Bool)
+## DLLStackCheck  (可选 Bool)
 
-Syntax: **[DLLStackCheck** [ **( True** \| **False)** ] **]**
+语法：**[DLLStackCheck** [ **( True** \| **False)** ] **]**
 
-Applicable to: [**Declare** (API declaration)](/official/Reference/Core/Declare)
+适用于：[**Declare** (API声明)](/official/Reference/Core/Declare)
 
-Gives minor codegen size reduction on 32-bit API calls on the Intel platform. Has no effect on other platforms.
+在Intel平台上的32位API调用中略微减少代码生成大小。对其他平台无影响。
 
 ## DualInterface
 
-Syntax: **[DualInterface]**
+语法：**[DualInterface]**
 
-Applicable to: [**Interface**](/official/Reference/Core/Interface) in a **Library**
+适用于：**Library**中的[**Interface**](/official/Reference/Core/Interface)
 
 ::: info
 
-This attribute is generated in the **Library** modules that twinBASIC generates for COM references in a project. It cannot be manually created.
+此属性在twinBASIC为项目中的COM引用生成的**Library**模块中生成。它不能手动创建。
 :::
 
-Indicates that the interface exposes methods through the OLE VTable binding. The latter has much improved performance over that of **IDispatch**-based interfaces.
+指示接口通过OLE VTable绑定公开方法。后者与基于**IDispatch**的接口相比性能大幅提升。
 
-## EnforceErrors  (optional Bool)
+## EnforceErrors  (可选 Bool)
 
-Syntax: **[EnforceErrors** [ **( True** \| **False )** ] **]**
+语法：**[EnforceErrors** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedures](/official/Reference/Glossary#procedure).
+适用于：[过程](/official/Reference/Glossary#procedure)。
 
-## EnforceWarnings  (optional Bool)
+## EnforceWarnings  (可选 Bool)
 
-Syntax: **[EnforceWarnings** [ **( True** \| **False )** ] **]**
+语法：**[EnforceWarnings** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedures](/official/Reference/Glossary#procedure).
+适用于：[过程](/official/Reference/Glossary#procedure)。
 
 ## EnumId  (String)
 
-Syntax: **[EnumId("** 00000000-0000-0000-0000-000000000000 **")]**
+语法：**[EnumId("** 00000000-0000-0000-0000-000000000000 **")]**
 
-Applicable to: [**Enum**](/official/Reference/Core/Enum)
+适用于：[**Enum**](/official/Reference/Core/Enum)
 
-Specifies a GUID to be associated with an enum in type libraries.
+指定要与类型库中的枚举关联的GUID。
 
 ## EventInterfaceId  (String)
 
-Syntax: **[EventInterfaceId("** 00000000-0000-0000-0000-000000000000 **")]**
+语法：**[EventInterfaceId("** 00000000-0000-0000-0000-000000000000 **")]**
 
-## EventsUseDispInterface  (optional Bool)
+## EventsUseDispInterface  (可选 Bool)
 
-Syntax: **[EventsUseDispInterface** [ **( True** \| **False )** ] **]**
+语法：**[EventsUseDispInterface** [ **( True** \| **False )** ] **]**
 
-## Flags  (optional Bool)
+## Flags  (可选 Bool)
 
-Syntax: **[Flags** [ **( True** \| **False )** ] **]**
+语法：**[Flags** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Enum**](/official/Reference/Core/Enum)
+适用于：[**Enum**](/official/Reference/Core/Enum)
 
-Calculate implicit enum values as a flag set (powers of 2).
+将隐式枚举值作为标志集（2的幂）计算。
 
 ::: info
-To prevent confusion, once an explicit value is used, all remaining values after it must also be explicit)
+为避免混淆，一旦使用显式值，其后所有剩余值也必须为显式值）
 :::
 
 ![image](Images/flags-attribute.png)
 
-## FloatingPointErrorChecks  (optional Bool)
+## FloatingPointErrorChecks  (可选 Bool)
 
-Syntax: **[FloatingPointErrorChecks** [ **( True** \| **False)** ] **]**
+语法：**[FloatingPointErrorChecks** [ **( True** \| **False)** ] **]**
 
-Applicable to: [**Class**](/official/Reference/Core/Class), [**Module**](/official/Reference/Core/Module), [procedure](/official/Reference/Glossary#procedure)
+适用于：[**Class**](/official/Reference/Core/Class)、[**Module**](/official/Reference/Core/Module)、[过程](/official/Reference/Glossary#procedure)
 
-Disables floating point error checks. Used on performance-critical routines. The default value is **True**.
+禁用浮点错误检查。用于性能关键的例程。默认值为**True**。
 
 ## FormDesignerId  (String)
 
-Syntax: **[FormDesignerId("** 00000000-0000-0000-0000-000000000000 **")]**
+语法：**[FormDesignerId("** 00000000-0000-0000-0000-000000000000 **")]**
 
-Applicable to: [**Class**](/official/Reference/Core/Class)
+适用于：[**Class**](/official/Reference/Core/Class)
 
-## Hidden  (optional Bool)
+## Hidden  (可选 Bool)
 
-Syntax: **[Hidden** [ **(** **True** \| **False** **)** ] **]**
+语法：**[Hidden** [ **(** **True** \| **False** **)** ] **]**
 
-Applicable to: [**Class**](/official/Reference/Core/Class), [**CoClass**](/official/Reference/Core/CoClass), [**Interface**](/official/Reference/Core/Interface)
+适用于：[**Class**](/official/Reference/Core/Class)、[**CoClass**](/official/Reference/Core/CoClass)、[**Interface**](/official/Reference/Core/Interface)
 
-Hides the interface or class from certain Intellisense and other lists.
+将接口或类从某些IntelliSense和其他列表中隐藏。
 
 ## IdeButton  (String)
 
-Syntax: **[IdeButton("** caption **")]**
+语法：**[IdeButton("** 标题 **")]**
 
-Applicable to: [procedure](/official/Reference/Glossary#procedure) definition in a module.
+适用于：模块中的[过程](/official/Reference/Glossary#procedure)定义。
 
 ## IgnoreWarnings  (String List)
 
-Syntax: **[IgnoreWarnings** **(** **TBnnnn** [ **,** **TBmmmm** ]... **)** **]**
+语法：**[IgnoreWarnings** **(** **TBnnnn** [ **,** **TBmmmm** ]... **)** **]**
 
-Disables certain warnings. The list of strings should enumerate the warnings that are to be suppressed.
+禁用某些警告。字符串列表应枚举要抑制的警告。
 
-## IntegerOverflowChecks  (optional Bool)
+## IntegerOverflowChecks  (可选 Bool)
 
-Syntax: **[IntegerOverflowChecks** [ **( True** \| **False )** ] **]**
+语法：**[IntegerOverflowChecks** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Class**](/official/Reference/Core/Class), [**Module**](/official/Reference/Core/Module), [procedure](/official/Reference/Glossary#procedure)
+适用于：[**Class**](/official/Reference/Core/Class)、[**Module**](/official/Reference/Core/Module)、[过程](/official/Reference/Glossary#procedure)
 
-Disables integer overflow checks. Used on performance-critical routines. The default value is **True**.
+禁用整数溢出检查。用于性能关键的例程。默认值为**True**。
 
 ## InterfaceId  (String)
 
-Syntax: **[InterfaceId( "**00000000-0000-0000-0000-000000000000**" )]**
+语法：**[InterfaceId( "**00000000-0000-0000-0000-000000000000**" )]**
 
-Applicable to: [**Interface**](/official/Reference/Core/Interface)
+适用于：[**Interface**](/official/Reference/Core/Interface)
 
-twinBASIC supports defining COM interfaces using BASIC syntax, rather than needing an type library with IDL and C++. These are only supported in .twin files, not in legacy .bas or .cls files. They must appear *before* the [**Class**](/official/Reference/Core/Class) or [**Module**](/official/Reference/Core/Module) statement, and will always have a project-wide scope. the The generic form for is as follows:
+twinBASIC支持使用BASIC语法定义COM接口，而不需要带有IDL和C++的类型库。这些仅在.twin文件中受支持，不支持旧版.bas或.cls文件。它们必须出现在[**Class**](/official/Reference/Core/Class)或[**Module**](/official/Reference/Core/Module)语句*之前*，并始终具有项目范围的可见性。通用形式如下：
 
 ```vb
 [InterfaceId ("00000000-0000-0000-0000-000000000000")]
@@ -404,31 +412,31 @@ Interface <name> Extends <base-interface>
 End Interface
 ```
 
-The methods are [procedures](/official/Reference/Glossary#procedure).
+方法是[过程](/official/Reference/Glossary#procedure)。
 
-For an overview of interfaces in tB, see [Defining interfaces](/official/Features/Language/Interfaces-CoClasses#defining-interfaces).
+关于tB中接口的概述，参见[定义接口](/official/Features/Language/Interfaces-CoClasses#defining-interfaces)。
 
-## MustBeQualified  (optional Bool)
+## MustBeQualified  (可选 Bool)
 
-Syntax:  **[MustBeQualified** [ **(True** \| **False )** ] **]**
+语法：**[MustBeQualified** [ **(True** \| **False )** ] **]**
 
-Applicable to: [procedure](/official/Reference/Glossary#procedure)
+适用于：[过程](/official/Reference/Glossary#procedure)
 
-## OleAutomation  (optional Bool)
+## OleAutomation  (可选 Bool)
 
-Syntax:  **[OleAutomation** [ **(True** \| **False )** ] **]**
+语法：**[OleAutomation** [ **(True** \| **False )** ] **]**
 
-Applicable to: [**Interface**](/official/Reference/Core/Interface)
+适用于：[**Interface**](/official/Reference/Core/Interface)
 
-Controls whether this attribute is applied in the typelibrary. This attribute is set to **True** by default.
+控制此属性是否在类型库中应用。此属性默认为**True**。
 
 ## PackingAlignment  (Integer)
 
-Syntax:  **[PackingAlignment( 1** \| **2** \| **4** \| **8** \| **16** \| **32** \| **64 )]**
+语法：**[PackingAlignment( 1** \| **2** \| **4** \| **8** \| **16** \| **32** \| **64 )]**
 
-Applicable to: [**Type** (UDT)](/official/Reference/Core/Type)
+适用于：[**Type** (UDT)](/official/Reference/Core/Type)
 
-twinBASIC normally aligns objects naturally within UDTs, e.g. an 8-byte object is aligned at the 8-byte boundary relative to the beginning of the UDT. This can leave gaps between UDT fields. A tighter packing can be achieved with a smaller **PackingAlignment**:
+twinBASIC通常在UDT内自然对齐对象，例如8字节对象相对于UDT起始处在8字节边界对齐。这可能在UDT字段之间留下间隙。使用较小的**PackingAlignment**可以实现更紧凑的打包：
 
 ```vb
 [PackingAlignment(2)]
@@ -441,27 +449,27 @@ Private t As MyUDT
 Debug.Assert Len(t) = 8 And LenB(t) = 8
 ```
 
-You'll now find that both `Len(t)` and `LenB(t)` are 8.
+你现在会发现`Len(t)`和`LenB(t)`都是8。
 
 ::: info
-Alignment, not packing alignment, is not set this way. Specifying 16 would not get you a 16-byte structure for `t`. twinBASIC does not currently have an equivalent for `__declspec_align(n)`, but such a feature is planned. This is rare outside kernel mode programming.
+对齐方式（而非打包对齐）不是以此方式设置的。指定16不会让`t`得到16字节结构。twinBASIC目前没有`__declspec_align(n)`的等效功能，但计划添加此功能。这在内核模式编程之外很少见。
 :::
 
-For introduction to this feature, see [Custom UDT Packing](/official/Features/Language/UDTs#custom-udt-packing).
+关于此功能的介绍，参见[自定义UDT打包](/official/Features/Language/UDTs#custom-udt-packing)。
 
 ## PopulateFrom  (...)
 
-Syntax: **[PopulateFrom( "json", "**internal path to .json**", "** table field **", "** name field **", "** value field **" )]**
+语法：**[PopulateFrom( "json", "**.json的内部路径**", "** 表字段 **", "** 名称字段 **", "** 值字段 **" )]**
 
-Applicable to: [**Enum**](/official/Reference/Core/Enum)
+适用于：[**Enum**](/official/Reference/Core/Enum)
 
-Populates an **Enum** with values from a json file bundled with the project.
+从项目附带的json文件中用值填充**Enum**。
 
-The path to the .json file, and the field names, are arbitrary. Thus, the json file doesn't have to be in the Resources folder within the project.
+.json文件的路径和字段名是任意的。因此，json文件不必在项目内的Resources文件夹中。
 
-In the future, this attribute may be expanded to allow more data file types, and more context of use besides **Enum**.
+将来，此属性可能会扩展以允许更多数据文件类型和除**Enum**之外的更多使用上下文。
 
-For example, consider this enum declaration in a .twin file:
+例如，考虑.twin文件中的以下枚举声明：
 
 ```vb
 [PopulateFrom("json", "/Resources/MESSAGETABLE/Strings.json", "events", "name", "id")]
@@ -469,7 +477,7 @@ Enum EVENTS
 End Enum
 ```
 
-Then, there should be a `/Resources/MESSAGETABLE/Strings.json` file with following structure:
+那么，应有`/Resources/MESSAGETABLE/Strings.json`文件，结构如下：
 
 ``` json
 {
@@ -484,7 +492,7 @@ Then, there should be a `/Resources/MESSAGETABLE/Strings.json` file with followi
 }
 ```
 
-The result is as-if we hand-typed the following **Enum** definition:
+结果等同于我们手写以下**Enum**定义：
 
 ```vb
 Enum EVENTS
@@ -492,125 +500,125 @@ Enum EVENTS
 End Enum
 ```
 
-## PredeclaredID  (optional Bool)
+## PredeclaredID  (可选 Bool)
 
-Syntax: **[PredeclaredId** [ **( True** \| **False )** ] **]**
+语法：**[PredeclaredId** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Class**](/official/Reference/Core/Class)
+适用于：[**Class**](/official/Reference/Core/Class)
 
-When set, a global instance of the class is created when the application starts.
+设置后，应用程序启动时会创建该类的全局实例。
 
-This attribute is equivalent to the `VB_PredeclaredId` attribute in VBx .cls files.
+此属性等同于VBx .cls文件中的`VB_PredeclaredId`属性。
 
-## PreserveSig  (optional Bool)
+## PreserveSig  (可选 Bool)
 
-Syntax: **[PreserveSig** [ **(** **True** \| **False** **)** ] **]**
+语法：**[PreserveSig** [ **(** **True** \| **False** **)** ] **]**
 
-Applicable to: Method in an [Interface](/official/Reference/Core/Interface), [API Declarations](/official/Reference/Core/Declare).
+适用于：[接口](/official/Reference/Core/Interface)中的方法、[API声明](/official/Reference/Core/Declare)。
 
-Default value: **False** in an Interface, **True** in an API Declare.
+默认值：接口中为**False**，API Declare中为**True**。
 
-In COM interfaces, the default value of this attribute is **False**, since normally methods return an HRESULT that the language hides from you. **[PreserveSig** [ **(True)** ] **]** overrides this behavior and defines the function exactly as you provide. This is necessary if you need to define it as returning something other than a 4-byte **Long**, or want to handle the result yourself, bypassing the normal runtime error raised if the return value is negative (this is helpful when a negative value indicates an expected, acceptable failure, rather than a true error, like when an enum interface is out of items).
+在COM接口中，此属性的默认值为**False**，因为通常方法返回HRESULT，语言对你隐藏了它。**[PreserveSig** [ **(True)** ] **]**覆盖此行为，按照你提供的方式定义函数。如果你需要将其定义为返回4字节**Long**以外的类型，或者希望自己处理结果（绕过返回值为负数时引发的正常运行时错误），这是必要的（当负值表示预期的、可接受的失败而非真正的错误时有帮助，例如当枚举接口没有更多项时）。
 
-In APIs, the default value of this attribute is `True`. So therefore, you can specify `False` to rewrite the last parameter as a return. Example:
+在API中，此属性的默认值为`True`。因此，你可以指定`False`将最后一个参数重写为返回值。示例：
 
 ```vb
 Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" (ppshf As IShellFolder) As Long
 ```
 
-can be rewritten as
+可以重写为
 
 ```vb
 [PreserveSig(False)] 
 Public Declare PtrSafe Function SHGetDesktopFolder Lib "shell32" () As IShellFolder`
 ```
 
-## Restricted  (optional Bool)
+## Restricted  (可选 Bool)
 
-Syntax: **[Restricted** [ **( True** \| **False )** ] **]**
+语法：**[Restricted** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Interface**](/official/Reference/Core/Interface)
+适用于：[**Interface**](/official/Reference/Core/Interface)
 
-Restricts the interface methods from being called in most contexts.
+限制接口方法在大多数上下文中被调用。
 
-This is attribute has the same function as the [**restricted** MIDL attribute][MIDL restricted].
+此属性与[**restricted** MIDL属性][MIDL restricted]功能相同。
 
 [MIDL restricted]: https://learn.microsoft.com/en-us/windows/win32/midl/restricted
 
-## RunAfterBuild  (optional Bool)
+## RunAfterBuild  (可选 Bool)
 
-Syntax: **[RunAfterBuild** [ **( True** \| **False )** ] **]**
+语法：**[RunAfterBuild** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Function**](/official/Reference/Core/Function), [**Sub**](/official/Reference/Core/Sub)
+适用于：[**Function**](/official/Reference/Core/Function)、[**Sub**](/official/Reference/Core/Sub)
 
-Specifies a function that runs after your exe is built. Tthere's `App.LastBuildPath` to know where it is if you're e.g. signing the executable.
+指定在exe构建完成后运行的函数。如果例如要对可执行文件签名，可使用`App.LastBuildPath`了解其位置。
 
-## Serialize  (optional Bool)
+## Serialize  (可选 Bool)
 
-Syntax: **[Serialize** [ **( True** \| **False )** ] **]**
+语法：**[Serialize** [ **( True** \| **False )** ] **]**
 
-Applicable to: variables in a [**Class**](/official/Reference/Core/Class)
+适用于：[**Class**](/official/Reference/Core/Class)中的变量
 
-## SetDllDirectory  (optional Bool)
+## SetDllDirectory  (可选 Bool)
 
-Syntax: **[SetDllDirectory** [ **( True** \| **False )** ] **]**
+语法：**[SetDllDirectory** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Declare** (API declaration)](/official/Reference/Core/Declare), [**Module**](/official/Reference/Core/Module)
+适用于：[**Declare** (API声明)](/official/Reference/Core/Declare)、[**Module**](/official/Reference/Core/Module)
 
-Allows an explicitly loaded DLL to load its own dependencies from it's load path. Also has the effect of allowing searching the app path for the DLLs in the base app's declare statements. It can be used per-declare or within a module.
+允许显式加载的DLL从其加载路径加载自己的依赖项。还具有允许在基本应用的declare语句中搜索DLL的应用路径的效果。可以按声明或在模块内使用。
 
-## SimplerByVals  (optional Bool)
+## SimplerByVals  (可选 Bool)
 
-Syntax: **[SimplerByVals** [ **( True** \| **False )** ] **]**
+语法：**[SimplerByVals** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedure](/official/Reference/Glossary#procedure)
+适用于：[过程](/official/Reference/Glossary#procedure)
 
-## SpecialCompilerBinding  (optional Bool)
+## SpecialCompilerBinding  (可选 Bool)
 
-Syntax: **[SpecialCompilerBinding** [ **( True** \| **False )** ] **]**
+语法：**[SpecialCompilerBinding** [ **( True** \| **False )** ] **]**
 
-## TestCase  (optional Bool)
+## TestCase  (可选 Bool)
 
-Syntax: **[TestCase** [ **( True** \| **False )** ] **]**
+语法：**[TestCase** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedure](/official/Reference/Glossary#procedure) definition in a module.
+适用于：模块中的[过程](/official/Reference/Glossary#procedure)定义。
 
-## TestFixture  (optional Bool)
+## TestFixture  (可选 Bool)
 
-Syntax: **[TestFixture **[ **( True** \| **False )** ] **]**
+语法：**[TestFixture **[ **( True** \| **False )** ] **]**
 
-Applicable to: [**Module**](/official/Reference/Core/Module)
+适用于：[**Module**](/official/Reference/Core/Module)
 
 ## TypeHint  (EnumType)
 
-Syntax: **[TypeHint(** an enum type **)]**
+语法：**[TypeHint(** 枚举类型 **)]**
 
-Applicable to: [procedure](/official/Reference/Glossary#procedure) parameters
+适用于：[过程](/official/Reference/Glossary#procedure)参数
 
-Allows populating Intellisense with an enum for types other than **Long**.
+允许为**Long**以外的类型填充IntelliSense枚举。
 
-## Unimplemented  (optional Bool)
+## Unimplemented  (可选 Bool)
 
-Syntax: **[Unimplemented** [ **( True** \| **False )** ] **]**
+语法：**[Unimplemented** [ **( True** \| **False )** ] **]**
 
-Applicable to: [procedure](/official/Reference/Glossary#procedure) definitions
+适用于：[过程](/official/Reference/Glossary#procedure)定义
 
-Makes the compiler issue a warning about the procedure being unimplemented wherever it's called. You can upgrade it to an error too.
+使编译器在调用此过程时发出关于过程未实现的警告。你还可以将其升级为错误。
 
-## UseGetLastError  (optional Bool)
+## UseGetLastError  (可选 Bool)
 
-Syntax: **[UseGetLastError** [ **( True** \| **False )** ] **]**
+语法：**[UseGetLastError** [ **( True** \| **False )** ] **]**
 
-Applicable to: [**Declare** (API declaration)](/official/Reference/Core/Declare)
+适用于：[**Declare** (API声明)](/official/Reference/Core/Declare)
 
-If the declared function indicates an error condition, the compiler won't automatically call `GetLastError` to retrieve the error code. The default value of this attribute is **True**, i.e. Declare-d functions are assumed to set `LastError` upon error.
+如果声明的函数指示错误条件，编译器不会自动调用`GetLastError`检索错误代码。此属性的默认值为**True**，即假定Declare的函数在出错时设置`LastError`。
 
-## UserDefinedTypeIsAnAlias  (optional Bool)
+## UserDefinedTypeIsAnAlias  (可选 Bool)
 
-Syntax: **[UserDefinedTypeIsAnAlias** [ **( True** \| **False )** ] **]**
+语法：**[UserDefinedTypeIsAnAlias** [ **( True** \| **False )** ] **]**
 
-Applicable to:  [**Type** (UDT)](/official/Reference/Core/Type)
+适用于：[**Type** (UDT)](/official/Reference/Core/Type)
 
-## WindowsControl  (optional Bool)
+## WindowsControl  (可选 Bool)
 
-Syntax: **[WindowsControl** [ **( True** \| **False )** ] **]**
+语法：**[WindowsControl** [ **( True** \| **False )** ] **]**

@@ -2,46 +2,55 @@
 title: Seek
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/Seek
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3505e6d4-c944-4bab-8307-ab2e3bfbf7ef'
+  PropagateID: '3505e6d4-c944-4bab-8307-ab2e3bfbf7ef'
+  ReservedCode1: '0c186054-a232-49dc-8f8e-7afc1dbba475'
+  ReservedCode2: '0c186054-a232-49dc-8f8e-7afc1dbba475'
 ---
+
 # Seek
 
-Returns or sets the read/write position within a file opened by using the **Open** statement.
+返回或设置使用**Open**语句打开的文件中的读/写位置。
 
-## Seek Function
+## Seek函数
 
-Returns a **Long** specifying the current read/write position within an open file.
+返回一个**Long**，指定打开文件中当前的读/写位置。
 
-Syntax: **Seek(** *filenumber* **)**
-
-*filenumber*
-: *required* **Integer** containing a valid file number.
-
-**Seek** returns a value between 1 and 2,147,483,647 (2^31 − 1), inclusive.
-
-| Mode                                          | Return value                                                                                      |
-|-----------------------------------------------|---------------------------------------------------------------------------------------------------|
-| **Random**                                    | Number of the next record to be read or written.                                                  |
-| **Binary**, **Output**, **Append**, **Input** | Byte position at which the next operation takes place. The first byte in a file is at position 1. |
-
-## Seek Statement
-
-Sets the position for the next read/write operation within an open file.
-
-Syntax: **Seek** [ **#** ] *filenumber*, *position*
+语法：**Seek(** *filenumber* **)**
 
 *filenumber*
-: *required* Any valid file number.
+: *必需* **Integer**，包含有效的文件号。
+
+**Seek**返回1到2,147,483,647（2^31 − 1）之间的值（包含边界值）。
+
+| 模式                                          | 返回值                                                       |
+|-----------------------------------------------|--------------------------------------------------------------|
+| **Random**                                    | 下一条要读取或写入的记录的编号。                             |
+| **Binary**、**Output**、**Append**、**Input** | 下一次操作发生时的字节位置。文件中的第一个字节位于位置1。    |
+
+## Seek语句
+
+设置打开文件中下一次读/写操作的位置。
+
+语法：**Seek** [ **#** ] *filenumber*, *position*
+
+*filenumber*
+: *必需* 任何有效的文件号。
 
 *position*
-: *required* Number in the range 1--2,147,483,647 indicating where the next read/write operation should occur.
+: *必需* 1--2,147,483,647范围内的数字，指示下一次读/写操作应发生的位置。
 
-Record numbers specified in [Get](/official/Reference/Core/Get) and [Put](/official/Reference/Core/Put) statements override file positioning performed by **Seek**.
+[Get](/official/Reference/Core/Get)和[Put](/official/Reference/Core/Put)语句中指定的记录号会覆盖由**Seek**执行的文件定位。
 
-Performing a file-write operation after a **Seek** operation beyond the end of a file extends the file. Attempting a **Seek** to a negative or zero position causes an error.
+在**Seek**操作超过文件末尾后执行文件写入操作将扩展文件。尝试**Seek**到负数或零位置会产生错误。
 
-### Examples
+### 示例
 
-This example assumes that `TESTFILE` contains records of the user-defined type `Record`.
+本示例假设`TESTFILE`包含用户自定义类型`Record`的记录。
 
 ```vb
 Type Record    ' Define user-defined type.
@@ -50,7 +59,7 @@ Type Record    ' Define user-defined type.
 End Type
 ```
 
-For files opened in **Random** mode, the **Seek** function returns the number of the next record.
+对于以**Random**模式打开的文件，**Seek**函数返回下一条记录的编号。
 
 ```vb
 Dim MyRecord As Record
@@ -62,7 +71,7 @@ Loop
 Close #1    ' Close file.
 ```
 
-The **Seek** statement can set the record position. This example reads records in reverse order.
+**Seek**语句可以设置记录位置。本示例以逆序读取记录。
 
 ```vb
 Dim MyRecord As Record, MaxSize, RecordNumber
@@ -75,7 +84,7 @@ Next RecordNumber
 Close #1    ' Close file.
 ```
 
-For files opened in modes other than **Random**, **Seek** returns or sets the byte position.
+对于以**Random**以外模式打开的文件，**Seek**返回或设置字节位置。
 
 ```vb
 Dim MyChar
@@ -87,8 +96,8 @@ Loop
 Close #1    ' Close file.
 ```
 
-### See Also
+### 另请参阅
 
-- [Loc](/official/Reference/VBA/FileSystem/Loc) function
-- [LOF](/official/Reference/VBA/FileSystem/LOF) function
-- [EOF](/official/Reference/VBA/FileSystem/EOF) function
+- [Loc](/official/Reference/VBA/FileSystem/Loc)函数
+- [LOF](/official/Reference/VBA/FileSystem/LOF)函数
+- [EOF](/official/Reference/VBA/FileSystem/EOF)函数

@@ -2,37 +2,46 @@
 title: RGBA
 parent: Information Module
 permalink: /tB/Modules/Information/RGBA
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f7264557-00e2-4607-bab0-4cafbd491943'
+  PropagateID: 'f7264557-00e2-4607-bab0-4cafbd491943'
+  ReservedCode1: '172f12e1-2962-4d3c-9893-a42dc3f45468'
+  ReservedCode2: '172f12e1-2962-4d3c-9893-a42dc3f45468'
 ---
+
 # RGBA
 
-Returns a **Long** representing an RGBA colour value, packing red, green, blue, and alpha components into a single 32-bit value.
+返回一个**Long**，表示RGBA颜色值，将红、绿、蓝和Alpha分量打包为单个32位值。
 
-Syntax: **RGBA(** *red* **,** *green* **,** *blue* **,** *alpha* **)**
+语法：**RGBA(** *red* **,** *green* **,** *blue* **,** *alpha* **)**
 
 *red*
-: *required* A number in the range 0--255 representing the red component of the colour.
+: *必需* 0--255范围内的数字，表示颜色的红色分量。
 
 *green*
-: *required* A number in the range 0--255 representing the green component of the colour.
+: *必需* 0--255范围内的数字，表示颜色的绿色分量。
 
 *blue*
-: *required* A number in the range 0--255 representing the blue component of the colour.
+: *必需* 0--255范围内的数字，表示颜色的蓝色分量。
 
 *alpha*
-: *required* A number in the range 0--255 representing the alpha (opacity) component of the colour. **0** is fully transparent; **255** is fully opaque.
+: *必需* 0--255范围内的数字，表示颜色的Alpha（不透明度）分量。**0**为完全透明；**255**为完全不透明。
 
-**RGBA** extends [**RGB**](/official/Reference/VBA/Information/RGB) with an alpha channel for use with APIs that accept transparency. The component values can be read back with [**RGB_R**](/official/Reference/VBA/Information/RGB_R), [**RGB_G**](/official/Reference/VBA/Information/RGB_G), [**RGB_B**](/official/Reference/VBA/Information/RGB_B), and [**RGBA_A**](/official/Reference/VBA/Information/RGBA_A).
+**RGBA**在[**RGB**](/official/Reference/VBA/Information/RGB)基础上添加了Alpha通道，用于接受透明度的API。分量值可以用[**RGB_R**](/official/Reference/VBA/Information/RGB_R)、[**RGB_G**](/official/Reference/VBA/Information/RGB_G)、[**RGB_B**](/official/Reference/VBA/Information/RGB_B)和[**RGBA_A**](/official/Reference/VBA/Information/RGBA_A)读回。
 
-### Example
+### 示例
 
-This example uses **RGBA** to build a semi-transparent red.
+本示例使用**RGBA**构建半透明红色。
 
 ```vb
 Dim TranslucentRed As Long
 TranslucentRed = RGBA(255, 0, 0, 128)
 ```
 
-### See Also
+### 另请参阅
 
-- [RGB](/official/Reference/VBA/Information/RGB) function
-- [RGB_R](/official/Reference/VBA/Information/RGB_R), [RGB_G](/official/Reference/VBA/Information/RGB_G), [RGB_B](/official/Reference/VBA/Information/RGB_B), [RGBA_A](/official/Reference/VBA/Information/RGBA_A) functions
+- [RGB](/official/Reference/VBA/Information/RGB)函数
+- [RGB_R](/official/Reference/VBA/Information/RGB_R)、[RGB_G](/official/Reference/VBA/Information/RGB_G)、[RGB_B](/official/Reference/VBA/Information/RGB_B)、[RGBA_A](/official/Reference/VBA/Information/RGBA_A)函数

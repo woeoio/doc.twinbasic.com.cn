@@ -6,7 +6,7 @@ permalink: /tB/Packages/Assert/Exact
 
 # Exact module
 
-The **Exact** module of the [**Assert**](/official/Reference/Assert/) package supplies assertions with the strictest possible comparison semantics. String comparisons are case-sensitive; numeric values must match in datatype as well as value (so `5` is not equal to `5.0`); `vbNullString` is distinct from `""`; `Empty` is distinct from `0`, `False`, `""`, and `vbNullString`; and object default members are not evaluated. **Exact** flags any kind of implicit conversion or coercion in the values being tested.
+The **Exact** module of the [**Assert**](/en/official/Reference/Assert/) package supplies assertions with the strictest possible comparison semantics. String comparisons are case-sensitive; numeric values must match in datatype as well as value (so `5` is not equal to `5.0`); `vbNullString` is distinct from `""`; `Empty` is distinct from `0`, `False`, `""`, and `vbNullString`; and object default members are not evaluated. **Exact** flags any kind of implicit conversion or coercion in the values being tested.
 
 
 ## Comparison semantics
@@ -204,7 +204,7 @@ Syntax: **Exact.IsNull** *Value* [, *Message* ]
 *Message*
 : *optional* A **String** included in the failure record if *Value* is not **Null**.
 
-Equivalent to checking [**IsNull**](/official/Reference/VBA/Information/IsNull)`(Value) = True`. To check for the **Nothing** object reference instead, use [**IsNothing**](#isnothing).
+Equivalent to checking [**IsNull**](/en/official/Reference/VBA/Information/IsNull)`(Value) = True`. To check for the **Nothing** object reference instead, use [**IsNothing**](#isnothing).
 
 ### IsNotNull
 
@@ -254,6 +254,6 @@ Syntax: **Exact.NotSequenceEquals** *Expected*, *Actual* [, *FailMessage* ]
 
 ## See Also
 
-- [Strict](/official/Reference/Assert/Strict) -- case-sensitive strings, but otherwise behaves like a direct comparison in twinBASIC code
-- [Permissive](/official/Reference/Assert/Permissive) -- case-insensitive strings; otherwise behaves like a direct comparison in twinBASIC code
-- [Assert package](/official/Reference/Assert/) -- overview of all three modules and the comparison-semantics table
+- [Strict](/en/official/Reference/Assert/Strict) -- case-sensitive strings, but otherwise behaves like a direct comparison in twinBASIC code
+- [Permissive](/en/official/Reference/Assert/Permissive) -- case-insensitive strings; otherwise behaves like a direct comparison in twinBASIC code
+- [Assert package](/en/official/Reference/Assert/) -- overview of all three modules and the comparison-semantics table

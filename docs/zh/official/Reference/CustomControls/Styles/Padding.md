@@ -1,11 +1,19 @@
----
+﻿---
 title: Padding
 parent: Styles
 permalink: /tB/Packages/CustomControls/Styles/Padding
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0f43955b-7764-477f-bc4b-8b88e260c8d4'
+  PropagateID: '0f43955b-7764-477f-bc4b-8b88e260c8d4'
+  ReservedCode1: 'a6af8603-9060-4c6d-8e04-d088269d41e3'
+  ReservedCode2: 'a6af8603-9060-4c6d-8e04-d088269d41e3'
 ---
 
-# Padding class
-Per-side padding, in pixels, applied around the text inside a [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering). Accessed as [**TextRendering.Padding**](/official/Reference/CustomControls/Styles/TextRendering#padding). The padded region is what the text [**Alignment**](/official/Reference/CustomControls/Styles/TextRendering#alignment) is applied to --- adding 5 pixels of left padding moves left-aligned text 5 pixels to the right, and shrinks the available area by 5 pixels at the left edge.
+# Padding 类
+逐侧内边距（像素），应用于 [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) 内文本周围。通过 [**TextRendering.Padding**](/official/Reference/CustomControls/Styles/TextRendering#padding) 访问。带内边距的区域是文本 [**Alignment**](/official/Reference/CustomControls/Styles/TextRendering#alignment) 应用的对象——添加 5 像素左侧内边距将左对齐文本向右移动 5 像素，并在左边缘缩小可用区域 5 像素。
 
 ```vb
 With txtNotes.NormalState.TextRendering.Padding
@@ -14,26 +22,26 @@ With txtNotes.NormalState.TextRendering.Padding
 End With
 ```
 
-## Properties
+## 属性
 
 ### Bottom
 
-Padding inserted at the bottom edge, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Default: 0.
+底边插入的内边距（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。默认：0。
 
 ### Left
 
-Padding inserted at the left edge, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Default: 0.
+左边插入的内边距（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。默认：0。
 
 ### Right
 
-Padding inserted at the right edge, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Default: 0.
+右边插入的内边距（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。默认：0。
 
 ### Top
 
-Padding inserted at the top edge, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Default: 0.
+顶边插入的内边距（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。默认：0。
 
-## Events
+## 事件
 
 ### OnChanged
 
-Raised whenever any of the four padding values is assigned. The containing [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) re-raises its own **OnChanged** in response, which in turn triggers a repaint on the hosting control.
+四个内边距值中任一个被赋值时触发。包含的 [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) 随之重新触发自身的 **OnChanged**，进而触发承载控件的重绘。

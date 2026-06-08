@@ -2,12 +2,21 @@
 title: ListItems
 parent: ListView
 permalink: /tB/Packages/WinNativeCommonCtls/ListView/ListItems
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '31860e35-6eb9-4a0a-9f02-8e3ca22d5246'
+  PropagateID: '31860e35-6eb9-4a0a-9f02-8e3ca22d5246'
+  ReservedCode1: 'b4a1ee64-fb20-4d0f-aba3-4f477fe8656d'
+  ReservedCode2: 'b4a1ee64-fb20-4d0f-aba3-4f477fe8656d'
 ---
 
-# ListItems class
-The **ListItems** collection is the entry point for managing the rows of a [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/). Accessed as `<listView>.ListItems`; supports adding, removing, indexed access, and `For Each` iteration.
+# ListItems 类
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ListItems** through the parent [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) control's [**ListItems**](/official/Reference/WinNativeCommonCtls/ListView/#listitems) property.
+**ListItems** 集合是管理 [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 行的入口。通过 `<listView>.ListItems` 访问；支持添加、删除、索引访问和 `For Each` 迭代。
+
+该类标记为 `[COMCreatable(False)]` --- 用户代码通过父级 [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 控件的 [**ListItems**](/official/Reference/WinNativeCommonCtls/ListView/#listitems) 属性访问 **ListItems**。
 
 ```vb
 With ListView1.ListItems
@@ -23,70 +32,70 @@ For Each item In ListView1.ListItems
 Next
 ```
 
-Properties
+属性
 ----------
 
 ### Count
 
-The number of rows in the collection. **Long**, read-only.
+集合中的行数。**Long**，只读。
 
 ### Item
 
-Returns the [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem) at the given index or with the given key. The default member, so `ListView1.ListItems("doc1")` works without writing `.Item("doc1")`.
+返回给定索引或键的 [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem)。默认成员，因此 `ListView1.ListItems("doc1")` 无须写 `.Item("doc1")`。
 
-Syntax: *object*.**Item** ( *Index* ) **As ListItem**
+语法：*object*.**Item**（*Index*）**As ListItem**
 
 *Index*
-: A **Variant** --- either a 1-based **Long** position or a **String** key.
+: 一个 **Variant** --- 可以是基于1的 **Long** 位置或 **String** 键。
 
-Methods
+方法
 -------
 
 ### Add
 
-Adds a row to the listview.
+向列表视图添加一行。
 
-Syntax: *object*.**Add** ( [ *Index* ] [, *Key* ] [, *Text* ] [, *Icon* ] [, *SmallIcon* ] ) **As ListItem**
+语法：*object*.**Add**（[*Index*] [, *Key*] [, *Text*] [, *Icon*] [, *SmallIcon*]）**As ListItem**
 
 *Index*
-: *optional* A **Long** giving the 1-based position at which to insert the new row. When omitted, the row is appended at the end. Out-of-range values raise run-time error 35600.
+: *可选* 给出插入新行基于1位置的 **Long**。省略时，行追加到末尾。超出范围的值引发运行时错误 35600。
 
 *Key*
-: *optional* A **String** name under which the row can be looked up. When omitted, the row has no key. Keys must be unique within the collection (otherwise run-time error 35602).
+: *可选* 可用于查找行的 **String** 名称。省略时，行没有键。键在集合内必须唯一（否则运行时错误 35602）。
 
 *Text*
-: *optional* A **String** giving the row's main label.
+: *可选* 给出行的主标签的 **String**。
 
 *Icon*
-: *optional* A **Variant** identifying the row's large icon --- either a 1-based **Long** index into [**ListView.Icons**](/official/Reference/WinNativeCommonCtls/ListView/#icons), or a **String** key. Validated against the bound image list.
+: *可选* 标识行大图标的 **Variant** --- 可以是基于1的 **Long** 索引指向 [**ListView.Icons**](/official/Reference/WinNativeCommonCtls/ListView/#icons)，或 **String** 键。对照绑定图像列表验证。
 
 *SmallIcon*
-: *optional* A **Variant** identifying the row's small icon, against [**ListView.SmallIcons**](/official/Reference/WinNativeCommonCtls/ListView/#smallicons).
+: *可选* 标识行小图标的 **Variant**，对照 [**ListView.SmallIcons**](/official/Reference/WinNativeCommonCtls/ListView/#smallicons)。
 
-Returns the newly-created [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem).
+返回新创建的 [**ListItem**](/official/Reference/WinNativeCommonCtls/ListView/ListItem)。
 
 ### Clear
 
-Removes every row from the listview.
+从列表视图中移除所有行。
 
-Syntax: *object*.**Clear**
+语法：*object*.**Clear**
 
 ### Remove
 
-Removes a row from the listview. The remaining rows' [**Index**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#index) values are renumbered.
+从列表视图中移除一行。剩余行的 [**Index**](/official/Reference/WinNativeCommonCtls/ListView/ListItem#index) 值会重新编号。
 
-Syntax: *object*.**Remove** ( *Index* )
+语法：*object*.**Remove**（*Index*）
 
 *Index*
-: A **Variant** --- either a 1-based **Long** position or a **String** key.
+: 一个 **Variant** --- 可以是基于1的 **Long** 位置或 **String** 键。
 
 ### _NewEnum
 
-Returns the enumerator used by `For Each item In listView.ListItems`. Iterates rows in **Index** order.
+返回 `For Each item In listView.ListItems` 使用的枚举器。按 **Index** 顺序迭代行。
 
-Syntax: *object*.**_NewEnum** **As stdole.IUnknown**
+语法：*object*.**_NewEnum** **As stdole.IUnknown**
 
-## See Also
+## 另见
 
-- [ListView](/official/Reference/WinNativeCommonCtls/ListView/) -- the parent control
-- [ListItem](/official/Reference/WinNativeCommonCtls/ListView/ListItem) -- one row in the collection
+- [ListView](/official/Reference/WinNativeCommonCtls/ListView/) --- 父控件
+- [ListItem](/official/Reference/WinNativeCommonCtls/ListView/ListItem) --- 集合中的一行

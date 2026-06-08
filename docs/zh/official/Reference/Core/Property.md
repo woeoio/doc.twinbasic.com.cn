@@ -5,15 +5,15 @@ permalink: /tB/Core/Property
 ---
 # Property
 
-Declares the name, arguments, and code that form the body of a **Property** procedure: a procedure that gets the value of a property, assigns a value to a property, or sets a reference to an object property.
+声明构成**Property**过程主体的名称、参数和代码：获取属性值、为属性赋值或设置对象属性引用的过程。
 
-A property is exposed to callers through up to three property procedures, all sharing the same *name* in the same module:
+属性通过最多三个属性过程向调用者公开，这些过程在同一模块中共享相同的*name*：
 
-- A **Property Get** procedure returns the property's value (or object reference).
-- A **Property Let** procedure assigns a non-object value to the property.
-- A **Property Set** procedure assigns an object reference to the property.
+- **Property Get**过程返回属性的值（或对象引用）。
+- **Property Let**过程为属性赋非对象值。
+- **Property Set**过程为属性赋对象引用。
 
-Syntax:
+语法：
 
 - > [ *attributes* ]  
   > [ **Public** \| **Private** \| **Friend** \| **Protected** ] [ **Static** ] [ **Overridable** ] **Property Get** *name* [ **(** **Of** *typevars* **)** ] [ **(** *arglist* **)** ] [ **As** *type* ] [ *binding-clause* ]  
@@ -40,103 +40,103 @@ Syntax:
   > **End Property**
 
 *attributes*
-: *optional* One or more of the [supported attributes](/official/Reference/Attributes) for procedures.
+: *可选* 过程的一个或多个[受支持属性](/official/Reference/Attributes)。
 
 **Public**
-: *optional* Indicates that the **Property** procedure is accessible to all other procedures in all modules. If used in a module that contains an **Option Private** statement, the procedure is not available outside the project.
+: *可选* 指示**Property**过程可被所有模块中的所有其他过程访问。如果在包含**Option Private**语句的模块中使用，则该过程在项目外不可用。
 
 **Private**
-: *optional* Indicates that the **Property** procedure is accessible only to other procedures in the module where it is declared.
+: *可选* 指示**Property**过程仅在其声明的模块中的其他过程可访问。
 
 **Friend**
-: *optional* Used only in a class module. Indicates that the **Property** procedure is visible throughout the project, but not visible to a controller of an instance of an object.
+: *可选* 仅在类模块中使用。指示**Property**过程在整个项目中可见，但对对象实例的控制器不可见。
 
 **[Protected](/official/Reference/Core/Protected)**
-: *optional* (twinBASIC) Used only in a class. Indicates that the **Property** procedure is accessible from inside the declaring class and from classes that derive from it via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop), but not from outside callers. All three accessor forms of the same property (**Get**, **Let**, **Set**) should agree on the access modifier.
+: *可选* (twinBASIC) 仅在类中使用。指示**Property**过程可从声明类的内部和通过[**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop)派生的类中访问，但外部调用者不能访问。同一属性的三个访问器形式（**Get**、**Let**、**Set**）应在访问修饰符上保持一致。
 
 **[Static](/official/Reference/Core/Static)**
-: *optional* Indicates that the **Property** procedure's local variables are preserved between calls. The **Static** attribute doesn't affect variables that are declared outside the **Property** procedure, even if they are used in the procedure.
+: *可选* 指示**Property**过程的局部变量在调用之间保留。**Static**属性不影响在**Property**过程外部声明的变量，即使它们在过程中被使用。
 
 **Overridable**
-: *optional* (twinBASIC) Marks the **Property** as an inheritance hook that classes derived via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop) may replace with an **Overrides** clause. Meaningful only on a member of a class that participates in an **Inherits** hierarchy.
+: *可选* (twinBASIC) 将**Property**标记为继承钩子，通过[**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop)派生的类可以用**Overrides**子句替换。仅在参与**Inherits**层次结构的类成员上有意义。
 
 *name*
-: Name of the **Property** procedure; follows standard variable naming conventions, except that the same name is shared by the matching **Property Get**, **Property Let**, and **Property Set** procedures in the same module.
+: **Property**过程的名称；遵循标准变量命名约定，但同一模块中匹配的**Property Get**、**Property Let**和**Property Set**过程共享相同的名称。
 
 **Of** *typevars*
-: *optional* One or more type variable names, following standard variable naming conventions. The names are separated by commas. Causes the procedure to be a generic **Property** procedure. The matching **Property Get**, **Property Let**, and **Property Set** procedures must declare the same generic parameters.
+: *可选* 一个或多个类型变量名称，遵循标准变量命名约定。名称以逗号分隔。使过程成为泛型**Property**过程。匹配的**Property Get**、**Property Let**和**Property Set**过程必须声明相同的泛型参数。
 
 *arglist*
-: List of variables representing arguments that are passed to the **Property** procedure when it is called. Multiple arguments are separated by commas. The name and data type of each argument in a **Property Let** or **Property Set** procedure must be the same as the corresponding argument in the matching **Property Get** procedure. See [*arglist*](#arglist) below for syntax. *arglist* is optional for **Property Get**; for **Property Let** and **Property Set** at least the *value*/*reference* parameter is required.
+: 表示调用**Property**过程时传递参数的变量列表。多个参数以逗号分隔。**Property Let**或**Property Set**过程中每个参数的名称和数据类型必须与匹配的**Property Get**过程中对应参数相同。语法见下面的[*arglist*](#arglist)。*arglist*对**Property Get**是可选的；对于**Property Let**和**Property Set**，至少需要*value*/*reference*参数。
 
 **As** *type*
-: *optional* Data type of the value returned by the **Property Get** procedure; may be **Byte**, **Boolean**, **Integer**, **Long**, **Currency**, **Single**, **Double**, **Decimal**, **Date**, **String** (except fixed length), **Object**, **Variant**, a user-defined type, or an array. The return *type* of a **Property Get** procedure must be the same data type as the *value* parameter of the corresponding **Property Let** procedure (if one exists), or compatible with the *reference* parameter of the corresponding **Property Set** procedure.
+: *可选* **Property Get**过程返回值的数据类型；可以是**Byte**、**Boolean**、**Integer**、**Long**、**Currency**、**Single**、**Double**、**Decimal**、**Date**、**String**（定长除外）、**Object**、**Variant**、用户自定义类型或数组。**Property Get**过程的返回*type*必须与对应**Property Let**过程的*value*参数（如果存在）的数据类型相同，或与对应**Property Set**过程的*reference*参数兼容。
 
 *statements*
-: *optional* Any group of statements to be executed within the body of the **Property** procedure.
+: *可选* 在**Property**过程主体中执行的任何语句组。
 
 *expression*
-: *optional* In **Property Get**, the value (or reference, when assigned with **Set**) returned by the procedure.
+: *可选* 在**Property Get**中，过程返回的值（或用**Set**赋值时的引用）。
 
 *value*
-: In **Property Let**, the variable that contains the value to be assigned to the property. When the procedure is called, this argument appears on the right side of the calling expression. The data type of *value* must be the same as the return type of the corresponding **Property Get** procedure. *value* cannot be **Optional** or a **ParamArray**.
+: 在**Property Let**中，包含要赋给属性值的变量。调用过程时，此参数出现在调用表达式的右侧。*value*的数据类型必须与对应**Property Get**过程的返回类型相同。*value*不能为**Optional**或**ParamArray**。
 
 *reference*
-: In **Property Set**, the variable containing the object reference used on the right side of the object reference assignment. *reference* cannot be **Optional**.
+: 在**Property Set**中，包含对象引用赋值右侧使用的对象引用的变量。*reference*不能为**Optional**。
 
 *binding-clause*
-: *optional* (twinBASIC) One of three trailing clauses that bind this accessor to a member declared elsewhere:
+: *可选* (twinBASIC) 三种尾随子句之一，将此访问器绑定到在其他地方声明的成员：
 
-  - **Handles** *object*.*event* [ **,** *object*.*event* … ] --- connects the property as a handler for the named event(s), replacing the traditional `Object_Event` naming convention. See [**Handles** statement](/official/Reference/Core/Handles).
-  - **Implements** *iface*.*member* [ **,** *iface2*.*member2* … ] --- provides the body for the named [**Interface**](/official/Reference/Core/Interface) (or [**Class**](/official/Reference/Core/Class)) member, replacing the traditional `Iface_Member` naming convention. A comma-separated list permits one body to satisfy several interfaces' members at once. See [**Implements** statement](/official/Reference/Core/Implements).
-  - **Overrides** *base*.*member* --- supplies the body for an **Overridable** *member* inherited via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop). Combine with **Overridable** on the same header to allow further-derived classes to override again.
+  - **Handles** *object*.*event* [ **,** *object*.*event* … ]——将属性连接为命名事件的处理程序，取代传统的`Object_Event`命名约定。参见[**Handles**语句](/official/Reference/Core/Handles)。
+  - **Implements** *iface*.*member* [ **,** *iface2*.*member2* … ]——为命名的[**Interface**](/official/Reference/Core/Interface)（或[**Class**](/official/Reference/Core/Class)）成员提供主体，取代传统的`Iface_Member`命名约定。逗号分隔列表允许一个主体同时满足多个接口的成员。参见[**Implements**语句](/official/Reference/Core/Implements)。
+  - **Overrides** *base*.*member*——为通过[**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop)继承的**Overridable** *member*提供主体。与同一标题上的**Overridable**组合可允许更深层派生类再次覆盖。
 
 **[Exit Property](/official/Reference/Core/Exit)**
-: *optional* Immediately returns from the **Property** procedure without setting a return value. Valid in **Property Get**, **Property Let**, and **Property Set**.
+: *可选* 立即从**Property**过程返回而不设置返回值。在**Property Get**、**Property Let**和**Property Set**中有效。
 
 **[Return](/official/Reference/Core/Return)** *expression*
-: *optional* Valid only in a **Property Get** procedure. Immediately returns from the procedure with *expression* as the property's value. The *expression* is required in this form; a bare **Return** is reserved for the [**GoSub...Return**](/official/Reference/Core/GoSub-Return) construct and does not exit a **Property** procedure.
+: *可选* 仅在**Property Get**过程中有效。立即从过程返回并以*expression*作为属性值。此形式中*expression*是必需的；裸**Return**保留给[**GoSub...Return**](/official/Reference/Core/GoSub-Return)构造，不会退出**Property**过程。
 
 ### *arglist*
 
-Syntax: One or more of  
+语法：一个或多个  
 [ **Optional** ] [ **ByVal** \| **ByRef** ] [ **[ParamArray](/official/Reference/Core/ParamArray)** ] *varname* [ **()** ] [ **As** *type* ] [ **=** *defaultvalue* ]
 
 **Optional**
-: *optional* Indicates that an argument is not required. If used, all subsequent arguments in *arglist* must also be optional and declared by using the **Optional** keyword. The right side of a **Property Let** or **Property Set** call (the *value* or *reference* parameter) cannot be **Optional**.
+: *可选* 指示参数不是必需的。如果使用，*arglist*中后续的所有参数也必须是可选的，并使用**Optional**关键字声明。**Property Let**或**Property Set**调用的右侧（*value*或*reference*参数）不能为**Optional**。
 
 **ByVal**
-: *optional* Indicates that the argument is passed by value.
+: *可选* 指示参数按值传递。
 
 **ByRef**
-: *optional* Indicates that the argument is passed by reference. **ByRef** is the default unlike in Visual Basic .NET.
+: *可选* 指示参数按引用传递。与Visual Basic .NET不同，**ByRef**是默认的。
 
 **[ParamArray](/official/Reference/Core/ParamArray)**
-: *optional* Indicates that the argument is an **Optional** array of **Variant** elements. The **ParamArray** keyword permits passing an arbitrary number of arguments. It may not be used with **ByVal**, **ByRef**, or **Optional**, and it may not be the *value*/*reference* parameter of a **Property Let** or **Property Set** procedure.
+: *可选* 指示参数是**Variant**元素的**Optional**数组。**ParamArray**关键字允许传递任意数量的参数。不能与**ByVal**、**ByRef**或**Optional**一起使用，也不能作为**Property Let**或**Property Set**过程的*value*/*reference*参数。
 
 *varname*
-: Name of the variable representing the argument; follows standard variable naming conventions.
+: 表示参数的变量名称；遵循标准变量命名约定。
 
 *type*
-: *optional* Data type of the argument passed to the procedure; may be **Byte**, **Boolean**, **Integer**, **Long**, **Currency**, **Single**, **Double**, **Decimal**, **Date**, **String** (variable length only), **Object**, **Variant**, a specific object type, or the name of a generic type argument. If the parameter is not **Optional**, a user-defined type may also be specified.  
-If the name of a generic type parameter is used, it becomes bound to the concrete type of the argument passed to the procedure. The name binding has the scope of the body of the procedure.
+: *可选* 传递给过程的参数的数据类型；可以是**Byte**、**Boolean**、**Integer**、**Long**、**Currency**、**Single**、**Double**、**Decimal**、**Date**、**String**（仅变长）、**Object**、**Variant**、特定对象类型或泛型类型参数的名称。如果参数不是**Optional**，也可以指定用户自定义类型。  
+如果使用泛型类型参数的名称，它将绑定到传递给过程的参数的具体类型。名称绑定的作用域为过程主体。
 
 *defaultvalue*
-: *optional* Any constant or constant expression. Valid for **Optional** parameters only. If the type is an **Object**, an explicit default value can only be **Nothing**.
+: *可选* 任何常量或常量表达式。仅对**Optional**参数有效。如果类型为**Object**，则显式默认值只能为**Nothing**。
 
-If not explicitly specified by using **Public**, **Private**, or **Friend**, **Property** procedures are public by default. If **Static** isn't used, the value of local variables is not preserved between calls.
+如果未使用**Public**、**Private**或**Friend**显式指定，**Property**过程默认为公共的。如果未使用**Static**，局部变量的值在调用之间不保留。
 
-The **Friend** keyword can only be used in class modules. However, **Friend** procedures can be accessed by procedures in any module of a project. A **Friend** procedure doesn't appear in the type library of its parent class, nor can a **Friend** procedure be late bound.
+**Friend**关键字只能在类模块中使用。但是，**Friend**过程可被项目中任何模块的过程访问。**Friend**过程不出现在其父类的类型库中，也不能被后期绑定。
 
-All executable code must be in procedures. A **Property** procedure cannot be defined inside another **[Property](/official/Reference/Core/Property)**, **[Sub](/official/Reference/Core/Sub)**, or **[Function](/official/Reference/Core/Function)** procedure.
+所有可执行代码必须在过程中。**Property**过程不能在另一个**[Property](/official/Reference/Core/Property)**、**[Sub](/official/Reference/Core/Sub)**或**[Function](/official/Reference/Core/Function)**过程内部定义。
 
-The **[Exit Property](/official/Reference/Core/Exit)** statement, and the **[Return](/official/Reference/Core/Return)** *expression* statement (in **Property Get** only), cause an immediate exit from a **Property** procedure. Program execution continues with the statement following the statement that called the **Property** procedure. Any number of these statements can appear anywhere in a **Property** procedure.
+**[Exit Property](/official/Reference/Core/Exit)**语句，以及**[Return](/official/Reference/Core/Return)** *expression*语句（仅在**Property Get**中），导致从**Property**过程立即退出。程序执行继续到调用**Property**过程的语句之后的语句。这些语句可以出现在**Property**过程中的任何位置，数量不限。
 
-Like **Sub** and **Function** procedures, a **Property** procedure is a separate procedure that can take arguments, perform a series of statements, and change the values of its arguments. A **Property Get** procedure can be used on the right side of an expression in the same way as a **Function** or a property name. A **Property Let** procedure can only be used on the left side of a property assignment expression or [**Let**](/official/Reference/Core/Let) statement. A **Property Set** procedure can only be used on the left side of an object reference assignment or **[Set](/official/Reference/Core/Set)** statement.
+与**Sub**和**Function**过程类似，**Property**过程是一个独立的过程，可以接受参数、执行一系列语句并更改其参数的值。**Property Get**过程可以像**Function**或属性名一样用在表达式的右侧。**Property Let**过程只能用在属性赋值表达式或[**Let**](/official/Reference/Core/Let)语句的左侧。**Property Set**过程只能用在对象引用赋值或**[Set](/official/Reference/Core/Set)**语句的左侧。
 
-### Example
+### 示例
 
-This example uses the **Property** statements to define a `PenColor` property: a **Property Let** that accepts a color name as a string and stores a numeric code, and a **Property Get** that returns the color name from the stored numeric code.
+本示例使用**Property**语句定义一个`PenColor`属性：一个接受颜色名字符串并存储数字代码的**Property Let**，以及一个从存储的数字代码返回颜色名的**Property Get**。
 
 ```vb
 Dim CurrentColor As Integer
@@ -172,7 +172,7 @@ PenColor = "Red"        ' Calls Property Let.
 ColorName = PenColor    ' Calls Property Get.
 ```
 
-A **Property Set** procedure assigns an object reference, in much the same way as **Property Let** assigns a value:
+**Property Set**过程赋值对象引用，方式与**Property Let**赋值非常类似：
 
 ```vb
 ' The Pen property may be set to different Pen implementations.
@@ -181,17 +181,17 @@ Property Set Pen(P As Object)
 End Property
 ```
 
-### See Also
+### 另请参阅
 
-- [**Sub** statement](/official/Reference/Core/Sub)
-- [**Function** statement](/official/Reference/Core/Function)
-- [**Let** statement](/official/Reference/Core/Let)
-- [**Set** statement](/official/Reference/Core/Set)
-- [**Exit** statement](/official/Reference/Core/Exit)
-- [**Return** statement](/official/Reference/Core/Return)
-- [**Implements** statement](/official/Reference/Core/Implements)
-- [**Handles** statement](/official/Reference/Core/Handles)
-- [**Protected** statement](/official/Reference/Core/Protected)
-- [Handler Method Syntax](/official/Features/Language/Handlers)
-- [Inheritance](/official/Features/Language/Inheritance)
-- [Generics](/official/Features/Language/Generics)
+- [**Sub** 语句](/official/Reference/Core/Sub)
+- [**Function** 语句](/official/Reference/Core/Function)
+- [**Let** 语句](/official/Reference/Core/Let)
+- [**Set** 语句](/official/Reference/Core/Set)
+- [**Exit** 语句](/official/Reference/Core/Exit)
+- [**Return** 语句](/official/Reference/Core/Return)
+- [**Implements** 语句](/official/Reference/Core/Implements)
+- [**Handles** 语句](/official/Reference/Core/Handles)
+- [**Protected** 语句](/official/Reference/Core/Protected)
+- [处理程序方法语法](/official/Features/Language/Handlers)
+- [继承](/official/Features/Language/Inheritance)
+- [泛型](/official/Features/Language/Generics)

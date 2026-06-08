@@ -1,5 +1,5 @@
 ---
-title: Book Configuration
+title: "书籍配置"
 parent: tbdocs Builder
 nav_order: 2
 permalink: /Documentation/Development/Book-Configuration
@@ -7,59 +7,59 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '347a9b60-c20d-4b5e-a246-3e24ca52e4cc'
-  PropagateID: '347a9b60-c20d-4b5e-a246-3e24ca52e4cc'
-  ReservedCode1: '9ea990f1-5139-4c0a-91a9-f27051a5062f'
-  ReservedCode2: '9ea990f1-5139-4c0a-91a9-f27051a5062f'
+  ProduceID: 'cd571e6d-b588-43d0-a525-50308f9e1375'
+  PropagateID: 'cd571e6d-b588-43d0-a525-50308f9e1375'
+  ReservedCode1: 'b452f829-b5a2-4b32-b1f7-ffc4caa4f4c1'
+  ReservedCode2: 'b452f829-b5a2-4b32-b1f7-ffc4caa4f4c1'
 ---
 
-# Book Configuration
+# 书籍配置
 
-`docs/_book.yml` defines the chapter manifest for the PDF book: which pages appear, in what order, and how they map to named parts and chapters. `book.mjs` reads this file during Phase 2 (to resolve page selectors) and Phase 8 (to assemble `book.html`). See [Pipeline Stages](/official/Documentation/Pipeline-Stages) for the relevant interface contracts.
+`docs/_book.yml` 定义 PDF 书籍的章节清单：哪些页面出现、以什么顺序、以及它们如何映射到命名的部分和章节。`book.mjs` 在阶段 2（解析页面选择器）和阶段 8（组装 `book.html`）期间读取此文件。参阅[管线阶段](/official/Documentation/Pipeline-Stages)了解相关的接口契约。
 
-## File location and load order
+## 文件位置与加载顺序
 
-**File:** `docs/_book.yml`
+**文件：** `docs/_book.yml`
 
-`data.mjs` loads `_book.yml` during Phase 2 and makes it available as `site.data.book`. The orchestrator then exposes `site.data.book` as `site.bookData` and passes it to `resolveBookChapters`. That call traverses the entire structure and resolves every selector to a concrete `Page[]` stored as `entry._chapters`, so Phase 8's `assembleBook` has no further page lookups to do.
+`data.mjs` 在阶段 2 期间加载 `_book.yml` 并使其作为 `site.data.book` 可用。编排器然后将 `site.data.book` 暴露为 `site.bookData` 并传递给 `resolveBookChapters`。该调用遍历整个结构并将每个选择器解析为具体的 `Page[]`，存储为 `entry._chapters`，因此阶段 8 的 `assembleBook` 无需再做页面查找。
 
-Run `build.bat` then `book.bat` to see the effect of changes. The `check.bat` integrity check also runs a PDF build pass.
+运行 `build.bat` 然后运行 `book.bat` 以查看更改的效果。`check.bat` 完整性检查也会运行 PDF 构建阶段。
 
-## Top-level structure
+## 顶层结构
 
 ```yaml
 front_matter:
-  - <entry>      # zero or more entries, emitted before the first Part
+  - <entry>      # 零个或多个条目，在第一个 Part 之前发出
   - ...
 
 parts:
-  - <part>       # one or more numbered Parts
+  - <part>       # 一个或多个编号 Part
   - ...
 ```
 
-**`front_matter`** entries are emitted between the title page and the first numbered Part. They produce no divider page and no part number.
+**`front_matter`** 条目在标题页和第一个编号 Part 之间发出。它们不生成分隔页和部分编号。
 
-**`parts`** entries each produce a numbered divider page. A part may contain a flat set of pages or an ordered list of `chapters`, each of which produces its own sub-divider page.
+**`parts`** 条目每个生成一个编号分隔页。一个部分可以包含一组平面页面或有序的 `chapters` 列表，每个章节生成自己的子分隔页。
 
-Both `front_matter` entries and parts (and their chapters) share the [selector schema](#selector-schema) and [common entry options](#common-entry-options) described below.
+`front_matter` 条目和部分（及其章节）都共用下面描述的[选择器模式](#selector-schema)和[通用条目选项](#common-entry-options)。
 
-## Selector schema
+## 选择器模式
 
-Every entry may combine any of these keys to select the pages it contributes to the book. All matches are `contains` by default --- the page's URL or nav-path must contain the prefix string. Set `no_descent: true` on the entry to switch all its matches to exact equality.
+每个条目可以组合以下任何键来选择它贡献给书籍的页面。默认所有匹配都是 `contains` --- 页面的 URL 或导航路径必须包含前缀字符串。在条目上设置 `no_descent: true` 可将其所有匹配切换为精确相等。
 
-| Key | Type | Description |
+| 键 | 类型 | 描述 |
 |---|---|---|
-| `page` | `string` | Single URL prefix. Shorthand for a one-element `pages:` list. |
-| `pages` | `string[]` | List of URL prefixes. Each prefix is tested against the page's `permalink` field. |
-| `nav_page` | `string` | Single nav-path prefix. Shorthand for a one-element `nav_pages:` list. A page's nav-path is its slash-joined `grand_parent / parent / title` chain, as populated by `nav.mjs`. |
-| `nav_pages` | `string[]` | List of nav-path prefixes, tested against each page's `navPath` field. |
-| `no_descent` | `boolean` | When `true`, switches every match on this entry from `contains` to exact equality. Use this when a prefix like `/Foo/` should match only the index page and not its sub-pages, or when `page: /` would otherwise sweep in every page on the site. |
+| `page` | `string` | 单个 URL 前缀。单元素 `pages:` 列表的简写。 |
+| `pages` | `string[]` | URL 前缀列表。每个前缀与页面的 `permalink` 字段匹配。 |
+| `nav_page` | `string` | 单个导航路径前缀。单元素 `nav_pages:` 列表的简写。页面的导航路径是其斜杠连接的 `grand_parent / parent / title` 链，由 `nav.mjs` 填充。 |
+| `nav_pages` | `string[]` | 导航路径前缀列表，与每个页面的 `navPath` 字段匹配。 |
+| `no_descent` | `boolean` | 当为 `true` 时，将此条目上的每个匹配从 `contains` 切换为精确相等。当前缀如 `/Foo/` 应仅匹配索引页而非其子页面时使用，或当 `page: /` 否则会扫入站点上的每个页面时使用。 |
 
-All selector keys are combinable within one entry. An entry with both `page` and `nav_page` collects the union of both selections. Selectors on a chapter entry are independent of the selectors on the containing part --- a chapter collects its own pages; the part does not automatically inherit them.
+所有选择器键可以在一个条目中组合使用。同时有 `page` 和 `nav_page` 的条目收集两个选择的并集。章节条目上的选择器与包含部分的选择器独立 --- 章节收集自己的页面；部分不会自动继承它们。
 
-## Common entry options
+## 通用条目选项
 
-Front_matter entries, parts, and chapters all support these options. Where behaviour differs between parts and chapters, the part form is noted first with the chapter form in parentheses.
+front_matter 条目、部分和章节都支持这些选项。部分和章节行为不同的地方，部分形式在前，章节形式在括号中注明。
 
 ### `title` / `subtitle`
 
@@ -68,9 +68,9 @@ title: "VBA Package"
 subtitle: "Standard runtime modules --- Strings, Math, FileSystem, and the rest"
 ```
 
-`title` is the text for the divider heading --- H1 for parts, H2 for chapters. `subtitle` is an optional subheading rendered below `title`. Both are used as the PDF bookmark label.
+`title` 是分隔标题的文本 --- 部分用 H1，章节用 H2。`subtitle` 是在 `title` 下方渲染的可选副标题。两者都用作 PDF 书签标签。
 
-When `landing_is_target:` is set, `title` is injected into the landing page's article rather than rendered on a standalone divider page.
+当设置了 `landing_is_target:` 时，`title` 被注入登录页的文章中，而不是在独立的分隔页上渲染。
 
 ### `landing_page`
 
@@ -78,7 +78,7 @@ When `landing_is_target:` is set, `title` is injected into the landing page's ar
 landing_page: /tB/Packages/VBA
 ```
 
-A single absolute URL. The named page is emitted first in the entry's content list, before any prefix-swept pages. It is excluded from prefix matches so it is not emitted twice. Its source H1 is stripped by the rewriter so the divider heading remains the sole PDF outline entry for the entry. Unlike `foreword_page:`, a `landing_page` renders with a normal running header and regular article styling.
+单个绝对 URL。命名页在条目的内容列表中最先发出，在任何前缀扫入的页面之前。它被排除在前缀匹配之外，因此不会被发出两次。其源 H1 被重写器剥离，因此分隔标题仍然是条目的唯一 PDF 大纲条目。与 `foreword_page:` 不同，`landing_page` 以正常的连续页眉和常规文章样式渲染。
 
 ### `landing_is_target`
 
@@ -87,9 +87,9 @@ landing_page: /tB/Packages/VBA
 landing_is_target: true
 ```
 
-Requires `landing_page:`. When set, the divider page renders silently and the entry `title` is injected as an H1 (part) or H2 (chapter) at the start of the landing-page article. The PDF bookmark navigates to the landing page rather than to a blank divider page. The landing's own source H1 is still stripped.
+需要 `landing_page:`。设置后，分隔页静默渲染，条目 `title` 作为 H1（部分）或 H2（章节）注入登录页文章的开头。PDF 书签导航到登录页而非空白分隔页。登录页的源 H1 仍被剥离。
 
-Pair with `outline_closed:` to start the bookmark collapsed.
+与 `outline_closed:` 配对以使书签开始时折叠。
 
 ### `no_outline_entry`
 
@@ -97,11 +97,11 @@ Pair with `outline_closed:` to start the bookmark collapsed.
 no_outline_entry: true
 ```
 
-Emits the divider `title` as a silent `<p>` instead of an H1 or H2. PagedJS skips silent paragraphs when building the PDF outline, so the entry has no bookmark of its own. The first content heading in the entry's pages becomes the bookmark target instead.
+将分隔 `title` 作为静默 `<p>` 而非 H1 或 H2 发出。PagedJS 在构建 PDF 大纲时跳过静默段落，因此条目没有自己的书签。条目页面中的第一个内容标题成为书签目标。
 
-When combined with `landing_page:`, the landing's source H1 strip is skipped --- the landing's own first heading becomes the bookmark target.
+与 `landing_page:` 组合时，跳过登录页源 H1 的剥离 --- 登录页自己的第一个标题成为书签目标。
 
-Pair with `no_heading_shift:` to keep that heading at the correct depth.
+与 `no_heading_shift:` 配对以将该标题保持在正确的深度。
 
 ### `no_heading_shift`
 
@@ -109,7 +109,7 @@ Pair with `no_heading_shift:` to keep that heading at the correct depth.
 no_heading_shift: true
 ```
 
-Controls how the heading assembler shifts levels to prevent multiple H1s in the combined `book.html`. See [Heading-shift mechanics](#heading-shift-mechanics) below.
+控制标题组装器如何移动级别以防止组合的 `book.html` 中出现多个 H1。参阅下面的[标题移动机制](#heading-shift-mechanics)。
 
 ### `outline_closed`
 
@@ -117,13 +117,13 @@ Controls how the heading assembler shifts levels to prevent multiple H1s in the 
 outline_closed: true
 ```
 
-Starts the PDF bookmark for this entry collapsed (children hidden until expanded in a PDF reader). The `data-pdf-bookmark-closed` attribute is stamped on:
+使此条目的 PDF 书签开始时折叠（子项在 PDF 阅读器中展开前隐藏）。`data-pdf-bookmark-closed` 属性标记在：
 
-- the divider H1 / H2, for entries with a visible divider heading;
-- the first content article, for `no_outline_entry` entries (PagedJS finds the heading via `closest()`);
-- the injected heading directly, for `landing_is_target` entries.
+- 分隔 H1 / H2，对于有可见分隔标题的条目；
+- 第一个内容文章，对于 `no_outline_entry` 条目（PagedJS 通过 `closest()` 找到标题）；
+- 注入的标题本身，对于 `landing_is_target` 条目。
 
-## Part-only options
+## 仅部分选项
 
 ### `foreword_page`
 
@@ -131,9 +131,9 @@ Starts the PDF bookmark for this entry collapsed (children hidden until expanded
 foreword_page: /tB/Packages/
 ```
 
-A single absolute URL. The named page is emitted as `<article class="part-foreword">` right after the part divider, before any chapter dividers. No running header (CSS suppresses the page chrome for foreword articles). The foreword's source H1 is not stripped and it does not become a PDF outline entry.
+单个绝对 URL。命名页作为 `<article class="part-foreword">` 在部分分隔之后、任何章节分隔之前发出。无连续页眉（CSS 为前言文章抑制页面装饰）。前言的源 H1 不被剥离，也不成为 PDF 大纲条目。
 
-Distinct from `landing_page:` in two ways: the source H1 is preserved, and there is no outline contribution from the foreword itself.
+与 `landing_page:` 在两个方面不同：源 H1 被保留，前言本身没有大纲贡献。
 
 ### `chapters`
 
@@ -145,31 +145,31 @@ chapters:
     ...
 ```
 
-An ordered list of chapter entries. Each chapter produces its own divider page (H2) and uses the same selector schema and common entry options above. No chapter-specific options exist beyond those shared with parts.
+有序章节条目列表。每个章节生成自己的分隔页（H2）并使用相同的选择器模式和上述通用条目选项。除与部分共用的之外，不存在章节专有选项。
 
-## Heading-shift mechanics
+## 标题移动机制
 
-The PDF assembler shifts heading levels to prevent source H1s from competing with part and chapter divider headings:
+PDF 组装器移动标题级别以防止源 H1 与部分和章节分隔标题竞争：
 
-- **Parts (no chapters):** every page in the part receives a +1 shift --- source H1 renders as H2, H2 as H3, and so on. Set `no_heading_shift: true` on the part entry to skip this shift and keep source H1 as H1.
-- **Chapters inside a part:** every page receives a +2 shift total (base +1 from the part, plus an additional +1 for the chapter level) --- source H1 renders as H3. Set `no_heading_shift: true` on the chapter entry to skip only the extra +1, so source H1 renders as H2 instead of H3.
+- **部分（无章节）：** 部分中的每个页面接收 +1 移动 --- 源 H1 渲染为 H2，H2 渲染为 H3，以此类推。在部分条目上设置 `no_heading_shift: true` 以跳过此移动，保持源 H1 为 H1。
+- **部分内的章节：** 每个页面总共接收 +2 移动（来自部分的基准 +1，加上章节级别的额外 +1）--- 源 H1 渲染为 H3。在章节条目上设置 `no_heading_shift: true` 以仅跳过额外的 +1，使源 H1 渲染为 H2 而非 H3。
 
-Typical pattern: pair `no_outline_entry: true` with `no_heading_shift: true` when a single-page part or chapter should use the landing's own H1 as the PDF bookmark target without a redundant silent divider above it.
+典型模式：当单页部分或章节应使用登录页自己的 H1 作为 PDF 书签目标而不需要上方冗余的静默分隔时，将 `no_outline_entry: true` 与 `no_heading_shift: true` 配对。
 
-## Sort order
+## 排序顺序
 
-Within each entry, selected pages are ordered by `sortByNavOrder`:
+在每个条目内，选定的页面按 `sortByNavOrder` 排序：
 
-1. **Index pages first** --- any page whose URL ends in `/`.
-2. **Pages with `nav_order`** --- ascending by `nav_order` value, with `title` as the tie-breaker.
-3. **Pages without `nav_order`** --- alphabetically by `title`.
-4. **Grouped by owning index** --- an index page and its direct sub-pages stay adjacent.
+1. **索引页优先** --- URL 以 `/` 结尾的任何页面。
+2. **有 `nav_order` 的页面** --- 按 `nav_order` 值升序，以 `title` 作为平局决胜。
+3. **无 `nav_order` 的页面** --- 按 `title` 字母顺序。
+4. **按所属索引分组** --- 索引页面及其直接子页面保持相邻。
 
-A `landing_page:` URL is always placed first, before the sorted set, and is excluded from the sorted set so it is not emitted twice.
+`landing_page:` URL 始终排在排序集之前的第一位，并被排除在排序集之外，因此不会被发出两次。
 
-## Worked examples
+## 实例说明
 
-### Chapter with `landing_is_target`
+### 带 `landing_is_target` 的章节
 
 ```yaml
 - title: VBA Package
@@ -180,16 +180,16 @@ A `landing_page:` URL is always placed first, before the sorted set, and is excl
   outline_closed: true
 ```
 
-What this produces in the PDF:
+这在 PDF 中生成：
 
-1. A chapter divider rendered silently (no visible H2 page), because `landing_is_target: true`.
-2. The VBA landing page at `/tB/Packages/VBA` --- first article, with `"VBA Package"` injected as an H2 at the top of its content. Its original source H1 is stripped.
-3. Every page whose URL contains `/tB/Modules/`, sorted by `sortByNavOrder`.
-4. The PDF bookmark for this chapter navigates to the VBA landing page and starts collapsed.
+1. 静默渲染的章节分隔（无可见的 H2 页面），因为 `landing_is_target: true`。
+2. `/tB/Packages/VBA` 处的 VBA 登录页 --- 第一篇文章，`"VBA Package"` 作为 H2 注入其内容顶部。其原始源 H1 被剥离。
+3. URL 包含 `/tB/Modules/` 的每个页面，按 `sortByNavOrder` 排序。
+4. 此章节的 PDF 书签导航到 VBA 登录页并开始时折叠。
 
 ---
 
-### Chapter with a visible divider and `nav_page` selector
+### 带可见分隔和 `nav_page` 选择器的章节
 
 ```yaml
 - title: Operators
@@ -197,15 +197,15 @@ What this produces in the PDF:
   outline_closed: true
 ```
 
-What this produces:
+这生成：
 
-1. A visible H2 divider page titled "Operators".
-2. All pages whose `navPath` contains `Reference Section/Operators`, in nav order.
-3. A PDF bookmark navigating to the divider page, starting collapsed.
+1. 可见的 H2 分隔页，标题为 "Operators"。
+2. 所有 `navPath` 包含 `Reference Section/Operators` 的页面，按导航顺序。
+3. PDF 书签导航到分隔页，开始时折叠。
 
 ---
 
-### Front-matter entry with `no_outline_entry` and `no_descent`
+### 带 `no_outline_entry` 和 `no_descent` 的前言条目
 
 ```yaml
 front_matter:
@@ -217,16 +217,16 @@ front_matter:
     outline_closed: true
 ```
 
-What this produces:
+这生成：
 
-1. The root page (`/`) only --- `no_descent: true` prevents `/` from sweeping in every page on the site.
-2. The divider title "Introduction" renders as a silent `<p>` (no own bookmark). The page's source H1 becomes the PDF bookmark target instead.
-3. Because `no_heading_shift: true` is set, the source H1 renders as H1 rather than H2.
-4. The bookmark starts collapsed.
+1. 仅根页面（`/`）--- `no_descent: true` 阻止 `/` 扫入站点上的每个页面。
+2. 分隔标题 "Introduction" 渲染为静默 `<p>`（无自身书签）。页面的源 H1 成为 PDF 书签目标。
+3. 因为设置了 `no_heading_shift: true`，源 H1 渲染为 H1 而非 H2。
+4. 书签开始时折叠。
 
 ---
 
-### Part with a foreword and nested chapters
+### 带前言和嵌套章节的部分
 
 ```yaml
 - title: Packages
@@ -240,15 +240,15 @@ What this produces:
       ...
 ```
 
-What this produces:
+这生成：
 
-1. A part divider page (H1) titled "Packages".
-2. The page at `/tB/Packages/` emitted as a foreword article (no running header, no outline entry). Its H1 is preserved.
-3. Chapter divider pages (H2) for each chapter, followed by that chapter's pages in nav order.
+1. 部分分隔页（H1），标题为 "Packages"。
+2. `/tB/Packages/` 处的页面作为前言文章发出（无连续页眉，无大纲条目）。其 H1 被保留。
+3. 每个章节的章节分隔页（H2），后跟该章节按导航顺序排列的页面。
 
-## See Also
+## 另见
 
-- [Pipeline Stages](/official/Documentation/Pipeline-Stages) -- the `book.mjs` interface contracts.
-- [tbdocs Builder](/official/Documentation/Builder) -- design rationale for `book.mjs`.
+- [管线阶段](/official/Documentation/Pipeline-Stages) -- `book.mjs` 接口契约。
+- [tbdocs 构建器](/official/Documentation/Builder) -- `book.mjs` 的设计理念。
 
 > AI生成

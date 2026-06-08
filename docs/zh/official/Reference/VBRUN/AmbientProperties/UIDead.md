@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4650b289-8f29-497c-a5f5-d2224c6490a4'
+  PropagateID: '4650b289-8f29-497c-a5f5-d2224c6490a4'
+  ReservedCode1: '946a6553-09ab-4fe9-a7da-9a6157d4e1e2'
+  ReservedCode2: '946a6553-09ab-4fe9-a7da-9a6157d4e1e2'
+---
+
 ---
 title: UIDead
 parent: AmbientProperties
@@ -5,18 +16,18 @@ permalink: /tB/Packages/VBRUN/AmbientProperties/UIDead
 ---
 # UIDead
 
-Returns whether the user interface is currently non-responsive, as a **Boolean**. Read-only.
+返回用户界面当前是否无响应，类型为**Boolean**。只读。
 
-Syntax: *object*.**UIDead**
+语法：*object*.**UIDead**
 
 *object*
-: *required* An object expression that evaluates to an **AmbientProperties** object.
+: *必需* 求值为**AmbientProperties**对象的对象表达式。
 
-The host sets **UIDead** to **True** when the application is in a state where it cannot meaningfully respond to user input --- most commonly while execution is paused inside the debugger, but also during long modal operations. While **UIDead** is **True** a control should suppress animations, hover effects, and any input it would otherwise process, since the host's main thread cannot deliver a useful follow-up.
+当应用程序处于无法有意义地响应用户输入的状态时，宿主将**UIDead**设置为**True**——最常见的是执行在调试器内暂停时，也包括长时间模态操作期间。当**UIDead**为**True**时，控件应抑制动画、悬停效果和通常处理的任何输入，因为宿主的主线程无法提供有用的后续响应。
 
-### Example
+### 示例
 
-This example responds to a **UIDead** change and pauses animations while the host is non-responsive.
+此示例响应**UIDead**更改，在宿主无响应时暂停动画。
 
 ```vb
 Private Sub UserControl_AmbientChanged(PropertyName As String)
@@ -29,6 +40,6 @@ Private Sub UserControl_AmbientChanged(PropertyName As String)
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [UserMode](/official/Reference/VBRUN/AmbientProperties/UserMode) property
+- [UserMode](/official/Reference/VBRUN/AmbientProperties/UserMode) 属性

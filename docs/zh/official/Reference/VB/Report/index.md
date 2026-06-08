@@ -6,7 +6,7 @@ permalink: /tB/Packages/VB/Report/
 
 # Report class
 
-A **Report** is a top-level Win32 window --- much like a [**Form**](/official/Reference/VB/Form/) --- specialised for rendering the print preview of a banded report. Each report designed in the IDE becomes its own class derived from **Report**: its sections (report header / page header / detail / page footer / report footer) and the controls placed in them become members of that class. At run time, code assigns a recordset to [**Recordset**](#recordset), calls [**Show**](#show), and the framework iterates the recordset, evaluates expressions on the controls, and paints the resulting pages into a built-in preview window with a navigation toolbar at the bottom. [**PrintReport**](#printreport) sends the same pages to the printer. The default property is [**Controls**](#controls) and the default event is [**Load**](#load).
+A **Report** is a top-level Win32 window --- much like a [**Form**](/en/official/Reference/VB/Form/) --- specialised for rendering the print preview of a banded report. Each report designed in the IDE becomes its own class derived from **Report**: its sections (report header / page header / detail / page footer / report footer) and the controls placed in them become members of that class. At run time, code assigns a recordset to [**Recordset**](#recordset), calls [**Show**](#show), and the framework iterates the recordset, evaluates expressions on the controls, and paints the resulting pages into a built-in preview window with a navigation toolbar at the bottom. [**PrintReport**](#printreport) sends the same pages to the printer. The default property is [**Controls**](#controls) and the default event is [**Load**](#load).
 
 ```vb
 ' In the report's code-behind (rptSales):
@@ -34,19 +34,19 @@ A report is composed of up to five sections, laid out vertically on each page:
 | **PageFooter**   | At the bottom of every page.                                   |
 | **ReportFooter** | Once, at the end of the last page after the final detail row.  |
 
-Sections are designed in the IDE --- each is a container that holds [**Label**](/official/Reference/VB/Label/), [**Image**](/official/Reference/VB/Image/), [**QRCode**](/official/Reference/VB/QRCode/), and other controls. A section's `KeepTogether` property prevents it from splitting across a page break; its `BackStyle` and back colour control the section background; the framework picks an alternating-row colour for the detail section automatically when the section requests it.
+Sections are designed in the IDE --- each is a container that holds [**Label**](/en/official/Reference/VB/Label/), [**Image**](/en/official/Reference/VB/Image/), [**QRCode**](/en/official/Reference/VB/QRCode/), and other controls. A section's `KeepTogether` property prevents it from splitting across a page break; its `BackStyle` and back colour control the section background; the framework picks an alternating-row colour for the detail section automatically when the section requests it.
 
 ## Recordset binding
 
 [**Recordset**](#recordset) accepts any object that exposes the classic ADO/DAO interface --- `EOF`, `MoveNext`, and a `Fields` collection indexable by name. The framework wraps non-tB recordsets transparently. `Recordset` may also be left **Nothing**, in which case the detail section is rendered exactly once with no field data.
 
-A control in a section opts into binding by setting its `DataField` to a recordset field name; the framework reads that field for each detail row and writes it back into the control's value (or [**Caption**](/official/Reference/VB/Label/#caption) for [**Label**](/official/Reference/VB/Label/)s, **Payload** for [**QRCode**](/official/Reference/VB/QRCode/)). For richer cases, prefix `DataField` with `=` to make it an *expression* --- any twinBASIC expression that mixes recordset fields, the report's own [**Page**](#page) / [**Pages**](#pages) / [**Caption**](#caption), and standard library calls. A label whose **DataField** is `="Page " & Report.Page & " of " & Report.Pages` updates itself as each page is rendered.
+A control in a section opts into binding by setting its `DataField` to a recordset field name; the framework reads that field for each detail row and writes it back into the control's value (or [**Caption**](/en/official/Reference/VB/Label/#caption) for [**Label**](/en/official/Reference/VB/Label/)s, **Payload** for [**QRCode**](/en/official/Reference/VB/QRCode/)). For richer cases, prefix `DataField` with `=` to make it an *expression* --- any twinBASIC expression that mixes recordset fields, the report's own [**Page**](#page) / [**Pages**](#pages) / [**Caption**](#caption), and standard library calls. A label whose **DataField** is `="Page " & Report.Page & " of " & Report.Pages` updates itself as each page is rendered.
 
-When **DataField** is empty and a [**Label**](/official/Reference/VB/Label/)'s [**Caption**](/official/Reference/VB/Label/#caption) contains `%`-placeholders, those placeholders are converted to an expression automatically --- see [Caption placeholders](#caption-placeholders) below. Setting `DataFieldAggregate` on a Label additionally accumulates the expression's value across rows for running totals.
+When **DataField** is empty and a [**Label**](/en/official/Reference/VB/Label/)'s [**Caption**](/en/official/Reference/VB/Label/#caption) contains `%`-placeholders, those placeholders are converted to an expression automatically --- see [Caption placeholders](#caption-placeholders) below. Setting `DataFieldAggregate` on a Label additionally accumulates the expression's value across rows for running totals.
 
 ## Caption placeholders
 
-Inside a Label that has no **DataField**, the following `%` placeholders in the [**Caption**](/official/Reference/VB/Label/#caption) are recognised and replaced at render time:
+Inside a Label that has no **DataField**, the following `%` placeholders in the [**Caption**](/en/official/Reference/VB/Label/#caption) are recognised and replaced at render time:
 
 | Placeholder | Replaced with                                                          |
 |-------------|------------------------------------------------------------------------|
@@ -110,7 +110,7 @@ The graphics primitives inherited from the form-style drawing surface ([**Cls**]
 
 ## Printing
 
-[**PrintReport**](#printreport) iterates from page 1 to the last page through the [**Printer**](/official/Reference/VB/Printer/) object, sending each cached metafile as one printed page.
+[**PrintReport**](#printreport) iterates from page 1 to the last page through the [**Printer**](/en/official/Reference/VB/Printer/) object, sending each cached metafile as one printed page.
 
 ```vb
 rptSales.PrintReport ShowDialog:=False
@@ -122,7 +122,7 @@ The print dialog is not yet supported in this beta; calling **PrintReport** with
 
 ### Appearance
 
-Determines how the report's border is drawn by the OS. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+Determines how the report's border is drawn by the OS. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
 
 ::: info
 Retained for VB6 compatibility; the property has no observable effect on a report window.
@@ -130,7 +130,7 @@ Retained for VB6 compatibility; the property has no observable effect on a repor
 
 ### AutoRedraw
 
-Whether drawing performed on the report's window persists across invalidations. **Boolean**, default **False**. Reports normally rely on per-section painting through [**BeforePaintSection**](#beforepaintsection), so this property is rarely useful; it is provided for parity with [**Form**](/official/Reference/VB/Form/).
+Whether drawing performed on the report's window persists across invalidations. **Boolean**, default **False**. Reports normally rely on per-section painting through [**BeforePaintSection**](#beforepaintsection), so this property is rarely useful; it is provided for parity with [**Form**](/en/official/Reference/VB/Form/).
 
 ### BackColor
 
@@ -138,7 +138,7 @@ The background colour of the report window's drawing surface, as an **OLE_COLOR*
 
 ### BorderStyle
 
-The window-frame style. A member of [**FormBorderStyleConstants**](/official/Reference/VBRUN/Constants/FormBorderStyleConstants): **vbBSNone**, **vbFixedSingle**, **vbSizable** (default), **vbFixedDialog**, **vbFixedToolWindow**, **vbSizableToolWindow**, **vbSizableNoTitleBar**, or **vbSizableToolWindowNoTitleBar**.
+The window-frame style. A member of [**FormBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/FormBorderStyleConstants): **vbBSNone**, **vbFixedSingle**, **vbSizable** (default), **vbFixedDialog**, **vbFixedToolWindow**, **vbSizableToolWindow**, **vbSizableNoTitleBar**, or **vbSizableToolWindowNoTitleBar**.
 
 ### Caption
 
@@ -166,7 +166,7 @@ The collection of every control hosted by this report's sections, indexable by c
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this object as a report. Always **vbReport**.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this object as a report. Always **vbReport**.
 
 ### Count
 
@@ -190,11 +190,11 @@ The vertical DPI scale factor of the monitor the report window is currently on. 
 
 ### DrawMode
 
-The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default) is normal opaque drawing.
+The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default) is normal opaque drawing.
 
 ### DrawStyle
 
-The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
+The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
 
 ### DrawWidth
 
@@ -210,7 +210,7 @@ The fill colour for closed shapes drawn by [**Circle**](#circle) and the rectang
 
 ### FillStyle
 
-The fill pattern for closed shapes. A member of [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
+The fill pattern for closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
 
 ### Font
 
@@ -274,7 +274,7 @@ The maximum width of the report window's *client area*, in twips. **Double**, de
 
 ### MDIChild
 
-When **True**, the report is hosted as a child inside an [**MDIForm**](/official/Reference/VB/MDIForm/). **Boolean**, read-only --- set at design time. An MDI child report cannot be shown modally.
+When **True**, the report is hosted as a child inside an [**MDIForm**](/en/official/Reference/VB/MDIForm/). **Boolean**, read-only --- set at design time. An MDI child report cannot be shown modally.
 
 ### MinButton
 
@@ -294,7 +294,7 @@ A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer)
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the report. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+The mouse cursor shown when the pointer is over the report. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
 
 ### Moveable
 
@@ -387,7 +387,7 @@ The logical horizontal coordinate of the left edge of the report window's client
 
 ### ScaleMode
 
-The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser**.
+The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser**.
 
 ### ScaleTop
 
@@ -403,7 +403,7 @@ Whether the report window appears in the Windows taskbar and Alt-Tab list. **Boo
 
 ### StartUpPosition
 
-How the report window's initial position is determined the first time it is shown. A member of [**StartUpPositionConstants**](/official/Reference/VBRUN/Constants/StartUpPositionConstants): **vbStartUpManual**, **vbStartUpOwner**, **vbStartUpScreen**, or **vbStartUpWindowsDefault** (default). Read-only at run time --- set at design time.
+How the report window's initial position is determined the first time it is shown. A member of [**StartUpPositionConstants**](/en/official/Reference/VBRUN/Constants/StartUpPositionConstants): **vbStartUpManual**, **vbStartUpOwner**, **vbStartUpScreen**, or **vbStartUpWindowsDefault** (default). Read-only at run time --- set at design time.
 
 ### Tag
 
@@ -431,7 +431,7 @@ The report window's outer width, in twips. **Double**. Setting it resizes the wi
 
 ### WindowState
 
-The window's normal/minimised/maximised state. A member of [**FormWindowStateConstants**](/official/Reference/VBRUN/Constants/FormWindowStateConstants): **vbNormal** (0, default), **vbMinimized** (1), or **vbMaximized** (2). Setting it at run time updates the window placement immediately if the report is visible.
+The window's normal/minimised/maximised state. A member of [**FormWindowStateConstants**](/en/official/Reference/VBRUN/Constants/FormWindowStateConstants): **vbNormal** (0, default), **vbMinimized** (1), or **vbMaximized** (2). Setting it at run time updates the window placement immediately if the report is visible.
 
 ### ZoomAutoFit
 
@@ -538,7 +538,7 @@ Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1*
 : *optional* The source rectangle within the picture; defaults to the whole picture.
 
 *Opcode*
-: *optional* A raster-operation code (member of [**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
+: *optional* A raster-operation code (member of [**RasterOpConstants**](/en/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
 
 *StretchQuality*
 : *optional* The interpolation method when scaling. Defaults to normal quality.
@@ -557,7 +557,7 @@ To send a report to the printer, use [**PrintReport**](#printreport) --- not **P
 
 ### PrintReport
 
-Sends every page of the report to the [**Printer**](/official/Reference/VB/Printer/) object. Iterates from page 1 to the last page, generating each cached metafile in turn.
+Sends every page of the report to the [**Printer**](/en/official/Reference/VB/Printer/) object. Iterates from page 1 to the last page, generating each cached metafile in turn.
 
 Syntax: *object*.**PrintReport** [ *ShowDialog* [, *Range* [, *PageFrom* [, *PageTo* ] ] ] ]
 
@@ -614,7 +614,7 @@ Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
 : *required* A **Single** giving the source length.
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
 
 ### ScaleY
 
@@ -626,7 +626,7 @@ Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
 : *required* A **Single** giving the source length.
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
 
 ### SetFocus
 
@@ -641,7 +641,7 @@ Makes the report window visible. Triggers [**Load**](#load) on the first call.
 Syntax: *object*.**Show** [ *Modal* [, *OwnerForm* ] ]
 
 *Modal*
-: *optional* A member of [**FormShowConstants**](/official/Reference/VBRUN/Constants/FormShowConstants): **vbModeless** (0, default --- the call returns immediately) or **vbModal** (1 --- the call blocks until the report is closed).
+: *optional* A member of [**FormShowConstants**](/en/official/Reference/VBRUN/Constants/FormShowConstants): **vbModeless** (0, default --- the call returns immediately) or **vbModal** (1 --- the call blocks until the report is closed).
 
 *OwnerForm*
 : *optional* For modal shows, the form that is disabled while the report is up; defaults to the currently active form.
@@ -671,7 +671,7 @@ Brings the report window to the front or back of the top-level z-order.
 Syntax: *object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
 
 ## Events
 
@@ -784,7 +784,7 @@ Syntax: *object*\_**QueryUnload**( *Cancel* **As Integer**, *UnloadMode* **As In
 : Set to non-zero (any non-zero value, conventionally **1**) to cancel the close.
 
 *UnloadMode*
-: A member of [**QueryUnloadConstants**](/official/Reference/VBRUN/Constants/QueryUnloadConstants) identifying what triggered the close.
+: A member of [**QueryUnloadConstants**](/en/official/Reference/VBRUN/Constants/QueryUnloadConstants) identifying what triggered the close.
 
 ### Resize
 

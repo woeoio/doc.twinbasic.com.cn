@@ -2,23 +2,32 @@
 title: LCase
 parent: Strings Module
 permalink: /tB/Modules/Strings/LCase
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '917c6b65-bb4d-46b2-b2fb-040fd3a1668e'
+  PropagateID: '917c6b65-bb4d-46b2-b2fb-040fd3a1668e'
+  ReservedCode1: 'e1a9bd7e-c9fb-4574-b23d-480ae06c223d'
+  ReservedCode2: 'e1a9bd7e-c9fb-4574-b23d-480ae06c223d'
 ---
+
 # LCase
 
-Returns a **String** that has been converted to lowercase.
+返回已转换为小写的**String**。
 
-Syntax: **LCase$(** *string* **)**, **LCase(** *string* **)**
+语法：**LCase$(** *string* **)**, **LCase(** *string* **)**
 
 *string*
-: *required* Any valid string expression. If *string* contains **Null**, **Null** is returned.
+: *必需* 任意有效的字符串表达式。如果*string*包含**Null**，则返回**Null**。
 
-The `$`-suffixed form returns a **String**; the unsuffixed form returns a **Variant** (**String**).
+带`$`后缀的形式返回**String**；不带后缀的形式返回**Variant**（**String**）。
 
-Only uppercase letters are converted to lowercase; all lowercase letters and nonletter characters remain unchanged.
+仅大写字母被转换为小写；所有小写字母和非字母字符保持不变。
 
-### Example
+### 示例
 
-This example uses the **LCase** function to return a lowercase version of a string.
+本示例使用**LCase**函数返回字符串的小写版本。
 
 ```vb
 Dim UpperCase, LowerCase
@@ -26,6 +35,6 @@ UpperCase = "Hello World 1234"    ' String to convert.
 LowerCase = LCase(UpperCase)      ' Returns "hello world 1234".
 ```
 
-### See Also
+### 另请参阅
 
-- [StrConv](/official/Reference/VBA/Strings/StrConv), [UCase](/official/Reference/VBA/Strings/UCase) functions
+- [StrConv](/official/Reference/VBA/Strings/StrConv)、[UCase](/official/Reference/VBA/Strings/UCase)函数

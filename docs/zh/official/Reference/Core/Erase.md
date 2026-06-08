@@ -2,32 +2,40 @@
 title: Erase
 parent: Statements
 permalink: /tB/Core/Erase
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c4434498-17b2-4842-9e35-56ad66a7d789'
+  PropagateID: 'c4434498-17b2-4842-9e35-56ad66a7d789'
+  ReservedCode1: '0c4d5ae3-6e51-4e4c-bba9-08d4b5486d43'
+  ReservedCode2: '0c4d5ae3-6e51-4e4c-bba9-08d4b5486d43'
 ---
 
 # Erase
 
-Reinitializes the elements of fixed-size arrays, or releases dynamic-array storage space.
+重新初始化固定大小数组的元素，或释放动态数组的存储空间。
 
-Syntax: **Erase** *arraylist*
+语法：**Erase** *arraylist*
 
 *arraylist*
-: one or more comma-delimited array variables to be erased
+: 要清除的一个或多个逗号分隔的数组变量
 
-**Erase** behaves differently depending on whether an array is fixed-size (ordinary) or dynamic. **Erase** recovers no memory for fixed-size arrays. Erase sets the elements of a fixed array as follows:
+**Erase** 的行为取决于数组是固定大小（普通）还是动态的。**Erase** 不为固定大小数组回收内存。Erase 按以下方式设置固定数组的元素：
 
-| Type of array |	Effect of Erase on fixed-array elements |
+| 数组类型 |	Erase 对固定数组元素的影响 |
 |-|-|
-| Fixed numeric array |	Sets each element to zero. |
-| Fixed string array (variable length) |	Sets each element to a zero-length string (""). |
-| Fixed string array (fixed length) |	Sets each element to zero. |
-| Fixed Variant array |	Sets each element to **Empty**. |
-| Array of user-defined types |	Sets each element as if it were a separate variable. |
-| Array of objects |	Sets each element to the special value **Nothing**. |
+| 固定数值数组 |	将每个元素设为零。 |
+| 固定字符串数组（变长） |	将每个元素设为零长度字符串("")。 |
+| 固定字符串数组（定长） |	将每个元素设为零。 |
+| 固定Variant数组 |	将每个元素设为 **Empty**。 |
+| 用户自定义类型数组 |	将每个元素像单独变量一样设置。 |
+| 对象数组 |	将每个元素设为特殊值 **Nothing**。 |
 
-**Erase** frees the memory used by dynamic arrays. Before the program can refer to the dynamic array again, it must redeclare the array variable's dimensions by using a ReDim statement.
+**Erase** 释放动态数组使用的内存。程序再次引用动态数组之前，必须使用ReDim语句重新声明数组变量的维度。
 
-### Example
-This example uses the **Erase** statement to reinitialize the elements of fixed-size arrays and deallocate dynamic-array storage space.
+### 示例
+本示例使用 **Erase** 语句重新初始化固定大小数组的元素并释放动态数组的存储空间。
 
 ```vb
 ' Declare array variables. 

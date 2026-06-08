@@ -2,12 +2,21 @@
 title: ListImages
 parent: ImageList
 permalink: /tB/Packages/WinNativeCommonCtls/ImageList/ListImages
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cc5cb16e-d2c0-4f2d-ae17-37d86d8eb886'
+  PropagateID: 'cc5cb16e-d2c0-4f2d-ae17-37d86d8eb886'
+  ReservedCode1: 'f52bcdd5-10ab-4fa0-83ff-c9e53d2256cc'
+  ReservedCode2: 'f52bcdd5-10ab-4fa0-83ff-c9e53d2256cc'
 ---
 
-# ListImages class
-The **ListImages** collection is the entry point for managing the pictures inside an [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/). Accessed as `<imageList>.ListImages`; supports adding, removing, indexed access, and `For Each` iteration.
+# ListImages 类
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ListImages** through the parent [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) control's [**ListImages**](/official/Reference/WinNativeCommonCtls/ImageList/#listimages) property, never by direct instantiation.
+**ListImages** 集合是管理 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) 内图片的入口。通过 `<imageList>.ListImages` 访问；支持添加、删除、索引访问和 `For Each` 迭代。
+
+该类标记为 `[COMCreatable(False)]` --- 用户代码通过父级 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) 控件的 [**ListImages**](/official/Reference/WinNativeCommonCtls/ImageList/#listimages) 属性访问 **ListImages**，从不直接实例化。
 
 ```vb
 With ImageList1.ListImages
@@ -22,88 +31,88 @@ For Each img In ImageList1.ListImages
 Next
 ```
 
-## Modification while bound
+## 绑定时修改
 
-If the parent [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) is bound to a consuming control (a [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) or [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) has it set as their image-list property), [**Clear**](#clear) and [**Remove**](#remove) raise run-time error 35617 (*"ImageList cannot be modified while another control is bound to it"*). [**Add**](#add) is unaffected --- new pictures can always be added.
+如果父级 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) 绑定到了消费控件（[**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 或 [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) 已将其设为图像列表属性），[**Clear**](#clear) 和 [**Remove**](#remove) 引发运行时错误 35617（*"ImageList cannot be modified while another control is bound to it"*）。[**Add**](#add) 不受影响 --- 始终可以添加新图片。
 
-To rebuild a bound image list, first unbind by setting the consuming control's image-list property to **Nothing**.
+要重建绑定的图像列表，先将消费控件的图像列表属性设为 **Nothing** 以解除绑定。
 
-Properties
+属性
 ----------
 
 ### Count
 
-The number of images in the collection. **Long**, read-only.
+集合中的图像数。**Long**，只读。
 
 ### Item
 
-Returns the [**ListImage**](/official/Reference/WinNativeCommonCtls/ImageList/ListImage) at the given index or with the given key. The default member, so `ImageList1.ListImages("doc")` works without writing `.Item("doc")`.
+返回给定索引或键的 [**ListImage**](/official/Reference/WinNativeCommonCtls/ImageList/ListImage)。默认成员，因此 `ImageList1.ListImages("doc")` 无须写 `.Item("doc")`。
 
-Syntax: *object*.**Item** ( *Index* ) **As ListImage**
+语法：*object*.**Item**（*Index*）**As ListImage**
 
 *Index*
-: A **Variant** that is either a 1-based **Long** position in the collection or a **String** key (case-sensitive --- the collection uses `vbBinaryCompare`).
+: 一个 **Variant**，可以是集合中基于1的 **Long** 位置或 **String** 键（区分大小写 --- 集合使用 `vbBinaryCompare`）。
 
-Methods
+方法
 -------
 
 ### Add
 
-Adds a picture to the collection.
+向集合添加一张图片。
 
-Syntax: *object*.**Add** ( [ *Index* ] [, *Key* ] [, *Picture* ] [, *Tag* ] ) **As ListImage**
+语法：*object*.**Add**（[*Index*] [, *Key*] [, *Picture*] [, *Tag*]）**As ListImage**
 
 *Index*
-: *optional* A **Long** giving the 1-based position at which to insert the new image. When omitted, the image is appended at the end. Out-of-range values raise run-time error 35600.
+: *可选* 给出插入新图像基于1位置的 **Long**。省略时，图像追加到末尾。超出范围的值引发运行时错误 35600。
 
 *Key*
-: *optional* A **String** name under which the image can be looked up. When omitted, the image has no key. Numeric strings are rejected with run-time error 35603. Keys must be unique within the collection.
+: *可选* 可用于查找图像的 **String** 名称。省略时，图像没有键。数字字符串会被拒绝并引发运行时错误 35603。键在集合内必须唯一。
 
 *Picture*
-: *required* A **StdPicture** to add. Bitmaps (`vbPicTypeBitmap`) are scaled and masked according to [**MaskColor**](/official/Reference/WinNativeCommonCtls/ImageList/#maskcolor) / [**UseMaskColor**](/official/Reference/WinNativeCommonCtls/ImageList/#usemaskcolor). Icons (`vbPicTypeIcon`) are added directly with their own alpha mask. Omitting *Picture* raises run-time error 35607.
+: *必需* 要添加的 **StdPicture**。位图（`vbPicTypeBitmap`）根据 [**MaskColor**](/official/Reference/WinNativeCommonCtls/ImageList/#maskcolor) / [**UseMaskColor**](/official/Reference/WinNativeCommonCtls/ImageList/#usemaskcolor) 进行缩放和蒙版。图标（`vbPicTypeIcon`）直接以其自身alpha蒙版添加。省略 *Picture* 引发运行时错误 35607。
 
 *Tag*
-: *optional* Arbitrary data attached to the new image; available as [**ListImage.Tag**](/official/Reference/WinNativeCommonCtls/ImageList/ListImage#tag).
+: *可选* 附加到新图像的任意数据；可通过 [**ListImage.Tag**](/official/Reference/WinNativeCommonCtls/ImageList/ListImage#tag) 访问。
 
-Returns the newly-created [**ListImage**](/official/Reference/WinNativeCommonCtls/ImageList/ListImage).
+返回新创建的 [**ListImage**](/official/Reference/WinNativeCommonCtls/ImageList/ListImage)。
 
-The first call to **Add** fixes [**ImageWidth**](/official/Reference/WinNativeCommonCtls/ImageList/#imagewidth) and [**ImageHeight**](/official/Reference/WinNativeCommonCtls/ImageList/#imageheight) (unless those were pre-set in the property sheet); all subsequent pictures are scaled to match.
+第一次 **Add** 调用固定 [**ImageWidth**](/official/Reference/WinNativeCommonCtls/ImageList/#imagewidth) 和 [**ImageHeight**](/official/Reference/WinNativeCommonCtls/ImageList/#imageheight)（除非在属性表中预设）；后续所有图片缩放以匹配。
 
 ### Clear
 
-Removes every picture from the collection. Resets [**ImageWidth**](/official/Reference/WinNativeCommonCtls/ImageList/#imagewidth) and [**ImageHeight**](/official/Reference/WinNativeCommonCtls/ImageList/#imageheight) to `0`, unlocking them for reassignment.
+从集合中移除所有图片。将 [**ImageWidth**](/official/Reference/WinNativeCommonCtls/ImageList/#imagewidth) 和 [**ImageHeight**](/official/Reference/WinNativeCommonCtls/ImageList/#imageheight) 重置为 `0`，解锁以供重新赋值。
 
-Syntax: *object*.**Clear**
+语法：*object*.**Clear**
 
-Raises run-time error 35617 if the parent [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) is currently bound to a consuming control.
+如果父级 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) 当前绑定到消费控件，引发运行时错误 35617。
 
 ### Exists
 
-Returns whether a picture with the given key exists in the collection.
+返回集合中是否存在具有给定键的图片。
 
-Syntax: *object*.**Exists** ( *Index* ) **As Boolean**
+语法：*object*.**Exists**（*Index*）**As Boolean**
 
 *Index*
-: A **Variant**, coerced to a **String** for the lookup. Case-sensitive.
+: 一个 **Variant**，强制转换为 **String** 进行查找。区分大小写。
 
 ### Remove
 
-Removes a picture from the collection. The remaining pictures' [**Index**](/official/Reference/WinNativeCommonCtls/ImageList/ListImage#index) values are recomputed so subsequent lookups by index still work.
+从集合中移除一张图片。剩余图片的 [**Index**](/official/Reference/WinNativeCommonCtls/ImageList/ListImage#index) 值会重新计算，以便后续按索引查找仍然有效。
 
-Syntax: *object*.**Remove** ( *Index* )
+语法：*object*.**Remove**（*Index*）
 
 *Index*
-: A **Variant** --- either a 1-based **Long** position or a **String** key. Out-of-range / non-existent values raise run-time error 35601. Non-string non-numeric values raise run-time error 35603.
+: 一个 **Variant** --- 可以是基于1的 **Long** 位置或 **String** 键。超出范围/不存在的值引发运行时错误 35601。非字符串非数值的值引发运行时错误 35603。
 
-Raises run-time error 35617 if the parent [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) is currently bound to a consuming control.
+如果父级 [**ImageList**](/official/Reference/WinNativeCommonCtls/ImageList/) 当前绑定到消费控件，引发运行时错误 35617。
 
 ### _NewEnum
 
-Returns the enumerator used by `For Each img In imageList.ListImages`. Iterates the pictures in **Index** order.
+返回 `For Each img In imageList.ListImages` 使用的枚举器。按 **Index** 顺序迭代图片。
 
-Syntax: *object*.**_NewEnum** **As Object**
+语法：*object*.**_NewEnum** **As Object**
 
-## See Also
+## 另见
 
-- [ImageList](/official/Reference/WinNativeCommonCtls/ImageList/) -- the parent control
-- [ListImage](/official/Reference/WinNativeCommonCtls/ImageList/ListImage) -- one picture in the collection
+- [ImageList](/official/Reference/WinNativeCommonCtls/ImageList/) --- 父控件
+- [ListImage](/official/Reference/WinNativeCommonCtls/ImageList/ListImage) --- 集合中的一张图片

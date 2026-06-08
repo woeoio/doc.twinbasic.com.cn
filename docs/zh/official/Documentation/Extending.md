@@ -1,5 +1,5 @@
 ---
-title: Extending the Builder
+title: "扩展构建器"
 parent: tbdocs Builder
 nav_order: 3
 permalink: /Documentation/Development/Extending
@@ -7,33 +7,33 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'dd5e786b-4d6a-4b2f-ab60-3c695fbacf5d'
-  PropagateID: 'dd5e786b-4d6a-4b2f-ab60-3c695fbacf5d'
-  ReservedCode1: '429080ce-7f79-49e4-9aee-12e760ad1391'
-  ReservedCode2: '429080ce-7f79-49e4-9aee-12e760ad1391'
+  ProduceID: 'e3940bfb-690f-4289-8fb5-c7b761a4bcd2'
+  PropagateID: 'e3940bfb-690f-4289-8fb5-c7b761a4bcd2'
+  ReservedCode1: 'fcae5eb9-2cb3-4d22-a215-168e7e765216'
+  ReservedCode2: 'fcae5eb9-2cb3-4d22-a215-168e7e765216'
 ---
 
-# Extending the Builder
+# 扩展构建器
 
-How to add a new pipeline stage or a custom markdown-it plugin to `tbdocs`. This guide assumes working knowledge of modern JavaScript (async/await, ES modules) but not of the build pipeline internals. Read [Pipeline Stages](/official/Documentation/Pipeline-Stages) first for the data contracts each stage operates on.
+如何向 `tbdocs` 添加新的管线阶段或自定义 markdown-it 插件。本指南假定你具备现代 JavaScript（async/await、ES 模块）的工作知识，但不需要了解构建管线内部机制。先阅读[管线阶段](/official/Documentation/Pipeline-Stages)了解每个阶段操作的数据契约。
 
-## Two extension points
+## 两个扩展点
 
-**New pipeline stage** --- a new `.mjs` module that reads from the `pages` array or `site` object and writes output to disk or to page fields. The module exports one async function. The orchestrator in `tbdocs.mjs` calls it at the right point in the fixed sequence. No plugin registry or hook system is involved.
+**新管线阶段** --- 一个新的 `.mjs` 模块，从 `pages` 数组或 `site` 对象读取数据并向磁盘或页面字段写入输出。该模块导出一个异步函数。`tbdocs.mjs` 中的编排器在固定序列的正确位置调用它。不涉及插件注册表或钩子系统。
 
-**New markdown-it plugin** --- a function that configures the shared markdown-it instance with additional parsing or rendering rules. Registered in `createMarkdownIt` inside `render.mjs`. Both Phase 2's SEO title extraction and Phase 3's body render use the same instance, so the plugin runs on every page.
+**新 markdown-it 插件** --- 一个配置共享 markdown-it 实例以添加额外解析或渲染规则的函数。在 `render.mjs` 内的 `createMarkdownIt` 中注册。阶段 2 的 SEO 标题提取和阶段 3 的正文渲染都使用同一个实例，因此插件在每个页面上运行。
 
 ::: important
-Stage module changes are not hot-reloaded. After editing a stage module, stop and restart `serve.bat` (Ctrl+C, then re-run) to load the change.
+阶段模块的更改不会热重载。编辑阶段模块后，停止并重启 `serve.bat`（Ctrl+C，然后重新运行）以加载更改。
 :::
 
 ---
 
-## Adding a pipeline stage
+## 添加管线阶段
 
-### 1. Write the module
+### 1. 编写模块
 
-Create `builder/my-stage.mjs`. Export one async function. The standard signature takes the `pages` array, the `site` object, and any additional context the stage needs (typically `destRoot`), and returns a stats object for logging:
+创建 `builder/my-stage.mjs`。导出一个异步函数。标准签名接收 `pages` 数组、`site` 对象和阶段需要的任何额外上下文（通常是 `destRoot`），并返回用于日志记录的统计对象：
 
 ```js
 import { writeFileMkdirp } from "./write.mjs";
@@ -52,23 +52,23 @@ export async function myStage(pages, site, destRoot) {
 }
 ```
 
-Use the I/O utilities exported by `write.mjs` --- `writeFileMkdirp`, `mkdirRec`, `runLimited`, `safeWrite` --- rather than raw `fs.writeFile` calls. They handle directory creation and include the destination path in error messages.
+使用 `write.mjs` 导出的 I/O 工具 --- `writeFileMkdirp`、`mkdirRec`、`runLimited`、`safeWrite` --- 而不是原始的 `fs.writeFile` 调用。它们处理目录创建并在错误消息中包含目标路径。
 
 ::: important
-If the stage writes to disk, check `opts.dryRun` and skip all filesystem writes when it is `true`. The `dryRun` flag is passed through the same `opts` object the orchestrator receives and must propagate to all I/O operations.
+如果阶段写入磁盘，请检查 `opts.dryRun` 并在其为 `true` 时跳过所有文件系统写入。`dryRun` 标志通过编排器接收的同一个 `opts` 对象传递，必须传播到所有 I/O 操作。
 :::
 
-If the stage writes new fields to page objects, add them at the point in `runBuild` where they first appear, and list them in the [data model table](/official/Documentation/Pipeline-Stages#page-objects-pages) in Pipeline Stages so other developers know which phase sets each field.
+如果阶段向页面对象写入新字段，请在 `runBuild` 中它们首次出现的位置添加，并在[管线阶段](/official/Documentation/Pipeline-Stages#page-objects-pages)的数据模型表中列出，以便其他开发者知道哪个阶段设置了每个字段。
 
-### 2. Register the stage in `tbdocs.mjs`
+### 2. 在 `tbdocs.mjs` 中注册阶段
 
-Add an import at the top of `builder/tbdocs.mjs`:
+在 `builder/tbdocs.mjs` 顶部添加导入：
 
 ```js
 import { myStage } from "./my-stage.mjs";
 ```
 
-Then call the stage in `runBuild` at the right position in the sequence. Most auxiliary stages belong after Phase 5 (write) and before Phase 7 (offline), so the online tree is complete when they run:
+然后在 `runBuild` 中的正确位置调用阶段。大多数辅助阶段属于阶段 5（写入）之后和阶段 7（离线）之前，这样在线树在它们运行时已完成：
 
 ```js
 const myStats = await myStage(pages, site, destRoot);
@@ -78,11 +78,11 @@ if (myStats) {
 }
 ```
 
-`t.lap("my-stage")` records wall-clock time for the step; the label appears in the timing summary line at the end of the build.
+`t.lap("my-stage")` 记录该步骤的墙钟时间；标签出现在构建结束时的时间摘要行中。
 
-### 3. Handle the `dryRun` flag
+### 3. 处理 `dryRun` 标志
 
-When `dryRun` is `true`, the stage should log what it would do without touching the filesystem:
+当 `dryRun` 为 `true` 时，阶段应记录它会做什么而不触及文件系统：
 
 ```js
 export async function myStage(pages, site, destRoot, { dryRun = false } = {}) {
@@ -99,25 +99,25 @@ export async function myStage(pages, site, destRoot, { dryRun = false } = {}) {
 }
 ```
 
-### 4. Verify
+### 4. 验证
 
-Run `build.bat` and look for the timing label in the output. Then run `check.bat` to confirm the new output does not break existing link resolution or the page-count guard.
+运行 `build.bat` 并在输出中查找时间标签。然后运行 `check.bat` 确认新输出不会破坏现有链接解析或页面数量守卫。
 
 ---
 
-## Adding a markdown-it plugin
+## 添加 markdown-it 插件
 
-### Background
+### 背景
 
-`createMarkdownIt` in `render.mjs` builds the single markdown-it instance the entire pipeline uses. It applies `markdown-it-attrs`, `markdown-it-deflist`, `markdown-it-footnote`, and roughly ten in-tree plugins in a fixed order. A new plugin becomes part of that order.
+`render.mjs` 中的 `createMarkdownIt` 构建整个管线使用的唯一 markdown-it 实例。它以固定顺序应用 `markdown-it-attrs`、`markdown-it-deflist`、`markdown-it-footnote` 和大约十个树内插件。新插件成为该顺序的一部分。
 
-The same instance is used for Phase 2's SEO title extraction (via `renderTitle`) and Phase 3's body render (via `renderPhase`). A plugin that changes how inline content renders affects both passes. A block-level plugin that adds new tokens generally affects only Phase 3, since `renderTitle` strips all HTML.
+同一个实例用于阶段 2 的 SEO 标题提取（通过 `renderTitle`）和阶段 3 的正文渲染（通过 `renderPhase`）。更改内联内容渲染方式的插件会影响两个阶段。添加新 token 的块级插件通常只影响阶段 3，因为 `renderTitle` 会剥离所有 HTML。
 
-### 1. Write the plugin
+### 1. 编写插件
 
-A markdown-it plugin is a function that receives the `md` instance (and an optional options object) and mutates it by adding rules, overriding renderer functions, or adjusting options.
+markdown-it 插件是一个接收 `md` 实例（和可选的选项对象）并通过添加规则、覆盖渲染器函数或调整选项来修改它的函数。
 
-**Renderer override example** --- wrap every `<table>` in a scrollable container:
+**渲染器覆盖示例** --- 将每个 `<table>` 包裹在可滚动容器中：
 
 ```js
 export function tableWrapPlugin(md) {
@@ -135,7 +135,7 @@ export function tableWrapPlugin(md) {
 }
 ```
 
-**Block rule example** --- a new fenced syntax that emits a `<div class="callout">`:
+**块规则示例** --- 一个发出 `<div class="callout">` 的新围栏语法：
 
 ```js
 export function calloutPlugin(md) {
@@ -162,17 +162,17 @@ export function calloutPlugin(md) {
 }
 ```
 
-For the full markdown-it rule API --- block rules, inline rules, core rules, renderer rule overrides --- see the [markdown-it documentation](https://markdown-it.github.io/markdown-it/) and the existing in-tree plugins in `render.mjs` as worked examples.
+有关完整的 markdown-it 规则 API --- 块规则、内联规则、核心规则、渲染器规则覆盖 --- 请参阅 [markdown-it 文档](https://markdown-it.github.io/markdown-it/)和 `render.mjs` 中现有的树内插件作为示例。
 
-### 2. Register in `render.mjs`
+### 2. 在 `render.mjs` 中注册
 
-Open `builder/render.mjs`. Add an import near the top of the file (alongside the other in-tree plugin imports):
+打开 `builder/render.mjs`。在文件顶部（与其他树内插件导入一起）添加导入：
 
 ```js
 import { tableWrapPlugin } from "./table-wrap-plugin.mjs";
 ```
 
-Find `createMarkdownIt` and add `md.use(tableWrapPlugin)` in the plugin chain. **Order matters** --- place the new plugin after any plugins it depends on, and before any plugins that may conflict with its token types:
+找到 `createMarkdownIt` 并在插件链中添加 `md.use(tableWrapPlugin)`。**顺序很重要** --- 将新插件放在它依赖的插件之后，放在可能与其 token 类型冲突的插件之前：
 
 ```js
 export function createMarkdownIt(ctx) {
@@ -184,33 +184,33 @@ export function createMarkdownIt(ctx) {
 }
 ```
 
-### 3. Verify
+### 3. 验证
 
-Run `build.bat` and open one of the affected pages in the browser (or use `serve.bat` for live reload). Then run `check.bat` to confirm no links are broken and the build exits cleanly. Watch Phase 3 timing in the console output --- a block rule that traverses the full token stream on every page can add measurable time to the ~1--2 s hot path.
+运行 `build.bat` 并在浏览器中打开受影响的页面（或使用 `serve.bat` 进行实时重载）。然后运行 `check.bat` 确认没有链接损坏且构建干净退出。注意控制台输出中阶段 3 的时间 --- 在每个页面上遍历完整 token 流的块规则可能为约 1-2 秒的热路径增加可测量的时间。
 
 ---
 
-## Testing both extension types
+## 测试两种扩展类型
 
-The same four-step workflow applies to any change to the builder:
+对构建器的任何更改都适用相同的四步工作流程：
 
-1. **`build.bat`** --- runs the full pipeline; a clean exit means no build-time errors.
-2. **`serve.bat`** --- live-reload server; navigate to affected pages in the browser to spot visual regressions.
-3. **`check.bat`** --- offline link and integrity check; catches broken links and missing pages introduced by the change.
-4. **`book.bat`** --- re-runs the PDF build; required if the stage or plugin affects Phase 8 or the `book.html` output.
+1. **`build.bat`** --- 运行完整管线；干净退出意味着无构建时错误。
+2. **`serve.bat`** --- 实时重载服务器；在浏览器中导航到受影响的页面以发现视觉回归。
+3. **`check.bat`** --- 离线链接和完整性检查；捕获更改引入的损坏链接和缺失页面。
+4. **`book.bat`** --- 重新运行 PDF 构建；如果阶段或插件影响阶段 8 或 `book.html` 输出则需要。
 
-A clean run of all four is the bar for "ready to commit".
+干净运行全部四步是"准备好提交"的标准。
 
 ::: info
-`check.bat` requires `build.bat` to have run first; it reads from `_site/` and `_site-offline/`.
+`check.bat` 需要先运行 `build.bat`；它从 `_site/` 和 `_site-offline/` 读取。
 :::
 
 ---
 
-## See Also
+## 另见
 
-- [Pipeline Stages](/official/Documentation/Pipeline-Stages) -- full data model and export reference for every stage.
-- [tbdocs Builder](/official/Documentation/Builder) -- narrative design rationale for the pipeline.
-- [Building and Deployment](/official/Documentation/Building) -- the day-to-day build workflow for content contributors.
+- [管线阶段](/official/Documentation/Pipeline-Stages) -- 每个阶段的完整数据模型和导出引用。
+- [tbdocs 构建器](/official/Documentation/Builder) -- 管线的叙述性设计理念。
+- [构建与部署](/official/Documentation/Building) -- 内容贡献者的日常构建工作流程。
 
 > AI生成

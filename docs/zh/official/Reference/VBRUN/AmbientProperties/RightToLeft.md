@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd93dc7e9-2580-4b0e-b724-17a5267bf13b'
+  PropagateID: 'd93dc7e9-2580-4b0e-b724-17a5267bf13b'
+  ReservedCode1: '1dc57ee9-8f77-44e3-a620-af3ef3039cb9'
+  ReservedCode2: '1dc57ee9-8f77-44e3-a620-af3ef3039cb9'
+---
+
 ---
 title: RightToLeft
 parent: AmbientProperties
@@ -5,29 +16,29 @@ permalink: /tB/Packages/VBRUN/AmbientProperties/RightToLeft
 ---
 # RightToLeft
 
-Returns whether the container is laid out for a right-to-left language, as a **Boolean**. Read-only.
+返回容器是否为从右到左语言布局，类型为**Boolean**。只读。
 
-Syntax: *object*.**RightToLeft**
+语法：*object*.**RightToLeft**
 
 *object*
-: *required* An object expression that evaluates to an **AmbientProperties** object.
+: *必需* 求值为**AmbientProperties**对象的对象表达式。
 
-The property is **True** when the host is rendering its UI for a right-to-left language such as Arabic or Hebrew, and **False** for left-to-right languages. A control that displays text or directional adornments (scrollbars, tree expanders, alignment defaults) should mirror its layout when this is **True** so that it reads naturally inside an RTL container.
+当宿主为从右到左语言（如阿拉伯语或希伯来语）渲染UI时，此属性为**True**；为从左到右语言时为**False**。显示文本或方向性装饰（滚动条、树形展开器、对齐默认值）的控件应在此属性为**True**时镜像其布局，使其在RTL容器内自然阅读。
 
-### Example
+### 示例
 
-This example responds to a **RightToLeft** change and triggers a repaint to mirror the layout.
+此示例响应**RightToLeft**更改，触发重绘以镜像布局。
 
 ```vb
 Private Sub UserControl_AmbientChanged(PropertyName As String)
     Select Case PropertyName
         Case "RightToLeft"
-            UserControl.Refresh    ' repaint with mirrored layout for RTL languages
+            UserControl.Refresh    ' 为RTL语言使用镜像布局重绘
     End Select
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [LocaleID](/official/Reference/VBRUN/AmbientProperties/LocaleID) property
-- [TextAlign](/official/Reference/VBRUN/AmbientProperties/TextAlign) property
+- [LocaleID](/official/Reference/VBRUN/AmbientProperties/LocaleID) 属性
+- [TextAlign](/official/Reference/VBRUN/AmbientProperties/TextAlign) 属性

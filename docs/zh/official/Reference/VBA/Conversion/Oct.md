@@ -2,32 +2,41 @@
 title: Oct
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/Oct
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '513b6a86-b598-4b94-bbbe-4ce50b68d108'
+  PropagateID: '513b6a86-b598-4b94-bbbe-4ce50b68d108'
+  ReservedCode1: 'a4ecd738-d5fc-4e9c-92a7-013f6c9f86c2'
+  ReservedCode2: 'a4ecd738-d5fc-4e9c-92a7-013f6c9f86c2'
 ---
+
 # Oct, Oct$
 
-Returns a string representing the octal value of a number.
+返回表示数字八进制值的字符串。
 
-Syntax:
+语法：
 
 - **Oct$(** *number* **)**
 - **Oct(** *number* **)**
 
 *number*
-: *required* Any valid numeric or string expression. If *number* is not a whole number, it is rounded to the nearest whole number before being evaluated.
+: *必需* 任何有效的数值或字符串表达式。如果 *number* 不是整数，则在求值前四舍五入到最接近的整数。
 
-The `$`-suffixed form returns a **String**; the unsuffixed form returns a **Variant** (**String**).
+`$` 后缀形式返回 **String**；无后缀形式返回 **Variant** (**String**)。
 
-| If *number* is | Oct returns                     |
-|----------------|---------------------------------|
-| **Null**       | **Null** (unsuffixed form only) |
-| **Empty**      | Zero (`"0"`)                    |
-| Any other number | Up to 11 octal characters     |
+| 如果 *number* 为 | Oct 返回 |
+|------------------|----------|
+| **Null** | **Null**（仅限无后缀形式） |
+| **Empty** | 零（`"0"`） |
+| 任何其他数字 | 最多 11 个八进制字符 |
 
-Octal numbers can be represented directly by preceding numbers in the proper range with `&O`. For example, `&O10` is the octal notation for decimal 8.
+八进制数可以通过在适当范围内的数字前加 `&O` 来直接表示。例如，`&O10` 是十进制 8 的八进制表示法。
 
-### Example
+### 示例
 
-This example uses the **Oct** function to return the octal value of a number.
+此示例使用 **Oct** 函数返回数字的八进制值。
 
 ```vb
 Dim MyOct
@@ -36,6 +45,6 @@ MyOct = Oct(8)      ' Returns "10".
 MyOct = Oct(459)    ' Returns "713".
 ```
 
-### See Also
+### 另请参阅
 
-- [Hex](/official/Reference/VBA/Conversion/Hex), [Str](/official/Reference/VBA/Conversion/Str) functions
+- [Hex](/official/Reference/VBA/Conversion/Hex)、[Str](/official/Reference/VBA/Conversion/Str) 函数

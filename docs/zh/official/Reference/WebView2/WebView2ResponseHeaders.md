@@ -1,13 +1,13 @@
----
+﻿---
 title: WebView2ResponseHeaders
-parent: WebView2 Package
+parent: "WebView2 包"
 permalink: /tB/Packages/WebView2/WebView2ResponseHeaders
 ---
 
-# WebView2ResponseHeaders class
-The HTTP-response-header collection for a web-resource response. Reached through [**WebView2Response.Headers**](/official/Reference/WebView2/WebView2Response#headers) inside a [**WebResourceRequested**](/official/Reference/WebView2/WebView2/#webresourcerequested) event handler.
+# WebView2ResponseHeaders 类
+Web 资源响应的 HTTP 响应头集合。在 [**WebResourceRequested**](/official/Reference/WebView2/WebView2/#webresourcerequested) 事件处理程序中通过 [**WebView2Response.Headers**](/official/Reference/WebView2/WebView2Response#headers) 访问。
 
-The collection is enumerable --- `For Each` yields one [**WebView2Header**](/official/Reference/WebView2/WebView2Header) per entry. Unlike the request side, **AppendHeader** appends additional values rather than overwriting the existing one, matching HTTP's allowance of repeated response headers (e.g. multiple `Set-Cookie`).
+集合可枚举——`For Each` 对每个条目产出一个 [**WebView2Header**](/official/Reference/WebView2/WebView2Header)。与请求端不同，**AppendHeader** 追加额外值而非覆盖已有值，符合 HTTP 允许重复响应头的规定（例如多个 `Set-Cookie`）。
 
 ```vb
 Private Sub WebView21_WebResourceRequested( _
@@ -21,50 +21,50 @@ Private Sub WebView21_WebResourceRequested( _
 End Sub
 ```
 
-## Methods
+## 方法
 
 ### AppendHeader
 
-Appends a header --- adds it to the collection even if an entry with the same name already exists. Repeated headers are legal in HTTP responses.
+追加头部——即使同名条目已存在也将其添加到集合中。HTTP 响应中允许重复头。
 
-Syntax: *object*.**AppendHeader** *name*, *value*
+语法：*object*.**AppendHeader** *name*, *value*
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
 *value*
-: *required* A **String** header value.
+: *必需* 一个 **String** 头部值。
 
 ### Contains
 
-Indicates whether a header with the given name is present in the collection.
+指示集合中是否存在具有给定名称的头。
 
-Syntax: *object*.**Contains** ( *name* ) **As Boolean**
+语法：*object*.**Contains** ( *name* ) **As Boolean**
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
 ### GetHeader
 
-Returns the value of the named header --- when there are several, the first.
+返回指定名称头的值——当有多个时，返回第一个。
 
-Syntax: *object*.**GetHeader** ( *name* ) **As String**
+语法：*object*.**GetHeader** ( *name* ) **As String**
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
 ### GetHeaders
 
-Returns a [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) iterator restricted to the headers that match *name*.
+返回一个 [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) 迭代器，限定为匹配 *name* 的头。
 
-Syntax: *object*.**GetHeaders** ( *name* ) **As WebView2HeadersCollection**
+语法：*object*.**GetHeaders** ( *name* ) **As WebView2HeadersCollection**
 
 *name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
-## Iteration
+## 迭代
 
-A `For Each` loop produces every header in turn:
+`For Each` 循环依次产出每个头：
 
 ```vb
 Dim h As WebView2Header
@@ -73,4 +73,4 @@ For Each h In Response.Headers
 Next
 ```
 
-See [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) for the iteration object.
+参见 [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) 了解迭代对象。

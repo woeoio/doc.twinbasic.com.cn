@@ -2,10 +2,19 @@
 title: UpDown
 parent: WinNativeCommonCtls Package
 permalink: /tB/Packages/WinNativeCommonCtls/UpDown
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f5e487a0-0e15-40d3-90b3-f9fc5a44959c'
+  PropagateID: 'f5e487a0-0e15-40d3-90b3-f9fc5a44959c'
+  ReservedCode1: '086a429e-e12e-42fc-8df9-40789505faa4'
+  ReservedCode2: '086a429e-e12e-42fc-8df9-40789505faa4'
 ---
 
-# UpDown class
-An **UpDown** is a small spin control --- a pair of up / down arrow buttons that adjust an internal [**Value**](#value) by [**Increment**](#increment) on each click. Often paired with an external textbox or label to display the current value.
+# UpDown 类
+
+**UpDown** 是一个小型微调控件 --- 一对上/下箭头按钮，每次点击将内部 [**Value**](#value) 调整 [**Increment**](#increment)。通常与外部文本框或标签配对以显示当前值。
 
 ```vb
 Private Sub Form_Load()
@@ -24,98 +33,98 @@ Private Sub Text1_Change()
 End Sub
 ```
 
-The control inherits the focusable rect-dockable members from `BaseControlFocusableNoFont` --- size, position, **Anchors**, **Dock**, **Appearance**, **MousePointer** / **MouseIcon**, **ToolTipText**, **DragMode** / **DragIcon**, **Drag**, **Refresh**, **SetFocus**, **TabIndex** / **TabStop**, **ZOrder**, **CausesValidation**, **VisualStyles**, **hWnd**, **HelpContextID** / **WhatsThisHelpID**. **UpDown** does not have a [**Font**](/official/Reference/VB/CheckBox/#font) property (the arrows are drawn by the OS theme).
+控件从 `BaseControlFocusableNoFont` 继承可聚焦矩形可停靠成员 --- 大小、位置、**Anchors**、**Dock**、**Appearance**、**MousePointer** / **MouseIcon**、**ToolTipText**、**DragMode** / **DragIcon**、**Drag**、**Refresh**、**SetFocus**、**TabIndex** / **TabStop**、**ZOrder**、**CausesValidation**、**VisualStyles**、**hWnd**、**HelpContextID** / **WhatsThisHelpID**。**UpDown** 没有 [**Font**](/official/Reference/VB/CheckBox/#font) 属性（箭头由OS主题绘制）。
 
-## No auto-buddy
+## 无自动伙伴
 
-Unlike the VB6-era Win32 `msctls_updown32` control, this **UpDown** does not auto-attach to a "buddy" textbox --- there is no `UDS_AUTOBUDDY` style exposed. Pair the spin control with another control manually by handling [**Change**](#change), [**UpClick**](#upclick), and [**DownClick**](#downclick).
+与VB6时代的Win32 `msctls_updown32` 控件不同，此 **UpDown** 不自动附加到"伙伴"文本框 --- 没有暴露 `UDS_AUTOBUDDY` 样式。通过处理 [**Change**](#change)、[**UpClick**](#upclick) 和 [**DownClick**](#downclick) 手动将微调控件与另一个控件配对。
 
-## Three event flavors
+## 三种事件形式
 
-Three events let the application observe spin interaction at different granularity:
+三种事件让应用程序以不同粒度观察微调交互：
 
-- **[Change](#change)** fires whenever [**Value**](#value) actually changes --- including programmatic assignments.
-- **[UpClick](#upclick)** fires when the user clicks the up arrow and [**Value**](#value) increases.
-- **[DownClick](#downclick)** fires when the user clicks the down arrow and [**Value**](#value) decreases.
+- **[Change](#change)** 在 [**Value**](#value) 实际更改时触发 --- 包括编程赋值。
+- **[UpClick](#upclick)** 在用户点击上箭头且 [**Value**](#value) 增加时触发。
+- **[DownClick](#downclick)** 在用户点击下箭头且 [**Value**](#value) 减少时触发。
 
-Properties
+属性
 ----------
 
 ### Increment
 
-The amount each click of the arrow buttons changes [**Value**](#value) by. **Long**. Default: `1`. Stored as the `nInc` field of a `UDACCEL` record applied via `UDM_SETACCEL`.
+每次点击箭头按钮时 [**Value**](#value) 的变化量。**Long**。默认：`1`。存储为 `UDACCEL` 记录的 `nInc` 字段，通过 `UDM_SETACCEL` 应用。
 
 ### Max
 
-The upper bound of the range. **Long**. Default: `10`. Applied via `UDM_SETRANGE32`.
+范围的上限。**Long**。默认：`10`。通过 `UDM_SETRANGE32` 应用。
 
 ### Min
 
-The lower bound of the range. **Long**. Default: `0`.
+范围的下限。**Long**。默认：`0`。
 
 ### Orientation
 
-The control's orientation. A [**OrientationConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants) member (**ccOrientationHorizontal** or **ccOrientationVertical**). Default: **ccOrientationHorizontal**. Changing this property at run time recreates the underlying Win32 window.
+控件的方向。[**OrientationConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants) 的成员（**ccOrientationHorizontal** 或 **ccOrientationVertical**）。默认：**ccOrientationHorizontal**。运行时更改此属性会重新创建底层Win32窗口。
 
 ### ToolTipText
 
-A tooltip string shown when the user hovers over the control. **String**. Inherited but re-exposed.
+用户悬停在控件上时显示的工具提示字符串。**String**。继承但重新暴露。
 
 ### Value
 
-The current spinner value. **Long**. The default member. Reads via `UDM_GETPOS32`, writes via `UDM_SETPOS32`. Fires [**Change**](#change) when set programmatically. Clamped to [[**Min**](#min), [**Max**](#max)].
+当前微调值。**Long**。默认成员。通过 `UDM_GETPOS32` 读取，通过 `UDM_SETPOS32` 写入。编程设置时触发 [**Change**](#change)。钳位到 [[**Min**](#min), [**Max**](#max)]。
 
 ### VisualStyles
 
-Whether the OS visual styles theme is applied. **Boolean**. Default: **True**. Inherited but re-exposed.
+是否应用OS视觉样式主题。**Boolean**。默认：**True**。继承但重新暴露。
 
-Events
+事件
 ------
 
 ### Change
 
-Raised when [**Value**](#value) has changed by user interaction, by an arrow click, or by code.
+当 [**Value**](#value) 因用户交互、箭头点击或代码而更改时触发。
 
-Syntax: *object*\_**Change**( )
+语法：*object*\_**Change**( )
 
 ### DownClick
 
-Raised when the user clicks the down arrow and [**Value**](#value) is successfully decreased.
+当用户点击下箭头且 [**Value**](#value) 成功减少时触发。
 
-Syntax: *object*\_**DownClick**( )
+语法：*object*\_**DownClick**( )
 
 ### DragDrop, DragOver
 
-Inherited drag-drop events.
+继承的拖放事件。
 
 ### GotFocus, LostFocus
 
-Inherited focus events.
+继承的焦点事件。
 
 ### Initialize
 
-Raised after the control's window has been created.
+控件窗口创建后触发。
 
 ### MouseDown, MouseMove, MouseUp
 
-Inherited mouse events.
+继承的鼠标事件。
 
 ### OLECompleteDrag, OLEDragDrop, OLEDragOver, OLEGiveFeedback, OLESetData, OLEStartDrag
 
-Inherited OLE drag-and-drop events.
+继承的OLE拖放事件。
 
 ### UpClick
 
-Raised when the user clicks the up arrow and [**Value**](#value) is successfully increased.
+当用户点击上箭头且 [**Value**](#value) 成功增加时触发。
 
-Syntax: *object*\_**UpClick**( )
+语法：*object*\_**UpClick**( )
 
 ### Validate
 
-Inherited validation event.
+继承的验证事件。
 
-## See Also
+## 另见
 
-- [Slider](/official/Reference/WinNativeCommonCtls/Slider) -- a draggable thumb on a track, when the range is visualised
-- [OrientationConstants](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants) -- the shared horizontal / vertical enum used by **UpDown** and **Slider**
-- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbUpDown** lives
+- [Slider](/official/Reference/WinNativeCommonCtls/Slider) --- 当需要可视化范围时的可拖动滑块
+- [OrientationConstants](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants) --- **UpDown** 和 **Slider** 使用的共享水平/垂直枚举
+- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) --- **vbUpDown** 所在位置

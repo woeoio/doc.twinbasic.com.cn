@@ -1,14 +1,22 @@
 ---
-title: Toolbox
+title: 工具箱
 parent: IDE
 permalink: /tB/IDE/Project/Toolbox
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '8240e8fa-9e41-4e3c-88a2-772adfcf213a'
+  PropagateID: '8240e8fa-9e41-4e3c-88a2-772adfcf213a'
+  ReservedCode1: '3291bade-2da5-40ad-998a-d6ea29204bda'
+  ReservedCode2: '3291bade-2da5-40ad-998a-d6ea29204bda'
 ---
 
-# Toolbox
+# 工具箱
 
-The Toolbox lists the controls available for placement on forms and designers in the current project. Additional COM components can be added through the **+ More Components** button, which opens the COM References section of Project Settings.
+工具箱列出了当前项目中可用于放置到窗体和设计器上的控件。可以通过 **+ More Components** 按钮添加额外的 COM 组件，这会打开项目设置的 COM 引用部分。
 
-See [Controls](/official/Reference/Controls)
+参见 [控件](/official/Reference/Controls)
 
 <!-- ![Toolbox](../Controls/Images/toolbox.png "Toolbox") -->
 
@@ -16,12 +24,12 @@ See [Controls](/official/Reference/Controls)
 
 ![Components Message](Images/Components_Message.png "Components Message")
 
-The "GoTo COM References" button takes you to **Project Settings** and filters by "project.references".
+"GoTo COM References" 按钮带你到**项目设置**并按 "project.references" 筛选。
 
 ![Library References - Project Settings](Images/ProjectSettings_LibraryReferences.png "Library References - Project Settings")
 
-Click on the _Available COM References_ tab.
+点击 _Available COM References_ 选项卡。
 
 ![Available COM References - Project Settings](Images/ProjectSettings_AvailableCOMReferences.png "Available COM References - Project Settings")
 
-See [Project Settings](/official/IDE/Project-Settings) for more info.
+更多信息请参见[项目设置](/official/IDE/Project-Settings)。

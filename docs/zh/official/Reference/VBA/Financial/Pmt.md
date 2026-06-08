@@ -2,37 +2,46 @@
 title: Pmt
 parent: Financial Module
 permalink: /tB/Modules/Financial/Pmt
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '91ae9da5-989c-4674-acd8-d7d01d1b82a1'
+  PropagateID: '91ae9da5-989c-4674-acd8-d7d01d1b82a1'
+  ReservedCode1: '68b639be-50cb-4f15-b5e4-369a84839c4c'
+  ReservedCode2: '68b639be-50cb-4f15-b5e4-369a84839c4c'
 ---
+
 # Pmt
 
-Returns a **Double** specifying the payment for an annuity based on periodic, fixed payments and a fixed interest rate.
+返回一个**Double**值，指定基于定期固定付款和固定利率的年金付款额。
 
-Syntax: **Pmt(** *rate*, *nper*, *pv* [ **,** *fv* [ **,** *type* ] ] **)**
+语法：**Pmt(** *rate*, *nper*, *pv* [ **,** *fv* [ **,** *type* ] ] **)**
 
 *rate*
-: *required* **Double** specifying interest rate per period. For example, for a car loan at an annual percentage rate (APR) of 10 percent with monthly payments, the rate per period is 0.1/12, or 0.0083.
+: *必需* **Double**，指定每期利率。例如，对于年利率(APR)为10%且按月还款的汽车贷款，每期利率为0.1/12，即0.0083。
 
 *nper*
-: *required* **Integer** specifying total number of payment periods in the annuity. For example, monthly payments on a four-year car loan total 4 * 12 (or 48) payment periods.
+: *必需* **Integer**，指定年金的总付款期数。例如，四年期汽车贷款的按月付款总期数为4 * 12（即48）期。
 
 *pv*
-: *required* **Double** specifying present value (or lump sum) that a series of payments to be paid in the future is worth now. For example, when borrowing money to buy a car, the loan amount is the present value to the lender of the monthly car payments to be made.
+: *必需* **Double**，指定未来一系列付款的现值（或一次付清额）。例如，贷款买车时，贷款金额就是贷款人未来每月车贷还款的现值。
 
 *fv*
-: *optional* **Variant** specifying future value or cash balance remaining after the final payment. For example, the future value of a loan is $0 because that's its value after the final payment. However, to save $50,000 over 18 years for a child's education, $50,000 is the future value. If omitted, 0 is assumed.
+: *可选* **Variant**，指定最终付款后的未来值或现金余额。例如，贷款的未来值为$0，因为这是最终付款后的价值。但如果要在18年内为孩子的教育储蓄$50,000，则$50,000就是未来值。如果省略，则默认为0。
 
 *type*
-: *optional* **Variant** specifying when payments are due. 0 means payments are due at the end of the period; 1 means payments are due at the beginning. If omitted, 0 is assumed.
+: *可选* **Variant**，指定付款到期时间。0表示期末付款；1表示期初付款。如果省略，则默认为0。
 
-An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).
+年金是在一段时间内进行的一系列固定现金支付。年金可以是贷款（如住房抵押贷款）或投资（如月度储蓄计划）。
 
-The *rate* and *nper* arguments must be calculated by using payment periods expressed in the same units. For example, if *rate* is calculated by using months, *nper* must also be calculated by using months.
+*rate*和*nper*参数必须使用相同单位的付款期来计算。例如，如果*rate*按月计算，*nper*也必须按月计算。
 
-For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.
+对于所有参数，支出的现金（如储蓄存款）用负数表示；收入的现金（如股息支票）用正数表示。
 
-### Example
+### 示例
 
-This example uses the **Pmt** function to return the monthly payment for a loan over a fixed period. Given are the interest percentage rate per period (`APR / 12`), the total number of payments (`TotPmts`), the present value or principal of the loan (`PVal`), the future value of the loan (`FVal`), and a number that indicates whether the payment is due at the beginning or end of the payment period (`PayType`).
+本示例使用**Pmt**函数返回固定期限贷款的月付款额。提供的参数包括：每期利率百分比(`APR / 12`)、总付款期数(`TotPmts`)、贷款现值或本金(`PVal`)、贷款未来值(`FVal`)以及指示付款是在期初还是期末到期的数字(`PayType`)。
 
 ```vb
 Dim Fmt, FVal, PVal, APR, TotPmts, PayType, Payment
@@ -49,6 +58,6 @@ Payment = Pmt(APR / 12, TotPmts, -PVal, FVal, PayType)
 MsgBox "Your payment will be " & Format(Payment, Fmt) & " per month."
 ```
 
-### See Also
+### 另请参阅
 
-- [IPmt](/official/Reference/VBA/Financial/IPmt), [PPmt](/official/Reference/VBA/Financial/PPmt), [NPer](/official/Reference/VBA/Financial/NPer), [Rate](/official/Reference/VBA/Financial/Rate) functions
+- [IPmt](/official/Reference/VBA/Financial/IPmt)、[PPmt](/official/Reference/VBA/Financial/PPmt)、[NPer](/official/Reference/VBA/Financial/NPer)、[Rate](/official/Reference/VBA/Financial/Rate)函数

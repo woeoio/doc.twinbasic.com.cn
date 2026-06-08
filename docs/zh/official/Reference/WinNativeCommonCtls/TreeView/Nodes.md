@@ -2,12 +2,21 @@
 title: Nodes
 parent: TreeView
 permalink: /tB/Packages/WinNativeCommonCtls/TreeView/Nodes
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '054d5fa8-685f-4e26-b2e7-22cff7572196'
+  PropagateID: '054d5fa8-685f-4e26-b2e7-22cff7572196'
+  ReservedCode1: 'dd8baeaf-43c0-4466-9e91-9adcbd3648b4'
+  ReservedCode2: 'dd8baeaf-43c0-4466-9e91-9adcbd3648b4'
 ---
 
-# Nodes class
-The **Nodes** collection is the entry point for managing the [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) tree of a [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/). Accessed as `<treeView>.Nodes`; supports adding, removing, indexed access, and `For Each` iteration.
+# Nodes 类
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **Nodes** through the parent [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) control's [**Nodes**](/official/Reference/WinNativeCommonCtls/TreeView/#nodes) property.
+**Nodes** 集合是管理 [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) 的 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) 树的入口。通过 `<treeView>.Nodes` 访问；支持添加、删除、索引访问和 `For Each` 迭代。
+
+该类标记为 `[COMCreatable(False)]` --- 用户代码通过父级 [**TreeView**](/official/Reference/WinNativeCommonCtls/TreeView/) 控件的 [**Nodes**](/official/Reference/WinNativeCommonCtls/TreeView/#nodes) 属性访问 **Nodes**。
 
 ```vb
 With TreeView1.Nodes
@@ -23,76 +32,76 @@ For Each node In TreeView1.Nodes
 Next
 ```
 
-The `For Each` iteration visits **only the nodes in the order they were added** --- not in tree order. For a depth-first or breadth-first traversal that follows the visual hierarchy, traverse the parent-child links manually starting from a root [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) and using [**Node.Child**](/official/Reference/WinNativeCommonCtls/TreeView/Node#child) / [**Node.Next**](/official/Reference/WinNativeCommonCtls/TreeView/Node#next).
+`For Each` 迭代**仅按添加顺序访问节点** --- 而非树序。对于遵循视觉层次的深度优先或广度优先遍历，请从根 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) 开始手动遍历父子链接，使用 [**Node.Child**](/official/Reference/WinNativeCommonCtls/TreeView/Node#child) / [**Node.Next**](/official/Reference/WinNativeCommonCtls/TreeView/Node#next)。
 
-Properties
+属性
 ----------
 
 ### Count
 
-The total number of nodes in the treeview (root nodes plus all descendants). **Long**, read-only.
+树视图中的节点总数（根节点加所有后代）。**Long**，只读。
 
 ### Item
 
-Returns the [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) at the given index or with the given key. The default member, so `TreeView1.Nodes("root")` works without writing `.Item("root")`.
+返回给定索引或键的 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node)。默认成员，因此 `TreeView1.Nodes("root")` 无须写 `.Item("root")`。
 
-Syntax: *object*.**Item** ( *Index* ) **As Node**
+语法：*object*.**Item**（*Index*）**As Node**
 
 *Index*
-: A **Variant** --- either a 1-based **Long** position or a **String** key.
+: 一个 **Variant** --- 可以是基于1的 **Long** 位置或 **String** 键。
 
-Methods
+方法
 -------
 
 ### Add
 
-Adds a node to the treeview, optionally positioned relative to another node.
+向树视图添加一个节点，可选相对于另一个节点定位。
 
-Syntax: *object*.**Add** ( [ *Relative* ] [, *Relationship* ] [, *Key* ] [, *Text* ] [, *Image* ] [, *SelectedImage* ] ) **As Node**
+语法：*object*.**Add**（[*Relative*] [, *Relationship*] [, *Key*] [, *Text*] [, *Image*] [, *SelectedImage*]）**As Node**
 
 *Relative*
-: *optional* A **Variant** identifying the existing node the new node will be positioned against --- either a [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) reference, a 1-based **Long** index, or a **String** key. When omitted, the new node is inserted at the root level using *Relationship* = **tvwNext** semantics.
+: *可选* 标识新节点定位所依据的现有节点的 **Variant** --- 可以是 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node) 引用、基于1的 **Long** 索引或 **String** 键。省略时，新节点按 *Relationship* = **tvwNext** 语义在根级插入。
 
 *Relationship*
-: *optional* A member of [**TreeRelationshipConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) describing where the new node is placed relative to *Relative*. Default: **tvwNext**.
+: *可选* [**TreeRelationshipConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) 的成员，描述新节点相对于 *Relative* 的位置。默认：**tvwNext**。
 
 *Key*
-: *optional* A **String** name under which the node can be looked up. Keys must be unique within the **Nodes** collection (otherwise run-time error 35602).
+: *可选* 一个 **String** 名称，可通过其查找节点。键在 **Nodes** 集合中必须唯一（否则运行时错误 35602）。
 
 *Text*
-: *optional* A **String** giving the node's label.
+: *可选* 一个给出节点标签的 **String**。
 
 *Image*
-: *optional* A **Variant** identifying the unselected-state icon --- either a 1-based **Long** index into [**TreeView.ImageList**](/official/Reference/WinNativeCommonCtls/TreeView/#imagelist), or a **String** key.
+: *可选* 标识未选中状态图标的 **Variant** --- 可以是基于1的 **Long** 索引指向 [**TreeView.ImageList**](/official/Reference/WinNativeCommonCtls/TreeView/#imagelist) 或 **String** 键。
 
 *SelectedImage*
-: *optional* A **Variant** identifying the selected-state icon. When unset, defaults to the same as *Image*.
+: *可选* 标识选中状态图标的 **Variant**。未设置时默认与 *Image* 相同。
 
-Returns the newly-created [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node).
+返回新创建的 [**Node**](/official/Reference/WinNativeCommonCtls/TreeView/Node)。
 
 ### Clear
 
-Removes every node from the treeview, including all descendants.
+从树视图中移除所有节点，包括所有后代。
 
-Syntax: *object*.**Clear**
+语法：*object*.**Clear**
 
 ### Remove
 
-Removes a node from the treeview, along with all its descendants. The remaining nodes' [**Index**](/official/Reference/WinNativeCommonCtls/TreeView/Node#index) values are recomputed.
+从树视图中移除一个节点及其所有后代。剩余节点的 [**Index**](/official/Reference/WinNativeCommonCtls/TreeView/Node#index) 值会重新计算。
 
-Syntax: *object*.**Remove** ( *Index* )
+语法：*object*.**Remove**（*Index*）
 
 *Index*
-: A **Variant** --- either a 1-based **Long** position or a **String** key.
+: 一个 **Variant** --- 可以是基于1的 **Long** 位置或 **String** 键。
 
 ### _NewEnum
 
-Returns the enumerator used by `For Each node In treeView.Nodes`. Iterates nodes in **Index** order (the order they were added), not in tree-traversal order.
+返回 `For Each node In treeView.Nodes` 使用的枚举器。按 **Index** 顺序（添加顺序）迭代节点，而非树遍历顺序。
 
-Syntax: *object*.**_NewEnum** **As stdole.IUnknown**
+语法：*object*.**_NewEnum** **As stdole.IUnknown**
 
-## See Also
+## 另见
 
-- [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/) -- the parent control
-- [Node](/official/Reference/WinNativeCommonCtls/TreeView/Node) -- one node in the collection
-- [TreeRelationshipConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) -- the *Relationship* values for [**Add**](#add)
+- [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/) --- 父控件
+- [Node](/official/Reference/WinNativeCommonCtls/TreeView/Node) --- 集合中的一个节点
+- [TreeRelationshipConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants) --- [**Add**](#add) 的 *Relationship* 值

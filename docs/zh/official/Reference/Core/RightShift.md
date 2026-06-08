@@ -1,37 +1,46 @@
 ---
-title: "&gt;&gt;, &gt;&gt;="
+title: ">>, >>="
 parent: Operators
 permalink: /tB/Core/RightShift
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd90a7e51-f9dd-43be-a306-8165e3ecfb37'
+  PropagateID: 'd90a7e51-f9dd-43be-a306-8165e3ecfb37'
+  ReservedCode1: '33a5843e-4af9-47c2-b240-54a50fa8ae9a'
+  ReservedCode2: '33a5843e-4af9-47c2-b240-54a50fa8ae9a'
 ---
-# \>> and \>>= operators
 
-*(twinBASIC)* Shifts the bits of a numeric value right by a given number of positions, filling vacated high-order bits with zero. The compound form **>>=** shifts-and-assigns in one step.
+# \>> 和 \>>= 运算符
+
+*(twinBASIC)* 将数值的位向右移动指定位置数，空出的高位用零填充。复合形式**>>=**一步完成移位并赋值。
 
 ::: info
-**\>>** and **\>>=** are twinBASIC extensions. Classic VBA has no bitshift operators; equivalent code divides by powers of two with [**\\\\**](/official/Reference/Core/IntegerDivide) (`x \ 2`, `x \ 4`, …).
+**\>>**和**\>>=**是twinBASIC扩展。经典VBA没有位移运算符；等效代码使用[**\\\\**](/official/Reference/Core/IntegerDivide)除以2的幂（`x \ 2`、`x \ 4`等）。
 :::
 
-Syntax:
+语法：
 > *result* **=** *number* **>>** *count*  
 > *variable* **\>>=** *count*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *variable*
-: Any numeric variable or writable property.
+: 任意数值变量或可写属性。
 
 *number*
-: Any numeric expression. Floating-point operands are truncated to an integer before shifting.
+: 任意数值表达式。浮点操作数在移位前截断为整数。
 
 *count*
-: Any numeric expression giving the number of bit positions to shift.
+: 给出要移位的位数的任意数值表达式。
 
-The data type of *result* matches the (integral) type of *number*. The right shift is *logical*, not arithmetic: vacated high-order bits are filled with zero, so a negative *number* becomes a large positive value rather than retaining its sign. A shift of more bits than the type can hold yields `0`.
+*result*的数据类型匹配*number*的（整数）类型。右移是*逻辑*移位，不是算术移位：空出的高位用零填充，因此负的*number*变为大的正值而非保留符号。移位超过类型能容纳的位数产生`0`。
 
-### Compound assignment
+### 复合赋值
 
-`x >>= n` is the twinBASIC shorthand for `x = x >> n`. **\>>=** is a statement, not an expression --- it does not produce a value.
+`x >>= n`是twinBASIC中`x = x >> n`的简写。**\>>=**是语句，不是表达式——它不产生值。
 
 ```vb
 Dim Flags As Long = &H100
@@ -39,7 +48,7 @@ Flags >>= 4                     ' Flags is now &H10 (16).
 Flags >>= 4                     ' Flags is now 1.
 ```
 
-### Example
+### 示例
 
 ```vb
 Dim Value As Long
@@ -49,9 +58,9 @@ Value = 1024 >> 3               ' Returns 128.
 Value = -1 >> 1                 ' Returns &H7FFFFFFF (logical shift fills with 0).
 ```
 
-### See Also
+### 另请参阅
 
-- [**\<<** operator](/official/Reference/Core/LeftShift)
-- [**\\** operator](/official/Reference/Core/IntegerDivide)
-- [**And** operator](/official/Reference/Core/And)
-- [Operators](/official/Reference/Operators)
+- [**\<<** 运算符](/official/Reference/Core/LeftShift)
+- [**\\** 运算符](/official/Reference/Core/IntegerDivide)
+- [**And** 运算符](/official/Reference/Core/And)
+- [运算符](/official/Reference/Operators)

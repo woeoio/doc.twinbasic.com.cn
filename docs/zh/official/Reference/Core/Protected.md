@@ -5,33 +5,33 @@ permalink: /tB/Core/Protected
 ---
 # Protected
 
-Declares a class member (variable, procedure, or property) that is accessible from inside the declaring class and from classes that derive from it via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop), but not from outside callers.
+声明可从声明类的内部和通过[**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop)派生的类中访问的类成员（变量、过程或属性），但外部调用者不能访问。
 
 ::: info
-The **Protected** access modifier is a twinBASIC extension over classic VBA, which has only **Public**, **Private**, and **Friend**. **Protected** is meaningful only inside an [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop) hierarchy; in a class without inheritance, it behaves like [**Private**](/official/Reference/Core/Private).
+**Protected**访问修饰符是twinBASIC对经典VBA的扩展，VBA只有**Public**、**Private**和**Friend**。**Protected**仅在[**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop)层次结构中有意义；在没有继承的类中，其行为类似于[**Private**](/official/Reference/Core/Private)。
 :::
 
-Syntax:
+语法：
 
 - > **Protected** *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ] [ **,** *varname* ... ]
 - > **Protected** [ **Overridable** ] **Sub** \| **Function** \| **Property Get** \| **Property Let** \| **Property Set** *name* ...
 
-In a variable declaration, **Protected** has the same form as [**Private**](/official/Reference/Core/Private)/[**Public**](/official/Reference/Core/Public): a comma-separated list of names with optional `WithEvents`/`New` and `As`-clause. **Protected** is valid only at class scope; it cannot be used inside a procedure (use [**Dim**](/official/Reference/Core/Dim) or [**Static**](/official/Reference/Core/Static)), and it cannot be used in a [**Module**](/official/Reference/Core/Module) (modules have no notion of derived types).
+在变量声明中，**Protected**的形式与[**Private**](/official/Reference/Core/Private)/[**Public**](/official/Reference/Core/Public)相同：逗号分隔的名称列表，带有可选的`WithEvents`/`New`和`As`子句。**Protected**仅在类作用域中有效；不能在过程内部使用（请使用[**Dim**](/official/Reference/Core/Dim)或[**Static**](/official/Reference/Core/Static)），也不能在[**Module**](/official/Reference/Core/Module)中使用（模块没有派生类型的概念）。
 
-In a procedure declaration, **Protected** replaces the **Public**/**Private**/**Friend** modifier. Combined with the **Overridable** keyword, it declares an inheritance hook --- a method or property that derived classes are allowed to override.
+在过程声明中，**Protected**替换**Public**/**Private**/**Friend**修饰符。与**Overridable**关键字组合使用，它声明一个继承钩子——派生类允许覆盖的方法或属性。
 
-### Visibility summary
+### 可见性摘要
 
-| Modifier | Same class | Derived class (via **Inherits**) | Other code |
+| 修饰符 | 同一类 | 派生类（通过**Inherits**） | 其他代码 |
 |:---|:---:|:---:|:---:|
-| **Public**    | yes | yes | yes |
-| **Friend**    | yes | yes | within the project only |
-| **Protected** | yes | yes | no |
-| **Private**   | yes | no  | no |
+| **Public**    | 是 | 是 | 是 |
+| **Friend**    | 是 | 是 | 仅在项目内 |
+| **Protected** | 是 | 是 | 否 |
+| **Private**   | 是 | 否  | 否 |
 
-### Example
+### 示例
 
-The following pattern uses **Protected** state plus an **Overridable** **Protected** method as an inheritance hook. The base `Animal` class exposes a public `Speak` that delegates to `GetSound`, which derived classes override:
+以下模式使用**Protected**状态加上**Overridable** **Protected**方法作为继承钩子。基类`Animal`公开一个公共的`Speak`，委托给`GetSound`，派生类覆盖它：
 
 ```vb
 Private Class Animal
@@ -70,11 +70,11 @@ Private Class Dog
 End Class
 ```
 
-`_name` and `_dob` are visible inside `Dog` (because `Dog` inherits from `Animal`), but not visible to any code that holds an `Animal` or `Dog` reference from outside the hierarchy.
+`_name`和`_dob`在`Dog`内部可见（因为`Dog`继承自`Animal`），但对于从层次结构外部持有`Animal`或`Dog`引用的任何代码不可见。
 
-### See Also
+### 另请参阅
 
-- [**Public** statement](/official/Reference/Core/Public)
-- [**Private** statement](/official/Reference/Core/Private)
-- [**Class** statement](/official/Reference/Core/Class)
-- [Inheritance](/official/Features/Language/Inheritance)
+- [**Public** 语句](/official/Reference/Core/Public)
+- [**Private** 语句](/official/Reference/Core/Private)
+- [**Class** 语句](/official/Reference/Core/Class)
+- [继承](/official/Features/Language/Inheritance)

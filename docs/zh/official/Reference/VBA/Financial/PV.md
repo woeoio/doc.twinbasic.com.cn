@@ -2,37 +2,46 @@
 title: PV
 parent: Financial Module
 permalink: /tB/Modules/Financial/PV
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '66c57eef-c5e0-4b0e-8a11-b41e9c7bb5ae'
+  PropagateID: '66c57eef-c5e0-4b0e-8a11-b41e9c7bb5ae'
+  ReservedCode1: '999d6b3d-359c-4221-adf9-2ba1f5e32cf8'
+  ReservedCode2: '999d6b3d-359c-4221-adf9-2ba1f5e32cf8'
 ---
+
 # PV
 
-Returns a **Double** specifying the present value of an annuity based on periodic, fixed payments to be paid in the future and a fixed interest rate.
+返回一个**Double**值，指定基于未来定期固定付款和固定利率的年金现值。
 
-Syntax: **PV(** *rate*, *nper*, *pmt* [ **,** *fv* [ **,** *type* ] ] **)**
+语法：**PV(** *rate*, *nper*, *pmt* [ **,** *fv* [ **,** *type* ] ] **)**
 
 *rate*
-: *required* **Double** specifying interest rate per period. For example, for a car loan at an annual percentage rate (APR) of 10 percent with monthly payments, the rate per period is 0.1/12, or 0.0083.
+: *必需* **Double**，指定每期利率。例如，对于年利率(APR)为10%且按月还款的汽车贷款，每期利率为0.1/12，即0.0083。
 
 *nper*
-: *required* **Integer** specifying total number of payment periods in the annuity. For example, monthly payments on a four-year car loan total 4 * 12 (or 48) payment periods.
+: *必需* **Integer**，指定年金的总付款期数。例如，四年期汽车贷款的按月付款总期数为4 * 12（即48）期。
 
 *pmt*
-: *required* **Double** specifying payment to be made each period. Payments usually contain principal and interest that doesn't change over the life of the annuity.
+: *必需* **Double**，指定每期应付金额。付款通常包含在年金期限内不变的本金和利息。
 
 *fv*
-: *optional* **Variant** specifying future value or cash balance remaining after the final payment. For example, the future value of a loan is $0 because that's its value after the final payment. However, to save $50,000 over 18 years for a child's education, $50,000 is the future value. If omitted, 0 is assumed.
+: *可选* **Variant**，指定最终付款后的未来值或现金余额。例如，贷款的未来值为$0，因为这是最终付款后的价值。但如果要在18年内为孩子的教育储蓄$50,000，则$50,000就是未来值。如果省略，则默认为0。
 
 *type*
-: *optional* **Variant** specifying when payments are due. 0 means payments are due at the end of the period; 1 means payments are due at the beginning. If omitted, 0 is assumed.
+: *可选* **Variant**，指定付款到期时间。0表示期末付款；1表示期初付款。如果省略，则默认为0。
 
-An annuity is a series of fixed cash payments made over a period of time. An annuity can be a loan (such as a home mortgage) or an investment (such as a monthly savings plan).
+年金是在一段时间内进行的一系列固定现金支付。年金可以是贷款（如住房抵押贷款）或投资（如月度储蓄计划）。
 
-The *rate* and *nper* arguments must be calculated using payment periods expressed in the same units. For example, if *rate* is calculated using months, *nper* must also be calculated using months.
+*rate*和*nper*参数必须使用相同单位的付款期来计算。例如，如果*rate*按月计算，*nper*也必须按月计算。
 
-For all arguments, cash paid out (such as deposits to savings) is represented by negative numbers; cash received (such as dividend checks) is represented by positive numbers.
+对于所有参数，支出的现金（如储蓄存款）用负数表示；收入的现金（如股息支票）用正数表示。
 
-### Example
+### 示例
 
-In this example, the **PV** function returns the present value of an $1,000,000 annuity that will provide $50,000 a year for the next 20 years. Provided are the expected annual percentage rate (`APR`), the total number of payments (`TotPmts`), the amount of each payment (`YrIncome`), the total future value of the investment (`FVal`), and a number that indicates whether each payment is made at the beginning or end of the payment period (`PayType`). Note that `YrIncome` is a negative number because it represents cash paid out from the annuity each year.
+本示例中，**PV**函数返回一个$1,000,000年金的现值，该年金将在未来20年内每年提供$50,000。提供的参数包括：预期年利率(`APR`)、总付款期数(`TotPmts`)、每期付款金额(`YrIncome`)、投资的总未来值(`FVal`)以及指示每期付款是在期初还是期末到期的数字(`PayType`)。注意`YrIncome`为负数，因为它代表每年从年金中支出的现金。
 
 ```vb
 Dim Fmt, APR, TotPmts, YrIncome, FVal, PayType, PVal
@@ -47,6 +56,6 @@ PVal = PV(APR, TotPmts, -YrIncome, FVal, PayType)
 MsgBox "The present value is " & Format(PVal, Fmt) & "."
 ```
 
-### See Also
+### 另请参阅
 
-- [FV](/official/Reference/VBA/Financial/FV), [NPer](/official/Reference/VBA/Financial/NPer), [NPV](/official/Reference/VBA/Financial/NPV), [Pmt](/official/Reference/VBA/Financial/Pmt), [Rate](/official/Reference/VBA/Financial/Rate) functions
+- [FV](/official/Reference/VBA/Financial/FV)、[NPer](/official/Reference/VBA/Financial/NPer)、[NPV](/official/Reference/VBA/Financial/NPV)、[Pmt](/official/Reference/VBA/Financial/Pmt)、[Rate](/official/Reference/VBA/Financial/Rate)函数

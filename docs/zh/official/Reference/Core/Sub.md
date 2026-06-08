@@ -5,9 +5,9 @@ permalink: /tB/Core/Sub
 ---
 # Sub
 
-Declares the name, arguments, and code that form the body of a **Sub** procedure.
+声明构成**Sub**过程主体的名称、参数和代码。
 
-Syntax:
+语法：
 > [ *attributes* ]  
 > [ **Public** \| **Private** \| **Friend** \| **Protected** ] [ **Static** ] [ **Overridable** ] **Sub** *name* [ **(** **Of** *typevars* **)** ] [ **(** *arglist* **)** ] [ *binding-clause* ]  
 > &nbsp;&nbsp;&nbsp;&nbsp; [ *statements* ] ...  
@@ -16,102 +16,102 @@ Syntax:
 > **End Sub**
 
 *attributes*
-: *optional* One or more of the [supported attributes](/official/Reference/Attributes) for procedures.
+: *可选* 过程的一个或多个[受支持属性](/official/Reference/Attributes)。
 
 **Public**
-: *optional* Indicates that the **Sub** procedure is accessible to all other procedures in all modules. If used in a module that contains an **Option Private**, the procedure is not available outside the project.
+: *可选* 指示**Sub**过程可被所有模块中的所有其他过程访问。如果在包含**Option Private**的模块中使用，则该过程在项目外不可用。
 
 **Private**
-: *optional* Indicates that the **Sub** procedure is accessible only to other procedures in the module where it is declared.
+: *可选* 指示**Sub**过程仅在其声明的模块中的其他过程可访问。
 
 **Friend**
-: *optional* Used only in a class module. Indicates that the **Sub** procedure is visible throughout the project, but not visible to a controller of an instance of an object.
+: *可选* 仅在类模块中使用。指示**Sub**过程在整个项目中可见，但对对象实例的控制器不可见。
 
 **[Protected](/official/Reference/Core/Protected)**
-: *optional* (twinBASIC) Used only in a class. Indicates that the **Sub** procedure is accessible from inside the declaring class and from classes that derive from it via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop), but not from outside callers.
+: *可选* (twinBASIC) 仅在类中使用。指示**Sub**过程可从声明类的内部和通过[**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop)派生的类中访问，但外部调用者不能访问。
 
 **[Static](/official/Reference/Core/Static)**
-: *optional* Indicates that the **Sub** procedure's local variables are preserved between calls. The **Static** attribute doesn't affect variables that are declared outside the **Sub**, even if they are used in the procedure.
+: *可选* 指示**Sub**过程的局部变量在调用之间保留。**Static**属性不影响在**Sub**外部声明的变量，即使它们在过程中被使用。
 
 **Overridable**
-: *optional* (twinBASIC) Marks the **Sub** as an inheritance hook that classes derived via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop) may replace with an **Overrides** clause. Meaningful only on a member of a class that participates in an **Inherits** hierarchy.
+: *可选* (twinBASIC) 将**Sub**标记为继承钩子，通过[**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop)派生的类可以用**Overrides**子句替换。仅在参与**Inherits**层次结构的类成员上有意义。
 
 *name*
-: Name of the **Sub**; follows standard variable naming conventions. The special name `New` declares an instance constructor --- see [Inheritance](/official/Features/Language/Inheritance) for chained construction with `*baseclass*.New(...)`.
+: **Sub**的名称；遵循标准变量命名约定。特殊名称`New`声明实例构造函数——参见[继承](/official/Features/Language/Inheritance)了解链式构造`*baseclass*.New(...)`。
 
 **Of** *typevars*
-: *optional* One or more type variable names, following standard variable naming conventions. The names are separated by commas. Causes the procedure to be a generic **Sub**.
+: *可选* 一个或多个类型变量名称，遵循标准变量命名约定。名称以逗号分隔。使过程成为泛型**Sub**。
 
 *arglist*
-: *optional* List of variables representing arguments that are passed to the **Sub** procedure when it is called. Multiple variables are separated by commas. See [*arglist*](#arglist) below for syntax.
+: *可选* 表示调用**Sub**过程时传递参数的变量列表。多个变量以逗号分隔。语法见下面的[*arglist*](#arglist)。
 
 *binding-clause*
-: *optional* (twinBASIC) One of three trailing clauses that bind this body to a member declared elsewhere:
+: *可选* (twinBASIC) 三种尾随子句之一，将此主体绑定到在其他地方声明的成员：
 
-  - **Handles** *object*.*event* [ **,** *object*.*event* … ] --- connects this **Sub** as a handler for the named event(s), replacing the traditional `Object_Event` naming convention. See [**Handles** statement](/official/Reference/Core/Handles).
-  - **Implements** *iface*.*member* [ **,** *iface2*.*member2* … ] --- provides the body for the named [**Interface**](/official/Reference/Core/Interface) (or [**Class**](/official/Reference/Core/Class)) member, replacing the traditional `Iface_Member` naming convention. A comma-separated list permits one body to satisfy several interfaces' members at once. See [**Implements** statement](/official/Reference/Core/Implements).
-  - **Overrides** *base*.*member* --- supplies the body for an **Overridable** *member* inherited via [**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop). Combine with **Overridable** on the same header to allow further-derived classes to override again.
+  - **Handles** *object*.*event* [ **,** *object*.*event* … ]——将此**Sub**连接为命名事件的处理程序，取代传统的`Object_Event`命名约定。参见[**Handles**语句](/official/Reference/Core/Handles)。
+  - **Implements** *iface*.*member* [ **,** *iface2*.*member2* … ]——为命名的[**Interface**](/official/Reference/Core/Interface)（或[**Class**](/official/Reference/Core/Class)）成员提供主体，取代传统的`Iface_Member`命名约定。逗号分隔列表允许一个主体同时满足多个接口的成员。参见[**Implements**语句](/official/Reference/Core/Implements)。
+  - **Overrides** *base*.*member*——为通过[**Inherits**](/official/Features/Language/Inheritance#inherits-for-complete-oop)继承的**Overridable** *member*提供主体。与同一标题上的**Overridable**组合可允许更深层派生类再次覆盖。
 
 *statements*
-: *optional* Any group of statements to be executed within the **Sub** procedure.
+: *可选* 在**Sub**过程中执行的任何语句组。
 
 **[Exit Sub](/official/Reference/Core/Exit)**
-: *optional* Immediately returns from the **Sub** procedure. (A bare [**Return**](/official/Reference/Core/Return) statement does *not* exit a **Sub** --- it is reserved for the [**GoSub...Return**](/official/Reference/Core/GoSub-Return) construct.)
+: *可选* 立即从**Sub**过程返回。（裸[**Return**](/official/Reference/Core/Return)语句*不会*退出**Sub**——它保留给[**GoSub...Return**](/official/Reference/Core/GoSub-Return)构造。）
 
 ### *arglist*
 
-Syntax: One or more of  
+语法：一个或多个  
 [ **Optional** ] [ **ByVal** \| **ByRef** ] [ **[ParamArray](/official/Reference/Core/ParamArray)** ] *varname* [ **()** ] [ **As** *type* ] [ **=** *defaultvalue* ]
 
 **Optional**
-: *optional* Indicates that an argument is not required. If used, all subsequent arguments in *arglist* must also be optional and declared by using the **Optional** keyword. **Optional** can't be used for any argument if **ParamArray** is used.
+: *可选* 指示参数不是必需的。如果使用，*arglist*中后续的所有参数也必须是可选的并使用**Optional**关键字声明。如果使用**ParamArray**，则不能用于任何参数。
 
 **ByVal**
-: *optional* Indicates that the argument is passed by value.
+: *可选* 指示参数按值传递。
 
 **ByRef**
-: *optional* Indicates that the argument is passed by reference. **ByRef** is the default unlike in Visual Basic .NET.
+: *可选* 指示参数按引用传递。与Visual Basic .NET不同，**ByRef**是默认的。
 
 **[ParamArray](/official/Reference/Core/ParamArray)**
-: *optional* Used only as the last argument in *arglist* to indicate that the final argument is an **Optional** array of **Variant** elements. The **ParamArray** keyword permits passing an arbitrary number of arguments. It may not be used with **ByVal**, **ByRef**, or **Optional**.
+: *可选* 仅用作*arglist*中的最后一个参数，指示最后一个参数是**Variant**元素的**Optional**数组。**ParamArray**关键字允许传递任意数量的参数。不能与**ByVal**、**ByRef**或**Optional**一起使用。
 
 *varname*
-: Name of the variable representing the argument; follows standard variable naming conventions.
+: 表示参数的变量名称；遵循标准变量命名约定。
 
 *type*
-: *optional* Data type of the argument passed to the procedure; may be **Byte**, **Boolean**, **Integer**, **Long**, **Currency**, **Single**, **Double**, **Decimal**, **Date**, **String** (variable length only), **Object**, **Variant**, a specific object type, or the name of a generic type argument. If the parameter is not **Optional**, a user-defined type may also be specified.  
-If the name of a generic type parameter is used, it becomes bound to the concrete type of the argument passed to the procedure. The name binding has the scope of the body of the procedure.
+: *可选* 传递给过程的参数的数据类型；可以是**Byte**、**Boolean**、**Integer**、**Long**、**Currency**、**Single**、**Double**、**Decimal**、**Date**、**String**（仅变长）、**Object**、**Variant**、特定对象类型或泛型类型参数的名称。如果参数不是**Optional**，也可以指定用户自定义类型。  
+如果使用泛型类型参数的名称，它将绑定到传递给过程的参数的具体类型。名称绑定的作用域为过程主体。
 
 *defaultvalue*
-: *optional* Any constant or constant expression. Valid for **Optional** parameters only. If the type is an **Object**, an explicit default value can only be **Nothing**.
+: *可选* 任何常量或常量表达式。仅对**Optional**参数有效。如果类型为**Object**，则显式默认值只能为**Nothing**。
 
-If not explicitly specified by using **Public**, **Private**, or **Friend**, **Sub** procedures are public by default.
+如果未使用**Public**、**Private**或**Friend**显式指定，**Sub**过程默认为公共的。
 
-If **Static** isn't used, the value of local variables is not preserved between calls.
+如果未使用**Static**，局部变量的值在调用之间不保留。
 
-The **Friend** keyword can only be used in class modules. However, **Friend** procedures can be accessed by procedures in any module of a project. A **Friend** procedure does not appear in the type library of its parent class, nor can a **Friend** procedure be late bound.
+**Friend**关键字只能在类模块中使用。但是，**Friend**过程可被项目中任何模块的过程访问。**Friend**过程不出现在其父类的类型库中，也不能被后期绑定。
 
-**Sub** procedures can be recursive; that is, they can call themselves to perform a given task. However, recursion can lead to stack overflow. The **Static** keyword usually is not used with recursive **Sub** procedures.
+**Sub**过程可以是递归的；即它们可以调用自身来执行给定任务。但是，递归可能导致堆栈溢出。**Static**关键字通常不与递归**Sub**过程一起使用。
 
-All executable code must be in procedures. A **Sub** procedure cannot be defined inside another **[Sub](/official/Reference/Core/Sub)**, **[Function](/official/Reference/Core/Function)**, or **[Property](/official/Reference/Core/Property)** procedure.
+所有可执行代码必须在过程中。**Sub**过程不能在另一个**[Sub](/official/Reference/Core/Sub)**、**[Function](/official/Reference/Core/Function)**或**[Property](/official/Reference/Core/Property)**过程内部定义。
 
-The **[Exit Sub](/official/Reference/Core/Exit)** statement causes an immediate exit from a **Sub** procedure. Program execution continues with the statement following the statement that called the **Sub** procedure. Any number of **Exit Sub** statements can appear anywhere in a **Sub** procedure.
+**[Exit Sub](/official/Reference/Core/Exit)**语句导致从**Sub**过程立即退出。程序执行继续到调用**Sub**过程的语句之后的语句。任何数量的**Exit Sub**语句可以出现在**Sub**过程中的任何位置。
 
-Like a **Function** procedure, a **Sub** procedure is a separate procedure that can take arguments, perform a series of statements, and change the value of its arguments. However, unlike a **Function** procedure, which returns a value, a **Sub** procedure can't be used in an expression.
+与**Function**过程类似，**Sub**过程是一个独立的过程，可以接受参数、执行一系列语句并更改其参数的值。但是，与返回值的**Function**过程不同，**Sub**过程不能用于表达式中。
 
-A **Sub** procedure is called by using the procedure name followed by the argument list. See the **[Call](/official/Reference/Core/Call)** statement for specific information about how to call **Sub** procedures.
+**Sub**过程通过使用过程名称后跟参数列表来调用。有关如何调用**Sub**过程的具体信息，请参见**[Call](/official/Reference/Core/Call)**语句。
 
-Variables used in **Sub** procedures fall into two categories: those that are explicitly declared within the procedure and those that are not. Variables that are explicitly declared in a procedure (using **Dim** or the equivalent) are always local to the procedure. Variables that are used but not explicitly declared in a procedure are also local unless they are explicitly declared at some higher level outside the procedure.
+**Sub**过程中使用的变量分为两类：在过程中显式声明的和未显式声明的。在过程中显式声明的变量（使用**Dim**或等效语句）始终是过程的局部变量。在过程中使用但未显式声明的变量也是局部变量，除非它们在过程外部的更高级别显式声明。
 
-A procedure can use a variable that is not explicitly declared in the procedure, but a naming conflict can occur if anything defined at the module level has the same name. When a procedure refers to an undeclared variable that has the same name as another procedure, constant, or variable, it is assumed that the procedure is referring to that module-level name. To avoid this kind of conflict, explicitly declare variables. Use an **[Option Explicit](/official/Reference/Core/Option#Explicit)** statement to force explicit declaration of variables.
+过程可以使用未在过程中显式声明的变量，但如果模块级定义的任何内容具有相同名称，则可能发生命名冲突。当过程引用与另一个过程、常量或变量同名的未声明变量时，假定过程引用的是该模块级名称。为避免此类冲突，请显式声明变量。使用**[Option Explicit](/official/Reference/Core/Option#Explicit)**语句强制显式声明变量。
 
 ::: info
-**GoSub**, **GoTo**, and **Return** cannot enter or exit a **Sub** procedure. Use [**Exit Sub**](/official/Reference/Core/Exit) to leave a **Sub** early.
+**GoSub**、**GoTo**和**Return**不能进入或退出**Sub**过程。使用[**Exit Sub**](/official/Reference/Core/Exit)提前离开**Sub**。
 :::
 
-### Example
+### 示例
 
-This example uses the **Sub** statement to define the name, arguments, and code that form the body of a **Sub** procedure.
+本示例使用**Sub**语句定义构成**Sub**过程主体的名称、参数和代码。
 
 ```vb
 ' Sub procedure definition.
@@ -129,16 +129,16 @@ Sub SubComputeArea(Length As Double, TheWidth As Double)
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**Call** statement](/official/Reference/Core/Call)
-- [**Function** statement](/official/Reference/Core/Function)
-- [**Property** statement](/official/Reference/Core/Property)
-- [**Exit** statement](/official/Reference/Core/Exit)
-- [**Return** statement](/official/Reference/Core/Return)
-- [**Implements** statement](/official/Reference/Core/Implements)
-- [**Handles** statement](/official/Reference/Core/Handles)
-- [**Protected** statement](/official/Reference/Core/Protected)
-- [Handler Method Syntax](/official/Features/Language/Handlers)
-- [Inheritance](/official/Features/Language/Inheritance)
-- [Generics](/official/Features/Language/Generics)
+- [**Call** 语句](/official/Reference/Core/Call)
+- [**Function** 语句](/official/Reference/Core/Function)
+- [**Property** 语句](/official/Reference/Core/Property)
+- [**Exit** 语句](/official/Reference/Core/Exit)
+- [**Return** 语句](/official/Reference/Core/Return)
+- [**Implements** 语句](/official/Reference/Core/Implements)
+- [**Handles** 语句](/official/Reference/Core/Handles)
+- [**Protected** 语句](/official/Reference/Core/Protected)
+- [处理程序方法语法](/official/Features/Language/Handlers)
+- [继承](/official/Features/Language/Inheritance)
+- [泛型](/official/Features/Language/Generics)

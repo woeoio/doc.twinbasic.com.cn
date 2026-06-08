@@ -2,23 +2,32 @@
 title: CLng
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/CLng
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cf9ddc9c-1d7b-4294-99c8-a461a031c651'
+  PropagateID: 'cf9ddc9c-1d7b-4294-99c8-a461a031c651'
+  ReservedCode1: '91dcbb75-04bd-4e55-b84e-081d052313b9'
+  ReservedCode2: '91dcbb75-04bd-4e55-b84e-081d052313b9'
 ---
+
 # CLng
 
-Coerces an expression to a **Long**.
+将表达式强制转换为 **Long**。
 
-Syntax: **CLng(** *expression* **)**
+语法：**CLng(** *expression* **)**
 
 *expression*
-: *required* Any valid string or numeric expression in the range `-2,147,483,648` to `2,147,483,647`. Fractions are rounded.
+: *必需* 范围在 `-2,147,483,648` 到 `2,147,483,647` 之间的任何有效字符串或数值表达式。小数部分会四舍五入。
 
-The return type is **Long**. If *expression* is outside the range of a **Long**, a run-time error occurs.
+返回类型为 **Long**。如果 *expression* 超出 **Long** 的范围，将发生运行时错误。
 
-When the fractional part is exactly `0.5`, **CLng** always rounds it to the nearest even number. For example, `0.5` rounds to `0`, and `1.5` rounds to `2`. **CLng** differs from the [**Fix**](/official/Reference/VBA/Conversion/Fix) and [**Int**](/official/Reference/VBA/Conversion/Int) functions, which truncate, rather than round, the fractional part of a number.
+当小数部分恰好为 `0.5` 时，**CLng** 始终舍入到最接近的偶数。例如，`0.5` 舍入为 `0`，`1.5` 舍入为 `2`。**CLng** 与 [**Fix**](/official/Reference/VBA/Conversion/Fix) 和 [**Int**](/official/Reference/VBA/Conversion/Int) 函数不同，后者截断而非舍入数字的小数部分。
 
-### Example
+### 示例
 
-This example uses the **CLng** function to convert values to a **Long**.
+此示例使用 **CLng** 函数将值转换为 **Long**。
 
 ```vb
 Dim MyVal1, MyVal2, MyLong1, MyLong2
@@ -27,7 +36,7 @@ MyLong1 = CLng(MyVal1)                   ' MyLong1 contains 25427.
 MyLong2 = CLng(MyVal2)                   ' MyLong2 contains 25428.
 ```
 
-### See Also
+### 另请参阅
 
-- [CBool](/official/Reference/VBA/Conversion/CBool), [CByte](/official/Reference/VBA/Conversion/CByte), [CInt](/official/Reference/VBA/Conversion/CInt), [CLngLng](/official/Reference/VBA/Conversion/CLngLng), [CLngPtr](/official/Reference/VBA/Conversion/CLngPtr), [CSng](/official/Reference/VBA/Conversion/CSng), [CStr](/official/Reference/VBA/Conversion/CStr), [CVar](/official/Reference/VBA/Conversion/CVar) functions
-- [Fix](/official/Reference/VBA/Conversion/Fix), [Int](/official/Reference/VBA/Conversion/Int) functions
+- [CBool](/official/Reference/VBA/Conversion/CBool)、[CByte](/official/Reference/VBA/Conversion/CByte)、[CInt](/official/Reference/VBA/Conversion/CInt)、[CLngLng](/official/Reference/VBA/Conversion/CLngLng)、[CLngPtr](/official/Reference/VBA/Conversion/CLngPtr)、[CSng](/official/Reference/VBA/Conversion/CSng)、[CStr](/official/Reference/VBA/Conversion/CStr)、[CVar](/official/Reference/VBA/Conversion/CVar) 函数
+- [Fix](/official/Reference/VBA/Conversion/Fix)、[Int](/official/Reference/VBA/Conversion/Int) 函数

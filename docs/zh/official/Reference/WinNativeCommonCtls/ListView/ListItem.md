@@ -2,12 +2,21 @@
 title: ListItem
 parent: ListView
 permalink: /tB/Packages/WinNativeCommonCtls/ListView/ListItem
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '10e621c2-1de5-4ad6-8c15-6df5e0949884'
+  PropagateID: '10e621c2-1de5-4ad6-8c15-6df5e0949884'
+  ReservedCode1: '5a653a97-123e-4a0d-8210-ac4b3caa7168'
+  ReservedCode2: '5a653a97-123e-4a0d-8210-ac4b3caa7168'
 ---
 
-# ListItem class
-A **ListItem** is a single row in a [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/). Returned from [**ListItems.Add**](/official/Reference/WinNativeCommonCtls/ListView/ListItems#add) and from [**ListItems.Item**](/official/Reference/WinNativeCommonCtls/ListView/ListItems#item). In **lvwReport** view, the first column is the main label ([**Text**](#text)); subsequent columns are exposed through [**SubItems**](#subitemsindex)(*index*).
+# ListItem 类
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ListItem** instances through the parent [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/)'s [**ListItems**](/official/Reference/WinNativeCommonCtls/ListView/ListItems) collection, never by direct instantiation.
+**ListItem** 是 [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 中的单行。从 [**ListItems.Add**](/official/Reference/WinNativeCommonCtls/ListView/ListItems#add) 和 [**ListItems.Item**](/official/Reference/WinNativeCommonCtls/ListView/ListItems#item) 返回。在 **lvwReport** 视图中，第一列是主标签（[**Text**](#text)）；后续列通过 [**SubItems**](#subitemsindex)(*index*) 暴露。
+
+该类标记为 `[COMCreatable(False)]` --- 用户代码通过父级 [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 的 [**ListItems**](/official/Reference/WinNativeCommonCtls/ListView/ListItems) 集合访问 **ListItem** 实例，从不直接实例化。
 
 ```vb
 Dim item As ListItem = ListView1.ListItems.Add(, "doc1", "Report.docx", "doc")
@@ -17,104 +26,104 @@ item.Bold = True
 item.ForeColor = vbBlue
 ```
 
-Properties
+属性
 ----------
 
 ### BackColor
 
-The background color used to render this row. **OLE_COLOR**. Default: `-1` (transparent --- defer to [**ListView.BackColor**](#backcolor)).
+用于渲染此行的背景颜色。**OLE_COLOR**。默认：`-1`（透明 --- 延迟到 [**ListView.BackColor**](#backcolor)）。
 
 ### Bold
 
-Whether the row is rendered in a bold font. **Boolean**. Default: **False**.
+此行是否以粗体渲染。**Boolean**。默认：**False**。
 
 ### Checked
 
-Whether the row's checkbox is checked. **Boolean**. Only meaningful when [**ListView.CheckBoxes**](/official/Reference/WinNativeCommonCtls/ListView/#checkboxes) is **True**.
+此行的复选框是否选中。**Boolean**。仅在 [**ListView.CheckBoxes**](/official/Reference/WinNativeCommonCtls/ListView/#checkboxes) 为 **True** 时有意义。
 
 ### EnsureVisible
 
-Scrolls the listview so this row is visible. Available as a method (not a property --- listed in the methods section below).
+滚动列表视图使此行可见。作为方法可用（不是属性 --- 在下方方法部分列出）。
 
 ### ForeColor
 
-The text color used to render this row. **OLE_COLOR**. Default: **vbWindowText**.
+用于渲染此行的文本颜色。**OLE_COLOR**。默认：**vbWindowText**。
 
 ### Ghosted
 
-Whether the row is rendered as ghosted / cut (typically half-transparent). **Boolean**. The visual mirrors the Win32 `LVIS_CUT` state.
+此行是否渲染为半透明/剪切状态。**Boolean**。视觉效果镜像Win32 `LVIS_CUT` 状态。
 
 ### Height
 
-The pixel height of the row's selection rectangle. **Single**, read-only.
+行选择矩形的像素高度。**Single**，只读。
 
 ### Icon
 
-The large icon for the row in [**lvwIcon**](/official/Reference/WinNativeCommonCtls/ListView/#listviewconstants) view. **Variant** --- either a 1-based **Long** index into [**ListView.Icons**](/official/Reference/WinNativeCommonCtls/ListView/#icons), or a **String** key. Assignment validates against the bound image list and raises run-time error 35601 (*"Element not found"*) for an unknown key, 35600 (*"Index out of bounds"*) for an out-of-range index, or 35613 (*"ImageList must be initialized before it can be used"*) if no image list is bound.
+[**lvwIcon**](/official/Reference/WinNativeCommonCtls/ListView/#listviewconstants) 视图中行的大图标。**Variant** --- 可以是基于1的 **Long** 索引指向 [**ListView.Icons**](/official/Reference/WinNativeCommonCtls/ListView/#icons)，或 **String** 键。赋值对照绑定图像列表验证，未知键引发运行时错误 35601（*"Element not found"*），超出范围的索引引发 35600（*"Index out of bounds"*），无绑定图像列表引发 35613（*"ImageList must be initialized before it can be used"*）。
 
 ### Index
 
-The 1-based position of the row in the parent collection. **Long**, read-only. Attempting to assign raises run-time error 383.
+此行在父集合中基于1的位置。**Long**，只读。尝试赋值引发运行时错误 383。
 
 ### Key
 
-The string key the row was added under. **String**, read/write. Re-assignment moves the row inside the collection's internal index, preserving its position.
+此行添加时的字符串键。**String**，读/写。重新赋值会在集合的内部索引中移动行，保持其位置。
 
 ### Left
 
-The row's horizontal pixel position inside the listview. **Single**, read/write. Useful in [**lvwIcon**](/official/Reference/WinNativeCommonCtls/ListView/#listviewconstants) view for repositioning items.
+行在列表视图内的水平像素位置。**Single**，读/写。在 [**lvwIcon**](/official/Reference/WinNativeCommonCtls/ListView/#listviewconstants) 视图中用于重新定位项。
 
 ### Selected
 
-Whether the row is selected. **Boolean**, read/write. Setting **Selected = True** also sets the focused state.
+此行是否选中。**Boolean**，读/写。设置 **Selected = True** 也会设置聚焦状态。
 
 ### SmallIcon
 
-The small icon for the row in non-icon views. **Variant** --- either an index or a key into [**ListView.SmallIcons**](/official/Reference/WinNativeCommonCtls/ListView/#smallicons). Same validation as [**Icon**](#icon).
+非图标视图中行的小图标。**Variant** --- 可以是索引或指向 [**ListView.SmallIcons**](/official/Reference/WinNativeCommonCtls/ListView/#smallicons) 的键。与 [**Icon**](#icon) 相同的验证。
 
 ### SubItems(Index)
 
-The sub-item text at the given 1-based column index in [**lvwReport**](/official/Reference/WinNativeCommonCtls/ListView/#listviewconstants) view. **String**, read/write. The main text is accessed through [**Text**](#text); **SubItems**(1) is the second column, **SubItems**(2) is the third, and so on. Index `0` is rejected with run-time error 380.
+[**lvwReport**](/official/Reference/WinNativeCommonCtls/ListView/#listviewconstants) 视图中给定基于1的列索引的子项文本。**String**，读/写。主文本通过 [**Text**](#text) 访问；**SubItems**(1) 是第二列，**SubItems**(2) 是第三列，以此类推。索引 `0` 会被拒绝并引发运行时错误 380。
 
-Syntax: *object*.**SubItems**( *Index* ) [ **=** *value* ]
+语法：*object*.**SubItems**（*Index*）[ **=** *value* ]
 
 ### Tag
 
-Arbitrary data the application can attach to the row. **Variant**.
+应用程序可附加到此行的任意数据。**Variant**。
 
 ### Text
 
-The row's main label text. **String**, read/write. The default member. Maps to the listview item's column-0 text.
+此行的主标签文本。**String**，读/写。默认成员。映射到列表视图项的第0列文本。
 
 ### ToolTipText
 
-A tooltip string shown when the user hovers over this row. **String**. Exposed through the listview's `LVS_EX_INFOTIP` extended style.
+用户悬停在此行上时显示的工具提示字符串。**String**。通过列表视图的 `LVS_EX_INFOTIP` 扩展样式暴露。
 
 ### Top
 
-The row's vertical pixel position inside the listview. **Single**, read/write.
+行在列表视图内的垂直像素位置。**Single**，读/写。
 
 ### Width
 
-The pixel width of the row's selection rectangle. **Single**, read-only.
+行选择矩形的像素宽度。**Single**，只读。
 
-Methods
+方法
 -------
 
 ### CreateDragImage
 
 ::: info
-**CreateDragImage** is tagged `[Unimplemented]` in the current source. Calling it has no useful effect --- the body is empty.
+**CreateDragImage** 在当前源码中标记为 `[Unimplemented]`。调用它没有实际效果 --- 方法体为空。
 :::
 
 ### EnsureVisible
 
-Scrolls the listview so this row is visible.
+滚动列表视图使此行可见。
 
-Syntax: *object*.**EnsureVisible**
+语法：*object*.**EnsureVisible**
 
-## See Also
+## 另见
 
-- [ListView](/official/Reference/WinNativeCommonCtls/ListView/) -- the parent control
-- [ListItems](/official/Reference/WinNativeCommonCtls/ListView/ListItems) -- the collection holding **ListItem** instances
-- [ColumnHeader](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) -- a column header (defines what [**SubItems**](#subitemsindex) align to)
+- [ListView](/official/Reference/WinNativeCommonCtls/ListView/) --- 父控件
+- [ListItems](/official/Reference/WinNativeCommonCtls/ListView/ListItems) --- 持有 **ListItem** 实例的集合
+- [ColumnHeader](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) --- 列标题（定义 [**SubItems**](#subitemsindex) 对齐的对象）

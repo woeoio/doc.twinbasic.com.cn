@@ -1,18 +1,29 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e3f00a39-89bb-4979-83f9-7b2cf8c796c2'
+  PropagateID: 'e3f00a39-89bb-4979-83f9-7b2cf8c796c2'
+  ReservedCode1: '323ee2fa-d0bd-414c-b7fe-4065e5cb1a28'
+  ReservedCode2: '323ee2fa-d0bd-414c-b7fe-4065e5cb1a28'
+---
+
 ---
 title: Timer
 parent: VB Package
 permalink: /tB/Packages/VB/Timer/
 ---
 
-# Timer class
+# Timer 类
 
-A **Timer** is a non-visual Win32 control that raises a [**Timer**](#timer) event at a programmable interval. Drop one onto a [**Form**](/official/Reference/VB/Form/) (or **UserControl**) at design time, set [**Interval**](#interval) to the desired millisecond period, set [**Enabled**](#enabled) to **True**, and handle the [**Timer**](#timer) event. Timers are invisible at run time --- they appear only as icons in the designer.
+**Timer**是非可视的Win32控件，以可编程间隔引发[**Timer**](#timer)事件。在设计时将其拖放到[**Form**](/official/Reference/VB/Form/)（或**UserControl**）上，将[**Interval**](#interval)设置为所需的毫秒周期，将[**Enabled**](#enabled)设置为**True**，并处理[**Timer**](#timer)事件。计时器在运行时不可见——它们在设计器中仅显示为图标。
 
-The default property is [**Enabled**](#enabled) and the default event is [**Timer**](#timer).
+默认属性为[**Enabled**](#enabled)，默认事件为[**Timer**](#timer)。
 
 ```vb
 Private Sub Form_Load()
-    Timer1.Interval = 1000      ' fire once per second
+    Timer1.Interval = 1000      ' 每秒触发一次
     Timer1.Enabled  = True
 End Sub
 
@@ -22,36 +33,36 @@ End Sub
 ```
 
 
-## Starting and stopping
+## 启动和停止
 
-Two properties between them decide whether the [**Timer**](#timer) event fires:
+两个属性共同决定[**Timer**](#timer)事件是否触发：
 
-- [**Enabled**](#enabled) is the master switch. While it is **False**, the timer is dormant regardless of [**Interval**](#interval).
-- [**Interval**](#interval) is the period between events, in milliseconds. Setting it to `0` stops events from firing even while [**Enabled**](#enabled) remains **True**.
+- [**Enabled**](#enabled)是主开关。当为**False**时，计时器处于休眠状态，无论[**Interval**](#interval)如何。
+- [**Interval**](#interval)是事件之间的周期，以毫秒为单位。设置为`0`时，即使[**Enabled**](#enabled)为**True**也不会触发事件。
 
-Either property can be flipped from inside the [**Timer**](#timer) handler itself --- a one-shot timer disables itself on the first tick:
+任一属性都可以从[**Timer**](#timer)处理器内部切换——一次性计时器在首次计时后禁用自身：
 
 ```vb
 Private Sub tmrStartup_Timer()
-    tmrStartup.Enabled = False      ' fire only once
+    tmrStartup.Enabled = False      ' 仅触发一次
     LoadInitialData
 End Sub
 ```
 
-Assigning a negative value to [**Interval**](#interval) raises run-time error 380 (*Invalid property value*).
+为[**Interval**](#interval)赋负值会引发运行时错误380（*无效的属性值*）。
 
-## Accuracy and resolution
+## 精度和分辨率
 
-The control wraps Win32's per-window timer queue, which runs on the standard message pump. Two consequences follow:
+控件包装Win32的逐窗口计时器队列，运行在标准消息泵上。两个后果：
 
-- **Resolution is coarse.** The OS quantises timer ticks to the system clock-tick period --- typically ~15.6 ms on desktop Windows. Intervals shorter than that are silently rounded up. For sub-millisecond pacing use a multimedia timer or `QueryPerformanceCounter` directly.
-- **Ticks can be skipped under load.** If the message pump is blocked when a tick is due, no events queue up --- the runtime delivers a single [**Timer**](#timer) event when the pump resumes, *not* one for each missed period. Long-running work inside the handler therefore lengthens the next interval rather than producing a backlog.
+- **分辨率粗糙。** 操作系统将计时器计时量化为系统时钟周期——桌面Windows上通常约15.6毫秒。短于此的间隔被静默向上取整。对于亚毫秒级定时，请直接使用多媒体计时器或`QueryPerformanceCounter`。
+- **高负载下可能跳过计时。** 如果消息泵在计时时被阻塞，事件不会排队——运行时在消息泵恢复时传递单个[**Timer**](#timer)事件，而非每个错过的周期一个。处理器内部的长时间运行工作因此会延长下一个间隔而非产生积压。
 
-For periodic UI updates (a clock, a progress animation, a poll for external state) the **Timer** is exactly the right tool. For precise wall-clock pacing, audio scheduling, or anything that must keep up under heavy CPU load, it is not.
+对于周期性UI更新（时钟、进度动画、外部状态轮询），**Timer**是正确的工具。对于精确的挂钟定时、音频调度或在重CPU负载下必须跟上的任务，则不是。
 
-## Control arrays
+## 控件数组
 
-A control array of timers lets one handler service several periodic tasks while keeping a single shared code path. The array is declared at design time on the first item; further items are added at run time with **Load** and removed with **Unload**, exactly as for a windowed control. Inside the shared [**Timer**](#timer) handler, [**Index**](#index) identifies which timer fired.
+计时器控件数组允许一个处理器服务多个周期性任务，同时保持单一的共享代码路径。数组在设计时在第一个项上声明；后续项在运行时用**Load**添加、用**Unload**移除，与窗口控件完全相同。在共享的[**Timer**](#timer)处理器内部，[**Index**](#index)标识哪个计时器触发了。
 
 ```vb
 Private Sub tmrPoll_Timer(Index As Integer)
@@ -63,65 +74,65 @@ Private Sub tmrPoll_Timer(Index As Integer)
 End Sub
 ```
 
-[**Index**](#index) raises run-time error 343 (*Object not an array*) when read on a timer that is not part of a control array.
+[**Index**](#index)在不是控件数组一部分的计时器上读取时会引发运行时错误343（*对象不是数组*）。
 
-## Properties
+## 属性
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a timer. Always **vbTimer**.
+标识此控件为计时器的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbTimer**。
 
 ### Enabled
 
-The master switch for the timer. While **False**, the timer is dormant and the [**Timer**](#timer) event does not fire regardless of [**Interval**](#interval). **Boolean**, default **True**. **Default property.**
+计时器的主开关。当为**False**时，计时器处于休眠状态，无论[**Interval**](#interval)如何，[**Timer**](#timer)事件不会触发。**Boolean**，默认**True**。**默认属性。**
 
-Syntax: *object*.**Enabled** [ = *boolean* ]
+语法：*object*.**Enabled** [ = *boolean* ]
 
 ### Index
 
-When the timer is part of a control array, the **Long** zero-based index of this instance within the array. Read-only at run time. Raises run-time error 343 (*Object not an array*) on a timer that is not part of an array.
+当计时器是控件数组的一部分时，此实例在数组中从0开始的**Long**索引。运行时只读。在不是数组一部分的计时器上会引发运行时错误343（*对象不是数组*）。
 
 ### Interval
 
-The period between [**Timer**](#timer) events, in milliseconds. **Long**, default `0`.
+[**Timer**](#timer)事件之间的周期，以毫秒为单位。**Long**，默认`0`。
 
-Syntax: *object*.**Interval** [ = *value* ]
+语法：*object*.**Interval** [ = *value* ]
 
 *value*
-: A non-negative **Long** giving the interval in milliseconds. Setting `0` stops events from firing. Negative values raise run-time error 380 (*Invalid property value*).
+: 给出毫秒间隔的非负**Long**。设置为`0`停止事件触发。负值引发运行时错误380（*无效的属性值*）。
 
-The effective resolution is the OS clock-tick period (~15.6 ms on desktop Windows); shorter intervals are silently rounded up. See [Accuracy and resolution](#accuracy-and-resolution).
+有效分辨率为操作系统时钟周期（桌面Windows上约15.6毫秒）；更短的间隔被静默向上取整。参见[精度和分辨率](#accuracy-and-resolution)。
 
 ### Left
 
-The horizontal position of the timer icon in the designer, in the container's **ScaleMode** units. **Single**. The runtime value has no visual effect --- the timer is invisible --- but it is preserved so the designer can place the icon back where it was.
+设计器中计时器图标的水平位置，以容器的**ScaleMode**单位。**Single**。运行时值没有视觉效果——计时器不可见——但被保留以便设计器可以将图标放回原位。
 
 ### Name
 
-The unique design-time name of the timer on its parent form. **String**, read-only at run time.
+计时器在其父窗体上的唯一设计时名称。**String**，运行时只读。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that contains this timer. Read-only.
+对包含此计时器的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）的引用。只读。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the timer. Ignored by the framework. Inherited from the base control class. Useful for control arrays --- e.g. holding the name of the operation a poll-timer is responsible for.
+应用程序可用于将自定义数据与计时器关联的自由格式**String**。框架忽略。继承自基控件类。对控件数组很有用——例如保存轮询计时器负责的操作名称。
 
 ### Top
 
-The vertical position of the timer icon in the designer. Counterpart to [**Left**](#left); like [**Left**](#left), it has no visual effect at run time.
+设计器中计时器图标的垂直位置。[**Left**](#left)的对应项；与[**Left**](#left)一样，运行时没有视觉效果。
 
-## Events
+## 事件
 
 ### Timer
 
-Raised every [**Interval**](#interval) milliseconds while [**Enabled**](#enabled) is **True** and [**Interval**](#interval) is greater than zero. **Default event.**
+当[**Enabled**](#enabled)为**True**且[**Interval**](#interval)大于零时，每隔[**Interval**](#interval)毫秒引发。**默认事件。**
 
-Syntax: *object*\_**Timer**( )
+语法：*object*\_**Timer**( )
 
-For a timer that is part of a control array, the handler receives the array [**Index**](#index) of the timer that fired:
+对于控件数组一部分的计时器，处理器接收触发计时器的数组[**Index**](#index)：
 
-Syntax: *object*\_**Timer**( *Index* **As Integer** )
+语法：*object*\_**Timer**( *Index* **As Integer** )
 
-The event is delivered through the normal Win32 message pump --- see [Accuracy and resolution](#accuracy-and-resolution) for the implications.
+事件通过正常的Win32消息泵传递——参见[精度和分辨率](#accuracy-and-resolution)了解其影响。

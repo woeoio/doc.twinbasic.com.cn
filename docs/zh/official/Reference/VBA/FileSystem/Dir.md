@@ -2,50 +2,59 @@
 title: Dir
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/Dir
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1bd9d6dd-101d-40b1-815e-b95e95fa518e'
+  PropagateID: '1bd9d6dd-101d-40b1-815e-b95e95fa518e'
+  ReservedCode1: '1c13628c-558d-461d-804f-dd8e9192d71b'
+  ReservedCode2: '1c13628c-558d-461d-804f-dd8e9192d71b'
 ---
+
 # Dir
 
-Returns a **String** representing the name of a file, directory, or folder that matches a specified pattern or file attribute, or the volume label of a drive.
+返回一个**String**，表示与指定模式或文件属性匹配的文件、目录或文件夹的名称，或驱动器的卷标。
 
-Syntax: **Dir** [ **(** *pathname* [ **,** *attributes* ] **)** ]
+语法：**Dir** [ **(** *pathname* [ **,** *attributes* ] **)** ]
 
 *pathname*
-: *optional* String expression that specifies a file name; may include directory or folder, and drive. A zero-length string (`""`) is returned if *pathname* is not found.
+: *可选* 字符串表达式，指定文件名；可以包含目录或文件夹以及驱动器。如果未找到*pathname*，则返回零长度字符串(`""`)。
 
 *attributes*
-: *optional* Constant or numeric expression, whose sum specifies file attributes. If omitted, returns files that match *pathname* but have no attributes.
+: *可选* 常量或数值表达式，其和指定文件属性。如果省略，返回与*pathname*匹配但无属性的文件。
 
-The *attributes* argument settings are:
+*attributes*参数设置如下：
 
-| Constant        | Value | Description                                                                              |
-|-----------------|-------|------------------------------------------------------------------------------------------|
-| **vbNormal**    | 0     | (Default) Specifies files with no attributes.                                            |
-| **vbReadOnly**  | 1     | Specifies read-only files in addition to files with no attributes.                       |
-| **vbHidden**    | 2     | Specifies hidden files in addition to files with no attributes.                          |
-| **vbSystem**    | 4     | Specifies system files in addition to files with no attributes.                          |
-| **vbVolume**    | 8     | Specifies volume label; if any other attribute is specified, **vbVolume** is ignored.    |
-| **vbDirectory** | 16    | Specifies directories or folders in addition to files with no attributes.                |
+| 常量            | 值  | 描述                                                                    |
+|-----------------|-----|-------------------------------------------------------------------------|
+| **vbNormal**    | 0   | （默认）指定无属性的文件。                                              |
+| **vbReadOnly**  | 1   | 指定只读文件以及无属性的文件。                                          |
+| **vbHidden**    | 2   | 指定隐藏文件以及无属性的文件。                                          |
+| **vbSystem**    | 4   | 指定系统文件以及无属性的文件。                                          |
+| **vbVolume**    | 8   | 指定卷标；如果指定了任何其他属性，**vbVolume**将被忽略。                |
+| **vbDirectory** | 16  | 指定目录或文件夹以及无属性的文件。                                      |
 
-**Dir** supports the use of multiple-character (`*`) and single-character (`?`) wildcards to specify multiple files.
+**Dir**支持使用多字符(`*`)和单字符(`?`)通配符指定多个文件。
 
-The first call to **Dir** must specify *pathname*, or an error occurs. When file attributes are also specified, *pathname* must be included.
+第一次调用**Dir**必须指定*pathname*，否则会产生错误。当同时指定文件属性时，必须包含*pathname*。
 
-**Dir** returns the first file name that matches *pathname*. To get any additional file names that match *pathname*, call **Dir** again with no arguments. When no more file names match, **Dir** returns a zero-length string (`""`). After a zero-length string is returned, subsequent calls must specify *pathname*, or an error occurs.
+**Dir**返回与*pathname*匹配的第一个文件名。要获取与*pathname*匹配的其他文件名，请不带参数再次调用**Dir**。当没有更多文件名匹配时，**Dir**返回零长度字符串(`""`)。返回零长度字符串后，后续调用必须指定*pathname*，否则会产生错误。
 
-A new *pathname* can be specified without first retrieving all of the file names that match the current *pathname*. However, **Dir** cannot be called recursively. Calling **Dir** with the **vbDirectory** attribute does not continually return subdirectories.
+可以在不先检索当前*pathname*的所有匹配文件名的情况下指定新的*pathname*。但是，**Dir**不能递归调用。使用**vbDirectory**属性调用**Dir**不会持续返回子目录。
 
 ::: tip
-Because file names are retrieved in case-insensitive order on Windows, consider storing returned file names in an array and sorting the array.
+由于Windows上文件名按不区分大小写的顺序检索，建议将返回的文件名存储在数组中并对数组排序。
 :::
 
-### See Also
+### 另请参阅
 
-- [ChDir](/official/Reference/VBA/FileSystem/ChDir), [ChDrive](/official/Reference/VBA/FileSystem/ChDrive), [MkDir](/official/Reference/VBA/FileSystem/MkDir), [RmDir](/official/Reference/VBA/FileSystem/RmDir) statements
-- [CurDir](/official/Reference/VBA/FileSystem/CurDir) function
+- [ChDir](/official/Reference/VBA/FileSystem/ChDir)、[ChDrive](/official/Reference/VBA/FileSystem/ChDrive)、[MkDir](/official/Reference/VBA/FileSystem/MkDir)、[RmDir](/official/Reference/VBA/FileSystem/RmDir)语句
+- [CurDir](/official/Reference/VBA/FileSystem/CurDir)函数
 
-### Example
+### 示例
 
-This example uses the **Dir** function to check whether certain files and directories exist, and to enumerate files in a folder.
+本示例使用**Dir**函数检查某些文件和目录是否存在，以及枚举文件夹中的文件。
 
 ```vb
 Dim MyFile, MyPath, MyName

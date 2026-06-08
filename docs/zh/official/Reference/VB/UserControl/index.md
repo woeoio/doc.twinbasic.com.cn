@@ -58,7 +58,7 @@ For each instance, exactly one of **InitProperties** or **ReadProperties** runs 
 
 ## Persistent properties
 
-Public read/write members are exposed to the host as design-time properties automatically. Persistent storage goes through the [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/) object handed to [**ReadProperties**](#readproperties) and [**WriteProperties**](#writeproperties); the property bag interns string keys and a small set of variant-friendly types. Calling [**PropertyChanged**](#propertychanged) (optionally with the property name) sets the host's *dirty* flag so the host knows to call [**WriteProperties**](#writeproperties) at the next save.
+Public read/write members are exposed to the host as design-time properties automatically. Persistent storage goes through the [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) object handed to [**ReadProperties**](#readproperties) and [**WriteProperties**](#writeproperties); the property bag interns string keys and a small set of variant-friendly types. Calling [**PropertyChanged**](#propertychanged) (optionally with the property name) sets the host's *dirty* flag so the host knows to call [**WriteProperties**](#writeproperties) at the next save.
 
 ```vb
 Public Property Let Caption(ByVal Value As String)
@@ -73,13 +73,13 @@ End Property
 
 [**Ambient**](#ambient) exposes the host's ambient properties (the colours, font, locale, and design/run-mode flags the host wants child controls to honour). Changes to any of those raise the [**AmbientChanged**](#ambientchanged) event with the name of the affected property.
 
-[**Verbs**](#verbs) and [**VerbInvoked**](#verbinvoked) let the control register host-invokable commands (entries that appear on the host's context menu for the control). [**PropertyPages**](#propertypages) registers the **CLSID**s of additional [**PropertyPage**](/official/Reference/VB/PropertyPage/) classes that the host should offer through the property browser.
+[**Verbs**](#verbs) and [**VerbInvoked**](#verbinvoked) let the control register host-invokable commands (entries that appear on the host's context menu for the control). [**PropertyPages**](#propertypages) registers the **CLSID**s of additional [**PropertyPage**](/en/official/Reference/VB/PropertyPage/) classes that the host should offer through the property browser.
 
 ## Drawing surface
 
 A **UserControl** is a graphics surface in its own right. The full set of VB6 drawing primitives --- [**Cls**](#cls), [**Circle**](#circle), [**Line**](#line), [**PSet**](#pset), [**PaintPicture**](#paintpicture), and the [**Print**](#print) statement --- write to its device context, using [**ForeColor**](#forecolor), [**FillColor**](#fillcolor)/[**FillStyle**](#fillstyle), [**DrawWidth**](#drawwidth), [**DrawMode**](#drawmode), and [**DrawStyle**](#drawstyle) for the pen and fill, and [**Font**](#font) for text. The current pen position is tracked by [**CurrentX**](#currentx) and [**CurrentY**](#currenty); [**TextWidth**](#textwidth) and [**TextHeight**](#textheight) measure a string in the current font; [**ScaleX**](#scalex) and [**ScaleY**](#scaley) convert single coordinates between scale modes.
 
-The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/official/Reference/VB/Form/). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the control keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
+The coordinate system is governed by [**ScaleMode**](#scalemode), [**ScaleLeft**](#scaleleft), [**ScaleTop**](#scaletop), [**ScaleWidth**](#scalewidth), and [**ScaleHeight**](#scaleheight), exactly as on a [**Form**](/en/official/Reference/VB/Form/). [**AutoRedraw**](#autoredraw) controls whether drawn output persists across paints --- when **False** (default), the [**Paint**](#paint) event must redraw on every invalidation; when **True**, the control keeps an off-screen buffer that survives invalidations and the **Paint** event is suppressed.
 
 [**BackStyle**](#backstyle) chooses between an opaque background (the default --- **BackColor** fills the surface) and a transparent one (the background is left untouched so that whatever is behind the control shows through). Transparent **UserControl**s are commonly windowless ([**Windowless**](#windowless) = **True**) so that mouse hit-testing follows the painted shape rather than the bounding rectangle.
 
@@ -117,11 +117,11 @@ Reserved for compatibility with VB6; not currently implemented in twinBASIC. In 
 
 ### Ambient
 
-A snapshot of the host's [**AmbientProperties**](/official/Reference/VBRUN/AmbientProperties/). Read-only. Returns a live pass-through wrapper around the host's `IDispatch`, so each member access reads the current ambient value. Changes to any ambient property raise [**AmbientChanged**](#ambientchanged) with the property's name.
+A snapshot of the host's [**AmbientProperties**](/en/official/Reference/VBRUN/AmbientProperties/). Read-only. Returns a live pass-through wrapper around the host's `IDispatch`, so each member access reads the current ambient value. Changes to any ambient property raise [**AmbientChanged**](#ambientchanged) with the property's name.
 
 ### Appearance
 
-A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder** --- controls whether the border is drawn flat or 3-D.
+A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default). Only meaningful when [**BorderStyle**](#borderstyle) is **vbFixedSingleBorder** --- controls whether the border is drawn flat or 3-D.
 
 ### AutoRedraw
 
@@ -135,11 +135,11 @@ The background colour of the control's surface, as an **OLE_COLOR**. Defaults to
 
 ### BackStyle
 
-Whether the control's background is opaque or transparent. A member of [**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants): **vbBFTransparent** (0) or **vbBFOpaque** (1, default). Setting **BackStyle** to **vbBFTransparent** stops the framework from clearing the surface to [**BackColor**](#backcolor) on each paint --- useful when the control wants to draw a non-rectangular shape over whatever is behind it. Typically used with [**Windowless**](#windowless) = **True**.
+Whether the control's background is opaque or transparent. A member of [**BackFillStyleConstants**](/en/official/Reference/VBRUN/Constants/BackFillStyleConstants): **vbBFTransparent** (0) or **vbBFOpaque** (1, default). Setting **BackStyle** to **vbBFTransparent** stops the framework from clearing the surface to [**BackColor**](#backcolor) on each paint --- useful when the control wants to draw a non-rectangular shape over whatever is behind it. Typically used with [**Windowless**](#windowless) = **True**.
 
 ### BorderStyle
 
-The border drawn around the control. A member of [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0, default) or **vbFixedSingleBorder** (1). Combined with [**Appearance**](#appearance) to choose flat or 3-D framing.
+The border drawn around the control. A member of [**ControlBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** (0, default) or **vbFixedSingleBorder** (1). Combined with [**Appearance**](#appearance) to choose flat or 3-D framing.
 
 ### CanGetFocus
 
@@ -174,7 +174,7 @@ Next
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a user control. Always **vbUserControl**.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a user control. Always **vbUserControl**.
 
 ### Count
 
@@ -216,11 +216,11 @@ The current DPI scale factor of the monitor the control is currently on, as a **
 
 ### DrawMode
 
-The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen**.
+The raster operation that drawing primitives apply when combining the pen with the destination. A member of [**DrawModeConstants**](/en/official/Reference/VBRUN/Constants/DrawModeConstants), default **vbCopyPen**.
 
 ### DrawStyle
 
-The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
+The pen line pattern used by drawing primitives. A member of [**DrawStyleConstants**](/en/official/Reference/VBRUN/Constants/DrawStyleConstants): **vbSolid** (default), **vbDash**, **vbDot**, **vbDashDot**, **vbDashDotDot**, **vbInvisible**, or **vbInsideSolid**.
 
 ### DrawWidth
 
@@ -250,7 +250,7 @@ The fill colour for closed shapes drawn by [**Circle**](#circle) and the rectang
 
 ### FillStyle
 
-The fill pattern for closed shapes. A member of [**FillStyleConstants**](/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
+The fill pattern for closed shapes. A member of [**FillStyleConstants**](/en/official/Reference/VBRUN/Constants/FillStyleConstants): **vbFSSolid**, **vbFSTransparent** (default), **vbHorizontalLine**, **vbVerticalLine**, **vbUpwardDiagonal**, **vbDownwardDiagonal**, **vbCross**, or **vbDiagonalCross**.
 
 ### Font
 
@@ -364,7 +364,7 @@ A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer)
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
 
 ### Name
 
@@ -406,7 +406,7 @@ Whether the [**PreKeyDown**](#prekeydown) and [**PreKeyUp**](#prekeyup) events a
 
 ### PropertyPages
 
-An array of **String** **CLSID**s identifying the [**PropertyPage**](/official/Reference/VB/PropertyPage/) classes the host should offer through the **(Custom)** entry on the property browser. Read at the host's `ISpecifyPropertyPages::GetPages` call. Order matters --- the array order is the tab order in the property-sheet dialog.
+An array of **String** **CLSID**s identifying the [**PropertyPage**](/en/official/Reference/VB/PropertyPage/) classes the host should offer through the **(Custom)** entry on the property browser. Read at the host's `ISpecifyPropertyPages::GetPages` call. Order matters --- the array order is the tab order in the property-sheet dialog.
 
 ```vb
 Private Sub UserControl_Initialize()
@@ -438,7 +438,7 @@ The logical horizontal coordinate of the left edge of the control's client area,
 
 ### ScaleMode
 
-The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser** (the four **Scale\*** properties define the rectangle).
+The unit of measurement used by [**CurrentX**](#currentx), [**CurrentY**](#currenty), the drawing primitives, [**TextWidth**](#textwidth), and [**TextHeight**](#textheight). A member of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants): **vbTwips** (default), **vbPoints**, **vbPixels**, **vbCharacters**, **vbInches**, **vbMillimeters**, **vbCentimeters**, or **vbUser** (the four **Scale\*** properties define the rectangle).
 
 ### ScaleTop
 
@@ -598,7 +598,7 @@ Syntax: *object*.**PaintPicture** *Picture*, *X1*, *Y1* [, *Width1* [, *Height1*
 : *optional* The source rectangle within the picture; defaults to the whole picture.
 
 *Opcode*
-: *optional* A raster-operation code (member of [**RasterOpConstants**](/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
+: *optional* A raster-operation code (member of [**RasterOpConstants**](/en/official/Reference/VBRUN/Constants/RasterOpConstants)). Defaults to **vbSrcCopy**.
 
 *StretchQuality*
 : *optional* The interpolation method when scaling. Defaults to normal quality.
@@ -614,7 +614,7 @@ Syntax: *object*.**Point**( *X*, *Y* )
 ### PopUpMenu
 
 ::: info
-Declared for VB6 compatibility; not currently implemented on **UserControl** in twinBASIC. A **UserControl** has no menu structure of its own --- invoke a host pop-up through the extender or the parent form's [**PopUpMenu**](/official/Reference/VB/Form/#popupmenu).
+Declared for VB6 compatibility; not currently implemented on **UserControl** in twinBASIC. A **UserControl** has no menu structure of its own --- invoke a host pop-up through the extender or the parent form's [**PopUpMenu**](/en/official/Reference/VB/Form/#popupmenu).
 :::
 
 Syntax: *object*.**PopUpMenu** *Menu* [, *Flags* [, *X* [, *Y* [, *DefaultMenu* ] ] ] ]
@@ -676,7 +676,7 @@ Syntax: *object*.**ScaleX**( *Width* [, *FromScale* [, *ToScale* ] ] )
 : *required* A **Single** giving the source length.
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
 
 ### ScaleY
 
@@ -688,7 +688,7 @@ Syntax: *object*.**ScaleY**( *Height* [, *FromScale* [, *ToScale* ] ] )
 : *required* A **Single** giving the source length.
 
 *FromScale*, *ToScale*
-: *optional* Members of [**ScaleModeConstants**](/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
+: *optional* Members of [**ScaleModeConstants**](/en/official/Reference/VBRUN/Constants/ScaleModeConstants). Default to the current **ScaleMode** when omitted.
 
 ### SetFocus
 
@@ -726,7 +726,7 @@ Syntax: *object*.**TextWidth**( *Str* )
 ### ValidateControls
 
 ::: info
-Declared for VB6 compatibility; not currently implemented in twinBASIC. In VB6 this fired the focused child's **Validate** event from code; on a **UserControl** the host normally handles validation through the form-level [**ValidateControls**](/official/Reference/VB/Form/#validatecontrols).
+Declared for VB6 compatibility; not currently implemented in twinBASIC. In VB6 this fired the focused child's **Validate** event from code; on a **UserControl** the host normally handles validation through the form-level [**ValidateControls**](/en/official/Reference/VB/Form/#validatecontrols).
 :::
 
 Syntax: *object*.**ValidateControls**
@@ -959,7 +959,7 @@ Raised when the host hands the control a property bag containing previously save
 Syntax: *object*\_**ReadProperties**( *PropBag* **As PropertyBag** )
 
 *PropBag*
-: The host-supplied [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/) containing the persisted values.
+: The host-supplied [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) containing the persisted values.
 
 ### Resize
 
@@ -995,4 +995,4 @@ Raised when the host asks the control to persist its current state --- design-ti
 Syntax: *object*\_**WriteProperties**( *PropBag* **As PropertyBag** )
 
 *PropBag*
-: The host-supplied [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/) to write the persisted values into.
+: The host-supplied [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) to write the persisted values into.

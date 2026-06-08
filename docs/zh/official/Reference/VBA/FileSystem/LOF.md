@@ -2,23 +2,32 @@
 title: LOF
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/LOF
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '725f8538-0686-4e39-a66e-ddcaf5a3f61a'
+  PropagateID: '725f8538-0686-4e39-a66e-ddcaf5a3f61a'
+  ReservedCode1: 'a57d870e-4a17-4651-9b3f-80d978670432'
+  ReservedCode2: 'a57d870e-4a17-4651-9b3f-80d978670432'
 ---
+
 # LOF
 
-Returns a **Long** representing the size, in bytes, of a file opened by using the **Open** statement.
+返回一个**Long**，表示使用**Open**语句打开的文件的大小（字节）。
 
-Syntax: **LOF(** *filenumber* **)**
+语法：**LOF(** *filenumber* **)**
 
 *filenumber*
-: *required* **Integer** containing a valid file number.
+: *必需* **Integer**，包含有效的文件号。
 
 ::: info
-Use the **FileLen** function to obtain the length of a file that is not open.
+使用**FileLen**函数获取未打开文件的长度。
 :::
 
-### Example
+### 示例
 
-This example uses the **LOF** function to determine the size of an open file. This example assumes that `TESTFILE` is a text file containing sample data.
+本示例使用**LOF**函数确定打开文件的大小。本示例假设`TESTFILE`是一个包含示例数据的文本文件。
 
 ```vb
 Dim FileLength
@@ -27,6 +36,6 @@ FileLength = LOF(1)    ' Get length of file.
 Close #1    ' Close file.
 ```
 
-### See Also
+### 另请参阅
 
-- [EOF](/official/Reference/VBA/FileSystem/EOF) function
+- [EOF](/official/Reference/VBA/FileSystem/EOF)函数

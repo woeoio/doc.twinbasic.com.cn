@@ -2,36 +2,45 @@
 title: KeyCompareMode
 parent: Collection
 permalink: /tB/Modules/Collection/KeyCompareMode
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'b4d98f4d-46f9-4aa5-bcff-7e771ca9a39e'
+  PropagateID: 'b4d98f4d-46f9-4aa5-bcff-7e771ca9a39e'
+  ReservedCode1: 'e3541788-d41e-47cc-a2c0-6958c4972447'
+  ReservedCode2: 'e3541788-d41e-47cc-a2c0-6958c4972447'
 ---
+
 # KeyCompareMode
 
-Returns or sets the comparison mode used when matching string keys in a **Collection** object. Read/write.
+返回或设置 **Collection** 对象中匹配字符串键时使用的比较模式。可读写。
 
-Syntax:
+语法：
 - *object*.**KeyCompareMode**
 - *object*.**KeyCompareMode** **=** *compare*
 
 *object*
-: *required* An object expression that evaluates to a **Collection** object.
+: *必需* 一个计算结果为 **Collection** 对象的对象表达式。
 
 *compare*
-: A **VbCompareMethod** value specifying the comparison mode used by [**Add**](/official/Reference/VBA/Collection/Add), [**Item**](/official/Reference/VBA/Collection/Item), [**Remove**](/official/Reference/VBA/Collection/Remove) and [**Exists**](/official/Reference/VBA/Collection/Exists) when looking up keys.
+: 一个 **VbCompareMethod** 值，指定 [**Add**](/official/Reference/VBA/Collection/Add)、[**Item**](/official/Reference/VBA/Collection/Item)、[**Remove**](/official/Reference/VBA/Collection/Remove) 和 [**Exists**](/official/Reference/VBA/Collection/Exists) 在查找键时使用的比较模式。
 
-The *compare* argument settings are:
+*compare* 参数设置如下：
 
-| Constant            | Value | Description                          |
-|---------------------|-------|--------------------------------------|
-| **vbBinaryCompare** | 0     | Performs a case-sensitive binary comparison.   |
-| **vbTextCompare**   | 1     | Performs a case-insensitive textual comparison. |
+| 常量 | 值 | 描述 |
+|------|-----|------|
+| **vbBinaryCompare** | 0 | 执行区分大小写的二进制比较。 |
+| **vbTextCompare** | 1 | 执行不区分大小写的文本比较。 |
 
 ::: info
 
-**KeyCompareMode** is a twinBASIC extension; the classic VBA **Collection** object always uses case-insensitive comparison and does not expose this property.
+**KeyCompareMode** 是 twinBASIC 扩展；经典 VBA 的 **Collection** 对象始终使用不区分大小写的比较，并且不公开此属性。
 :::
 
-The default comparison mode is **vbTextCompare**. Changing the comparison mode rehashes the existing keys, so for large collections it is most efficient to set **KeyCompareMode** before adding items.
+默认比较模式为 **vbTextCompare**。更改比较模式会对现有键重新哈希，因此对于大型集合，最有效的做法是在添加项之前设置 **KeyCompareMode**。
 
-### Example
+### 示例
 
 ```vb
 Dim col As New Collection
@@ -46,10 +55,10 @@ col2.Add "first", Key:="A"
 ' col2.Add "second", Key:="a"  ' Would raise an error — same key as "A".
 ```
 
-### See Also
+### 另请参阅
 
-- [Add](/official/Reference/VBA/Collection/Add) method
-- [Exists](/official/Reference/VBA/Collection/Exists) method
-- [KeyCountHint](/official/Reference/VBA/Collection/KeyCountHint) property
-- [StrComp](/official/Reference/VBA/Strings/StrComp) function
-- [Option Compare](/official/Reference/Core/Option) statement
+- [Add](/official/Reference/VBA/Collection/Add) 方法
+- [Exists](/official/Reference/VBA/Collection/Exists) 方法
+- [KeyCountHint](/official/Reference/VBA/Collection/KeyCountHint) 属性
+- [StrComp](/official/Reference/VBA/Strings/StrComp) 函数
+- [Option Compare](/official/Reference/Core/Option) 语句

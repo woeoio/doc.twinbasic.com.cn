@@ -6,7 +6,7 @@ permalink: /tB/Packages/Assert/Permissive
 
 # Permissive module
 
-The **Permissive** module of the [**Assert**](/official/Reference/Assert/) package supplies assertions that compare values as if the comparison had been written directly in twinBASIC code, with case-insensitive string comparison. Object default members are evaluated. **Permissive** ignores case differences in strings --- for example, when asserting that an error message contains a particular phrase regardless of capitalisation --- and uses the same default-member rules as `=` for object comparison.
+The **Permissive** module of the [**Assert**](/en/official/Reference/Assert/) package supplies assertions that compare values as if the comparison had been written directly in twinBASIC code, with case-insensitive string comparison. Object default members are evaluated. **Permissive** ignores case differences in strings --- for example, when asserting that an error message contains a particular phrase regardless of capitalisation --- and uses the same default-member rules as `=` for object comparison.
 
 
 ## Comparison semantics
@@ -200,7 +200,7 @@ Syntax: **Permissive.IsNull** *Value* [, *Message* ]
 *Message*
 : *optional* A **String** included in the failure record if *Value* is not **Null**.
 
-Equivalent to checking [**IsNull**](/official/Reference/VBA/Information/IsNull)`(Value) = True`. To check for the **Nothing** object reference instead, use [**IsNothing**](#isnothing).
+Equivalent to checking [**IsNull**](/en/official/Reference/VBA/Information/IsNull)`(Value) = True`. To check for the **Nothing** object reference instead, use [**IsNothing**](#isnothing).
 
 ### IsNotNull
 
@@ -250,6 +250,6 @@ Syntax: **Permissive.NotSequenceEquals** *Expected*, *Actual* [, *FailMessage* ]
 
 ## See Also
 
-- [Exact](/official/Reference/Assert/Exact) -- the strictest comparison flavour: datatypes must match and conversions never happen
-- [Strict](/official/Reference/Assert/Strict) -- like **Permissive**, but with case-sensitive string comparisons and reference-identity object equality
-- [Assert package](/official/Reference/Assert/) -- overview of all three modules and the comparison-semantics table
+- [Exact](/en/official/Reference/Assert/Exact) -- the strictest comparison flavour: datatypes must match and conversions never happen
+- [Strict](/en/official/Reference/Assert/Strict) -- like **Permissive**, but with case-sensitive string comparisons and reference-identity object equality
+- [Assert package](/en/official/Reference/Assert/) -- overview of all three modules and the comparison-semantics table

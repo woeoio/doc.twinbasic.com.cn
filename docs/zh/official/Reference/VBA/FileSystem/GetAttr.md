@@ -2,40 +2,49 @@
 title: GetAttr
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/GetAttr
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '891f806b-5828-43e3-a9be-af714294306b'
+  PropagateID: '891f806b-5828-43e3-a9be-af714294306b'
+  ReservedCode1: '6cfdfbec-6f53-4614-8790-5b941b4cd8bb'
+  ReservedCode2: '6cfdfbec-6f53-4614-8790-5b941b4cd8bb'
 ---
+
 # GetAttr
 
-Returns an **Integer** representing the attributes of a file, directory, or folder.
+返回一个**Integer**，表示文件、目录或文件夹的属性。
 
-Syntax: **GetAttr(** *pathname* **)**
+语法：**GetAttr(** *pathname* **)**
 
 *pathname*
-: *required* String expression that specifies a file name. The *pathname* may include the directory or folder, and the drive.
+: *必需* 字符串表达式，指定文件名。*pathname*可以包含目录或文件夹以及驱动器。
 
-### Return Values
+### 返回值
 
-The value returned by **GetAttr** is the sum of the following attribute values:
+**GetAttr**返回的值是以下属性值之和：
 
-| Constant        | Value | Description            |
-|-----------------|:-----:|------------------------|
-| **vbNormal**    | 0     | Normal.                |
-| **vbReadOnly**  | 1     | Read-only.             |
-| **vbHidden**    | 2     | Hidden.                |
-| **vbSystem**    | 4     | System file.           |
-| **vbDirectory** | 16    | Directory or folder.   |
-| **vbArchive**   | 32    | File has changed since last backup. |
+| 常量            | 值  | 描述                               |
+|-----------------|:---:|------------------------------------|
+| **vbNormal**    | 0   | 普通。                             |
+| **vbReadOnly**  | 1   | 只读。                             |
+| **vbHidden**    | 2   | 隐藏。                             |
+| **vbSystem**    | 4   | 系统文件。                         |
+| **vbDirectory** | 16  | 目录或文件夹。                     |
+| **vbArchive**   | 32  | 自上次备份后文件已更改。           |
 
-To determine which attributes are set, use the **And** operator to perform a bitwise comparison of the value returned by **GetAttr** and the value of the individual file attribute being tested. If the result is not zero, that attribute is set for the named file.
+要确定设置了哪些属性，请使用**And**运算符对**GetAttr**返回的值与要测试的单个文件属性值进行按位比较。如果结果不为零，则该文件的该属性已设置。
 
 ```vb
 Result = GetAttr(FName) And vbArchive
 ```
 
-A nonzero value is returned if the Archive attribute is set.
+如果设置了存档属性，则返回非零值。
 
-### Example
+### 示例
 
-This example uses the **GetAttr** function to determine the attributes of a file and directory or folder.
+本示例使用**GetAttr**函数确定文件和目录或文件夹的属性。
 
 ```vb
 Dim MyAttr
@@ -55,6 +64,6 @@ Debug.Print MyAttr And (vbHidden + vbReadOnly)
 MyAttr = GetAttr("MYDIR")    ' Returns 16.
 ```
 
-### See Also
+### 另请参阅
 
-- [Dir](/official/Reference/VBA/FileSystem/Dir) function
+- [Dir](/official/Reference/VBA/FileSystem/Dir)函数

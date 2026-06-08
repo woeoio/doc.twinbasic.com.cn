@@ -1,27 +1,36 @@
 ---
-title: InputB, InputB$
+title: "InputB, InputB$"
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/InputB
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'b6757ef4-a5ae-474f-88e5-4a82d99e438a'
+  PropagateID: 'b6757ef4-a5ae-474f-88e5-4a82d99e438a'
+  ReservedCode1: '1272d2ed-e257-4aa3-86a4-f1ee68ca4e91'
+  ReservedCode2: '1272d2ed-e257-4aa3-86a4-f1ee68ca4e91'
 ---
+
 # InputB, InputB$
 
-Returns a fixed number of bytes read from a file opened in **Input** or **Binary** mode.
+返回从以**Input**或**Binary**模式打开的文件中读取的固定数量字节。
 
-Syntax:
-- **InputB(** *Number* **,** [ **#** ] *FileNumber* **)** --- returns a **Variant**.
-- **InputB$(** *Number* **,** [ **#** ] *FileNumber* **)** --- returns a **String** whose underlying bytes are the bytes that were read.
+语法：
+- **InputB(** *Number* **,** [ **#** ] *FileNumber* **)** --- 返回**Variant**。
+- **InputB$(** *Number* **,** [ **#** ] *FileNumber* **)** --- 返回一个**String**，其底层字节即为读取到的字节。
 
 *Number*
-: *required* The number of bytes to return.
+: *必需* 要返回的字节数。
 
 *FileNumber*
-: *required* The file number used to open the file with the [**Open**](/official/Reference/Core/Open) statement.
+: *必需* 用于以[**Open**](/official/Reference/Core/Open)语句打开文件的文件号。
 
-**InputB** is the byte-oriented counterpart of [**Input**](/official/Reference/VBA/FileSystem/Input). Where **Input** counts and returns characters (two bytes per character in twinBASIC's UTF-16 buffer), **InputB** counts and returns raw bytes --- useful when reading binary data through a textually-opened channel.
+**InputB**是[**Input**](/official/Reference/VBA/FileSystem/Input)的面向字节版本。**Input**计算和返回字符（在twinBASIC的UTF-16缓冲区中每个字符两个字节），而**InputB**计算和返回原始字节——当通过文本方式打开的通道读取二进制数据时非常有用。
 
-The bytes are packed into the result without any character-set translation; the **String** form simply reinterprets the byte run as a UTF-16 string for storage.
+字节在打包到结果中时不会进行任何字符集转换；**String**形式只是将字节序列重新解释为UTF-16字符串进行存储。
 
-### Example
+### 示例
 
 ```vb
 Dim Bytes As Variant
@@ -30,8 +39,8 @@ Bytes = InputB(LOF(1), 1)            ' Read the whole file as bytes.
 Close #1
 ```
 
-### See Also
+### 另请参阅
 
-- [Input, Input$](/official/Reference/VBA/FileSystem/Input) functions
-- [Open](/official/Reference/Core/Open) statement
-- [LOF](/official/Reference/VBA/FileSystem/LOF) function
+- [Input, Input$](/official/Reference/VBA/FileSystem/Input)函数
+- [Open](/official/Reference/Core/Open)语句
+- [LOF](/official/Reference/VBA/FileSystem/LOF)函数

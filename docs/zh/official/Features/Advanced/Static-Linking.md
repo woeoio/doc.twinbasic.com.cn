@@ -1,17 +1,25 @@
 ---
-title: Static Linking
+title: 静态链接
 parent: Advanced Features
 nav_order: 3
 permalink: /Features/Advanced/Static-Linking
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd2039c9c-b998-4705-85ce-a933e2152461'
+  PropagateID: 'd2039c9c-b998-4705-85ce-a933e2152461'
+  ReservedCode1: 'dfa10449-962f-45fc-b7d2-61c39c2bcd55'
+  ReservedCode2: 'dfa10449-962f-45fc-b7d2-61c39c2bcd55'
 ---
 
-# Static Linking of OBJ and LIB Files
+# OBJ 和 LIB 文件的静态链接
 
-tB allows you to use properly compiled .lib and .obj files as statically linked libraries, using declares similar to DLLs, only referring a lib/obj file in your Miscellaneous files folder of your project. Once the file is in the project, it's set up with this syntax outside of declares.
+tB 允许你使用正确编译的 .lib 和 .obj 文件作为静态链接库，使用类似于 DLL 的声明，只需在项目的"杂项文件"文件夹中引用 lib/obj 文件。文件加入项目后，在声明外部使用以下语法进行配置。
 
-## Example
+## 示例
 
-Example from the sqlite sample:
+来自 sqlite 示例的用法：
 
 ```vb
 #If Win64 Then
@@ -21,15 +29,15 @@ Example from the sqlite sample:
 #End If
 ```
 
-### Generic Syntax
+### 通用语法
 
 ```vb
 Import Libary "Relative resource path" As NAMESPACE Link "dependency1", "dependency2", '...
 ```
 
-## Using Imported Libraries
+## 使用导入的库
 
-After that, you can use NAMESPACE in place of a DLL name, inside class/module declares:
+之后，你可以在类/模块声明中使用 NAMESPACE 代替 DLL 名称：
 
 ```vb
 ' Compiled sqlite-amalgamation-3440200 (v3.44.2)
@@ -48,5 +56,5 @@ Module MainModule
 ```
 
 ::: info
-StdCall names will be mangled with argument sizes, e.g. `int myfunc(int x, short y);` would be `myfunc@6`. It therefore may be better to use `CDecl`.
+StdCall 名称会使用参数大小进行修饰，例如 `int myfunc(int x, short y);` 会变成 `myfunc@6`。因此使用 `CDecl` 可能更好。
 :::

@@ -1,16 +1,27 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0d1b6385-4bdd-4872-ae6b-3ad82cb2ef16'
+  PropagateID: '0d1b6385-4bdd-4872-ae6b-3ad82cb2ef16'
+  ReservedCode1: '8e97c75e-51ec-490c-8d92-621b16a5a4c2'
+  ReservedCode2: '8e97c75e-51ec-490c-8d92-621b16a5a4c2'
+---
+
 ---
 title: VScrollBar
 parent: VB Package
 permalink: /tB/Packages/VB/VScrollBar/
 ---
 
-# VScrollBar class
+# VScrollBar 类
 
-A **VScrollBar** is a Win32 native vertical scroll bar exposed as a stand-alone control. Unlike the scroll bars that automatically appear inside a [**ListBox**](/official/Reference/VB/ListBox/), [**ComboBox**](/official/Reference/VB/ComboBox/), or [**TextBox**](/official/Reference/VB/TextBox/), a **VScrollBar** is independent of any other control --- its [**Value**](#value) is whatever code reads or writes. The typical use is to control a numeric setting (a scroll offset, a brightness or opacity level, a colour channel, the vertical position of a custom-drawn surface) by binding the **VScrollBar**'s [**Change**](#change) and [**Scroll**](#scroll) events to whatever the value represents.
+**VScrollBar**是作为独立控件公开的Win32原生垂直滚动条。与自动出现在[**ListBox**](/official/Reference/VB/ListBox/)、[**ComboBox**](/official/Reference/VB/ComboBox/)或[**TextBox**](/official/Reference/VB/TextBox/)内部的滚动条不同，**VScrollBar**独立于任何其他控件——其[**Value**](#value)由代码读写。典型用途是通过将**VScrollBar**的[**Change**](#change)和[**Scroll**](#scroll)事件绑定到值所代表的含义来控制数值设置（滚动偏移量、亮度或不透明度级别、颜色通道、自定义绘制表面的垂直位置）。
 
-[**HScrollBar**](/official/Reference/VB/HScrollBar/) is the horizontal counterpart; the two classes are identical apart from orientation.
+[**HScrollBar**](/official/Reference/VB/HScrollBar/)是水平对应物；两个类除了方向外完全相同。
 
-The default property is [**Value**](#value) and the default event is [**Change**](#change).
+默认属性是[**Value**](#value)，默认事件是[**Change**](#change)。
 
 ```vb
 Private Sub Form_Load()
@@ -31,11 +42,11 @@ End Sub
 ```
 
 
-## Range and value
+## 范围和值
 
-[**Min**](#min) and [**Max**](#max) define the closed range of integer values the scroll bar can represent, and [**Value**](#value) is the position within that range. Defaults are `0`, `32767`, and `0`. Assigning a [**Value**](#value) outside the current `[Min, Max]` interval raises run-time error 380 (*Invalid property value*); assigning the current value is a no-op (no [**Change**](#change) is raised).
+[**Min**](#min)和[**Max**](#max)定义滚动条可以表示的整数闭区间，[**Value**](#value)是该范围内的位置。默认值分别为`0`、`32767`和`0`。赋值超出当前`[Min, Max]`区间的[**Value**](#value)会引发运行时错误380（*无效属性值*）；赋值当前值是无操作（不引发[**Change**](#change)）。
 
-The two endpoints may be supplied in either order. When **Min** is greater than **Max** the scroll bar runs *inverted* --- moving the thumb downward decreases [**Value**](#value), and **Max** is the lower bound of the legal range. This is convenient for, for example, a "high-at-top" volume or brightness slider:
+两个端点可以以任意顺序提供。当**Min**大于**Max**时，滚动条*反向*运行——将滑块向下移动会减小[**Value**](#value)，**Max**是合法范围的下界。这便于实现例如"顶部为高值"的音量或亮度滑块：
 
 ```vb
 vsbVolume.Min = 100    ' topmost == loudest
@@ -43,296 +54,296 @@ vsbVolume.Max = 0      ' bottommost == silent
 vsbVolume.Value = 75
 ```
 
-Changing **Min** or **Max** at run time clips the current [**Value**](#value) into the new range silently --- no [**Change**](#change) event is raised for the implicit clip.
+在运行时更改**Min**或**Max**会静默地将当前[**Value**](#value)钳制到新范围内——不会为隐式钳制引发[**Change**](#change)事件。
 
-## Increment sizes
+## 增量大小
 
-The scroll bar produces value changes through four kinds of user input:
+滚动条通过四种用户输入产生值变化：
 
-| Input                               | Increment per step           | Event raised     |
-|-------------------------------------|------------------------------|------------------|
-| Click an end-arrow                  | [**SmallChange**](#smallchange) | [**Change**](#change) |
-| Click the track above or below the thumb | [**LargeChange**](#largechange) | [**Change**](#change) |
-| Drag the thumb                      | continuous                   | [**Scroll**](#scroll) during drag, [**Change**](#change) on release |
-| Press **Home** / **End**            | jumps to **Min** / **Max**   | [**Change**](#change) |
+| 输入                                 | 每步增量                     | 引发的事件       |
+|--------------------------------------|------------------------------|------------------|
+| 点击末端箭头                         | [**SmallChange**](#smallchange) | [**Change**](#change) |
+| 点击滑块上方或下方的轨道             | [**LargeChange**](#largechange) | [**Change**](#change) |
+| 拖动滑块                             | 连续                         | 拖动时[**Scroll**](#scroll)，释放时[**Change**](#change) |
+| 按**Home** / **End**                 | 跳到**Min** / **Max**        | [**Change**](#change) |
 
-Both [**SmallChange**](#smallchange) and [**LargeChange**](#largechange) default to `1`. [**LargeChange**](#largechange) also controls the visible height of the thumb relative to the track, so larger values produce a chunkier thumb.
+[**SmallChange**](#smallchange)和[**LargeChange**](#largechange)默认均为`1`。[**LargeChange**](#largechange)还控制滑块相对于轨道的可见高度，因此更大的值会产生更高的滑块。
 
-## Change versus Scroll
+## Change 与 Scroll 的区别
 
-The split between the two events lets the application choose how often it reacts to user input. [**Scroll**](#scroll) fires repeatedly while the user is dragging the thumb, so a handler can update a live preview as the thumb moves. [**Change**](#change) fires once each time the value settles --- after the user releases the thumb, after a click on an arrow or the track, or whenever code assigns a different [**Value**](#value). Many applications wire both events to the same handler so that the bound display updates both during dragging and after.
+两个事件的分工让应用程序可以选择对用户输入的响应频率。[**Scroll**](#scroll)在用户拖动滑块时反复触发，因此处理程序可以在滑块移动时更新实时预览。[**Change**](#change)在值稳定后触发一次——用户释放滑块后、点击箭头或轨道后，或代码赋值不同的[**Value**](#value)时。许多应用程序将两个事件连接到同一处理程序，以便绑定显示在拖动期间和之后都更新。
 
-## Properties
+## 属性
 
 ### Anchors
 
-The set of edges of the parent that the scroll bar's corresponding edges follow when the parent resizes. Read-only --- assign individual `.Left`, `.Top`, `.Right`, `.Bottom` flags through the returned **Anchors** object.
+决定滚动条的哪些边随父级对应边调整的边集合。只读——通过返回的**Anchors**对象设置各个`.Left`、`.Top`、`.Right`、`.Bottom`标志。
 
 ### CausesValidation
 
-Determines whether the previously focused control's [**Validate**](#validate) event runs before this control receives the focus. **Boolean**, default **True**.
+决定先前聚焦控件的[**Validate**](#validate)事件是否在此控件获得焦点之前运行。**Boolean**，默认**True**。
 
 ### Container
 
-The control that hosts this scroll bar --- typically the form, a [**Frame**](/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
+承载此滚动条的控件——通常是窗体、[**Frame**](/official/Reference/VB/Frame/)或**UserControl**。用**Get**读取，用**Set**更改。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a vertical scroll bar. Always **vbVScrollBar**.
+标识此控件为垂直滚动条的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbVScrollBar**。
 
 ### Dock
 
-Where the scroll bar is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked scroll bars ignore [**Anchors**](#anchors).
+滚动条在其容器中的停靠位置。[**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants)的成员：**vbDockNone**（默认）、**vbDockLeft**、**vbDockTop**、**vbDockRight**、**vbDockBottom**或**vbDockFill**。停靠的滚动条忽略[**Anchors**](#anchors)。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the control is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+在控件被拖放时用作鼠标光标的**StdPicture**（参见[**Drag**](#drag)和[**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+控件是否应在用户按住鼠标时自行拖动。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants)的成员：**vbManual**（0，默认——从代码调用[**Drag**](#drag)）或**vbAutomatic**（1）。
 
 ### Enabled
 
-Determines whether the scroll bar accepts user input. A disabled scroll bar is greyed out and does not respond to mouse or keyboard interaction. **Boolean**, default **True**.
+决定滚动条是否接受用户输入。禁用的滚动条变灰，不响应鼠标或键盘交互。**Boolean**，默认**True**。
 
 ### Height
 
-The scroll bar's height in twips (or in the container's **ScaleMode** units). **Double**. For a vertical scroll bar this is the long dimension --- i.e., the length of the track.
+滚动条的高度，以缇为单位（或以容器的**ScaleMode**单位）。**Double**。对于垂直滚动条这是长边——即轨道的长度。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the control has focus.
+标识应用程序帮助文件中主题的**Long**，当用户在控件有焦点时按**F1**时检索。
 
 ### hWnd
 
-The Win32 window handle for the underlying scroll bar, as a **LongPtr**. Read-only. Useful for passing to API functions.
+底层滚动条的Win32窗口句柄，作为**LongPtr**。只读。适用于传递给API函数。
 
 ### Index
 
-When the scroll bar is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当滚动条是控件数组的一部分时，此实例在数组中的**Long**零基索引。在非数组实例上读取**Index**会引发运行时错误343（*对象不是数组*）。运行时只读。
 
 ### LargeChange
 
-The amount [**Value**](#value) is adjusted when the user clicks the track above or below the thumb (or presses **Page Up** / **Page Down** while the scroll bar has focus). **Long**, default `1`. Also influences the visible height of the thumb: bigger values produce a taller thumb relative to the track.
+当用户点击滑块上方或下方的轨道（或在滚动条有焦点时按**Page Up** / **Page Down**）时[**Value**](#value)的调整量。**Long**，默认`1`。还影响滑块的可见高度：更大的值在轨道上产生更高的滑块。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the scroll bar. **Double**.
+从容器左边缘到滚动条左边缘的水平距离。**Double**。
 
 ### Max
 
-The upper end of the scroll bar's value range. **Long**, default `32767`. May be set lower than [**Min**](#min) to invert the direction of travel --- see [Range and value](#range-and-value).
+滚动条值范围的上端。**Long**，默认`32767`。可以设置得低于[**Min**](#min)以反转移动方向——参见[范围和值](#range-and-value)。
 
-Syntax: *object*.**Max** [ = *value* ]
+语法：*object*.**Max** [ = *value* ]
 
-Changing **Max** clips the current [**Value**](#value) into the new range silently if it now falls outside.
+更改**Max**会在当前[**Value**](#value)超出新范围时静默钳制。
 
 ### Min
 
-The lower end of the scroll bar's value range. **Long**, default `0`. May be set higher than [**Max**](#max) to invert the direction of travel.
+滚动条值范围的下端。**Long**，默认`0`。可以设置得高于[**Max**](#max)以反转移动方向。
 
-Syntax: *object*.**Min** [ = *value* ]
+语法：*object*.**Min** [ = *value* ]
 
-Changing **Min** clips the current [**Value**](#value) into the new range silently if it now falls outside.
+更改**Min**会在当前[**Value**](#value)超出新范围时静默钳制。
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the control.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针在控件上方时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+指针在控件上方时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Name
 
-The unique design-time name of the control on its parent form. Read-only at run time.
+控件在其父窗体上的唯一设计时名称。运行时只读。
 
 ### Opacity
 
-The control's opacity as a percentage (0--100, default 100). Values outside the range are clamped on **Initialize**. Requires Windows 8 or later for child controls.
+控件的不透明度百分比（0--100，默认100）。超出范围的值在**Initialize**时被钳制。子控件需要Windows 8或更高版本。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains this scroll bar. Read-only.
+对最终包含此滚动条的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）的引用。只读。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC. To run the scroll bar in reverse, swap [**Min**](#min) and [**Max**](#max).
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。要以反向运行滚动条，交换[**Min**](#min)和[**Max**](#max)。
 :::
 
 ### SmallChange
 
-The amount [**Value**](#value) is adjusted when the user clicks one of the end-arrows (or presses an arrow key while the scroll bar has focus). **Long**, default `1`.
+当用户点击末端箭头（或在滚动条有焦点时按箭头键）时[**Value**](#value)的调整量。**Long**，默认`1`。
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**.
+控件在窗体TAB键导航顺序中的位置。**Long**。
 
 ### TabStop
 
-Whether the user can reach the control by pressing the **TAB** key. **Boolean**, default **True**. A disabled control is skipped regardless of this setting.
+用户是否可以通过按**TAB**键到达控件。**Boolean**，默认**True**。禁用的控件无论此设置如何都会被跳过。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the control. Ignored by the framework.
+应用程序可用于将自定义数据与控件关联的自由格式**String**。框架忽略此属性。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the scroll bar. **Double**.
+从容器顶部到滚动条顶部的垂直距离。**Double**。
 
 ### TransparencyKey
 
-An **OLE_COLOR** that, when set, becomes fully transparent in the rendered control. Default `-1` disables the effect. Requires Windows 8 or later for child controls.
+设置后成为渲染控件中完全透明的**OLE_COLOR**。默认`-1`禁用效果。子控件需要Windows 8或更高版本。
 
 ### Value
 
-The scroll bar's current position within `[Min, Max]`. **Long**, default `0`. **Default property.**
+滚动条在`[Min, Max]`内的当前位置。**Long**，默认`0`。**默认属性。**
 
-Syntax: *object*.**Value** [ = *value* ]
+语法：*object*.**Value** [ = *value* ]
 
 *value*
-: A **Long** in the closed interval `[Min, Max]` (or `[Max, Min]` for an inverted scroll bar). Values outside that interval raise run-time error 380 (*Invalid property value*).
+: 闭区间`[Min, Max]`（或反向滚动条的`[Max, Min]`）中的**Long**。超出该区间的值引发运行时错误380（*无效属性值*）。
 
-Assigning a value that differs from the current one moves the thumb and raises a single [**Change**](#change) event. Assigning the current value is a silent no-op.
+赋值与当前值不同的值会移动滑块并引发单个[**Change**](#change)事件。赋值当前值为静默无操作。
 
 ### Visible
 
-Whether the scroll bar is shown. **Boolean**, default **True**.
+滚动条是否显示。**Boolean**，默认**True**。
 
 ### VisualStyles
 
-Whether the OS theme engine should be used when drawing the scroll bar. **Boolean**, default **True**.
+绘制滚动条时是否使用操作系统主题引擎。**Boolean**，默认**True**。
 
 ### WhatsThisHelpID
 
-A **Long** identifying a "What's This?" help-pop-up topic in the application's help file. See [**ShowWhatsThis**](#showwhatsthis).
+标识应用程序帮助文件中"这是什么？"帮助弹出主题的**Long**。参见[**ShowWhatsThis**](#showwhatsthis)。
 
 ### Width
 
-The scroll bar's width in twips (or in the container's **ScaleMode** units). **Double**. For a vertical scroll bar this is the small dimension --- typically the OS standard scroll-bar thickness; values larger than that simply enlarge the surrounding hit area.
+滚动条的宽度，以缇为单位（或以容器的**ScaleMode**单位）。**Double**。对于垂直滚动条这是短边——通常为操作系统标准滚动条厚度；大于该值的只会扩大周围的点击区域。
 
-## Methods
+## 方法
 
 ### Drag
 
-Begins, completes, or cancels a manual drag-and-drop operation. Typically called from code when [**DragMode**](#dragmode) is **vbManual**.
+开始、完成或取消手动拖放操作。通常在[**DragMode**](#dragmode)为**vbManual**时从代码调用。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants)的成员：**vbCancel**（0）、**vbBeginDrag**（1，默认）或**vbEndDrag**（2）。
 
 ### Move
 
-Repositions and optionally resizes the scroll bar in a single call.
+在单次调用中重新定位并可选地调整滚动条的尺寸。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### Refresh
 
-Forces an immediate repaint of the scroll bar.
+强制立即重绘滚动条。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### SetFocus
 
-Moves the input focus to the scroll bar. The control must be both [**Visible**](#visible) and [**Enabled**](#enabled), or run-time error 5 (*Invalid procedure call or argument*) is raised.
+将输入焦点移到滚动条。控件必须同时[**Visible**](#visible)和[**Enabled**](#enabled)，否则引发运行时错误5（*无效的过程调用或参数*）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### ShowWhatsThis
 
-Displays the topic identified by [**WhatsThisHelpID**](#whatsthishelpid) as a "What's This?" pop-up.
+以"这是什么？"弹窗形式显示由[**WhatsThisHelpID**](#whatsthishelpid)标识的主题。
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### SyncScrollBar
 
-Re-applies the current [**Min**](#min), [**Max**](#max), [**LargeChange**](#largechange), and [**Value**](#value) to the underlying Win32 scroll bar. Property assignments already do this implicitly --- call **SyncScrollBar** only when external code (typically a Win32 API call) has reached around the control and changed its native state.
+将当前[**Min**](#min)、[**Max**](#max)、[**LargeChange**](#largechange)和[**Value**](#value)重新应用到底层Win32滚动条。属性赋值已隐式执行此操作——仅当外部代码（通常是Win32 API调用）绕过控件更改了其原生状态时才调用**SyncScrollBar**。
 
-Syntax: *object*.**SyncScrollBar**
+语法：*object*.**SyncScrollBar**
 
 ### ZOrder
 
-Brings the control to the front or back of its sibling stack.
+将控件带到同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront**（0，默认）或**vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Change
 
-Raised after [**Value**](#value) settles on a new value --- when the user releases the thumb after a drag, when the user clicks an arrow or the track, when the user presses **Home**, **End**, or an arrow key with focus on the scroll bar, or when code assigns a different [**Value**](#value). Not raised for the continuous updates that happen during a drag --- see [**Scroll**](#scroll) for that. **Default event.**
+在[**Value**](#value)稳定到新值后引发——用户在拖动后释放滑块时、点击箭头或轨道时、在滚动条有焦点时按**Home**、**End**或箭头键时，或代码赋值不同的[**Value**](#value)时。不会在拖动期间的连续更新时引发——参见[**Scroll**](#scroll)。**默认事件。**
 
-Syntax: *object*\_**Change**( )
+语法：*object*\_**Change**( )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+当手动拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+当手动拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### GotFocus
 
-Raised when the scroll bar receives the input focus.
+当滚动条获得输入焦点时引发。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### Initialize
 
-Raised once, after the underlying window has been created and the scroll bar is connected to its Win32 range, but before the scroll bar is first painted. Useful for last-minute setup that needs the underlying handle.
+在底层窗口已创建且滚动条已连接到其Win32范围后，但滚动条首次绘制之前引发一次。适用于需要底层句柄的最后一刻设置。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### KeyDown
 
-Raised when the user presses any key while the control has focus. Note that the scroll bar already handles the arrow keys, **Page Up** / **Page Down**, and **Home** / **End** internally --- but **KeyDown** still fires for them in addition to the resulting [**Change**](#change).
+当控件有焦点时用户按下任意键时引发。注意滚动条已在内部处理箭头键、**Page Up** / **Page Down**和**Home** / **End**——但**KeyDown**仍然会为它们触发，除产生[**Change**](#change)外。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
-Raised when the user types a character that produces an ANSI keystroke.
+当用户输入产生ANSI按键的字符时引发。
 
-Syntax: *object*\_**KeyPress**( *KeyAscii* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyAscii* **As Integer** )
 
 ### KeyUp
 
-Raised when the user releases a key while the control has focus.
+当控件有焦点时用户释放键时引发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### LostFocus
 
-Raised when the scroll bar loses the input focus.
+当滚动条失去输入焦点时引发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### Scroll
 
-Raised continuously while the user is dragging the thumb, once for each tick that produces a different [**Value**](#value). After the user releases the thumb, a single [**Change**](#change) event fires with the final value. **Scroll** is the right event for a live preview while the thumb is moving; [**Change**](#change) fires only the final value.
+在用户拖动滑块期间连续引发，每产生一个不同的[**Value**](#value)一次。用户释放滑块后，会引发单个[**Change**](#change)事件携带最终值。**Scroll**是滑块移动时实时预览的正确事件；[**Change**](#change)仅触发最终值。
 
-Syntax: *object*\_**Scroll**( )
+语法：*object*\_**Scroll**( )
 
 ### Validate
 
-Raised when the focus is moving to another control whose [**CausesValidation**](#causesvalidation) is **True**. Setting *Cancel* to **True** keeps the focus on this control.
+当焦点移动到[**CausesValidation**](#causesvalidation)为**True**的另一个控件时引发。将*Cancel*设为**True**使焦点保留在此控件上。
 
-Syntax: *object*\_**Validate**( *Cancel* **As Boolean** )
+语法：*object*\_**Validate**( *Cancel* **As Boolean** )

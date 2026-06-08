@@ -2,19 +2,28 @@
 title: GetDeclaredMinEnumValue
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/GetDeclaredMinEnumValue
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '88d58991-a3c1-4f95-850a-8ae145e5d561'
+  PropagateID: '88d58991-a3c1-4f95-850a-8ae145e5d561'
+  ReservedCode1: '2f859865-eb5e-47db-b7b1-a2de5b323bf6'
+  ReservedCode2: '2f859865-eb5e-47db-b7b1-a2de5b323bf6'
 ---
+
 # GetDeclaredMinEnumValue
 
-Returns the smallest member value of a declared enumeration type, resolved at compile time.
+返回已声明枚举类型的最小成员值，在编译时解析。
 
-Syntax: **GetDeclaredMinEnumValue(Of** *T* **)()** **As Long**
+语法：**GetDeclaredMinEnumValue(Of** *T* **)()** **As Long**
 
 *T*
-: *required* The enumeration type to query.
+: *必需* 要查询的枚举类型。
 
-Iterates over the members of *T* and returns the lowest assigned value. Resolved at compile time and folded into the generated code as a numeric constant --- there is no run-time iteration.
+遍历*T*的成员并返回最低的赋值。在编译时解析，并作为数值常量折叠到生成的代码中——没有运行时遍历。
 
-### Example
+### 示例
 
 ```vb
 Enum Severity
@@ -29,6 +38,6 @@ Debug.Print GetDeclaredMinEnumValue(Of Severity)()    ' 0
 Debug.Print GetDeclaredMaxEnumValue(Of Severity)()    ' 4
 ```
 
-### See Also
+### 另请参阅
 
-- [GetDeclaredMaxEnumValue](/official/Reference/VBA/HiddenModule/GetDeclaredMaxEnumValue) function
+- [GetDeclaredMaxEnumValue](/official/Reference/VBA/HiddenModule/GetDeclaredMaxEnumValue)函数

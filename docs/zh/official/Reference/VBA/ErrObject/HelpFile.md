@@ -2,25 +2,34 @@
 title: HelpFile
 parent: ErrObject
 permalink: /tB/Modules/ErrObject/HelpFile
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '569cadaa-7cfd-4992-a01e-a5d12238e9c9'
+  PropagateID: '569cadaa-7cfd-4992-a01e-a5d12238e9c9'
+  ReservedCode1: '0d6f3873-406e-48be-8907-8c779fae03ce'
+  ReservedCode2: '0d6f3873-406e-48be-8907-8c779fae03ce'
 ---
+
 # HelpFile
 
-Returns or sets a **String** with the fully qualified path to a Help file associated with the active error. Read/write.
+返回或设置一个 **String**，包含与活动错误关联的帮助文件的完全限定路径。可读/写。
 
-Syntax:
+语法：
 - **Err**.**HelpFile**
 - **Err**.**HelpFile** **=** *helpFilePath*
 
 *helpFilePath*
-: A **String** with the fully qualified path of the Help file (typically a `.chm` file or a URL) to associate with the active error.
+: 包含要与活动错误关联的帮助文件（通常为 `.chm` 文件或 URL）完全限定路径的 **String**。
 
-If a Help file is specified in **HelpFile**, it is automatically called when the user presses the **Help** button (or **F1**) in the error message dialog box. If the [**HelpContext**](/official/Reference/VBA/ErrObject/HelpContext) property contains a valid context ID for the specified file, that topic is displayed automatically.
+如果在 **HelpFile** 中指定了帮助文件，当用户在错误消息对话框中按**帮助**按钮（或 **F1**）时，将自动调用该文件。如果 [**HelpContext**](/official/Reference/VBA/ErrObject/HelpContext) 属性包含指定文件的有效上下文 ID，则自动显示该主题。
 
-Write routines to handle typical errors. When programming with an object, the object's Help file can improve error handling or display a meaningful message to the user when an error isn't recoverable.
+编写处理典型错误的例程。使用对象编程时，对象的帮助文件可以在错误不可恢复时改善错误处理或向用户显示有意义的消息。
 
-### Example
+### 示例
 
-This example uses the **HelpFile** property of the **Err** object to start the Help system.
+此示例使用 **Err** 对象的 **HelpFile** 属性启动帮助系统。
 
 ```vb
 Dim msg As String
@@ -32,8 +41,8 @@ msg = "Press F1 or HELP to see " & Err.HelpFile & _
 MsgBox msg, , "Error: " & Err.Description, Err.HelpFile
 ```
 
-### See Also
+### 另请参阅
 
-- [HelpContext](/official/Reference/VBA/ErrObject/HelpContext) property
-- [Number](/official/Reference/VBA/ErrObject/Number) property
-- [Raise](/official/Reference/VBA/ErrObject/Raise) method
+- [HelpContext](/official/Reference/VBA/ErrObject/HelpContext) 属性
+- [Number](/official/Reference/VBA/ErrObject/Number) 属性
+- [Raise](/official/Reference/VBA/ErrObject/Raise) 方法

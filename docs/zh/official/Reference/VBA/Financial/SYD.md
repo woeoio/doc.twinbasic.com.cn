@@ -2,30 +2,39 @@
 title: SYD
 parent: Financial Module
 permalink: /tB/Modules/Financial/SYD
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '60a05f6a-6a32-4576-8d67-85481bd5149d'
+  PropagateID: '60a05f6a-6a32-4576-8d67-85481bd5149d'
+  ReservedCode1: '0a0f5b02-6d0b-424d-a32d-6802f343004e'
+  ReservedCode2: '0a0f5b02-6d0b-424d-a32d-6802f343004e'
 ---
+
 # SYD
 
-Returns a **Double** specifying the sum-of-years' digits depreciation of an asset for a specified period.
+返回一个**Double**值，指定资产在指定期间的年数总和折旧额。
 
-Syntax: **SYD(** *cost*, *salvage*, *life*, *period* **)**
+语法：**SYD(** *cost*, *salvage*, *life*, *period* **)**
 
 *cost*
-: *required* **Double** specifying initial cost of the asset.
+: *必需* **Double**，指定资产的初始成本。
 
 *salvage*
-: *required* **Double** specifying value of the asset at the end of its useful life.
+: *必需* **Double**，指定资产在使用寿命结束时的价值。
 
 *life*
-: *required* **Double** specifying length of the useful life of the asset.
+: *必需* **Double**，指定资产使用寿命的长度。
 
 *period*
-: *required* **Double** specifying period for which asset depreciation is calculated.
+: *必需* **Double**，指定计算资产折旧的期间。
 
-The *life* and *period* arguments must be expressed in the same units. For example, if *life* is given in months, *period* must also be given in months. All arguments must be positive numbers.
+*life*和*period*参数必须以相同的单位表示。例如，如果*life*以月为单位，*period*也必须以月为单位。所有参数必须为正数。
 
-### Example
+### 示例
 
-This example uses the **SYD** function to return the depreciation of an asset for a specified period given the asset's initial cost (`InitCost`), the salvage value at the end of the asset's useful life (`SalvageVal`), and the total life of the asset in years (`LifeTime`). The period in years for which the depreciation is calculated is `PDepr`.
+本示例使用**SYD**函数返回资产在指定期间的折旧额，提供的参数包括：资产的初始成本(`InitCost`)、资产使用寿命结束时的残值(`SalvageVal`)以及资产的总寿命年数(`LifeTime`)。计算折旧的期间年数为`PDepr`。
 
 ```vb
 Dim Fmt, InitCost, SalvageVal, MonthLife, LifeTime, DepYear, PDepr
@@ -51,6 +60,6 @@ PDepr = SYD(InitCost, SalvageVal, LifeTime, DepYear)
 MsgBox "The depreciation for year " & DepYear & " is " & Format(PDepr, Fmt) & "."
 ```
 
-### See Also
+### 另请参阅
 
-- [DDB](/official/Reference/VBA/Financial/DDB), [SLN](/official/Reference/VBA/Financial/SLN) functions
+- [DDB](/official/Reference/VBA/Financial/DDB)、[SLN](/official/Reference/VBA/Financial/SLN)函数

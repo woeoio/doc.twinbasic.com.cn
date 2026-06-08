@@ -1,23 +1,31 @@
----
+﻿---
 title: Styles
 parent: CustomControls Package
 permalink: /tB/Packages/CustomControls/Styles/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a39dd02e-e0d8-4cac-9931-726aebf1c45c'
+  PropagateID: 'a39dd02e-e0d8-4cac-9931-726aebf1c45c'
+  ReservedCode1: '9aa9670a-e003-45d0-b9ae-2676b7d2b7bd'
+  ReservedCode2: '9aa9670a-e003-45d0-b9ae-2676b7d2b7bd'
 ---
 
-# Styles
+# 样式
 
-The shared appearance helper classes used by the [**CustomControls**](/official/Reference/CustomControls/) package's concrete `Waynes…` controls. Each is a small container of related visual settings --- a [**Fill**](/official/Reference/CustomControls/Styles/Fill) is a colour or gradient, a [**Borders**](/official/Reference/CustomControls/Styles/Borders) is an array of border strokes, a [**Corners**](/official/Reference/CustomControls/Styles/Corners) is the shape and radius of each corner, and so on. Controls compose them through `Public WithEvents …` properties: a [**WaynesButton**](/official/Reference/CustomControls/WaynesButton/) holds four [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) sub-objects (Normal / Hover / Focused / Pressed), each of which has its own [**BackgroundFill**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState#backgroundfill), [**Borders**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState#borders), [**Corners**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState#corners), and [**TextRendering**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState#textrendering).
+[**CustomControls**](/official/Reference/CustomControls/) 包的具体 `Waynes…` 控件使用的共享外观辅助类。每个都是相关视觉设置的小型容器——[**Fill**](/official/Reference/CustomControls/Styles/Fill) 是颜色或渐变，[**Borders**](/official/Reference/CustomControls/Styles/Borders) 是边框笔触数组，[**Corners**](/official/Reference/CustomControls/Styles/Corners) 是每个角的形状和半径，等等。控件通过 `Public WithEvents …` 属性组合它们：[**WaynesButton**](/official/Reference/CustomControls/WaynesButton/) 持有四个 [**WaynesButtonState**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState) 子对象（Normal / Hover / Focused / Pressed），每个有自己的 [**BackgroundFill**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState#backgroundfill)、[**Borders**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState#borders)、[**Corners**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState#corners) 和 [**TextRendering**](/official/Reference/CustomControls/WaynesButton/WaynesButtonState#textrendering)。
 
-Every style object raises an **OnChanged** event whenever any of its public fields is assigned. The hosting control listens for that event on each of its sub-objects and asks the framework to repaint, so style changes made at runtime are reflected immediately.
+每个样式对象在其任意公共字段被赋值时触发 **OnChanged** 事件。承载控件监听每个子对象上的此事件并请求框架重绘，因此运行时所做的样式更改会立即反映。
 
-| Class | Role |
-|-------|------|
-| [Anchors](/official/Reference/CustomControls/Styles/Anchors) | which sides of a control are attached to the container when it resizes |
-| [Borders](/official/Reference/CustomControls/Styles/Borders) | an array of border strokes drawn around a region; contains the per-stroke `Border` sub-object |
-| [Corners](/official/Reference/CustomControls/Styles/Corners) | the four corner shapes / radii of a region; contains the per-corner `Corner` sub-object |
-| [Fill](/official/Reference/CustomControls/Styles/Fill) | the colour or gradient that paints a region; contains the `FillColorPoint` and `FillColorPoints` sub-objects that hold the gradient stops |
-| [Line](/official/Reference/CustomControls/Styles/Line) | a single grid- or resizer-line stroke; a thinner shape than a full border |
-| [Padding](/official/Reference/CustomControls/Styles/Padding) | per-side padding around text inside a [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) |
-| [TextRendering](/official/Reference/CustomControls/Styles/TextRendering) | font, padding, fill, outlines, alignment, and overflow for text; contains the `FontStyle` sub-object that holds the font metrics |
+| 类 | 作用 |
+|----|------|
+| [Anchors](/official/Reference/CustomControls/Styles/Anchors) | 容器调整大小时控件的哪些边附着到容器 |
+| [Borders](/official/Reference/CustomControls/Styles/Borders) | 绘制在区域周围的边框笔触数组；包含逐笔触 `Border` 子对象 |
+| [Corners](/official/Reference/CustomControls/Styles/Corners) | 区域的四个角形状/半径；包含逐角 `Corner` 子对象 |
+| [Fill](/official/Reference/CustomControls/Styles/Fill) | 绘制区域的颜色或渐变；包含持有渐变 stops 的 `FillColorPoint` 和 `FillColorPoints` 子对象 |
+| [Line](/official/Reference/CustomControls/Styles/Line) | 单条网格线或调整条笔触；比完整边框更细的形状 |
+| [Padding](/official/Reference/CustomControls/Styles/Padding) | [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) 内文本的逐侧内边距 |
+| [TextRendering](/official/Reference/CustomControls/Styles/TextRendering) | 文本的字体、内边距、填充、轮廓、对齐和溢出；包含持有字体度量的 `FontStyle` 子对象 |
 
-The style classes are declared `Private Class` in the **CustomControlsPackage** source --- they cannot be created with `New` from outside the package, and a variable cannot be typed as e.g. `Dim x As Fill` from a referencing project. Application code accesses every style object exclusively through the property chain that hangs off a concrete control.
+样式类在 **CustomControlsPackage** 源码中声明为 `Private Class`——无法从包外使用 `New` 创建，无法在引用项目中声明如 `Dim x As Fill` 类型的变量。应用程序代码仅通过挂在具体控件上的属性链访问每个样式对象。

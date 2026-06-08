@@ -6,26 +6,26 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '7a4fc3a6-a61a-4cfb-84c1-e7415b032c4b'
-  PropagateID: '7a4fc3a6-a61a-4cfb-84c1-e7415b032c4b'
-  ReservedCode1: '4475ee97-926c-4c36-8a03-1cf62db087ad'
-  ReservedCode2: '4475ee97-926c-4c36-8a03-1cf62db087ad'
+  ProduceID: '2eef695a-d9bd-4a06-a764-577e8b99086a'
+  PropagateID: '2eef695a-d9bd-4a06-a764-577e8b99086a'
+  ReservedCode1: '765473dc-9072-4318-8f8d-97dd9b029faf'
+  ReservedCode2: '765473dc-9072-4318-8f8d-97dd9b029faf'
 ---
 
 # VarPtr
 
-Returns the address of a variable as a **LongPtr**.
+返回变量的地址，作为**LongPtr**。
 
-Syntax: **VarPtr(** *Var* **)**
+语法：**VarPtr(** *Var* **)**
 
 *Var*
-: *required* The variable whose pointer is to be obtained. Any type is accepted.
+: *必需* 要获取指针的变量。接受任何类型。
 
-The returned address is the storage location of *Var* itself --- the same place the runtime would write to for an assignment. For a numeric or fixed-length type the value of the variable lives at that address; for a **String** or **Variant** the value at the address is the variable's BSTR pointer or **VARIANT** descriptor.
+返回的地址是*Var*本身的存储位置——运行时进行赋值时写入的同一位置。对于数值或定长类型，变量的值就存放在该地址；对于**String**或**Variant**，该地址处的值是变量的BSTR指针或**VARIANT**描述符。
 
-Pass the result to an API function that needs a raw address, or pass it to one of the [**GetMem**\* / **PutMem**\*](/official/Reference/VBA/HiddenModule/) helpers to read or write the underlying bytes. The pointer is valid only for as long as *Var* is alive in its scope; locals, arguments, and elements of expanded arrays can move when their owning frame or array is reallocated.
+将结果传给需要原始地址的API函数，或传给[**GetMem**\* / **PutMem**\*](/official/Reference/VBA/HiddenModule/)辅助函数以读写底层字节。该指针仅在*Var*在其作用域内保持活动期间有效；局部变量、参数和扩展数组的元素在其所属帧或数组重新分配时可能会移动。
 
-### Example
+### 示例
 
 ```vb
 Dim n As Long
@@ -36,9 +36,7 @@ vbaCopyBytes 4, VarPtr(Bytes(0)), VarPtr(n)
 Debug.Print Hex(Bytes(0))        ' "78" — little-endian
 ```
 
-### See Also
+### 另请参阅
 
-- [ObjPtr](/official/Reference/VBA/Information/ObjPtr) function
-- [StrPtr](/official/Reference/VBA/Information/StrPtr) function
-
-> AI生成
+- [ObjPtr](/official/Reference/VBA/Information/ObjPtr)函数
+- [StrPtr](/official/Reference/VBA/Information/StrPtr)函数

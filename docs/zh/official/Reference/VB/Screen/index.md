@@ -1,43 +1,54 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6e9fee87-27a6-47c9-a2be-1a5f4e83ec40'
+  PropagateID: '6e9fee87-27a6-47c9-a2be-1a5f4e83ec40'
+  ReservedCode1: '5b1454fb-79a4-417a-a7dc-e1522244f7c4'
+  ReservedCode2: '5b1454fb-79a4-417a-a7dc-e1522244f7c4'
+---
+
 ---
 title: Screen
 parent: VB Package
 permalink: /tB/Packages/VB/Screen/
 ---
 
-# Screen class
+# Screen 类
 
-The **Screen** class wraps the user's primary display --- its dimensions and twip-to-pixel ratio, the list of installed fonts, the currently active [**Form**](/official/Reference/VB/Form/) and the currently focused control on that form, and the application-wide mouse-pointer override. It is a singleton: there is exactly one **Screen** instance per process, owned by the runtime and exposed through the [**Screen**](/official/Reference/VB/Global/#screen) property of the [**Global**](/official/Reference/VB/Global/) app-object. Code reaches it without qualification:
+**Screen**类包装用户的主显示器——其尺寸和缇到像素比率、已安装字体列表、当前活动的[**Form**](/official/Reference/VB/Form/)以及该窗体上当前拥有焦点的控件、以及应用程序范围的鼠标指针覆盖。它是单例：每个进程恰好有一个**Screen**实例，由运行时拥有，通过[**Global**](/official/Reference/VB/Global/)应用对象的[**Screen**](/official/Reference/VB/Global/#screen)属性公开。代码无需限定即可访问：
 
 ```vb
-' Centre a form on the primary display
+' 在主显示器上居中窗体
 Me.Left = (Screen.Width  - Me.Width)  \ 2
 Me.Top  = (Screen.Height - Me.Height) \ 2
 
-' Show an hourglass cursor across the whole application during a long task
+' 在长时间任务期间在整个应用程序上显示沙漏光标
 Screen.MousePointer = vbHourglass
 LongRunningWork
 Screen.MousePointer = vbDefault
 ```
 
 
-## Dimensions and DPI
+## 尺寸和DPI
 
-[**Width**](#width) and [**Height**](#height) report the primary monitor's dimensions in twips --- the same unit forms and controls use by default. The conversion factors are exposed too:
+[**Width**](#width)和[**Height**](#height)以缇报告主显示器的尺寸——窗体和控件默认使用的同一单位。转换因子也可获取：
 
-- [**TwipsPerPixelX**](#twipsperpixelx) -- twips per horizontal pixel on the primary display.
-- [**TwipsPerPixelY**](#twipsperpixely) -- twips per vertical pixel.
+- [**TwipsPerPixelX**](#twipsperpixelx)——主显示器每个水平像素的缇数。
+- [**TwipsPerPixelY**](#twipsperpixely)——每个垂直像素的缇数。
 
-On a 96-DPI display these are both `15` (1440 twips per logical inch ÷ 96 pixels per inch); on a 144-DPI display they are `10`. Use them when interop with the Win32 API forces a conversion between pixels and the form-side coordinate system.
+在96-DPI显示器上，两者均为`15`（每逻辑英寸1440缇÷每英寸96像素）；在144-DPI显示器上为`10`。当与Win32 API互操作需要强制在像素和窗体侧坐标系统之间转换时使用。
 
 ::: info
-twinBASIC's **Screen** describes the *primary* monitor only. For per-monitor information in a multi-monitor configuration, fall through to the Win32 `EnumDisplayMonitors` / `GetMonitorInfo` API.
+twinBASIC的**Screen**仅描述*主*显示器。对于多显示器配置中的逐显示器信息，请回退到Win32 `EnumDisplayMonitors` / `GetMonitorInfo` API。
 :::
 
-## Active form and active control
+## 活动窗体和活动控件
 
-[**ActiveForm**](#activeform) returns the [**Form**](/official/Reference/VB/Form/) instance that is currently the foreground form in the application; [**ActiveControl**](#activecontrol) returns the control within that form that currently holds the focus. Both return **Nothing** if no form in the application is active.
+[**ActiveForm**](#activeform)返回应用程序中当前为前台窗体的[**Form**](/official/Reference/VB/Form/)实例；[**ActiveControl**](#activecontrol)返回该窗体中当前拥有焦点的控件。如果应用程序中没有活动窗体，两者均返回**Nothing**。
 
-The most common idiom is accessing the active form from a global handler --- for example, a toolbar button on an [**MDIForm**](/official/Reference/VB/MDIForm/) that operates on whatever MDI child is in front:
+最常见的模式是从全局处理器访问活动窗体——例如，[**MDIForm**](/official/Reference/VB/MDIForm/)上对任何在前面的MDI子级进行操作的工具栏按钮：
 
 ```vb
 Private Sub tbrEdit_ButtonClick(ByVal Button As MSComctlLib.Button)
@@ -52,9 +63,9 @@ Private Sub tbrEdit_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 ```
 
-## Fonts
+## 字体
 
-[**FontCount**](#fontcount) is the number of fonts the OS reports for the current display context; [**Fonts**](#fonts)(*Index*) returns the name of the font at *Index* --- `0` to `FontCount - 1`. Together they let an application build a font-picker without going through the Win32 `EnumFontFamilies` API.
+[**FontCount**](#fontcount)是操作系统为当前显示上下文报告的字体数量；[**Fonts**](#fonts)(*Index*)返回*Index*处字体的名称——`0`到`FontCount - 1`。它们一起使应用程序无需通过Win32 `EnumFontFamilies` API即可构建字体选择器。
 
 ```vb
 Dim i As Integer
@@ -63,61 +74,61 @@ For i = 0 To Screen.FontCount - 1
 Next
 ```
 
-## Mouse pointer override
+## 鼠标指针覆盖
 
-[**MousePointer**](#mousepointer) is an application-wide cursor override. Setting it to anything other than **vbDefault** forces the chosen cursor over every window of the application, regardless of each individual control's own [**MousePointer**](/official/Reference/VB/CheckBox/#mousepointer) setting --- the typical use is showing the hourglass while a synchronous operation runs. Set it back to **vbDefault** when the operation completes.
+[**MousePointer**](#mousepointer)是应用程序范围的光标覆盖。将其设置为**vbDefault**以外的值会将所选光标强制应用于应用程序的每个窗口，忽略每个控件各自的[**MousePointer**](/official/Reference/VB/CheckBox/#mousepointer)设置——典型用途是在同步操作运行期间显示沙漏。操作完成后将其设置回**vbDefault**。
 
-[**MouseIcon**](#mouseicon) supplies a custom **StdPicture** to use when [**MousePointer**](#mousepointer) is **vbCustom**.
+[**MouseIcon**](#mouseicon)提供当[**MousePointer**](#mousepointer)为**vbCustom**时使用的自定义**StdPicture**。
 
-## Properties
+## 属性
 
 ### ActiveControl
 
-The control on the [**ActiveForm**](#activeform) that currently has the input focus, as a [**Control**](/official/Reference/VB/CheckBox/) reference, or **Nothing** if no form is active. Read-only.
+[**ActiveForm**](#activeform)上当前拥有输入焦点的控件，作为[**Control**](/official/Reference/VB/CheckBox/)引用，如果没有活动窗体则为**Nothing**。只读。
 
 ### ActiveForm
 
-The [**Form**](/official/Reference/VB/Form/) that is currently the foreground form in the application, or **Nothing** if no form is active. Read-only.
+应用程序中当前为前台窗体的[**Form**](/official/Reference/VB/Form/)，如果没有活动窗体则为**Nothing**。只读。
 
 ### FontCount
 
-The number of fonts the OS reports as available on the current display context. **Integer**, read-only.
+操作系统报告为当前显示上下文可用的字体数量。**Integer**，只读。
 
 ### Fonts
 
-The name of the font at the given zero-based index, in the order the OS reported it. **String**, read-only.
+给定从0开始的索引处的字体名称，按操作系统报告的顺序。**String**，只读。
 
-Syntax: *object*.**Fonts**( *Index* )
+语法：*object*.**Fonts**( *Index* )
 
 *Index*
-: *required* An **Integer** in the range `0` to [**FontCount**](#fontcount) `- 1`. Out-of-range indices return an empty string.
+: *必需* 范围为`0`到[**FontCount**](#fontcount) `- 1`的**Integer**。超出范围的索引返回空字符串。
 
 ### Height
 
-The height of the primary display, in twips. **Single**, read-only.
+主显示器的高度，以缇为单位。**Single**，只读。
 
 ### MouseIcon
 
-The custom cursor picture used when [**MousePointer**](#mousepointer) is **vbCustom**, as a **StdPicture**. Readable, writable (`Let`), and assignable by reference (`Set`).
+当[**MousePointer**](#mousepointer)为**vbCustom**时使用的自定义光标图片，类型为**StdPicture**。可读可写（`Let`），可通过引用赋值（`Set`）。
 
 ### MousePointer
 
-The application-wide mouse-pointer override, as a member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants). **Integer**, readable and writable.
+应用程序范围的鼠标指针覆盖，作为[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。**Integer**，可读可写。
 
-Setting **MousePointer** to anything other than **vbDefault** (0) forces the chosen cursor over every window of the application, ignoring per-control overrides. The typical use is showing **vbHourglass** during a synchronous long-running operation; set it back to **vbDefault** when the operation finishes.
+将**MousePointer**设置为**vbDefault** (0)以外的值会将所选光标强制应用于应用程序的每个窗口，忽略每个控件的覆盖。典型用途是在同步长时间操作期间显示**vbHourglass**；操作完成后设置回**vbDefault**。
 
 ### TwipsPerPixelX
 
-The number of twips per horizontal pixel on the primary display, as a **Single**. Effectively `1440 / dpi_x`. Returned by a parameterless function call.
+主显示器每个水平像素的缇数，类型为**Single**。有效值为`1440 / dpi_x`。通过无参数函数调用返回。
 
-Syntax: *object*.**TwipsPerPixelX**( )
+语法：*object*.**TwipsPerPixelX**( )
 
 ### TwipsPerPixelY
 
-The number of twips per vertical pixel on the primary display, as a **Single**. Effectively `1440 / dpi_y`. Returned by a parameterless function call.
+主显示器每个垂直像素的缇数，类型为**Single**。有效值为`1440 / dpi_y`。通过无参数函数调用返回。
 
-Syntax: *object*.**TwipsPerPixelY**( )
+语法：*object*.**TwipsPerPixelY**( )
 
 ### Width
 
-The width of the primary display, in twips. **Single**, read-only.
+主显示器的宽度，以缇为单位。**Single**，只读。

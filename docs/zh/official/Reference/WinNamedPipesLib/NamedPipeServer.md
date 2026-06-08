@@ -1,13 +1,22 @@
 ---
 title: NamedPipeServer
-parent: WinNamedPipesLib Package
+parent: "WinNamedPipesLib 包"
 permalink: /tB/Packages/WinNamedPipesLib/NamedPipeServer
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4b1b49a9-0fd5-4a80-a41f-6b01a2ab6c55'
+  PropagateID: '4b1b49a9-0fd5-4a80-a41f-6b01a2ab6c55'
+  ReservedCode1: '8272b03f-43b8-4c04-8ecd-61d6aa4ea68d'
+  ReservedCode2: '8272b03f-43b8-4c04-8ecd-61d6aa4ea68d'
 ---
 
-# NamedPipeServer class
-Hosts one named pipe and accepts an unbounded number of concurrent client connections, each represented by a [**NamedPipeServerConnection**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection). The class owns a Windows I/O Completion Port and a configurable pool of worker threads that handle every connection's reads, writes, and connect notifications. Instantiate with **New**.
+# NamedPipeServer 类
 
-Configure the public fields ([**PipeName**](#pipename) is required, the others have reasonable defaults), call [**Start**](#start), and respond to the lifecycle events as clients arrive and exchange messages. The package opens the underlying pipe as **PIPE_TYPE_MESSAGE** / **PIPE_READMODE_MESSAGE** --- messages preserve their boundaries between sender and receiver.
+承载一个命名管道并接受无限数量的并发客户端连接，每个连接由 [**NamedPipeServerConnection**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) 表示。该类拥有一个Windows I/O完成端口和一个可配置的工作线程池，处理每个连接的读取、写入和连接通知。使用 **New** 实例化。
+
+配置公共字段（[**PipeName**](#pipename) 必填，其他有合理默认值），调用 [**Start**](#start)，并响应客户端到达和交换消息的生命周期事件。包以 **PIPE_TYPE_MESSAGE** / **PIPE_READMODE_MESSAGE** 方式打开底层管道——消息在发送方和接收方之间保持边界。
 
 ```vb
 Private WithEvents server As NamedPipeServer
@@ -26,153 +35,153 @@ Private Sub server_ClientMessageReceived( _
         Connection As NamedPipeServerConnection, _
         ByRef Cookie As Variant, _
         ByRef Data() As Byte)
-    Connection.AsyncWrite Data        ' echo it back
+    Connection.AsyncWrite Data        ' 原样回显
 End Sub
 ```
 
-See the package [overview](/official/Reference/WinNamedPipesLib/) for the IOCP / event-marshalling architecture, the cookie correlation pattern, and the transient lifetime of `Data() As Byte` inside events.
+参见包[概述](/official/Reference/WinNamedPipesLib/)了解IOCP/事件封送架构、cookie关联模式和事件中 `Data() As Byte` 的瞬时生命周期。
 
-## Properties
+## 属性
 
 ### ContinuouslyReadFromPipe
 
-When **True** (the default), the server keeps a read pending against every connected client at all times --- every [**ClientMessageReceived**](#clientmessagereceived) is followed by an automatic `AsyncRead` issued from inside the IOCP thread. Set to **False** to handle reads one-at-a-time; each [**ClientMessageReceived**](#clientmessagereceived) handler must then call [**NamedPipeServerConnection.AsyncRead**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) to receive the next message. **Boolean**, default **True**.
+当 **True**（默认）时，服务器始终对每个已连接客户端保持一个待处理读取——每个 [**ClientMessageReceived**](#clientmessagereceived) 之后，IOCP线程内部会发出一个自动的 `AsyncRead`。设置为 **False** 以逐个处理读取；每个 [**ClientMessageReceived**](#clientmessagereceived) 处理程序必须随后调用 [**NamedPipeServerConnection.AsyncRead**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) 来接收下一条消息。**Boolean**，默认 **True**。
 
 ### FreeThreadingEvents
 
-Controls where the lifecycle and message events are raised. When **False** (the default), the IOCP worker threads marshal each event to the main UI thread through a hidden message-only window, and the consuming process must be pumping a Win32 message loop. When **True**, events fire directly on whichever IOCP worker thread received the completion --- no message-loop dependency, but the consumer's event handlers must be thread-safe. **Boolean**, default **False**.
+控制生命周期和消息事件在何处引发。当 **False**（默认）时，IOCP工作线程通过隐藏的仅消息窗口将每个事件封送到主UI线程，消费进程必须正在泵送Win32消息循环。当 **True** 时，事件直接在接收到完成的IOCP工作线程上触发——无消息循环依赖，但消费者的事件处理程序必须是线程安全的。**Boolean**，默认 **False**。
 
-Set this before calling [**Start**](#start); it is read once when the worker threads are created and propagated to every [**NamedPipeServerConnection**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection).
+在调用 [**Start**](#start) 之前设置此项；它在创建工作线程时读取一次并传播到每个 [**NamedPipeServerConnection**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection)。
 
 ### MessageBufferSize
 
-The size, in bytes, of the per-completion `ReadFile` buffer initially allocated for each connection. **Long**, default **131072** (128 KiB). Does not cap the maximum message size --- on `ERROR_MORE_DATA` the IOCP loop allocates a larger overflow buffer and re-issues the read --- but the initial size affects how often that overflow path runs, and so affects throughput for sustained large-message traffic.
+为每个连接初始分配的每完成 `ReadFile` 缓冲区大小（字节）。**Long**，默认 **131072**（128 KiB）。不限制最大消息大小——在 `ERROR_MORE_DATA` 时IOCP循环分配更大的溢出缓冲区并重新发出读取——但初始大小影响该溢出路径的运行频率，从而影响持续大消息流量的吞吐量。
 
 ### NumThreadsIOCP
 
-The number of IOCP worker threads created by [**Start**](#start). **Long**, default **1**. One thread is enough for most scenarios because every blocking call inside the worker is an overlapped Win32 operation that releases the thread immediately. Raise this to allow multiple [**ClientMessageReceived**](#clientmessagereceived) handlers to run concurrently under [**FreeThreadingEvents**](#freethreadingevents) = **True**, or to keep up with heavy traffic on multi-core hardware. Set this before calling [**Start**](#start).
+由 [**Start**](#start) 创建的IOCP工作线程数。**Long**，默认 **1**。一个线程对于大多数场景足够，因为工作器内的每个阻塞调用都是重叠的Win32操作，会立即释放线程。提高此值以允许多个 [**ClientMessageReceived**](#clientmessagereceived) 处理程序在 [**FreeThreadingEvents**](#freethreadingevents) = **True** 下并发运行，或者在多核硬件上跟上大流量。在调用 [**Start**](#start) 之前设置此项。
 
 ### PipeName
 
-The name the pipe is published under. **String**, no default. The Win32 pipe namespace path is `\\.\pipe\<PipeName>` --- the package prepends `\\.\pipe\` itself; pass just the leaf name.
+管道发布的名称。**String**，无默认值。Win32管道命名空间路径为 `\\.\pipe\<PipeName>`——包自行添加 `\\.\pipe\` 前缀；只需传递叶名称。
 
 ::: important
-[**PipeName**](#pipename) must be set to a non-empty value before [**Start**](#start), or [**Start**](#start) raises run-time error 5 (*"cannot start without specifying a pipe name"*).
+[**PipeName**](#pipename) 必须在 [**Start**](#start) 之前设置为非空值，否则 [**Start**](#start) 引发运行时错误5（*"cannot start without specifying a pipe name"*）。
 :::
 
-## Events
+## 事件
 
 ### ClientConnected
 
-Fires after a client's `ConnectNamedPipe` has completed and the connection is ready for message exchange.
+在客户端的 `ConnectNamedPipe` 完成且连接准备好进行消息交换之后触发。
 
-Syntax: *server*_**ClientConnected**(*Connection* **As NamedPipeServerConnection**)
+语法：*server*_**ClientConnected**(*Connection* **As NamedPipeServerConnection**)
 
 *Connection*
-: The newly-connected client's server-side connection object. Hold the reference to keep per-client state across messages --- the same instance is passed to every event for this client. **Cookie** / `Tag`-style storage is available through [**NamedPipeServerConnection.CustomData**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#customdata).
+: 新连接客户端的服务器端连接对象。持有引用以在消息之间保持每客户端状态——同一实例传递给该客户端的每个事件。可通过 [**NamedPipeServerConnection.CustomData**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#customdata) 使用 **Cookie** / `Tag` 样式存储。
 
 ### ClientDisconnected
 
-Fires once the client has dropped *and* every outstanding asynchronous I/O against the connection has returned. The connection object is no longer usable for I/O after this event.
+在客户端已断开*且*对连接的每个未完成异步I/O已返回后触发一次。此事件后连接对象不再可用于I/O。
 
-Syntax: *server*_**ClientDisconnected**(*Connection* **As NamedPipeServerConnection**)
+语法：*server*_**ClientDisconnected**(*Connection* **As NamedPipeServerConnection**)
 
 *Connection*
-: The connection that has just shut down. Its [**IsConnected**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#isconnected) is **False**.
+: 刚刚关闭的连接。其 [**IsConnected**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#isconnected) 为 **False**。
 
 ### ClientMessageReceived
 
-Fires when a complete message has been read from the pipe.
+当从管道读取完整消息时触发。
 
-Syntax: *server*_**ClientMessageReceived**(*Connection* **As NamedPipeServerConnection**, **ByRef** *Cookie* **As Variant**, **ByRef** *Data*() **As Byte**)
+语法：*server*_**ClientMessageReceived**(*Connection* **As NamedPipeServerConnection**, **ByRef** *Cookie* **As Variant**, **ByRef** *Data*() **As Byte**)
 
 *Connection*
-: The connection the message came from.
+: 消息来源的连接。
 
 *Cookie*
-: The opaque correlation value originally passed to the [**NamedPipeServerConnection.AsyncRead**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) that produced this read --- or **Empty** if the read came from the auto-issued reads triggered by [**ContinuouslyReadFromPipe**](#continuouslyreadfrompipe).
+: 最初传递给产生此读取的 [**NamedPipeServerConnection.AsyncRead**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) 的不透明关联值——如果读取来自 [**ContinuouslyReadFromPipe**](#continuouslyreadfrompipe) 触发的自动发起读取则为 **Empty**。
 
 *Data*
-: The message payload. See [Working with `Data() As Byte` in events](/official/Reference/WinNamedPipesLib/#working-with-data-as-byte-in-events) on the package overview for the transient-buffer lifetime caveat --- copy the bytes out before the handler returns if they are needed later. The [recommended capture mechanism](/official/Reference/WinNamedPipesLib/#propertybag-carrier) is to assign *Data* to a fresh [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/)'s **Contents**, which deep-copies the bytes and provides typed multi-field access in one step.
+: 消息载荷。参见包概述上的[在事件中使用 `Data() As Byte`](/official/Reference/WinNamedPipesLib/#working-with-data-as-byte-in-events)了解瞬时缓冲区生命周期注意事项——如果稍后需要字节，请在处理程序返回之前将其复制出来。[推荐的捕获机制](/official/Reference/WinNamedPipesLib/#propertybag-carrier)是将 *Data* 赋值给新的 [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/) 的 **Contents**，这会深拷贝字节并一步提供类型化的多字段访问。
 
 ### ClientMessageSent
 
-Fires when a previously-issued [**NamedPipeServerConnection.AsyncWrite**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) has completed (or when an [**AsyncBroadcast**](#asyncbroadcast) message reaches each individual client).
+当之前发出的 [**NamedPipeServerConnection.AsyncWrite**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) 已完成（或当 [**AsyncBroadcast**](#asyncbroadcast) 消息到达每个客户端）时触发。
 
-Syntax: *server*_**ClientMessageSent**(*Connection* **As NamedPipeServerConnection**, **ByRef** *Cookie* **As Variant**)
+语法：*server*_**ClientMessageSent**(*Connection* **As NamedPipeServerConnection**, **ByRef** *Cookie* **As Variant**)
 
 *Connection*
-: The connection the write went out on.
+: 写出时使用的连接。
 
 *Cookie*
-: The opaque correlation value that was passed to the originating [**AsyncWrite**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) call.
+: 传递给发起 [**AsyncWrite**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) 调用的不透明关联值。
 
 ### ServerReady
 
-Fires once, after [**Start**](#start), when every IOCP worker thread has joined the completion-port loop and the first connection listener is published. Use this as the "the server is now accepting connections" signal.
+在 [**Start**](#start) 之后触发一次，当每个IOCP工作线程已加入完成端口循环且第一个连接监听器已发布时。用作"服务器现在正在接受连接"的信号。
 
-Syntax: *server*_**ServerReady**()
+语法：*server*_**ServerReady**()
 
-## Methods
+## 方法
 
 ### AsyncBroadcast
 
-Issues an [**AsyncWrite**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) against every currently-connected client.
+向每个当前已连接的客户端发出 [**AsyncWrite**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite)。
 
-Syntax: *server*.**AsyncBroadcast** *Data*() [, *Cookie* ]
+语法：*server*.**AsyncBroadcast** *Data*() [, *Cookie* ]
 
 *Data*
-: *required* The message bytes to send. twinBASIC will coerce a **String** literal to **Byte()** implicitly, so `server.AsyncBroadcast "shutting down"` works without a separate `StrConv` step --- useful for protocol-less server-pushed notifications.
+: *必需* 要发送的消息字节。twinBASIC 会将 **String** 字面量隐式强制转换为 **Byte()**，因此 `server.AsyncBroadcast "shutting down"` 无需单独的 `StrConv` 步骤即可工作——用于无协议的服务器推送通知很方便。
 
 *Cookie*
-: *optional* A **Variant** correlation value, attached to *each* per-client [**ClientMessageSent**](#clientmessagesent) event. Default **Empty**.
+: *可选* 附加到*每个*每客户端 [**ClientMessageSent**](#clientmessagesent) 事件的 **Variant** 关联值。默认 **Empty**。
 
-The set of recipients is snapshotted under a lock at the start of the call. Clients connecting after the snapshot do not receive this broadcast; clients disconnecting after the snapshot but before their per-client write completes simply fail that individual write silently.
+接收者集合在调用开始时在锁下快照。快照后连接的客户端不接收此广播；快照后但在每客户端写入完成之前断开连接的客户端只会静默失败该个别写入。
 
 ### ManualMessageLoopEnter
 
-Runs a Win32 message loop on the calling thread until [**ManualMessageLoopLeave**](#manualmessageloopleave) is called from another thread (or any handler raises a `WM_USER_QUITTING` posting).
+在调用线程上运行Win32消息循环，直到从另一个线程调用 [**ManualMessageLoopLeave**](#manualmessageloopleave)（或任何处理程序引发 `WM_USER_QUITTING` 发布）。
 
-Syntax: *server*.**ManualMessageLoopEnter**
+语法：*server*.**ManualMessageLoopEnter**
 
-Intended for console / service hosts that do not have a Forms-style message pump of their own but want the default ([**FreeThreadingEvents**](#freethreadingevents) = **False**) marshalled-event semantics. UI hosts already pump messages naturally and do not need this method.
+用于没有自己Forms风格消息泵但想要默认（[**FreeThreadingEvents**](#freethreadingevents) = **False**）封送事件语义的控制台/服务宿主。UI宿主自然地泵送消息，不需要此方法。
 
-The canonical caller is a Windows service that owns this server: the service-thread entry-point opens the server, transitions the service to `Running`, calls **ManualMessageLoopEnter** to block while events flow, and a control-code handler running on the dispatcher thread calls [**ManualMessageLoopLeave**](#manualmessageloopleave) when the SCM signals stop. See [Hosting inside a Windows service](/official/Reference/WinNamedPipesLib/#service-host-idiom) on the package overview for the complete pattern, including the two-thread coordination and the *Pause* / *Continue* extension.
+典型调用者是拥有此服务器的Windows服务：服务线程入口点打开服务器，将服务转换为 `Running`，调用 **ManualMessageLoopEnter** 在事件流动时阻塞，当SCM发出停止信号时，运行在调度器线程上的控制代码处理程序调用 [**ManualMessageLoopLeave**](#manualmessageloopleave)。参见包概述上的[在Windows服务中托管](/official/Reference/WinNamedPipesLib/#service-host-idiom)了解完整模式，包括双线程协调和 *Pause* / *Continue* 扩展。
 
 ### ManualMessageLoopLeave
 
-Posts a `WM_USER_QUITTING` message to the hidden marshalling window, causing the [**ManualMessageLoopEnter**](#manualmessageloopenter) loop on the other thread to exit. Safe to call from any thread.
+向隐藏的封送窗口发送 `WM_USER_QUITTING` 消息，使另一个线程上的 [**ManualMessageLoopEnter**](#manualmessageloopenter) 循环退出。可从任何线程安全调用。
 
-Syntax: *server*.**ManualMessageLoopLeave**
+语法：*server*.**ManualMessageLoopLeave**
 
-The intended caller is a thread *other* than the one inside [**ManualMessageLoopEnter**](#manualmessageloopenter) --- typically the Windows service's dispatcher thread waking the service-entry-point thread out of its blocked loop. See [Hosting inside a Windows service](/official/Reference/WinNamedPipesLib/#service-host-idiom).
+预期调用者是在 [**ManualMessageLoopEnter**](#manualmessageloopenter) *之外*的线程——通常是Windows服务的调度器线程唤醒服务入口点线程离开其阻塞循环。参见[在Windows服务中托管](/official/Reference/WinNamedPipesLib/#service-host-idiom)。
 
 ### Start
 
-Creates the I/O Completion Port, starts [**NumThreadsIOCP**](#numthreadsiocp) worker threads, and publishes the first connection listener under `\\.\pipe\<PipeName>`. Fires [**ServerReady**](#serverready) when every worker has joined.
+创建I/O完成端口，启动 [**NumThreadsIOCP**](#numthreadsiocp) 个工作线程，并在 `\\.\pipe\<PipeName>` 下发布第一个连接监听器。当每个工作线程已加入时触发 [**ServerReady**](#serverready)。
 
-Syntax: *server*.**Start**
+语法：*server*.**Start**
 
-Raises run-time error 5 *"cannot start without specifying a pipe name"* if [**PipeName**](#pipename) is empty, or *"unable to create an IOCP port"* if `CreateIoCompletionPort` fails.
+如果 [**PipeName**](#pipename) 为空则引发运行时错误5 *"cannot start without specifying a pipe name"*，或如果 `CreateIoCompletionPort` 失败则引发 *"unable to create an IOCP port"*。
 
-Idempotent: calling [**Start**](#start) while the server is already running is a no-op.
+幂等：在服务器已运行时调用 [**Start**](#start) 为无操作。
 
 ### Stop
 
-Cancels every outstanding I/O on every connection, posts the IOCP shutdown sentinel to each worker, waits for the threads to exit, closes every pipe handle, and frees the completion port. Idempotent: calling [**Stop**](#stop) on a server that has not been started --- or has already been stopped --- is a no-op. Automatically invoked from `Class_Terminate`, so a server going out of scope closes resources implicitly.
+取消每个连接上每个未完成的I/O，向每个工作线程发送IOCP关闭哨兵，等待线程退出，关闭每个管道句柄，并释放完成端口。幂等：在未启动或已停止的服务器上调用 [**Stop**](#stop) 为无操作。自动从 `Class_Terminate` 调用，因此超出作用域的服务器隐式关闭资源。
 
-Syntax: *server*.**Stop**
+语法：*server*.**Stop**
 
 ### New
 
-Constructs a server in the not-yet-started state. Creates the hidden `STATIC`-class message window used to marshal IOCP-thread completions back to the UI thread.
+在尚未启动的状态下构造服务器。创建用于将IOCP线程完成封送回UI线程的隐藏 `STATIC` 类消息窗口。
 
-Syntax: **New NamedPipeServer**
+语法：**New NamedPipeServer**
 
-## See Also
+## 另见
 
-- [WinNamedPipesLib package](/official/Reference/WinNamedPipesLib/) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, known limitations
-- [Hosting inside a Windows service](/official/Reference/WinNamedPipesLib/#service-host-idiom) -- the **ManualMessageLoopEnter** / **ManualMessageLoopLeave** service-entry-point pattern
-- [Recommended payload encoding: `PropertyBag`](/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- the deep-copy capture pattern for transient *Data* in events
-- [NamedPipeServerConnection class](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) -- the per-client connection passed to every event
-- [NamedPipeClientManager class](/official/Reference/WinNamedPipesLib/NamedPipeClientManager) -- the client-side counterpart
+- [WinNamedPipesLib 包](/official/Reference/WinNamedPipesLib/) -- 概述、IOCP/事件封送架构、cookie模式、`Data()` 生命周期注意事项、已知限制
+- [在Windows服务中托管](/official/Reference/WinNamedPipesLib/#service-host-idiom) -- **ManualMessageLoopEnter** / **ManualMessageLoopLeave** 服务入口点模式
+- [推荐的载荷编码：`PropertyBag`](/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- 事件中瞬时 *Data* 的深拷贝捕获模式
+- [NamedPipeServerConnection 类](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) -- 传递给每个事件的每客户端连接
+- [NamedPipeClientManager 类](/official/Reference/WinNamedPipesLib/NamedPipeClientManager) -- 客户端对应项

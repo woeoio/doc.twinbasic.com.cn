@@ -2,33 +2,42 @@
 title: Mod
 parent: Operators
 permalink: /tB/Core/Mod
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0e2921b4-b184-44b6-873b-8b35875de905'
+  PropagateID: '0e2921b4-b184-44b6-873b-8b35875de905'
+  ReservedCode1: 'faa24356-bedd-432e-8f2f-9d092db5734e'
+  ReservedCode2: 'faa24356-bedd-432e-8f2f-9d092db5734e'
 ---
-# Mod operator
 
-Used to divide two numbers and return only the remainder.
+# Mod 运算符
 
-Syntax:
+用于将两个数相除并仅返回余数。
+
+语法：
 > *result* **=** *number1* **Mod** *number2*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *number1*, *number2*
-: Any numeric expressions.
+: 任意数值表达式。
 
-The modulus, or remainder, operator divides *number1* by *number2* (rounding floating-point numbers to integers) and returns only the remainder as *result*. For example, in the following expression, A (*result*) equals 5:
+取模（或余数）运算符将 *number1* 除以 *number2*（将浮点数舍入为整数）并仅返回余数作为 *result*。例如，在以下表达式中，A（*result*）等于5：
 
 ```vb
 A = 19 Mod 6.7
 ```
 
-Usually, the data type of *result* is **Byte**, **Byte** variant, **Integer**, **Integer** variant, **Long**, or **Variant** containing a **Long**, regardless of whether *result* is a whole number. Any fractional portion is truncated.
+通常，*result* 的数据类型为 **Byte**、**Byte** 变体、**Integer**、**Integer** 变体、**Long** 或包含 **Long** 的 **Variant**，无论 *result* 是否为整数。任何小数部分被截断。
 
-However, if any operand is **Null**, *result* is **Null**. Any operand that is **Empty** is treated as 0.
+但如果任一操作数为 **Null**，则 *result* 为 **Null**。任何为 **Empty** 的操作数被视为0。
 
-### Example
+### 示例
 
-This example uses the **Mod** operator to divide two numbers and return only the remainder. If either number is a floating-point number, it is first rounded to an integer.
+本示例使用 **Mod** 运算符将两个数相除并仅返回余数。如果任一数为浮点数，先舍入为整数。
 
 ```vb
 Dim MyResult
@@ -38,8 +47,8 @@ MyResult = 12 Mod 4.3   ' Returns 0.
 MyResult = 12.6 Mod 5   ' Returns 3.
 ```
 
-### See Also
+### 另请参阅
 
-- [**\\** operator](/official/Reference/Core/IntegerDivide)
-- [**/** operator](/official/Reference/Core/Divide)
-- [Operators](/official/Reference/Operators)
+- [**\\** 运算符](/official/Reference/Core/IntegerDivide)
+- [**/** 运算符](/official/Reference/Core/Divide)
+- [运算符](/official/Reference/Operators)

@@ -47,7 +47,7 @@ A linked object's last-cached presentation can be re-fetched from its server wit
 
 ## Data binding
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the container's contents to a binary field on a [**Data**](/official/Reference/VB/Data/) control's recordset, so the embedded object is loaded from and saved back into the row. [**DataChanged**](#datachanged) reports whether the contained object differs from the bound row's stored value.
+Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the container's contents to a binary field on a [**Data**](/en/official/Reference/VB/Data/) control's recordset, so the embedded object is loaded from and saved back into the row. [**DataChanged**](#datachanged) reports whether the contained object differs from the bound row's stored value.
 
 ## Properties
 
@@ -69,7 +69,7 @@ The set of edges of the parent that the OLE control's corresponding edges follow
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-Determines how the container's border is drawn. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+Determines how the container's border is drawn. A member of [**AppearanceConstants**](/en/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
 
 ### AppIsRunning
 
@@ -85,7 +85,7 @@ A run-time-only **Boolean**: **True** while the OLE server hosting the embedded 
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-Selects when the embedded object is activated for in-place editing. A member of [**OLEContainerActivateConstants**](/official/Reference/VBRUN/Constants/OLEContainerActivateConstants): **vbOLE_ActivateManual**, **vbOLE_ActivateGetFocus**, **vbOLE_ActivateDoubleclick** (default), or **vbOLE_ActivateAuto**.
+Selects when the embedded object is activated for in-place editing. A member of [**OLEContainerActivateConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerActivateConstants): **vbOLE_ActivateManual**, **vbOLE_ActivateGetFocus**, **vbOLE_ActivateDoubleclick** (default), or **vbOLE_ActivateAuto**.
 
 ### AutoVerbMenu
 
@@ -109,7 +109,7 @@ The background colour, as an **OLE_COLOR**. Defaults to the system window-backgr
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-Selects between an opaque and transparent background ([**BackFillStyleConstants**](/official/Reference/VBRUN/Constants/BackFillStyleConstants)): **vbBFTransparent** or **vbBFOpaque** (default).
+Selects between an opaque and transparent background ([**BackFillStyleConstants**](/en/official/Reference/VBRUN/Constants/BackFillStyleConstants)): **vbBFTransparent** or **vbBFOpaque** (default).
 
 ### BorderStyle
 
@@ -117,7 +117,7 @@ Selects between an opaque and transparent background ([**BackFillStyleConstants*
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-Whether the container is drawn with a border. A member of [**ControlBorderStyleConstants**](/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** or **vbFixedSingleBorder** (default).
+Whether the container is drawn with a border. A member of [**ControlBorderStyleConstants**](/en/official/Reference/VBRUN/Constants/ControlBorderStyleConstants): **vbNoBorder** or **vbFixedSingleBorder** (default).
 
 ### CausesValidation
 
@@ -137,7 +137,7 @@ The control that hosts this OLE control --- typically the form. Read with **Get*
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as an OLE container. Always **vbOLEControl**.
+A read-only [**ControlTypeConstants**](/en/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as an OLE container. Always **vbOLEControl**.
 
 ### Data
 
@@ -169,7 +169,7 @@ The name of the binary field, in the recordset of the bound [**DataSource**](#da
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-A reference to a [**Data**](/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+A reference to a [**Data**](/en/official/Reference/VB/Data/) control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
 
 ### DataText
 
@@ -185,11 +185,11 @@ A run-time-only **String** alias for transferring text-format data into and out 
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-Whether the container shows the object's content or its registered icon. A member of [**OLEContainerDisplayTypeConstants**](/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants): **vbOLE_DisplayContent** (default) or **vbOLE_DisplayIcon**.
+Whether the container shows the object's content or its registered icon. A member of [**OLEContainerDisplayTypeConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerDisplayTypeConstants): **vbOLE_DisplayContent** (default) or **vbOLE_DisplayIcon**.
 
 ### Dock
 
-Where the OLE control is docked within its container. A member of [**DockModeConstants**](/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked controls ignore [**Anchors**](#anchors).
+Where the OLE control is docked within its container. A member of [**DockModeConstants**](/en/official/Reference/VBRUN/Constants/DockModeConstants): **vbDockNone** (default), **vbDockLeft**, **vbDockTop**, **vbDockRight**, **vbDockBottom**, or **vbDockFill**. Docked controls ignore [**Anchors**](#anchors).
 
 ### DragIcon
 
@@ -197,7 +197,7 @@ A **StdPicture** used as the mouse cursor while the control is being drag-and-dr
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/en/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
 
 ### Enabled
 
@@ -265,7 +265,7 @@ A run-time-only **LongPtr** giving the raw `IOleObject` interface pointer of the
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-A bit-mask of miscellaneous container behaviours (see [**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLEMiscFlagMemStorage**, **vbOLEMiscFlagDisableInPlace**). **Long**.
+A bit-mask of miscellaneous container behaviours (see [**OLEContainerConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLEMiscFlagMemStorage**, **vbOLEMiscFlagDisableInPlace**). **Long**.
 
 ### MouseIcon
 
@@ -273,7 +273,7 @@ A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer)
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/en/official/Reference/VBRUN/Constants/MousePointerConstants).
 
 ### Name
 
@@ -357,7 +357,7 @@ When **True**, the container accepts OLE objects dragged onto it from outside th
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-A run-time-only **Integer** reporting whether the contained object is currently linked, embedded, or empty (see [**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLELinked**, **vbOLEEmbedded**, **vbOLEEither**, **vbOLENone**).
+A run-time-only **Integer** reporting whether the contained object is currently linked, embedded, or empty (see [**OLEContainerConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLELinked**, **vbOLEEmbedded**, **vbOLEEither**, **vbOLENone**).
 
 ### OLETypeAllowed
 
@@ -365,11 +365,11 @@ A run-time-only **Integer** reporting whether the contained object is currently 
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-Restricts which kinds of contained object the container will accept. A member of [**OLEContainerTypesAllowedConstants**](/official/Reference/VBRUN/Constants/OLEContainerTypesAllowedConstants): **vbOLE_Linked**, **vbOLE_Embedded**, or **vbOLE_Either** (default).
+Restricts which kinds of contained object the container will accept. A member of [**OLEContainerTypesAllowedConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerTypesAllowedConstants): **vbOLE_Linked**, **vbOLE_Embedded**, or **vbOLE_Either** (default).
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that contains this control. Read-only.
+A reference to the [**Form**](/en/official/Reference/VB/Form/) (or **UserControl**) that contains this control. Read-only.
 
 ### PasteOK
 
@@ -385,7 +385,7 @@ A run-time-only, read-only **Boolean**: **True** if the current clipboard conten
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-A run-time-only, read-only **IPictureDisp** giving the contained object's current presentation as a picture, suitable for printing or copying onto a [**PictureBox**](/official/Reference/VB/PictureBox/).
+A run-time-only, read-only **IPictureDisp** giving the contained object's current presentation as a picture, suitable for printing or copying onto a [**PictureBox**](/en/official/Reference/VB/PictureBox/).
 
 ### SizeMode
 
@@ -393,7 +393,7 @@ A run-time-only, read-only **IPictureDisp** giving the contained object's curren
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-How the contained object's bitmap is fitted into the container. A member of [**OLEContainerSizeModeConstants**](/official/Reference/VBRUN/Constants/OLEContainerSizeModeConstants): **vbOLE_SizeClip** (default), **vbOLE_SizeStretch**, **vbOLE_SizeAutoSize**, or **vbOLE_SizeZoom**.
+How the contained object's bitmap is fitted into the container. A member of [**OLEContainerSizeModeConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerSizeModeConstants): **vbOLE_SizeClip** (default), **vbOLE_SizeStretch**, **vbOLE_SizeAutoSize**, or **vbOLE_SizeZoom**.
 
 ### SourceDoc
 
@@ -433,7 +433,7 @@ The vertical distance from the top of the container to the top of the control. *
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-How a linked object's cached presentation is refreshed. A member of [**OLEContainerUpdateOptionsConstants**](/official/Reference/VBRUN/Constants/OLEContainerUpdateOptionsConstants): **vbOLE_UpdateAutomatic** (default), **vbOLE_UpdateFrozen**, or **vbOLE_UpdateManual**.
+How a linked object's cached presentation is refreshed. A member of [**OLEContainerUpdateOptionsConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerUpdateOptionsConstants): **vbOLE_UpdateAutomatic** (default), **vbOLE_UpdateFrozen**, or **vbOLE_UpdateManual**.
 
 ### Verb
 
@@ -529,7 +529,7 @@ Syntax: *object*.**Delete**
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-Invokes a registered verb on the contained object. The standard verb constants are defined in [**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLEPrimary** (0), **vbOLEShow** (-1), **vbOLEOpen** (-2), **vbOLEHide** (-3), **vbOLEUIActivate** (-4), **vbOLEInPlaceActivate** (-5), **vbOLEDiscardUndoState** (-6); positive indices refer to the per-server entries in [**ObjectVerbs**](#objectverbs).
+Invokes a registered verb on the contained object. The standard verb constants are defined in [**OLEContainerConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerConstants) --- **vbOLEPrimary** (0), **vbOLEShow** (-1), **vbOLEOpen** (-2), **vbOLEHide** (-3), **vbOLEUIActivate** (-4), **vbOLEInPlaceActivate** (-5), **vbOLEDiscardUndoState** (-6); positive indices refer to the per-server entries in [**ObjectVerbs**](#objectverbs).
 
 Syntax: *object*.**DoVerb** [ *Verb* ]
 
@@ -543,7 +543,7 @@ Begins, completes, or cancels a manual drag-and-drop operation. Typically called
 Syntax: *object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *optional* A member of [**DragConstants**](/en/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
 
 ### FetchVerbs
 
@@ -669,7 +669,7 @@ Brings the control to the front or back of its sibling stack.
 Syntax: *object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *optional* A member of [**ZOrderConstants**](/en/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
 
 ## Events
 
@@ -821,7 +821,7 @@ Syntax: *object*\_**Resize**( *HeightNew* **As Single**, *WidthNew* **As Single*
 Reserved for VB6 compatibility; not currently implemented in twinBASIC.
 :::
 
-Raised after the contained object has been modified, so the host can flag itself as dirty. *Code* is one of the status values in [**OLEContainerConstants**](/official/Reference/VBRUN/Constants/OLEContainerConstants): **vbOLEChanged**, **vbOLESaved**, **vbOLEClosed**, or **vbOLERenamed**.
+Raised after the contained object has been modified, so the host can flag itself as dirty. *Code* is one of the status values in [**OLEContainerConstants**](/en/official/Reference/VBRUN/Constants/OLEContainerConstants): **vbOLEChanged**, **vbOLESaved**, **vbOLEClosed**, or **vbOLERenamed**.
 
 Syntax: *object*\_**Updated**( *Code* **As Integer** )
 

@@ -1,16 +1,24 @@
 ---
-title: Compilation Module
+title: "Compilation 模块"
 parent: VBA Package
 permalink: /tB/Modules/Compilation/
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'bec71f62-cdb0-46b3-983c-76f92227c532'
+  PropagateID: 'bec71f62-cdb0-46b3-983c-76f92227c532'
+  ReservedCode1: '5b5f8928-53f9-464d-8221-9d8ee6fa780a'
+  ReservedCode2: '5b5f8928-53f9-464d-8221-9d8ee6fa780a'
 ---
 
-# Compilation module
+# Compilation 模块
 
-The **Compilation** module groups together intrinsics that report on how --- and from where --- the running code was built. Most of its members are *compile-time* intrinsics: they do not look anything up at run time but instead embed a literal value into the compiled code at the point of the call, recording the surrounding project, component, procedure, or source file as it stood when the compiler ran.
+**Compilation** 模块汇集了报告运行中代码的构建方式和来源的内部函数。其大多数成员是*编译时*内部函数：它们在运行时不查找任何内容，而是在调用点将字面值嵌入到编译后的代码中，记录编译器运行时的项目、组件、过程或源文件。
 
-## Build identity
+## 构建标识
 
-[**CompilerVersion**](/official/Reference/VBA/Compilation/CompilerVersion) returns the build number of the twinBASIC compiler that produced the running code, and [**ProcessorArchitecture**](/official/Reference/VBA/Compilation/ProcessorArchitecture) returns a [**VbArchitecture**](/official/Reference/VBA/Constants/VbArchitecture) constant --- **vbArchWin32** or **vbArchWin64** --- identifying whether the binary was built for 32-bit or 64-bit execution. Together they characterise *which* compiler emitted the running code and *what kind* of process it is running in.
+[**CompilerVersion**](/official/Reference/VBA/Compilation/CompilerVersion) 返回生成运行中代码的 twinBASIC 编译器的构建号，[**ProcessorArchitecture**](/official/Reference/VBA/Compilation/ProcessorArchitecture) 返回一个 [**VbArchitecture**](/official/Reference/VBA/Constants/VbArchitecture) 常量——**vbArchWin32** 或 **vbArchWin64**——标识二进制文件是为 32 位还是 64 位执行而构建的。两者共同描述了是*哪个*编译器生成了运行中的代码，以及它运行在*什么类型*的进程中。
 
 ```vb
 Debug.Print "twinBASIC build #" & CompilerVersion()
@@ -21,11 +29,11 @@ Else
 End If
 ```
 
-## Lexical context
+## 词法上下文
 
-The `Current...` family records the source location of the call site as a literal string, captured when the source is compiled. [**CurrentProjectName**](/official/Reference/VBA/Compilation/CurrentProjectName) names the project (executable or library) that owns the call, [**CurrentComponentName**](/official/Reference/VBA/Compilation/CurrentComponentName) names the enclosing module, class, or form, [**CurrentProcedureName**](/official/Reference/VBA/Compilation/CurrentProcedureName) names the surrounding **Sub**, **Function**, or **Property**, and [**CurrentSourceFile**](/official/Reference/VBA/Compilation/CurrentSourceFile) returns the full path of the source file as it was on the build machine. For COM classes, [**CurrentComponentCLSID**](/official/Reference/VBA/Compilation/CurrentComponentCLSID) returns the GUID supplied by the class's [`[ClassId(...)]`](/official/Reference/Core/Attributes#classid) attribute, or the all-zero GUID when none is set.
+`Current...` 系列函数将调用点的源位置记录为字面字符串，在源代码编译时捕获。[**CurrentProjectName**](/official/Reference/VBA/Compilation/CurrentProjectName) 命名拥有该调用的项目（可执行文件或库），[**CurrentComponentName**](/official/Reference/VBA/Compilation/CurrentComponentName) 命名包含调用的模块、类或窗体，[**CurrentProcedureName**](/official/Reference/VBA/Compilation/CurrentProcedureName) 命名包含调用的 **Sub**、**Function** 或 **Property**，[**CurrentSourceFile**](/official/Reference/VBA/Compilation/CurrentSourceFile) 返回源文件在构建机器上的完整路径。对于 COM 类，[**CurrentComponentCLSID**](/official/Reference/VBA/Compilation/CurrentComponentCLSID) 返回由类的 [`[ClassId(...)]`](/official/Reference/Core/Attributes#classid) 属性提供的 GUID，未设置时返回全零 GUID。
 
-Because each value is fixed at compile time, wrapping a call in a helper records the *helper's* name rather than its caller's. These intrinsics are most useful in diagnostic output --- logging, tracing, assertions --- where they replace hard-coded identifier strings that would otherwise drift as code is renamed.
+由于每个值在编译时固定，将调用包装在辅助函数中会记录*辅助函数的*名称而非其调用者的名称。这些内部函数在诊断输出（日志、跟踪、断言）中最有用，它们可以替代硬编码的标识符字符串，避免代码重命名时产生不一致。
 
 ```vb
 Public Sub Log(Message As String)
@@ -35,12 +43,12 @@ Public Sub Log(Message As String)
 End Sub
 ```
 
-## Members
+## 成员
 
-- [CompilerVersion](/official/Reference/VBA/Compilation/CompilerVersion) -- returns the twinBASIC compiler version number
-- [CurrentComponentCLSID](/official/Reference/VBA/Compilation/CurrentComponentCLSID) -- returns the Class ID (CLSID) of the current class
-- [CurrentComponentName](/official/Reference/VBA/Compilation/CurrentComponentName) -- returns the name of the current component (module or class)
-- [CurrentProcedureName](/official/Reference/VBA/Compilation/CurrentProcedureName) -- returns the name of the procedure in which the function is called
-- [CurrentProjectName](/official/Reference/VBA/Compilation/CurrentProjectName) -- returns the name of the current project
-- [CurrentSourceFile](/official/Reference/VBA/Compilation/CurrentSourceFile) -- returns the full path of the current source file
-- [ProcessorArchitecture](/official/Reference/VBA/Compilation/ProcessorArchitecture) -- returns the processor architecture of the running application
+- [CompilerVersion](/official/Reference/VBA/Compilation/CompilerVersion) -- 返回 twinBASIC 编译器版本号
+- [CurrentComponentCLSID](/official/Reference/VBA/Compilation/CurrentComponentCLSID) -- 返回当前类的 Class ID (CLSID)
+- [CurrentComponentName](/official/Reference/VBA/Compilation/CurrentComponentName) -- 返回当前组件（模块或类）的名称
+- [CurrentProcedureName](/official/Reference/VBA/Compilation/CurrentProcedureName) -- 返回函数被调用时所在过程的名称
+- [CurrentProjectName](/official/Reference/VBA/Compilation/CurrentProjectName) -- 返回当前项目的名称
+- [CurrentSourceFile](/official/Reference/VBA/Compilation/CurrentSourceFile) -- 返回当前源文件的完整路径
+- [ProcessorArchitecture](/official/Reference/VBA/Compilation/ProcessorArchitecture) -- 返回运行中应用程序的处理器架构

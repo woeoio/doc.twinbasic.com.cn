@@ -2,19 +2,28 @@
 title: InterlockedDecrement32
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/InterlockedDecrement32
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd39e6986-3579-4c37-9db8-b7dac970b907'
+  PropagateID: 'd39e6986-3579-4c37-9db8-b7dac970b907'
+  ReservedCode1: 'b810d286-9be9-43c7-8d70-595d2b561bc8'
+  ReservedCode2: 'b810d286-9be9-43c7-8d70-595d2b561bc8'
 ---
+
 # InterlockedDecrement32
 
-Atomically decrements a 32-bit value by one and returns the new value.
+原子地将32位值减一并返回新值。
 
-Syntax: **InterlockedDecrement32(** *Target* **)** **As Long**
+语法：**InterlockedDecrement32(** *Target* **)** **As Long**
 
 *Target*
-: *required* **Long**. The 32-bit variable to decrement, passed by reference.
+: *必需* **Long**。要递减的32位变量，按引用传递。
 
-The read, subtract, and write happen as one atomic operation. The return value is the post-decrement value of *Target* --- testing against zero is the canonical way to spot the last release of a refcounted resource. Wraps the Win32 `InterlockedDecrement` intrinsic.
+读取、减法和写入作为一个原子操作发生。返回值是*Target*递减后的值——与零比较是发现引用计数资源最后一次释放的典型方式。封装了Win32的`InterlockedDecrement`内联函数。
 
-### See Also
+### 另请参阅
 
-- [InterlockedIncrement32](/official/Reference/VBA/HiddenModule/InterlockedIncrement32) function
-- [InterlockedCompareExchange32](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange32) function
+- [InterlockedIncrement32](/official/Reference/VBA/HiddenModule/InterlockedIncrement32)函数
+- [InterlockedCompareExchange32](/official/Reference/VBA/HiddenModule/InterlockedCompareExchange32)函数

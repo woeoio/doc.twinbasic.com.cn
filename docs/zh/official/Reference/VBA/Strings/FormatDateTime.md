@@ -2,32 +2,41 @@
 title: FormatDateTime
 parent: Strings Module
 permalink: /tB/Modules/Strings/FormatDateTime
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4ea9222a-2e57-45dc-9462-58bc8e61636a'
+  PropagateID: '4ea9222a-2e57-45dc-9462-58bc8e61636a'
+  ReservedCode1: 'aac7fb39-f08c-4c71-a8a4-dff8f2cf3f77'
+  ReservedCode2: 'aac7fb39-f08c-4c71-a8a4-dff8f2cf3f77'
 ---
+
 # FormatDateTime
 
-Returns an expression formatted as a date or time.
+返回一个格式化为日期或时间的表达式。
 
-Syntax: **FormatDateTime(** *date* [ **,** *namedFormat* ] **)**
+语法：**FormatDateTime(** *date* [ **,** *namedFormat* ] **)**
 
 *date*
-: *required* Date expression to be formatted.
+: *必需* 要格式化的日期表达式。
 
 *namedFormat*
-: *optional* Numeric value that indicates the date/time format used. If omitted, **vbGeneralDate** is used.
+: *可选* 数值，指示所使用的日期/时间格式。如果省略，则使用**vbGeneralDate**。
 
-The *namedFormat* argument has the following settings:
+*namedFormat*参数的设置如下：
 
-| Constant           | Value | Description                                                                                                                                                                |
-|--------------------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **vbGeneralDate**  | 0     | Display a date and/or time. If there is a date part, display it as a short date. If there is a time part, display it as a long time. If present, both parts are displayed. |
-| **vbLongDate**     | 1     | Display a date by using the long date format specified in the system regional settings.                                                                                    |
-| **vbShortDate**    | 2     | Display a date by using the short date format specified in the system regional settings.                                                                                   |
-| **vbLongTime**     | 3     | Display a time by using the time format specified in the system regional settings.                                                                                         |
-| **vbShortTime**    | 4     | Display a time by using the 24-hour format (`hh:mm`).                                                                                                                      |
+| 常量               | 值  | 描述                                                                                                                                             |
+|--------------------|-----|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **vbGeneralDate**  | 0   | 显示日期和/或时间。如果有日期部分，显示为短日期。如果有时间部分，显示为长时间。如果两者都存在，则都显示。                                       |
+| **vbLongDate**     | 1   | 使用系统区域设置中指定的长日期格式显示日期。                                                                                                     |
+| **vbShortDate**    | 2   | 使用系统区域设置中指定的短日期格式显示日期。                                                                                                     |
+| **vbLongTime**     | 3   | 使用系统区域设置中指定的时间格式显示时间。                                                                                                       |
+| **vbShortTime**    | 4   | 使用24小时格式（`hh:mm`）显示时间。                                                                                                              |
 
-### Example
+### 示例
 
-This example uses **FormatDateTime** to display a date value in several formats.
+本示例使用**FormatDateTime**以多种格式显示日期值。
 
 ```vb
 Dim d As Date
@@ -37,6 +46,6 @@ Debug.Print FormatDateTime(d, vbShortDate)    ' e.g. "05/29/2026"
 Debug.Print FormatDateTime(d, vbLongTime)     ' e.g. "12:00:00 AM"
 ```
 
-### See Also
+### 另请参阅
 
-- [Format](/official/Reference/VBA/Strings/Format), [MonthName](/official/Reference/VBA/Strings/MonthName), [WeekdayName](/official/Reference/VBA/Strings/WeekdayName) functions
+- [Format](/official/Reference/VBA/Strings/Format)、[MonthName](/official/Reference/VBA/Strings/MonthName)、[WeekdayName](/official/Reference/VBA/Strings/WeekdayName)函数

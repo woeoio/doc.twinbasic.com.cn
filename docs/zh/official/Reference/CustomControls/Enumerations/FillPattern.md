@@ -1,38 +1,47 @@
----
+﻿---
 title: FillPattern
 parent: Enumerations
 permalink: /tB/Packages/CustomControls/Enumerations/FillPattern
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4698bf4e-361d-437d-8942-13f1a2962a5c'
+  PropagateID: '4698bf4e-361d-437d-8942-13f1a2962a5c'
+  ReservedCode1: 'bf1bb0b1-5cde-4aa0-9142-f85211249ad7'
+  ReservedCode2: 'bf1bb0b1-5cde-4aa0-9142-f85211249ad7'
 ---
+
 # FillPattern
-Identifies how the colour table held by a [**Fill**](/official/Reference/CustomControls/Styles/Fill) is applied across the area being painted. The same colour stops produce very different results depending on the pattern --- a north-to-south gradient with two stops paints a top-to-bottom transition, while a corner gradient with the same stops paints from one corner outward. Used by [**Fill.Pattern**](/official/Reference/CustomControls/Styles/Fill#pattern).
+标识 [**Fill**](/official/Reference/CustomControls/Styles/Fill) 持有的颜色表如何跨被绘制区域应用。相同的颜色 stops 根据模式产生非常不同的结果——双 stop 的北到南渐变绘制上到下过渡，而相同 stops 的角渐变从一个角向外绘制。由 [**Fill.Pattern**](/official/Reference/CustomControls/Styles/Fill#pattern) 使用。
 
-| Constant | Value | Description |
-|----------|-------|-------------|
-| **tbPatternNone** | 0 | No fill --- leaves the region transparent. |
-| **tbGradientNorthToSouth** | 1 | Linear gradient from the top edge down to the bottom edge. |
-| **tbGradientSouthToNorth** | 2 | Linear gradient from the bottom edge up to the top edge. |
-| **tbGradientWestToEast** | 3 | Linear gradient from the left edge across to the right edge. |
-| **tbGradientEastToWest** | 4 | Linear gradient from the right edge across to the left edge. |
-| **tbGradientNorthWestToSouthEast** | 5 | Linear diagonal gradient from the top-left corner to the bottom-right. |
-| **tbGradientNorthWestToSouthEastAlt** | 6 | Alternate diagonal: same axis as **tbGradientNorthWestToSouthEast** but with the stops mirrored about the centre. |
-| **tbGradientNorthEastToSouthWest** | 7 | Linear diagonal gradient from the top-right corner to the bottom-left. |
-| **tbGradientNorthEastToSouthWestAlt** | 8 | Alternate diagonal: same axis as **tbGradientNorthEastToSouthWest** but mirrored. |
-| **tbGradientSouthWestToNorthEast** | 9 | Linear diagonal gradient from the bottom-left corner to the top-right. |
-| **tbGradientSouthWestToNorthEastAlt** | 10 | Alternate diagonal: same axis as **tbGradientSouthWestToNorthEast** but mirrored. |
-| **tbGradientSouthEastToNorthWest** | 11 | Linear diagonal gradient from the bottom-right corner to the top-left. |
-| **tbGradientSouthEastToNorthWestAlt** | 12 | Alternate diagonal: same axis as **tbGradientSouthEastToNorthWest** but mirrored. |
-| **tbGradientCornerTopLeft** | 13 | Radial-style gradient emanating from the top-left corner outward. |
-| **tbGradientCornerTopRight** | 14 | Radial-style gradient emanating from the top-right corner outward. |
-| **tbGradientCornerBottomLeft** | 15 | Radial-style gradient emanating from the bottom-left corner outward. |
-| **tbGradientCornerBottomRight** | 16 | Radial-style gradient emanating from the bottom-right corner outward. |
-| **tbGradientCornerTopLeftAlt** | 17 | Alternate top-left corner gradient with the stops mirrored. |
-| **tbGradientCornerTopRightAlt** | 18 | Alternate top-right corner gradient with the stops mirrored. |
-| **tbGradientCornerBottomLeftAlt** | 19 | Alternate bottom-left corner gradient with the stops mirrored. |
-| **tbGradientCornerBottomRightAlt** | 20 | Alternate bottom-right corner gradient with the stops mirrored. |
+| 常量 | 值 | 说明 |
+|------|----|------|
+| **tbPatternNone** | 0 | 无填充——区域保持透明。 |
+| **tbGradientNorthToSouth** | 1 | 从上边缘到下边缘的线性渐变。 |
+| **tbGradientSouthToNorth** | 2 | 从下边缘到上边缘的线性渐变。 |
+| **tbGradientWestToEast** | 3 | 从左边缘跨到右边缘的线性渐变。 |
+| **tbGradientEastToWest** | 4 | 从右边缘跨到左边缘的线性渐变。 |
+| **tbGradientNorthWestToSouthEast** | 5 | 从左上角到右下角的线性对角渐变。 |
+| **tbGradientNorthWestToSouthEastAlt** | 6 | 替代对角：与 **tbGradientNorthWestToSouthEast** 同轴但 stops 关于中心镜像。 |
+| **tbGradientNorthEastToSouthWest** | 7 | 从右上角到左下角的线性对角渐变。 |
+| **tbGradientNorthEastToSouthWestAlt** | 8 | 替代对角：与 **tbGradientNorthEastToSouthWest** 同轴但镜像。 |
+| **tbGradientSouthWestToNorthEast** | 9 | 从左下角到右上角的线性对角渐变。 |
+| **tbGradientSouthWestToNorthEastAlt** | 10 | 替代对角：与 **tbGradientSouthWestToNorthEast** 同轴但镜像。 |
+| **tbGradientSouthEastToNorthWest** | 11 | 从右下角到左上角的线性对角渐变。 |
+| **tbGradientSouthEastToNorthWestAlt** | 12 | 替代对角：与 **tbGradientSouthEastToNorthWest** 同轴但镜像。 |
+| **tbGradientCornerTopLeft** | 13 | 从左上角向外辐射的径向风格渐变。 |
+| **tbGradientCornerTopRight** | 14 | 从右上角向外辐射的径向风格渐变。 |
+| **tbGradientCornerBottomLeft** | 15 | 从左下角向外辐射的径向风格渐变。 |
+| **tbGradientCornerBottomRight** | 16 | 从右下角向外辐射的径向风格渐变。 |
+| **tbGradientCornerTopLeftAlt** | 17 | 替代左上角渐变，stops 镜像。 |
+| **tbGradientCornerTopRightAlt** | 18 | 替代右上角渐变，stops 镜像。 |
+| **tbGradientCornerBottomLeftAlt** | 19 | 替代左下角渐变，stops 镜像。 |
+| **tbGradientCornerBottomRightAlt** | 20 | 替代右下角渐变，stops 镜像。 |
 
-The colour table itself comes from the array of [**FillColorPoint**](/official/Reference/CustomControls/Styles/Fill#fillcolorpoint-class) values inside [**Fill.ColorPoints**](/official/Reference/CustomControls/Styles/Fill#colorpoints), interpolated to the configured [**Granularity**](/official/Reference/CustomControls/Styles/Fill#granularity).
+颜色表来自 [**Fill.ColorPoints**](/official/Reference/CustomControls/Styles/Fill#colorpoints) 内的 [**FillColorPoint**](/official/Reference/CustomControls/Styles/Fill#fillcolorpoint-class) 值数组，插值到配置的 [**Granularity**](/official/Reference/CustomControls/Styles/Fill#granularity)。
 
-The same two-stop pair painted with three different patterns produces three quite different results:
+相同双 stop 对用三种不同模式绘制产生三种截然不同的结果：
 
 ```vb
 ' Top fades to bottom
@@ -48,4 +57,4 @@ pnlThree.BackgroundFill.SetSimplePattern vbWhite, &H99CCFF, _
         Pattern:=tbGradientCornerTopLeft
 ```
 
-**tbPatternNone** produces a flat region with no gradient --- the `Fill` becomes fully transparent and the area behind the control shows through.
+**tbPatternNone** 产生无渐变的平坦区域——`Fill` 变为完全透明，控件后面的区域可见。

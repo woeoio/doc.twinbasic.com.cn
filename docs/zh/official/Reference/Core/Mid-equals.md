@@ -1,40 +1,49 @@
 ---
-title: Mid =
+title: "Mid ="
 parent: Statements
 permalink: /tB/Core/Mid-equals
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '19f396e9-091b-4ee3-849d-1e96235a0e32'
+  PropagateID: '19f396e9-091b-4ee3-849d-1e96235a0e32'
+  ReservedCode1: '81b78726-a9f6-45dd-9071-25476de9e9ed'
+  ReservedCode2: '81b78726-a9f6-45dd-9071-25476de9e9ed'
 ---
-# Mid = statement
 
-Replaces a specified number of characters in a **Variant** (**String**) variable with characters from another string.
+# Mid = 语句
+
+用另一个字符串的字符替换 **Variant** (**String**) 变量中指定数量的字符。
 
 ::: info
-This page documents the **Mid =** *statement* (string mutation). The unrelated [**Mid** function](/official/Reference/VBA/Strings/Mid) returns a substring without modifying its argument.
+本页记录 **Mid =** *语句*（字符串修改）。不相关的 [**Mid** 函数](/official/Reference/VBA/Strings/Mid) 返回子字符串而不修改其参数。
 :::
 
-Syntax:
+语法：
 > **Mid(** *stringvar* **,** *start* [ **,** *length* ] **) =** *string*
 
 *stringvar*
-: Name of the string variable to modify.
+: 要修改的字符串变量的名称。
 
 *start*
-: **Variant** (**Long**). Character position in *stringvar* where the replacement of text begins.
+: **Variant** (**Long**)。*stringvar* 中开始替换文本的字符位置。
 
 *length*
-: *optional* **Variant** (**Long**). Number of characters to replace. If omitted, all of *string* is used.
+: *可选* **Variant** (**Long**)。要替换的字符数。如果省略，使用 *string* 的全部内容。
 
 *string*
-: String expression that replaces part of *stringvar*.
+: 替换 *stringvar* 部分内容的字符串表达式。
 
-The number of characters replaced is always less than or equal to the number of characters in *stringvar*.
+替换的字符数始终小于或等于 *stringvar* 中的字符数。
 
 ::: info
-Use the [**MidB =**](/official/Reference/Core/MidB-equals) statement with byte data contained in a string. In the **MidB =** statement, *start* specifies the byte position within *stringvar* where replacement begins, and *length* specifies the number of bytes to replace.
+使用 [**MidB =**](/official/Reference/Core/MidB-equals) 语句处理字符串中包含的字节数据。在 **MidB =** 语句中，*start* 指定 *stringvar* 中开始替换的字节位置，*length* 指定要替换的字节数。
 :::
 
-### Example
+### 示例
 
-This example uses the **Mid =** statement to replace a specified number of characters in a string variable with characters from another string.
+本示例使用 **Mid =** 语句用另一个字符串的字符替换字符串变量中指定数量的字符。
 
 ```vb
 Dim MyString
@@ -45,9 +54,9 @@ Mid(MyString, 5) = "cow jumped over" ' MyString = "The cow jumpe".
 Mid(MyString, 5, 3) = "duck" ' MyString = "The duc jumpe".
 ```
 
-### See Also
+### 另请参阅
 
-- [**MidB =** statement](/official/Reference/Core/MidB-equals)
-- [**Mid** function](/official/Reference/VBA/Strings/Mid)
-- [**LSet** statement](/official/Reference/Core/LSet)
-- [**RSet** statement](/official/Reference/Core/RSet)
+- [**MidB =** 语句](/official/Reference/Core/MidB-equals)
+- [**Mid** 函数](/official/Reference/VBA/Strings/Mid)
+- [**LSet** 语句](/official/Reference/Core/LSet)
+- [**RSet** 语句](/official/Reference/Core/RSet)

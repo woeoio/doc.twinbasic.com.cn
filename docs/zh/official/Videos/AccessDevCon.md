@@ -1,23 +1,23 @@
-﻿---
-title: Access DevCon Videos
+---
+title: "Access DevCon 视频"
 parent: Videos
 permalink: /Videos/AccessDevCon
 AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '4fc55dac-fd83-48d2-a388-efee7d4e0293'
-  PropagateID: '4fc55dac-fd83-48d2-a388-efee7d4e0293'
-  ReservedCode1: '636616a9-7d60-44e3-b67f-c8a9178d7dbe'
-  ReservedCode2: '636616a9-7d60-44e3-b67f-c8a9178d7dbe'
+  ProduceID: '923fe1f0-e80f-43dd-87bb-e187b9b7dbd0'
+  PropagateID: '923fe1f0-e80f-43dd-87bb-e187b9b7dbd0'
+  ReservedCode1: '2f710e92-3a49-43f4-8af1-35ca1cfb06f6'
+  ReservedCode2: '2f710e92-3a49-43f4-8af1-35ca1cfb06f6'
 ---
 
-# Access DevCon - Videos
-To learn more about the conference: [https://www.donkarl.com/devcon][2].
+# Access DevCon - 视频
+了解更多关于本会议的信息：[https://www.donkarl.com/devcon][2]。
 
-### Access DevCon 2025 - twinBASIC Update
+### Access DevCon 2025 - twinBASIC 更新
 
-26 Apr 2025
+2025年4月26日
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vLmy1ZY-IT4"
     title="YouTube video player" frameborder="0"
@@ -25,8 +25,8 @@ To learn more about the conference: [https://www.donkarl.com/devcon][2].
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Access MVP Mike Wolfe presents a twinBASIC project update. 
-- For the slide deck and more information see: [https://nolongerset.com/devcon-2025][1].
+Access MVP Mike Wolfe介绍twinBASIC项目更新。
+- 幻灯片和更多信息见：[https://nolongerset.com/devcon-2025][1]。
 
 [1]: https://nolongerset.com/devcon-2025
 [2]: https://www.donkarl.com/devcon
@@ -35,9 +35,9 @@ Access MVP Mike Wolfe presents a twinBASIC project update.
 
 ### Access DevCon 2024 - twinBASIC
 
-Add-In creation with twinBASIC
+使用twinBASIC创建加载项
 
-29 Apr 2024
+2024年4月29日
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7IfAkOOWSao"
     title="YouTube video player" frameborder="0"
@@ -45,16 +45,16 @@ Add-In creation with twinBASIC
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Mike Wolfe presents a twinBASIC project update and how to create add-ins for Access with twinBASIC. 
-- For more information see: [https://nolongerset.com/tag/twinbasic-weekly-update/][3].
+Mike Wolfe介绍twinBASIC项目更新以及如何使用twinBASIC为Access创建加载项。
+- 更多信息见：[https://nolongerset.com/tag/twinbasic-weekly-update/][3]。
 
 [3]: https://nolongerset.com/tag/twinbasic-weekly-update/
 
 ---
 
-### Access DevCon 2023 - twinBASIC Update
+### Access DevCon 2023 - twinBASIC 更新
 
-8 May 2023
+2023年5月8日
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Vq4ZFkeZyiA"
     title="YouTube video player" frameborder="0"
@@ -62,16 +62,16 @@ Mike Wolfe presents a twinBASIC project update and how to create add-ins for Acc
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Mike Wolfe presents a session on twinBASIC covering a brief project overview, progress, roadmap, demos and Access integration plans. 
-- For more information see [https://nolongerset.com/tag/twinbasic][5].
+Mike Wolfe介绍twinBASIC专题，涵盖项目概述、进展、路线图、演示和Access集成计划。
+- 更多信息见[https://nolongerset.com/tag/twinbasic][5]。
 
 [5]: https://nolongerset.com/tag/twinbasic
 
 ---
 
-### Access DevCon 2022 - twinBASIC Update
+### Access DevCon 2022 - twinBASIC 更新
 
-12 May 2022
+2022年5月12日
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/y4DRAcdH9tg"
     title="YouTube video player" frameborder="0"
@@ -79,14 +79,14 @@ Mike Wolfe presents a session on twinBASIC covering a brief project overview, pr
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Mike Wolfe presents the current state of twinBASIC focussing on the practical use and usefulness for Access developers.
-- For more information, see [https://nolongerset.com/tag/twinbasic][5]
+Mike Wolfe介绍twinBASIC的当前状态，重点介绍对Access开发者的实际用途和实用性。
+- 更多信息见[https://nolongerset.com/tag/twinbasic][5]
 
 ---
 
 ### Access DevCon 2021 - twinBasic
 
-12 May 2021
+2021年5月12日
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dBvMBAUSyT8"
     title="YouTube video player" frameborder="0"
@@ -94,6 +94,6 @@ Mike Wolfe presents the current state of twinBASIC focussing on the practical us
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
 
-Mike Wolfe presents: The world premier of twinBasic, a new flavour of VB(A).
+Mike Wolfe展示：twinBasic的全球首发——一种全新风格的VB(A)。
 
 > AI生成

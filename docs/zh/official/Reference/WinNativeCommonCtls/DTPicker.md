@@ -2,10 +2,19 @@
 title: DTPicker
 parent: WinNativeCommonCtls Package
 permalink: /tB/Packages/WinNativeCommonCtls/DTPicker
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ec834632-1852-442b-a730-e4fa040f0233'
+  PropagateID: 'ec834632-1852-442b-a730-e4fa040f0233'
+  ReservedCode1: 'ce442d6d-3173-4d75-96c5-5e8c54e7a9e9'
+  ReservedCode2: 'ce442d6d-3173-4d75-96c5-5e8c54e7a9e9'
 ---
 
-# DTPicker class
-A **DTPicker** is a date / time picker control. The inline field shows the current date or time formatted per [**Format**](#format); clicking the dropdown arrow opens a [**MonthView**](/official/Reference/WinNativeCommonCtls/MonthView)-style calendar for picking a new date, and dismissing the calendar updates [**Value**](#value).
+# DTPicker 类
+
+**DTPicker** 是一个日期/时间选择器控件。内联字段按 [**Format**](#format) 显示当前日期或时间；点击下拉箭头打开 [**MonthView**](/official/Reference/WinNativeCommonCtls/MonthView) 风格的日历以选取新日期，关闭日历后更新 [**Value**](#value)。
 
 ```vb
 Private Sub Form_Load()
@@ -20,274 +29,274 @@ Private Sub DTPicker1_Change()
 End Sub
 ```
 
-The control inherits the focusable rect-dockable members from `BaseControlFocusable` --- size, position, **Anchors**, **Dock**, **Font**, **BackColor** / **ForeColor**, **Appearance**, **MousePointer** / **MouseIcon**, **ToolTipText**, **DragMode** / **DragIcon**, **Drag**, **Refresh**, **SetFocus**, **TabIndex** / **TabStop**, **ZOrder**, **CausesValidation**, **VisualStyles**, **hWnd**, **HelpContextID** / **WhatsThisHelpID**.
+控件从 `BaseControlFocusable` 继承可聚焦矩形可停靠成员 --- 大小、位置、**Anchors**、**Dock**、**Font**、**BackColor** / **ForeColor**、**Appearance**、**MousePointer** / **MouseIcon**、**ToolTipText**、**DragMode** / **DragIcon**、**Drag**、**Refresh**、**SetFocus**、**TabIndex** / **TabStop**、**ZOrder**、**CausesValidation**、**VisualStyles**、**hWnd**、**HelpContextID** / **WhatsThisHelpID**。
 
-## Format and value
+## 格式和值
 
-[**Format**](#format) selects one of four display styles --- long date, short date, time, or a custom format string supplied through [**CustomFormat**](#customformat). The inline value is always a **Date**, but [**Value**](#value) is typed **Variant** because a [**CheckBox**](#checkbox)-equipped picker may have no date assigned (the user can clear the checkbox), in which case [**Value**](#value) reads as **Null**.
+[**Format**](#format) 选择四种显示样式之一 --- 长日期、短日期、时间或通过 [**CustomFormat**](#customformat) 提供的自定义格式字符串。内联值始终是 **Date**，但 [**Value**](#value) 类型为 **Variant**，因为带 [**CheckBox**](#checkbox) 的选择器可能没有赋值日期（用户可清除复选框），此时 [**Value**](#value) 读取为 **Null**。
 
-The convenience accessors [**Year**](#year), [**Month**](#month), [**Week**](#week), [**Day**](#day), [**Hour**](#hour), [**Minute**](#minute), and [**Second**](#second) decompose the current value into individual components; assigning to any of them rewrites [**Value**](#value) with the requested component changed. The [**StartOfWeek**](#startofweek) property selects the first-day-of-week used by the calendar dropdown and by [**Week**](#week).
+便捷访问器 [**Year**](#year)、[**Month**](#month)、[**Week**](#week)、[**Day**](#day)、[**Hour**](#hour)、[**Minute**](#minute) 和 [**Second**](#second) 将当前值分解为各个分量；对其中任何一个赋值会用更改后分量重写 [**Value**](#value)。[**StartOfWeek**](#startofweek) 属性选择日历下拉和 [**Week**](#week) 所使用的一周起始日。
 
-## Custom format and callback events
+## 自定义格式和回调事件
 
-When [**Format**](#format) is set to **dtpCustom**, the [**CustomFormat**](#customformat) string controls the display. The format syntax follows the Win32 `GetDateFormat` / `GetTimeFormat` picture string (e.g. `"dddd, MMMM dd, yyyy"`). Tokens enclosed in callback markers (`X` literals in the format) raise the [**Format**](#format-event), [**FormatSize**](#formatsize), and [**CallbackKeyDown**](#callbackkeydown) events so the application can render its own field content and respond to keyboard navigation across it.
+当 [**Format**](#format) 设为 **dtpCustom** 时，[**CustomFormat**](#customformat) 字符串控制显示。格式语法遵循Win32 `GetDateFormat` / `GetTimeFormat` 图片字符串（如 `"dddd, MMMM dd, yyyy"`）。包含在回调标记中的标记（格式中的 `X` 字面量）触发 [**Format**](#format-event)、[**FormatSize**](#formatsize) 和 [**CallbackKeyDown**](#callbackkeydown) 事件，以便应用程序渲染自己的字段内容并响应其中的键盘导航。
 
-## Calendar appearance
+## 日历外观
 
-When the dropdown calendar is shown, the [**CalendarBackColor**](#calendarbackcolor), [**CalendarForeColor**](#calendarforecolor), [**CalendarTitleBackColor**](#calendartitlebackcolor), [**CalendarTitleForeColor**](#calendartitleforecolor), and [**CalendarTrailingForeColor**](#calendartrailingforecolor) properties control the calendar's colors via `DTM_SETMCCOLOR`. The [**CalendarShowToday**](#calendarshowtoday), [**CalendarShowTodayCircle**](#calendarshowtodaycircle), [**CalendarShowWeekNumbers**](#calendarshowweeknumbers), and [**CalendarShowTrailingDates**](#calendarshowtrailingdates) booleans toggle the corresponding `MCS_…` style flags on the embedded calendar.
+当下拉日历显示时，[**CalendarBackColor**](#calendarbackcolor)、[**CalendarForeColor**](#calendarforecolor)、[**CalendarTitleBackColor**](#calendartitlebackcolor)、[**CalendarTitleForeColor**](#calendartitleforecolor) 和 [**CalendarTrailingForeColor**](#calendartrailingforecolor) 属性通过 `DTM_SETMCCOLOR` 控制日历颜色。[**CalendarShowToday**](#calendarshowtoday)、[**CalendarShowTodayCircle**](#calendarshowtodaycircle)、[**CalendarShowWeekNumbers**](#calendarshowweeknumbers) 和 [**CalendarShowTrailingDates**](#calendarshowtrailingdates) 布尔值切换嵌入日历上对应的 `MCS_…` 样式标志。
 
-[**hWndCalendar**](#hwndcalendar) returns the Win32 handle of the dropped-down calendar window --- useful for advanced customization. It is only valid between the [**DropDown**](#dropdown) and [**CloseUp**](#closeup) events.
+[**hWndCalendar**](#hwndcalendar) 返回下拉日历窗口的Win32句柄 --- 用于高级自定义。仅在 [**DropDown**](#dropdown) 和 [**CloseUp**](#closeup) 事件之间有效。
 
-Properties
+属性
 ----------
 
 ### CalendarBackColor
 
-The calendar dropdown's background color. **OLE_COLOR**. Default: **vbWindowBackground**. Applied to the embedded month calendar via `DTM_SETMCCOLOR` / `MCSC_MONTHBK`.
+日历下拉的背景颜色。**OLE_COLOR**。默认：**vbWindowBackground**。通过 `DTM_SETMCCOLOR` / `MCSC_MONTHBK` 应用于嵌入的月历。
 
 ### CalendarForeColor
 
-The calendar dropdown's text color. **OLE_COLOR**. Default: **vbButtonText**.
+日历下拉的文本颜色。**OLE_COLOR**。默认：**vbButtonText**。
 
 ### CalendarShowToday
 
-Whether the calendar dropdown shows the "Today: …" string at the bottom. **Boolean**. Default: **True**.
+日历下拉是否在底部显示"Today: …"字符串。**Boolean**。默认：**True**。
 
 ### CalendarShowTodayCircle
 
-Whether the calendar dropdown highlights today's date with a circle. **Boolean**. Default: **True**.
+日历下拉是否用圆圈高亮今日日期。**Boolean**。默认：**True**。
 
 ### CalendarShowTrailingDates
 
-Whether the calendar dropdown shows the leading and trailing days of the previous and next month. **Boolean**. Default: **True**.
+日历下拉是否显示上月末和下月初的前导和尾随日期。**Boolean**。默认：**True**。
 
 ### CalendarShowWeekNumbers
 
-Whether the calendar dropdown shows a week-number column on the left. **Boolean**. Default: **False**.
+日历下拉是否在左侧显示周数列。**Boolean**。默认：**False**。
 
 ### CalendarTitleBackColor
 
-The calendar dropdown's title bar background color. **OLE_COLOR**. Default: **vb3DFace**.
+日历下拉的标题栏背景颜色。**OLE_COLOR**。默认：**vb3DFace**。
 
 ### CalendarTitleForeColor
 
-The calendar dropdown's title bar text color. **OLE_COLOR**. Default: **vbButtonText**.
+日历下拉的标题栏文本颜色。**OLE_COLOR**。默认：**vbButtonText**。
 
 ### CalendarTrailingForeColor
 
-The text color used for trailing days from adjacent months when [**CalendarShowTrailingDates**](#calendarshowtrailingdates) is **True**. **OLE_COLOR**. Default: **vbGrayText**.
+当 [**CalendarShowTrailingDates**](#calendarshowtrailingdates) 为 **True** 时用于相邻月份尾随日期的文本颜色。**OLE_COLOR**。默认：**vbGrayText**。
 
 ### CheckBox
 
-Whether the picker includes a checkbox next to the date value. **Boolean**. Default: **False**. When **True**, the user can clear the checkbox to leave the picker without a value, in which case [**Value**](#value) returns **Null**. Assigning **Null** to [**Value**](#value) when **CheckBox** is **False** raises run-time error 35787 (*"Can't set Value to NULL when CheckBox property = FALSE"*).
+选择器是否在日期值旁包含复选框。**Boolean**。默认：**False**。为 **True** 时，用户可清除复选框使选择器无值，此时 [**Value**](#value) 返回 **Null**。当 **CheckBox** 为 **False** 时对 [**Value**](#value) 赋值 **Null** 引发运行时错误 35787（*"Can't set Value to NULL when CheckBox property = FALSE"*）。
 
-Changing this property at run time recreates the underlying Win32 window --- the property cannot be flipped in the GWL_STYLE alone.
+运行时更改此属性会重新创建底层Win32窗口 --- 该属性无法仅通过 GWL_STYLE 切换。
 
 ### CustomFormat
 
-The picture string used when [**Format**](#format) is **dtpCustom**. **String**. Default: empty. Follows the Win32 `GetDateFormat` syntax (e.g. `"dddd, MMMM dd, yyyy"`, `"hh:mm:ss tt"`).
+当 [**Format**](#format) 为 **dtpCustom** 时使用的图片字符串。**String**。默认：空。遵循Win32 `GetDateFormat` 语法（如 `"dddd, MMMM dd, yyyy"`、`"hh:mm:ss tt"`）。
 
 ### Day
 
-The day-of-month component of [**Value**](#value). **Integer** (1--31). Reading returns the current day; assigning rewrites the date with the new day, raising run-time error 380 if the assigned value is out of range for the current month. See also [**DayCount**](#daycount).
+[**Value**](#value) 的月中第几天分量。**Integer**（1--31）。读取返回当前天；赋值以新天重写日期，超出当月范围时引发运行时错误 380。参见 [**DayCount**](#daycount)。
 
 ### DayCount
 
-The number of days in the current value's month. **Long**, read-only. Computed from [**Year**](#year) and [**Month**](#month). Useful for bounds-checking before assigning [**Day**](#day).
+当前值所在月份的天数。**Long**，只读。从 [**Year**](#year) 和 [**Month**](#month) 计算。用于在赋值 [**Day**](#day) 之前进行边界检查。
 
 ### DayOfWeek
 
-The day-of-week the current [**Value**](#value) falls on, as a [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) member (`vbSunday` through `vbSaturday`). Read-only.
+当前 [**Value**](#value) 是星期几，作为 [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) 的成员（`vbSunday` 到 `vbSaturday`）。只读。
 
 ### Format
 
-The display format. A member of [**DTPickerFormatConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants): **dtpLongDate**, **dtpShortDate**, **dtpTime**, **dtpCustom**. Default: **dtpShortDate**.
+显示格式。[**DTPickerFormatConstants**](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants) 的成员：**dtpLongDate**、**dtpShortDate**、**dtpTime**、**dtpCustom**。默认：**dtpShortDate**。
 
 ### Hour
 
-The hour component of [**Value**](#value), in 24-hour form. **Integer** (1--23 --- note that `0` is rejected with run-time error 380 by the setter; read returns the live value). Reading is unrestricted.
+[**Value**](#value) 的小时分量，24小时制。**Integer**（1--23 --- 注意设置器拒绝 `0` 并引发运行时错误 380；读取返回实时值）。读取不受限制。
 
 ### hWndCalendar
 
-The Win32 handle of the dropped-down calendar window. **HWND**, read-only. Valid only between the [**DropDown**](#dropdown) and [**CloseUp**](#closeup) events; reads as 0 when the calendar is closed.
+下拉日历窗口的Win32句柄。**HWND**，只读。仅在 [**DropDown**](#dropdown) 和 [**CloseUp**](#closeup) 事件之间有效；日历关闭时读取为 0。
 
 ### MaxDate
 
-The upper bound of the navigable date range. **Date**. Default: `9999-12-31`. Assigning a value lower than [**MinDate**](#mindate) raises run-time error 35775. If the current [**Value**](#value) exceeds the new **MaxDate**, [**Value**](#value) is clamped down to **MaxDate**.
+可导航日期范围的上限。**Date**。默认：`9999-12-31`。赋值低于 [**MinDate**](#mindate) 时引发运行时错误 35775。如果当前 [**Value**](#value) 超过新的 **MaxDate**，[**Value**](#value) 被钳位到 **MaxDate**。
 
 ### MinDate
 
-The lower bound of the navigable date range. **Date**. Default: `1601-01-01`. Assigning a value higher than [**MaxDate**](#maxdate) raises run-time error 35775. If the current [**Value**](#value) is below the new **MinDate**, [**Value**](#value) is clamped up to **MinDate**.
+可导航日期范围的下限。**Date**。默认：`1601-01-01`。赋值高于 [**MaxDate**](#maxdate) 时引发运行时错误 35775。如果当前 [**Value**](#value) 低于新的 **MinDate**，[**Value**](#value) 被钳位到 **MinDate**。
 
 ### Minute
 
-The minute component of [**Value**](#value). **Integer** (1--59 on assignment; 0--59 on read).
+[**Value**](#value) 的分钟分量。**Integer**（赋值时 1--59；读取时 0--59）。
 
 ### Month
 
-The month-of-year component of [**Value**](#value). **Integer** (1--12). Assigning an out-of-range value raises run-time error 380.
+[**Value**](#value) 的月份分量。**Integer**（1--12）。赋值超出范围时引发运行时错误 380。
 
 ### RightToLeft
 
 ::: info
-**RightToLeft** is tagged `[Unimplemented]` and has no effect; reading and writing the property compiles but the underlying Win32 control's RTL mode is not switched.
+**RightToLeft** 标记为 `[Unimplemented]`，没有任何效果；读写该属性可编译，但底层Win32控件的RTL模式不会被切换。
 :::
 
-A **Boolean**.
+一个 **Boolean**。
 
 ### Second
 
-The seconds component of [**Value**](#value). **Integer** (1--59 on assignment; 0--59 on read).
+[**Value**](#value) 的秒分量。**Integer**（赋值时 1--59；读取时 0--59）。
 
 ### StartOfWeek
 
-Which day of the week is rendered as the leftmost column in the calendar dropdown. A [**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) member. Defaults to the system's first-day-of-week setting (resolved through `vbUseSystemDayOfWeek`).
+日历下拉中哪一天渲染为最左列。[**VbDayOfWeek**](/official/Reference/VBA/Constants/VbDayOfWeek) 的成员。默认为系统的一周起始日设置（通过 `vbUseSystemDayOfWeek` 解析）。
 
 ### UpDown
 
-Whether the picker uses a spin-button widget instead of a dropdown calendar. **Boolean**. Default: **False**. When **True**, the user adjusts the date by clicking up / down arrows next to each field; the calendar dropdown is suppressed.
+选择器是否使用微调按钮部件代替下拉日历。**Boolean**。默认：**False**。为 **True** 时，用户通过点击每个字段旁的上/下箭头调整日期；日历下拉被抑制。
 
-Changing this property at run time recreates the underlying Win32 window.
+运行时更改此属性会重新创建底层Win32窗口。
 
 ### Value
 
-The selected date / time. **Variant**. The default member.
+选定的日期/时间。**Variant**。默认成员。
 
-Reads as a **Date** when the checkbox is checked (or [**CheckBox**](#checkbox) is **False**) or **Null** when the checkbox is cleared. Assigning **Null** when [**CheckBox**](#checkbox) is **False** raises run-time error 35787. Assigning a date outside [[**MinDate**](#mindate), [**MaxDate**](#maxdate)] raises run-time error 35773.
+当复选框选中（或 [**CheckBox**](#checkbox) 为 **False**）时读取为 **Date**，复选框清除时读取为 **Null**。当 [**CheckBox**](#checkbox) 为 **False** 时赋值 **Null** 引发运行时错误 35787。赋值超出 [[**MinDate**](#mindate), [**MaxDate**](#maxdate)] 的日期引发运行时错误 35773。
 
-Assigning a numeric (non-**Date**) value implicitly converts via **CDate**. Assigning **Empty** is treated the same as assigning **Null**. Changing [**Value**](#value) fires [**Change**](#change) once the control is past its initialization phase.
+赋值数值（非 **Date**）类型时隐式通过 **CDate** 转换。赋值 **Empty** 等同于赋值 **Null**。更改 [**Value**](#value) 在控件完成初始化阶段后触发 [**Change**](#change)。
 
 ### Week
 
-The ISO-style week-of-year for the current [**Value**](#value). **Integer** (1--53). The setter applies a delta of `DateAdd("ww", …)` so changing **Week** preserves the day-of-week within the week. Assigning out-of-range raises run-time error 380. Honors [**StartOfWeek**](#startofweek) when computing the week boundary.
+当前 [**Value**](#value) 的ISO风格年周数。**Integer**（1--53）。设置器应用 `DateAdd("ww", …)` 的差值，因此更改 **Week** 会保留周内的星期几。赋值超出范围时引发运行时错误 380。计算周边界时遵循 [**StartOfWeek**](#startofweek)。
 
 ### Year
 
-The year component of [**Value**](#value). **Integer**.
+[**Value**](#value) 的年份分量。**Integer**。
 
-Events
+事件
 ------
 
 ### CallbackKeyDown
 
-Raised when the user presses a key while a custom callback field is focused. Lets the application interpret the key (e.g. arrow-up / arrow-down to cycle through enum values) and rewrite the date.
+当自定义回调字段获得焦点时用户按下键触发。让应用程序解释按键（例如上/下箭头循环枚举值）并重写日期。
 
-Syntax: *object*\_**CallbackKeyDown**( **ByVal** *KeyCode* **As Integer**, **ByVal** *Shift* **As Integer**, **ByVal** *CallbackField* **As String**, *CallbackDate* **As Date** )
+语法：*object*\_**CallbackKeyDown**（**ByVal** *KeyCode* **As Integer**，**ByVal** *Shift* **As Integer**，**ByVal** *CallbackField* **As String**，*CallbackDate* **As Date**）
 
 *KeyCode*
-: A [**KeyCodeConstants**](/official/Reference/VBRUN/Constants/KeyCodeConstants) value identifying the pressed key.
+: 一个 [**KeyCodeConstants**](/official/Reference/VBRUN/Constants/KeyCodeConstants) 值，标识按下的键。
 
 *Shift*
-: A bitmask of [**ShiftConstants**](/official/Reference/VBRUN/Constants/ShiftConstants) values.
+: [**ShiftConstants**](/official/Reference/VBRUN/Constants/ShiftConstants) 值的位掩码。
 
 *CallbackField*
-: The picture-string token identifying which callback field is focused.
+: 标识聚焦的回调字段的图片字符串标记。
 
 *CallbackDate*
-: **In / out** --- the current value the application can mutate before the event returns.
+: **输入/输出** --- 应用程序可在事件返回前修改的当前值。
 
 ### Change
 
-Raised when [**Value**](#value) has changed, either by user interaction or by code. Does not fire during the initial property-deserialization pass at form load.
+当 [**Value**](#value) 已更改时触发，无论通过用户交互还是代码。在窗体加载的初始属性反序列化期间不触发。
 
-Syntax: *object*\_**Change**( )
+语法：*object*\_**Change**( )
 
 ### Click
 
-Raised on a mouse click inside the control's rectangle.
+在控件矩形内鼠标点击时触发。
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### CloseUp
 
-Raised when the dropdown calendar closes --- either by the user picking a date, by clicking outside the calendar, or by pressing **Esc**.
+当下拉日历关闭时触发 --- 无论用户选取日期、点击日历外部还是按 **Esc**。
 
-Syntax: *object*\_**CloseUp**( )
+语法：*object*\_**CloseUp**( )
 
 ### DblClick
 
-Raised on a double-click inside the control's rectangle.
+在控件矩形内双击时触发。
 
-Syntax: *object*\_**DblClick**( )
+语法：*object*\_**DblClick**( )
 
 ### DragDrop
 
-Inherited drag-drop event. See [**DragMode**](/official/Reference/VB/CheckBox/#dragmode).
+继承的拖放事件。参见 [**DragMode**](/official/Reference/VB/CheckBox/#dragmode)。
 
 ### DragOver
 
-Inherited drag-drop event.
+继承的拖放事件。
 
 ### DropDown
 
-Raised when the dropdown calendar opens. The handler can use [**hWndCalendar**](#hwndcalendar) to customize the dropped-down calendar window.
+当下拉日历打开时触发。处理程序可使用 [**hWndCalendar**](#hwndcalendar) 自定义下拉的日历窗口。
 
-Syntax: *object*\_**DropDown**( )
+语法：*object*\_**DropDown**( )
 
 ### Format
 
-Raised for each custom callback field that needs rendering, when [**Format**](#format) is **dtpCustom** and the [**CustomFormat**](#customformat) string contains callback tokens.
+当 [**Format**](#format) 为 **dtpCustom** 且 [**CustomFormat**](#customformat) 字符串包含回调标记时，为每个需要渲染的自定义回调字段触发。
 
-Syntax: *object*\_**Format**( **ByVal** *CallbackField* **As String**, *FormattedString* **As String** )
+语法：*object*\_**Format**（**ByVal** *CallbackField* **As String**，*FormattedString* **As String**）
 
 *CallbackField*
-: The picture-string token identifying which callback field is being rendered.
+: 标识正在渲染的回调字段的图片字符串标记。
 
 *FormattedString*
-: **Out** --- the application sets this to the text the picker should display in the field.
+: **输出** --- 应用程序将其设为选择器应在字段中显示的文本。
 
 ### FormatSize
 
-Raised before [**Format**](#format-event) to ask how many character cells to reserve for the callback field. The picker uses the current [**Font**](/official/Reference/VB/CheckBox/#font) to measure the rendered width.
+在 [**Format**](#format-event) 之前触发，询问为回调字段保留多少字符单元格。选择器使用当前 [**Font**](/official/Reference/VB/CheckBox/#font) 测量渲染宽度。
 
-Syntax: *object*\_**FormatSize**( **ByVal** *CallbackField* **As String**, *Size* **As Integer** )
+语法：*object*\_**FormatSize**（**ByVal** *CallbackField* **As String**，*Size* **As Integer**）
 
 *CallbackField*
-: The picture-string token identifying the callback field.
+: 标识回调字段的图片字符串标记。
 
 *Size*
-: **Out** --- the application sets this to the expected character count.
+: **输出** --- 应用程序将其设为预期字符数。
 
 ### GotFocus
 
-Inherited focus event.
+继承的焦点事件。
 
 ### Initialize
 
-Raised after the control's window has been created and its properties initialised from persisted state. Fires once per form-load.
+控件窗口创建并从持久化状态初始化属性后触发。每次窗体加载触发一次。
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )
 
 ### LostFocus
 
-Inherited focus event.
+继承的焦点事件。
 
 ### MouseDown
 
-Inherited mouse event.
+继承的鼠标事件。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**（*Button* **As Integer**，*Shift* **As Integer**，*X* **As Single**，*Y* **As Single**）
 
 ### MouseMove
 
-Inherited mouse event.
+继承的鼠标事件。
 
 ### MouseUp
 
-Inherited mouse event.
+继承的鼠标事件。
 
 ### OLECompleteDrag, OLEDragDrop, OLEDragOver, OLEGiveFeedback, OLESetData, OLEStartDrag
 
-Inherited OLE drag-and-drop events. See [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants) for the **OLEDropMode** values.
+继承的OLE拖放事件。参见 [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants) 获取 **OLEDropMode** 值。
 
 ### Validate
 
-Inherited validation event. Set *Cancel* to **True** to keep focus on the control.
+继承的验证事件。将 *Cancel* 设为 **True** 以将焦点保留在控件上。
 
-Syntax: *object*\_**Validate**( *Cancel* **As Boolean** )
+语法：*object*\_**Validate**（*Cancel* **As Boolean**）
 
-## See Also
+## 另见
 
-- [MonthView](/official/Reference/WinNativeCommonCtls/MonthView) -- the full-month calendar control; **DTPicker**'s dropdown uses the same underlying Win32 control
-- [DTPickerFormatConstants](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants) -- the **Format** values
-- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) -- where **vbDTPicker** lives
+- [MonthView](/official/Reference/WinNativeCommonCtls/MonthView) --- 全月日历控件；**DTPicker** 的下拉使用相同的底层Win32控件
+- [DTPickerFormatConstants](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants) --- **Format** 的值
+- [ControlTypeConstants](/official/Reference/VBRUN/Constants/ControlTypeConstants) --- **vbDTPicker** 所在位置

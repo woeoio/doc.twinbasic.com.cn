@@ -2,38 +2,47 @@
 title: FormatPercent
 parent: Strings Module
 permalink: /tB/Modules/Strings/FormatPercent
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '8a85c1ed-7644-4608-927d-04177e326349'
+  PropagateID: '8a85c1ed-7644-4608-927d-04177e326349'
+  ReservedCode1: '813ea032-d75d-4628-ab9f-2a01cec39e0f'
+  ReservedCode2: '813ea032-d75d-4628-ab9f-2a01cec39e0f'
 ---
+
 # FormatPercent
 
-Returns an expression formatted as a percentage (multiplied by 100) with a trailing `%` character.
+返回一个格式化为百分比（乘以100）并带有尾部`%`字符的表达式。
 
-Syntax: **FormatPercent(** *expression* [ **,** *numDigitsAfterDecimal* [ **,** *includeLeadingDigit* [ **,** *useParensForNegativeNumbers* [ **,** *groupDigits* ] ] ] ] **)**
+语法：**FormatPercent(** *expression* [ **,** *numDigitsAfterDecimal* [ **,** *includeLeadingDigit* [ **,** *useParensForNegativeNumbers* [ **,** *groupDigits* ] ] ] ] **)**
 
 *expression*
-: *required* Expression to be formatted.
+: *必需* 要格式化的表达式。
 
 *numDigitsAfterDecimal*
-: *optional* Numeric value indicating how many places to the right of the decimal are displayed. Default value is -1, which indicates that the computer's regional settings are used.
+: *可选* 数值，指示小数点右侧显示多少位。默认值为-1，表示使用计算机的区域设置。
 
 *includeLeadingDigit*
-: *optional* Tristate constant that indicates whether or not a leading zero is displayed for fractional values. See settings below.
+: *可选* 三态常量，指示是否为小数值显示前导零。参见下面的设置。
 
 *useParensForNegativeNumbers*
-: *optional* Tristate constant that indicates whether or not to place negative values within parentheses. See settings below.
+: *可选* 三态常量，指示是否将负值放在括号内。参见下面的设置。
 
 *groupDigits*
-: *optional* Tristate constant that indicates whether or not numbers are grouped by using the group delimiter specified in the computer's regional settings. See settings below.
+: *可选* 三态常量，指示是否使用计算机区域设置中指定的组分隔符对数字进行分组。参见下面的设置。
 
-The *includeLeadingDigit*, *useParensForNegativeNumbers*, and *groupDigits* arguments have the following settings:
+*includeLeadingDigit*、*useParensForNegativeNumbers*和*groupDigits*参数的设置如下：
 
-| Constant         | Value | Description                                          |
-|------------------|-------|------------------------------------------------------|
-| **vbTrue**       | -1    | True                                                 |
-| **vbFalse**      | 0     | False                                                |
-| **vbUseDefault** | -2    | Use the setting from the computer's regional settings. |
+| 常量              | 值  | 描述                           |
+|-------------------|-----|--------------------------------|
+| **vbTrue**        | -1  | True                           |
+| **vbFalse**       | 0   | False                          |
+| **vbUseDefault**  | -2  | 使用计算机区域设置中的设置。   |
 
-When one or more optional arguments are omitted, the values for omitted arguments are provided by the computer's regional settings.
+当省略一个或多个可选参数时，省略参数的值由计算机的区域设置提供。
 
-### See Also
+### 另请参阅
 
-- [Format](/official/Reference/VBA/Strings/Format), [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency), [FormatNumber](/official/Reference/VBA/Strings/FormatNumber) functions
+- [Format](/official/Reference/VBA/Strings/Format)、[FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency)、[FormatNumber](/official/Reference/VBA/Strings/FormatNumber)函数

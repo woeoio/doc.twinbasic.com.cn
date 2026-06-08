@@ -2,100 +2,109 @@
 title: Format
 parent: Strings Module
 permalink: /tB/Modules/Strings/Format
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e755a09c-294d-42a3-805f-bc2572d9b679'
+  PropagateID: 'e755a09c-294d-42a3-805f-bc2572d9b679'
+  ReservedCode1: 'cd3450f3-d7e2-4cd4-8288-ec92557db12c'
+  ReservedCode2: 'cd3450f3-d7e2-4cd4-8288-ec92557db12c'
 ---
+
 # Format
 
-Returns a **String** containing an expression formatted according to instructions contained in a format expression.
+返回一个**String**，包含根据格式表达式中的指令格式化的表达式。
 
-Syntax: **Format$(** *expression* [ **,** *format* [ **,** *firstDayOfWeek* [ **,** *firstWeekOfYear* ] ] ] **)**, **Format(** *expression* [ **,** *format* [ **,** *firstDayOfWeek* [ **,** *firstWeekOfYear* ] ] ] **)**
+语法：**Format$(** *expression* [ **,** *format* [ **,** *firstDayOfWeek* [ **,** *firstWeekOfYear* ] ] ] **)**, **Format(** *expression* [ **,** *format* [ **,** *firstDayOfWeek* [ **,** *firstWeekOfYear* ] ] ] **)**
 
 *expression*
-: *required* Any valid expression.
+: *必需* 任意有效的表达式。
 
 *format*
-: *optional* A valid named or user-defined format expression.
+: *可选* 有效的命名或用户定义的格式表达式。
 
 *firstDayOfWeek*
-: *optional* A constant that specifies the first day of the week.
+: *可选* 指定一周第一天的常量。
 
 *firstWeekOfYear*
-: *optional* A constant that specifies the first week of the year.
+: *可选* 指定一年第一周的常量。
 
-The `$`-suffixed form returns a **String**; the unsuffixed form returns a **Variant** (**String**).
+带`$`后缀的形式返回**String**；不带后缀的形式返回**Variant**（**String**）。
 
-The *firstDayOfWeek* argument has these settings.
+*firstDayOfWeek*参数的设置如下：
 
-| Constant       | Value | Description           |
-|----------------|-------|-----------------------|
-| **vbUseSystem**| 0     | Use NLS API setting.  |
-| **vbSunday**   | 1     | Sunday (default)      |
-| **vbMonday**   | 2     | Monday                |
-| **vbTuesday**  | 3     | Tuesday               |
-| **vbWednesday**| 4     | Wednesday             |
-| **vbThursday** | 5     | Thursday              |
-| **vbFriday**   | 6     | Friday                |
-| **vbSaturday** | 7     | Saturday              |
+| 常量             | 值  | 描述                   |
+|------------------|-----|------------------------|
+| **vbUseSystem**  | 0   | 使用NLS API设置。      |
+| **vbSunday**     | 1   | 星期日（默认）         |
+| **vbMonday**     | 2   | 星期一                 |
+| **vbTuesday**    | 3   | 星期二                 |
+| **vbWednesday**  | 4   | 星期三                 |
+| **vbThursday**   | 5   | 星期四                 |
+| **vbFriday**     | 6   | 星期五                 |
+| **vbSaturday**   | 7   | 星期六                 |
 
-The *firstWeekOfYear* argument has these settings.
+*firstWeekOfYear*参数的设置如下：
 
-| Constant            | Value | Description                                                            |
-|---------------------|-------|------------------------------------------------------------------------|
-| **vbUseSystem**     | 0     | Use NLS API setting.                                                   |
-| **vbFirstJan1**     | 1     | Start with week in which January 1 occurs (default).                   |
-| **vbFirstFourDays** | 2     | Start with the first week that has at least four days in the year.    |
-| **vbFirstFullWeek** | 3     | Start with the first full week of the year.                            |
+| 常量                | 值  | 描述                                                       |
+|---------------------|-----|------------------------------------------------------------|
+| **vbUseSystem**     | 0   | 使用NLS API设置。                                          |
+| **vbFirstJan1**     | 1   | 从包含1月1日的那一周开始（默认）。                         |
+| **vbFirstFourDays** | 2   | 从一年中至少有四天的第一周开始。                           |
+| **vbFirstFullWeek** | 3   | 从一年的第一个完整周开始。                                 |
 
-| To format                    | Do this                                                                       |
-|------------------------------|-------------------------------------------------------------------------------|
-| Numbers                      | Use predefined named numeric formats or create user-defined numeric formats. |
-| Dates and times              | Use predefined named date/time formats or create user-defined date/time formats. |
-| Date and time serial numbers | Use date and time formats or numeric formats.                                 |
-| Strings                      | Create user-defined string formats.                                           |
+| 格式目标           | 操作                                                                   |
+|--------------------|------------------------------------------------------------------------|
+| 数字               | 使用预定义的命名数字格式或创建用户定义的数字格式。                     |
+| 日期和时间         | 使用预定义的命名日期/时间格式或创建用户定义的日期/时间格式。           |
+| 日期和时间序列数   | 使用日期和时间格式或数字格式。                                         |
+| 字符串             | 创建用户定义的字符串格式。                                             |
 
-**Format** truncates *format* to 257 characters.
+**Format**将*format*截断为257个字符。
 
-When formatting a number without specifying *format*, **Format** provides functionality similar to the **Str** function, although it is internationally aware. However, positive numbers formatted as strings using **Format** don't include a leading space reserved for the sign of the value; those converted using **Str** retain the leading space.
+在不指定*format*的情况下格式化数字时，**Format**提供与**Str**函数类似的功能，但具有国际识别能力。但是，使用**Format**将正数格式化为字符串时不包含为数值符号保留的前导空格；而使用**Str**转换的则保留前导空格。
 
-When formatting a non-localized numeric string, use a user-defined numeric format to ensure the desired appearance.
+在格式化非本地化的数字字符串时，请使用用户定义的数字格式以确保所需的外观。
 
 ::: info
-If the [**Calendar**](/official/Reference/VBA/DateTime/Calendar) property setting is `Gregorian` and *format* specifies date formatting, the supplied *expression* must be Gregorian. If the **Calendar** property setting is `Hijri`, the supplied *expression* must be Hijri.
+如果[**Calendar**](/official/Reference/VBA/DateTime/Calendar)属性设置为`Gregorian`且*format*指定了日期格式，则提供的*expression*必须是公历。如果**Calendar**属性设置为`Hijri`，则提供的*expression*必须是回历。
 :::
 
-If the calendar is Gregorian, the meaning of *format* expression symbols is unchanged. If the calendar is Hijri, all date format symbols (for example, *dddd*, *mmmm*, *yyyy*) have the same meaning but apply to the Hijri calendar. Format symbols remain in English; symbols that result in text display (for example, AM and PM) display the string (English or Arabic) associated with that symbol. The range of certain symbols changes when the calendar is Hijri.
+如果日历为公历，*format*表达式符号的含义不变。如果日历为回历，所有日期格式符号（例如*dddd*、*mmmm*、*yyyy*）具有相同含义，但适用于回历。格式符号保持英文；产生文本显示的符号（例如AM和PM）显示与该符号关联的字符串（英文或阿拉伯文）。当日历为回历时，某些符号的范围会发生变化。
 
-### Date symbols
+### 日期符号
 
-| Symbol   | Range                                                                              |
-|----------|------------------------------------------------------------------------------------|
-| *d*      | 1-31 (Day of month, with no leading zero)                                          |
-| *dd*     | 01-31 (Day of month, with a leading zero)                                          |
-| *w*      | 1-7 (Day of week, starting with Sunday = 1)                                        |
-| *ww*     | 1-53 (Week of year, with no leading zero; Week 1 starts on Jan 1)                  |
-| *m*      | 1-12 (Month of year, with no leading zero, starting with January = 1)              |
-| *mm*     | 01-12 (Month of year, with a leading zero, starting with January = 01)             |
-| *mmm*    | Displays abbreviated month names (Hijri month names have no abbreviations)         |
-| *mmmm*   | Displays full month names                                                          |
-| *y*      | 1-366 (Day of year)                                                                |
-| *yy*     | 00-99 (Last two digits of year)                                                    |
-| *yyyy*   | 100-9999 (Three- or Four-digit year)                                               |
+| 符号     | 范围                                                           |
+|----------|----------------------------------------------------------------|
+| *d*      | 1-31（月中的日，无前导零）                                     |
+| *dd*     | 01-31（月中的日，有前导零）                                    |
+| *w*      | 1-7（周中的日，从星期日=1开始）                                |
+| *ww*     | 1-53（年中的周，无前导零；第1周从1月1日开始）                  |
+| *m*      | 1-12（年中的月，无前导零，从一月=1开始）                       |
+| *mm*     | 01-12（年中的月，有前导零，从一月=01开始）                     |
+| *mmm*    | 显示月份缩写（回历月份名称无缩写）                             |
+| *mmmm*   | 显示完整月份名称                                               |
+| *y*      | 1-366（年中的日）                                              |
+| *yy*     | 00-99（年份的后两位数字）                                      |
+| *yyyy*   | 100-9999（三位或四位数字的年份）                               |
 
-### Time symbols
+### 时间符号
 
-| Symbol | Range                                                                                                        |
-|--------|--------------------------------------------------------------------------------------------------------------|
-| *h*    | 0-23 (1-12 with "AM" or "PM" appended) (Hour of day, with no leading zero)                                   |
-| *hh*   | 00-23 (01-12 with "AM" or "PM" appended) (Hour of day, with a leading zero)                                  |
-| *n*    | 0-59 (Minute of hour, with no leading zero)                                                                  |
-| *nn*   | 00-59 (Minute of hour, with a leading zero)                                                                  |
-| *m*    | 0-59 (Minute of hour, with no leading zero). Only if preceded by *h* or *hh*                                 |
-| *mm*   | 00-59 (Minute of hour, with a leading zero). Only if preceded by *h* or *hh*                                 |
-| *s*    | 0-59 (Second of minute, with no leading zero)                                                                |
-| *ss*   | 00-59 (Second of minute, with a leading zero)                                                                |
+| 符号  | 范围                                                                   |
+|-------|------------------------------------------------------------------------|
+| *h*   | 0-23（附加"AM"或"PM"时为1-12）（时，无前导零）                         |
+| *hh*  | 00-23（附加"AM"或"PM"时为01-12）（时，有前导零）                       |
+| *n*   | 0-59（分，无前导零）                                                   |
+| *nn*  | 00-59（分，有前导零）                                                  |
+| *m*   | 0-59（分，无前导零）。仅在前面有*h*或*hh*时使用                       |
+| *mm*  | 00-59（分，有前导零）。仅在前面有*h*或*hh*时使用                      |
+| *s*   | 0-59（秒，无前导零）                                                   |
+| *ss*  | 00-59（秒，有前导零）                                                  |
 
-### Example
+### 示例
 
-This example shows various uses of the **Format** function to format values using both named formats and user-defined formats. For the date separator (`/`), time separator (`:`), and AM/PM literal, the actual formatted output displayed by the system depends on the locale settings on which the code is running. When times and dates are displayed in the development environment, the short time format and short date format of the code locale are used. When displayed by running code, the short time format and short date format of the system locale are used, which may differ from the code locale. For this example, English/U.S. is assumed. `MyTime` and `MyDate` are displayed in the development environment using the current system short time setting and short date setting.
+本示例展示了**Format**函数的各种用法，使用命名格式和用户定义格式来格式化值。对于日期分隔符（`/`）、时间分隔符（`:`）和AM/PM文本，系统显示的实际格式化输出取决于运行代码的区域设置。在开发环境中显示时间和日期时，使用代码区域设置的短时间格式和短日期格式。由运行中的代码显示时，使用系统区域设置的短时间格式和短日期格式，这可能与代码区域设置不同。此示例假设为英语/美国设置。`MyTime`和`MyDate`在开发环境中使用当前系统短时间设置和短日期设置显示。
 
 ```vb
 Dim MyTime, MyDate, MyStr
@@ -124,135 +133,135 @@ MyStr = Format("HELLO", "<")                     ' Returns "hello".
 MyStr = Format("This is it", ">")                ' Returns "THIS IS IT".
 ```
 
-### Different formats for different numeric values
+### 不同数值的不同格式
 
-A user-defined format expression for numbers can have from one to four sections separated by semicolons. If the *format* argument contains one of the named numeric formats, only one section is allowed.
+数字的用户定义格式表达式可以有一到四个用分号分隔的节。如果*format*参数包含某个命名数字格式，则只允许一个节。
 
-| Sections         | The result is                                                                                                                                                            |
-|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| One section only | The format expression applies to all values.                                                                                                                             |
-| Two sections     | The first section applies to positive values and zeros, the second to negative values.                                                                                   |
-| Three sections   | The first section applies to positive values, the second to negative values, and the third to zeros.                                                                     |
-| Four sections    | The first section applies to positive values, the second to negative values, the third to zeros, and the fourth to **Null** values.                                      |
+| 节数     | 结果                                                                                                                       |
+|----------|----------------------------------------------------------------------------------------------------------------------------|
+| 仅一个节 | 格式表达式适用于所有值。                                                                                                   |
+| 两个节   | 第一节适用于正值和零，第二节适用于负值。                                                                                   |
+| 三个节   | 第一节适用于正值，第二节适用于负值，第三节适用于零。                                                                       |
+| 四个节   | 第一节适用于正值，第二节适用于负值，第三节适用于零，第四节适用于**Null**值。                                               |
 
 ```vb
 "$#,##0;($#,##0)"
 ```
 
-When semicolons are included with nothing between them, the missing section is printed using the format of the positive value. For example, the following format displays positive and negative values using the format in the first section and displays "Zero" if the value is zero.
+当包含分号但中间没有任何内容时，缺少的节使用正值的格式打印。例如，以下格式使用第一节中的格式显示正值和负值，如果值为零则显示"Zero"。
 
 ```vb
 "$#,##0;;\Z\e\r\o"
 ```
 
-### Different formats for different string values
+### 不同字符串值的不同格式
 
-A format expression for strings can have one section or two sections separated by a semicolon (`;`).
+字符串的格式表达式可以有一个节或两个用分号（`;`）分隔的节。
 
-| Sections         | The result is                                                                              |
-|------------------|--------------------------------------------------------------------------------------------|
-| One section only | The format applies to all string data.                                                     |
-| Two sections     | The first section applies to string data, the second to **Null** values and zero-length strings (`""`). |
+| 节数     | 结果                                                                                                       |
+|----------|------------------------------------------------------------------------------------------------------------|
+| 仅一个节 | 格式适用于所有字符串数据。                                                                                 |
+| 两个节   | 第一节适用于字符串数据，第二节适用于**Null**值和零长度字符串（`""`）。                                    |
 
-### Named date/time formats
+### 命名日期/时间格式
 
-The following table identifies the predefined date and time format names.
+下表标识了预定义的日期和时间格式名称。
 
-| Format name       | Description                                                                                                                                                                                                |
-|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **General Date**  | Display a date and/or time, for example, 4/3/93 05:34 PM. If there is no fractional part, display only a date, for example, 4/3/93. If there is no integer part, display time only, for example, 05:34 PM. Date display is determined by the system settings. |
-| **Long Date**     | Display a date according to the system long date format.                                                                                                                                                   |
-| **Medium Date**   | Display a date using the medium date format appropriate for the language version of the host application.                                                                                                  |
-| **Short Date**    | Display a date using the system short date format.                                                                                                                                                         |
-| **Long Time**     | Display a time using the system long time format; includes hours, minutes, seconds.                                                                                                                        |
-| **Medium Time**   | Display time in 12-hour format using hours and minutes and the AM/PM designator.                                                                                                                           |
-| **Short Time**    | Display a time using the 24-hour format, for example, 17:45.                                                                                                                                               |
+| 格式名称         | 描述                                                                                                                                                                        |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **General Date** | 显示日期和/或时间，例如4/3/93 05:34 PM。如果没有小数部分，则仅显示日期，例如4/3/93。如果没有整数部分，则仅显示时间，例如05:34 PM。日期显示由系统设置决定。                   |
+| **Long Date**    | 根据系统长日期格式显示日期。                                                                                                                                                |
+| **Medium Date**  | 使用适合宿主应用程序语言版本的中等日期格式显示日期。                                                                                                                        |
+| **Short Date**   | 使用系统短日期格式显示日期。                                                                                                                                                |
+| **Long Time**    | 使用系统长时间格式显示时间；包括小时、分钟、秒。                                                                                                                            |
+| **Medium Time**  | 使用12小时格式显示时间，包括小时和分钟以及AM/PM标志。                                                                                                                       |
+| **Short Time**   | 使用24小时格式显示时间，例如17:45。                                                                                                                                         |
 
-### Named numeric formats
+### 命名数字格式
 
-The following table identifies the predefined numeric format names.
+下表标识了预定义的数字格式名称。
 
-| Format name        | Description                                                                                                                                                                                                |
-|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **General Number** | Display number with no thousand separator.                                                                                                                                                                 |
-| **Currency**       | Display number with thousand separator, if appropriate; display two digits to the right of the decimal separator. Output is based on system locale settings.                                               |
-| **Fixed**          | Display at least one digit to the left and two digits to the right of the decimal separator.                                                                                                               |
-| **Standard**       | Display number with thousand separator, at least one digit to the left and two digits to the right of the decimal separator.                                                                               |
-| **Percent**        | Display number multiplied by 100 with a percent sign (`%`) appended to the right; always display two digits to the right of the decimal separator.                                                         |
-| **Scientific**     | Use standard scientific notation.                                                                                                                                                                          |
-| **Yes/No**         | Display No if number is 0; otherwise, display Yes.                                                                                                                                                          |
-| **True/False**     | Display **False** if number is 0; otherwise, display **True**.                                                                                                                                              |
-| **On/Off**         | Display Off if number is 0; otherwise, display On.                                                                                                                                                          |
+| 格式名称          | 描述                                                                                                                                                                        |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **General Number** | 显示不带千位分隔符的数字。                                                                                                                                                  |
+| **Currency**      | 显示带千位分隔符的数字（如适用）；在小数分隔符右侧显示两位数字。输出基于系统区域设置。                                                                                      |
+| **Fixed**         | 在小数分隔符左侧至少显示一位数字，右侧显示两位数字。                                                                                                                        |
+| **Standard**      | 显示带千位分隔符的数字，小数分隔符左侧至少一位数字，右侧两位数字。                                                                                                          |
+| **Percent**       | 显示乘以100的数字，并在右侧附加百分号（`%`）；始终在小数分隔符右侧显示两位数字。                                                                                             |
+| **Scientific**    | 使用标准科学记数法。                                                                                                                                                        |
+| **Yes/No**        | 如果数字为0则显示No；否则显示Yes。                                                                                                                                          |
+| **True/False**    | 如果数字为0则显示**False**；否则显示**True**。                                                                                                                              |
+| **On/Off**        | 如果数字为0则显示Off；否则显示On。                                                                                                                                          |
 
-### User-defined string formats
+### 用户定义的字符串格式
 
-Use any of the following characters to create a format expression for strings.
+使用以下任意字符创建字符串的格式表达式。
 
-| Character | Description                                                                                                                                                                                                |
-|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `@`       | Character placeholder. Display a character or a space. If the string has a character in the position where the at symbol (`@`) appears in the format string, display it; otherwise, display a space in that position. Placeholders are filled from right to left unless there is an exclamation point character (`!`) in the format string. |
-| `&`       | Character placeholder. Display a character or nothing. If the string has a character in the position where the ampersand (`&`) appears, display it; otherwise, display nothing. Placeholders are filled from right to left unless there is an exclamation point character (`!`) in the format string. |
-| `<`       | Force lowercase. Display all characters in lowercase format.                                                                                                                                               |
-| `>`       | Force uppercase. Display all characters in uppercase format.                                                                                                                                               |
-| `!`       | Force left to right fill of placeholders. The default is to fill placeholders from right to left.                                                                                                          |
+| 字符 | 描述                                                                                                                                                                        |
+|------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `@`  | 字符占位符。显示一个字符或空格。如果字符串在格式字符串中`@`符号出现的位置有一个字符，则显示该字符；否则，在该位置显示一个空格。占位符从右向左填充，除非格式字符串中有感叹号字符（`!`）。 |
+| `&`  | 字符占位符。显示一个字符或不显示。如果字符串在`&`符号出现的位置有一个字符，则显示该字符；否则，不显示任何内容。占位符从右向左填充，除非格式字符串中有感叹号字符（`!`）。     |
+| `<`  | 强制小写。以小写格式显示所有字符。                                                                                                                                          |
+| `>`  | 强制大写。以大写格式显示所有字符。                                                                                                                                          |
+| `!`  | 强制从左到右填充占位符。默认为从右到左填充占位符。                                                                                                                          |
 
-### User-defined date/time formats
+### 用户定义的日期/时间格式
 
-The following table identifies the characters available for creating user-defined date/time formats.
+下表标识了可用于创建用户定义日期/时间格式的字符。
 
-| Character    | Description                                                                                                                                                                                                |
-|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `:`          | Time separator. In some locales, other characters may be used to represent the time separator. The time separator separates hours, minutes, and seconds when time values are formatted. The actual character used as the time separator in formatted output is determined by the system settings. |
-| `/`          | Date separator. In some locales, other characters may be used to represent the date separator. The date separator separates the day, month, and year when date values are formatted. The actual character used as the date separator in formatted output is determined by the system settings. |
-| `c`          | Display the date as `ddddd` and display the time as `ttttt`, in that order. Display only date information if there is no fractional part to the date serial number; display only time information if there is no integer portion. |
-| `d`          | Display the day as a number without a leading zero (1--31).                                                                                                                                                 |
-| `dd`         | Display the day as a number with a leading zero (01--31).                                                                                                                                                   |
-| `ddd`        | Display the day as an abbreviation (Sun--Sat). Localized.                                                                                                                                                   |
-| `dddd`       | Display the day as a full name (Sunday--Saturday). Localized.                                                                                                                                               |
-| `ddddd`      | Display the date as a complete date (including day, month, and year), formatted according to the system short date format setting. The default short date format is `m/d/yy`.                              |
-| `dddddd`     | Display a date serial number as a complete date (including day, month, and year) formatted according to the long date setting recognized by the system. The default long date format is `mmmm dd, yyyy`.   |
-| `w`          | Display the day of the week as a number (1 for Sunday through 7 for Saturday).                                                                                                                             |
-| `ww`         | Display the week of the year as a number (1--54).                                                                                                                                                           |
-| `m`          | Display the month as a number without a leading zero (1--12). If `m` immediately follows `h` or `hh`, the minute rather than the month is displayed.                                                        |
-| `mm`         | Display the month as a number with a leading zero (01--12). If `m` immediately follows `h` or `hh`, the minute rather than the month is displayed.                                                          |
-| `mmm`        | Display the month as an abbreviation (Jan--Dec). Localized.                                                                                                                                                 |
-| `mmmm`       | Display the month as a full month name (January--December). Localized.                                                                                                                                      |
-| `q`          | Display the quarter of the year as a number (1--4).                                                                                                                                                         |
-| `y`          | Display the day of the year as a number (1--366).                                                                                                                                                           |
-| `yy`         | Display the year as a 2-digit number (00--99).                                                                                                                                                              |
-| `yyyy`       | Display the year as a 4-digit number (100--9999).                                                                                                                                                           |
-| `h`          | Display the hour as a number without a leading zero (0--23).                                                                                                                                                |
-| `hh`         | Display the hour as a number with a leading zero (00--23).                                                                                                                                                  |
-| `n`          | Display the minute as a number without a leading zero (0--59).                                                                                                                                              |
-| `nn`         | Display the minute as a number with a leading zero (00--59).                                                                                                                                                |
-| `s`          | Display the second as a number without a leading zero (0--59).                                                                                                                                              |
-| `ss`         | Display the second as a number with a leading zero (00--59).                                                                                                                                                |
-| `ttttt`      | Display a time as a complete time (including hour, minute, and second), formatted using the time separator defined by the time format recognized by the system. A leading zero is displayed if the leading zero option is selected and the time is before 10:00 A.M. or P.M. The default time format is `h:mm:ss`. |
-| `AM/PM`      | Use the 12-hour clock and display an uppercase AM with any hour before noon; display an uppercase PM with any hour between noon and 11:59 P.M.                                                             |
-| `am/pm`      | Use the 12-hour clock and display a lowercase AM with any hour before noon; display a lowercase PM with any hour between noon and 11:59 P.M.                                                               |
-| `A/P`        | Use the 12-hour clock and display an uppercase A with any hour before noon; display an uppercase P with any hour between noon and 11:59 P.M.                                                               |
-| `a/p`        | Use the 12-hour clock and display a lowercase A with any hour before noon; display a lowercase P with any hour between noon and 11:59 P.M.                                                                 |
-| `AMPM`       | Use the 12-hour clock and display the AM string literal as defined by the system with any hour before noon; display the PM string literal as defined by the system with any hour between noon and 11:59 P.M. |
+| 字符    | 描述                                                                                                                                                                        |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `:`     | 时间分隔符。在某些区域设置中，可能使用其他字符来表示时间分隔符。时间分隔符在格式化时间值时分隔小时、分钟和秒。格式化输出中用作时间分隔符的实际字符由系统设置决定。           |
+| `/`     | 日期分隔符。在某些区域设置中，可能使用其他字符来表示日期分隔符。日期分隔符在格式化日期值时分隔日、月和年。格式化输出中用作日期分隔符的实际字符由系统设置决定。               |
+| `c`     | 将日期显示为`ddddd`，将时间显示为`ttttt`，按此顺序。如果日期序列数没有小数部分，则仅显示日期信息；如果没有整数部分，则仅显示时间信息。                                      |
+| `d`     | 将日显示为不带前导零的数字（1--31）。                                                                                                                                        |
+| `dd`    | 将日显示为带前导零的数字（01--31）。                                                                                                                                         |
+| `ddd`   | 将日显示为缩写（Sun--Sat）。本地化。                                                                                                                                        |
+| `dddd`  | 将日显示为全名（Sunday--Saturday）。本地化。                                                                                                                                 |
+| `ddddd` | 将日期显示为完整日期（包括日、月和年），根据系统短日期格式设置进行格式化。默认短日期格式为`m/d/yy`。                                                                         |
+| `dddddd`| 将日期序列数显示为完整日期（包括日、月和年），根据系统识别的长日期设置进行格式化。默认长日期格式为`mmmm dd, yyyy`。                                                          |
+| `w`     | 将周中的日显示为数字（1表示星期日至7表示星期六）。                                                                                                                           |
+| `ww`    | 将年中的周显示为数字（1--54）。                                                                                                                                              |
+| `m`     | 将月显示为不带前导零的数字（1--12）。如果`m`紧跟在`h`或`hh`之后，则显示分钟而非月份。                                                                                       |
+| `mm`    | 将月显示为带前导零的数字（01--12）。如果`m`紧跟在`h`或`hh`之后，则显示分钟而非月份。                                                                                       |
+| `mmm`   | 将月显示为缩写（Jan--Dec）。本地化。                                                                                                                                        |
+| `mmmm`  | 将月显示为完整月份名称（January--December）。本地化。                                                                                                                       |
+| `q`     | 将年中的季度显示为数字（1--4）。                                                                                                                                             |
+| `y`     | 将年中的日显示为数字（1--366）。                                                                                                                                             |
+| `yy`    | 将年显示为2位数字（00--99）。                                                                                                                                                |
+| `yyyy`  | 将年显示为4位数字（100--9999）。                                                                                                                                             |
+| `h`     | 将小时显示为不带前导零的数字（0--23）。                                                                                                                                      |
+| `hh`    | 将小时显示为带前导零的数字（00--23）。                                                                                                                                       |
+| `n`     | 将分钟显示为不带前导零的数字（0--59）。                                                                                                                                      |
+| `nn`    | 将分钟显示为带前导零的数字（00--59）。                                                                                                                                       |
+| `s`     | 将秒显示为不带前导零的数字（0--59）。                                                                                                                                        |
+| `ss`    | 将秒显示为带前导零的数字（00--59）。                                                                                                                                         |
+| `ttttt` | 将时间显示为完整时间（包括小时、分钟和秒），使用系统识别的时间格式定义的时间分隔符进行格式化。如果选择了前导零选项且时间在上午或下午10:00之前，则显示前导零。默认时间格式为`h:mm:ss`。 |
+| `AM/PM` | 使用12小时制，在中午之前的任何小时显示大写AM；在中午至11:59 P.M.之间的任何小时显示大写PM。                                                                                  |
+| `am/pm` | 使用12小时制，在中午之前的任何小时显示小写am；在中午至11:59 P.M.之间的任何小时显示小写pm。                                                                                  |
+| `A/P`   | 使用12小时制，在中午之前的任何小时显示大写A；在中午至11:59 P.M.之间的任何小时显示大写P。                                                                                    |
+| `a/p`   | 使用12小时制，在中午之前的任何小时显示小写a；在中午至11:59 P.M.之间的任何小时显示小写p。                                                                                    |
+| `AMPM`  | 使用12小时制，在中午之前的任何小时显示由系统定义的AM字符串；在中午至11:59 P.M.之间的任何小时显示由系统定义的PM字符串。                                                       |
 
-### User-defined numeric formats
+### 用户定义的数字格式
 
-The following table identifies the characters available for creating user-defined number formats.
+下表标识了可用于创建用户定义数字格式的字符。
 
-| Character          | Description                                                                                                                                                                                                |
-|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| None               | Display the number with no formatting.                                                                                                                                                                     |
-| `0`                | Digit placeholder. Display a digit or a zero. If the expression has a digit in the position where the `0` appears in the format string, display it; otherwise, display a zero in that position. If the number has fewer digits than there are zeros (on either side of the decimal) in the format expression, display leading or trailing zeros. If the number has more digits to the right of the decimal separator than there are zeros to the right of the decimal separator in the format expression, round the number to as many decimal places as there are zeros. If the number has more digits to the left of the decimal separator than there are zeros to the left of the decimal separator in the format expression, display the extra digits without modification. |
-| `#`                | Digit placeholder. Display a digit or nothing. If the expression has a digit in the position where the `#` appears in the format string, display it; otherwise, display nothing in that position. This symbol works like the `0` digit placeholder, except that leading and trailing zeros aren't displayed if the number has the same or fewer digits than there are `#` characters on either side of the decimal separator in the format expression. |
-| `.`                | Decimal placeholder. The decimal placeholder determines how many digits are displayed to the left and right of the decimal separator. If the format expression contains only number signs to the left of this symbol, numbers smaller than 1 begin with a decimal separator. To display a leading zero with fractional numbers, use 0 as the first digit placeholder to the left of the decimal separator. The actual character used as a decimal placeholder in the formatted output depends on the Number Format recognized by the system. |
-| `%`                | Percentage placeholder. The expression is multiplied by 100. The percent character (`%`) is inserted in the position where it appears in the format string.                                                |
-| `,`                | Thousand separator. Standard use of the thousand separator is specified if the format contains a thousand separator surrounded by digit placeholders (`0` or `#`). Two adjacent thousand separators or a thousand separator immediately to the left of the decimal separator means "scale the number by dividing it by 1000, rounding as needed." |
-| `:`                | Time separator. See above.                                                                                                                                                                                 |
-| `/`                | Date separator. See above.                                                                                                                                                                                 |
-| `E- E+ e- e+`      | Scientific format. If the format expression contains at least one digit placeholder (`0` or `#`) to the right of `E-`, `E+`, `e-`, or `e+`, the number is displayed in scientific format and `E` or `e` is inserted between the number and its exponent. Use `E-` or `e-` to place a minus sign next to negative exponents. Use `E+` or `e+` to place a minus sign next to negative exponents and a plus sign next to positive exponents. |
-| `- + $ ( )`        | Display a literal character. To display a character other than one of those listed, precede it with a backslash (`\`) or enclose it in double quotation marks (`" "`).                                     |
-| `\`                | Display the next character in the format string. Using a backslash is the same as enclosing the next character in double quotation marks. To display a backslash, use two backslashes (`\\`).               |
-| `"ABC"`            | Display the string inside the double quotation marks (`" "`). To include a string in *format* from within code, use `Chr(34)` to enclose the text (34 is the character code for a quotation mark `"`). |
+| 字符              | 描述                                                                                                                                                                        |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 无                | 显示不带格式的数字。                                                                                                                                                        |
+| `0`               | 数字占位符。显示一个数字或零。如果表达式在格式字符串中`0`出现的位置有一个数字，则显示该数字；否则，在该位置显示零。如果数字的位数少于格式表达式中零（小数点两侧）的位数，则显示前导零或尾随零。如果数字小数分隔符右侧的位数多于格式表达式中零的位数，则将数字四舍五入到零的位数。如果数字小数分隔符左侧的位数多于格式表达式中零的位数，则不加修改地显示多余的数字。 |
+| `#`               | 数字占位符。显示一个数字或不显示。如果表达式在格式字符串中`#`出现的位置有一个数字，则显示该数字；否则，在该位置不显示任何内容。此符号的作用类似于`0`数字占位符，不同之处在于当数字的位数等于或少于格式表达式中小数分隔符两侧的`#`字符数时，不显示前导零和尾随零。 |
+| `.`               | 小数占位符。小数占位符决定小数分隔符左侧和右侧显示多少位数字。如果格式表达式中此符号左侧仅包含数字符号，则小于1的数字以小数分隔符开头。要为小数显示前导零，请使用0作为小数分隔符左侧的第一个数字占位符。格式化输出中用作小数占位符的实际字符取决于系统识别的数字格式。 |
+| `%`               | 百分比占位符。表达式乘以100。百分号（`%`）插入到格式字符串中出现的位置。                                                                                                     |
+| `,`               | 千位分隔符。如果格式包含被数字占位符（`0`或`#`）包围的千位分隔符，则指定使用千位分隔符。两个相邻的千位分隔符或紧接在小数分隔符左侧的千位分隔符表示"将数字除以1000进行缩放，并根据需要四舍五入。" |
+| `:`               | 时间分隔符。见上文。                                                                                                                                                        |
+| `/`               | 日期分隔符。见上文。                                                                                                                                                        |
+| `E- E+ e- e+`     | 科学格式。如果格式表达式中`E-`、`E+`、`e-`或`e+`的右侧至少包含一个数字占位符（`0`或`#`），则数字以科学格式显示，并在数字与其指数之间插入`E`或`e`。使用`E-`或`e-`在负指数旁放置减号。使用`E+`或`e+`在负指数旁放置减号，在正指数旁放置加号。 |
+| `- + $ ( )`       | 显示原义字符。要显示未列出的字符，请在其前面加反斜杠（`\`）或用双引号（`" "`）将其括起来。                                                                                   |
+| `\`               | 显示格式字符串中的下一个字符。使用反斜杠与将下一个字符用双引号括起来的效果相同。要显示反斜杠，请使用两个反斜杠（`\\`）。                                                     |
+| `"ABC"`           | 显示双引号（`" "`）内的字符串。要在代码中的*format*中包含字符串，请使用`Chr(34)`将文本括起来（34是引号`"`的字符代码）。                                                      |
 
-### See Also
+### 另请参阅
 
-- [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency), [FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime), [FormatNumber](/official/Reference/VBA/Strings/FormatNumber), [FormatPercent](/official/Reference/VBA/Strings/FormatPercent) functions
+- [FormatCurrency](/official/Reference/VBA/Strings/FormatCurrency)、[FormatDateTime](/official/Reference/VBA/Strings/FormatDateTime)、[FormatNumber](/official/Reference/VBA/Strings/FormatNumber)、[FormatPercent](/official/Reference/VBA/Strings/FormatPercent)函数

@@ -1,14 +1,25 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '04b6c26a-762b-4694-9c95-afbc422f0dd1'
+  PropagateID: '04b6c26a-762b-4694-9c95-afbc422f0dd1'
+  ReservedCode1: '6a9b75a2-9716-4ef8-8974-5d15fc9b6831'
+  ReservedCode2: '6a9b75a2-9716-4ef8-8974-5d15fc9b6831'
+---
+
 ---
 title: Line
 parent: VB Package
 permalink: /tB/Packages/VB/Line/
 ---
 
-# Line class
+# Line 类
 
-A **Line** is a windowless lightweight control that draws a single straight line segment from one point to another on its container. It exists purely for visual presentation --- to divide regions of a form, underline a heading, draw a leader to an annotation --- and has no interactive elements of its own: no mouse events, no focus, no caption.
+**Line**是无窗口轻量级控件，在其容器上从一个点到另一个点绘制单一直线段。它纯粹用于视觉呈现——分隔窗体区域、为标题加下划线、绘制注释引导线——没有自身的交互元素：没有鼠标事件、没有焦点、没有标题。
 
-A **Line** is positioned by its two endpoints, [**X1**](#x1) / [**Y1**](#y1) and [**X2**](#x2) / [**Y2**](#y2), rather than by a `Left` / `Top` / `Width` / `Height` rectangle. The default property is [**Visible**](#visible) and the default event is [**Initialize**](#initialize).
+**Line**通过其两个端点[**X1**](#x1) / [**Y1**](#y1)和[**X2**](#x2) / [**Y2**](#y2)定位，而非`Left` / `Top` / `Width` / `Height`矩形。默认属性为[**Visible**](#visible)，默认事件为[**Initialize**](#initialize)。
 
 ```vb
 Private Sub Form_Load()
@@ -20,107 +31,107 @@ End Sub
 ```
 
 
-## Endpoints
+## 端点
 
-[**X1**](#x1) / [**Y1**](#y1) is one endpoint of the line; [**X2**](#x2) / [**Y2**](#y2) is the other. Coordinates are in the container's **ScaleMode** units (twips by default) and are measured from the top-left corner of the container's client area. The line is drawn between the two points regardless of which is "earlier" --- swapping the endpoints does not change the result.
+[**X1**](#x1) / [**Y1**](#y1)是直线的一个端点；[**X2**](#x2) / [**Y2**](#y2)是另一个端点。坐标以容器的**ScaleMode**单位（默认为缇）表示，从容器的客户区左上角测量。直线在两点之间绘制，无论哪个点"在前"——交换端点不改变结果。
 
-The control has no `Width` or `Height` of its own; the bounding rectangle is derived from the two endpoints. Resizing a **Line** at design time moves whichever endpoint is being dragged.
+控件没有自身的`Width`或`Height`；边界矩形由两个端点派生。在设计时调整**Line**大小会移动被拖动的端点。
 
-## Pen
+## 画笔
 
-The line is drawn with a Win32 GDI pen whose appearance is controlled by:
+直线使用Win32 GDI画笔绘制，其外观由以下属性控制：
 
-- [**BorderColor**](#bordercolor) -- the colour of the pen (defaults to the system window-text colour).
-- [**BorderWidth**](#borderwidth) -- the pen width in pixels (default `1`).
-- [**BorderStyle**](#borderstyle) -- the pen pattern, as a member of [**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants): **vbTransparent** (0), **vbBSSolid** (1, default), **vbBSDash** (2), **vbBSDot** (3), **vbBSDashDot** (4), **vbBSDashDotDot** (5), or **vbBSInsideSolid** (6).
+- [**BorderColor**](#bordercolor)——画笔颜色（默认为系统窗口文本颜色）。
+- [**BorderWidth**](#borderwidth)——画笔宽度，以像素为单位（默认`1`）。
+- [**BorderStyle**](#borderstyle)——画笔模式，作为[**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants)的成员：**vbTransparent** (0)、**vbBSSolid** (1, 默认)、**vbBSDash** (2)、**vbBSDot** (3)、**vbBSDashDot** (4)、**vbBSDashDotDot** (5)或**vbBSInsideSolid** (6)。
 
-GDI applies a hard limitation here: when [**BorderWidth**](#borderwidth) is greater than `1`, the OS forces a solid pen even if [**BorderStyle**](#borderstyle) requests a dashed or dotted pattern. Use width `1` if the pattern matters.
+GDI在此有硬性限制：当[**BorderWidth**](#borderwidth)大于`1`时，即使[**BorderStyle**](#borderstyle)请求虚线或点线模式，操作系统也强制使用实线画笔。如果模式重要，请使用宽度`1`。
 
-## Draw mode
+## 绘制模式
 
-[**DrawMode**](#drawmode) selects the raster operation that combines the pen with the destination pixels. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default --- opaque drawing) or one of the XOR / AND / NOT / merge variants. Non-default modes are mainly useful for "rubber-band" feedback drawn over an existing background --- the same XOR applied twice cancels itself out, restoring the original pixels.
+[**DrawMode**](#drawmode)选择将画笔与目标像素组合的光栅操作。作为[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员：**vbCopyPen**（默认——不透明绘制）或XOR / AND / NOT / 合并变体之一。非默认模式主要用于在现有背景上绘制的"橡皮筋"反馈——两次应用相同的XOR会抵消自身，恢复原始像素。
 
-## No interaction
+## 无交互
 
-Unlike most other controls, a **Line** does not raise mouse, keyboard, or focus events of any kind, and has no [**Caption**](/official/Reference/VB/Label/#caption), [**Enabled**](/official/Reference/VB/Label/#enabled), or **ToolTipText**. To make a region clickable, place a transparent [**Label**](/official/Reference/VB/Label/) on top.
+与大多数其他控件不同，**Line**不引发任何类型的鼠标、键盘或焦点事件，也没有[**Caption**](/official/Reference/VB/Label/#caption)、[**Enabled**](/official/Reference/VB/Label/#enabled)或**ToolTipText**。要使区域可点击，请在上面放置一个透明的[**Label**](/official/Reference/VB/Label/)。
 
-## Properties
+## 属性
 
 ### BorderColor
 
-The colour of the line, as an **OLE_COLOR**. Defaults to the system window-text colour.
+线条颜色，类型为**OLE_COLOR**。默认为系统窗口文本颜色。
 
 ### BorderStyle
 
-The pen pattern. A member of [**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants): **vbTransparent** (0), **vbBSSolid** (1, default), **vbBSDash** (2), **vbBSDot** (3), **vbBSDashDot** (4), **vbBSDashDotDot** (5), or **vbBSInsideSolid** (6). Forced to **vbBSSolid** by Win32 whenever [**BorderWidth**](#borderwidth) is greater than `1`.
+画笔模式。作为[**BorderStyleConstants**](/official/Reference/VBRUN/Constants/BorderStyleConstants)的成员：**vbTransparent** (0)、**vbBSSolid** (1, 默认)、**vbBSDash** (2)、**vbBSDot** (3)、**vbBSDashDot** (4)、**vbBSDashDotDot** (5)或**vbBSInsideSolid** (6)。当[**BorderWidth**](#borderwidth)大于`1`时被Win32强制为**vbBSSolid**。
 
 ### BorderWidth
 
-The pen width, in pixels. **Long**, default `1`. Widths greater than `1` ignore [**BorderStyle**](#borderstyle) and always draw solid.
+画笔宽度，以像素为单位。**Long**，默认`1`。大于`1`的宽度忽略[**BorderStyle**](#borderstyle)并始终绘制实线。
 
 ### Container
 
-The control that hosts this line --- typically the form, a [**Frame**](/official/Reference/VB/Frame/), or a **UserControl**. Read with **Get**, change with **Set**.
+承载此线条的控件——通常是窗体、[**Frame**](/official/Reference/VB/Frame/)或**UserControl**。使用**Get**读取，使用**Set**更改。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control. The **Line** shares the **vbShape** constant with the [**Shape**](/official/Reference/VB/Shape/) control --- both are windowless, points-based geometric primitives with no dedicated control-type identifier.
+标识此控件的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。**Line**与[**Shape**](/official/Reference/VB/Shape/)控件共享**vbShape**常量——两者都是无窗口、基于点的几何图元，没有专用的控件类型标识符。
 
 ### DrawMode
 
-The raster operation that the line drawing applies when combining the pen with the destination. A member of [**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants): **vbCopyPen** (default) is normal opaque drawing; other values produce XOR, AND, NOT, and other pixel-mixing effects.
+线条绘制将画笔与目标组合时应用的光栅操作。作为[**DrawModeConstants**](/official/Reference/VBRUN/Constants/DrawModeConstants)的成员：**vbCopyPen**（默认）为正常不透明绘制；其他值产生XOR、AND、NOT和其他像素混合效果。
 
 ### Index
 
-When the line is part of a control array, the **Long** zero-based index of this instance within the array. Reading **Index** on a non-array instance raises run-time error 343 (*Object not an array*). Read-only at run time.
+当线条是控件数组的一部分时，此实例在数组中从0开始的**Long**索引。在非数组实例上读取**Index**会引发运行时错误343（*对象不是数组*）。运行时只读。
 
 ### Name
 
-The unique design-time name of the control on its parent. Read-only at run time.
+控件在其父级上的唯一设计时名称。运行时只读。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that ultimately contains the line. Read-only.
+对最终包含此线条的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）的引用。只读。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the line. Ignored by the framework.
+应用程序可用于将自定义数据与线条关联的自由格式**String**。框架忽略。
 
 ### Visible
 
-Whether the line is shown. **Boolean**, default **True**. **Default property.**
+线条是否显示。**Boolean**，默认**True**。**默认属性。**
 
 ### X1
 
-The horizontal position of the first endpoint, in the container's **ScaleMode** units. **Double**.
+第一个端点的水平位置，以容器的**ScaleMode**单位。**Double**。
 
 ### X2
 
-The horizontal position of the second endpoint, in the container's **ScaleMode** units. **Double**.
+第二个端点的水平位置，以容器的**ScaleMode**单位。**Double**。
 
 ### Y1
 
-The vertical position of the first endpoint, in the container's **ScaleMode** units. **Double**.
+第一个端点的垂直位置，以容器的**ScaleMode**单位。**Double**。
 
 ### Y2
 
-The vertical position of the second endpoint, in the container's **ScaleMode** units. **Double**.
+第二个端点的垂直位置，以容器的**ScaleMode**单位。**Double**。
 
-## Methods
+## 方法
 
 ### ZOrder
 
-Brings the line to the front or back of the windowless-sibling stack within its container.
+将线条移到其容器内无窗口同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront** (0, 默认)或**vbSendToBack** (1)。
 
-## Events
+## 事件
 
 ### Initialize
 
-Raised once, after the line has been connected to its container's paint cycle but before it is first painted. **Default event.**
+在线条连接到其容器的绘制周期后、首次绘制前引发一次。**默认事件。**
 
-Syntax: *object*\_**Initialize**( )
+语法：*object*\_**Initialize**( )

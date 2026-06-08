@@ -2,22 +2,31 @@
 title: GetDeclaredTypeEventIid
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/GetDeclaredTypeEventIid
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'e55bd6ab-5752-48cb-9109-e82a07708ed9'
+  PropagateID: 'e55bd6ab-5752-48cb-9109-e82a07708ed9'
+  ReservedCode1: 'fe36219d-bbc0-4c2e-8408-86002a68fa7b'
+  ReservedCode2: 'fe36219d-bbc0-4c2e-8408-86002a68fa7b'
 ---
+
 # GetDeclaredTypeEventIid
 
-Returns the IID of the COM event interface associated with a declared type, resolved at compile time.
+返回与已声明类型关联的COM事件接口的IID，在编译时解析。
 
-Syntax: **GetDeclaredTypeEventIid(Of** *T* **)()** **As String**
+语法：**GetDeclaredTypeEventIid(Of** *T* **)()** **As String**
 
 *T*
-: *required* The type to query for. Typically a coclass that exposes events via the **EventInterfaceId** attribute or imported from a type library.
+: *必需* 要查询的类型。通常是通过**EventInterfaceId**属性暴露事件的coclass或从类型库导入的类型。
 
-The IID is returned in registry format (`{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}`). The lookup happens at compile time and the result is stored in the generated code as a string literal --- there is no run-time call.
+IID以注册表格式返回（`{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}`）。查找在编译时进行，结果作为字符串字面值存储在生成的代码中——没有运行时调用。
 
-Returns an empty string if the type has no associated event interface.
+如果类型没有关联的事件接口，则返回空字符串。
 
-### See Also
+### 另请参阅
 
-- [GetDeclaredTypeIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeIid) function
-- [GetDeclaredTypeProgId](/official/Reference/VBA/HiddenModule/GetDeclaredTypeProgId) function
-- [GetDeclaredTypeClsid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeClsid) function
+- [GetDeclaredTypeIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeIid)函数
+- [GetDeclaredTypeProgId](/official/Reference/VBA/HiddenModule/GetDeclaredTypeProgId)函数
+- [GetDeclaredTypeClsid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeClsid)函数

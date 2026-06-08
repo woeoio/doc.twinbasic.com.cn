@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '818979b1-f4f3-4f54-921b-d7cef429761f'
+  PropagateID: '818979b1-f4f3-4f54-921b-d7cef429761f'
+  ReservedCode1: '8d28ddda-1145-4510-8b89-25aea9be4cca'
+  ReservedCode2: '8d28ddda-1145-4510-8b89-25aea9be4cca'
+---
+
 ---
 title: DisplayAsDefault
 parent: AmbientProperties
@@ -5,30 +16,30 @@ permalink: /tB/Packages/VBRUN/AmbientProperties/DisplayAsDefault
 ---
 # DisplayAsDefault
 
-Returns whether the container is treating this control as its default control, as a **Boolean**. Read-only.
+返回容器是否将此控件视为其默认控件，类型为**Boolean**。只读。
 
-Syntax: *object*.**DisplayAsDefault**
+语法：*object*.**DisplayAsDefault**
 
 *object*
-: *required* An object expression that evaluates to an **AmbientProperties** object.
+: *必需* 求值为**AmbientProperties**对象的对象表达式。
 
-The default control on a form is the one activated when the user presses **Enter** without first giving focus to another control --- most often a command button. A control that wants to advertise its default-button status should paint itself with the heavier border or other distinguishing visual when **DisplayAsDefault** is **True**.
+窗体上的默认控件是用户按下**Enter**键而未先将焦点给予其他控件时激活的控件——通常是命令按钮。希望宣传其默认按钮状态的控件应在**DisplayAsDefault**为**True**时以更粗的边框或其他区分性视觉效果绘制自身。
 
-### Example
+### 示例
 
-This example responds to a **DisplayAsDefault** change and triggers a repaint to update the button border.
+此示例响应**DisplayAsDefault**更改并触发重绘以更新按钮边框。
 
 ```vb
 Private Sub UserControl_AmbientChanged(PropertyName As String)
     Select Case PropertyName
         Case "DisplayAsDefault"
-            UserControl.Refresh    ' repaint to show or remove the default-button border
+            UserControl.Refresh    ' 重绘以显示或移除默认按钮边框
     End Select
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [ShowGrabHandles](/official/Reference/VBRUN/AmbientProperties/ShowGrabHandles) property
-- [ShowHatching](/official/Reference/VBRUN/AmbientProperties/ShowHatching) property
-- [SupportsMnemonics](/official/Reference/VBRUN/AmbientProperties/SupportsMnemonics) property
+- [ShowGrabHandles](/official/Reference/VBRUN/AmbientProperties/ShowGrabHandles) 属性
+- [ShowHatching](/official/Reference/VBRUN/AmbientProperties/ShowHatching) 属性
+- [SupportsMnemonics](/official/Reference/VBRUN/AmbientProperties/SupportsMnemonics) 属性

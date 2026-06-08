@@ -2,65 +2,74 @@
 title: Like
 parent: Operators
 permalink: /tB/Core/Like
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fa166732-495f-4e69-97be-0c17ae356f08'
+  PropagateID: 'fa166732-495f-4e69-97be-0c17ae356f08'
+  ReservedCode1: '92512627-b292-4c8b-b40c-9faf6a9d7d1f'
+  ReservedCode2: '92512627-b292-4c8b-b40c-9faf6a9d7d1f'
 ---
-# Like operator
 
-Used to compare a string against a wildcard pattern.
+# Like 运算符
 
-Syntax:
+用于将字符串与通配符模式进行比较。
+
+语法：
 > *result* **=** *string* **Like** *pattern*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *string*
-: Any string expression.
+: 任意字符串表达式。
 
 *pattern*
-: Any string expression conforming to the pattern-matching conventions described below.
+: 符合以下描述的模式匹配约定的任意字符串表达式。
 
-If *string* matches *pattern*, *result* is **True**; if there is no match, *result* is **False**. If either *string* or *pattern* is **Null**, *result* is **Null**.
+如果 *string* 匹配 *pattern*，*result* 为 **True**；如果不匹配，*result* 为 **False**。如果 *string* 或 *pattern* 为 **Null**，则 *result* 为 **Null**。
 
-The behavior of the **Like** operator depends on the [**Option Compare**](/official/Reference/Core/Option) statement. The default for each module is **Option Compare Binary**, which compares characters by their internal binary representation (case-sensitive, ordinal). **Option Compare Text** performs a case-insensitive, locale-sensitive comparison.
+**Like** 运算符的行为取决于 [**Option Compare**](/official/Reference/Core/Option) 语句。每个模块默认为 **Option Compare Binary**，按内部二进制表示比较字符（区分大小写，按序比较）。**Option Compare Text** 执行不区分大小写、受区域设置影响的比较。
 
-For example, under **Option Compare Binary** a typical sort order is:
+例如，在 **Option Compare Binary** 下，典型的排序顺序为：
 
 `A < B < E < Z < a < b < e < z < À < Ê < Ø < à < ê < ø`
 
-Under **Option Compare Text** the same characters compare equal up to case and accent:
+在 **Option Compare Text** 下，相同字符在不区分大小写和重音时比较相等：
 
 `(A=a) < (À=à) < (B=b) < (E=e) < (Ê=ê) < (Z=z) < (Ø=ø)`
 
-The pattern-matching syntax supports wildcards, character lists, and character ranges. The following characters in *pattern* have special meaning:
+模式匹配语法支持通配符、字符列表和字符范围。*pattern* 中的以下字符具有特殊含义：
 
-| In *pattern*       | Matches in *string*                                  |
+| *pattern* 中的       | *string* 中的匹配                                  |
 |:-------------------|:-----------------------------------------------------|
-| `?`                | Any single character.                                |
-| `*`                | Zero or more characters.                             |
-| `#`                | Any single digit (`0`--`9`).                          |
-| `[`*charlist*`]`   | Any single character in *charlist*.                  |
-| `[!`*charlist*`]`  | Any single character *not* in *charlist*.            |
+| `?`                | 任意单个字符。                                |
+| `*`                | 零个或多个字符。                             |
+| `#`                | 任意单个数字（`0`--`9`）。                          |
+| `[`*charlist*`]`   | *charlist* 中的任意单个字符。                  |
+| `[!`*charlist*`]`  | 不在 *charlist* 中的任意单个字符。            |
 
-A group of one or more characters (*charlist*) enclosed in brackets can match any single character in *string* and may include almost any character code, including digits.
+方括号中包含的一个或多个字符组（*charlist*）可以匹配 *string* 中的任意单个字符，几乎可以包含任何字符代码，包括数字。
 
 ::: info
-To match the special characters left bracket (`[`), question mark (`?`), number sign (`#`), or asterisk (`*`), enclose them in brackets. The right bracket (`]`) cannot be used inside a group to match itself, but it can be used outside a group as a literal character.
+要匹配特殊字符左方括号（`[`）、问号（`?`）、数字符号（`#`）或星号（`*`），请将它们括在方括号中。右方括号（`]`）不能在组内用于匹配自身，但可以在组外作为字面字符使用。
 :::
 
-A hyphen (`-`) inside *charlist* separates the upper and lower bounds of a character range --- for example, `[A-Z]` matches any uppercase letter. Multiple ranges are placed adjacently inside the same brackets, with no delimiter.
+*charlist* 中的连字符（`-`）分隔字符范围的上界和下界——例如，`[A-Z]` 匹配任何大写字母。多个范围放置在相同方括号内，没有分隔符。
 
-The meaning of a range depends on the active **Option Compare** mode and the system locale. Under **Option Compare Binary** the range `[A-E]` matches `A`, `B`, `E`; under **Option Compare Text** it matches `A`, `a`, `À`, `à`, `B`, `b`, `E`, `e` (but not `Ê`/`ê`, which sort after the basic letters).
+范围的含义取决于活动的 **Option Compare** 模式和系统区域设置。在 **Option Compare Binary** 下，范围 `[A-E]` 匹配 `A`、`B`、`E`；在 **Option Compare Text** 下，它匹配 `A`、`a`、`À`、`à`、`B`、`b`、`E`、`e`（但不匹配 `Ê`/`ê`，它们排在基本字母之后）。
 
-Other rules:
+其他规则：
 
-- An exclamation point (`!`) at the beginning of *charlist* negates the class. Outside brackets, `!` matches itself.
-- A hyphen (`-`) at the start (after `!`, if present) or end of *charlist* matches itself; elsewhere it identifies a range.
-- Ranges must be specified low-to-high: `[A-Z]` is valid; `[Z-A]` is not.
-- The character sequence `[]` is treated as a zero-length string.
+- *charlist* 开头的感叹号（`!`）取反字符类。方括号外，`!` 匹配自身。
+- *charlist* 开头（如果有 `!` 则在其后）或末尾的连字符（`-`）匹配自身；其他位置标识范围。
+- 范围必须从低到高指定：`[A-Z]` 有效；`[Z-A]` 无效。
+- 字符序列 `[]` 被视为零长度字符串。
 
-In some languages a single character represents two graphemes (e.g. `æ` for `a`+`e`). When the system locale specifies such a language, **Like** treats the single character and the equivalent 2-character sequence as interchangeable, both as `*string*` and inside a *charlist*.
+在某些语言中，单个字符表示两个字位（如 `æ` 表示 `a`+`e`）。当系统区域设置指定此类语言时，**Like** 将单个字符和等效的2字符序列视为可互换的，无论作为 *string* 还是在 *charlist* 中。
 
-### Example
+### 示例
 
 ```vb
 Dim MyCheck
@@ -77,9 +86,9 @@ MyCheck = "axxxxxb" Like "a[*]b"          ' Returns False.
 MyCheck = "a[xyz" Like "a[[]*"            ' Returns True.
 ```
 
-### See Also
+### 另请参阅
 
-- [Comparison operators](/official/Reference/Core/Comparison-Operators)
-- [**Option** statement](/official/Reference/Core/Option)
-- [**InStr** function](/official/Reference/VBA/Strings/InStr)
-- [Operators](/official/Reference/Operators)
+- [比较运算符](/official/Reference/Core/Comparison-Operators)
+- [**Option** 语句](/official/Reference/Core/Option)
+- [**InStr** 函数](/official/Reference/VBA/Strings/InStr)
+- [运算符](/official/Reference/Operators)

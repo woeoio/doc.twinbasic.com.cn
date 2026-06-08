@@ -2,169 +2,178 @@
 title: Fusion
 parent: Features
 permalink: /Features/Fusion
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'cc7c8271-9f3d-4fd8-87eb-275070c26e29'
+  PropagateID: 'cc7c8271-9f3d-4fd8-87eb-275070c26e29'
+  ReservedCode1: '3c05c4ce-7e09-4209-ab5e-edaf92cb7721'
+  ReservedCode2: '3c05c4ce-7e09-4209-ab5e-edaf92cb7721'
 ---
-## Introduction
 
-**Fusion** is a twinBASIC feature that enables 64-bit applications to host certain 32-bit ActiveX controls by transparently bridging them through an out-of-process helper executable.
+## 简介
 
-Traditionally, ActiveX controls must match the bitness of the host application.  This limitation has long prevented the use of legacy 32-bit controls in modern 64-bit applications. Fusion removes this restriction by introducing a bridging layer that allows cross-architecture interaction.
+**Fusion** 是 twinBASIC 的一项功能，使 64 位应用程序能够托管某些 32 位 ActiveX 控件，通过透明地将它们桥接到一个外部进程辅助可执行文件中。
 
-Please note: this technology has currently only been tested on Windows 10 and 11 machines.  Results may vary on older operating systems.
+传统上，ActiveX 控件的位数必须与宿主应用程序匹配。这一限制长期以来阻碍了在现代 64 位应用程序中使用遗留 32 位控件。Fusion 通过引入一个桥接层来消除此限制，允许跨架构交互。
 
-## What does "out-of-process" mean?
+请注意：此技术目前仅在 Windows 10 和 11 机器上经过测试。在较旧的操作系统上可能会有不同表现。
 
-An **out-of-process** component runs in a separate executable (process) rather than within the same memory space as the main application.
+## "外部进程"是什么意思？
 
-With *twinBASIC Fusion*:
+**外部进程**组件运行在单独的可执行文件（进程）中，而不是在主应用程序的同一内存空间内。
 
-- Your main twinBASIC application runs as usual (e.g. 64-bit)
-- A secondary **host EXE** is launched automatically (e.g. 32-bit)
-- The ActiveX controls are created and hosted inside this secondary process
-- Communication between your main application and the controls is handled transparently by twinBASIC
+使用 *twinBASIC Fusion* 时：
 
-This separation allows incompatible architectures (e.g. 32-bit controls in a 64-bit app) to interoperate safely.
+- 你的主 twinBASIC 应用程序照常运行（例如 64 位）
+- 一个辅助的**宿主 EXE** 会自动启动（例如 32 位）
+- ActiveX 控件在此辅助进程中创建和托管
+- 主应用程序与控件之间的通信由 twinBASIC 透明处理
 
-## Inter-Process Communication (IPC)
+这种分离允许不兼容的架构（例如 64 位应用中的 32 位控件）安全地互操作。
 
-Because *twinBASIC Fusion* operates across two separate processes, all interaction between your application and the hosted ActiveX controls is performed using **Inter-Process Communication (IPC)**.
+## 进程间通信 (IPC)
 
-In simple terms, IPC is a mechanism that allows two independent processes to exchange data and invoke behaviour.
+由于 *twinBASIC Fusion* 跨两个独立进程运行，应用程序与托管的 ActiveX 控件之间的所有交互都通过**进程间通信 (IPC)** 进行。
 
-With *twinBASIC Fusion*:
+简单来说，IPC 是一种允许两个独立进程交换数据和调用行为的机制。
 
-- Method and property calls are **marshalled across the IPC layer** to the host EXE  
-- The host EXE executes the call against the real ActiveX control instance  
-- Return values are transmitted back to the calling process
+使用 *twinBASIC Fusion* 时：
 
-Events follow the same pattern in reverse:
+- 方法和属性调用**通过 IPC 层封送**到宿主 EXE
+- 宿主 EXE 对真实的 ActiveX 控件实例执行调用
+- 返回值传回调用进程
 
-- The control raises an event inside the host EXE  
-- The event is transmitted back across the IPC channel  
-- Your application receives it as if it originated locally  
+事件以相反的方式遵循相同的模式：
 
-#### Important characteristics:
+- 控件在宿主 EXE 中触发事件
+- 事件通过 IPC 通道传回
+- 你的应用程序接收到它，就像它是在本地产生的一样
 
-- There is a small inherent overhead due to cross-process communication  
-- All parameters and return values must be serialised/deserialised  
-- Execution appears synchronous to your code, but is performed remotely  
+#### 重要特征：
 
-## Deadlocks and Freezes
+- 由于跨进程通信，存在少量固有开销
+- 所有参数和返回值必须被序列化/反序列化
+- 执行对你的代码表现为同步的，但实际上在远程执行
 
-Due to the nature of cross-process communication and message pumping, some controls used with Fusion may be susceptible to **deadlocks or UI freezes**.
+## 死锁和冻结
 
-If you encounter this, you can try enabling the following per-library option:
+由于跨进程通信和消息泵的性质，使用 Fusion 的某些控件可能会出现**死锁或 UI 冻结**。
 
-**Fusion: Async Events**
+如果遇到此问题，可以尝试启用以下每个库的选项：
 
-This changes how events are delivered across the IPC boundary and can help avoid re-entrancy and blocking issues in certain controls.
+**Fusion: 异步事件**
 
-## Automatic Fusion Host EXE Generation
+这会改变事件在 IPC 边界的传递方式，可以帮助某些控件避免重入和阻塞问题。
 
-When you open a twinBASIC project, the compiler evaluates whether all referenced ActiveX controls are available and registered for the current architecture.
+## 自动生成 Fusion 宿主 EXE
 
-If one or more controls are not registered for the current architecture then twinBASIC will automatically generate a **Fusion host EXE** alongside your project, when required.
+当你打开 twinBASIC 项目时，编译器会评估所有引用的 ActiveX 控件是否可用于当前架构并已注册。
 
-When this occurs, you will see a note in the DEBUG CONSOLE:
+如果有一个或多个控件未为当前架构注册，twinBASIC 将在需要时自动在项目旁边生成一个 **Fusion 宿主 EXE**。
+
+发生这种情况时，你会在调试控制台中看到一条提示：
 
 ![tbFusionDebugConsole](Images/569099635-bc9553a6-fcce-487d-a478-dbee557f33b1.png){style="width:412px; height:73px;"}
 
-This additional EXE acts as the out-of-process container for those controls and is managed automatically by the twinBASIC IDE
+这个额外的 EXE 充当这些控件的外部进程容器，由 twinBASIC IDE 自动管理。
 
-## ActiveX Hosting EXE Output Path
+## ActiveX 宿主 EXE 输出路径
 
-A project-level setting allows you to control where the Fusion host EXE is generated:
+项目级设置允许你控制 Fusion 宿主 EXE 的生成位置：
 
-- **ActiveX Fusion Host EXE Output Path**
+- **ActiveX Fusion 宿主 EXE 输出路径**
 
 ![tbFusionProjectSettings](Images/569150839-9ffc87ac-250d-40a4-bb47-669b607ad76f.png){style="width:800px; height:400px;"}
 
-If left blank (default), the standard build path set in the project settings is used.  Unless overriden, the standard build path is:
+如果留空（默认），则使用项目设置中的标准构建路径。除非被覆盖，标准构建路径为：
 ${SourcePath}\Build${ProjectName}_${Architecture}.${FileExtension}
 
-For Fusion host executables, `${Architecture}` will resolve to:
-- `win32host`  
-- `win64host`  
+对于 Fusion 宿主可执行文件，`${Architecture}` 将解析为：
+- `win32host`
+- `win64host`
 
-This allows Fusion host EXEs to be clearly distinguished from normal build outputs.
+这使得 Fusion 宿主 EXE 可以与正常构建输出明确区分。
 
-## Per-Library Options
+## 每个库的选项
 
-Each COM reference (type library) exposes Fusion-specific options.
+每个 COM 引用（类型库）都公开 Fusion 专用选项。
 
 ![tbFusionPerLibraryOptions](Images/569100769-f1f2790a-0094-4843-809f-a8a9e928fd41.png){style="width:737px; height:323px;"}
 
-### ActiveX Fusion Mode
+### ActiveX Fusion 模式
 
-Controls how (and if) Fusion is applied for a given library.
+控制如何（以及是否）对给定库应用 Fusion。
 
-**Available options:**
+**可用选项：**
 
-- `auto`  (DEFAULT)
-  
-  Enables Fusion automatically only when the library is not available for the current architecture  
-  - 32-bit control in 64-bit build → uses `fusion64To32`  
-  - 64-bit control in 32-bit build → uses `fusion32To64`  
+- `auto`（默认）
 
-- `fusion32To64`  
-  - 32-bit builds: generates and uses a **64-bit host EXE**  
-  - 64-bit builds: Fusion is not used  
+  仅当库在当前架构下不可用时自动启用 Fusion
+  - 64 位构建中的 32 位控件 → 使用 `fusion64To32`
+  - 32 位构建中的 64 位控件 → 使用 `fusion32To64`
 
-- `fusion64To32`  
-  - 64-bit builds: generates and uses a **32-bit host EXE**  
-  - 32-bit builds: Fusion is not used  
+- `fusion32To64`
+  - 32 位构建：生成并使用 **64 位宿主 EXE**
+  - 64 位构建：不使用 Fusion
 
-- `fusionAllTo64`  
-  - Both 32-bit and 64-bit builds use a **64-bit host EXE**  
-  This option allows you to run these controls as out-of-process Fusion controls on both architectures.
+- `fusion64To32`
+  - 64 位构建：生成并使用 **32 位宿主 EXE**
+  - 32 位构建：不使用 Fusion
 
-- `fusionAllTo32`  
-  - Both 32-bit and 64-bit builds use a **32-bit host EXE**  
-  This option allows you to run these controls as out-of-process Fusion controls on both architectures.
+- `fusionAllTo64`
+  - 32 位和 64 位构建都使用 **64 位宿主 EXE**
+  此选项允许你在两种架构上都将这些控件作为外部进程 Fusion 控件运行。
 
-- `none`  
-  - Disables Fusion entirely for this library  
+- `fusionAllTo32`
+  - 32 位和 64 位构建都使用 **32 位宿主 EXE**
+  此选项允许你在两种架构上都将这些控件作为外部进程 Fusion 控件运行。
 
-Please note: you cannot mix and match the explicit "Fusion Mode" settings across multiple libraries (except for 'auto' and 'none' modes, which can always be used).
+- `none`
+  - 完全禁用此库的 Fusion
 
-### Fusion: Async Events
+请注意：你不能在多个库之间混用显式的"Fusion 模式"设置（'auto' 和 'none' 模式除外，它们始终可以使用）。
 
-Boolean option, defaults OFF
-When set, enables asynchronous event delivery across the IPC boundary (from host EXE to main app).  This can help prevent deadlocks or freezes with certain controls.  
+### Fusion: 异步事件
+
+布尔选项，默认关闭。
+启用后，在 IPC 边界启用异步事件传递（从宿主 EXE 到主应用程序）。这可以帮助防止某些控件出现死锁或冻结。
 
 ::: info
-using this option means that you cannot return data to the hosted control via ByRef params (e.g. a `ByRef Cancel As Boolean` param would be ineffective).
+使用此选项意味着你不能通过 ByRef 参数向托管控件返回数据（例如 `ByRef Cancel As Boolean` 参数将无效）。
 :::
 
-## Runtime Behaviour and Deployment
+## 运行时行为和部署
 
-For compiled builds at runtime:
+对于编译构建的运行时：
 
-- The main application will look for the Fusion host EXE **in the same directory as the main executable**  
-- The filename must match the one generated at build time  
+- 主应用程序将在**与主可执行文件相同的目录**中查找 Fusion 宿主 EXE
+- 文件名必须与构建时生成的文件名匹配
 
-If required, you can override this behaviour:
+如果需要，你可以覆盖此行为：
 
 ```vb
 App.FusionHostEXEPath = "C:\Path\To\Host.exe"
 ```
 
-### Important:
+### 重要提示：
 
-This explicit path must be set **before** opening any Fusion-backed form or control.  The Fusion host EXE must always be distributed with your application.   Failure to include the host EXE will prevent Fusion-based controls from loading, and the main application process will end.
+此显式路径必须在打开任何基于 Fusion 的窗体或控件**之前**设置。Fusion 宿主 EXE 必须始终随你的应用程序一起分发。未包含宿主 EXE 将导致基于 Fusion 的控件无法加载，主应用程序进程将终止。
 
-## Current Limitations
+## 当前限制
 
-Fusion is a compatibility layer, but not all ActiveX controls are supported.
+Fusion 是一个兼容层，但并非所有 ActiveX 控件都受支持。
 
-#### Currently NOT supported:
-- Windowless controls
-- Container controls
-- Controls that depend on other sited controls
+#### 目前不支持：
+- 无窗口控件
+- 容器控件
+- 依赖其他驻留控件的控件
 
-#### Other Known Limitations:
-- No tab navigation between controls
-- Property pages are not yet implemented
-- Unsupported Properties
+#### 其他已知限制：
+- 控件之间无 Tab 键导航
+- 属性页尚未实现
+- 不支持的属性
 - ToolTipText
 - CausesValidation
 - DragMode
@@ -174,12 +183,12 @@ Fusion is a compatibility layer, but not all ActiveX controls are supported.
 - TabStop
 - TabIndex
 
-## Event Differences
+## 事件差异
 
-Mouse events are not currently OLE-translated, therefore mouse event signatures (MouseDown, MouseUp, MouseMove) will differ from traditional ActiveX expectations.  This is a current limitation, and will fixed in a later update.
+鼠标事件目前不进行 OLE 转换，因此鼠标事件签名（MouseDown、MouseUp、MouseMove）将与传统的 ActiveX 预期不同。这是当前的限制，将在后续更新中修复。
 
-## Summary
+## 总结
 
-*twinBASIC Fusion* provides a practical path for modernising applications while retaining compatibility with legacy ActiveX controls.
+*twinBASIC Fusion* 为在现代化应用程序的同时保留与遗留 ActiveX 控件的兼容性提供了一条实用路径。
 
-By using an out-of-process architecture and fast IPC-based communication, *twinBASIC Fusion* enables cross-bitness interoperability while maintaining a familiar programming model.
+通过使用外部进程架构和基于 IPC 的快速通信，*twinBASIC Fusion* 实现了跨位数互操作，同时保持了熟悉的编程模型。

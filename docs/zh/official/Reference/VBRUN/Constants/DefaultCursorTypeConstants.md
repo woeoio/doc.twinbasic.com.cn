@@ -1,14 +1,23 @@
-﻿---
+---
 title: DefaultCursorTypeConstants
 parent: Constants Module
 permalink: /tB/Packages/VBRUN/Constants/DefaultCursorTypeConstants
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '96e3922e-d814-4a15-bbc4-26c5c25e598f'
+  PropagateID: '96e3922e-d814-4a15-bbc4-26c5c25e598f'
+  ReservedCode1: '4f53b974-b8b8-4d61-9245-6078a0ff6050'
+  ReservedCode2: '4f53b974-b8b8-4d61-9245-6078a0ff6050'
 ---
+
 # DefaultCursorTypeConstants
 
-Cursor-driver values for a Data control's connection, controlling whether the database client or the server manages the recordset cursor.
+Data控件连接的游标驱动值，控制由数据库客户端还是服务器管理记录集游标。
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **vbUseDefaultCursor** | 0 | Use the data source's default cursor driver. |
-| **vbUseODBCCursor** | 1 | Use the client-side ODBC cursor library. |
-| **vbUseServersideCursor** | 2 | Use a server-side cursor managed by the database engine. |
+| **vbUseDefaultCursor** | 0 | 使用数据源的默认游标驱动。 |
+| **vbUseODBCCursor** | 1 | 使用客户端ODBC游标库。 |
+| **vbUseServersideCursor** | 2 | 使用由数据库引擎管理的服务器端游标。 |

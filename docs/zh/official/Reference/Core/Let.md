@@ -2,34 +2,43 @@
 title: Let
 parent: Statements
 permalink: /tB/Core/Let
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '0ebd5dd3-ef5a-44ce-ba1b-9e05d60a0d3b'
+  PropagateID: '0ebd5dd3-ef5a-44ce-ba1b-9e05d60a0d3b'
+  ReservedCode1: '873dbd6a-8eaf-4340-a23b-a80f5f3d5467'
+  ReservedCode2: '873dbd6a-8eaf-4340-a23b-a80f5f3d5467'
 ---
+
 # Let
 
-Assigns the value of an expression to a variable or property.
+将表达式的值赋给变量或属性。
 
-Syntax:
+语法：
 > [ **Let** ] *varname* **=** *expression*
 
 **Let**
-: *optional* Explicit use of the **Let** keyword is a matter of style; it is usually omitted.
+: *可选* 显式使用 **Let** 关键字是风格问题；通常省略。
 
 *varname*
-: Name of the variable or property; follows standard variable naming conventions.
+: 变量或属性的名称；遵循标准变量命名约定。
 
 *expression*
-: Value assigned to the variable or property.
+: 赋给变量或属性的值。
 
-A value expression can be assigned to a variable or property only if it is of a data type that is compatible with the variable. String expressions cannot be assigned to numeric variables, and numeric expressions cannot be assigned to string variables. Such an assignment raises an error at compile time.
+值表达式只有在与变量数据类型兼容时才能赋给变量或属性。字符串表达式不能赋给数值变量，数值表达式不能赋给字符串变量。此类赋值在编译时引发错误。
 
-**Variant** variables can be assigned to either string or numeric expressions. However, the reverse is not always true. Any **Variant** except a **Null** can be assigned to a string variable, but only a **Variant** whose value can be interpreted as a number can be assigned to a numeric variable. Use the **IsNumeric** function to determine if the **Variant** can be converted to a number.
+**Variant** 变量可以赋给字符串或数值表达式。但反过来并不总是成立。除 **Null** 外的任何 **Variant** 都可以赋给字符串变量，但只有值可以解释为数字的 **Variant** 才能赋给数值变量。使用 **IsNumeric** 函数确定 **Variant** 是否可以转换为数字。
 
-Assigning an expression of one numeric type to a variable of a different numeric type coerces the value of the expression into the numeric type of the resulting variable.
+将一种数值类型的表达式赋给不同数值类型的变量时，表达式的值被强制转换为结果变量的数值类型。
 
-**Let** statements can be used to assign one record variable to another only when both variables are of the same user-defined type. Use the **LSet** statement to assign record variables of different user-defined types. Use the [**Set**](/official/Reference/Core/Set) statement to assign object references to variables.
+**Let** 语句只能在两个变量为相同用户自定义类型时用于将一个记录变量赋给另一个。使用 **LSet** 语句赋值不同用户自定义类型的记录变量。使用 [**Set**](/official/Reference/Core/Set) 语句将对象引用赋给变量。
 
-### Example
+### 示例
 
-This example assigns the values of expressions to variables by using the explicit **Let** statement.
+本示例使用显式 **Let** 语句将表达式的值赋给变量。
 
 ```vb
 Dim MyStr, MyInt
@@ -38,7 +47,7 @@ Let MyStr = "Hello World"
 Let MyInt = 5
 ```
 
-The following are the same assignments without the **Let** statement.
+以下是不使用 **Let** 语句的相同赋值。
 
 ```vb
 Dim MyStr, MyInt
@@ -46,8 +55,8 @@ MyStr = "Hello World"
 MyInt = 5
 ```
 
-### See Also
+### 另请参阅
 
-- [**Set** statement](/official/Reference/Core/Set)
-- [**LSet** statement](/official/Reference/Core/LSet)
-- [**Property** statement](/official/Reference/Core/Property)
+- [**Set** 语句](/official/Reference/Core/Set)
+- [**LSet** 语句](/official/Reference/Core/LSet)
+- [**Property** 语句](/official/Reference/Core/Property)

@@ -6,32 +6,30 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'feb38b1e-40c1-4e1d-b50d-cad5c00a5bbb'
-  PropagateID: 'feb38b1e-40c1-4e1d-b50d-cad5c00a5bbb'
-  ReservedCode1: '33daaaee-3137-4ef6-a98d-00a1954fe844'
-  ReservedCode2: '33daaaee-3137-4ef6-a98d-00a1954fe844'
+  ProduceID: '8e1762b9-ae03-4529-acf1-3b9cef9a8f6d'
+  PropagateID: '8e1762b9-ae03-4529-acf1-3b9cef9a8f6d'
+  ReservedCode1: '11c0865c-a281-4bc3-9475-88253e59ce22'
+  ReservedCode2: '11c0865c-a281-4bc3-9475-88253e59ce22'
 ---
 
 # vbaObjSetAddref
 
-Assigns a raw object pointer to an **Object** variable, addrefing the new pointer and releasing any prior reference.
+将原始对象指针赋值给**Object**变量，对新指针执行addref并释放任何先前的引用。
 
-Syntax: **vbaObjSetAddref(** *DstObject* **,** *SrcObjPtr* **)** **As LongPtr**
+语法：**vbaObjSetAddref(** *DstObject* **,** *SrcObjPtr* **)** **As LongPtr**
 
 *DstObject*
-: *required* **IUnknown**. The variable to receive the pointer. Any prior reference is released.
+: *必需* **IUnknown**。接收指针的变量。先释放任何先前的引用。
 
 *SrcObjPtr*
-: *required* **LongPtr**. The pointer to the COM object that *DstObject* should refer to. **IUnknown::AddRef** is called on the pointer.
+: *必需* **LongPtr**。*DstObject*应引用的COM对象指针。对该指针调用**IUnknown::AddRef**。
 
-This is the copy-with-addref primitive --- equivalent to a regular `Set DstObject = obj` when *obj* is held only as a raw **LongPtr**.
+这是带addref复制原语——当*obj*仅作为原始**LongPtr**持有时，等效于常规的`Set DstObject = obj`。
 
-The return value mirrors the assigned pointer.
+返回值反映赋值的指针。
 
-### See Also
+### 另请参阅
 
-- [vbaObjSet](/official/Reference/VBA/HiddenModule/vbaObjSet) function -- move-without-addref counterpart
-- [vbaObjAddref](/official/Reference/VBA/HiddenModule/vbaObjAddref) procedure
-- [ObjPtr](/official/Reference/VBA/Information/ObjPtr) function
-
-> AI生成
+- [vbaObjSet](/official/Reference/VBA/HiddenModule/vbaObjSet)函数 —— 无addref移动对应
+- [vbaObjAddref](/official/Reference/VBA/HiddenModule/vbaObjAddref)过程
+- [ObjPtr](/official/Reference/VBA/Information/ObjPtr)函数

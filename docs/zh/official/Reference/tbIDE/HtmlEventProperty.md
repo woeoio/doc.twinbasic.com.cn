@@ -1,14 +1,22 @@
----
+﻿---
 title: HtmlEventProperty
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/HtmlEventProperty
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9ca8ac7f-99be-4f4a-8f49-5ee8f77e8441'
+  PropagateID: '9ca8ac7f-99be-4f4a-8f49-5ee8f77e8441'
+  ReservedCode1: '720cbeb9-2e7f-419f-bdf3-b915b2687df3'
+  ReservedCode2: '720cbeb9-2e7f-419f-bdf3-b915b2687df3'
 ---
 
-# HtmlEventProperty class
+# HtmlEventProperty 类
 
-One value inside an [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties) event bag --- returned by [**HtmlEventProperties.Item**](/official/Reference/tbIDE/HtmlEventProperties#item). Carries the field's [**Value**](#value) plus a [**Properties**](#properties) accessor for nested drill-down (e.g. `eventInfo.target.id`).
+[**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties) 事件包中的一个值——由 [**HtmlEventProperties.Item**](/official/Reference/tbIDE/HtmlEventProperties#item) 返回。包含字段的 [**Value**](#value) 加上一个 [**Properties**](#properties) 访问器用于嵌套下钻（例如 `eventInfo.target.id`）。
 
-Almost always written in shorthand --- neither **HtmlEventProperty** nor its parent [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties) is typically named in addin code; the compiler resolves chains like `eventInfo.target.id` through their default-members. Unlike [**HtmlElementProperty**](/official/Reference/tbIDE/HtmlElementProperty), [**Value**](#value) is **read-only** --- event payloads are an inbound signal from the DOM, not an outbound property setter.
+几乎总是以简写形式书写——**HtmlEventProperty** 及其父类 [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties) 通常不会在插件代码中被显式命名；编译器通过它们的默认成员解析 `eventInfo.target.id` 等链。与 [**HtmlElementProperty**](/official/Reference/tbIDE/HtmlElementProperty) 不同，[**Value**](#value) 是**只读的**——事件负载是从 DOM 发来的入站信号，而非出站属性设置器。
 
 ```vb
 Private Sub MyButtonKeyUp(ByVal eventInfo As HtmlEventProperties)
@@ -20,18 +28,18 @@ End Sub
 ```
 
 
-## Properties
+## 属性
 
 ### Properties
 
-A nested [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties) for fields that themselves have sub-fields (the canonical example is `.target`, whose sub-fields are the target element's own properties --- `id`, `value`, `name`, `tagName`, …). Read-only at the accessor level.
+一个嵌套的 [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties)，用于本身具有子字段的字段（典型例子是 `.target`，其子字段是目标元素自身的属性——`id`、`value`、`name`、`tagName` 等）。在访问器层面只读。
 
-Syntax: *property*.**Properties** **As** [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties)
+语法：*property*.**Properties** **As** [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties)
 
 ### Value
 
-The field's value, as a **Variant**. **DefaultMember** --- so `eventInfo.key` desugars to `eventInfo.Item("key").Value`. Read-only --- event payloads cannot be modified.
+字段的值，为 **Variant**。**DefaultMember**——因此 `eventInfo.key` 脱糖为 `eventInfo.Item("key").Value`。只读——事件负载不可修改。
 
-Syntax: *property* **As Variant**
+语法：*property* **As Variant**
 
-The interface is **`[COMExtensible(True)]`** --- see [Dynamic DOM property resolution](/official/Reference/tbIDE/#dynamic-dom-property-resolution) on the package overview. Field names that route through [**Properties**](#properties) are resolved against the live event object at run time, not declared statically.
+此接口是 **`[COMExtensible(True)]`**——参见包概述中的[动态 DOM 属性解析](/official/Reference/tbIDE/#动态-dom-属性解析)。通过 [**Properties**](#properties) 路由的字段名在运行时根据活动事件对象解析，而非静态声明。

@@ -1,62 +1,70 @@
----
+﻿---
 title: WaynesSliderState
 parent: WaynesSlider
 permalink: /tB/Packages/CustomControls/WaynesSlider/WaynesSliderState
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '691c1664-46bd-440e-9347-a1d12abd67f1'
+  PropagateID: '691c1664-46bd-440e-9347-a1d12abd67f1'
+  ReservedCode1: 'be5b8833-7b33-4925-be74-ad4179a4d5a1'
+  ReservedCode2: 'be5b8833-7b33-4925-be74-ad4179a4d5a1'
 ---
 
-# WaynesSliderState class
-A bundle of the style objects that describe a single visual state of a [**WaynesSlider**](/official/Reference/CustomControls/WaynesSlider/). Each slider holds three parallel instances ([**NormalState**](/official/Reference/CustomControls/WaynesSlider/#normalstate), [**HoverState**](/official/Reference/CustomControls/WaynesSlider/#hoverstate), [**FocusedState**](/official/Reference/CustomControls/WaynesSlider/#focusedstate)); the slider picks one at each repaint depending on the mouse / focus state.
+# WaynesSliderState 类
+描述 [**WaynesSlider**](/official/Reference/CustomControls/WaynesSlider/) 单个视觉状态的样式对象组合。每个滑块持有三个并行实例（[**NormalState**](/official/Reference/CustomControls/WaynesSlider/#normalstate)、[**HoverState**](/official/Reference/CustomControls/WaynesSlider/#hoverstate)、[**FocusedState**](/official/Reference/CustomControls/WaynesSlider/#focusedstate)）；滑块在每次重绘时根据鼠标/焦点状态选择一个。
 
-The state has two halves --- the *background* (the full track behind the block) and the *block* (the draggable rectangle that indicates [**Value**](/official/Reference/CustomControls/WaynesSlider/#value)). Each half has its own [**Fill**](/official/Reference/CustomControls/Styles/Fill), [**Borders**](/official/Reference/CustomControls/Styles/Borders), and [**Corners**](/official/Reference/CustomControls/Styles/Corners). A [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) on the state controls how the optional [**DisplayFormat**](/official/Reference/CustomControls/WaynesSlider/#displayformat) text is drawn on the block.
+状态有两半——*背景*（滑块后面的完整轨道）和*滑块*（指示 [**Value**](/official/Reference/CustomControls/WaynesSlider/#value) 的可拖动矩形）。每半部分有其自己的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)、[**Borders**](/official/Reference/CustomControls/Styles/Borders) 和 [**Corners**](/official/Reference/CustomControls/Styles/Corners)。状态上的 [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) 控制可选的 [**DisplayFormat**](/official/Reference/CustomControls/WaynesSlider/#displayformat) 文本如何绘制在滑块上。
 
-[**InitializeDefaultValues**](#initializedefaultvalues) pre-sets the block to a solid mid-blue ([**WAYNESCOLOR_BLUE**](#) --- `&HAC7220`) fill, a 2-pixel black background border, and a transparent block border that acts as inner padding inside the background.
+[**InitializeDefaultValues**](#initializedefaultvalues) 预设滑块为纯中蓝色（[**WAYNESCOLOR_BLUE**](#) —— `&HAC7220`）填充、2 像素黑色背景边框和作为背景内部内边距的透明滑块边框。
 
-The type itself is `Public Class` but cannot be instantiated from outside the package --- instances are accessed only through the slider's **NormalState** / **HoverState** / **FocusedState** properties.
+该类型本身为 `Public Class` 但无法从包外实例化——实例只能通过滑块的 **NormalState** / **HoverState** / **FocusedState** 属性访问。
 
-## Properties
+## 属性
 
 ### BackgroundBorders
 
-The [**Borders**](/official/Reference/CustomControls/Styles/Borders) drawn around the background track.
+绘制在背景轨道周围的 [**Borders**](/official/Reference/CustomControls/Styles/Borders)。
 
 ### BackgroundCorners
 
-The [**Corners**](/official/Reference/CustomControls/Styles/Corners) that controls the per-corner shape and radius of the background track.
+控制背景轨道逐角形状和半径的 [**Corners**](/official/Reference/CustomControls/Styles/Corners)。
 
 ### BackgroundFill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that paints the background track.
+绘制背景轨道的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。
 
 ### BlockBorders
 
-The [**Borders**](/official/Reference/CustomControls/Styles/Borders) drawn around the block.
+绘制在滑块周围的 [**Borders**](/official/Reference/CustomControls/Styles/Borders)。
 
 ### BlockCorners
 
-The [**Corners**](/official/Reference/CustomControls/Styles/Corners) that controls the per-corner shape and radius of the block.
+控制滑块逐角形状和半径的 [**Corners**](/official/Reference/CustomControls/Styles/Corners)。
 
 ### BlockFill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that paints the block.
+绘制滑块的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。
 
 ### BlockWidth
 
-The width of the block, in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Default: 100. When [**Direction**](/official/Reference/CustomControls/WaynesSlider/#direction) is **Vertical**, this is the *height* of the block rather than its width; the block's other dimension takes the full available extent of the slider.
+滑块的宽度（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。默认：100。当 [**Direction**](/official/Reference/CustomControls/WaynesSlider/#direction) 为 **Vertical** 时，这是滑块的*高度*而非宽度；滑块的另一维度占滑块控件的全部可用范围。
 
 ### TextRendering
 
-The [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering) that controls how the optional [**DisplayFormat**](/official/Reference/CustomControls/WaynesSlider/#displayformat) text is rendered on the block.
+控制可选 [**DisplayFormat**](/official/Reference/CustomControls/WaynesSlider/#displayformat) 文本如何在滑块上渲染的 [**TextRendering**](/official/Reference/CustomControls/Styles/TextRendering)。
 
-## Methods
+## 方法
 
 ### InitializeDefaultValues
 
-Resets the state object to the package's defaults --- a solid mid-blue block fill, a 2-pixel black background border, and a transparent block border. Called automatically the first time the parent slider is initialized, if no serialized data was loaded.
+将状态对象重置为包的默认值——纯中蓝色滑块填充、2 像素黑色背景边框和透明滑块边框。如果未加载序列化数据，则在父滑块首次初始化时自动调用。
 
-Syntax: *object*.**InitializeDefaultValues**
+语法：*object*.**InitializeDefaultValues**
 
-## Events
+## 事件
 
 ### OnChanged
 
-Raised whenever any of the contained style objects raises its own **OnChanged**, or when [**BlockWidth**](#blockwidth) is assigned. The parent [**WaynesSlider**](/official/Reference/CustomControls/WaynesSlider/) listens for this and requests a repaint.
+任一包含的样式对象触发其自身的 **OnChanged** 或 [**BlockWidth**](#blockwidth) 被赋值时触发。父 [**WaynesSlider**](/official/Reference/CustomControls/WaynesSlider/) 监听此事件并请求重绘。

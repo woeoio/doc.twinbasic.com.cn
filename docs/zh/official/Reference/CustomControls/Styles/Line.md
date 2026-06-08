@@ -1,11 +1,19 @@
----
+﻿---
 title: Line
 parent: Styles
 permalink: /tB/Packages/CustomControls/Styles/Line
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9c34b6b2-4301-485d-a29e-d71647baed97'
+  PropagateID: '9c34b6b2-4301-485d-a29e-d71647baed97'
+  ReservedCode1: '07f7c22a-bf5f-43ef-bdd7-3f30234a84d4'
+  ReservedCode2: '07f7c22a-bf5f-43ef-bdd7-3f30234a84d4'
 ---
 
-# Line class
-A single stroke used to draw a grid line, divider, or resizer bar --- simpler than a full [**Border**](/official/Reference/CustomControls/Styles/Borders#border-class) (no blend-with-background flag, no surrounding **Elements** array). Accessed as [**WaynesGrid.VerticalLineOptions**](/official/Reference/CustomControls/WaynesGrid/#verticallineoptions), [**HorizontalLineOptions**](/official/Reference/CustomControls/WaynesGrid/#horizontallineoptions), and [**ResizerBar**](/official/Reference/CustomControls/WaynesGrid/#resizerbar).
+# Line 类
+用于绘制网格线、分隔线或调整条的单条笔触——比完整 [**Border**](/official/Reference/CustomControls/Styles/Borders#border-class) 更简单（无背景混合标志、无包围 **Elements** 数组）。通过 [**WaynesGrid.VerticalLineOptions**](/official/Reference/CustomControls/WaynesGrid/#verticallineoptions)、[**HorizontalLineOptions**](/official/Reference/CustomControls/WaynesGrid/#horizontallineoptions) 和 [**ResizerBar**](/official/Reference/CustomControls/WaynesGrid/#resizerbar) 访问。
 
 ```vb
 With WaynesGrid1.VerticalLineOptions
@@ -14,18 +22,18 @@ With WaynesGrid1.VerticalLineOptions
 End With
 ```
 
-## Properties
+## 属性
 
 ### Fill
 
-The [**Fill**](/official/Reference/CustomControls/Styles/Fill) that supplies the colour or gradient used to draw the line.
+提供用于绘制线条的颜色或渐变的 [**Fill**](/official/Reference/CustomControls/Styles/Fill)。
 
 ### StrokeSize
 
-The stroke thickness in pixels. [**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount). Default: 0 (the line is not drawn until a non-zero size is assigned).
+笔触粗细（像素）。[**PixelCount**](/official/Reference/CustomControls/Enumerations/PixelCount)。默认：0（在赋非零值之前不绘制线条）。
 
-## Events
+## 事件
 
 ### OnChanged
 
-Raised when [**StrokeSize**](#strokesize) or [**Fill**](#fill) is assigned, or when the contained [**Fill**](#fill) raises its own **OnChanged**.
+[**StrokeSize**](#strokesize) 或 [**Fill**](#fill) 被赋值时，或包含的 [**Fill**](#fill) 触发其自身的 **OnChanged** 时触发。

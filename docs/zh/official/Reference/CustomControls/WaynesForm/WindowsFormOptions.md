@@ -1,15 +1,23 @@
----
+﻿---
 title: WindowsFormOptions
 parent: WaynesForm
 permalink: /tB/Packages/CustomControls/WaynesForm/WindowsFormOptions
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1ff8ed97-555d-468a-9ba5-7743d4d3f3ed'
+  PropagateID: '1ff8ed97-555d-468a-9ba5-7743d4d3f3ed'
+  ReservedCode1: 'fcbb3794-bd5d-43a5-a4a1-e026b100c01b'
+  ReservedCode2: 'fcbb3794-bd5d-43a5-a4a1-e026b100c01b'
 ---
 
-# WindowsFormOptions class
-The Win32-frame settings of a [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) --- border style, initial window state, startup position, taskbar visibility, and the title-bar buttons. Exposed as [**WaynesForm.WindowsOptions**](/official/Reference/CustomControls/WaynesForm/#windowsoptions); a single instance per form, created automatically.
+# WindowsFormOptions 类
+[**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) 的 Win32 框架设置——边框样式、初始窗口状态、启动位置、任务栏可见性和标题栏按钮。作为 [**WaynesForm.WindowsOptions**](/official/Reference/CustomControls/WaynesForm/#windowsoptions) 暴露；每个窗体一个实例，自动创建。
 
-Most of the fields take effect *once*, when the form is first shown --- changing [**StartUpPosition**](#startupposition) or [**WindowState**](#windowstate) on a form that is already visible has no effect. The exception is the title-bar buttons; whether they have a visible effect depends on whether [**BorderStyle**](#borderstyle) is one of the styles that include those buttons in the first place.
+大多数字段仅在窗体首次显示时生效*一次*——在已可见的窗体上更改 [**StartUpPosition**](#startupposition) 或 [**WindowState**](#windowstate) 无效。例外是标题栏按钮；它们是否有可见效果取决于 [**BorderStyle**](#borderstyle) 是否为包含这些按钮的样式。
 
-The type itself is `Private Class` --- the instance is accessed only through the form's **WindowsOptions** property, and a variable typed as **WindowsFormOptions** cannot be declared from outside the package.
+该类型本身为 `Private Class`——实例只能通过窗体的 **WindowsOptions** 属性访问，无法在包外声明 **WindowsFormOptions** 类型的变量。
 
 ```vb
 Private Sub Form_Load()
@@ -22,38 +30,38 @@ Private Sub Form_Load()
 End Sub
 ```
 
-## Properties
+## 属性
 
 ### BorderStyle
 
-The Win32 frame style --- thin / thick border, resizable / fixed, normal / tool-window title bar. A member of [**BorderStyle**](/official/Reference/CustomControls/Enumerations/BorderStyle). Default: **tbFixedSizable**.
+Win32 框架样式——细/粗边框、可调/固定大小、普通/工具窗口标题栏。[**BorderStyle**](/official/Reference/CustomControls/Enumerations/BorderStyle) 的成员。默认：**tbFixedSizable**。
 
 ### ControlBox
 
-Whether the form's title bar shows the system control box (the icon at the far left of the bar, with the **Move** / **Close** menu). **Boolean**. Default: **True**.
+窗体标题栏是否显示系统控制框（标题栏最左侧的图标，带 **移动** / **关闭** 菜单）。**Boolean**。默认：**True**。
 
 ### MaximizeButton
 
-Whether the title bar shows a **Maximize** button. **Boolean**. Default: **True**. Effective only when [**BorderStyle**](#borderstyle) is one of the resizable styles.
+标题栏是否显示**最大化**按钮。**Boolean**。默认：**True**。仅在 [**BorderStyle**](#borderstyle) 为可调大小样式时生效。
 
 ### MinimizeButton
 
-Whether the title bar shows a **Minimize** button. **Boolean**. Default: **True**. Effective only when [**BorderStyle**](#borderstyle) is one of the styles that supports minimizing.
+标题栏是否显示**最小化**按钮。**Boolean**。默认：**True**。仅在 [**BorderStyle**](#borderstyle) 为支持最小化的样式时生效。
 
 ### ShowInTaskbar
 
-Whether the form's window appears in the Windows taskbar. **Boolean**. Default: **True**.
+窗体窗口是否出现在 Windows 任务栏中。**Boolean**。默认：**True**。
 
 ### StartUpPosition
 
-How the form's window is positioned when first shown. A member of [**StartupPosition**](/official/Reference/CustomControls/Enumerations/StartupPosition). Default: **tbStartUpWindowsDefault**.
+窗体首次显示时的窗口定位方式。[**StartupPosition**](/official/Reference/CustomControls/Enumerations/StartupPosition) 的成员。默认：**tbStartUpWindowsDefault**。
 
 ### WindowState
 
-The window state of the form when first shown --- normal, minimized, or maximized. A member of [**WindowState**](/official/Reference/CustomControls/Enumerations/WindowState). Default: **tbNormal**.
+窗体首次显示时的窗口状态——正常、最小化或最大化。[**WindowState**](/official/Reference/CustomControls/Enumerations/WindowState) 的成员。默认：**tbNormal**。
 
-## Events
+## 事件
 
 ### OnChanged
 
-Raised whenever any of the seven fields is assigned. The parent [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) listens for this event and (where applicable to a not-yet-shown form) re-applies the frame settings.
+七个字段中任一个被赋值时触发。父 [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) 监听此事件并在（适用于尚未显示的窗体时）重新应用框架设置。

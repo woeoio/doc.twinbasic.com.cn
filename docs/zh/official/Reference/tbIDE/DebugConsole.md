@@ -1,12 +1,20 @@
----
+﻿---
 title: DebugConsole
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/DebugConsole
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'bce81b38-a999-4ce1-b842-1a14007d0911'
+  PropagateID: 'bce81b38-a999-4ce1-b842-1a14007d0911'
+  ReservedCode1: '49e35556-f135-40bf-9baf-b7d93b84e7d7'
+  ReservedCode2: '49e35556-f135-40bf-9baf-b7d93b84e7d7'
 ---
 
-# DebugConsole class
+# DebugConsole 类
 
-The IDE's DEBUG CONSOLE pane --- reached through [**Host.DebugConsole**](/official/Reference/tbIDE/Host#debugconsole). The canonical place for an addin to write diagnostic and log output.
+IDE 的调试控制台窗格——通过 [**Host.DebugConsole**](/official/Reference/tbIDE/Host#debugconsole) 访问。插件写入诊断和日志输出的规范位置。
 
 ```vb
 With Host.DebugConsole
@@ -16,36 +24,36 @@ With Host.DebugConsole
 End With
 ```
 
-The pane is shared across the IDE's own output and every addin's output --- prefix log lines with an addin tag (e.g. `"[MyAddIn] "`) so users can distinguish the sources.
+该窗格在 IDE 自身输出和每个插件的输出之间共享——用插件标签（例如 `"[MyAddIn] "`）作为日志行前缀，以便用户区分来源。
 
 
-## Methods
+## 方法
 
 ### Clear
 
-Clears the entire content of the DEBUG CONSOLE pane.
+清除调试控制台窗格的全部内容。
 
-Syntax: *debugConsole*.**Clear**
+语法：*debugConsole*.**Clear**
 
 ### PrintText
 
-Prints one line of text to the pane.
+向窗格打印一行文本。
 
-Syntax: *debugConsole*.**PrintText** *Prompt* [, *ColorRGB* ]
+语法：*debugConsole*.**PrintText** *Prompt* [, *ColorRGB* ]
 
 *Prompt*
-: *required* The text to print. **String**.
+: *必需* 要打印的文本。**String**。
 
 *ColorRGB*
-: *optional* The text colour as an RGB **Long** (use the `RGB(r, g, b)` function to construct one). Default 0 --- the IDE's default DEBUG CONSOLE foreground colour.
+: *可选* 文本颜色，为 RGB **Long**（使用 `RGB(r, g, b)` 函数构造）。默认 0——IDE 的默认调试控制台前景色。
 
 ```vb
-Host.DebugConsole.PrintText "Operation completed"                           ' default colour
-Host.DebugConsole.PrintText "Warning: something looks off", RGB(255, 128, 0) ' orange
+Host.DebugConsole.PrintText "Operation completed"                           ' 默认颜色
+Host.DebugConsole.PrintText "Warning: something looks off", RGB(255, 128, 0) ' 橙色
 ```
 
 ### SetFocus
 
-Gives keyboard focus to the DEBUG CONSOLE's text-entry point --- equivalent to the user clicking into the console.
+将键盘焦点给予调试控制台的文本输入点——等同于用户点击控制台。
 
-Syntax: *debugConsole*.**SetFocus**
+语法：*debugConsole*.**SetFocus**

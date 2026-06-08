@@ -21,13 +21,13 @@ AIGC:
 ---
 
 ---
-title: Permanent Links
+title: "永久链接"
 parent: Documentation Development
 nav_order: 1
 permalink: /Documentation/Development/Permanent-Links
 ---
 
-# Permanent Links
+# 永久链接
 
 The stable, or machine-accessible, part of the documentation tree is rooted on the `/tB/` prefix. URLs with this prefix --- and the internal links that target them, e.g. [`docs.twinbasic.com/tB/Modules/Math/Round`](/official/Reference/VBA/Math/Round) --- are guaranteed not to move. This is the contract the IDE help system, `[Documentation(...)]` attribute references, and external links rely on; anything documented below should be treated as essential.
 
@@ -76,7 +76,7 @@ Within each VBA module, each procedure, property, or statement has its own stand
 
 Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on the package: modules, classes, enumerations, and sub-objects each have their own page.
 
-### VBRUN -- /tB/Packages/VBRUN/``<Module>``/
+### VBRUN -- /tB/Packages/VBRUN/`<Module>`/
 
 - [AmbientProperties](/official/Reference/VBRUN/AmbientProperties/)
 - [AsyncProperty](/official/Reference/VBRUN/AsyncProperty/)
@@ -91,7 +91,7 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 - [ParentControls](/official/Reference/VBRUN/ParentControls/)
 - [PropertyBag](/official/Reference/VBRUN/PropertyBag/)
 
-### VB -- /tB/Packages/VB/``<Class>``/
+### VB -- /tB/Packages/VB/`<Class>`/
 
 - [App](/official/Reference/VB/App/), [CheckBox](/official/Reference/VB/CheckBox/), [CheckMark](/official/Reference/VB/CheckMark/), [Clipboard](/official/Reference/VB/Clipboard/), [ComboBox](/official/Reference/VB/ComboBox/), [CommandButton](/official/Reference/VB/CommandButton/)
 - [Data](/official/Reference/VB/Data/), [DirListBox](/official/Reference/VB/DirListBox/), [DriveListBox](/official/Reference/VB/DriveListBox/)
@@ -110,39 +110,39 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 
 - [WebView2](/official/Reference/WebView2/WebView2/) (control class, with [EnvironmentOptions](/official/Reference/WebView2/WebView2/EnvironmentOptions) sub-page)
 - [WebView2Header](/official/Reference/WebView2/WebView2Header), [WebView2HeadersCollection](/official/Reference/WebView2/WebView2HeadersCollection), [WebView2Request](/official/Reference/WebView2/WebView2Request), [WebView2RequestHeaders](/official/Reference/WebView2/WebView2RequestHeaders), [WebView2Response](/official/Reference/WebView2/WebView2Response), [WebView2ResponseHeaders](/official/Reference/WebView2/WebView2ResponseHeaders)
-- Enumerations: [wv2DefaultDownloadCornerAlign](/official/Reference/WebView2/Enumerations/wv2DefaultDownloadCornerAlign), [wv2ErrorStatus](/official/Reference/WebView2/Enumerations/wv2ErrorStatus), [wv2HostResourceAccessKind](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind), [wv2KeyEventKind](/official/Reference/WebView2/Enumerations/wv2KeyEventKind), [wv2PermissionKind](/official/Reference/WebView2/Enumerations/wv2PermissionKind), [wv2PermissionState](/official/Reference/WebView2/Enumerations/wv2PermissionState), [wv2PrintOrientation](/official/Reference/WebView2/Enumerations/wv2PrintOrientation), [wv2ProcessFailedKind](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind), [wv2ScriptDialogKind](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind), [wv2WebResourceContext](/official/Reference/WebView2/Enumerations/wv2WebResourceContext)
-- Types: [COREWEBVIEW2_PHYSICAL_KEY_STATUS](/official/Reference/WebView2/Types/COREWEBVIEW2_PHYSICAL_KEY_STATUS)
+- 枚举：[wv2DefaultDownloadCornerAlign](/official/Reference/WebView2/Enumerations/wv2DefaultDownloadCornerAlign), [wv2ErrorStatus](/official/Reference/WebView2/Enumerations/wv2ErrorStatus), [wv2HostResourceAccessKind](/official/Reference/WebView2/Enumerations/wv2HostResourceAccessKind), [wv2KeyEventKind](/official/Reference/WebView2/Enumerations/wv2KeyEventKind), [wv2PermissionKind](/official/Reference/WebView2/Enumerations/wv2PermissionKind), [wv2PermissionState](/official/Reference/WebView2/Enumerations/wv2PermissionState), [wv2PrintOrientation](/official/Reference/WebView2/Enumerations/wv2PrintOrientation), [wv2ProcessFailedKind](/official/Reference/WebView2/Enumerations/wv2ProcessFailedKind), [wv2ScriptDialogKind](/official/Reference/WebView2/Enumerations/wv2ScriptDialogKind), [wv2WebResourceContext](/official/Reference/WebView2/Enumerations/wv2WebResourceContext)
+- 类型：[COREWEBVIEW2_PHYSICAL_KEY_STATUS](/official/Reference/WebView2/Types/COREWEBVIEW2_PHYSICAL_KEY_STATUS)
 
-### Assert -- /tB/Packages/Assert/``<Module>``
+### Assert -- /tB/Packages/Assert/`<Module>`
 
 - [Exact](/official/Reference/Assert/Exact), [Strict](/official/Reference/Assert/Strict), [Permissive](/official/Reference/Assert/Permissive)
 
 ### CustomControls -- /tB/Packages/CustomControls/...
 
-- Controls: [WaynesButton](/official/Reference/CustomControls/WaynesButton/) (with [WaynesButtonState](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)), [WaynesForm](/official/Reference/CustomControls/WaynesForm/) (with [WindowsFormOptions](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions)), [WaynesFrame](/official/Reference/CustomControls/WaynesFrame), [WaynesGrid](/official/Reference/CustomControls/WaynesGrid/) (with [CellRenderingOptions](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions), [Column](/official/Reference/CustomControls/WaynesGrid/Column)), [WaynesLabel](/official/Reference/CustomControls/WaynesLabel), [WaynesSlider](/official/Reference/CustomControls/WaynesSlider/) (with [WaynesSliderState](/official/Reference/CustomControls/WaynesSlider/WaynesSliderState)), [WaynesTextBox](/official/Reference/CustomControls/WaynesTextBox/) (with [WaynesTextBoxState](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState)), [WaynesTimer](/official/Reference/CustomControls/WaynesTimer)
-- Styles: [Anchors](/official/Reference/CustomControls/Styles/Anchors), [Borders](/official/Reference/CustomControls/Styles/Borders), [Corners](/official/Reference/CustomControls/Styles/Corners), [Fill](/official/Reference/CustomControls/Styles/Fill), [Line](/official/Reference/CustomControls/Styles/Line), [Padding](/official/Reference/CustomControls/Styles/Padding), [TextRendering](/official/Reference/CustomControls/Styles/TextRendering)
-- Framework: [Canvas](/official/Reference/CustomControls/Framework/Canvas), [CustomControlContext](/official/Reference/CustomControls/Framework/CustomControlContext), [CustomControlsCollection](/official/Reference/CustomControls/Framework/CustomControlsCollection), [CustomControlTimer](/official/Reference/CustomControls/Framework/CustomControlTimer), [CustomFormContext](/official/Reference/CustomControls/Framework/CustomFormContext), [ICustomControl](/official/Reference/CustomControls/Framework/ICustomControl), [ICustomForm](/official/Reference/CustomControls/Framework/ICustomForm), [SerializeInfo](/official/Reference/CustomControls/Framework/SerializeInfo)
-- Enumerations: [BorderStyle](/official/Reference/CustomControls/Enumerations/BorderStyle), [ColorRGBA](/official/Reference/CustomControls/Enumerations/ColorRGBA), [CornerShape](/official/Reference/CustomControls/Enumerations/CornerShape), [Customtate](/official/Reference/CustomControls/Enumerations/Customtate), [DockMode](/official/Reference/CustomControls/Enumerations/DockMode), [FillPattern](/official/Reference/CustomControls/Enumerations/FillPattern), [FontWeight](/official/Reference/CustomControls/Enumerations/FontWeight), [PixelCount](/official/Reference/CustomControls/Enumerations/PixelCount), [PointSize](/official/Reference/CustomControls/Enumerations/PointSize), [StartupPosition](/official/Reference/CustomControls/Enumerations/StartupPosition), [TextAlignment](/official/Reference/CustomControls/Enumerations/TextAlignment), [TextOverflowMode](/official/Reference/CustomControls/Enumerations/TextOverflowMode), [WindowState](/official/Reference/CustomControls/Enumerations/WindowState)
+- 控件：[WaynesButton](/official/Reference/CustomControls/WaynesButton/) (with [WaynesButtonState](/official/Reference/CustomControls/WaynesButton/WaynesButtonState)), [WaynesForm](/official/Reference/CustomControls/WaynesForm/) (with [WindowsFormOptions](/official/Reference/CustomControls/WaynesForm/WindowsFormOptions)), [WaynesFrame](/official/Reference/CustomControls/WaynesFrame), [WaynesGrid](/official/Reference/CustomControls/WaynesGrid/) (with [CellRenderingOptions](/official/Reference/CustomControls/WaynesGrid/CellRenderingOptions), [Column](/official/Reference/CustomControls/WaynesGrid/Column)), [WaynesLabel](/official/Reference/CustomControls/WaynesLabel), [WaynesSlider](/official/Reference/CustomControls/WaynesSlider/) (with [WaynesSliderState](/official/Reference/CustomControls/WaynesSlider/WaynesSliderState)), [WaynesTextBox](/official/Reference/CustomControls/WaynesTextBox/) (with [WaynesTextBoxState](/official/Reference/CustomControls/WaynesTextBox/WaynesTextBoxState)), [WaynesTimer](/official/Reference/CustomControls/WaynesTimer)
+- 样式：[Anchors](/official/Reference/CustomControls/Styles/Anchors), [Borders](/official/Reference/CustomControls/Styles/Borders), [Corners](/official/Reference/CustomControls/Styles/Corners), [Fill](/official/Reference/CustomControls/Styles/Fill), [Line](/official/Reference/CustomControls/Styles/Line), [Padding](/official/Reference/CustomControls/Styles/Padding), [TextRendering](/official/Reference/CustomControls/Styles/TextRendering)
+- 框架：[Canvas](/official/Reference/CustomControls/Framework/Canvas), [CustomControlContext](/official/Reference/CustomControls/Framework/CustomControlContext), [CustomControlsCollection](/official/Reference/CustomControls/Framework/CustomControlsCollection), [CustomControlTimer](/official/Reference/CustomControls/Framework/CustomControlTimer), [CustomFormContext](/official/Reference/CustomControls/Framework/CustomFormContext), [ICustomControl](/official/Reference/CustomControls/Framework/ICustomControl), [ICustomForm](/official/Reference/CustomControls/Framework/ICustomForm), [SerializeInfo](/official/Reference/CustomControls/Framework/SerializeInfo)
+- 枚举：[BorderStyle](/official/Reference/CustomControls/Enumerations/BorderStyle), [ColorRGBA](/official/Reference/CustomControls/Enumerations/ColorRGBA), [CornerShape](/official/Reference/CustomControls/Enumerations/CornerShape), [Customtate](/official/Reference/CustomControls/Enumerations/Customtate), [DockMode](/official/Reference/CustomControls/Enumerations/DockMode), [FillPattern](/official/Reference/CustomControls/Enumerations/FillPattern), [FontWeight](/official/Reference/CustomControls/Enumerations/FontWeight), [PixelCount](/official/Reference/CustomControls/Enumerations/PixelCount), [PointSize](/official/Reference/CustomControls/Enumerations/PointSize), [StartupPosition](/official/Reference/CustomControls/Enumerations/StartupPosition), [TextAlignment](/official/Reference/CustomControls/Enumerations/TextAlignment), [TextOverflowMode](/official/Reference/CustomControls/Enumerations/TextOverflowMode), [WindowState](/official/Reference/CustomControls/Enumerations/WindowState)
 
 ### CEF -- /tB/Packages/CEF/...
 
 - [CefBrowser](/official/Reference/CEF/CefBrowser/) (control class, with [EnvironmentOptions](/official/Reference/CEF/CefBrowser/EnvironmentOptions) sub-page)
-- Enumerations: [CefLogSeverity](/official/Reference/CEF/Enumerations/CefLogSeverity), [cefPrintOrientation](/official/Reference/CEF/Enumerations/cefPrintOrientation)
+- 枚举：[CefLogSeverity](/official/Reference/CEF/Enumerations/CefLogSeverity), [cefPrintOrientation](/official/Reference/CEF/Enumerations/cefPrintOrientation)
 
-### WinEventLogLib -- /tB/Packages/WinEventLogLib/``<Class>``
+### WinEventLogLib -- /tB/Packages/WinEventLogLib/`<Class>`
 
 - [EventLog](/official/Reference/WinEventLogLib/EventLog), [EventLogHelperPublic](/official/Reference/WinEventLogLib/EventLogHelperPublic)
 
-### WinNamedPipesLib -- /tB/Packages/WinNamedPipesLib/``<Class>``
+### WinNamedPipesLib -- /tB/Packages/WinNamedPipesLib/`<Class>`
 
 - [NamedPipeClientConnection](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection), [NamedPipeClientManager](/official/Reference/WinNamedPipesLib/NamedPipeClientManager), [NamedPipeServer](/official/Reference/WinNamedPipesLib/NamedPipeServer), [NamedPipeServerConnection](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection)
 
 ### WinServicesLib -- /tB/Packages/WinServicesLib/...
 
 - [ITbService](/official/Reference/WinServicesLib/ITbService), [ServiceCreator](/official/Reference/WinServicesLib/ServiceCreator), [ServiceManager](/official/Reference/WinServicesLib/ServiceManager), [Services](/official/Reference/WinServicesLib/Services), [ServiceState](/official/Reference/WinServicesLib/ServiceState)
-- Enumerations: [ServiceControlCodeConstants](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants), [ServiceStartConstants](/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants), [ServiceStatusConstants](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants), [ServiceTypeConstants](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants)
+- 枚举：[ServiceControlCodeConstants](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants), [ServiceStartConstants](/official/Reference/WinServicesLib/Enumerations/ServiceStartConstants), [ServiceStatusConstants](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants), [ServiceTypeConstants](/official/Reference/WinServicesLib/Enumerations/ServiceTypeConstants)
 
-### tbIDE -- /tB/Packages/tbIDE/``<Class>``
+### tbIDE -- /tB/Packages/tbIDE/`<Class>`
 
 - [AddIn](/official/Reference/tbIDE/AddIn), [AddinTimer](/official/Reference/tbIDE/AddinTimer), [Button](/official/Reference/tbIDE/Button), [CodeEditor](/official/Reference/tbIDE/CodeEditor), [DebugConsole](/official/Reference/tbIDE/DebugConsole), [Editor](/official/Reference/tbIDE/Editor), [Editors](/official/Reference/tbIDE/Editors)
 - [File](/official/Reference/tbIDE/File), [FileSystem](/official/Reference/tbIDE/FileSystem), [FileSystemItem](/official/Reference/tbIDE/FileSystemItem), [Folder](/official/Reference/tbIDE/Folder)
@@ -151,9 +151,9 @@ Each package lives under `/tB/Packages/<Package>/`. The sub-structure depends on
 
 ### WinNativeCommonCtls -- /tB/Packages/WinNativeCommonCtls/...
 
-- Controls: [DTPicker](/official/Reference/WinNativeCommonCtls/DTPicker), [ImageList](/official/Reference/WinNativeCommonCtls/ImageList/), [ListView](/official/Reference/WinNativeCommonCtls/ListView/), [MonthView](/official/Reference/WinNativeCommonCtls/MonthView), [ProgressBar](/official/Reference/WinNativeCommonCtls/ProgressBar), [Slider](/official/Reference/WinNativeCommonCtls/Slider), [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/), [UpDown](/official/Reference/WinNativeCommonCtls/UpDown)
-- Sub-objects: [ListImages](/official/Reference/WinNativeCommonCtls/ImageList/ListImages), [ListImage](/official/Reference/WinNativeCommonCtls/ImageList/ListImage), [ListItems](/official/Reference/WinNativeCommonCtls/ListView/ListItems), [ListItem](/official/Reference/WinNativeCommonCtls/ListView/ListItem), [ColumnHeaders](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders), [ColumnHeader](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader), [Nodes](/official/Reference/WinNativeCommonCtls/TreeView/Nodes), [Node](/official/Reference/WinNativeCommonCtls/TreeView/Node)
-- Enumerations: [DTPickerFormatConstants](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants), [ImlDrawConstants](/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants), [OrientationConstants](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants), [TreeBorderStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants), [TreeLabelEditConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants), [TreeLineStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants), [TreeRelationshipConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants), [TreeSortOrderConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants), [TreeSortTypeConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants), [TreeStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants)
+- 控件：[DTPicker](/official/Reference/WinNativeCommonCtls/DTPicker), [ImageList](/official/Reference/WinNativeCommonCtls/ImageList/), [ListView](/official/Reference/WinNativeCommonCtls/ListView/), [MonthView](/official/Reference/WinNativeCommonCtls/MonthView), [ProgressBar](/official/Reference/WinNativeCommonCtls/ProgressBar), [Slider](/official/Reference/WinNativeCommonCtls/Slider), [TreeView](/official/Reference/WinNativeCommonCtls/TreeView/), [UpDown](/official/Reference/WinNativeCommonCtls/UpDown)
+- 子对象：[ListImages](/official/Reference/WinNativeCommonCtls/ImageList/ListImages), [ListImage](/official/Reference/WinNativeCommonCtls/ImageList/ListImage), [ListItems](/official/Reference/WinNativeCommonCtls/ListView/ListItems), [ListItem](/official/Reference/WinNativeCommonCtls/ListView/ListItem), [ColumnHeaders](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeaders), [ColumnHeader](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader), [Nodes](/official/Reference/WinNativeCommonCtls/TreeView/Nodes), [Node](/official/Reference/WinNativeCommonCtls/TreeView/Node)
+- 枚举：[DTPickerFormatConstants](/official/Reference/WinNativeCommonCtls/Enumerations/DTPickerFormatConstants), [ImlDrawConstants](/official/Reference/WinNativeCommonCtls/Enumerations/ImlDrawConstants), [OrientationConstants](/official/Reference/WinNativeCommonCtls/Enumerations/OrientationConstants), [TreeBorderStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeBorderStyleConstants), [TreeLabelEditConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLabelEditConstants), [TreeLineStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeLineStyleConstants), [TreeRelationshipConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeRelationshipConstants), [TreeSortOrderConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortOrderConstants), [TreeSortTypeConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeSortTypeConstants), [TreeStyleConstants](/official/Reference/WinNativeCommonCtls/Enumerations/TreeStyleConstants)
 
 ## /tB/Core/Attributes#``<attribute>``
 

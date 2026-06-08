@@ -6,32 +6,30 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '9d9a0e19-930e-4d2f-b360-fd60e8670b95'
-  PropagateID: '9d9a0e19-930e-4d2f-b360-fd60e8670b95'
-  ReservedCode1: '2d89e18f-be5b-4a35-9747-0f23caa2e8ca'
-  ReservedCode2: '2d89e18f-be5b-4a35-9747-0f23caa2e8ca'
+  ProduceID: '0106f05c-f53e-4287-ba1a-1a0fbdaf17ba'
+  PropagateID: '0106f05c-f53e-4287-ba1a-1a0fbdaf17ba'
+  ReservedCode1: 'aed67b28-9a5d-4eb2-9945-a94ace4ac2c9'
+  ReservedCode2: 'aed67b28-9a5d-4eb2-9945-a94ace4ac2c9'
 ---
 
 # vbaObjSet
 
-Assigns a raw object pointer to an **Object** variable, taking ownership of the existing reference without addrefing.
+将原始对象指针赋值给**Object**变量，接收现有引用而不执行addref。
 
-Syntax: **vbaObjSet(** *DstObject* **,** *SrcObjPtr* **)** **As LongPtr**
+语法：**vbaObjSet(** *DstObject* **,** *SrcObjPtr* **)** **As LongPtr**
 
 *DstObject*
-: *required* **IUnknown**. The variable to receive the pointer. Any prior reference is released.
+: *必需* **IUnknown**。接收指针的变量。先释放任何先前的引用。
 
 *SrcObjPtr*
-: *required* **LongPtr**. The pointer to the COM object that *DstObject* should refer to. The pointer's existing reference count is **not** incremented.
+: *必需* **LongPtr**。*DstObject*应引用的COM对象指针。指针的现有引用计数**不**增加。
 
-This is the move-without-addref primitive --- used to wrap a freshly-handed-out raw pointer (from a Win32 `IUnknown**` out-parameter, for example) into an **Object** variable without leaking a reference.
+这是无addref移动原语——用于将新获取的原始指针（例如从Win32的`IUnknown**`输出参数）包装到**Object**变量中而不泄漏引用。
 
-The return value mirrors the assigned pointer.
+返回值反映赋值的指针。
 
-### See Also
+### 另请参阅
 
-- [vbaObjSetAddref](/official/Reference/VBA/HiddenModule/vbaObjSetAddref) function -- copy-with-addref counterpart
-- [vbaObjAddref](/official/Reference/VBA/HiddenModule/vbaObjAddref) procedure
-- [ObjPtr](/official/Reference/VBA/Information/ObjPtr) function
-
-> AI生成
+- [vbaObjSetAddref](/official/Reference/VBA/HiddenModule/vbaObjSetAddref)函数 —— 带addref复制对应
+- [vbaObjAddref](/official/Reference/VBA/HiddenModule/vbaObjAddref)过程
+- [ObjPtr](/official/Reference/VBA/Information/ObjPtr)函数

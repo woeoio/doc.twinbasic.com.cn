@@ -5,54 +5,54 @@ permalink: /tB/Core/Static
 ---
 # Static
 
-Used at the procedure level to declare variables and allocate storage space. Variables declared with the **Static** statement retain their values as long as the code is running.
+在过程级用于声明变量并分配存储空间。使用**Static**语句声明的变量在代码运行期间保留其值。
 
-Syntax:
+语法：
 > **Static** *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ] [ **,** *varname* [ **(** [ *subscripts* ] **)** ] [ **As** [ **New** ] *type* ]] **. . .**
 
 *varname*
-: Name of the variable; follows standard variable naming conventions.
+: 变量名称；遵循标准变量命名约定。
 
 *subscripts*
-: *optional* Dimensions of an array variable; up to 60 multiple dimensions may be declared. The *subscripts* argument uses the following syntax: [ *lower* **To** ] *upper* [ , [ *lower* **To** ] *upper* ] **. . .**. When not explicitly stated in *lower*, the lower bound of an array is controlled by the [**Option Base**](/official/Reference/Core/Option#Base) statement. The lower bound is zero if no **Option Base** statement is present.
+: *可选* 数组变量的维度；最多可声明60个多维。*subscripts*参数使用以下语法：[ *lower* **To** ] *upper* [ , [ *lower* **To** ] *upper* ] **. . .**。当*lower*未显式指定时，数组的下界由[**Option Base**](/official/Reference/Core/Option#Base)语句控制。如果没有**Option Base**语句，下界为零。
 
 **New**
-: *optional* Keyword that enables implicit creation of an object. When **New** is used to declare the object variable, a new instance of the object is created on first reference to it, so the **[Set](/official/Reference/Core/Set)** statement is not required to assign the object reference. The **New** keyword can't be used to declare variables of any intrinsic data type or to declare instances of dependent objects.
+: *可选* 启用隐式对象创建的关键字。当使用**New**声明对象变量时，首次引用时创建对象的新实例，因此不需要**[Set](/official/Reference/Core/Set)**语句来赋值对象引用。**New**关键字不能用于声明任何内部数据类型的变量或声明依赖对象的实例。
 
 *type*
-: *optional* Data type of the variable; may be **Byte**, **Boolean**, **Integer**, **Long**, **Currency**, **Single**, **Double**, **Decimal**, **Date**, **String** (for variable-length strings), **String** *length* (for fixed-length strings), **Object**, **Variant**, a user-defined type, or an object type. Use a separate **As** *type* clause for each variable being defined.
+: *可选* 变量的数据类型；可以是**Byte**、**Boolean**、**Integer**、**Long**、**Currency**、**Single**、**Double**、**Decimal**、**Date**、**String**（用于变长字符串）、**String** *length*（用于定长字符串）、**Object**、**Variant**、用户自定义类型或对象类型。为每个定义的变量使用单独的**As** *type*子句。
 
-After module code is running, variables declared with the **Static** statement retain their value until the module is reset or restarted. In class modules, variables declared with the **Static** statement retain their value in each class instance until that instance is destroyed. In form modules, static variables retain their value until the form is closed.
+模块代码运行后，使用**Static**语句声明的变量保留其值，直到模块被重置或重新启动。在类模块中，使用**Static**语句声明的变量在每个类实例中保留其值，直到该实例被销毁。在窗体模块中，静态变量保留其值，直到窗体关闭。
 
-Use the **Static** statement in nonstatic procedures to explicitly declare variables that are visible only within the procedure, but whose lifetime is the same as the module in which the procedure is defined.
+在非静态过程中使用**Static**语句来显式声明仅在过程中可见但生命周期与定义该过程的模块相同的变量。
 
-Use a **Static** statement within a procedure to declare the data type of a variable that retains its value between procedure calls. For example, the following statement declares a fixed-size array of integers:
+在过程中使用**Static**语句声明在过程调用之间保留其值的变量的数据类型。例如，以下语句声明一个整数固定大小数组：
 
 ```vb
 Static EmployeeNumber(200) As Integer
 ```
 
-The following statement declares a variable for a new instance of a worksheet:
+以下语句声明一个新工作表实例的变量：
 
 ```vb
 Static X As New Worksheet
 ```
 
-If the **New** keyword isn't used when declaring an object variable, the variable that refers to the object must be assigned an existing object by using the **Set** statement before it can be used. Until it is assigned an object, the declared object variable has the special value **Nothing**, which indicates that it doesn't refer to any particular instance of an object. When the **New** keyword is used in the declaration, an instance of the object is created on the first reference to the object.
+如果声明对象变量时未使用**New**关键字，则引用该对象的变量必须在使用前通过**Set**语句赋值一个现有对象。在赋值对象之前，声明的对象变量具有特殊值**Nothing**，表示它不引用任何特定的对象实例。当声明中使用**New**关键字时，首次引用对象时创建对象的实例。
 
-When no data type or object type is specified, and there is no [**Deftype**](/official/Reference/Core/Deftype) statement in the module, the variable is **Variant** by default.
+当未指定数据类型或对象类型，且模块中没有[**Deftype**](/official/Reference/Core/Deftype)语句时，变量默认为**Variant**。
 
 ::: info
-The **Static** statement and the **Static** keyword are similar, but used for different effects. When a procedure is declared by using the **Static** keyword (as in `Static Sub CountSales()`), the storage space for all local variables within the procedure is allocated once, and the value of the variables is preserved for the entire time the program is running. For nonstatic procedures, storage space for variables is allocated each time the procedure is called and released when the procedure is exited. The **Static** statement is used to declare specific variables within nonstatic procedures to preserve their value for as long as the program is running.
+**Static**语句和**Static**关键字类似，但用途不同。当过程使用**Static**关键字声明时（如`Static Sub CountSales()`），过程中所有局部变量的存储空间只分配一次，变量的值在整个程序运行期间保留。对于非静态过程，变量的存储空间在每次调用过程时分配并在过程退出时释放。**Static**语句用于在非静态过程中声明特定变量，使其在程序运行期间保留值。
 :::
 
-When variables are initialized, a numeric variable is initialized to 0, a variable-length string is initialized to a zero-length string (""), and a fixed-length string is filled with zeros. **Variant** variables are initialized to **Empty**. Each element of a user-defined type variable is initialized as if it were a separate variable.
+变量初始化时，数值变量初始化为0，变长字符串初始化为零长度字符串（""），定长字符串用零填充。**Variant**变量初始化为**Empty**。用户自定义类型变量的每个元素作为独立变量初始化。
 
-By convention, **Static** statements within a procedure are placed at the beginning of the procedure with other declarative statements such as **[Dim](/official/Reference/Core/Dim)**.
+按照惯例，过程中的**Static**语句放在过程开头与其他声明语句（如**[Dim](/official/Reference/Core/Dim)**）一起。
 
-### Example
+### 示例
 
-This example uses the **Static** statement to retain the value of a variable for as long as the module code is running.
+本示例使用**Static**语句在模块代码运行期间保留变量的值。
 
 ```vb
 ' Function definition.
@@ -72,10 +72,10 @@ Static Function MyFunction(Arg1, Arg2, Arg3)
 End Function
 ```
 
-### See Also
+### 另请参阅
 
-- [**Dim** statement](/official/Reference/Core/Dim)
-- [**Private** statement](/official/Reference/Core/Private)
-- [**Public** statement](/official/Reference/Core/Public)
-- [**Sub** statement](/official/Reference/Core/Sub)
-- [**Function** statement](/official/Reference/Core/Function)
+- [**Dim** 语句](/official/Reference/Core/Dim)
+- [**Private** 语句](/official/Reference/Core/Private)
+- [**Public** 语句](/official/Reference/Core/Public)
+- [**Sub** 语句](/official/Reference/Core/Sub)
+- [**Function** 语句](/official/Reference/Core/Function)

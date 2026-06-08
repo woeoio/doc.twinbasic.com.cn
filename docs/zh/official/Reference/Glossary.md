@@ -1,695 +1,703 @@
 ---
-title: Glossary
+title: "术语表"
 parent: Reference Section
 nav_order: 99
 permalink: /tB/Gloss
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '76bdc806-a45c-4d05-a62e-6796038ad249'
+  PropagateID: '76bdc806-a45c-4d05-a62e-6796038ad249'
+  ReservedCode1: '4dcced4e-933b-4fd1-9f24-80eb835a5741'
+  ReservedCode2: '4dcced4e-933b-4fd1-9f24-80eb835a5741'
 ---
 
-## accelerator key
+## 快捷键
 
-A single character used as a shortcut for selecting an object. Pressing the ALT key followed by the accelerator key gives focus to the object and initiates one or more events associated with the object. The specific event or events initiated varies from one object to another. If code is associated with an event, it is processed when the event is initiated. Also called *keyboard accelerator*, *shortcut key*, *keyboard shortcut*, or *access key*.
+用作选择对象快捷方式的单个字符。按下ALT键后按快捷键可将焦点赋予该对象，并引发与该对象关联的一个或多个事件。引发的特定事件因对象而异。如果事件关联了代码，则在引发事件时处理该代码。也称为*键盘快捷键*、*快捷键*、*键盘快捷方式*或*访问键*。
 
-## ActiveX control
+## ActiveX控件
 
-An object placed on a form to enable or enhance a user's interaction with an application. ActiveX controls have events and can be incorporated into other controls. These controls have an `.ocx` file name extension.
+放置在窗体上以启用或增强用户与应用程序交互的对象。ActiveX控件具有事件，可以嵌入到其他控件中。这些控件的文件扩展名为`.ocx`。
 
-## ActiveX object
+## ActiveX对象
 
-An object that is exposed to other applications or programming tools through Automation interfaces. Also called an *Automation object*.
+通过自动化接口暴露给其他应用程序或编程工具的对象。也称为*Automation对象*。
 
-## add-in
+## 加载项
 
-A customized tool that adds capabilities to the twinBASIC development environment.
+向twinBASIC开发环境添加功能的自定义工具。
 
-## ANSI character set
+## ANSI字符集
 
-The American National Standards Institute (ANSI) 8-bit character set used to represent up to 256 characters (0&ndash;255). The first 128 characters (0&ndash;127) correspond to the letters and symbols on a standard U.S. keyboard. The second 128 characters (128&ndash;255) represent special characters, such as letters in international alphabets, accents, currency symbols, and fractions.
+美国国家标准学会(ANSI)8位字符集，用于表示最多256个字符（0&ndash;255）。前128个字符（0&ndash;127）对应标准美式键盘上的字母和符号。后128个字符（128&ndash;255）表示特殊字符，如国际字母表中的字母、重音符号、货币符号和分数。
 
-## application
+## 应用程序
 
-A collection of code and visual elements that work together as a single program. Developers build and run applications within the development environment, while users usually run applications as executable files outside the development environment.
+作为一个程序协同工作的代码和可视元素的集合。开发人员在开发环境中构建和运行应用程序，而用户通常在开发环境之外以可执行文件形式运行应用程序。
 
-## argument
+## 参数
 
-A constant, [variable](#variable), or [expression](#expression) passed to a [procedure](#procedure).
+传递给[过程](#procedure)的常量、[变量](#variable)或[表达式](#expression)。
 
-## array
+## 数组
 
-A set of sequentially indexed elements having the same intrinsic [data type](#data-type). Each element of an array has a unique identifying index number. Changes made to one element of an array don't affect the other elements.
+具有相同内在[数据类型](#data-type)的顺序索引元素集合。数组的每个元素都有唯一的标识索引号。对数组某一元素的修改不会影响其他元素。
 
-## ASCII character set
+## ASCII字符集
 
-The American Standard Code for Information Interchange (ASCII) 7-bit character set used to represent letters and symbols found on a standard U.S. keyboard. The ASCII character set is the same as the first 128 characters (0&ndash;127) in the [ANSI character set](#ansi-character-set).
+美国信息交换标准代码(ASCII)7位字符集，用于表示标准美式键盘上的字母和符号。ASCII字符集与[ANSI字符集](#ansi-character-set)的前128个字符（0&ndash;127）相同。
 
-## attribute
+## 属性(Attribute)
 
-(twinBASIC) Metadata attached to a [module](#module), procedure, parameter, or other declaration, written in square brackets --- for example, `[Documentation("...")]`. Some attributes control compiler behaviour (such as `[PackingAlignment]` on a [user-defined type](#user-defined-type) or `[VB_UserMemId]` on a member); others are informational. Attributes are a twinBASIC addition; classic VBA exposes only a small fixed set via the `Attribute` directive.
+(twinBASIC) 附加到[模块](#module)、过程、参数或其他声明的元数据，写在方括号中 --- 例如`[Documentation("...")]`。某些属性控制编译器行为（如[用户自定义类型](#user-defined-type)上的`[PackingAlignment]`或成员上的`[VB_UserMemId]`）；其他属性为信息性属性。属性是twinBASIC新增功能；经典VBA仅通过`Attribute`指令暴露少量固定属性集。
 
-## Automation object
+## Automation对象
 
-See [ActiveX object](#activex-object).
+参见[ActiveX对象](#activex-object)。
 
-## background color
+## 背景色
 
-The color of the client region of an empty window or display screen, on which all drawing and color display takes place.
+空窗口或显示屏客户区的颜色，所有绘图和颜色显示都在此上进行。
 
-## base class
+## 基类
 
-The original class from which other classes can be derived by inheritance.
+可通过继承派生出其他类的原始类。
 
-## bitmap
+## 位图
 
-An image represented by pixels and stored as a collection of bits in which each bit corresponds to one pixel. On color systems, more than one bit corresponds to each pixel. A bitmap usually has a `.bmp` file name extension.
+由像素表示并作为位集合存储的图像，其中每个位对应一个像素。在彩色系统上，每个像素对应多个位。位图通常具有`.bmp`文件扩展名。
 
-## bitwise comparison
+## 按位比较
 
-A bit-by-bit comparison between identically positioned bits in two numeric expressions.
+对两个数值表达式中相同位置的位逐一进行比较。
 
-## Boolean data type
+## Boolean数据类型
 
-A [data type](#data-type) with only two possible values, **True** (`-1`) or **False** (`0`). **Boolean** variables are stored as 16-bit (2-byte) numbers.
+只有两个可能值**True**（`-1`）或**False**（`0`）的[数据类型](#data-type)。**Boolean**变量存储为16位（2字节）数字。
 
-## Boolean expression
+## 布尔表达式
 
-An [expression](#expression) that evaluates to either **True** or **False**.
+计算结果为**True**或**False**的[表达式](#expression)。
 
-## bound
+## 绑定
 
-Describes a control whose contents are associated with a particular [data source](#data-source).
+描述内容与特定[数据源](#data-source)关联的控件。
 
-## bound control
+## 绑定控件
 
-A data-aware control that provides access to a specific field or fields in a data source. When the current record in a data source changes, all bound controls connected to that data source update to display data from fields in the current record. When the user changes data in a bound control and then moves to a different record, the changes are automatically saved.
+提供对数据源中特定字段的访问的数据感知控件。当数据源中的当前记录更改时，连接到该数据源的所有绑定控件会更新以显示当前记录中字段的数据。当用户在绑定控件中更改数据然后移动到另一条记录时，更改会自动保存。
 
-## break mode
+## 中断模式
 
-Temporary suspension of program execution in the development environment. In break mode, you can examine, debug, reset, step through, or continue program execution. You enter break mode when you:
+开发环境中程序执行的临时暂停。在中断模式下，可以检查、调试、重置、单步执行或继续程序执行。进入中断模式的情况包括：
 
-- Encounter a [breakpoint](#breakpoint) during program execution.
-- Press CTRL+BREAK during program execution.
-- Encounter a [**Stop**](/official/Reference/Core/Stop) statement or untrapped run-time error during program execution.
-- Add a *Break When True* [watch expression](#watch-expression); execution stops when the value of the watch changes and evaluates to **True**.
-- Add a *Break When Changed* watch expression; execution stops when the value of the watch changes.
+- 在程序执行期间遇到[断点](#breakpoint)。
+- 在程序执行期间按CTRL+BREAK。
+- 在程序执行期间遇到[**Stop**](/official/Reference/Core/Stop)语句或未捕获的运行时错误。
+- 添加*为真时中断*[监视表达式](#watch-expression)；当监视值更改且计算为**True**时执行停止。
+- 添加*更改时中断*监视表达式；当监视值更改时执行停止。
 
-## breakpoint
+## 断点
 
-A selected program line at which execution automatically stops. Breakpoints are not saved with your code.
+执行自动停止的选定程序行。断点不会与代码一起保存。
 
-## by reference
+## 按引用传递
 
-A way of passing the address of an argument to a procedure instead of passing the value. This allows the procedure to access the actual variable. As a result, the variable's actual value can be changed by the procedure to which it is passed. Unless otherwise specified, arguments are passed by reference. Use the **ByRef** keyword to make this explicit.
+将参数的地址而非值传递给过程的方式。这允许过程访问实际变量。因此，变量的实际值可以被接收它的过程更改。除非另有说明，参数按引用传递。使用**ByRef**关键字可以显式指定。
 
-## by value
+## 按值传递
 
-A way of passing the value of an argument to a procedure instead of passing the address. This allows the procedure to access a copy of the variable. As a result, the variable's actual value can't be changed by the procedure to which it is passed. Use the **ByVal** keyword to pass an argument by value.
+将参数的值而非地址传递给过程的方式。这允许过程访问变量的副本。因此，变量的实际值不能被接收它的过程更改。使用**ByVal**关键字按值传递参数。
 
-## Byte data type
+## Byte数据类型
 
-A [data type](#data-type) used to hold positive integer numbers ranging from 0 to 255. **Byte** variables are stored as single, unsigned 8-bit (1-byte) numbers.
+用于保存0到255正整数的[数据类型](#data-type)。**Byte**变量存储为单个无符号8位（1字节）数字。
 
-## character code
+## 字符代码
 
-A number that represents a particular character in a set, such as the [ANSI character set](#ansi-character-set) or [Unicode](#unicode).
+表示字符集中特定字符的数字，如[ANSI字符集](#ansi-character-set)或[Unicode](#unicode)。
 
-## class
+## 类
 
-The formal definition of an object. The class acts as the template from which an instance of an object is created at run time. The class defines the properties of the object and the methods used to control the object's behavior.
+对象的正式定义。类充当运行时创建对象实例的模板。类定义对象的属性和控制对象行为的方法。
 
-## class level
+## 类级别
 
-Describes code in the Declarations section of a class. Any code outside a procedure is referred to as class-level code. Declarations must be listed first, followed by procedures.
+描述类声明部分中的代码。过程外的任何代码称为类级别代码。声明必须列在最前面，后跟过程。
 
-## class module
+## 类模块
 
-A [module](#module) that contains the definition of one or more [classes](#class), including their property and method definitions.
+包含一个或多个[类](#class)定义（包括其属性和方法定义）的[模块](#module)。
 
-## clear
+## 清除
 
-To change a setting to "off" or remove a value.
+将设置更改为"关"或移除值。
 
-## code module
+## 代码模块
 
-See [standard module](#standard-module). *Code module* is the older term still used in some documentation.
+参见[标准模块](#standard-module)。*代码模块*是某些文档中仍在使用的旧术语。
 
-## collection
+## 集合
 
-An object that contains a set of related objects. An object's position in the collection can change whenever a change occurs in the collection; therefore, the position of any specific object in the collection can vary. The [**Collection**](/official/Reference/VBA/Collection/) class is the standard example; instances of the class are collections. Collections must implement a method called `NewEnum` that accepts no arguments, returns an appropriate **IUnknown** object, and has its [`VB_UserMemId`](#attribute) attribute set to `-4`.
+包含一组相关对象的对象。对象在集合中的位置可能随集合中发生更改而变化；因此，集合中任何特定对象的位置都可能变化。[**Collection**](/official/Reference/VBA/Collection/)类是标准示例；该类的实例即为集合。集合必须实现一个名为`NewEnum`的方法，该方法不接受参数，返回适当的**IUnknown**对象，并将其[`VB_UserMemId`](#attribute)属性设置为`-4`。
 
-## command line
+## 命令行
 
-The path, file name, and argument information provided by the user to run a program.
+用户为运行程序而提供的路径、文件名和参数信息。
 
-## comment
+## 注释
 
-Text added to code that explains how the code works. In twinBASIC, a comment can start with either an apostrophe (`'`) or with the **Rem** keyword followed by a space, and extends to the end of the line.
+添加到代码中用于解释代码工作原理的文本。在twinBASIC中，注释可以以撇号（`'`）或**Rem**关键字加空格开始，延伸到行尾。
 
-## comparison operator
+## 比较运算符
 
-A symbol or word indicating a relationship between two or more values or expressions. These operators include less than (`<`), less than or equal to (`<=`), greater than (`>`), greater than or equal to (`>=`), not equal (`<>`), and equal (`=`). Additional comparison operators include [**Is**](/official/Reference/Core/Is), [**IsNot**](/official/Reference/Core/IsNot), and [**Like**](/official/Reference/Core/Like). Note that **Is** and **Like** can't be used as comparison operators in a [**Select Case**](/official/Reference/Core/Select-Case) statement. See [Comparison Operators](/official/Reference/Core/Comparison-Operators).
+指示两个或多个值或表达式之间关系的符号或关键字。这些运算符包括小于（`<`）、小于等于（`<=`）、大于（`>`）、大于等于（`>=`）、不等于（`<>`）和等于（`=`）。其他比较运算符包括[**Is**](/official/Reference/Core/Is)、[**IsNot**](/official/Reference/Core/IsNot)和[**Like**](/official/Reference/Core/Like)。注意**Is**和**Like**不能在[**Select Case**](/official/Reference/Core/Select-Case)语句中用作比较运算符。参见[比较运算符](/official/Reference/Core/Comparison-Operators)。
 
-## compile time
+## 编译时
 
-The period during which source code is translated to executable code.
+源代码被翻译为可执行代码的期间。
 
-## compiler directive
+## 编译器指令
 
-A command used to alter the action of the compiler --- for example, the [conditional compilation](#conditional-compiler-constant) directives `#If`, `#Else`, `#ElseIf`, and `#End If`, or the `#Const` directive. See [Preprocessor directives](/official/Reference/Core/Topic-Preprocessor).
+用于改变编译器行为的命令 --- 例如[条件编译](#conditional-compiler-constant)指令`#If`、`#Else`、`#ElseIf`和`#End If`，或`#Const`指令。参见[预处理器指令](/official/Reference/Core/Topic-Preprocessor)。
 
-## conditional compiler constant
+## 条件编译常量
 
-A twinBASIC identifier defined using the `#Const` compiler directive (or set in the project's compilation conditions) and used by other compiler directives to determine when or if certain blocks of code are compiled. See [Preprocessor directives](/official/Reference/Core/Topic-Preprocessor).
+使用`#Const`编译器指令定义（或在项目编译条件中设置）的twinBASIC标识符，被其他编译器指令用于确定何时或是否编译某些代码块。参见[预处理器指令](/official/Reference/Core/Topic-Preprocessor)。
 
-## constant
+## 常量
 
-A named item that retains a constant value throughout the execution of a program. A constant can be a string or numeric literal, another constant, or any combination that includes arithmetic or logical operators except [**Is**](/official/Reference/Core/Is) and exponentiation. Each host application can define its own set of constants. Additional constants can be defined by the user with the [**Const**](/official/Reference/Core/Const) statement. Use constants anywhere in your code in place of actual values.
+在整个程序执行期间保持常量值的命名项。常量可以是字符串或数值字面量、另一个常量，或任何包含算术或逻辑运算符（不包括[**Is**](/official/Reference/Core/Is)和指数运算）的组合。每个宿主应用程序可以定义自己的常量集。用户可以使用[**Const**](/official/Reference/Core/Const)语句定义附加常量。可以在代码中的任何位置使用常量代替实际值。
 
-## container
+## 容器
 
-An object that can contain other objects.
+可以包含其他对象的对象。
 
-## context ID
+## 上下文ID
 
-A unique number or string that corresponds to a specific object in an application. Context IDs are used to create links between the application and corresponding Help topics.
+与应用程序中特定对象对应的唯一数字或字符串。上下文ID用于创建应用程序与相应帮助主题之间的链接。
 
-## control
+## 控件
 
-An object placed on a form that has its own set of recognized properties, methods, and events. Controls are used to receive user input, display output, and trigger event procedures. Most controls can be manipulated using methods. Some controls are interactive (responsive to user actions), while others are static (accessible only through code). See the [VB package](/official/Reference/VB/) for the standard set of controls.
+放置在窗体上具有自己一组可识别属性、方法和事件的对象。控件用于接收用户输入、显示输出和触发事件过程。大多数控件可以使用方法进行操作。某些控件是交互式的（响应用户操作），而其他控件是静态的（只能通过代码访问）。参见[VB包](/official/Reference/VB/)中的标准控件集。
 
-## control array
+## 控件数组
 
-A group of controls that share a common name, type, and event procedures. Each control in an array has a unique index number that can be used to determine which control recognizes an event.
+共享相同名称、类型和事件过程的一组控件。数组中的每个控件都有唯一的索引号，可用于确定哪个控件识别事件。
 
-## Currency data type
+## Currency数据类型
 
-A [data type](#data-type) with a range of -922,337,203,685,477.5808 to 922,337,203,685,477.5807. Use this data type for calculations involving money and for fixed-point calculations where accuracy is particularly important. The at sign (`@`) [type-declaration character](#type-declaration-character) represents **Currency**.
+范围为-922,337,203,685,477.5808到922,337,203,685,477.5807的[数据类型](#data-type)。此数据类型用于涉及货币的计算和精度特别重要的定点计算。at符号（`@`）[类型声明字符](#type-declaration-character)表示**Currency**。
 
-## cursor
+## 游标
 
-A piece of software that returns rows of data to the application. A cursor on a result set indicates the current position in the result set.
+向应用程序返回数据行的软件。结果集上的游标指示结果集中的当前位置。
 
-## data format
+## 数据格式
 
-The structure or appearance of a unit of data, such as a file, a database record, a cell in a spreadsheet, or text in a word-processing document.
+数据单元的结构或外观，如文件、数据库记录、电子表格单元格或字处理文档中的文本。
 
-## data source
+## 数据源
 
-The location of data to which a control is bound, for example, a cell in a worksheet or a field in a database row. The current value of the data source can be stored in the `Value` property of a control. However, the control does not store the data; it only displays the information that is stored in the data source.
+控件绑定的数据位置，例如工作表中的单元格或数据库行中的字段。数据源的当前值可以存储在控件的`Value`属性中。但是，控件不存储数据；它仅显示数据源中存储的信息。
 
-## data type
+## 数据类型
 
-The characteristic of a variable that determines what kind of data it can hold. Intrinsic data types include [**Byte**](#byte-data-type), [**Boolean**](#boolean-data-type), [**Integer**](#integer-data-type), [**Long**](#long-data-type), [**LongLong**](#longlong-data-type), [**LongPtr**](#longptr-data-type), [**Currency**](#currency-data-type), [**Decimal**](#decimal-data-type), [**Single**](#single-data-type), [**Double**](#double-data-type), [**Date**](#date-data-type), [**String**](#string-data-type), [**Object**](#object-data-type), [**Variant**](#variant-data-type) (default), as well as [user-defined types](#user-defined-type) and specific types of objects.
+确定变量可以保存何种数据的变量特征。内在数据类型包括[**Byte**](#byte-data-type)、[**Boolean**](#boolean-data-type)、[**Integer**](#integer-data-type)、[**Long**](#long-data-type)、[**LongLong**](#longlong-data-type)、[**LongPtr**](#longptr-data-type)、[**Currency**](#currency-data-type)、[**Decimal**](#decimal-data-type)、[**Single**](#single-data-type)、[**Double**](#double-data-type)、[**Date**](#date-data-type)、[**String**](#string-data-type)、[**Object**](#object-data-type)、[**Variant**](#variant-data-type)（默认），以及[用户自定义类型](#user-defined-type)和特定类型的对象。
 
-## Date data type
+## Date数据类型
 
-A [data type](#data-type) used to store dates and times as a real number. **Date** variables are stored as 64-bit (8-byte) numbers. The value to the left of the decimal represents a date, and the value to the right of the decimal represents a time.
+用于将日期和时间存储为实数的[数据类型](#data-type)。**Date**变量存储为64位（8字节）数字。小数点左边的值表示日期，小数点右边的值表示时间。
 
 ::: info
-In twinBASIC, [`Date`](/official/Reference/VBA/DateTime/Date) and [`Time`](/official/Reference/VBA/DateTime/Time) (and their `$` variants) are exposed as **properties**, not statements/functions as in classic VBA.
+在twinBASIC中，[`Date`](/official/Reference/VBA/DateTime/Date)和[`Time`](/official/Reference/VBA/DateTime/Time)（及其`$`变体）作为**属性**暴露，而非经典VBA中的语句/函数。
 :::
 
-## date expression
+## 日期表达式
 
-Any expression that can be interpreted as a date, including date literals, numbers that look like dates, strings that look like dates, and dates returned from functions. A date expression is limited to numbers or strings, in any combination, that can represent a date from January 1, 100 to December 31, 9999.
+任何可以解释为日期的表达式，包括日期字面量、看起来像日期的数字、看起来像日期的字符串以及从函数返回的日期。日期表达式限于可以表示100年1月1日至9999年12月31日日期的数字或字符串的任意组合。
 
-Dates are stored as part of a real number. Values to the left of the decimal represent the date; values to the right of the decimal represent the time. Negative numbers represent dates prior to December 30, 1899.
+日期作为实数的一部分存储。小数点左边的值表示日期；小数点右边的值表示时间。负数表示1899年12月30日之前的日期。
 
-## date literal
+## 日期字面量
 
-Any sequence of characters with a valid format that is surrounded by number signs (`#`). Valid formats include the date format specified by the locale settings for your code or the [universal date format](#universal-date-format).
+任何具有有效格式并被数字符号（`#`）包围的字符序列。有效格式包括代码区域设置指定的日期格式或[通用日期格式](#universal-date-format)。
 
-For example, `#12/31/92#` is the date literal that represents December 31, 1992, where English-U.S. is the locale setting for your application. Use date literals to maximize portability across national languages.
+例如，`#12/31/92#`是表示1992年12月31日的日期字面量，其中英语（美国）是应用程序的区域设置。使用日期字面量以最大化跨国家语言的可移植性。
 
-## date separators
+## 日期分隔符
 
-Characters used to separate the day, month, and year when date values are formatted. The characters are determined by system settings or by the [**Format**](/official/Reference/VBA/Strings/Format) function.
+格式化日期值时用于分隔日、月和年的字符。字符由系统设置或[**Format**](/official/Reference/VBA/Strings/Format)函数确定。
 
 ## DBCS
 
-A character set that uses 1 or 2 bytes to represent a character, allowing more than 256 characters to be represented.
+使用1或2个字节表示字符的字符集，允许表示超过256个字符。
 
-## declaration
+## 声明
 
-Nonexecutable code that names a constant, [variable](#variable), or [procedure](#procedure), and specifies its characteristics, such as data type. For DLL procedures, declarations specify names, libraries, and arguments.
+命名常量、[变量](#variable)或[过程](#procedure)并指定其特性（如数据类型）的非可执行代码。对于DLL过程，声明指定名称、库和参数。
 
-## Decimal data type
+## Decimal数据类型
 
-A [data type](#data-type) that contains decimal numbers scaled by a power of 10. For zero-scaled numbers (integers with no fractional part), the range is +/-79,228,162,514,264,337,593,543,950,335. For numbers with 28 decimal places the range is +/-7.9228162514264337593543950335. The smallest non-zero value that can be represented as a **Decimal** is `0.0000000000000000000000000001`.
+包含按10的幂缩放的小数的[数据类型](#data-type)。对于零缩放数（无小数部分的整数），范围为+/-79,228,162,514,264,337,593,543,950,335。对于具有28位小数的数，范围为+/-7.9228162514264337593543950335。可以表示为**Decimal**的最小非零值为`0.0000000000000000000000000001`。
 
 ::: info
-Unlike classic VBA --- where **Decimal** was usable only as a **Variant** subtype produced by **CDec** --- twinBASIC supports **Decimal** as a first-class declared type. You can write `Dim x As Decimal`.
+与经典VBA中**Decimal**仅可用作**CDec**产生的**Variant**子类型不同，twinBASIC支持**Decimal**作为一等声明类型。可以编写`Dim x As Decimal`。
 :::
 
-## designer
+## 设计器
 
-A visual design surface in the twinBASIC development environment used to design forms, controls, and other classes visually.
+twinBASIC开发环境中的可视化设计界面，用于可视化设计窗体、控件和其他类。
 
-## design time
+## 设计时
 
-The time during which an application is built in the development environment by adding controls, setting control or form properties, and writing code. In contrast, during [run time](#run-time), the application is interacted with as a user.
+通过添加控件、设置控件或窗体属性以及编写代码在开发环境中构建应用程序的时间。相比之下，在[运行时](#run-time)，用户与应用程序进行交互。
 
-## development environment
+## 开发环境
 
-The part of the application where you write code, create controls, set control and form properties, and so on. This contrasts with running the application.
+应用程序中编写代码、创建控件、设置控件和窗体属性等的部分。这与运行应用程序形成对比。
 
-## docked window
+## 停靠窗口
 
-A window that is attached to the frame of the main window.
+附加到主窗口框架的窗口。
 
-## document
+## 文档
 
-Any self-contained work created with an application and given a unique file name.
+使用应用程序创建的任何独立作品，并被赋予唯一文件名。
 
-## dominant control
+## 主导控件
 
-A reference for the *Align* command and *Make Same Size* command on the *Format* menu. When aligning controls, the selected controls align to the dominant control. When sizing controls, the selected controls are assigned the dimensions of the dominant control.
+*格式*菜单上*对齐*命令和*统一大小*命令的参照。对齐控件时，所选控件对齐到主导控件。调整控件大小时，所选控件被分配主导控件的尺寸。
 
-## Double data type
+## Double数据类型
 
-A [data type](#data-type) that holds double-precision floating-point numbers as 64-bit numbers in the range -1.79769313486231E308 to -4.94065645841247E-324 for negative values, and 4.94065645841247E-324 to 1.79769313486232E308 for positive values. The number sign (`#`) [type-declaration character](#type-declaration-character) represents **Double**.
+将双精度浮点数存储为64位数字的[数据类型](#data-type)，负值范围为-1.79769313486231E308至-4.94065645841247E-324，正值范围为4.94065645841247E-324至1.79769313486232E308。数字符号（`#`）[类型声明字符](#type-declaration-character)表示**Double**。
 
-## drop source
+## 拖放源
 
-The selected text or object that is dragged in a drag-and-drop operation.
+在拖放操作中拖动的选定文本或对象。
 
-## dynamic data exchange (DDE)
+## 动态数据交换(DDE)
 
-An established protocol for exchanging data through active links between applications that run under Microsoft Windows.
+在Microsoft Windows下运行的应用程序之间通过活动链接交换数据的既定协议。
 
-## dynamic-link library (DLL)
+## 动态链接库(DLL)
 
-A library of routines loaded and linked into applications at run time. DLLs are typically created with other programming languages such as C. External DLL procedures are made callable in twinBASIC with the [**Declare**](/official/Reference/Core/Declare) statement.
+在运行时加载并链接到应用程序的例程库。DLL通常使用其他编程语言（如C）创建。外部DLL过程可通过[**Declare**](/official/Reference/Core/Declare)语句在twinBASIC中调用。
 
 ## Empty
 
-Indicates that no beginning value has been assigned to a [**Variant**](#variant-data-type) variable. An **Empty** variable is represented as 0 in a numeric context or a zero-length string (`""`) in a string context.
+指示尚未为[**Variant**](#variant-data-type)变量赋初始值。**Empty**变量在数值上下文中表示为0，在字符串上下文中表示为零长度字符串（`""`）。
 
-## enumerated constant
+## 枚举常量
 
-A named constant whose value is a member of an enumeration type defined with the [**Enum**](/official/Reference/Core/Enum) statement. Additional information for an enumerated data item can usually be found in the description of the property, method, or event that uses the enumeration.
+值为使用[**Enum**](/official/Reference/Core/Enum)语句定义的枚举类型成员的命名常量。枚举数据项的附加信息通常可在使用该枚举的属性、方法或事件的描述中找到。
 
-## error number
+## 错误号
 
-A whole number in the range 0 to 65,535 that corresponds to the `Number` property setting of the [**Err**](/official/Reference/VBA/Information/Err) object. When combined with the `Description` property setting of the **Err** object, this number represents a particular error message.
+0到65,535范围内的整数，对应[**Err**](/official/Reference/VBA/Information/Err)对象的`Number`属性设置。与**Err**对象的`Description`属性设置组合时，此数字代表特定的错误消息。
 
-## event source object
+## 事件源对象
 
-An object that is the source of events that occur in response to an action. An event source object is typically returned by a property.
+作为响应操作而发生的事件之源的对象。事件源对象通常由属性返回。
 
-## executable file
+## 可执行文件
 
-A Windows-based application that can run outside the development environment. An executable file has an `.exe` file name extension.
+可以在开发环境之外运行的基于Windows的应用程序。可执行文件具有`.exe`文件扩展名。
 
-## expression
+## 表达式
 
-A combination of keywords, operators, variables, and constants that yields a string, number, or object. An expression can be used to perform a calculation, manipulate characters, or test data.
+产生字符串、数字或对象的关键字、运算符、变量和常量的组合。表达式可用于执行计算、操作字符或测试数据。
 
-## file number
+## 文件号
 
-A number used in the [**Open**](/official/Reference/Core/Open) statement to open a file. Use file numbers in the range 1&ndash;255 (inclusive) for files not accessible to other applications. Use file numbers in the range 256&ndash;511 for files accessible from other applications.
+在[**Open**](/official/Reference/Core/Open)语句中用于打开文件的数字。使用1&ndash;255（含）范围内的文件号来处理其他应用程序不可访问的文件。使用256&ndash;511范围内的文件号来处理可从其他应用程序访问的文件。
 
-## focus
+## 焦点
 
-The ability to receive mouse clicks or keyboard input at any one time. In the Microsoft Windows environment, only one window, form, or control can have this ability at a time. The object that "has the focus" is normally indicated by a highlighted caption or title bar. The focus can be set by the user or by the application.
+在任一时刻接收鼠标点击或键盘输入的能力。在Microsoft Windows环境中，同一时间只有一个窗口、窗体或控件可以具有此能力。"具有焦点"的对象通常通过高亮标题栏或标题来指示。焦点可由用户或应用程序设置。
 
-## foreground color
+## 前景色
 
-The color currently selected for drawing or displaying text on screen. In monochrome displays, the foreground color is the color of a bitmap or other graphic.
+当前选定用于在屏幕上绘图或显示文本的颜色。在单色显示器中，前景色是位图或其他图形的颜色。
 
-## form
+## 窗体
 
-A window or dialog box. Forms are containers for [controls](#control). A multiple-document interface (MDI) form can also act as a container for child forms and some controls.
+窗口或对话框。窗体是[控件](#control)的容器。多文档界面(MDI)窗体还可以作为子窗体和某些控件的容器。
 
-## form module
+## 窗体模块
 
-A file in a twinBASIC project that contains the graphical description of a form along with its controls and their property settings, form-level declarations of constants, variables, and external procedures, and event and general procedures. In twinBASIC source projects, form modules are stored as `.twin` files.
+twinBASIC项目中的文件，包含窗体的图形描述及其控件和属性设置、窗体级的常量、变量和外部过程声明，以及事件和通用过程。在twinBASIC源项目中，窗体模块存储为`.twin`文件。
 
-## Function procedure
+## Function过程
 
-A [procedure](#procedure) that performs a specific task within a program and returns a value. A **Function** procedure begins with a [**Function**](/official/Reference/Core/Function) statement and ends with an **End Function** statement.
+在程序中执行特定任务并返回值的[过程](#procedure)。**Function**过程以[**Function**](/official/Reference/Core/Function)语句开始，以**End Function**语句结束。
 
-## general procedure
+## 通用过程
 
-A [procedure](#procedure) that must be explicitly called by another procedure. In contrast, an event procedure is invoked automatically in response to a user or system action.
+必须由另一过程显式调用的[过程](#procedure)。相比之下，事件过程在响应用户或系统操作时自动调用。
 
-## graphics method
+## 图形方法
 
-A method that operates on an object such as a **Form**, **PictureBox**, or **Printer**, and performs run-time drawing operations such as animation or simulation. Graphics methods include **Circle**, **Cls**, **Line**, **PaintPicture**, **Point**, **Print**, and **PSet**.
+对**Form**、**PictureBox**或**Printer**等对象进行操作并执行运行时绘图操作（如动画或模拟）的方法。图形方法包括**Circle**、**Cls**、**Line**、**PaintPicture**、**Point**、**Print**和**PSet**。
 
-## host application
+## 宿主应用程序
 
-Any application that hosts a twinBASIC project or component, for example, an Office application that loads a compiled twinBASIC COM add-in.
+承载twinBASIC项目或组件的任何应用程序，例如加载已编译twinBASIC COM加载项的Office应用程序。
 
-## icon
+## 图标
 
-A graphical representation of an object or concept; commonly used to represent minimized applications in Microsoft Windows. An icon is a bitmap with a maximum size of 32 x 32 pixels. Icons have an `.ico` file name extension.
+对象或概念的图形表示；通常用于在Microsoft Windows中表示最小化的应用程序。图标是最大尺寸为32 x 32像素的位图。图标具有`.ico`文件扩展名。
 
-## identifier
+## 标识符
 
-An element of an expression that refers to a constant, variable, procedure, or other named entity.
+表达式中引用常量、变量、过程或其他命名实体的元素。
 
-## in process
+## 进程内
 
-Running in the same address space as an application.
+在与应用程序相同的地址空间中运行。
 
-## inherited property
+## 继承属性
 
-A property that has acquired the characteristics of another class through inheritance.
+通过继承获取另一个类特征的属性。
 
-## Input Method Editor (IME)
+## 输入法编辑器(IME)
 
-An application that translates what you type into characters of a DBCS language, such as Japanese or Chinese. As the user types, the IME displays possible equivalents. The user selects the most appropriate entry.
+将键入内容转换为DBCS语言（如日语或中文）字符的应用程序。用户键入时，IME显示可能的等价项，用户选择最合适的条目。
 
-## insertable object
+## 可插入对象
 
-An application object that is a type of custom control, such as a Microsoft Excel worksheet, that can be inserted into a host document.
+作为一种自定义控件类型的应用程序对象（如Microsoft Excel工作表），可以插入到宿主文档中。
 
-## Integer data type
+## Integer数据类型
 
-A [data type](#data-type) that holds integer variables stored as 2-byte whole numbers in the range -32,768 to 32,767. The **Integer** data type is also used to represent enumerated values. The percent sign (`%`) [type-declaration character](#type-declaration-character) represents an **Integer**.
+将整数变量存储为2字节整数的[数据类型](#data-type)，范围为-32,768到32,767。**Integer**数据类型也用于表示枚举值。百分号（`%`）[类型声明字符](#type-declaration-character)表示**Integer**。
 
-## intrinsic constant
+## 内在常量
 
-A constant provided by the language or a referenced library. Intrinsic constants can be viewed in the IDE's object browser. Because intrinsic constants can't be disabled, a user-defined constant with the same name can't be created.
+由语言或引用库提供的常量。内在常量可在IDE的对象浏览器中查看。由于内在常量不能被禁用，因此不能创建同名的用户自定义常量。
 
-## keyboard state
+## 键盘状态
 
-A return value that identifies which keys are pressed and whether the keyboard modifiers SHIFT, CTRL, and ALT are pressed.
+标识按下了哪些键以及是否按下了SHIFT、CTRL和ALT键盘修饰键的返回值。
 
-## keyword
+## 关键字
 
-A word or symbol recognized as part of the twinBASIC programming language; for example, a statement, function name, or operator.
+作为twinBASIC编程语言一部分被识别的单词或符号；例如语句、函数名或运算符。
 
-## line-continuation character
+## 行续行符
 
-The combination of a space followed by an underscore (`_`) used in source code to extend a single logical line of code to two or more physical lines. A line-continuation character can't be used to continue a line of code within a string expression.
+源代码中用于将单个逻辑行代码扩展为两个或更多物理行的空格后跟下划线（`_`）的组合。行续行符不能用于在字符串表达式内续行。
 
-## line label
+## 行标签
 
-A label used to identify a single line of code. A line label can be any combination of characters that starts with a letter and ends with a colon (`:`). Line labels are not case sensitive and must begin in the first column.
+用于标识单行代码的标签。行标签可以是任何以字母开头以冒号（`:`）结尾的字符组合。行标签不区分大小写，必须从第一列开始。
 
-## line number
+## 行号
 
-A number used to identify a single line of code. A line number can be any combination of digits that is unique within the module where it is used. Line numbers must begin in the first column.
+用于标识单行代码的数字。行号可以是在使用它的模块内唯一的任何数字组合。行号必须从第一列开始。
 
-## locale
+## 区域设置
 
-The set of information that corresponds to a given language and country/region. The code locale setting affects the language of terms such as keywords and defines locale-specific settings such as the decimal and list separators, date formats, and character sorting order.
+与给定语言和国家/地区对应的信息集。代码区域设置影响关键字等术语的语言，并定义区域设置特定的设置，如小数和列表分隔符、日期格式和字符排序顺序。
 
-The system locale setting affects the way locale-aware functionality behaves, for example, when you display numbers or convert strings to dates. You set the system locale using the **Control Panel** utilities provided by the operating system.
+系统区域设置影响识别区域设置功能的行为方式，例如显示数字或将字符串转换为日期时。使用操作系统提供的**控制面板**实用程序设置系统区域设置。
 
-Although the code locale and system locale are generally set to the same setting, they may differ in some situations. For example, in Visual Basic, Standard Edition and Visual Basic, Professional Edition, the code is not translated from English-U.S. The system locale can be set to the user's language and country/region, but the code locale is always set to English-U.S. and can't be changed. In this case, the English-U.S. separators, format placeholders, and sorting order are used.
+虽然代码区域设置和系统区域设置通常设置为相同设置，但在某些情况下可能不同。例如，在Visual Basic标准版和Visual Basic专业版中，代码不会从英语（美国）翻译。系统区域设置可以设置为用户的语言和国家/地区，但代码区域设置始终设置为英语（美国）且不能更改。在这种情况下，使用英语（美国）的分隔符、格式占位符和排序顺序。
 
-## logic error
+## 逻辑错误
 
-A programming error that can cause code to produce incorrect results or stop execution. For example, a logic error can be caused by incorrect variable names, incorrect variable types, endless loops, flaws in comparisons, or array problems.
+可能导致代码产生错误结果或停止执行的编程错误。例如，逻辑错误可能由错误的变量名、错误的变量类型、无限循环、比较缺陷或数组问题引起。
 
-## Long data type
+## Long数据类型
 
-A 4-byte integer ranging in value from -2,147,483,648 to 2,147,483,647. The ampersand (`&`) [type-declaration character](#type-declaration-character) represents a **Long**.
+4字节整数，值范围为-2,147,483,648到2,147,483,647。和号（`&`）[类型声明字符](#type-declaration-character)表示**Long**。
 
-## LongLong data type
+## LongLong数据类型
 
-(twinBASIC) An 8-byte integer ranging in value from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807. Valid as a declared type only on 64-bit platforms (or for DLL [**Declare**](/official/Reference/Core/Declare) signatures targeting 64-bit). The caret-sign (`^`) [type-declaration character](#type-declaration-character) represents a **LongLong**.
+(twinBASIC) 8字节整数，值范围为-9,223,372,036,854,775,808到9,223,372,036,854,775,807。仅在64位平台上（或针对64位的DLL [**Declare**](/official/Reference/Core/Declare)签名中）可用作声明类型。脱字符（`^`）[类型声明字符](#type-declaration-character)表示**LongLong**。
 
-## LongPtr data type
+## LongPtr数据类型
 
-(twinBASIC) A platform-dependent integer used to hold pointer or handle values. **LongPtr** is 4 bytes on 32-bit platforms and 8 bytes on 64-bit platforms. Use **LongPtr** rather than **Long** or **LongLong** when declaring DLL parameters that hold pointers or handles, so that the same source compiles correctly on both platforms.
+(twinBASIC) 平台相关的整数，用于保存指针或句柄值。**LongPtr**在32位平台上为4字节，在64位平台上为8字节。声明保存指针或句柄的DLL参数时使用**LongPtr**而非**Long**或**LongLong**，以便同一源代码在两个平台上都能正确编译。
 
-## MDI child
+## MDI子窗体
 
-A form contained within an MDI form in a multiple-document interface (MDI) application. To create a child form, set the `MDIChild` property of the form to **True**.
+多文档界面(MDI)应用程序中包含在MDI窗体内的窗体。要创建子窗体，请将窗体的`MDIChild`属性设置为**True**。
 
-## MDI form
+## MDI窗体
 
-A window that makes up the background of a multiple-document interface (MDI) application. The MDI form is the container for any MDI child forms in the application.
+构成多文档界面(MDI)应用程序背景的窗口。MDI窗体是应用程序中任何MDI子窗体的容器。
 
-## member
+## 成员
 
-An element of a collection, object, or user-defined type.
+集合、对象或用户自定义类型的元素。
 
-## metafile
+## 元文件
 
-A file that stores an image as graphical objects such as lines, circles, and polygons rather than as pixels. There are two types of metafiles, standard and enhanced. Standard metafiles usually have a `.wmf` file name extension; enhanced metafiles usually have an `.emf` file name extension. Metafiles preserve an image more accurately than pixels when the image is resized.
+将图像存储为线条、圆形和多边形等图形对象而非像素的文件。有两种类型的元文件：标准和增强。标准元文件通常具有`.wmf`文件扩展名；增强元文件通常具有`.emf`文件扩展名。元文件在图像调整大小时比像素更准确地保留图像。
 
-## method
+## 方法
 
-A [procedure](#procedure) that acts on an object.
+对对象进行操作的[过程](#procedure)。
 
-## module
+## 模块
 
-A set of declarations followed by procedures.
+一组声明后跟过程。
 
-## module level
+## 模块级别
 
-Describes code in the Declarations section of a module. Any code outside a procedure is referred to as module-level code. Declarations must be listed first, followed by procedures. This term also includes the [class module](#class-module).
+描述模块声明部分中的代码。过程外的任何代码称为模块级别代码。声明必须列在最前面，后跟过程。此术语也包括[类模块](#class-module)。
 
-## module variable
+## 模块变量
 
-A variable declared outside [**Function**](/official/Reference/Core/Function), [**Sub**](/official/Reference/Core/Sub), or [**Property**](/official/Reference/Core/Property) procedure code. Module variables must be declared outside any procedures in the module. They exist while the module is loaded and are visible in all procedures in the module.
+在[**Function**](/official/Reference/Core/Function)、[**Sub**](/official/Reference/Core/Sub)或[**Property**](/official/Reference/Core/Property)过程代码之外声明的变量。模块变量必须在模块中的任何过程之外声明。它们在模块加载期间存在，并且在模块的所有过程中可见。
 
-## named argument
+## 命名参数
 
-An argument that has a name that is predefined in the object library. Instead of providing a value for each argument in a specified order expected by the syntax, named arguments can be used to assign values in any order. For example, suppose a method accepts three arguments:
+在对象库中具有预定义名称的参数。命名参数可用于按任意顺序赋值，而不必按语法期望的指定顺序为每个参数提供值。例如，假设一个方法接受三个参数：
 
 > **DoSomething** *namedarg1, namedarg2, namedarg3*
 
-By assigning values to named arguments, you can write:
+通过为命名参数赋值，可以编写：
 
 ```vb
 DoSomething namedarg3 := 4, namedarg2 := 5, namedarg1 := 20
 ```
 
-Note that the named arguments don't have to appear in the normal positional order in the syntax.
+注意命名参数不必按正常位置顺序出现在语法中。
 
 ## Null
 
-A value indicating that a variable contains no valid data. **Null** is the result of an explicit assignment of **Null** to a variable or any operation between expressions that contain **Null**.
+指示变量不包含有效数据的值。**Null**是显式将**Null**赋值给变量或包含**Null**的表达式之间任何操作的结果。
 
-## numeric data type
+## 数值数据类型
 
-Any intrinsic numeric [data type](#data-type) (**Byte**, **Boolean**, **Integer**, **Long**, **LongLong**, **LongPtr**, **Currency**, **Decimal**, **Single**, **Double**, or **Date**).
+任何内在数值[数据类型](#data-type)（**Byte**、**Boolean**、**Integer**、**Long**、**LongLong**、**LongPtr**、**Currency**、**Decimal**、**Single**、**Double**或**Date**）。
 
-## numeric expression
+## 数值表达式
 
-Any [expression](#expression) that can be evaluated as a number. Elements of an expression can include any combination of keywords, variables, constants, and operators that result in a number.
+任何可以计算为数值的[表达式](#expression)。表达式的元素可以包括产生数值的关键字、变量、常量和运算符的任意组合。
 
-## object
+## 对象
 
-A combination of code and data that can be treated as a unit, for example, a control, form, or application component. Each object is defined by a class.
+可以作为一个单元处理的代码和数据的组合，例如控件、窗体或应用程序组件。每个对象由类定义。
 
-## Object Browser
+## 对象浏览器
 
-A dialog box in which you can examine the contents of an object library to get information about the objects provided.
+可以检查对象库内容以获取所提供对象信息的对话框。
 
-## Object data type
+## Object数据类型
 
-A [data type](#data-type) that represents any object reference. **Object** variables are stored as pointer-sized addresses that refer to objects (4 bytes on 32-bit platforms, 8 bytes on 64-bit platforms).
+表示任何对象引用的[数据类型](#data-type)。**Object**变量存储为引用对象的指针大小地址（32位平台上4字节，64位平台上8字节）。
 
-## object expression
+## 对象表达式
 
-An expression that specifies a particular object and can include any of the object's containers. For example, an application can have an **Application** object that contains a **Document** object that contains a **Text** object.
+指定特定对象并可以包含该对象任何容器的表达式。例如，应用程序可以有一个包含**Document**对象的**Application**对象，而**Document**对象又包含一个**Text**对象。
 
-## object library
+## 对象库
 
-A file containing standard descriptions of exposed objects, properties, and methods. Object library files typically have an `.olb` or `.tlb` extension. Use the [Object Browser](#object-browser) to examine the contents of an object library to get information about the objects provided.
+包含所暴露对象、属性和方法的标准描述的文件。对象库文件通常具有`.olb`或`.tlb`扩展名。使用[对象浏览器](#object-browser)检查对象库内容以获取所提供对象的信息。
 
-## object module
+## 对象模块
 
-A module that contains code specific to an object, for example, a class module or form module. Object modules contain the code behind their associated objects. The rules for object modules differ from those for [standard modules](#standard-module).
+包含特定于对象的代码的模块，例如类模块或窗体模块。对象模块包含与其关联对象背后的代码。对象模块的规则与[标准模块](#standard-module)的规则不同。
 
-## object type
+## 对象类型
 
-A type of object exposed by an application through Automation, for example, **Application**, **File**, **Range**, or **Sheet**. Refer to the application's documentation for a complete listing of available objects.
+应用程序通过自动化暴露的对象类型，例如**Application**、**File**、**Range**或**Sheet**。请参阅应用程序文档以获取可用对象的完整列表。
 
-## object variable
+## 对象变量
 
-A variable that contains a reference to an object.
+包含对象引用的变量。
 
-## package
+## 包
 
-A unit of distribution and reference for twinBASIC code. A package bundles modules, classes, types, enums, and other declarations together, and can be referenced from a project as a single dependency. The twinBASIC runtime libraries are delivered this way: the [VBA](/official/Reference/VBA/) package mirrors classic VBA's runtime, the [VBRUN](/official/Reference/VBRUN/) package provides VB6's runtime objects, and the [VB](/official/Reference/VB/) package supplies the standard control classes. Developers can author and publish their own packages.
+twinBASIC代码的分发和引用单元。包将模块、类、类型、枚举和其他声明捆绑在一起，可以作为单个依赖项从项目中引用。twinBASIC运行时库以此方式交付：[VBA](/official/Reference/VBA/)包镜像经典VBA的运行时，[VBRUN](/official/Reference/VBRUN/)包提供VB6的运行时对象，[VB](/official/Reference/VB/)包提供标准控件类。开发者可以编写和发布自己的包。
 
-## parameter
+## 参数
 
-A variable name by which an argument passed to a procedure is known within the procedure. This variable receives the argument passed into the procedure. Its scope ends when the procedure ends.
+传递给过程的参数在过程内已知的变量名。此变量接收传入过程的参数。其作用域在过程结束时终止。
 
-## path
+## 路径
 
-A string expression specifying a directory or folder location. The location can include a drive specification.
+指定目录或文件夹位置的字符串表达式。位置可以包含驱动器规格。
 
-## pi
+## 圆周率
 
-A mathematical constant equal to approximately 3.1415926535897932.
+约等于3.1415926535897932的数学常量。
 
-## placeholder
+## 占位符
 
-A character that masks or hides another character for security reasons. For example, when a user types a password, an asterisk is displayed on the screen to take the place of each character typed.
+出于安全原因而遮掩或隐藏另一个字符的字符。例如，当用户输入密码时，屏幕上显示星号以替代每个键入的字符。
 
-## point
+## 磅
 
-A point is 1/72 inch. Font sizes are usually measured in points.
+1/72英寸。字体大小通常以磅为单位测量。
 
-## print zone
+## 打印区
 
-Print zones begin every 14 columns. The width of each column is an average of the width of all characters in the point size for the selected font.
+打印区每14列开始一个。每列的宽度是所选字体磅号下所有字符宽度的平均值。
 
 ## Private
 
-Describes variables, procedures, or types that are visible only to the module in which they are declared. See the [**Private**](/official/Reference/Core/Private) statement.
+描述仅在声明它们的模块中可见的变量、过程或类型。参见[**Private**](/official/Reference/Core/Private)语句。
 
-## procedure
+## 过程
 
-A named sequence of statements executed as a unit. For example, [**Function**](/official/Reference/Core/Function), [**Property**](/official/Reference/Core/Property), and [**Sub**](/official/Reference/Core/Sub) are types of procedures. A procedure name is always defined at module level. All executable code must be contained in a procedure. Procedures can't be nested within other procedures.
+作为单元执行的命名语句序列。例如，[**Function**](/official/Reference/Core/Function)、[**Property**](/official/Reference/Core/Property)和[**Sub**](/official/Reference/Core/Sub)是过程的类型。过程名始终在模块级别定义。所有可执行代码必须包含在过程中。过程不能嵌套在其他过程中。
 
-## procedure call
+## 过程调用
 
-A statement in code that tells twinBASIC to execute a procedure. See [**Call**](/official/Reference/Core/Call).
+代码中告诉twinBASIC执行过程的语句。参见[**Call**](/official/Reference/Core/Call)。
 
-## procedure level
+## 过程级别
 
-Describes statements located within a [**Function**](/official/Reference/Core/Function), [**Property**](/official/Reference/Core/Property), or [**Sub**](/official/Reference/Core/Sub) procedure. Declarations are usually listed first, followed by assignments and other executable code.
+描述位于[**Function**](/official/Reference/Core/Function)、[**Property**](/official/Reference/Core/Property)或[**Sub**](/official/Reference/Core/Sub)过程内的语句。声明通常列在最前面，后跟赋值和其他可执行代码。
 
-Note that module-level code resides outside a procedure block.
+注意模块级别代码位于过程块之外。
 
-## project
+## 项目
 
-A set of modules.
+一组模块。
 
-## property
+## 属性(Property)
 
-A named attribute of an object. Properties define object characteristics such as size, color, and screen location, or the state of an object, such as enabled or disabled.
+对象的命名属性。属性定义对象特征，如大小、颜色和屏幕位置，或对象的状态，如启用或禁用。
 
-## property page
+## 属性页
 
-A grouping of properties presented as a tabbed page of a property sheet.
+作为属性表选项卡页呈现的属性分组。
 
-## Property procedure
+## Property过程
 
-A [procedure](#procedure) that creates and manipulates properties for a class module. A **Property** procedure begins with a [**Property Let**, **Property Get**, or **Property Set**](/official/Reference/Core/Property) statement and ends with an **End Property** statement.
+为类模块创建和操作属性的[过程](#procedure)。**Property**过程以[**Property Let**、**Property Get**或**Property Set**](/official/Reference/Core/Property)语句开始，以**End Property**语句结束。
 
 ## Public
 
-Describes variables declared using the [**Public**](/official/Reference/Core/Public) statement, which are visible to all procedures in all modules in all applications unless [**Option Private Module**](/official/Reference/Core/Option#Private) is in effect. In that case, the variables are public only within the project in which they reside.
+描述使用[**Public**](/official/Reference/Core/Public)语句声明的变量，除非[**Option Private Module**](/official/Reference/Core/Option#Private)生效，否则对所有应用程序中所有模块的所有过程可见。在该情况下，变量仅在其所在项目内为公共的。
 
-## referenced project
+## 被引用项目
 
-A project that is directly linked to from the current project. A project referenced by one of the current project's directly referenced projects is called an *indirectly referenced project*. Its **Public** variables are not accessible to the current project except through qualification with its project name. Any combination of direct and indirect references between projects is valid as long as they don't result in a cycle.
+直接链接到当前项目的项目。由当前项目直接引用的项目所引用的项目称为*间接引用项目*。其**Public**变量不能供当前项目访问，除非通过其项目名称限定。项目之间的直接和间接引用的任何组合都是有效的，只要它们不会形成循环。
 
-## referencing project
+## 引用项目
 
-The current project. **Public** variables in a directly referenced project are visible to the directly referencing project, but **Public** variables in a directly referencing project are not visible to a directly referenced project.
+当前项目。直接被引用项目中的**Public**变量对直接引用项目可见，但直接引用项目中的**Public**变量对直接被引用项目不可见。
 
-## registry
+## 注册表
 
-A central configuration database in Microsoft Windows used for user, application, and computer-specific information.
+Microsoft Windows中用于用户、应用程序和计算机特定信息的中央配置数据库。
 
-## resource file
+## 资源文件
 
-A file in a twinBASIC project that can contain bitmaps, text strings, or other data. By storing this data in a separate file, you can change the information without editing your code.
+twinBASIC项目中可包含位图、文本字符串或其他数据的文件。通过将此数据存储在单独文件中，可以在不编辑代码的情况下更改信息。
 
 ## RGB
 
-A color value system used to describe colors as a mixture of red \(R\), green (G), and blue (B). The color is defined as a set of three integers (R, G, B) where each integer ranges from 0&ndash;255. A value of 0 indicates a total absence of a color component; a value of 255 indicates the highest intensity of a color component. See [**RGB**](/official/Reference/VBA/Information/RGB) and [**RGBA**](/official/Reference/VBA/Information/RGBA).
+用于将颜色描述为红(R)、绿(G)和蓝(B)混合的颜色值系统。颜色定义为一组三个整数(R, G, B)，其中每个整数范围为0&ndash;255。值0表示颜色分量完全不存在；值255表示颜色分量的最高强度。参见[**RGB**](/official/Reference/VBA/Information/RGB)和[**RGBA**](/official/Reference/VBA/Information/RGBA)。
 
-## run time
+## 运行时
 
-The time during which code is running. During run time, you can't edit the code.
+代码正在运行的时间。在运行时，不能编辑代码。
 
-## run-time error
+## 运行时错误
 
-An error that occurs when code is running. A run-time error results when a statement attempts an invalid operation.
+代码运行时发生的错误。当语句尝试无效操作时产生运行时错误。
 
-## scope
+## 作用域
 
-Defines the visibility of a variable, procedure, or object. For example, a variable declared as [**Public**](/official/Reference/Core/Public) is visible to all procedures in all modules in a directly referencing project unless [**Option Private Module**](/official/Reference/Core/Option#Private) is in effect. When **Option Private Module** is in effect, the module itself is private and therefore not visible to referencing projects. Variables declared in a procedure are visible only within the procedure and lose their value between calls unless they are declared [**Static**](/official/Reference/Core/Static).
+定义变量、过程或对象的可见性。例如，声明为[**Public**](/official/Reference/Core/Public)的变量对直接引用项目中所有模块的所有过程可见，除非[**Option Private Module**](/official/Reference/Core/Option#Private)生效。**Option Private Module**生效时，模块本身为私有，因此对引用项目不可见。过程中声明的变量仅在该过程内可见，除非声明为[**Static**](/official/Reference/Core/Static)，否则在调用之间不保留其值。
 
-## seed
+## 种子
 
-An initial value used to generate pseudorandom numbers. For example, the [**Randomize**](/official/Reference/VBA/Math/Randomize) statement creates a seed number used by the [**Rnd**](/official/Reference/VBA/Math/Rnd) function to create unique pseudorandom number sequences.
+用于生成伪随机数的初始值。例如，[**Randomize**](/official/Reference/VBA/Math/Randomize)语句创建一个种子数，由[**Rnd**](/official/Reference/VBA/Math/Rnd)函数用于创建唯一的伪随机数序列。
 
-## Single data type
+## Single数据类型
 
-A [data type](#data-type) that stores single-precision floating-point variables as 32-bit (4-byte) floating-point numbers, ranging in value from -3.402823E38 to -1.401298E-45 for negative values, and 1.401298E-45 to 3.402823E38 for positive values. The exclamation point (`!`) [type-declaration character](#type-declaration-character) represents a **Single**.
+将单精度浮点变量存储为32位（4字节）浮点数的[数据类型](#data-type)，负值范围为-3.402823E38至-1.401298E-45，正值范围为1.401298E-45至3.402823E38。感叹号（`!`）[类型声明字符](#type-declaration-character)表示**Single**。
 
-## sort order
+## 排序顺序
 
-A sequencing principle used to order data, for example, alphabetic, numeric, ascending, descending, and so on.
+用于排序数据的排序原则，例如字母顺序、数字顺序、升序、降序等。
 
-## stack
+## 栈
 
-A fixed amount of memory used by twinBASIC to preserve local variables and arguments during procedure calls.
+twinBASIC用于在过程调用期间保存局部变量和参数的固定内存量。
 
-## standard module
+## 标准模块
 
-A module containing only procedure, type, and data declarations and definitions. Module-level declarations and definitions in a standard module are **Public** by default. A standard module is sometimes referred to as a *code module*.
+仅包含过程、类型和数据声明及定义的模块。标准模块中的模块级别声明和定义默认为**Public**。标准模块有时称为*代码模块*。
 
-## statement
+## 语句
 
-A syntactically complete unit that expresses one kind of action, declaration, or definition. A statement generally occupies a single line, although a colon (`:`) can be used to include more than one statement on a line. A [line-continuation character](#line-continuation-character) (`_`) can also be used to continue a single logical line onto a second physical line.
+表达一种动作、声明或定义的语法完整单元。语句通常占据一行，但可以使用冒号（`:`）在一行中包含多个语句。也可以使用[行续行符](#line-continuation-character)（`_`）将单个逻辑行续到第二个物理行。
 
-## string comparison
+## 字符串比较
 
-A comparison of two sequences of characters. Use [**Option Compare**](/official/Reference/Core/Option#Compare) to specify binary or text comparison. In English-U.S., binary comparisons are case sensitive; text comparisons are not.
+两个字符序列的比较。使用[**Option Compare**](/official/Reference/Core/Option#Compare)指定二进制或文本比较。在英语（美国）中，二进制比较区分大小写；文本比较不区分大小写。
 
-## string constant
+## 字符串常量
 
-Any constant (defined using the [**Const**](/official/Reference/Core/Const) keyword) consisting of a sequence of contiguous characters interpreted as the characters themselves rather than as a numeric value.
+使用[**Const**](/official/Reference/Core/Const)关键字定义的、由被解释为字符本身而非数值的连续字符序列组成的任何常量。
 
-## String data type
+## String数据类型
 
-A [data type](#data-type) consisting of a sequence of contiguous characters that represent the characters themselves rather than their numeric values. A **String** can include letters, numbers, spaces, and punctuation. The **String** data type can store fixed-length strings ranging in length from 0 to approximately 63K characters and dynamic strings ranging in length from 0 to approximately 2 billion characters. The dollar sign (`$`) [type-declaration character](#type-declaration-character) represents a **String**.
+由表示字符本身而非其数值的连续字符序列组成的[数据类型](#data-type)。**String**可以包含字母、数字、空格和标点符号。**String**数据类型可存储长度0至约63K字符的定长字符串和长度0至约20亿字符的动态字符串。美元符号（`$`）[类型声明字符](#type-declaration-character)表示**String**。
 
-## string expression
+## 字符串表达式
 
-Any [expression](#expression) that evaluates to a sequence of contiguous characters. Elements of a string expression can include a function that returns a string, a string literal, a string constant, a string variable, a string [**Variant**](#variant-data-type), or a function that returns a string **Variant**.
+计算结果为连续字符序列的任何[表达式](#expression)。字符串表达式的元素可以包括返回字符串的函数、字符串字面量、字符串常量、字符串变量、字符串[**Variant**](#variant-data-type)或返回字符串**Variant**的函数。
 
-## string literal
+## 字符串字面量
 
-Any expression consisting of a sequence of contiguous characters surrounded by quotation marks that is literally interpreted as the characters within the quotation marks.
+由被包围在引号中并按引号内字符字面解释的连续字符序列组成的任何表达式。
 
-## Sub procedure
+## Sub过程
 
-A [procedure](#procedure) that performs a specific task within a program, but returns no explicit value. A **Sub** procedure begins with a [**Sub**](/official/Reference/Core/Sub) statement and ends with an **End Sub** statement.
+在程序中执行特定任务但不返回显式值的[过程](#procedure)。**Sub**过程以[**Sub**](/official/Reference/Core/Sub)语句开始，以**End Sub**语句结束。
 
-## syntax checking
+## 语法检查
 
-A feature that checks code for correct syntax. When the syntax checking feature is enabled, a message is displayed when code containing a syntax error is entered, and the suspect code is highlighted.
+检查代码语法正确性的功能。启用语法检查功能后，输入包含语法错误的代码时会显示消息，并高亮显示有问题的代码。
 
-## syntax error
+## 语法错误
 
-An error that occurs when a line of code is entered that twinBASIC doesn't recognize.
+输入twinBASIC无法识别的代码行时发生的错误。
 
-## system colors
+## 系统颜色
 
-Colors that are defined by the operating system for a specific type of monitor and video adapter. In Windows, each color is associated with a specific part of the user interface, such as a window title or a menu.
+由操作系统为特定类型显示器和视频适配器定义的颜色。在Windows中，每种颜色与用户界面的特定部分关联，如窗口标题或菜单。
 
-## tab order
+## Tab顺序
 
-The order in which the focus moves from one field to the next as TAB or SHIFT+TAB is pressed.
+按TAB或SHIFT+TAB时焦点从一个字段移动到下一个字段的顺序。
 
-## target
+## 目标
 
-An object onto which the user drops the object being dragged in a drag-and-drop operation.
+在拖放操作中用户将拖动对象放到的对象。
 
-## time expression
+## 时间表达式
 
-Any expression that can be interpreted as a time. This includes any combination of time literals, numbers that look like times, strings that look like times, and times returned from functions.
+任何可以解释为时间的表达式。这包括时间字面量、看起来像时间的数字、看起来像时间的字符串以及从函数返回的时间的任意组合。
 
-Times are stored as part of a real number. Values to the right of the decimal represent the time. For example, midday (12:00 P.M.) is represented by 0.5.
+时间作为实数的一部分存储。小数点右边的值表示时间。例如，正午（12:00 PM）由0.5表示。
 
-## transparent
+## 透明
 
-Describes the background of the object if the background is not visible. Instead of the background, whatever is behind the object is visible --- for example, an image or picture used as a backdrop in your application. Use the `BackStyle` property to make the background transparent.
+描述对象背景不可见的情况。替代背景，对象后面的一切可见 --- 例如应用程序中用作背景的图像或图片。使用`BackStyle`属性使背景透明。
 
-## twip
+## 缇
 
-A unit of screen measurement equal to 1/20 point. A twip is a screen-independent unit used to ensure that placement and proportion of screen elements in a screen application are the same on all display systems. There are approximately 1440 twips to a logical inch, or 567 twips to a logical centimeter (the length of a screen item measuring one inch or one centimeter when printed).
+等于1/20磅的屏幕测量单位。缇是屏幕无关单位，用于确保屏幕应用程序中屏幕元素的位置和比例在所有显示系统上相同。逻辑英寸约等于1440缇，逻辑厘米约等于567缇（打印时测量为一英寸或一厘米的屏幕项的长度）。
 
-## type-declaration character
+## 类型声明字符
 
-A character appended to a variable name indicating the variable's data type. By default, variables are of type [**Variant**](#variant-data-type) unless a corresponding [**Def***type*](/official/Reference/Core/Deftype) statement is present in the module. The full set of type-declaration characters is:
+附加到变量名后指示变量数据类型的字符。默认情况下，变量为[**Variant**](#variant-data-type)类型，除非模块中存在相应的[**Def***type*](/official/Reference/Core/Deftype)语句。完整的类型声明字符集为：
 
-| Char | Type            |
+| 字符 | 类型            |
 |:----:|:----------------|
 | `%`  | **Integer**     |
 | `&`  | **Long**        |
@@ -699,44 +707,44 @@ A character appended to a variable name indicating the variable's data type. By 
 | `#`  | **Double**      |
 | `$`  | **String**      |
 
-## type library
+## 类型库
 
-A file or component within another file that contains standard descriptions of exposed objects, properties, and methods that are available for Automation. Object library files (`.olb`, `.tlb`) contain type libraries.
+包含可用于自动化的所暴露对象、属性和方法的标准描述的文件或另一文件中的组件。对象库文件（`.olb`、`.tlb`）包含类型库。
 
-## unbound
+## 非绑定
 
-Describes a control that is not related to a [data source](#data-source). In contrast, a [bound control](#bound-control) provides access to a data source for display or editing.
+描述与[数据源](#data-source)无关的控件。相比之下，[绑定控件](#bound-control)提供对数据源的访问以进行显示或编辑。
 
 ## Unicode
 
-International Standards Organization (ISO) character standard. Unicode uses a 16-bit (2-byte) coding scheme that allows for 65,536 distinct character spaces. Unicode includes representations for punctuation marks, mathematical symbols, and dingbats, with substantial room for future expansion.
+国际标准化组织(ISO)字符标准。Unicode使用16位（2字节）编码方案，允许65,536个不同字符空间。Unicode包含标点符号、数学符号和装饰符号的表示，并有充足的未来扩展空间。
 
-## universal date format
+## 通用日期格式
 
-The universal date format is `#yyyy-mm-dd hh:mm:ss#`. Both the date component (`#yyyy-mm-dd#`) and the time component (`#hh:mm:ss#`) can be represented separately.
+通用日期格式为`#yyyy-mm-dd hh:mm:ss#`。日期部分（`#yyyy-mm-dd#`）和时间部分（`#hh:mm:ss#`）可以分别表示。
 
-## user-defined type
+## 用户自定义类型
 
-Any data type defined using the [**Type**](/official/Reference/Core/Type) statement. User-defined data types can contain one or more elements of any data type. Arrays of user-defined and other data types are created using the [**Dim**](/official/Reference/Core/Dim) statement. Arrays of any type can be included within user-defined types. See [data type](#data-type).
+使用[**Type**](/official/Reference/Core/Type)语句定义的任何数据类型。用户自定义数据类型可以包含一个或多个任何数据类型的元素。使用[**Dim**](/official/Reference/Core/Dim)语句创建用户自定义和其他数据类型的数组。任何类型的数组都可以包含在用户自定义类型中。参见[数据类型](#data-type)。
 
-## variable
+## 变量
 
-A named storage location that can contain data that can be modified during program execution. Each variable has a name that uniquely identifies it within its scope. A data type can be specified or not.
+可以在程序执行期间修改的包含数据的命名存储位置。每个变量都有一个在其作用域内唯一标识它的名称。可以指定或不指定数据类型。
 
-Variable names must begin with an alphabetic character, must be unique within the same scope, can't be longer than 255 characters, and can't contain an embedded period or type-declaration character.
+变量名必须以字母字符开头，在同一作用域内必须唯一，长度不能超过255个字符，不能包含嵌入的句点或类型声明字符。
 
-## Variant data type
+## Variant数据类型
 
-A special [data type](#data-type) that can contain numeric, string, or date data as well as user-defined types and the special values [**Empty**](#empty) and [**Null**](#null). The **Variant** data type can contain data up to the range of a **Decimal**, plus character text and the platform-specific storage required for a string. The [**VarType**](/official/Reference/VBA/Information/VarType) function defines how the data in a **Variant** is treated. All variables become **Variant** data types if not explicitly declared as some other data type.
+可以包含数值、字符串或日期数据以及用户自定义类型和特殊值[**Empty**](#empty)和[**Null**](#null)的特殊[数据类型](#data-type)。**Variant**数据类型可以包含直到**Decimal**范围的数据，加上字符文本和字符串所需的平台特定存储。[**VarType**](/official/Reference/VBA/Information/VarType)函数定义**Variant**中数据的处理方式。所有变量如果不显式声明为其他数据类型，则成为**Variant**数据类型。
 
-## variant expression
+## 变体表达式
 
-Any [expression](#expression) that can evaluate to numeric, string, or date data, as well as the special values [**Empty**](#empty) and [**Null**](#null).
+可以计算为数值、字符串或日期数据，以及特殊值[**Empty**](#empty)和[**Null**](#null)的任何[表达式](#expression)。
 
-## watch expression
+## 监视表达式
 
-A user-defined expression that enables observation of the behavior of a variable or expression. Watch expressions appear in the watch window of the development environment and are automatically updated when [break mode](#break-mode) is entered. The watch window displays the value of an expression within a given context. Watch expressions are not saved with code.
+使用户能够观察变量或表达式行为的用户自定义表达式。监视表达式出现在开发环境的监视窗口中，在进入[中断模式](#break-mode)时自动更新。监视窗口在给定上下文中显示表达式的值。监视表达式不与代码一起保存。
 
-## z-order
+## Z顺序
 
-The visual layering of controls on a form along the form's z-axis (depth). The z-order determines which controls are in front of other controls.
+窗体上控件沿窗体Z轴（深度）的视觉分层。Z顺序决定哪些控件在其他控件前面。

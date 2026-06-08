@@ -1,29 +1,37 @@
 ---
-title: Control Property Enhancements
+title: "控件属性增强"
 parent: GUI Components
 nav_order: 6
 permalink: /Features/GUI-Components/Control-Properties
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4621da2d-e707-4e0d-becd-01a1bdd83877'
+  PropagateID: '4621da2d-e707-4e0d-becd-01a1bdd83877'
+  ReservedCode1: '2e7d0342-1cbb-47a6-9bf7-6d96247eb9e2'
+  ReservedCode2: '2e7d0342-1cbb-47a6-9bf7-6d96247eb9e2'
 ---
 
-# Control Property Enhancements
+# 控件属性增强
 
-## TextBox Enhancements
+## TextBox 增强
 
-- `TextBox.NumbersOnly` property: Restricts input to 0-9 by setting the `ES_NUMBER` style on the underlying control.
-- `TextBox.TextHint` property: Sets the light gray hint text in an empty TextBox (`EM_SETCUEBANNER`).
+- `TextBox.NumbersOnly` 属性：通过在底层控件上设置 `ES_NUMBER` 样式，将输入限制为 0-9。
+- `TextBox.TextHint` 属性：在空 TextBox 中设置浅灰色提示文本（`EM_SETCUEBANNER`）。
 
-## Label Enhancements
+## Label 增强
 
-- `Label.VerticalAlignment` property: Defaults to Top.
-- `Label.LineSpacing` property (in twips, default is 0)
-- `Label.Angle` property (in degrees, rotates the label text)
-- `Label.BorderCustom` property (has suboptions to set size, padding and color of borders independently for each side).
+- `Label.VerticalAlignment` 属性：默认为 Top。
+- `Label.LineSpacing` 属性（单位为 twip，默认为 0）
+- `Label.Angle` 属性（单位为度，旋转标签文本）
+- `Label.BorderCustom` 属性（有子选项可分别为每边设置边框的大小、内边距和颜色）。
 
-## Timer Enhancements
+## Timer 增强
 
-`Timer.Interval` can now be set to any positive `Long` instead of being limited to 65,535.
+`Timer.Interval` 现在可以设置为任意正 `Long` 值，而不再局限于 65,535。
 
-## Example
+## 示例
 
 ```vb
 TextBox1.TextHint = "Enter your name"

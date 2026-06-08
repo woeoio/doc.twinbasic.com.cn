@@ -1,36 +1,45 @@
 ---
-title: "&#92;, &#92;="
+title: "\\, \\="
 parent: Operators
 permalink: /tB/Core/IntegerDivide
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a2ccea37-fbba-4d4b-a052-62055a173ee3'
+  PropagateID: 'a2ccea37-fbba-4d4b-a052-62055a173ee3'
+  ReservedCode1: '15aa4419-bd71-4fd9-84b9-7804a27fd353'
+  ReservedCode2: '15aa4419-bd71-4fd9-84b9-7804a27fd353'
 ---
-# \ and \= operators
 
-Used to divide two numbers and return an integer result. The compound form **\\=** divides-and-assigns in one step.
+# \ 和 \= 运算符
 
-Syntax:
+用于将两个数相除并返回整数结果。复合形式 **\\=** 在一步中完成相除并赋值。
+
+语法：
 > *result* **=** *number1* **\\** *number2*  
 > *variable* **\\=** *number*       *(twinBASIC)*
 
 *result*
-: Any numeric variable.
+: 任意数值变量。
 
 *variable*
-: *(twinBASIC)* Any numeric variable or writable property.
+: *(twinBASIC)* 任意数值变量或可写属性。
 
 *number*, *number1*, *number2*
-: Any numeric expressions.
+: 任意数值表达式。
 
-Before division is performed, the numeric expressions are rounded to **Byte**, **Integer**, **Long**, or **LongLong** expressions.
+执行除法之前，数值表达式被舍入为 **Byte**、**Integer**、**Long** 或 **LongLong** 表达式。
 
-Usually, the data type of *result* is a **Byte**, **Byte** variant, **Integer**, **Integer** variant, **Long**, **Long** variant, or **LongLong**, regardless of whether *result* is a whole number.
+通常，*result* 的数据类型为 **Byte**、**Byte** 变体、**Integer**、**Integer** 变体、**Long**、**Long** 变体或 **LongLong**，无论 *result* 是否为整数。
 
-Any fractional portion is truncated. However, if any expression is **Null**, *result* is **Null**. Any expression that is **Empty** is treated as 0.
+任何小数部分被截断。但如果任一表达式为 **Null**，则 *result* 为 **Null**。任何为 **Empty** 的表达式被视为0。
 
-Dividing by zero raises a run-time error.
+除以零会引发运行时错误。
 
-### Compound assignment
+### 复合赋值
 
-`x \= y` is the twinBASIC shorthand for `x = x \ y`. The left-hand side is evaluated once and rounded to an integral type as described above. **\\=** is a statement, not an expression --- it does not produce a value.
+`x \= y` 是twinBASIC中 `x = x \ y` 的简写。左侧仅求值一次并按上述方式舍入为整数类型。**\\=** 是语句而非表达式——它不产生值。
 
 ```vb
 Dim Value As Long = 100
@@ -38,9 +47,9 @@ Value \= 4                      ' Value is now 25.
 Value \= 7                      ' Value is now 3 (truncating).
 ```
 
-### Example
+### 示例
 
-This example uses the **\\** operator to perform integer division.
+本示例使用 **\\** 运算符执行整数除法。
 
 ```vb
 Dim MyValue
@@ -49,8 +58,8 @@ MyValue = 9 \ 3                 ' Returns 3.
 MyValue = 100 \ 3               ' Returns 33.
 ```
 
-### See Also
+### 另请参阅
 
-- [**/** operator](/official/Reference/Core/Divide)
-- [**Mod** operator](/official/Reference/Core/Mod)
-- [Operators](/official/Reference/Operators)
+- [**/** 运算符](/official/Reference/Core/Divide)
+- [**Mod** 运算符](/official/Reference/Core/Mod)
+- [运算符](/official/Reference/Operators)

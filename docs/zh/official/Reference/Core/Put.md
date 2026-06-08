@@ -5,72 +5,72 @@ permalink: /tB/Core/Put
 ---
 # Put
 
-Writes data from a variable to a disk file.
+将变量中的数据写入磁盘文件。
 
-Syntax:
+语法：
 > **Put** [ **#** ] *filenumber* **,** [ *recnumber* ] **,** *varname*
 
 *filenumber*
-: Any valid file number.
+: 任何有效的文件号。
 
 *recnumber*
-: *optional* **Variant** (**Long**). Record number (**Random** mode files) or byte number (**Binary** mode files) at which writing begins.
+: *可选* **Variant** (**Long**)。开始写入的记录号（**Random**模式文件）或字节号（**Binary**模式文件）。
 
 *varname*
-: Name of the variable containing data to be written to disk.
+: 包含要写入磁盘数据的变量名称。
 
-Data written with **Put** is usually read from a file with [**Get**](/official/Reference/Core/Get).
+使用**Put**写入的数据通常用[**Get**](/official/Reference/Core/Get)从文件中读取。
 
-The first record or byte in a file is at position 1, the second record or byte is at position 2, and so on. When *recnumber* is omitted, the next record or byte after the last **Get** or **Put** statement, or pointed to by the last [**Seek**](/official/Reference/VBA/FileSystem/Seek) function, is written. The delimiting commas must be included:
+文件中的第一条记录或字节位于位置1，第二条位于位置2，以此类推。当省略*recnumber*时，写入最后一条**Get**或**Put**语句之后的下一条记录或字节，或最后[**Seek**](/official/Reference/VBA/FileSystem/Seek)函数指向的位置。必须包含分隔逗号：
 
 ```vb
 Put #4, , FileBuffer
 ```
 
-For files opened in **Random** mode, the following rules apply:
+对于以**Random**模式打开的文件，适用以下规则：
 
-- If the length of the data being written is less than the length specified in the **Len** clause of the [**Open**](/official/Reference/Core/Open) statement, **Put** writes subsequent records on record-length boundaries. The space between the end of one record and the beginning of the next record is padded with the existing contents of the file buffer. Because the amount of padding data can't be determined with any certainty, it is generally a good idea to have the record length match the length of the data being written. If the length of the data being written is greater than the length specified in the **Len** clause of the **Open** statement, an error occurs.
+- 如果写入数据的长度小于[**Open**](/official/Reference/Core/Open)语句的**Len**子句中指定的长度，**Put**在记录长度边界上写入后续记录。一条记录的末尾与下一条记录开头之间的空间用文件缓冲区的现有内容填充。由于无法确定填充数据量，通常最好使记录长度与写入数据的长度匹配。如果写入数据的长度大于**Open**语句**Len**子句中指定的长度，则产生错误。
 
-- If the variable being written is a variable-length string, **Put** writes a 2-byte descriptor containing the string length and then the variable. The record length specified by the **Len** clause in the **Open** statement must be at least 2 bytes greater than the actual length of the string.
+- 如果写入的变量是变长字符串，**Put**写入包含字符串长度的2字节描述符，然后写入变量。**Open**语句**Len**子句中指定的记录长度必须至少比字符串的实际长度大2字节。
 
-- If the variable being written is a **Variant** of a numeric type, **Put** writes 2 bytes identifying the **VarType** of the **Variant** and then writes the variable. For example, when writing a **Variant** of **VarType** 3, **Put** writes 6 bytes: 2 bytes identifying the **Variant** as **VarType** 3 (**Long**) and 4 bytes containing the **Long** data. The record length specified by the **Len** clause in the **Open** statement must be at least 2 bytes greater than the actual number of bytes required to store the variable.
+- 如果写入的变量是数值类型的**Variant**，**Put**写入2字节标识**Variant**的**VarType**，然后写入变量。例如，当写入**VarType**为3的**Variant**时，**Put**写入6字节：2字节标识**Variant**为**VarType** 3 (**Long**)，4字节包含**Long**数据。**Open**语句**Len**子句中指定的记录长度必须至少比存储变量所需的实际字节数大2字节。
 
   ::: info
-  Use the **Put** statement to write a **Variant** array to disk; **Put** cannot write a scalar **Variant** containing an array to disk. **Put** also cannot write objects to disk.
+  使用**Put**语句将**Variant**数组写入磁盘；**Put**不能将包含数组的标量**Variant**写入磁盘。**Put**也不能将对象写入磁盘。
   :::
 
-- If the variable being written is a **Variant** of **VarType** 8 (**String**), **Put** writes 2 bytes identifying the **VarType**, 2 bytes indicating the length of the string, and then writes the string data. The record length specified by the **Len** clause in the **Open** statement must be at least 4 bytes greater than the actual length of the string.
+- 如果写入的变量是**VarType** 8 (**String**)的**Variant**，**Put**写入2字节标识**VarType**，2字节指示字符串长度，然后写入字符串数据。**Open**语句**Len**子句中指定的记录长度必须至少比字符串的实际长度大4字节。
 
-- If the variable being written is a dynamic array, **Put** writes a descriptor whose length equals `2 + 8 * NumberOfDimensions`. The record length specified by the **Len** clause in the **Open** statement must be greater than or equal to the sum of all the bytes required to write the array data and the array descriptor. For example, the following array declaration requires 118 bytes when the array is written to disk.
+- 如果写入的变量是动态数组，**Put**写入长度等于`2 + 8 * NumberOfDimensions`的描述符。**Open**语句**Len**子句中指定的记录长度必须大于或等于写入数组数据和数组描述符所需的所有字节之和。例如，以下数组声明在写入磁盘时需要118字节。
 
   ```vb
   Dim MyArray(1 To 5, 1 To 10) As Integer
   ```
 
-  The 118 bytes are distributed as follows: 18 bytes for the descriptor (`2 + 8 * 2`), and 100 bytes for the data (`5 * 10 * 2`).
+  118字节的分布为：18字节用于描述符（`2 + 8 * 2`），100字节用于数据（`5 * 10 * 2`）。
 
-- If the variable being written is a fixed-size array, **Put** writes only the data. No descriptor is written to disk.
+- 如果写入的变量是固定大小数组，**Put**仅写入数据。不写入描述符。
 
-- If the variable being written is any other type of variable (not a variable-length string or a **Variant**), **Put** writes only the variable data. The record length specified by the **Len** clause in the **Open** statement must be greater than or equal to the length of the data being written.
+- 如果写入的变量是任何其他类型的变量（不是变长字符串或**Variant**），**Put**仅写入变量数据。**Open**语句**Len**子句中指定的记录长度必须大于或等于写入数据的长度。
 
-- **Put** writes elements of user-defined types as if each were written individually, except that there is no padding between elements. On disk, a dynamic array in a user-defined type written with **Put** is prefixed by a descriptor whose length equals `2 + 8 * NumberOfDimensions`. The record length specified by the **Len** clause in the **Open** statement must be greater than or equal to the sum of all the bytes required to write the individual elements, including any arrays and their descriptors.
+- **Put**将用户自定义类型的元素视为各自独立写入，但元素之间没有填充。在磁盘上，使用**Put**写入的用户自定义类型中的动态数组以长度等于`2 + 8 * NumberOfDimensions`的描述符为前缀。**Open**语句**Len**子句中指定的记录长度必须大于或等于写入各个元素（包括任何数组及其描述符）所需的所有字节之和。
 
-For files opened in **Binary** mode, all of the **Random** rules apply, except:
+对于以**Binary**模式打开的文件，所有**Random**规则均适用，除了：
 
-- The **Len** clause in the **Open** statement has no effect. **Put** writes all variables to disk contiguously; that is, with no padding between records.
+- **Open**语句中的**Len**子句无效。**Put**将所有变量连续写入磁盘；即记录之间没有填充。
 
-- For any array other than an array in a user-defined type, **Put** writes only the data. No descriptor is written.
+- 对于用户自定义类型以外的任何数组，**Put**仅写入数据。不写入描述符。
 
-- **Put** writes variable-length strings that are not elements of user-defined types without the 2-byte length descriptor. The number of bytes written equals the number of characters in the string. For example, the following statements write 10 bytes to file number 1:
+- **Put**写入不是用户自定义类型元素的变长字符串时不带2字节长度描述符。写入的字节数等于字符串中的字符数。例如，以下语句向文件号1写入10字节：
 
   ```vb
   VarString$ = String$(10, " ")
   Put #1, , VarString$
   ```
 
-### Example
+### 示例
 
-This example uses the **Put** statement to write data to a file. Five records of the user-defined type are written to the file.
+本示例使用**Put**语句将数据写入文件。将用户自定义类型的五条记录写入文件。
 
 ```vb
 Type Record ' Define user-defined type.
@@ -89,9 +89,9 @@ Next RecordNumber
 Close #1 ' Close file.
 ```
 
-### See Also
+### 另请参阅
 
-- [**Open** statement](/official/Reference/Core/Open)
-- [**Close** statement](/official/Reference/Core/Close)
-- [**Get** statement](/official/Reference/Core/Get)
-- [**Seek** function](/official/Reference/VBA/FileSystem/Seek)
+- [**Open** 语句](/official/Reference/Core/Open)
+- [**Close** 语句](/official/Reference/Core/Close)
+- [**Get** 语句](/official/Reference/Core/Get)
+- [**Seek** 函数](/official/Reference/VBA/FileSystem/Seek)

@@ -1,12 +1,20 @@
----
+﻿---
 title: KeyboardShortcuts
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/KeyboardShortcuts
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'acfcb712-7979-4471-8177-06f75e0a2034'
+  PropagateID: 'acfcb712-7979-4471-8177-06f75e0a2034'
+  ReservedCode1: 'ddebe8a9-99a3-46be-9983-1ff6106a4455'
+  ReservedCode2: 'ddebe8a9-99a3-46be-9983-1ff6106a4455'
 ---
 
-# KeyboardShortcuts class
+# KeyboardShortcuts 类
 
-The IDE's keyboard-shortcut registry --- reached through [**Host.KeyboardShortcuts**](/official/Reference/tbIDE/Host#keyboardshortcuts). Call [**Add**](#add) to bind a key combination to a callback. There is no removal API; the registration is released when the addin is unloaded.
+IDE 的键盘快捷键注册表——通过 [**Host.KeyboardShortcuts**](/official/Reference/tbIDE/Host#keyboardshortcuts) 访问。调用 [**Add**](#add) 将组合键绑定到回调。没有移除 API；当插件卸载时注册被释放。
 
 ```vb
 Private Sub Host_OnProjectLoaded()
@@ -19,27 +27,27 @@ Private Sub ToggleDebugMode()
 End Sub
 ```
 
-The shortcut is global to the IDE and fires regardless of which pane has focus, as long as the IDE itself has the OS-level focus. The callback runs on the IDE's UI thread.
+快捷键对 IDE 全局有效，只要 IDE 本身拥有操作系统级焦点，无论哪个窗格获得焦点都会触发。回调在 IDE 的 UI 线程上运行。
 
-## Methods
+## 方法
 
 ### Add
 
-Registers a new keyboard shortcut.
+注册新的键盘快捷键。
 
-Syntax: *keyboardShortcuts*.**Add** *keyString*, *Callback*
+语法：*keyboardShortcuts*.**Add** *keyString*, *Callback*
 
 *keyString*
-: *required* The key combination, as a **String**. The literal key character is preceded by zero or more modifier prefixes from the set `{CTRL}`, `{SHIFT}`, `{ALT}`. The prefixes are case-insensitive; the trailing key character matches the same key the user would press.
+: *必需* 组合键，为 **String**。字面键字符前有零个或多个来自 `{CTRL}`、`{SHIFT}`、`{ALT}` 集合的修饰符前缀。前缀不区分大小写；尾部键字符与用户按下的键相匹配。
 
-  | Example         | Combination               |
+  | 示例         | 组合键               |
   |-----------------|---------------------------|
   | `"{CTRL}d"`     | Ctrl + D                  |
   | `"{CTRL}{SHIFT}d"` | Ctrl + Shift + D       |
   | `"{ALT}f"`      | Alt + F                   |
-  | `"f1"`          | F1 (no modifier)          |
+  | `"f1"`          | F1（无修饰符）            |
 
 *Callback*
-: *required* The callback. Pass `AddressOf` a sub of signature `Sub()` (no arguments). **LongPtr**.
+: *必需* 回调。传入签名为 `Sub()`（无参数）的子过程的 `AddressOf`。**LongPtr**。
 
-The callback runs on the IDE's UI thread. Long-running work inside the callback will block the IDE until it returns --- keep the callback short and offload heavy work to a background mechanism when needed.
+回调在 IDE 的 UI 线程上运行。回调中的长时间运行工作会阻塞 IDE 直到其返回——保持回调简短，需要时将繁重工作卸载到后台机制。

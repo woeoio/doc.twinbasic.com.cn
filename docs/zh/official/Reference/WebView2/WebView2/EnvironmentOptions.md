@@ -1,13 +1,21 @@
----
+﻿---
 title: EnvironmentOptions
 parent: WebView2
 permalink: /tB/Packages/WebView2/WebView2/EnvironmentOptions
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4d6add08-df49-4764-8428-326948e122f9'
+  PropagateID: '4d6add08-df49-4764-8428-326948e122f9'
+  ReservedCode1: 'd50cd57a-c8bf-4671-a19d-225e08712b84'
+  ReservedCode2: 'd50cd57a-c8bf-4671-a19d-225e08712b84'
 ---
 
-# WebView2EnvironmentOptions class
-Holds the host's pre-creation configuration for the underlying WebView2 environment --- folder layout, additional command-line arguments, locale, and a few policy switches. Exposed on every [**WebView2**](/official/Reference/WebView2/WebView2/) control as its **EnvironmentOptions** property; the control instantiates one automatically before raising the [**Create**](/official/Reference/WebView2/WebView2/#create) event.
+# WebView2EnvironmentOptions 类
+保存宿主对底层 WebView2 环境的预创建配置——文件夹布局、额外命令行参数、区域设置和一些策略开关。在每个 [**WebView2**](/official/Reference/WebView2/WebView2/) 控件上作为其 **EnvironmentOptions** 属性暴露；控件在触发 [**Create**](/official/Reference/WebView2/WebView2/#create) 事件之前自动实例化一个。
 
-The fields below take effect only while the WebView2 environment is being constructed --- that is, *before or during* the control's [**Create**](/official/Reference/WebView2/WebView2/#create) event. Assigning them after that point has no effect on the live environment.
+以下字段仅在 WebView2 环境构造期间生效——即在控件的 [**Create**](/official/Reference/WebView2/WebView2/#create) 事件*之前或期间*。之后赋值对活动环境无影响。
 
 ```vb
 Private Sub WebView21_Create()
@@ -17,46 +25,46 @@ Private Sub WebView21_Create()
 End Sub
 ```
 
-The type itself is `Private Class` --- instances are reachable only through the control's **EnvironmentOptions** property, and a variable typed as **WebView2EnvironmentOptions** cannot be declared from outside the package.
+类型本身是 `Private Class`——实例只能通过控件的 **EnvironmentOptions** 属性访问，无法从包外部声明 **WebView2EnvironmentOptions** 类型的变量。
 
-## Properties
+## 属性
 
 ### AdditionalBrowserArguments
 
-Extra command-line switches passed straight through to the Edge browser process --- same syntax as `msedge.exe`. **String**. Default: empty.
+直接传递给 Edge 浏览器进程的额外命令行开关——语法与 `msedge.exe` 相同。**String**。默认：空。
 
 ### AllowSingleSignOnUsingOSPrimaryAccount
 
-When **True**, single sign-on uses the operating system's primary account (typical for Azure AD-joined machines). **Boolean**. Default: **False**.
+当 **True** 时，单点登录使用操作系统的主账户（Azure AD 加入的机器上常见）。**Boolean**。默认：**False**。
 
 ### BrowserExecutableFolder
 
-Path to a fixed-version WebView2 browser distribution. Leave empty (the default) to load the system-wide Evergreen runtime; set this to point at a side-by-side fixed-version deployment. **String**.
+固定版本 WebView2 浏览器分发的路径。留空（默认）以加载系统范围的 Evergreen 运行时；设置此值以指向并行部署的固定版本。**String**。
 
 ### EnableTrackingPrevention
 
-Whether Edge's tracking-prevention feature is active in this environment. **Boolean**. Default: **True**.
+Edge 的跟踪防护功能在此环境中是否激活。**Boolean**。默认：**True**。
 
 ### ExclusiveUserDataFolderAccess
 
-When **True**, the runtime locks the user-data folder so that no other WebView2 instance can use it concurrently. **Boolean**. Default: **False**.
+当 **True** 时，运行时锁定用户数据文件夹，使其他 WebView2 实例无法同时使用。**Boolean**。默认：**False**。
 
 ### Language
 
-The language and locale Edge should report in `Accept-Language` and use for its UI strings --- BCP-47 form, e.g. `"en-GB"`, `"fr-FR"`. **String**. Default: empty (the runtime picks the system default).
+Edge 应在 `Accept-Language` 中报告并用于 UI 字符串的语言和区域设置——BCP-47 格式，例如 `"en-GB"`、`"fr-FR"`。**String**。默认：空（运行时选择系统默认值）。
 
 ### TargetCompatibleBrowserVersion
 
-The minimum Edge browser version this application is built against --- used by the loader to decide whether a runtime can host it. **String**. Default: `"86.0.616.0"` (the minimum version that supports WebView2).
+此应用程序构建所针对的最低 Edge 浏览器版本——加载器用此决定运行时是否能托管它。**String**。默认：`"86.0.616.0"`（支持 WebView2 的最低版本）。
 
 ### UserDataFolder
 
-Path to the folder Edge uses for the user profile --- cache, cookies, history, local storage, password manager, and so on. Leave empty (the default) to let the runtime pick a folder beside the host executable; set it to keep user data outside the install location, e.g. under `%APPDATA%`. **String**.
+Edge 用于用户配置文件的文件夹路径——缓存、Cookie、历史记录、本地存储、密码管理器等。留空（默认）让运行时在宿主可执行文件旁边选择一个文件夹；设置此值以将用户数据保留在安装位置之外，例如 `%APPDATA%` 下。**String**。
 
-Setting a writable user-data folder is the usual remedy for the *"Error occurred creating the WebView2 controller"* failure on installs that live under `Program Files`.
+设置可写的用户数据文件夹是解决安装在 `Program Files` 下的程序出现 *"创建 WebView2 控制器时发生错误"* 故障的常用方法。
 
-### See Also
+### 另见
 
-- [WebView2 control class](/official/Reference/WebView2/WebView2/)
-- [Create event](/official/Reference/WebView2/WebView2/#create)
-- [Customizing the UserDataFolder tutorial](/official/Tutorials/WebView2/Customize-the-UserDataFolder)
+- [WebView2 控件类](/official/Reference/WebView2/WebView2/)
+- [Create 事件](/official/Reference/WebView2/WebView2/#create)
+- [自定义 UserDataFolder 教程](/official/Tutorials/WebView2/Customize-the-UserDataFolder)

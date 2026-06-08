@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f9ff6cce-8549-42d8-bcbe-e77cd5790925'
+  PropagateID: 'f9ff6cce-8549-42d8-bcbe-e77cd5790925'
+  ReservedCode1: '84f04caa-d686-48b9-b058-6d6b2b405a28'
+  ReservedCode2: '84f04caa-d686-48b9-b058-6d6b2b405a28'
+---
+
 ---
 title: ContainedControls
 parent: VBRUN Package
@@ -5,63 +16,63 @@ nav_order: 10
 permalink: /tB/Packages/VBRUN/ContainedControls/
 ---
 
-# ContainedControls class
+# ContainedControls 类
 
-The **ContainedControls** object is a collection that exposes the controls placed inside an instance of a **UserControl** that has been set up as a control container. The author of the **UserControl** uses this collection to enumerate or inspect those constituent controls at run time. The author of the **UserControl** sees only what the consumer added --- controls placed on the **UserControl** at design time by the author themselves are not part of this collection.
+**ContainedControls**对象是一个集合，公开放置在设置为控件容器的**UserControl**实例内部的控件。**UserControl**的作者使用此集合在运行时枚举或检查这些组成控件。**UserControl**的作者只能看到消费者添加的内容——作者本人在设计时放置在**UserControl**上的控件不属于此集合。
 
-The collection is read-only: items cannot be added or removed through it, and the indexer returns existing controls only. To use it, the **UserControl**'s **ControlContainer** property must have been set to **True** at design time.
+此集合为只读：不能通过它添加或移除项，索引器仅返回现有控件。要使用它，**UserControl**的**ControlContainer**属性必须已设计时设置为**True**。
 
-```vb
-' Inside the UserControl that hosts other controls.
+``vb
+' 在承载其他控件的UserControl内部。
 Private Sub UserControl_Resize()
     Dim ctl As Object
     For Each ctl In UserControl.ContainedControls
-        ' Lay each consumer-placed control out within the UserControl.
+        ' 在UserControl中布局每个消费者放置的控件。
     Next ctl
 End Sub
-```
+``
 
-## Members
+## 成员
 
 ### Count
 
-Returns the number of controls in the collection.
+返回集合中的控件数量。
 
-Syntax: *object*.**Count**
+语法：*object*.**Count**
 
 *object*
-: *required* An object expression that evaluates to a **ContainedControls** object.
+: *必需* 求值为**ContainedControls**对象的对象表达式。
 
-The value is a **Long**. Valid indexes for [**Item**](#item) run from `1` to **Count**.
+值为**Long**。[**Item**](#item)的有效索引范围从1到**Count**。
 
 ### Item
 
-Returns a single control from the collection by its one-based position.
+按从一开始的位置从集合中返回单个控件。
 
-Syntax: *object*.**Item(** *index* **)**
+语法：*object*.**Item(** *index* **)**
 
 *object*
-: *required* An object expression that evaluates to a **ContainedControls** object.
+: *必需* 求值为**ContainedControls**对象的对象表达式。
 
 *index*
-: *required* A **Long** giving the one-based position of the control to return. Must be between `1` and [**Count**](#count); otherwise an error occurs.
+: *必需* 给出要返回的控件从一开始位置的**Long**。必须在1和[**Count**](#count)之间；否则将发生错误。
 
-**Item** is the default member of **ContainedControls**, so the following lines are equivalent:
+**Item**是**ContainedControls**的默认成员，因此以下两行等效：
 
-```vb
+``vb
 Set ctl = UserControl.ContainedControls.Item(1)
 Set ctl = UserControl.ContainedControls(1)
-```
+``
 
-The result is typed as **Object** because the consumer may have placed any kind of control inside the **UserControl**. Use [**TypeName**](/official/Reference/VBA/Information/TypeName) or **TypeOf** to discover the concrete type before binding to a specific control's properties.
+结果类型为**Object**，因为消费者可能放置了任何类型的控件。使用[**TypeName**](/official/Reference/VBA/Information/TypeName)或**TypeOf**在绑定到特定控件属性前发现具体类型。
 
-### For Each iteration
+### For Each 迭代
 
-A **ContainedControls** object can be iterated with the [**For Each...Next**](/official/Reference/Core/For-Each-Next) statement, which yields each control in turn, in the order the consumer added them. The hidden `_NewEnum` member supplies the enumerator and is not called directly from user code.
+**ContainedControls**对象可以使用[**For Each...Next**](/official/Reference/Core/For-Each-Next)语句进行迭代，按消费者添加的顺序依次产生每个控件。隐藏的_NewEnum成员提供枚举器，不从用户代码直接调用。
 
-```vb
+``vb
 Dim ctl As Object
 For Each ctl In UserControl.ContainedControls
     Debug.Print TypeName(ctl)
 Next ctl
-```
+``

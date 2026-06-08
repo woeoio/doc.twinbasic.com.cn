@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '25468d6b-a1c4-4f96-967b-0cd175d64cde'
+  PropagateID: '25468d6b-a1c4-4f96-967b-0cd175d64cde'
+  ReservedCode1: '2724292d-0579-449d-92e3-a585bf31022c'
+  ReservedCode2: '2724292d-0579-449d-92e3-a585bf31022c'
+---
+
 ---
 title: Font
 parent: AmbientProperties
@@ -5,18 +16,18 @@ permalink: /tB/Packages/VBRUN/AmbientProperties/Font
 ---
 # Font
 
-Returns the font the container would like its embedded controls to use by default, as an **stdole.IFontDisp**. Read-only.
+返回容器希望其嵌入控件默认使用的字体，类型为**stdole.IFontDisp**。只读。
 
-Syntax: *object*.**Font**
+语法：*object*.**Font**
 
 *object*
-: *required* An object expression that evaluates to an **AmbientProperties** object.
+: *必需* 求值为**AmbientProperties**对象的对象表达式。
 
-A control that does not have its own font explicitly set should display text using this font, so that its captions and labels match the typography of the surrounding container. The returned **IFontDisp** exposes properties such as **Name**, **Size**, **Bold**, **Italic**, and **Underline**.
+未显式设置自身字体的控件应使用此字体显示文本，使其标题和标签与周围容器的排版匹配。返回的**IFontDisp**公开**Name**、**Size**、**Bold**、**Italic**和**Underline**等属性。
 
-### Example
+### 示例
 
-This example responds to an ambient **Font** change and applies it to the control's caption font.
+此示例响应环境**Font**更改并将其应用于控件的标题字体。
 
 ```vb
 Private Sub UserControl_AmbientChanged(PropertyName As String)
@@ -27,8 +38,8 @@ Private Sub UserControl_AmbientChanged(PropertyName As String)
 End Sub
 ```
 
-### See Also
+### 另见
 
-- [BackColor](/official/Reference/VBRUN/AmbientProperties/BackColor) property
-- [ForeColor](/official/Reference/VBRUN/AmbientProperties/ForeColor) property
-- [TextAlign](/official/Reference/VBRUN/AmbientProperties/TextAlign) property
+- [BackColor](/official/Reference/VBRUN/AmbientProperties/BackColor) 属性
+- [ForeColor](/official/Reference/VBRUN/AmbientProperties/ForeColor) 属性
+- [TextAlign](/official/Reference/VBRUN/AmbientProperties/TextAlign) 属性

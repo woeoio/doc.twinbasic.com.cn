@@ -2,27 +2,36 @@
 title: IsNot
 parent: Operators
 permalink: /tB/Core/IsNot
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3a97a121-3bf3-4acb-a045-23ef7feab510'
+  PropagateID: '3a97a121-3bf3-4acb-a045-23ef7feab510'
+  ReservedCode1: '3acfc124-6f4b-4c31-9285-40f73773c27e'
+  ReservedCode2: '3acfc124-6f4b-4c31-9285-40f73773c27e'
 ---
+
 # IsNot
 
-Used to compare two object references for non-identity. The logical inverse of the [**Is**](/official/Reference/Core/Is) operator.
+用于比较两个对象引用的非同一性。[**Is**](/official/Reference/Core/Is) 运算符的逻辑逆运算。
 
-Syntax:
+语法：
 > *result* **=** *object1* **IsNot** *object2*
 
 *result*
-: Any **Boolean** or numeric variable.
+: 任意 **Boolean** 或数值变量。
 
 *object1*, *object2*
-: Any object references.
+: 任意对象引用。
 
-If *object1* and *object2* refer to *different* objects (or one of them is **Nothing** while the other is not), *result* is **True**; if they refer to the same object, *result* is **False**. Like **Is**, the comparison is on the references themselves, not on the values inside the objects.
+如果 *object1* 和 *object2* 引用*不同*的对象（或其中一个为 **Nothing** 而另一个不是），*result* 为 **True**；如果它们引用同一对象，*result* 为 **False**。与 **Is** 一样，比较的是引用本身，不是对象内部的值。
 
 ::: info
-**IsNot** is a twinBASIC extension. Classic VBA has no **IsNot** operator; the equivalent is `Not (a Is b)`.
+**IsNot** 是twinBASIC扩展。经典VBA没有 **IsNot** 运算符；等价写法为 `Not (a Is b)`。
 :::
 
-The most common use is testing that an object reference has been assigned:
+最常见的用途是测试对象引用是否已赋值：
 
 ```vb
 If MyObject IsNot Nothing Then
@@ -30,9 +39,9 @@ If MyObject IsNot Nothing Then
 End If
 ```
 
-This reads more naturally than the equivalent `If Not (MyObject Is Nothing) Then` or the older `If (MyObject Is Nothing) = False Then`.
+这比等价的 `If Not (MyObject Is Nothing) Then` 或更旧的 `If (MyObject Is Nothing) = False Then` 更自然。
 
-### Example
+### 示例
 
 ```vb
 Dim A As Object, B As Object, C As Object
@@ -48,7 +57,7 @@ Set A = Nothing
 Debug.Print A IsNot Nothing    ' False - A is now unassigned.
 ```
 
-### See Also
+### 另请参阅
 
-- [**Is** operator](/official/Reference/Core/Is)
-- [**Set** statement](/official/Reference/Core/Set)
+- [**Is** 运算符](/official/Reference/Core/Is)
+- [**Set** 语句](/official/Reference/Core/Set)

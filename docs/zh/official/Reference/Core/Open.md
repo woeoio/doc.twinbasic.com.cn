@@ -5,53 +5,53 @@ permalink: /tB/Core/Open
 ---
 # Open
 
-Enables input/output (I/O) to a file.
+启用对文件的输入/输出（I/O）。
 
-Syntax:
+语法：
 > **Open** *pathname* **For** *mode* [ **Access** *access* ] [ *lock* ] [ **Encoding** *encoding* ] **As** [ **#** ] *filenumber* [ **Len** **=** *reclength* ]
 
 *pathname*
-: String expression that specifies a file name; may include directory or folder, and drive.
+: 指定文件名的字符串表达式；可以包含目录或文件夹以及驱动器。
 
 *mode*
-: Keyword specifying the file mode: **Append**, **Binary**, **Input**, **Output**, or **Random**. If unspecified, the file is opened for **Random** access.
+: 指定文件模式的关键字：**Append**、**Binary**、**Input**、**Output**或**Random**。如果未指定，文件以**Random**访问模式打开。
 
 *access*
-: *optional* Keyword specifying the operations permitted on the open file: **Read**, **Write**, or **Read Write**.
+: *可选* 指定对打开文件允许的操作的关键字：**Read**、**Write**或**Read Write**。
 
 *lock*
-: *optional* Keyword specifying the operations restricted on the open file by other processes: **Shared**, **Lock Read**, **Lock Write**, or **Lock Read Write**.
+: *可选* 指定其他进程对打开文件受限操作的关键字：**Shared**、**Lock Read**、**Lock Write**或**Lock Read Write**。
 
 *encoding*
-: *optional* An encoding identifier --- for example **utf_8**, **utf_16**, **windows_1252_western**, or **default_system_ansi**. See [Text Encodings](#text-encodings) below for the full list. The **Encoding** clause applies to text-mode I/O (**Input**, **Output**, **Append**); it has no effect on **Binary** or **Random** mode files.
+: *可选* 编码标识符——例如**utf_8**、**utf_16**、**windows_1252_western**或**default_system_ansi**。完整列表见下面的[文本编码](#text-encodings)。**Encoding**子句适用于文本模式I/O（**Input**、**Output**、**Append**）；对**Binary**或**Random**模式文件无效。
 
 *filenumber*
-: A valid file number in the range 1 to 511, inclusive. Use the [**FreeFile**](/official/Reference/VBA/FileSystem/FreeFile) function to obtain the next available file number.
+: 范围1到511（含）的有效文件号。使用[**FreeFile**](/official/Reference/VBA/FileSystem/FreeFile)函数获取下一个可用文件号。
 
 *reclength*
-: *optional* Number less than or equal to 32,767 (bytes). For files opened for random access, this value is the record length. For sequential files, this value is the number of characters buffered.
+: *可选* 小于或等于32,767（字节）的数字。对于以随机访问方式打开的文件，此值为记录长度。对于顺序文件，此值为缓冲的字符数。
 
-A file must be opened before any I/O operation can be performed on it. **Open** allocates a buffer for I/O to the file and determines the mode of access to use with the buffer.
+在执行任何I/O操作之前，必须先打开文件。**Open**为文件I/O分配缓冲区并确定用于缓冲区的访问模式。
 
-If the file specified by *pathname* doesn't exist, it is created when a file is opened for **Append**, **Binary**, **Output**, or **Random** modes.
+如果*pathname*指定的文件不存在，当以**Append**、**Binary**、**Output**或**Random**模式打开文件时会创建该文件。
 
-If the file is already opened by another process, and the specified type of access is not allowed, the **Open** operation fails and an error occurs.
+如果文件已被其他进程打开，且不允许指定的访问类型，则**Open**操作失败并产生错误。
 
-The **Len** clause is ignored if *mode* is **Binary**.
+如果*mode*为**Binary**，则忽略**Len**子句。
 
 ::: important
-In **Binary**, **Input**, and **Random** modes, a file can be opened with a different file number without first closing the file. In **Append** and **Output** modes, a file must be closed before opening it with a different file number.
+在**Binary**、**Input**和**Random**模式下，可以在不先关闭文件的情况下用不同的文件号打开文件。在**Append**和**Output**模式下，必须先关闭文件才能用不同的文件号打开。
 :::
 
 ::: info
-The **Encoding** clause is a twinBASIC extension. Classic VBA has no equivalent and reads or writes text using the system ANSI code page only.
+**Encoding**子句是twinBASIC扩展。经典VBA没有等效功能，只能使用系统ANSI代码页读写文本。
 :::
 
-### Example
+### 示例
 
-This example illustrates various uses of the **Open** statement to enable input and output to a file.
+本示例演示了**Open**语句启用文件输入和输出的各种用法。
 
-The following code opens the file in sequential-input mode.
+以下代码以顺序输入模式打开文件。
 
 ```vb
 Open "TESTFILE" For Input As #1
@@ -59,7 +59,7 @@ Open "TESTFILE" For Input As #1
 Close #1
 ```
 
-This example opens the file in **Binary** mode for writing operations only.
+本示例以**Binary**模式打开文件，仅用于写操作。
 
 ```vb
 Open "TESTFILE" For Binary Access Write As #1
@@ -67,7 +67,7 @@ Open "TESTFILE" For Binary Access Write As #1
 Close #1
 ```
 
-The following example opens the file in **Random** mode. The file contains records of the user-defined type.
+以下示例以**Random**模式打开文件。该文件包含用户自定义类型的记录。
 
 ```vb
 Type Record ' Define user-defined type.
@@ -81,7 +81,7 @@ Open "TESTFILE" For Random As #1 Len = Len(MyRecord)
 Close #1
 ```
 
-This code example opens the file for sequential output; any process can read or write to the file.
+此代码示例以顺序输出方式打开文件；任何进程都可以读写该文件。
 
 ```vb
 Open "TESTFILE" For Output Shared As #1
@@ -89,13 +89,13 @@ Open "TESTFILE" For Output Shared As #1
 Close #1
 ```
 
-This code example opens the file in **Binary** mode for reading; other processes can't read the file.
+此代码示例以**Binary**模式打开文件用于读取；其他进程无法读取该文件。
 
 ```vb
 Open "TESTFILE" For Binary Access Read Lock Read As #1
 ```
 
-This example reads a UTF-8 text file, naming the [**utf_8**](#utf_8) encoding identifier.
+此示例读取UTF-8文本文件，指定[**utf_8**](#utf_8)编码标识符。
 
 ```vb
 Open "C:\MyFile.txt" For Input Encoding utf_8 As #1
@@ -103,98 +103,98 @@ Open "C:\MyFile.txt" For Input Encoding utf_8 As #1
 Close #1
 ```
 
-### Text Encodings
+### 文本编码
 
-These identifier strings are accepted as the **Encoding** argument. The constants listed below name the well-known encodings; other system-supported encodings with similar identifier strings are also accepted at runtime. All members are marked **[Hidden, Restricted]** --- they are omitted from general IntelliSense, but the IDE shows them automatically after the **Encoding** keyword.
+以下标识符字符串被接受为**Encoding**参数。下面列出的常量命名了已知编码；运行时也接受具有类似标识符字符串的其他系统支持的编码。所有成员均标记为**[Hidden, Restricted]**——它们在常规IntelliSense中省略，但IDE在**Encoding**关键字后自动显示。
 
-#### Default and Unicode
+#### 默认和Unicode
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **default_system_ansi** | `"default"` | The system default ANSI code page. |
-| **utf_7** | `"utf-7"` | UTF-7. |
-| **utf_7_bom** | `"utf-7 bom"` | UTF-7 with byte-order mark. |
-| **utf_8** | `"utf-8"` | UTF-8. |
-| **utf_8_bom** | `"utf-8 bom"` | UTF-8 with byte-order mark. |
-| **utf_16** | `"utf-16"` | UTF-16 (little-endian). |
-| **utf_16_bom** | `"utf-16 bom"` | UTF-16 with byte-order mark. |
-| **us_ascii** | `"us-ascii"` | 7-bit US-ASCII. |
+| **default_system_ansi** | `"default"` | 系统默认ANSI代码页。 |
+| **utf_7** | `"utf-7"` | UTF-7。 |
+| **utf_7_bom** | `"utf-7 bom"` | 带字节顺序标记的UTF-7。 |
+| **utf_8** | `"utf-8"` | UTF-8。 |
+| **utf_8_bom** | `"utf-8 bom"` | 带字节顺序标记的UTF-8。 |
+| **utf_16** | `"utf-16"` | UTF-16（小端序）。 |
+| **utf_16_bom** | `"utf-16 bom"` | 带字节顺序标记的UTF-16。 |
+| **us_ascii** | `"us-ascii"` | 7位US-ASCII。 |
 
-#### KOI8 (Cyrillic)
+#### KOI8（西里尔文）
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **koi8_r** | `"koi8_r"` | KOI8-R, Russian. |
-| **koi8_u** | `"koi8_u"` | KOI8-U, Ukrainian. |
+| **koi8_r** | `"koi8_r"` | KOI8-R，俄语。 |
+| **koi8_u** | `"koi8_u"` | KOI8-U，乌克兰语。 |
 
 #### Big5
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **big5** | `"big5"` | Big5, Traditional Chinese. |
+| **big5** | `"big5"` | Big5，繁体中文。 |
 
 #### ISO 8859
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **iso_8859_1_latin1** | `"iso-8859-1"` | Latin-1, Western European. |
-| **iso_8859_2_latin2** | `"iso-8859-2"` | Latin-2, Central European. |
-| **iso_8859_3_latin3** | `"iso-8859-3"` | Latin-3, South European (Esperanto, Maltese). |
-| **iso_8859_4_latin4** | `"iso-8859-4"` | Latin-4, North European. |
-| **iso_8859_5_cyrillic** | `"iso-8859-5"` | Cyrillic. |
-| **iso_8859_6_arabic** | `"iso-8859-6"` | Arabic. |
-| **iso_8859_7_greek** | `"iso-8859-7"` | Greek. |
-| **iso_8859_8_hebrew** | `"iso-8859-8"` | Hebrew. |
-| **iso_8859_9_latin5_turkish** | `"iso-8859-9"` | Latin-5, Turkish. |
-| **iso_8859_10_latin6_nordic** | `"iso-8859-10"` | Latin-6, Nordic. |
-| **iso_8859_11_thai** | `"iso-8859-11"` | Thai. |
-| **iso_8859_13_latin8_baltic** | `"iso-8859-13"` | Latin-7, Baltic Rim. |
-| **iso_8859_14_latin8_celtic** | `"iso-8859-14"` | Latin-8, Celtic. |
-| **iso_8859_15_latin9_euro** | `"iso-8859-15"` | Latin-9, Western European with euro sign. |
-| **iso_8859_16_latin10_balkan** | `"iso-8859-16"` | Latin-10, South-Eastern European. |
+| **iso_8859_1_latin1** | `"iso-8859-1"` | Latin-1，西欧。 |
+| **iso_8859_2_latin2** | `"iso-8859-2"` | Latin-2，中欧。 |
+| **iso_8859_3_latin3** | `"iso-8859-3"` | Latin-3，南欧（世界语、马耳他语）。 |
+| **iso_8859_4_latin4** | `"iso-8859-4"` | Latin-4，北欧。 |
+| **iso_8859_5_cyrillic** | `"iso-8859-5"` | 西里尔文。 |
+| **iso_8859_6_arabic** | `"iso-8859-6"` | 阿拉伯语。 |
+| **iso_8859_7_greek** | `"iso-8859-7"` | 希腊语。 |
+| **iso_8859_8_hebrew** | `"iso-8859-8"` | 希伯来语。 |
+| **iso_8859_9_latin5_turkish** | `"iso-8859-9"` | Latin-5，土耳其语。 |
+| **iso_8859_10_latin6_nordic** | `"iso-8859-10"` | Latin-6，北欧。 |
+| **iso_8859_11_thai** | `"iso-8859-11"` | 泰语。 |
+| **iso_8859_13_latin8_baltic** | `"iso-8859-13"` | Latin-7，波罗的海地区。 |
+| **iso_8859_14_latin8_celtic** | `"iso-8859-14"` | Latin-8，凯尔特语。 |
+| **iso_8859_15_latin9_euro** | `"iso-8859-15"` | Latin-9，带欧元符号的西欧。 |
+| **iso_8859_16_latin10_balkan** | `"iso-8859-16"` | Latin-10，东南欧。 |
 
-#### Windows code pages
+#### Windows代码页
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **windows_1250_central_europe** | `"windows-1250"` | Central European. |
-| **windows_1251_cyrillic** | `"windows-1251"` | Cyrillic. |
-| **windows_1252_western** | `"windows-1252"` | Western European. |
-| **windows_1253_greek** | `"windows-1253"` | Greek. |
-| **windows_1254_turkish** | `"windows-1254"` | Turkish. |
-| **windows_1255_hebrew** | `"windows-1255"` | Hebrew. |
-| **windows_1256_arabic** | `"windows-1256"` | Arabic. |
-| **windows_1257_baltic** | `"windows-1257"` | Baltic. |
-| **windows_1258_vietnamese** | `"windows-1258"` | Vietnamese. |
+| **windows_1250_central_europe** | `"windows-1250"` | 中欧。 |
+| **windows_1251_cyrillic** | `"windows-1251"` | 西里尔文。 |
+| **windows_1252_western** | `"windows-1252"` | 西欧。 |
+| **windows_1253_greek** | `"windows-1253"` | 希腊语。 |
+| **windows_1254_turkish** | `"windows-1254"` | 土耳其语。 |
+| **windows_1255_hebrew** | `"windows-1255"` | 希伯来语。 |
+| **windows_1256_arabic** | `"windows-1256"` | 阿拉伯语。 |
+| **windows_1257_baltic** | `"windows-1257"` | 波罗的海地区。 |
+| **windows_1258_vietnamese** | `"windows-1258"` | 越南语。 |
 
-#### IBM/OEM code pages
+#### IBM/OEM代码页
 
-| Constant | Value | Description |
+| 常量 | 值 | 说明 |
 |----------|-------|-------------|
-| **ibm_850_western_europe** | `"850"` | OEM Multilingual Latin-1, Western European. |
-| **ibm_852_central_and_eastern_europe** | `"852"` | OEM Latin-2, Central and Eastern European. |
-| **ibm_855_cyrillic** | `"855"` | OEM Cyrillic (primarily pre-Unicode Russian). |
-| **ibm_856_hebrew** | `"856"` | Hebrew. |
-| **ibm_857_turkish** | `"857"` | OEM Turkish (Latin-5). |
-| **ibm_858_western_europe** | `"858"` | OEM Multilingual Latin-1 with euro sign. |
-| **ibm_860_portuguese** | `"860"` | Portuguese. |
-| **ibm_861_icelandic** | `"861"` | Icelandic. |
-| **ibm_862_hebrew** | `"862"` | Hebrew. |
-| **ibm_863_canadian** | `"863"` | French Canadian. |
-| **ibm_865_danish** | `"865"` | Nordic (Danish, Norwegian). |
-| **ibm_866_cyrillic** | `"866"` | Russian. |
-| **ibm_869_greek** | `"869"` | Modern Greek. |
-| **ibm_932_japanese** | `"932"` | Japanese (Shift-JIS, Microsoft variant). |
-| **ibm_949_korean** | `"949"` | Korean (Unified Hangul Code). |
+| **ibm_850_western_europe** | `"850"` | OEM多语言Latin-1，西欧。 |
+| **ibm_852_central_and_eastern_europe** | `"852"` | OEM Latin-2，中东欧。 |
+| **ibm_855_cyrillic** | `"855"` | OEM西里尔文（主要为Unicode前俄语）。 |
+| **ibm_856_hebrew** | `"856"` | 希伯来语。 |
+| **ibm_857_turkish** | `"857"` | OEM土耳其语（Latin-5）。 |
+| **ibm_858_western_europe** | `"858"` | 带欧元符号的OEM多语言Latin-1。 |
+| **ibm_860_portuguese** | `"860"` | 葡萄牙语。 |
+| **ibm_861_icelandic** | `"861"` | 冰岛语。 |
+| **ibm_862_hebrew** | `"862"` | 希伯来语。 |
+| **ibm_863_canadian** | `"863"` | 法语加拿大。 |
+| **ibm_865_danish** | `"865"` | 北欧（丹麦语、挪威语）。 |
+| **ibm_866_cyrillic** | `"866"` | 俄语。 |
+| **ibm_869_greek** | `"869"` | 现代希腊语。 |
+| **ibm_932_japanese** | `"932"` | 日语（Shift-JIS，Microsoft变体）。 |
+| **ibm_949_korean** | `"949"` | 韩语（统一Hangul码）。 |
 
-### See Also
+### 另请参阅
 
-- [**Close** statement](/official/Reference/Core/Close)
-- [**Get** statement](/official/Reference/Core/Get)
-- [**Put** statement](/official/Reference/Core/Put)
-- [**Input #** statement](/official/Reference/Core/Input)
-- [**Line Input #** statement](/official/Reference/Core/Line-Input)
-- [**Print #** statement](/official/Reference/Core/Print)
-- [**Write #** statement](/official/Reference/Core/Write)
-- [**Lock** / **Unlock** statements](/official/Reference/Core/Lock)
-- [**FreeFile** function](/official/Reference/VBA/FileSystem/FreeFile)
+- [**Close** 语句](/official/Reference/Core/Close)
+- [**Get** 语句](/official/Reference/Core/Get)
+- [**Put** 语句](/official/Reference/Core/Put)
+- [**Input #** 语句](/official/Reference/Core/Input)
+- [**Line Input #** 语句](/official/Reference/Core/Line-Input)
+- [**Print #** 语句](/official/Reference/Core/Print)
+- [**Write #** 语句](/official/Reference/Core/Write)
+- [**Lock** / **Unlock** 语句](/official/Reference/Core/Lock)
+- [**FreeFile** 函数](/official/Reference/VBA/FileSystem/FreeFile)

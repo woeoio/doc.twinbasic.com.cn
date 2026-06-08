@@ -2,21 +2,30 @@
 title: FreeFile
 parent: FileSystem Module
 permalink: /tB/Modules/FileSystem/FreeFile
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '3516a4c2-a147-48ed-9052-4f2df2388fc6'
+  PropagateID: '3516a4c2-a147-48ed-9052-4f2df2388fc6'
+  ReservedCode1: '2b4889aa-a5f6-4917-826f-abcac6d7dd7d'
+  ReservedCode2: '2b4889aa-a5f6-4917-826f-abcac6d7dd7d'
 ---
+
 # FreeFile
 
-Returns an **Integer** representing the next file number available for use by the **Open** statement.
+返回一个**Integer**，表示**Open**语句可用的下一个文件号。
 
-Syntax: **FreeFile** [ **(** *rangenumber* **)** ]
+语法：**FreeFile** [ **(** *rangenumber* **)** ]
 
 *rangenumber*
-: *optional* **Variant** that specifies the range from which the next free file number is to be returned. Specify **0** (default) to return a file number in the range 1--255, inclusive. Specify **1** to return a file number in the range 256--511.
+: *可选* **Variant**，指定返回下一个空闲文件号的范围。指定**0**（默认）返回1--255范围内的文件号。指定**1**返回256--511范围内的文件号。
 
-Use **FreeFile** to supply a file number that is not already in use.
+使用**FreeFile**提供一个尚未使用的文件号。
 
-### Example
+### 示例
 
-This example uses the **FreeFile** function to return the next available file number. Five files are opened for output within the loop, and some sample data is written to each.
+本示例使用**FreeFile**函数返回下一个可用的文件号。在循环中打开五个文件进行输出，并向每个文件写入一些示例数据。
 
 ```vb
 Dim MyIndex, FileNumber

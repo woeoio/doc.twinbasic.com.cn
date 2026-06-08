@@ -2,29 +2,38 @@
 title: GetDeclaredTypeProgId
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/GetDeclaredTypeProgId
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '907bd7fa-5a29-4e07-9ce6-a7ecd4a9f963'
+  PropagateID: '907bd7fa-5a29-4e07-9ce6-a7ecd4a9f963'
+  ReservedCode1: 'f2097637-84c2-4444-a0e1-87166946ab3a'
+  ReservedCode2: 'f2097637-84c2-4444-a0e1-87166946ab3a'
 ---
+
 # GetDeclaredTypeProgId
 
-Returns the COM ProgID associated with a declared type, resolved at compile time.
+返回与已声明类型关联的COM ProgID，在编译时解析。
 
-Syntax: **GetDeclaredTypeProgId(Of** *T* **)()** **As String**
+语法：**GetDeclaredTypeProgId(Of** *T* **)()** **As String**
 
 *T*
-: *required* The type to query for. Typically a coclass declared with the **CoClassId** attribute or imported from a type library.
+: *必需* 要查询的类型。通常是使用**CoClassId**属性声明的coclass或从类型库导入的类型。
 
-The ProgID is the human-readable name (`Application.Object`, `Scripting.Dictionary`, ...) that matches *T*'s CLSID in the registry. The lookup happens at compile time and the result is stored in the generated code as a string literal --- there is no run-time call.
+ProgID是可读名称（`Application.Object`、`Scripting.Dictionary`等），在注册表中与*T*的CLSID匹配。查找在编译时进行，结果作为字符串字面值存储在生成的代码中——没有运行时调用。
 
-Returns an empty string if the type has no associated ProgID.
+如果类型没有关联的ProgID，则返回空字符串。
 
-### Example
+### 示例
 
 ```vb
 Dim Id As String = GetDeclaredTypeProgId(Of MyApp.Document)()
 Debug.Print Id                       ' "MyApp.Document"
 ```
 
-### See Also
+### 另请参阅
 
-- [GetDeclaredTypeClsid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeClsid) function
-- [GetDeclaredTypeIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeIid) function
-- [GetDeclaredTypeEventIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeEventIid) function
+- [GetDeclaredTypeClsid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeClsid)函数
+- [GetDeclaredTypeIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeIid)函数
+- [GetDeclaredTypeEventIid](/official/Reference/VBA/HiddenModule/GetDeclaredTypeEventIid)函数

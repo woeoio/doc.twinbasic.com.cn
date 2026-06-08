@@ -1,24 +1,31 @@
 ---
-title: Hosting local web assets
+title: "托管本地Web资源"
 parent: WebView2
 nav_order: 5
 permalink: /Tutorials/WebView2/Hosting-Local-Web-Assets
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '81acb1f2-ab29-47fa-a893-df30a94fee5b'
+  PropagateID: '81acb1f2-ab29-47fa-a893-df30a94fee5b'
+  ReservedCode1: '5f9fe98e-8dae-4c04-a2b2-c057a38e3a68'
+  ReservedCode2: '5f9fe98e-8dae-4c04-a2b2-c057a38e3a68'
 ---
 
+# 托管本地Web资源
 
-# Hosting local web assets
+[**WebView2**](/official/Reference/WebView2/WebView2/)控件可以直接从磁盘上的文件夹提供HTML、JavaScript、CSS和任何其他资源——无需嵌入式HTTP服务器。Edge的[**SetVirtualHostNameToFolderMapping**](/official/Reference/WebView2/WebView2/#setvirtualhostnametofoldermapping)将虚拟 `https://` 主机名路由到本地文件夹，使资源表现如同来自真实源：同源 `fetch`、内容安全策略、Service Workers等都能正常工作。
 
-A [**WebView2**](/official/Reference/WebView2/WebView2/) control can serve HTML, JavaScript, CSS, and any other assets straight from a folder on disk --- no embedded HTTP server required. Edge's [**SetVirtualHostNameToFolderMapping**](/official/Reference/WebView2/WebView2/#setvirtualhostnametofoldermapping) routes a virtual `https://` hostname to a local folder so that resources behave as if they came from a real origin: same-origin `fetch`, Content Security Policy, service workers, and so on all work as expected.
+本教程演示*示例0——WebView2示例*（窗体*示例2*、*示例3*、*示例4*）中使用的模式。
 
-This tutorial demonstrates the pattern used by *Sample 0 --- WebView2 Examples* (forms *Example 2*, *Example 3*, *Example 4*).
+## 三步模式
 
-## The three-step pattern
+1. **选择文件夹。** 它必须存在于磁盘上并包含 `index.html`（加上页面需要的任何资源——脚本、样式、图片）。
+2. **注册虚拟主机**映射到该文件夹。
+3. **导航**到虚拟主机名下的URL。
 
-1. **Choose a folder.** It must exist on disk and contain `index.html` (plus whatever assets the page wants --- scripts, styles, images).
-2. **Register a virtual host** mapping to that folder.
-3. **Navigate** to a URL under the virtual hostname.
-
-Hook into the [**Ready**](/official/Reference/WebView2/WebView2/#ready) event so the control is fully initialised before the mapping is installed:
+挂接[**Ready**](/official/Reference/WebView2/WebView2/#ready)事件，以便在安装映射之前控件已完全初始化：
 
 ```vb
 Private Sub WebView_Ready() Handles WebView.Ready
@@ -30,28 +37,28 @@ Private Sub WebView_Ready() Handles WebView.Ready
 End Sub
 ```
 
-Once mapped, every request to `https://myapp.example/<path>` is served from `folderPath\<path>`. A `<script src="/script.js">` on the page resolves to `folderPath\script.js` exactly as if a real web server were sitting on `myapp.example`.
+映射完成后，对 `https://myapp.example/<path>` 的每个请求都从 `folderPath\<path>` 提供。页面上的 `<script src="/script.js">` 解析为 `folderPath\script.js`，就像真正的Web服务器位于 `myapp.example` 上一样。
 
-## Picking a hostname
+## 选择主机名
 
-The Edge runtime resolves the virtual hostname through DNS *before* applying the local override. Hostnames that happen to be resolvable on the public Internet introduce a small (≈2 s) stall on every request --- see [WebView2Feedback#2381](https://github.com/MicrosoftEdge/WebView2Feedback/issues/2381).
+Edge运行时在应用本地覆盖之前通过DNS解析虚拟主机名。碰巧可以在公共Internet上解析的主机名会在每个请求上引入短暂的（约2秒）停顿——参见[WebView2Feedback#2381](https://github.com/MicrosoftEdge/WebView2Feedback/issues/2381)。
 
-The safe convention is to pick a name under a TLD that will never resolve, like `.example`, `.invalid`, or `.test`:
+安全的约定是选择一个永远不会解析的TLD下的名称，如 `.example`、`.invalid` 或 `.test`：
 
-| Recommended         | Avoid                       |
+| 推荐         | 避免                       |
 |---------------------|-----------------------------|
 | `myapp.example`     | `myapp.com`, `app.local`    |
 | `editor.invalid`    | `editor.dev`                |
 | `assets.test`       | `assets.io`                 |
 
-## Bundling assets in the project's Resources folder
+## 在项目Resources文件夹中捆绑资源
 
-Most applications want to ship their HTML / JS / CSS *inside* the executable and drop them onto disk on first run. twinBASIC's `Resources` folder is the right place to keep them.
+大多数应用程序希望将HTML/JS/CSS打包在可执行文件*内部*，并在首次运行时释放到磁盘上。twinBASIC的 `Resources` 文件夹是存放它们的正确位置。
 
-1. In the IDE's Project explorer, expand **Resources** and add a sub-folder (right-click → *Add new subfolder*). Name it something memorable like `WEB_APP`.
-2. Drop the assets in --- `index.html`, `script.js`, `styles.css`, plus any sub-directories you need.
+1. 在IDE的项目资源管理器中，展开**Resources**并添加子文件夹（右键→*添加新子文件夹*）。给它一个容易记住的名称，如 `WEB_APP`。
+2. 将资源放入其中——`index.html`、`script.js`、`styles.css`，以及你需要的任何子目录。
 
-At runtime, the helper below copies the contents of a `Resources` sub-folder out to a local path. Drop it into a `.twin` module in your project:
+在运行时，下面的辅助过程将 `Resources` 子文件夹的内容复制到本地路径。将其放入项目中的 `.twin` 模块：
 
 ```vb
 Module Files
@@ -99,11 +106,11 @@ Module Files
 End Module
 ```
 
-[**LoadResIdList**](/official/Reference/VB/Global/#loadresidlist) returns every resource ID under the named sub-folder; [**LoadResData**](/official/Reference/VB/Global/#loadresdata) returns the bytes. The helper splits each resource name on `~` to reconstruct the original sub-directory tree on disk --- the twinBASIC IDE flattens nested folders by joining their names with `~` when the resources are compiled in.
+[**LoadResIdList**](/official/Reference/VB/Global/#loadresidlist)返回指定子文件夹下的每个资源ID；[**LoadResData**](/official/Reference/VB/Global/#loadresdata)返回字节数据。辅助过程将每个资源名称按 `~` 分割，在磁盘上重建原始子目录树——当资源被编译时，twinBASIC IDE通过用 `~` 连接名称来展平嵌套文件夹。
 
-## Putting it together
+## 完整组合
 
-The complete deploy-on-`Ready` pattern looks like this:
+完整的部署于`Ready`的模式如下：
 
 ```vb
 Private Sub WebView_Ready() Handles WebView.Ready
@@ -119,10 +126,10 @@ Private Sub WebView_Ready() Handles WebView.Ready
 End Sub
 ```
 
-Once deployed, the application can launch DevTools ([**OpenDevToolsWindow**](/official/Reference/WebView2/WebView2/#opendevtoolswindow)) to inspect the loaded files, and users can edit `index.html` directly on disk and hit **Refresh** --- useful for rapid iteration during development.
+部署完成后，应用程序可以启动DevTools（[**OpenDevToolsWindow**](/official/Reference/WebView2/WebView2/#opendevtoolswindow)）检查已加载的文件，用户可以直接编辑磁盘上的 `index.html` 并点击**刷新**——这在开发过程中的快速迭代中很有用。
 
-## Where next
+## 下一步
 
-- [JavaScript interop](/official/Tutorials/WebView2/JavaScript-interop) -- how a hosted page exchanges values and method calls with the BASIC application.
-- [Driving Monaco from twinBASIC](/official/Tutorials/WebView2/Driving-Monaco) -- a full case study built on top of this pattern.
-- [SetVirtualHostNameToFolderMapping](/official/Reference/WebView2/WebView2/#setvirtualhostnametofoldermapping) -- full reference.
+- [JavaScript互操作](/official/Tutorials/WebView2/JavaScript-interop) —— 托管页面如何与BASIC应用交换值和方法调用。
+- [从twinBASIC驱动Monaco](/official/Tutorials/WebView2/Driving-Monaco) —— 基于此模式的完整案例研究。
+- [SetVirtualHostNameToFolderMapping](/official/Reference/WebView2/WebView2/#setvirtualhostnametofoldermapping) —— 完整参考。

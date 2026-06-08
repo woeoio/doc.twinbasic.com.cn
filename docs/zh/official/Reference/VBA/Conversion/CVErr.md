@@ -2,23 +2,32 @@
 title: CVErr
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/CVErr
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'df37b331-e6ef-48d9-bf4d-6ab1f94a006b'
+  PropagateID: 'df37b331-e6ef-48d9-bf4d-6ab1f94a006b'
+  ReservedCode1: '6c06a608-9a48-4db5-94a7-791c1d4a5930'
+  ReservedCode2: '6c06a608-9a48-4db5-94a7-791c1d4a5930'
 ---
+
 # CVErr
 
-Returns a **Variant** of subtype **Error** containing an error number specified by the user.
+返回一个子类型为 **Error** 且包含用户指定错误号的 **Variant**。
 
-Syntax: **CVErr(** *errornumber* **)**
+语法：**CVErr(** *errornumber* **)**
 
 *errornumber*
-: *required* Any valid error number.
+: *必需* 任何有效的错误号。
 
-Use the **CVErr** function to create user-defined errors in user-created procedures. For example, a function that accepts several arguments and normally returns a string can evaluate the input arguments to ensure they are within an acceptable range. If they aren't, the function is unlikely to return the expected result. In this event, **CVErr** returns an error number that tells the caller what action to take.
+使用 **CVErr** 函数在用户创建的过程中创建用户自定义错误。例如，一个接受多个参数并通常返回字符串的函数可以评估输入参数以确保它们在可接受的范围内。如果不在范围内，函数不太可能返回预期结果。在这种情况下，**CVErr** 返回一个错误号，告诉调用者应该采取什么操作。
 
-Note that implicit conversion of an **Error** is not allowed. For example, the return value of **CVErr** cannot be directly assigned to a variable that is not a **Variant**. An explicit conversion (using [**CInt**](/official/Reference/VBA/Conversion/CInt), [**CDbl**](/official/Reference/VBA/Conversion/CDbl), and so on) of the value returned by **CVErr** can be assigned to a variable of the appropriate data type.
+注意，不允许对 **Error** 进行隐式转换。例如，**CVErr** 的返回值不能直接赋值给非 **Variant** 的变量。可以使用显式转换（如 [**CInt**](/official/Reference/VBA/Conversion/CInt)、[**CDbl**](/official/Reference/VBA/Conversion/CDbl) 等）将 **CVErr** 返回的值赋给适当数据类型的变量。
 
-### Example
+### 示例
 
-This example uses the **CVErr** function to return a **Variant** whose **VarType** is **vbError** (10). The user-defined function `CalculateDouble` returns an error if the argument passed to it isn't a number. Use **CVErr** to return user-defined errors from user-defined procedures or to defer handling of a run-time error. Use the **IsError** function to test whether the value represents an error.
+此示例使用 **CVErr** 函数返回 **VarType** 为 **vbError** (10) 的 **Variant**。如果传递给用户自定义函数 `CalculateDouble` 的参数不是数字，则返回错误。使用 **CVErr** 从用户自定义过程返回用户自定义错误，或推迟处理运行时错误。使用 **IsError** 函数测试值是否表示错误。
 
 ```vb
 ' Call CalculateDouble with an error-producing argument.
@@ -36,6 +45,6 @@ Function CalculateDouble(Number)
 End Function
 ```
 
-### See Also
+### 另请参阅
 
-- [Error](/official/Reference/VBA/Conversion/Error) function
+- [Error](/official/Reference/VBA/Conversion/Error) 函数

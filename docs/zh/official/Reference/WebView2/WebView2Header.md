@@ -1,11 +1,19 @@
----
+﻿---
 title: WebView2Header
-parent: WebView2 Package
+parent: "WebView2 包"
 permalink: /tB/Packages/WebView2/WebView2Header
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '4ff102b7-d87e-4342-9cdd-6e563c28c639'
+  PropagateID: '4ff102b7-d87e-4342-9cdd-6e563c28c639'
+  ReservedCode1: '3efaffb8-e5e6-4660-b61f-8e6f56a7f8f5'
+  ReservedCode2: '3efaffb8-e5e6-4660-b61f-8e6f56a7f8f5'
 ---
 
-# WebView2Header class
-A single HTTP header --- a name / value pair. **WebView2Header** is the element type produced by iterating a [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection), which in turn comes from a [**WebView2RequestHeaders**](/official/Reference/WebView2/WebView2RequestHeaders) or [**WebView2ResponseHeaders**](/official/Reference/WebView2/WebView2ResponseHeaders) collection.
+# WebView2Header 类
+单个 HTTP 头——一个名称/值对。**WebView2Header** 是迭代 [**WebView2HeadersCollection**](/official/Reference/WebView2/WebView2HeadersCollection) 时产出的元素类型，而集合又来自 [**WebView2RequestHeaders**](/official/Reference/WebView2/WebView2RequestHeaders) 或 [**WebView2ResponseHeaders**](/official/Reference/WebView2/WebView2ResponseHeaders) 集合。
 
 ```vb
 Dim h As WebView2Header
@@ -14,34 +22,34 @@ For Each h In Request.Headers
 Next
 ```
 
-## Properties
+## 属性
 
 ### Name
 
-The header name.
+头部名称。
 
-Syntax: *object*.**Name** [ = *string* ]
+语法：*object*.**Name** [ = *string* ]
 
-**String**.
+**String**。
 
 ### Value
 
-The header value.
+头部值。
 
-Syntax: *object*.**Value** [ = *string* ]
+语法：*object*.**Value** [ = *string* ]
 
-**String**.
+**String**。
 
-## Methods
+## 方法
 
 ### New
 
-Constructs a header. Application code does not normally create headers manually --- instances are produced by the package while iterating a request- or response-header collection --- but the constructor is **Public**.
+构造头部。应用程序代码通常不需要手动创建头部——实例由包在迭代请求或响应头集合时产出——但构造函数是 **Public** 的。
 
-Syntax: **New WebView2Header** ( *Name*, *Value* )
+语法：**New WebView2Header** ( *Name*, *Value* )
 
 *Name*
-: *required* A **String** header name.
+: *必需* 一个 **String** 头部名称。
 
 *Value*
-: *required* A **String** header value.
+: *必需* 一个 **String** 头部值。

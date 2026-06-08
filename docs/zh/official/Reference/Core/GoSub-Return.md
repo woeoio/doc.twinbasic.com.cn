@@ -2,12 +2,21 @@
 title: GoSub ... Return
 parent: Statements
 permalink: /tB/Core/GoSub-Return
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '066c2bcf-aa2b-4cf2-bf92-008088f06b98'
+  PropagateID: '066c2bcf-aa2b-4cf2-bf92-008088f06b98'
+  ReservedCode1: 'a74ad9b4-b42c-4ad8-8137-0153d484a062'
+  ReservedCode2: 'a74ad9b4-b42c-4ad8-8137-0153d484a062'
 ---
+
 # GoSub ... Return
 
-Branches to and returns from a subroutine within a procedure.
+在过程中分支到子程序并从中返回。
 
-Syntax:
+语法：
 > **GoSub** *line*  
 > &nbsp;&nbsp;&nbsp;&nbsp; ...  
 > *line*  
@@ -15,21 +24,21 @@ Syntax:
 > &nbsp;&nbsp;&nbsp;&nbsp; **Return**
 
 *line*
-: Any line label or line number.
+: 任何行标签或行号。
 
-Use **GoSub** and **Return** anywhere in a procedure, but **GoSub** and the corresponding **Return** statement must be in the same procedure. A subroutine can contain more than one **Return** statement, but the first **Return** statement encountered causes the flow of execution to branch back to the statement immediately following the most recently executed **GoSub** statement.
+可以在过程中的任何位置使用 **GoSub** 和 **Return**，但 **GoSub** 和对应的 **Return** 语句必须在同一过程中。子程序可以包含多个 **Return** 语句，但遇到第一个 **Return** 语句时，执行流程将分支回最近执行的 **GoSub** 语句之后紧接的语句。
 
 ::: info
-**GoSub...Return** cannot enter or exit [**Sub**](/official/Reference/Core/Sub) procedures.
+**GoSub...Return** 不能进入或退出 [**Sub**](/official/Reference/Core/Sub) 过程。
 :::
 
 ::: tip
-Creating separate callable procedures may provide a more structured alternative to using **GoSub...Return**.
+创建单独的可调用过程可能比使用 **GoSub...Return** 提供更具结构化的替代方案。
 :::
 
-### Example
+### 示例
 
-This example uses **GoSub** to call a subroutine within a **Sub** procedure. The **Return** statement causes the execution to resume at the statement immediately following the **GoSub** statement. The [**Exit Sub**](/official/Reference/Core/Exit) statement is used to prevent control from accidentally flowing into the subroutine.
+本示例使用 **GoSub** 在 **Sub** 过程内调用子程序。**Return** 语句使执行恢复到 **GoSub** 语句之后紧接的语句。[**Exit Sub**](/official/Reference/Core/Exit) 语句用于防止控制意外流入子程序。
 
 ```vb
 Sub GosubDemo()
@@ -46,9 +55,9 @@ MyRoutine:
 End Sub
 ```
 
-### See Also
+### 另请参阅
 
-- [**Return** statement](/official/Reference/Core/Return)
-- [**GoTo** statement](/official/Reference/Core/GoTo)
-- [**On...GoSub** statement](/official/Reference/Core/On-GoSub)
-- [**Sub** statement](/official/Reference/Core/Sub)
+- [**Return** 语句](/official/Reference/Core/Return)
+- [**GoTo** 语句](/official/Reference/Core/GoTo)
+- [**On...GoSub** 语句](/official/Reference/Core/On-GoSub)
+- [**Sub** 语句](/official/Reference/Core/Sub)

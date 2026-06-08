@@ -2,40 +2,49 @@
 title: Handles
 parent: Statements
 permalink: /tB/Core/Handles
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '5d7fd5dd-f9e9-4f4f-b945-9839ec6b7ce4'
+  PropagateID: '5d7fd5dd-f9e9-4f4f-b945-9839ec6b7ce4'
+  ReservedCode1: '3d16e091-f23e-4ed8-b073-2cf24a8191c6'
+  ReservedCode2: '3d16e091-f23e-4ed8-b073-2cf24a8191c6'
 ---
+
 # Handles
 
-A trailing clause on a procedure header that binds the procedure as an event handler for one or more specific events.
+过程头部上的尾部子句，将过程绑定为一个或多个特定事件的事件处理程序。
 
 ::: info
-The **Handles** clause is a twinBASIC extension. Classic VBA connects event handlers solely by name: a `Sub` called `Form_Load` automatically handles the `Load` event of `Form`. twinBASIC still supports that pattern --- **Handles** decouples the procedure name from the events it handles and lets one body handle several events at once. Whether the IDE inserts the new syntax when auto-generating event prototypes is controlled by the "IDE: Use new handles/implements syntax" option.
+**Handles** 子句是twinBASIC扩展。经典VBA仅通过名称连接事件处理程序：名为 `Form_Load` 的 `Sub` 自动处理 `Form` 的 `Load` 事件。twinBASIC仍然支持该模式——**Handles** 将过程名称与其处理的事件解耦，并允许一个函数体同时处理多个事件。IDE自动生成事件原型时是否插入新语法由"IDE: Use new handles/implements syntax"选项控制。
 :::
 
-Syntax:
+语法：
 > *procedure-header* **Handles** *object*.*event* [ **,** *object*.*event* ] …
 
 *procedure-header*
-: A complete [**Sub**](/official/Reference/Core/Sub), [**Function**](/official/Reference/Core/Function), or [**Property**](/official/Reference/Core/Property) header, including any access modifier, name, parameter list, and (for **Function** / **Property Get**) return type.
+: 完整的 [**Sub**](/official/Reference/Core/Sub)、[**Function**](/official/Reference/Core/Function) 或 [**Property**](/official/Reference/Core/Property) 头部，包括任何访问修饰符、名称、参数列表和（对于 **Function** / **Property Get**）返回类型。
 
 *object*
-: An identifier naming an event source visible in the enclosing class, form, or user-control: the host's own implicit identifier (`Form`, `UserControl`, `MyClass`), a control declared on a form (`Command1`, `Text1`, …), or a [**WithEvents**](/official/Reference/Core/Dim) member variable.
+: 命名封闭类、窗体或用户控件中可见的事件源的标识符：宿主的隐式标识符（`Form`、`UserControl`、`MyClass`）、窗体上声明的控件（`Command1`、`Text1`、…）或 [**WithEvents**](/official/Reference/Core/Dim) 成员变量。
 
 *event*
-: The name of an [**Event**](/official/Reference/Core/Event) declared on the type of *object*.
+: 在 *object* 类型上声明的 [**Event**](/official/Reference/Core/Event) 的名称。
 
-The procedure's parameter list must match the signatures of every event it handles. When several events are listed they must all share the same signature, so one body can service them interchangeably.
+过程的参数列表必须匹配其处理的每个事件的签名。当列出多个事件时，它们必须共享相同的签名，以便一个函数体可以互换地服务它们。
 
-Because **Handles** decouples the procedure's name from the events it handles, the procedure can:
+因为 **Handles** 将过程的名称与其处理的事件解耦，过程可以：
 
-- have a descriptive name (`OnLoad`, `SyncOpacity`) instead of the compound `<Object>_<Event>` form;
-- factor several related event handlers into a single body without duplicating code; and
-- handle an event from a procedure whose name happens to collide with the implicit naming pattern.
+- 使用描述性名称（`OnLoad`、`SyncOpacity`）而非复合的 `<Object>_<Event>` 形式；
+- 将多个相关的事件处理程序合并到单个函数体中而无需重复代码；
+- 处理来自名称恰好与隐式命名模式冲突的过程的事件。
 
-The classic naming convention is unaffected: a procedure literally named `*object*_*event*` continues to be auto-wired as a handler for that event, with or without **Handles** clauses elsewhere on the same event.
+经典命名约定不受影响：字面上命名为 `*object*_*event*` 的过程继续自动连接为该事件的处理程序，无论同一事件上是否有其他 **Handles** 子句。
 
-### Example
+### 示例
 
-A descriptively named handler for a form's `Load` event:
+为窗体的 `Load` 事件使用描述性名称的处理程序：
 
 ```vb
 Private Sub OnLoad() Handles Form.Load
@@ -43,7 +52,7 @@ Private Sub OnLoad() Handles Form.Load
 End Sub
 ```
 
-A single body responding to several property-change events at once (adapted from the standard `CheckMark` control):
+单个函数体同时响应多个属性更改事件（改编自标准 `CheckMark` 控件）：
 
 ```vb
 Protected Sub SignificantChange() _
@@ -55,7 +64,7 @@ Protected Sub SignificantChange() _
 End Sub
 ```
 
-For comparison, the equivalent classic-VBA naming-convention form for one of those events:
+作为对比，其中一个事件的等效经典VBA命名约定形式：
 
 ```vb
 Private Sub BackColor_OnPropertyLet()
@@ -63,13 +72,13 @@ Private Sub BackColor_OnPropertyLet()
 End Sub
 ```
 
---- a separate procedure body would be required per event.
+——每个事件需要一个单独的过程体。
 
-### See Also
+### 另请参阅
 
-- [**Sub** statement](/official/Reference/Core/Sub)
-- [**Function** statement](/official/Reference/Core/Function)
-- [**Property** statement](/official/Reference/Core/Property)
-- [**Event** statement](/official/Reference/Core/Event)
-- [**Implements** statement](/official/Reference/Core/Implements)
-- [Handler Method Syntax](/official/Features/Language/Handlers)
+- [**Sub** 语句](/official/Reference/Core/Sub)
+- [**Function** 语句](/official/Reference/Core/Function)
+- [**Property** 语句](/official/Reference/Core/Property)
+- [**Event** 语句](/official/Reference/Core/Event)
+- [**Implements** 语句](/official/Reference/Core/Implements)
+- [处理程序方法语法](/official/Features/Language/Handlers)

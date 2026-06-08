@@ -1,17 +1,25 @@
 ---
-title: Multithreading
+title: 多线程
 parent: Advanced Features
 nav_order: 1
 permalink: /Features/Advanced/Multithreading
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'aacf24b6-1466-4a47-8603-46669c1876b6'
+  PropagateID: 'aacf24b6-1466-4a47-8603-46669c1876b6'
+  ReservedCode1: 'aecda5c0-ae5a-43fd-a156-90ee05ed8816'
+  ReservedCode2: 'aecda5c0-ae5a-43fd-a156-90ee05ed8816'
 ---
 
-# Thread Safety / Multithreading Support
+# 线程安全 / 多线程支持
 
-While there's no native language syntax yet (planned), you can call `CreateThread` directly with no hacks. Previously, VBx and other BASIC languages typically required elaborate workarounds to be able to use `CreateThread` for anything but some specialized, extremely simple things. In twinBASIC, you can call it and all other threading APIs without any special steps, other than of course the careful management of doing threading at a low level like this.
+虽然目前还没有原生语言语法（计划中），但你可以直接调用 `CreateThread` 而无需任何变通方法。以前，VBx 和其他 BASIC 语言通常需要复杂的变通方法才能使用 `CreateThread` 来做一些非常简单的事情之外的事情。在 twinBASIC 中，你可以直接调用它以及所有其他线程 API，除了当然需要谨慎管理这种底层的线程操作外，无需任何特殊步骤。
 
-## Example
+## 示例
 
-In a new Standard EXE project, add a CommandButton and TextBox to your form:
+在新的标准 EXE 项目中，向窗体添加一个 CommandButton 和一个 TextBox：
 
 ```vb
 Private Declare PtrSafe Function GetCurrentThreadId Lib "kernel32" () As Long
@@ -47,4 +55,4 @@ Public Sub TestThread()
 End Sub
 ```
 
-Under a single-threaded code, if you called `TestThread` before updating `Text1.Text`, the text wouldn't update until you clicked ok on the message box. But here, the message box in launched in a separate thread, so execution continues and updates the text, after which we manually choose to wait for the message box thread to exit.
+在单线程代码下，如果你在更新 `Text1.Text` 之前调用 `TestThread`，文本在你点击消息框的确定按钮之前不会更新。但在这里，消息框在单独的线程中启动，所以执行继续并更新了文本，之后我们手动选择等待消息框线程退出。

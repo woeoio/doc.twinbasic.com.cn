@@ -2,23 +2,32 @@
 title: ReturnHResult
 parent: ErrObject
 permalink: /tB/Modules/ErrObject/ReturnHResult
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '1528d9a3-f5f5-4c49-8e84-26eb16104dd9'
+  PropagateID: '1528d9a3-f5f5-4c49-8e84-26eb16104dd9'
+  ReservedCode1: '34b8255e-4e00-4656-b7fa-e00439053590'
+  ReservedCode2: '34b8255e-4e00-4656-b7fa-e00439053590'
 ---
+
 # ReturnHResult
 
-Sets the **HRESULT** to be returned from the current object method when it exits normally. Write-only.
+设置当前对象方法正常退出时要返回的 **HRESULT**。只写。
 
-Syntax: **Err**.**ReturnHResult** **=** *value*
+语法：**Err**.**ReturnHResult** **=** *value*
 
 *value*
-: A **Long** containing the raw HRESULT to be returned. Positive values indicate a non-failure result.
+: 包含要返回的原始 HRESULT 的 **Long**。正值表示非失败结果。
 
-**ReturnHResult** provides a mechanism to set an HRESULT explicitly when exiting an object method. This is particularly useful for returning non-failure (positive) HRESULTs that indicate success or status information not conveyed by the standard `S_OK` success code. Whereas [**Raise**](/official/Reference/VBA/ErrObject/Raise) is used to generate failure HRESULTs (negative values), **ReturnHResult** allows for setting specific non-failure results.
+**ReturnHResult** 提供了一种在退出对象方法时显式设置 HRESULT 的机制。这对于返回标准 `S_OK` 成功代码无法传达的非失败（正值）HRESULT 特别有用，这些 HRESULT 指示成功或状态信息。[**Raise**](/official/Reference/VBA/ErrObject/Raise) 用于生成失败 HRESULT（负值），而 **ReturnHResult** 允许设置特定的非失败结果。
 
-A calling procedure can then use [**LastHresult**](/official/Reference/VBA/ErrObject/LastHresult) to read the positive HRESULT that was returned from the method. Set **ReturnHResult** only when needed, typically just before the method exit point, so that the intended HRESULT is the one that's actually returned.
+调用过程随后可以使用 [**LastHresult**](/official/Reference/VBA/ErrObject/LastHresult) 读取从方法返回的正值 HRESULT。仅在需要时设置 **ReturnHResult**，通常就在方法退出点之前，以确保返回的 HRESULT 是预期的。
 
-### Example
+### 示例
 
-This example demonstrates setting a non-failure HRESULT upon successfully completing a method within a COM object.
+此示例演示在 COM 对象内成功完成方法后设置非失败 HRESULT。
 
 ```vb
 Function MyMethod() As Variant
@@ -29,11 +38,11 @@ Function MyMethod() As Variant
 End Function
 ```
 
-After the method completes, the caller can read **Err.LastHresult** to retrieve this specific HRESULT value.
+方法完成后，调用者可以读取 **Err.LastHresult** 来检索此特定的 HRESULT 值。
 
-### See Also
+### 另请参阅
 
-- [LastHresult](/official/Reference/VBA/ErrObject/LastHresult) property
-- [Number](/official/Reference/VBA/ErrObject/Number) property
-- [Description](/official/Reference/VBA/ErrObject/Description) property
-- [Raise](/official/Reference/VBA/ErrObject/Raise) method
+- [LastHresult](/official/Reference/VBA/ErrObject/LastHresult) 属性
+- [Number](/official/Reference/VBA/ErrObject/Number) 属性
+- [Description](/official/Reference/VBA/ErrObject/Description) 属性
+- [Raise](/official/Reference/VBA/ErrObject/Raise) 方法

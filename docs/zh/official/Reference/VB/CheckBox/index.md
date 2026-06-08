@@ -1,14 +1,25 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '9835fb96-979d-4b56-b685-fbfde9761bf4'
+  PropagateID: '9835fb96-979d-4b56-b685-fbfde9761bf4'
+  ReservedCode1: 'e28cc916-a8fb-4b41-bce3-2cfb7f6a8860'
+  ReservedCode2: 'e28cc916-a8fb-4b41-bce3-2cfb7f6a8860'
+---
+
 ---
 title: CheckBox
 parent: VB Package
 permalink: /tB/Packages/VB/CheckBox/
 ---
 
-# CheckBox class
+# CheckBox 类
 
-A **CheckBox** is a Win32 native control that displays a small box, optionally followed by a text caption, used to give the user a choice between two values such as *Yes*/*No*, *True*/*False*, or *On*/*Off*. It can also be put into a third, indeterminate (grey) state from code, typically to mean "not applicable" or "mixed".
+**CheckBox**是Win32原生控件，显示一个小方框，可选后跟文本标题，用于让用户在两个值之间做出选择，如*是*/*否*、*真*/*假*或*开*/*关*。也可以从代码将其设为第三种不确定（灰色）状态，通常表示"不适用"或"混合"。
 
-The control is normally placed on a **Form** or **UserControl** at design time. The default property is [**Value**](#value) and the default event is [**Click**](#click).
+控件通常在设计时放置在**Form**或**UserControl**上。默认属性是[**Value**](#value)，默认事件是[**Click**](#click)。
 
 ```vb
 Private Sub Form_Load()
@@ -22,402 +33,402 @@ End Sub
 ```
 
 
-## Three-state behaviour
+## 三态行为
 
-[**Value**](#value) is typed as [**CheckBoxConstants**](/official/Reference/VBRUN/Constants/CheckBoxConstants):
+[**Value**](#value)的类型为[**CheckBoxConstants**](/official/Reference/VBRUN/Constants/CheckBoxConstants)：
 
-| Constant         | Value | Meaning                                                |
-|------------------|-------|--------------------------------------------------------|
-| **vbUnchecked**  | 0     | The check box is cleared.                              |
-| **vbChecked**    | 1     | The check box is selected.                             |
-| **vbGrayed**     | 2     | The check box is in an indeterminate (grey) state.     |
+| 常量             | 值 | 含义                                   |
+|------------------|----|----------------------------------------|
+| **vbUnchecked**  | 0  | 复选框未选中。                         |
+| **vbChecked**    | 1  | 复选框已选中。                         |
+| **vbGrayed**     | 2  | 复选框处于不确定（灰色）状态。         |
 
-Clicking an unchecked or grey check box selects it; clicking a checked or grey check box clears it. The grey state is reachable only from code --- assign **vbGrayed** to **Value** to display it. Assigning a negative number raises run-time error 380 (*Invalid property value*).
+点击未选中或灰色的复选框会选中它；点击已选中或灰色的复选框会取消选中。灰色状态只能从代码到达——赋值**vbGrayed**给**Value**以显示。赋值负数会引发运行时错误380（*无效属性值*）。
 
 ```vb
 Check1.Value = vbGrayed     ' show the indeterminate state
 ```
 
-## Caption and mnemonics
+## 标题和助记符
 
-The text shown next to (or, with [**Alignment**](#alignment) `tbRightJustify`, before) the box comes from [**Caption**](#caption). An ampersand in the caption marks the next character as a keyboard mnemonic: pressing **Alt+** that character moves the focus to the check box and toggles its value. Use `&&` to display a literal ampersand.
+显示在方框旁边（或当[**Alignment**](#alignment)为`tbRightJustify`时在方框之前）的文本来自[**Caption**](#caption)。标题中的和号将下一个字符标记为键盘助记符：按**Alt+**该字符将焦点移到复选框并切换其值。使用`&&`显示字面和号。
 
 ```vb
 Check1.Caption = "Use && in folder names"   ' renders as: Use & in folder names
 ```
 
-## Graphical style
+## 图形样式
 
-When [**Style**](#style) is **vbButtonGraphical**, the check box is owner-drawn and displays the bitmaps assigned to [**Picture**](#picture), [**DownPicture**](#downpicture), and [**DisabledPicture**](#disabledpicture) instead of the standard square. [**PictureAlignment**](#picturealignment), [**Padding**](#padding), and [**PictureDpiScaling**](#picturedpiscaling) control how the picture is positioned relative to the caption.
+当[**Style**](#style)为**vbButtonGraphical**时，复选框为所有者绘制，显示赋给[**Picture**](#picture)、[**DownPicture**](#downpicture)和[**DisabledPicture**](#disabledpicture)的位图，而非标准方块。[**PictureAlignment**](#picturealignment)、[**Padding**](#padding)和[**PictureDpiScaling**](#picturedpiscaling)控制图片相对于标题的定位方式。
 
-## Data binding
+## 数据绑定
 
-Setting [**DataSource**](#datasource) and [**DataField**](#datafield) connects the control's [**Value**](#value) to a field of a **Data** control's recordset. The bound field is read as a **Boolean**: a non-zero/`True` value sets [**Value**](#value) to **vbChecked**, zero/`False` sets it to **vbUnchecked**. Assigning a non-Boolean field value raises run-time error 13 (*Type mismatch*).
+设置[**DataSource**](#datasource)和[**DataField**](#datafield)将控件的[**Value**](#value)连接到**Data**控件记录集的字段。绑定字段作为**Boolean**读取：非零/`True`值将[**Value**](#value)设为**vbChecked**，零/`False`设为**vbUnchecked**。赋值非Boolean字段值会引发运行时错误13（*类型不匹配*）。
 
-## Properties
+## 属性
 
 ### Alignment
 
-Specifies the side of the box on which the [**Caption**](#caption) text appears.
+指定[**Caption**](#caption)文本出现在方框的哪一侧。
 
-Syntax: *object*.**Alignment** [ = *value* ]
+语法：*object*.**Alignment** [ = *value* ]
 
 *value*
-: A member of [**AlignmentConstantsNoCenter**](/official/Reference/VBRUN/Constants/AlignmentConstantsNoCenter): **tbLeftJustify** (0, default --- caption to the right of the box) or **tbRightJustify** (1 --- caption to the left of the box).
+: [**AlignmentConstantsNoCenter**](/official/Reference/VBRUN/Constants/AlignmentConstantsNoCenter)的成员：**tbLeftJustify**（0，默认——标题在方框右侧）或**tbRightJustify**（1——标题在方框左侧）。
 
 ### Appearance
 
-Determines how the control's border is drawn by the OS. A member of [**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants): **vbAppearFlat** or **vbAppear3d** (default).
+决定操作系统绘制控件边框的方式。[**AppearanceConstants**](/official/Reference/VBRUN/Constants/AppearanceConstants)的成员：**vbAppearFlat**或**vbAppear3d**（默认）。
 
 ### BackColor
 
-The background colour, as an **OLE_COLOR**. Defaults to the system 3-D face colour.
+背景色，作为**OLE_COLOR**。默认为系统3D表面颜色。
 
 ### Caption
 
-The text displayed next to the check box. An ampersand marks the next character as a mnemonic; `&&` produces a literal ampersand. The string is read directly from the underlying window --- assigning to **Caption** is reflected immediately.
+显示在复选框旁边的文本。和号将下一个字符标记为助记符；`&&`产生字面和号。字符串直接从底层窗口读取——赋值给**Caption**会立即反映。
 
-Syntax: *object*.**Caption** [ = *string* ]
+语法：*object*.**Caption** [ = *string* ]
 
 ### CausesValidation
 
-Determines whether the previously focused control's [**Validate**](#validate) event runs before this control receives the focus. **Boolean**, default **True**.
+决定先前聚焦控件的[**Validate**](#validate)事件是否在此控件获得焦点之前运行。**Boolean**，默认**True**。
 
 ### ControlType
 
-A read-only [**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants) value identifying this control as a check box. Always **vbCheckBox**.
+标识此控件为复选框的只读[**ControlTypeConstants**](/official/Reference/VBRUN/Constants/ControlTypeConstants)值。始终为**vbCheckBox**。
 
 ### DataField
 
-The name of the field, in the recordset of the bound [**DataSource**](#datasource), whose value is mirrored by [**Value**](#value). **String**.
+绑定的[**DataSource**](#datasource)记录集中由[**Value**](#value)镜像的字段名称。**String**。
 
 ### DataSource
 
-A reference to a **Data** control (or other **DataSource** provider) whose recordset supplies the value for [**DataField**](#datafield). Set with **Set**.
+对**Data**控件（或其他**DataSource**提供者）的引用，其记录集为[**DataField**](#datafield)提供值。用**Set**设置。
 
 ### DisabledPicture
 
-A **StdPicture** drawn instead of [**Picture**](#picture) when the control is disabled and [**Style**](#style) is **vbButtonGraphical**.
+当控件禁用且[**Style**](#style)为**vbButtonGraphical**时，替代[**Picture**](#picture)绘制的**StdPicture**。
 
 ### DownPicture
 
-A **StdPicture** drawn instead of [**Picture**](#picture) while the control is in the depressed state, when [**Style**](#style) is **vbButtonGraphical**.
+当控件处于按下状态且[**Style**](#style)为**vbButtonGraphical**时，替代[**Picture**](#picture)绘制的**StdPicture**。
 
 ### DragIcon
 
-A **StdPicture** used as the mouse cursor while the control is being drag-and-dropped (see [**Drag**](#drag) and [**DragMode**](#dragmode)).
+在控件被拖放时用作鼠标光标的**StdPicture**（参见[**Drag**](#drag)和[**DragMode**](#dragmode)）。
 
 ### DragMode
 
-Whether the control should drag itself when the user holds the mouse over it. A member of [**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants): **vbManual** (0, default --- call [**Drag**](#drag) from code) or **vbAutomatic** (1).
+控件是否应在用户按住鼠标时自行拖动。[**DragModeConstants**](/official/Reference/VBRUN/Constants/DragModeConstants)的成员：**vbManual**（0，默认——从代码调用[**Drag**](#drag)）或**vbAutomatic**（1）。
 
 ### Enabled
 
-Determines whether the control accepts user input. A disabled check box shows its current value but is dimmed and ignores keyboard and mouse interaction. **Boolean**, default **True**.
+决定控件是否接受用户输入。禁用的复选框显示其当前值但变暗，忽略键盘和鼠标交互。**Boolean**，默认**True**。
 
 ### Font
 
-The **StdFont** used to render [**Caption**](#caption). The convenience properties **FontName**, **FontSize**, **FontBold**, **FontItalic**, **FontStrikethru**, and **FontUnderline** read or write the corresponding members of this object.
+用于渲染[**Caption**](#caption)的**StdFont**。便捷属性**FontName**、**FontSize**、**FontBold**、**FontItalic**、**FontStrikethru**和**FontUnderline**读写此对象的对应成员。
 
 ### ForeColor
 
-The text colour for the caption, as an **OLE_COLOR**. Defaults to the system button-text colour.
+标题的文本颜色，作为**OLE_COLOR**。默认为系统按钮文本颜色。
 
 ### Height
 
-The control's height, in twips by default (or in the container's **ScaleMode** units). **Single**.
+控件的高度，默认以缇为单位（或以容器的**ScaleMode**单位）。**Single**。
 
 ### HelpContextID
 
-A **Long** identifying a topic in the application's help file, retrieved when the user presses **F1** while the control has focus.
+标识应用程序帮助文件中主题的**Long**，当用户在控件有焦点时按**F1**时检索。
 
 ### hWnd
 
-The Win32 window handle for the underlying button, as a **LongPtr**. Read-only. Useful for passing to API functions.
+底层按钮的Win32窗口句柄，作为**LongPtr**。只读。适用于传递给API函数。
 
 ### Index
 
-When the control is part of a control array, the **Long** zero-based index of this instance within the array. Read-only at run time.
+当控件是控件数组的一部分时，此实例在数组中的**Long**零基索引。运行时只读。
 
 ### Left
 
-The horizontal distance from the left edge of the container to the left edge of the control. **Single**.
+从容器左边缘到控件左边缘的水平距离。**Single**。
 
 ### MaskColor
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
 ### MouseIcon
 
-A **StdPicture** used as the mouse cursor when [**MousePointer**](#mousepointer) is **vbCustom** and the pointer is over the control.
+当[**MousePointer**](#mousepointer)为**vbCustom**且指针在控件上方时用作鼠标光标的**StdPicture**。
 
 ### MousePointer
 
-The mouse cursor shown when the pointer is over the control. A member of [**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants).
+指针在控件上方时显示的鼠标光标。[**MousePointerConstants**](/official/Reference/VBRUN/Constants/MousePointerConstants)的成员。
 
 ### Name
 
-The unique design-time name of the control on its parent form. Read-only at run time.
+控件在其父窗体上的唯一设计时名称。运行时只读。
 
 ### OLEDropMode
 
-How the control responds to OLE drops. A restricted member of [**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants): **vbOLEDropNone** or **vbOLEDropManual**. Automatic-drop mode is not supported on a CheckBox.
+控件如何响应OLE放置。[**OLEDropConstants**](/official/Reference/VBRUN/Constants/OLEDropConstants)的受限成员：**vbOLEDropNone**或**vbOLEDropManual**。CheckBox不支持自动放置模式。
 
 ### Opacity
 
-The control's opacity as a percentage (0--100, default 100). Values outside the range are clamped on **Initialize**. Requires Windows 8 or later for child controls.
+控件的不透明度百分比（0--100，默认100）。超出范围的值在**Initialize**时被钳制。子控件需要Windows 8或更高版本。
 
 ### Padding
 
-The number of pixels of empty space inserted between the picture and the caption (when [**PictureAlignment**](#picturealignment) is **vbAlignLeft** or **vbAlignRight**) or between the caption and the corresponding edge (when **vbAlignTop** or **vbAlignBottom**). **Long**, default 2. Only meaningful when [**Style**](#style) is **vbButtonGraphical**.
+在图片和标题之间插入的空像素数（当[**PictureAlignment**](#picturealignment)为**vbAlignLeft**或**vbAlignRight**时）或在标题和对应边缘之间（当**vbAlignTop**或**vbAlignBottom**时）。**Long**，默认2。仅在[**Style**](#style)为**vbButtonGraphical**时有意义。
 
 ### Parent
 
-A reference to the [**Form**](/official/Reference/VB/Form/) (or **UserControl**) that contains this control. Read-only.
+对包含此控件的[**Form**](/official/Reference/VB/Form/)（或**UserControl**）的引用。只读。
 
 ### Picture
 
-A **StdPicture** drawn on the control when [**Style**](#style) is **vbButtonGraphical**. Assigning **Nothing** restores an empty picture rather than removing the bitmap surface.
+当[**Style**](#style)为**vbButtonGraphical**时绘制在控件上的**StdPicture**。赋值**Nothing**恢复空图片而非移除位图表面。
 
 ### PictureAlignment
 
-How [**Picture**](#picture) is positioned relative to the caption when [**Style**](#style) is **vbButtonGraphical**. A member of [**AlignConstants**](/official/Reference/VBRUN/Constants/AlignConstants): **vbAlignNone**, **vbAlignTop** (default), **vbAlignBottom**, **vbAlignLeft**, **vbAlignRight**.
+当[**Style**](#style)为**vbButtonGraphical**时[**Picture**](#picture)相对于标题的定位方式。[**AlignConstants**](/official/Reference/VBRUN/Constants/AlignConstants)的成员：**vbAlignNone**、**vbAlignTop**（默认）、**vbAlignBottom**、**vbAlignLeft**、**vbAlignRight**。
 
 ### PictureDpiScaling
 
-When **True**, scales [**Picture**](#picture), [**DownPicture**](#downpicture), and [**DisabledPicture**](#disabledpicture) by the current DPI factor before drawing. **Boolean**, default **False**.
+当**True**时，绘制前按当前DPI因子缩放[**Picture**](#picture)、[**DownPicture**](#downpicture)和[**DisabledPicture**](#disabledpicture)。**Boolean**，默认**False**。
 
 ### RightToLeft
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC. Use [**Alignment**](#alignment) to flip the caption to the left of the box.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。使用[**Alignment**](#alignment)将标题翻转到方框左侧。
 :::
 
 ### Style
 
-Selects between the standard Win32 check-box appearance and an owner-drawn graphical button. A member of [**ButtonConstants**](/official/Reference/VBRUN/Constants/ButtonConstants): **vbButtonStandard** (0, default) or **vbButtonGraphical** (1). Changing **Style** at run time recreates the underlying window.
+在标准Win32复选框外观和所有者绘制图形按钮之间选择。[**ButtonConstants**](/official/Reference/VBRUN/Constants/ButtonConstants)的成员：**vbButtonStandard**（0，默认）或**vbButtonGraphical**（1）。在运行时更改**Style**会重新创建底层窗口。
 
 ### TabIndex
 
-The position of the control in the form's TAB-key navigation order. **Long**.
+控件在窗体TAB键导航顺序中的位置。**Long**。
 
 ### TabStop
 
-Whether the user can reach the control by pressing the **TAB** key. **Boolean**, default **True**. A disabled control is skipped regardless of this setting.
+用户是否可以通过按**TAB**键到达控件。**Boolean**，默认**True**。禁用的控件无论此设置如何都会被跳过。
 
 ### Tag
 
-A free-form **String** the application can use to associate custom data with the control. Ignored by the framework.
+应用程序可用于将自定义数据与控件关联的自由格式**String**。框架忽略此属性。
 
 ### ToolTipText
 
-A multi-line **String** displayed as a tooltip when the user hovers over the control.
+用户悬停在控件上方时作为工具提示显示的多行**String**。
 
 ### Top
 
-The vertical distance from the top of the container to the top of the control. **Single**.
+从容器顶部到控件顶部的垂直距离。**Single**。
 
 ### TransparencyKey
 
-An **OLE_COLOR** that, when set, becomes fully transparent in the rendered control. Default `-1` disables the effect. Requires Windows 8 or later for child controls.
+设置后成为渲染控件中完全透明的**OLE_COLOR**。默认`-1`禁用效果。子控件需要Windows 8或更高版本。
 
 ### UseMaskColor
 
 ::: info
-Reserved for compatibility with VB6; not currently implemented in twinBASIC.
+保留用于与VB6兼容；目前在twinBASIC中尚未实现。
 :::
 
 ### Value
 
-The current state of the check box. **Default property.**
+复选框的当前状态。**默认属性。**
 
-Syntax: *object*.**Value** [ = *value* ]
+语法：*object*.**Value** [ = *value* ]
 
 *value*
-: A member of [**CheckBoxConstants**](/official/Reference/VBRUN/Constants/CheckBoxConstants): **vbUnchecked** (0), **vbChecked** (1), or **vbGrayed** (2). Negative numbers raise run-time error 380.
+: [**CheckBoxConstants**](/official/Reference/VBRUN/Constants/CheckBoxConstants)的成员：**vbUnchecked**（0）、**vbChecked**（1）或**vbGrayed**（2）。负数会引发运行时错误380。
 
-Assigning a value that differs from the current one raises a [**Click**](#click) event.
+赋值与当前值不同的值会引发[**Click**](#click)事件。
 
 ### Visible
 
-Whether the control is shown. **Boolean**, default **True**.
+控件是否显示。**Boolean**，默认**True**。
 
 ### VisualStyles
 
-Whether the OS theme engine should be used when drawing the control. **Boolean**.
+绘制控件时是否使用操作系统主题引擎。**Boolean**。
 
 ### WhatsThisHelpID
 
-A **Long** identifying a "What's This?" help-pop-up topic in the application's help file. See [**ShowWhatsThis**](#showwhatsthis).
+标识应用程序帮助文件中"这是什么？"帮助弹出主题的**Long**。参见[**ShowWhatsThis**](#showwhatsthis)。
 
 ### Width
 
-The control's width. **Single**.
+控件的宽度。**Single**。
 
-## Methods
+## 方法
 
 ### Drag
 
-Begins, completes, or cancels a manual drag-and-drop operation. Typically called from a [**MouseDown**](#mousedown) handler when [**DragMode**](#dragmode) is **vbManual**.
+开始、完成或取消手动拖放操作。通常在[**DragMode**](#dragmode)为**vbManual**时从[**MouseDown**](#mousedown)处理程序调用。
 
-Syntax: *object*.**Drag** [ *Action* ]
+语法：*object*.**Drag** [ *Action* ]
 
 *Action*
-: *optional* A member of [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants): **vbCancel** (0), **vbBeginDrag** (1, default), or **vbEndDrag** (2).
+: *可选* [**DragConstants**](/official/Reference/VBRUN/Constants/DragConstants)的成员：**vbCancel**（0）、**vbBeginDrag**（1，默认）或**vbEndDrag**（2）。
 
 ### Move
 
-Repositions and optionally resizes the control in a single call.
+在单次调用中重新定位并可选地调整控件的尺寸。
 
-Syntax: *object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
+语法：*object*.**Move** *Left* [, *Top* [, *Width* [, *Height* ] ] ]
 
 *Left*
-: *required* A **Single** giving the new horizontal position.
+: *必需* 给出新水平位置的**Single**。
 
-*Top*, *Width*, *Height*
-: *optional* New values for the corresponding properties. Omitted values are left unchanged.
+*Top*、*Width*、*Height*
+: *可选* 对应属性的新值。省略的值保持不变。
 
 ### OLEDrag
 
-Initiates an OLE drag operation from the control, raising the [**OLEStartDrag**](#olestartdrag) event so the application can populate the **DataObject**.
+从控件发起OLE拖动操作，引发[**OLEStartDrag**](#olestartdrag)事件以便应用程序填充**DataObject**。
 
-Syntax: *object*.**OLEDrag**
+语法：*object*.**OLEDrag**
 
 ### Refresh
 
-Forces an immediate repaint of the control.
+强制立即重绘控件。
 
-Syntax: *object*.**Refresh**
+语法：*object*.**Refresh**
 
 ### SetFocus
 
-Moves the input focus to the control. The control must be both [**Visible**](#visible) and [**Enabled**](#enabled), or run-time error 5 (*Invalid procedure call or argument*) is raised.
+将输入焦点移到控件。控件必须同时[**Visible**](#visible)和[**Enabled**](#enabled)，否则引发运行时错误5（*无效的过程调用或参数*）。
 
-Syntax: *object*.**SetFocus**
+语法：*object*.**SetFocus**
 
 ### ShowWhatsThis
 
-Displays the topic identified by [**WhatsThisHelpID**](#whatsthishelpid) as a "What's This?" pop-up.
+以"这是什么？"弹窗形式显示由[**WhatsThisHelpID**](#whatsthishelpid)标识的主题。
 
-Syntax: *object*.**ShowWhatsThis**
+语法：*object*.**ShowWhatsThis**
 
 ### ZOrder
 
-Brings the control to the front or back of its sibling stack.
+将控件带到同级堆栈的前面或后面。
 
-Syntax: *object*.**ZOrder** [ *Position* ]
+语法：*object*.**ZOrder** [ *Position* ]
 
 *Position*
-: *optional* A member of [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants): **vbBringToFront** (0, default) or **vbSendToBack** (1).
+: *可选* [**ZOrderConstants**](/official/Reference/VBRUN/Constants/ZOrderConstants)的成员：**vbBringToFront**（0，默认）或**vbSendToBack**（1）。
 
-## Events
+## 事件
 
 ### Click
 
-Raised after [**Value**](#value) changes --- whether the user clicked the box, pressed the access key, or assigned a different value in code. **Default event.**
+在[**Value**](#value)更改后引发——无论用户点击了方框、按了访问键还是在代码中赋了不同的值。**默认事件。**
 
-Syntax: *object*\_**Click**( )
+语法：*object*\_**Click**( )
 
 ### DragDrop
 
-Raised on the destination control when a manual drag operation ends over it.
+当手动拖动操作在目标控件上结束时在目标控件上引发。
 
-Syntax: *object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**DragDrop**( *Source* **As Control**, *X* **As Single**, *Y* **As Single** )
 
 ### DragOver
 
-Raised on the control under the cursor while a manual drag operation is in progress.
+当手动拖动操作进行中时在光标下方的控件上引发。
 
-Syntax: *object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**DragOver**( *Source* **As Control**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### GotFocus
 
-Raised when the control receives the input focus.
+当控件获得输入焦点时引发。
 
-Syntax: *object*\_**GotFocus**( )
+语法：*object*\_**GotFocus**( )
 
 ### KeyDown
 
-Raised when the user presses any key while the control has focus.
+当控件有焦点时用户按下任意键时引发。
 
-Syntax: *object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyDown**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### KeyPress
 
-Raised when the user types a character that produces an ANSI keystroke.
+当用户输入产生ANSI按键的字符时引发。
 
-Syntax: *object*\_**KeyPress**( *KeyAscii* **As Integer** )
+语法：*object*\_**KeyPress**( *KeyAscii* **As Integer** )
 
 ### KeyUp
 
-Raised when the user releases a key while the control has focus.
+当控件有焦点时用户释放键时引发。
 
-Syntax: *object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
+语法：*object*\_**KeyUp**( *KeyCode* **As Integer**, *Shift* **As Integer** )
 
 ### LostFocus
 
-Raised when the control loses the input focus.
+当控件失去输入焦点时引发。
 
-Syntax: *object*\_**LostFocus**( )
+语法：*object*\_**LostFocus**( )
 
 ### MouseDown
 
-Raised when the user presses any mouse button over the control.
+当用户在控件上方按下任意鼠标按钮时引发。
 
-Syntax: *object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseDown**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseMove
 
-Raised when the cursor moves over the control.
+当光标在控件上方移动时引发。
 
-Syntax: *object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseMove**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### MouseUp
 
-Raised when the user releases a mouse button over the control.
+当用户在控件上方释放鼠标按钮时引发。
 
-Syntax: *object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**MouseUp**( *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLECompleteDrag
 
-Raised on the source control when the OLE drag operation finishes, indicating which effect (copy, move, none) the destination accepted.
+当OLE拖动操作完成时在源控件上引发，指示目标接受了哪种效果（复制、移动、无）。
 
-Syntax: *object*\_**OLECompleteDrag**( *Effect* **As Long** )
+语法：*object*\_**OLECompleteDrag**( *Effect* **As Long** )
 
 ### OLEDragDrop
 
-Raised on the destination control when the user drops data on it.
+当用户在目标控件上放置数据时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
+语法：*object*\_**OLEDragDrop**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single** )
 
 ### OLEDragOver
 
-Raised on the destination control while an OLE drag passes over it.
+当OLE拖动经过目标控件时在目标控件上引发。
 
-Syntax: *object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
+语法：*object*\_**OLEDragOver**( *Data* **As DataObject**, *Effect* **As Long**, *Button* **As Integer**, *Shift* **As Integer**, *X* **As Single**, *Y* **As Single**, *State* **As Integer** )
 
 ### OLEGiveFeedback
 
-Raised on the source control during a drag so the application can adjust the cursor or other visual feedback.
+在拖动期间在源控件上引发，以便应用程序调整光标或其他视觉反馈。
 
-Syntax: *object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
+语法：*object*\_**OLEGiveFeedback**( *Effect* **As Long**, *DefaultCursors* **As Boolean** )
 
 ### OLESetData
 
-Raised on the source control when the destination requests data in a format that was registered but not yet supplied.
+当目标请求已注册但尚未提供的格式的数据时在源控件上引发。
 
-Syntax: *object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
+语法：*object*\_**OLESetData**( *Data* **As DataObject**, *DataFormat* **As Integer** )
 
 ### OLEStartDrag
 
-Raised on the source control at the start of an OLE drag, so the application can populate the **DataObject** and choose the allowed effects.
+在OLE拖动开始时在源控件上引发，以便应用程序填充**DataObject**并选择允许的效果。
 
-Syntax: *object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
+语法：*object*\_**OLEStartDrag**( *Data* **As DataObject**, *AllowedEffects* **As Long** )
 
 ### Validate
 
-Raised when the focus is moving to another control whose [**CausesValidation**](#causesvalidation) is **True**. Setting *Cancel* to **True** keeps the focus on this control.
+当焦点移动到[**CausesValidation**](#causesvalidation)为**True**的另一个控件时引发。将*Cancel*设为**True**使焦点保留在此控件上。
 
-Syntax: *object*\_**Validate**( *Cancel* **As Boolean** )
+语法：*object*\_**Validate**( *Cancel* **As Boolean** )

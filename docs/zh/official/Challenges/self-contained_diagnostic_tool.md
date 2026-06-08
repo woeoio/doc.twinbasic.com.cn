@@ -1,5 +1,5 @@
-﻿---
-title: Self-Contained Diagnostic Tool
+---
+title: "自包含诊断工具"
 parent: Challenges
 nav_order: 1
 permalink: /Challenges/1
@@ -7,79 +7,79 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '8348a0a3-7073-477b-a979-052fa19f729d'
-  PropagateID: '8348a0a3-7073-477b-a979-052fa19f729d'
-  ReservedCode1: '1c7331ef-de96-484e-838d-e323d466861f'
-  ReservedCode2: '1c7331ef-de96-484e-838d-e323d466861f'
+  ProduceID: '2d8ce236-6705-4125-97f7-f6e5a723d1f7'
+  PropagateID: '2d8ce236-6705-4125-97f7-f6e5a723d1f7'
+  ReservedCode1: 'd9cf33ce-7266-4d92-94f7-437797a2d5fe'
+  ReservedCode2: 'd9cf33ce-7266-4d92-94f7-437797a2d5fe'
 ---
 
-# twinBASIC Monthly Challenge #1
+# twinBASIC 月度挑战 #1
 
-## Self-Contained Diagnostic Tool
+## 自包含诊断工具
 
-Build a **self-contained Windows diagnostic tool** using **twinBASIC**.
+使用 **twinBASIC** 构建一个**自包含的Windows诊断工具**。
 
-Your tool should report **useful information about the system it is running on**.
+你的工具应报告**运行所在系统的有用信息**。
 
-There is **no single correct output** - different approaches and interpretations are expected.
+**没有唯一正确的输出**——期待不同的方法和解读。
 
-## Prize
+## 奖品
 
-- £100 twinBASIC account credit
-- (non-transferable, no cash alternative, can only be used towards future twinBASIC licences)
+- £100 twinBASIC账户额度
+- （不可转让，无现金替代，仅可用于未来的twinBASIC许可证）
 
-## Requirements
+## 要求
 
-- Built using **twinBASIC**
-- Submission must be a **single** `.twinproj` **file**
-- Produces a **single Windows EXE**
-- Runs on **Windows 10 and later**
-- No admin rights required (optional enhanced output when elevated)
-- **No external dependencies**  
-  (Built-in twinBASIC packages and built-in OS / WinAPI features only)
-- Output may be **console or GUI**
+- 使用 **twinBASIC** 构建
+- 提交必须是**单个** `.twinproj` 文件
+- 生成**单个Windows EXE**
+- 在 **Windows 10 及更高版本**上运行
+- 无需管理员权限（提权时可提供增强输出）
+- **无外部依赖**
+  （仅限内置twinBASIC包和内置OS/WinAPI功能）
+- 输出可以是**控制台或GUI**
 
-## Diagnostic content
+## 诊断内容
 
-Report information from **at least three distinct categories**.
+报告**至少三个不同类别**的信息。
 
-Examples:
+示例：
 
-- OS version / build
-- CPU information
-- Memory usage
-- Disk information
-- Process information
-- Environment variables
-- System uptime
-- Locale / codepage
-- Network configuration
-- Installed runtimes (e.g. .NET)
+- 操作系统版本/构建号
+- CPU信息
+- 内存使用
+- 磁盘信息
+- 进程信息
+- 环境变量
+- 系统运行时间
+- 区域设置/代码页
+- 网络配置
+- 已安装的运行时（如.NET）
 
-## Judging
+## 评审
 
-Entries will be judged across multiple categories, including:
+参赛作品将在多个类别中评审，包括：
 
-- Usefulness of reported information
-- Performance
-- Smallest EXE size
-- Well-documented or self-documenting code
-- Interesting or clever use of APIs
-- Derived or inferred system metrics
-- Overall elegance and polish
+- 报告信息的实用性
+- 性能
+- 最小EXE体积
+- 文档完善或自文档化代码
+- 有趣或巧妙的API使用
+- 派生或推断的系统指标
+- 整体优雅度和完成度
 
-Bonus points may be awarded for:
+额外加分项：
 
-- Use of newer twinBASIC features (e.g. delegates, generics)
-- Particularly clean or insightful design <!-- style: clean is approved here -->
+- 使用较新的twinBASIC特性（如委托、泛型）
+- 特别整洁或有洞察力的设计 <!-- style: clean is approved here -->
 
-Winner selected at the **sole discretion of the twinBASIC team**.
+获奖者由**twinBASIC团队全权决定**。
 
-## Deadline
+## 截止日期
 
-Saturday 31st January 2026
+2026年1月31日（星期六）
 
-Submissions will be locked after the deadline.
+截止日期后提交将锁定。
 
 🔗: https://discord.com/channels/927638153546829845/1457060903332614357/1457060903332614357
 

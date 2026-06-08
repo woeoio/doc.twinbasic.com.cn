@@ -2,12 +2,20 @@
 title: ColumnHeaders
 parent: ListView
 permalink: /tB/Packages/WinNativeCommonCtls/ListView/ColumnHeaders
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'd3f01eeb-24c3-42cc-a725-b62802188694'
+  PropagateID: 'd3f01eeb-24c3-42cc-a725-b62802188694'
+  ReservedCode1: '184d38f0-05bd-4f0f-a971-6cd91cbc17ae'
+  ReservedCode2: '184d38f0-05bd-4f0f-a971-6cd91cbc17ae'
 ---
 
-# ColumnHeaders class
-The **ColumnHeaders** collection is the entry point for managing the columns of a [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) in **lvwReport** view. Accessed as `<listView>.ColumnHeaders`; supports adding, removing, indexed access, and `For Each` iteration.
+# ColumnHeaders 类
+**ColumnHeaders** 集合是管理 **lvwReport** 视图中 [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 列的入口。通过 `<listView>.ColumnHeaders` 访问；支持添加、删除、索引访问和 `For Each` 迭代。
 
-The class is tagged `[COMCreatable(False)]` --- user code accesses **ColumnHeaders** through the parent [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) control's [**ColumnHeaders**](/official/Reference/WinNativeCommonCtls/ListView/#columnheaders) property.
+该类标记为 `[COMCreatable(False)]` —— 用户代码通过父级 [**ListView**](/official/Reference/WinNativeCommonCtls/ListView/) 控件的 [**ColumnHeaders**](/official/Reference/WinNativeCommonCtls/ListView/#columnheaders) 属性访问 **ColumnHeaders**。
 
 ```vb
 With ListView1.ColumnHeaders
@@ -17,74 +25,74 @@ With ListView1.ColumnHeaders
 End With
 ```
 
-Properties
+属性
 ----------
 
 ### Count
 
-The number of columns in the collection. **Long**, read-only.
+集合中的列数。**Long**，只读。
 
 ### Item
 
-Returns the [**ColumnHeader**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) at the given index or with the given key. The default member, so `ListView1.ColumnHeaders("name")` works without writing `.Item("name")`.
+返回给定索引或给定键对应的 [**ColumnHeader**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader)。这是默认成员，因此 `ListView1.ColumnHeaders("name")` 无需写 `.Item("name")` 即可工作。
 
-Syntax: *object*.**Item** ( *Index* ) **As ColumnHeader**
+语法：*对象*.**Item** ( *Index* ) **As ColumnHeader**
 
 *Index*
-: A **Variant** --- either a 1-based **Long** position or a **String** key.
+: **Variant** —— 可以是从1开始的 **Long** 位置或 **String** 键。
 
-Methods
--------
+方法
+------
 
 ### Add
 
-Adds a column to the listview.
+向列表视图添加一列。
 
-Syntax: *object*.**Add** ( [ *Index* ] [, *Key* ] [, *Text* ] [, *Width* ] [, *Alignment* ] [, *Icon* ] ) **As ColumnHeader**
+语法：*对象*.**Add** ( [ *Index* ] [, *Key* ] [, *Text* ] [, *Width* ] [, *Alignment* ] [, *Icon* ] ) **As ColumnHeader**
 
 *Index*
-: *optional* A **Long** giving the 1-based position at which to insert the new column. When omitted, the column is appended.
+: *可选* **Long**，指定插入新列的从1开始的位置。省略时，列被追加到末尾。
 
 *Key*
-: *optional* A **String** name under which the column can be looked up. Keys must be unique within the collection (otherwise run-time error 35602).
+: *可选* **String**，用于查找列的名称。键在集合内必须唯一（否则将引发运行时错误35602）。
 
 *Text*
-: *optional* A **String** giving the column header label.
+: *可选* **String**，指定列标题标签。
 
 *Width*
-: *optional* A **Variant** giving the column's pixel width. When omitted, defaults to 96 pixels (scaled).
+: *可选* **Variant**，指定列的像素宽度。省略时默认为96像素（经过缩放）。
 
 *Alignment*
-: *optional* A member of [**ListColumnAlignmentConstants**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#listcolumnalignmentconstants). Default: **lvwColumnLeft**. Attempting to add a non-left-aligned column at position `1` raises run-time error 5.
+: *可选* [**ListColumnAlignmentConstants**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#listcolumnalignmentconstants) 的成员。默认：**lvwColumnLeft**。尝试在位置 `1` 添加非左对齐的列将引发运行时错误5。
 
 *Icon*
-: *optional* A **Variant** identifying the header icon --- either a 1-based **Long** index into [**ListView.ColumnHeaderIcons**](/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons), or a **String** key.
+: *可选* **Variant**，标识标题图标 —— 可以是 [**ListView.ColumnHeaderIcons**](/official/Reference/WinNativeCommonCtls/ListView/#columnheadericons) 中从1开始的 **Long** 索引，或 **String** 键。
 
-Returns the newly-created [**ColumnHeader**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader).
+返回新创建的 [**ColumnHeader**](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader)。
 
 ### Clear
 
-Removes every column from the listview.
+从列表视图中移除所有列。
 
-Syntax: *object*.**Clear**
+语法：*对象*.**Clear**
 
 ### Remove
 
-Removes a column from the listview.
+从列表视图中移除一列。
 
-Syntax: *object*.**Remove** ( *Index* )
+语法：*对象*.**Remove** ( *Index* )
 
 *Index*
-: A **Variant** --- either a 1-based **Long** position or a **String** key.
+: **Variant** —— 可以是从1开始的 **Long** 位置或 **String** 键。
 
 ### _NewEnum
 
-Returns the enumerator used by `For Each col In listView.ColumnHeaders`. Iterates columns in **Index** order.
+返回 `For Each col In listView.ColumnHeaders` 使用的枚举器。按 **Index** 顺序迭代列。
 
-Syntax: *object*.**_NewEnum** **As stdole.IUnknown**
+语法：*对象*.**_NewEnum** **As stdole.IUnknown**
 
-## See Also
+## 另见
 
-- [ListView](/official/Reference/WinNativeCommonCtls/ListView/) -- the parent control
-- [ColumnHeader](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) -- a single column header
-- [ListColumnAlignmentConstants](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#listcolumnalignmentconstants) -- the **Alignment** values
+- [ListView](/official/Reference/WinNativeCommonCtls/ListView/) —— 父控件
+- [ColumnHeader](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader) —— 单个列标题
+- [ListColumnAlignmentConstants](/official/Reference/WinNativeCommonCtls/ListView/ColumnHeader#listcolumnalignmentconstants) —— **Alignment** 取值

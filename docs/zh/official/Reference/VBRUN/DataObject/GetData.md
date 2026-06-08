@@ -1,3 +1,14 @@
+﻿---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'a764a8dc-0483-4116-9122-9509af3d5939'
+  PropagateID: 'a764a8dc-0483-4116-9122-9509af3d5939'
+  ReservedCode1: 'ed47c227-8306-46d5-8159-8b588b552352'
+  ReservedCode2: 'ed47c227-8306-46d5-8159-8b588b552352'
+---
+
 ---
 title: GetData
 parent: DataObject
@@ -5,19 +16,19 @@ permalink: /tB/Packages/VBRUN/DataObject/GetData
 ---
 # GetData
 
-Returns the value previously stored in the **DataObject** under the given clipboard format, as a **Variant**.
+返回先前以给定剪贴板格式存储在**DataObject**中的值，类型为**Variant**。
 
-Syntax: *object*.**GetData(** *Format* **)**
+语法：*object*.**GetData(** *Format* **)**
 
 *object*
-: *required* An object expression that evaluates to a **DataObject**.
+: *必需* 求值为**DataObject**的对象表达式。
 
 *Format*
-: *required* A **ClipboardConstants** value identifying the format to read back --- for example `vbCFText`, `vbCFUnicodeText`, `vbCFBitmap`. If the **DataObject** does not contain data in *Format*, the result is **Empty**; check first with [**GetFormat**](/official/Reference/VBRUN/DataObject/GetFormat) when the format may not be present.
+: *必需* 标识要读回格式的**ClipboardConstants**值——例如`vbCFText`、`vbCFUnicodeText`、`vbCFBitmap`。如果**DataObject**不包含*Format*的数据，结果为**Empty**；当格式可能不存在时，请先使用[**GetFormat**](/official/Reference/VBRUN/DataObject/GetFormat)检查。
 
-The concrete subtype of the returned **Variant** depends on *Format*: text formats yield a **String**, `vbCFBitmap` yields an **stdole.IPictureDisp**, `vbCFFiles` yields a path or a path collection, and so on. To pull data out by a textual format name rather than a numeric clipboard constant, use [**GetDataByName**](/official/Reference/VBRUN/DataObject/GetDataByName).
+返回的**Variant**的具体子类型取决于*Format*：文本格式产生**String**，`vbCFBitmap`产生**stdole.IPictureDisp**，`vbCFFiles`产生路径或路径集合，等等。要按文本格式名称而非数字剪贴板常量提取数据，请使用[**GetDataByName**](/official/Reference/VBRUN/DataObject/GetDataByName)。
 
-### Example
+### 示例
 
 ```vb
 If Data.GetFormat(vbCFText) Then
@@ -27,9 +38,9 @@ If Data.GetFormat(vbCFText) Then
 End If
 ```
 
-### See Also
+### 另见
 
-- [GetDataByName](/official/Reference/VBRUN/DataObject/GetDataByName) method
-- [GetFormat](/official/Reference/VBRUN/DataObject/GetFormat) method
-- [SetData](/official/Reference/VBRUN/DataObject/SetData) method
-- [AvailableFormats](/official/Reference/VBRUN/DataObject/AvailableFormats) method
+- [GetDataByName](/official/Reference/VBRUN/DataObject/GetDataByName) 方法
+- [GetFormat](/official/Reference/VBRUN/DataObject/GetFormat) 方法
+- [SetData](/official/Reference/VBRUN/DataObject/SetData) 方法
+- [AvailableFormats](/official/Reference/VBRUN/DataObject/AvailableFormats) 方法

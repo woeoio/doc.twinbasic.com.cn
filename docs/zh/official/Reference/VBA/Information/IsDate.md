@@ -2,21 +2,30 @@
 title: IsDate
 parent: Information Module
 permalink: /tB/Modules/Information/IsDate
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '459b089e-c29b-4aaa-91fb-36c2ede54d5e'
+  PropagateID: '459b089e-c29b-4aaa-91fb-36c2ede54d5e'
+  ReservedCode1: '98f7f87a-e05c-42f2-ba85-0458987a649f'
+  ReservedCode2: '98f7f87a-e05c-42f2-ba85-0458987a649f'
 ---
+
 # IsDate
 
-Returns **True** if the expression is a date or is recognizable as a valid date or time; otherwise, **False**.
+如果表达式是日期或可识别为有效日期或时间，则返回**True**；否则返回**False**。
 
-Syntax: **IsDate(** *expression* **)**
+语法：**IsDate(** *expression* **)**
 
 *expression*
-: *required* A **Variant** containing a date expression, or a string expression recognizable as a date or time.
+: *必需* **Variant**，包含日期表达式，或可识别为日期或时间的字符串表达式。
 
-The range of valid dates is January 1, 100 A.D. through December 31, 9999 A.D.
+有效日期的范围为公元100年1月1日至公元9999年12月31日。
 
-### Example
+### 示例
 
-This example uses **IsDate** to determine whether an expression is recognized as a date or time value.
+本示例使用**IsDate**确定表达式是否可识别为日期或时间值。
 
 ```vb
 Dim MyVar As Variant
@@ -34,7 +43,7 @@ MyVar = "04.28.14"                    ' Valid time format on some locales.
 MyCheck = IsDate(MyVar)               ' True.
 ```
 
-### See Also
+### 另请参阅
 
-- [CDate](/official/Reference/VBA/Conversion/CDate) function
-- [DateValue](/official/Reference/VBA/DateTime/DateValue) function
+- [CDate](/official/Reference/VBA/Conversion/CDate)函数
+- [DateValue](/official/Reference/VBA/DateTime/DateValue)函数

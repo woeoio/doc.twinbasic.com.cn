@@ -2,37 +2,46 @@
 title: GetObject
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/GetObject
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '380ac443-0135-4938-9aaa-2a936dff9fb9'
+  PropagateID: '380ac443-0135-4938-9aaa-2a936dff9fb9'
+  ReservedCode1: '3cfc9a68-7124-4446-a760-cce58cbf288d'
+  ReservedCode2: '3cfc9a68-7124-4446-a760-cce58cbf288d'
 ---
+
 # GetObject
 
-Returns a reference to a COM/Automation object --- either an already-running instance, or one bound to a file.
+返回对COM/Automation对象的引用——可以是已运行的实例，也可以是绑定到文件的实例。
 
-Syntax: **GetObject(** [ *pathname* ] [ **,** *class* ] **)**
+语法：**GetObject(** [ *pathname* ] [ **,** *class* ] **)**
 
 *pathname*
-: *optional* **Variant** (**String**). The full path and name of a file containing the object to retrieve. If *pathname* is omitted, *class* is required.
+: *可选* **Variant**（**String**）。包含要检索对象的文件的完整路径和名称。如果省略*pathname*，则需要*class*。
 
 *class*
-: *optional* **Variant** (**String**). The class of the object to retrieve, in the form *appname*.*objecttype* --- for example, `"Excel.Application"`.
+: *可选* **Variant**（**String**）。要检索的对象的类，格式为*appname*.*objecttype*——例如`"Excel.Application"`。
 
-To assign the returned reference to a variable, use **Set**:
+要将返回的引用赋给变量，请使用**Set**：
 
 ```vb
 Dim CADObject As Object
 Set CADObject = GetObject("C:\CAD\SCHEMA.CAD")
 ```
 
-When the call is made with a *pathname*, the application registered for that file is started (if it isn't already running), and the object inside the file is activated.
+使用*pathname*调用时，为该文件注册的应用程序被启动（如果尚未运行），并激活文件内的对象。
 
-If *pathname* is a zero-length string (`""`), **GetObject** returns a *new* instance of the type named by *class*. If *pathname* is omitted altogether, **GetObject** attempts to attach to a *currently running* instance of the type named by *class*; if no such instance exists, a run-time error occurs.
+如果*pathname*为零长度字符串(`""`)，**GetObject**返回*class*指定类型的*新*实例。如果完全省略*pathname*，**GetObject**尝试附加到*class*指定类型的*当前运行中的*实例；如果没有这样的实例，则产生运行时错误。
 
-Some applications support activating a *part* of a file. Append `!` and an application-specific identifier to the file name --- for example, the third layer of a CAD drawing:
+某些应用程序支持激活文件的*部分*。在文件名后附加`!`和应用程序特定的标识符——例如CAD绘图的第三层：
 
 ```vb
 Set LayerObject = GetObject("C:\CAD\SCHEMA.CAD!Layer3")
 ```
 
-When *class* is not specified, the operating system determines the application to start and the object to activate based on the supplied file name. Some files, however, may support more than one class of object. To be specific, supply both arguments:
+当未指定*class*时，操作系统根据提供的文件名确定要启动的应用程序和要激活的对象。但是，某些文件可能支持不止一种对象类。要明确指定，请提供两个参数：
 
 ```vb
 Dim MyObject As Object
@@ -40,14 +49,14 @@ Set MyObject = GetObject("C:\Drawings\Sample.drw", "Figment.Drawing")
 ```
 
 ::: info
-**GetObject** attaches to a current instance of the object, or creates the object with a file already loaded. When there is no current instance and the object should not be started with a file loaded, [**CreateObject**](/official/Reference/VBA/Interaction/CreateObject) creates a new instance.
+**GetObject**附加到对象的当前实例，或创建已加载文件的对象。当没有当前实例且不应以加载文件的方式启动对象时，[**CreateObject**](/official/Reference/VBA/Interaction/CreateObject)创建新实例。
 :::
 
-For an object registered as single-instance, **GetObject** with the zero-length-string syntax always returns the same instance, and the form with *pathname* omitted causes an error.
+对于注册为单实例的对象，使用零长度字符串语法的**GetObject**始终返回同一实例，省略*pathname*的形式会导致错误。
 
-### Example
+### 示例
 
-This example uses **GetObject** to attach to a Microsoft Excel **Worksheet** opened from a file. The first call (without *pathname*) tries to attach to a running Excel; the second call opens the file. If Excel was not already running when the script started, it is closed at the end via **Application.Quit**.
+本示例使用**GetObject**从文件附加到Microsoft Excel **Worksheet**。第一次调用（不带*pathname*）尝试附加到正在运行的Excel；第二次调用打开文件。如果脚本启动时Excel尚未运行，则在最后通过**Application.Quit**关闭。
 
 ```vb
 Dim MyXl As Object
@@ -68,6 +77,6 @@ If ExcelWasNotRunning Then MyXl.Application.Quit
 Set MyXl = Nothing
 ```
 
-### See Also
+### 另请参阅
 
-- [CreateObject](/official/Reference/VBA/Interaction/CreateObject) function
+- [CreateObject](/official/Reference/VBA/Interaction/CreateObject)函数

@@ -1,14 +1,14 @@
----
+﻿---
 title: Folder
-parent: tbIDE Package
+parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/Folder
 ---
 
-# Folder class
+# Folder 类
 
-A folder inside the IDE's virtual file system. Extends [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem) with child-enumeration capability --- [**Count**](#count), [**Item**](#item), and standard **For Each** iteration that yields each child as a [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem) (use `TypeOf` to discriminate folders from files).
+IDE 虚拟文件系统中的文件夹。扩展 [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)，增加了子项枚举能力——[**Count**](#count)、[**Item**](#item)，以及标准的 **For Each** 迭代，将每个子项作为 [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem) 产出（使用 `TypeOf` 区分文件夹和文件）。
 
-A **Folder** also inherits the universal [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem) members --- [**Name**](/official/Reference/tbIDE/FileSystemItem#name), [**Path**](/official/Reference/tbIDE/FileSystemItem#path), [**Type**](/official/Reference/tbIDE/FileSystemItem#type), [**Parent**](/official/Reference/tbIDE/FileSystemItem#parent). The most common entry point is [**Host.CurrentProject.RootFolder**](/official/Reference/tbIDE/Project#rootfolder), and the most common operation is a **For Each** recursive traversal.
+**Folder** 还继承了通用的 [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem) 成员——[**Name**](/official/Reference/tbIDE/FileSystemItem#name)、[**Path**](/official/Reference/tbIDE/FileSystemItem#path)、[**Type**](/official/Reference/tbIDE/FileSystemItem#type)、[**Parent**](/official/Reference/tbIDE/FileSystemItem#parent)。最常见的入口点是 [**Host.CurrentProject.RootFolder**](/official/Reference/tbIDE/Project#rootfolder)，最常见的操作是 **For Each** 递归遍历。
 
 ```vb
 Private Sub WalkAllFiles(ByVal folder As Folder)
@@ -18,32 +18,32 @@ Private Sub WalkAllFiles(ByVal folder As Folder)
             WalkAllFiles item
         Else
             Dim file As File = item
-            ' …process the file
+            ' …处理文件
         End If
     Next
 End Sub
 ```
 
 ::: important
-The twinBASIC IDE is multi-threaded. The same folder can change while an addin holds a reference to it --- files arrive, files disappear, indices renumber. The supported way to traverse a folder is **For Each**; index-based access through [**Count**](#count) / [**Item**](#item) races against the IDE's own threads and will sometimes miss or duplicate entries. Always prefer **For Each** for traversal.
+twinBASIC IDE 是多线程的。当插件持有对文件夹的引用时，同一文件夹可能发生变化——文件到达、文件消失、索引重新编号。遍历文件夹的支持方式是 **For Each**；通过 [**Count**](#count) / [**Item**](#item) 的基于索引的访问与 IDE 自身线程竞争，有时会遗漏或重复条目。遍历时始终优先使用 **For Each**。
 :::
 
 
-## Properties
+## 属性
 
 ### Count
 
-Number of items currently in the folder. **Long**, read-only.
+文件夹中当前的项数。**Long**，只读。
 
 ::: important
-The value can change between two reads --- the IDE is multi-threaded. **Do not** use this as a `For i = 0 To Count - 1` loop bound; use **For Each** instead.
+该值可能在两次读取之间发生变化——IDE 是多线程的。**不要**将其用作 `For i = 0 To Count - 1` 的循环边界；应使用 **For Each**。
 :::
 
 ### IsPackagesFolder
 
-**True** if this folder is the project's special `Packages` folder (the one that contains every referenced package's source tree). **Boolean**, read-only.
+如果此文件夹是项目的特殊 `Packages` 文件夹（包含每个引用包的源代码树），则为 **True**。**Boolean**，只读。
 
-Useful when traversing the project for source-search purposes --- an addin that searches user code will usually want to *skip* the package sources:
+在为源代码搜索而遍历项目时很有用——搜索用户代码的插件通常希望*跳过*包源代码：
 
 ```vb
 If folder.IsPackagesFolder And Not searchInsidePackages Then Exit Sub
@@ -51,13 +51,13 @@ If folder.IsPackagesFolder And Not searchInsidePackages Then Exit Sub
 
 ### Item
 
-Indexed or named access to a child item. **DefaultMember** --- so `folder(0)` is equivalent to `folder.Item(0)`, and `folder("MainModule.twin")` is equivalent to `folder.Item("MainModule.twin")`.
+子项的索引或命名访问。**DefaultMember**——因此 `folder(0)` 等同于 `folder.Item(0)`，`folder("MainModule.twin")` 等同于 `folder.Item("MainModule.twin")`。
 
-Syntax: *folder*( *IndexOrName* ) **As** [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)
+语法：*folder*( *IndexOrName* ) **As** [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)
 
 *IndexOrName*
-: A **Variant** --- either a zero-based **Long** index or a **String** child name.
+: 一个 **Variant** —— 基于 0 的 **Long** 索引或 **String** 子项名称。
 
 ::: important
-Numeric indices race against the IDE's own threads --- the item at index `n` may have changed identity by the time the call returns. Named lookup is safer; **For Each** traversal is safer still.
+数字索引与 IDE 自身线程竞争——索引 `n` 处的项在调用返回时可能已改变身份。命名查找更安全；**For Each** 遍历更加安全。
 :::

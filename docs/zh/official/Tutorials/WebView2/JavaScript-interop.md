@@ -1,24 +1,31 @@
 ---
-title: JavaScript interop
+title: "JavaScript互操作"
 parent: WebView2
 nav_order: 6
 permalink: /Tutorials/WebView2/JavaScript-Interop
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '8d72bbf1-c43c-4f1c-96da-84add91e99ae'
+  PropagateID: '8d72bbf1-c43c-4f1c-96da-84add91e99ae'
+  ReservedCode1: 'aa5640ae-d4ca-4b58-a39a-77478efd21ab'
+  ReservedCode2: 'aa5640ae-d4ca-4b58-a39a-77478efd21ab'
 ---
 
+# JavaScript互操作
 
-# JavaScript interop
+[**WebView2**](/official/Reference/WebView2/WebView2/)控件在twinBASIC和页面中运行的JavaScript之间提供三座互补的桥：
 
-The [**WebView2**](/official/Reference/WebView2/WebView2/) control offers three complementary bridges between twinBASIC and the JavaScript running in the page:
+1. **宿主对象** —— 将BASIC COM对象发布到页面，使JavaScript可以像调用任何其他JS对象一样调用其方法和读取其属性。
+2. **消息** —— 在两个方向推送值（字符串、数字、数组……）并在另一侧监听。
+3. **脚本调用** —— 从BASIC调用命名的JavaScript函数，并（可选）等待其返回值。
 
-1. **Host objects** --- publish a BASIC COM object to the page so JavaScript can call its methods and read its properties as if it were any other JS object.
-2. **Messages** --- push a value (string, number, array, …) in either direction and listen for it on the other side.
-3. **Scripted calls** --- call a named JavaScript function from BASIC and (optionally) wait for its return value.
+本教程涵盖所有三种，每个BASIC端旁边显示匹配的JavaScript端。工作代码来自*示例0——WebView2示例*（窗体*示例2*）。
 
-This tutorial covers all three, with the matching JavaScript side shown next to each BASIC side. The worked code comes from *Sample 0 --- WebView2 Examples* (form *Example 2*).
+## 桥1——宿主对象
 
-## Bridge 1 --- Host objects
-
-[**AddObject**](/official/Reference/WebView2/WebView2/#addobject) publishes a BASIC class instance under `chrome.webview.hostObjects.<Name>`. Define a small class with public methods or properties:
+[**AddObject**](/official/Reference/WebView2/WebView2/#addobject)将BASIC类实例发布到 `chrome.webview.hostObjects.<Name>`。定义一个带有公共方法或属性的小类：
 
 ```vb
 Class MyCalculator
@@ -28,7 +35,7 @@ Class MyCalculator
 End Class
 ```
 
-Register it once the control is ready:
+控件就绪后注册它：
 
 ```vb
 Private Sub WebView_Ready() Handles WebView.Ready
@@ -36,7 +43,7 @@ Private Sub WebView_Ready() Handles WebView.Ready
 End Sub
 ```
 
-JavaScript can now call into it --- but the proxy is asynchronous, so the call must be `await`ed inside an `async` function:
+JavaScript现在可以调用它——但代理是异步的，因此调用必须在 `async` 函数内 `await`：
 
 ```js
 async function testHostCalculator() {
@@ -46,7 +53,7 @@ async function testHostCalculator() {
 }
 ```
 
-To trigger the JS function from BASIC, call [**ExecuteScript**](/official/Reference/WebView2/WebView2/#executescript):
+要从BASIC触发JS函数，调用[**ExecuteScript**](/official/Reference/WebView2/WebView2/#executescript)：
 
 ```vb
 Private Sub btnTest_Click() Handles btnTest.Click
@@ -54,15 +61,15 @@ Private Sub btnTest_Click() Handles btnTest.Click
 End Sub
 ```
 
-Requires [**AreHostObjectsAllowed**](/official/Reference/WebView2/WebView2/#arehostobjectsallowed) (default **True**). See [Re-entrancy](/official/Tutorials/WebView2/Re-entrancy) for the trade-off between synchronous calls (default) and the **UseDeferredInvoke:=True** variant.
+需要[**AreHostObjectsAllowed**](/official/Reference/WebView2/WebView2/#arehostobjectsallowed)（默认**True**）。参见[重入性](/official/Tutorials/WebView2/Re-entrancy)了解同步调用（默认）和**UseDeferredInvoke:=True**变体之间的权衡。
 
-## Bridge 2 --- Messages
+## 桥2——消息
 
-Messages are values that travel in either direction. Use them for notifications and ad-hoc payloads where you don't want to define a method signature ahead of time.
+消息是在两个方向传递的值。当你不希望提前定义方法签名时，用于通知和临时数据负载。
 
-### BASIC → page
+### BASIC → 页面
 
-[**PostWebMessage**](/official/Reference/WebView2/WebView2/#postwebmessage) sends a value to the page; the page receives it through a `message` event on `window.chrome.webview`:
+[**PostWebMessage**](/official/Reference/WebView2/WebView2/#postwebmessage)向页面发送值；页面通过 `window.chrome.webview` 上的 `message` 事件接收它：
 
 ```vb
 WebView.PostWebMessage "Hello from twinBASIC!"
@@ -74,11 +81,11 @@ window.chrome.webview.addEventListener('message', (e) => {
 });
 ```
 
-Strings arrive as JavaScript strings; every other type is JSON-encoded before transit. If you already have serialised JSON, [**PostWebMessageJSON**](/official/Reference/WebView2/WebView2/#postwebmessagejson) sends it through verbatim.
+字符串以JavaScript字符串到达；其他所有类型在传输前进行JSON编码。如果你已经有序列化的JSON，[**PostWebMessageJSON**](/official/Reference/WebView2/WebView2/#postwebmessagejson)会原样发送。
 
-### Page → BASIC
+### 页面 → BASIC
 
-The page calls `window.chrome.webview.postMessage(value)`; BASIC receives it as the [**JsMessage**](/official/Reference/WebView2/WebView2/#jsmessage) event:
+页面调用 `window.chrome.webview.postMessage(value)`；BASIC通过[**JsMessage**](/official/Reference/WebView2/WebView2/#jsmessage)事件接收它：
 
 ```js
 function sendHostAMessage() {
@@ -93,21 +100,21 @@ Private Sub WebView_JsMessage(ByVal Message As Variant) _
 End Sub
 ```
 
-Both directions require [**IsWebMessageEnabled**](/official/Reference/WebView2/WebView2/#iswebmessageenabled) (default **True**).
+两个方向都需要[**IsWebMessageEnabled**](/official/Reference/WebView2/WebView2/#iswebmessageenabled)（默认**True**）。
 
-## Bridge 3 --- Scripted calls
+## 桥3——脚本调用
 
-When the page exposes named JS functions, BASIC can call them directly. There are three variants:
+当页面暴露命名的JS函数时，BASIC可以直接调用它们。有三种变体：
 
-| Method                                                                            | Returns                                          | Use it when                                                       |
+| 方法                                                                            | 返回值                                          | 使用场景                                                       |
 |-----------------------------------------------------------------------------------|--------------------------------------------------|-------------------------------------------------------------------|
-| [**JsRun**](/official/Reference/WebView2/WebView2/#jsrun)                           | **Variant**, synchronously                       | You need the result inline and the JS is quick.                   |
-| [**JsRunAsync**](/official/Reference/WebView2/WebView2/#jsrunasync)                 | **LongLong** token; result via `JsAsyncResult`   | The JS may take a while and you don't want to block the UI.       |
-| [**ExecuteScript**](/official/Reference/WebView2/WebView2/#executescript)           | nothing (fire-and-forget)                        | You just want to trigger something --- no return value needed.      |
+| [**JsRun**](/official/Reference/WebView2/WebView2/#jsrun)                           | **Variant**，同步                       | 你需要内联结果且JS很快。                   |
+| [**JsRunAsync**](/official/Reference/WebView2/WebView2/#jsrunasync)                 | **LongLong**令牌；结果通过 `JsAsyncResult`   | JS可能需要一段时间，你不想阻塞UI。       |
+| [**ExecuteScript**](/official/Reference/WebView2/WebView2/#executescript)           | 无（即发即弃）                        | 你只想触发某些操作——不需要返回值。      |
 
-### JsRun (synchronous)
+### JsRun（同步）
 
-Given a page-side function:
+给定一个页面端函数：
 
 ```js
 function multiplyTheseNumbers(a, b) {
@@ -115,16 +122,16 @@ function multiplyTheseNumbers(a, b) {
 }
 ```
 
-BASIC can call it and read the result on the same line:
+BASIC可以调用它并在同一行读取结果：
 
 ```vb
 Dim product As Long = WebView.JsRun("multiplyTheseNumbers", 5, 6)
 Debug.Print product   ' 30
 ```
 
-The call blocks for up to [**JsCallTimeOutSeconds**](/official/Reference/WebView2/WebView2/#jscalltimeoutseconds) (default 0 --- wait forever).
+调用最多阻塞[**JsCallTimeOutSeconds**](/official/Reference/WebView2/WebView2/#jscalltimeoutseconds)（默认0——永远等待）。
 
-### JsRunAsync (asynchronous)
+### JsRunAsync（异步）
 
 ```vb
 Private Sub btnRun_Click() Handles btnRun.Click
@@ -142,28 +149,28 @@ Private Sub WebView_JsAsyncResult( _
 End Sub
 ```
 
-The return value of [**JsRunAsync**](/official/Reference/WebView2/WebView2/#jsrunasync) is a token; the [**JsAsyncResult**](/official/Reference/WebView2/WebView2/#jsasyncresult) event includes the same token so a single handler can demultiplex multiple in-flight calls.
+[**JsRunAsync**](/official/Reference/WebView2/WebView2/#jsrunasync)的返回值是一个令牌；[**JsAsyncResult**](/official/Reference/WebView2/WebView2/#jsasyncresult)事件包含相同的令牌，因此单个处理程序可以解复用多个进行中的调用。
 
-### ExecuteScript (fire-and-forget)
+### ExecuteScript（即发即弃）
 
 ```vb
 WebView.ExecuteScript "startTimer()"
 ```
 
-No return value, no event. The simplest way to nudge the page into doing something.
+无返回值，无事件。推动页面执行某些操作的最简单方式。
 
-## Re-entrancy
+## 重入性
 
-The Edge runtime forbids host code from calling back into the WebView2 object model while a host-object method is still executing --- re-entry deadlocks the browser process. The control protects most events by deferring them through the BASIC message loop ([**UseDeferredEvents**](/official/Reference/WebView2/WebView2/#usedeferredevents)), but host-object method calls are synchronous by default.
+Edge运行时禁止宿主代码在宿主对象方法仍在执行时回调WebView2对象模型——重入会使浏览器进程死锁。控件通过BASIC消息循环延迟大多数事件来保护它们（[**UseDeferredEvents**](/official/Reference/WebView2/WebView2/#usedeferredevents)），但宿主对象方法调用默认是同步的。
 
-The full discussion lives in the [Re-entrancy tutorial](/official/Tutorials/WebView2/Re-entrancy); the short summary is:
+完整讨论在[重入性教程](/official/Tutorials/WebView2/Re-entrancy)中；简短概述：
 
-- **`AddObject(name, obj)`** --- synchronous calls; the page can read return values but the BASIC method **must not** call back into the WebView2 control.
-- **`AddObject(name, obj, UseDeferredInvoke:=True)`** --- asynchronous calls; the BASIC method is free to call any WebView2 member but the page cannot read a return value.
+- **`AddObject(name, obj)`** —— 同步调用；页面可以读取返回值，但BASIC方法**绝不能**回调WebView2控件。
+- **`AddObject(name, obj, UseDeferredInvoke:=True)`** —— 异步调用；BASIC方法可以自由调用任何WebView2成员，但页面无法读取返回值。
 
-## Where next
+## 下一步
 
-- [Hosting local web assets](/official/Tutorials/WebView2/Hosting-local-web-assets) -- bundle and serve the JavaScript that talks to the host.
-- [Driving Monaco from twinBASIC](/official/Tutorials/WebView2/Driving-Monaco) -- a full case study using all three bridges.
-- [Re-entrancy](/official/Tutorials/WebView2/Re-entrancy) -- the deeper story behind **UseDeferredInvoke**.
-- [WebView2 reference](/official/Reference/WebView2/WebView2/) -- every property, method, and event.
+- [托管本地Web资源](/official/Tutorials/WebView2/Hosting-local-web-assets) —— 打包并提供与宿主通信的JavaScript。
+- [从twinBASIC驱动Monaco](/official/Tutorials/WebView2/Driving-Monaco) —— 使用所有三座桥的完整案例研究。
+- [重入性](/official/Tutorials/WebView2/Re-entrancy) —— **UseDeferredInvoke**背后的深入故事。
+- [WebView2参考](/official/Reference/WebView2/WebView2/) —— 每个属性、方法和事件。

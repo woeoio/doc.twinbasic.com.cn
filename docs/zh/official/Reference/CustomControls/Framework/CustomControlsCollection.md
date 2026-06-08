@@ -1,11 +1,19 @@
----
+﻿---
 title: CustomControlsCollection
 parent: Framework
 permalink: /tB/Packages/CustomControls/Framework/CustomControlsCollection
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'c907b6f0-a81d-4a0f-9bf8-e80101de4f6e'
+  PropagateID: 'c907b6f0-a81d-4a0f-9bf8-e80101de4f6e'
+  ReservedCode1: '3181d6a0-826d-458e-9e62-05874ffcc25c'
+  ReservedCode2: '3181d6a0-826d-458e-9e62-05874ffcc25c'
 ---
 
-# CustomControlsCollection class
-The collection of controls hosted on a custom form. Accessed as the **Controls** property of a [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/). Supports indexed access by integer or name, enumeration with **For Each**, and runtime add / remove of controls.
+# CustomControlsCollection 类
+自定义窗体上承载的控件集合。作为 [**WaynesForm**](/official/Reference/CustomControls/WaynesForm/) 的 **Controls** 属性访问。支持按整数或名称的索引访问、**For Each** 枚举以及运行时添加/删除控件。
 
 ```vb
 Dim ctl As Object
@@ -14,54 +22,54 @@ For Each ctl In MyForm.Controls
 Next
 ```
 
-## Properties
+## 属性
 
 ### Count
 
-The number of controls in the collection. **Long**. Read-only.
+集合中的控件数量。**Long**。只读。
 
-Syntax: *object*.**Count**
+语法：*object*.**Count**
 
 ### Item
 
-Returns the control at the given index or with the given name. The **Default property** --- the **Controls** ( *…* ) shorthand calls **Item**.
+返回给定索引或给定名称的控件。**默认属性**——**Controls** ( *…* ) 简写调用 **Item**。
 
-Syntax: *object*.**Item** ( *IndexOrName* ) **As Object**
+语法：*object*.**Item** ( *IndexOrName* ) **As Object**
 
 *IndexOrName*
-: *required* A **Variant** that is either a **Long** zero-based index or a **String** matching the control's [**Name**](/official/Reference/CustomControls/#controls).
+: *必需* **Variant**，为 **Long** 零基索引或与控件 [**Name**](/official/Reference/CustomControls/#controls) 匹配的 **String**。
 
-## Methods
+## 方法
 
 ### Add
 
-Adds a new control to the collection by class **ProgID**, gives it a name, and attaches it to a container.
+按类 **ProgID** 向集合添加新控件，为其命名并附加到容器。
 
-Syntax: *object*.**Add** ( *ProgId*, *ControlName*, *Container* ) **As Object**
+语法：*object*.**Add** ( *ProgId*, *ControlName*, *Container* ) **As Object**
 
 *ProgId*
-: *required* A **String** holding the class **ProgID** of the control to create.
+: *必需* **String**，包含要创建控件的类 **ProgID**。
 
 *ControlName*
-: *required* A **String** giving the **Name** to assign to the new control.
+: *必需* **String**，分配给新控件的 **Name**。
 
 *Container*
-: *required* An **Object** reference to the form, frame, or other container that will host the new control.
+: *必需* **Object** 引用，指向将承载新控件的窗体、框架或其他容器。
 
-The newly-created control is returned, typed as **Object**.
+返回新创建的控件，类型为 **Object**。
 
 ### Remove
 
-Removes the control at the given index or with the given name from the collection.
+从集合中移除给定索引或给定名称的控件。
 
-Syntax: *object*.**Remove** *IndexOrName*
+语法：*object*.**Remove** *IndexOrName*
 
 *IndexOrName*
-: *required* A **Variant** that is either a **Long** zero-based index or a **String** matching the control's [**Name**](/official/Reference/CustomControls/#controls).
+: *必需* **Variant**，为 **Long** 零基索引或与控件 [**Name**](/official/Reference/CustomControls/#controls) 匹配的 **String**。
 
-## Iteration
+## 迭代
 
-A `For Each` loop over the collection produces every hosted control in turn:
+对集合的 `For Each` 循环依次产生每个承载的控件：
 
 ```vb
 Dim ctl As Object
@@ -70,4 +78,4 @@ For Each ctl In MyForm.Controls
 Next
 ```
 
-The hidden member that powers this is `_NewEnum`; application code does not call it directly.
+支持此功能的隐藏成员是 `_NewEnum`；应用程序代码不会直接调用它。

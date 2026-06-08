@@ -6,27 +6,27 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '060cae57-92ab-43b8-a4d2-e333eebc820c'
-  PropagateID: '060cae57-92ab-43b8-a4d2-e333eebc820c'
-  ReservedCode1: 'b1b05775-34bf-4bb2-8a3b-a156907ec329'
-  ReservedCode2: 'b1b05775-34bf-4bb2-8a3b-a156907ec329'
+  ProduceID: '792a2d37-a70c-4ace-befa-a1e4067c3ae8'
+  PropagateID: '792a2d37-a70c-4ace-befa-a1e4067c3ae8'
+  ReservedCode1: 'c68facc5-897e-41ca-9f25-8f1194d34613'
+  ReservedCode2: 'c68facc5-897e-41ca-9f25-8f1194d34613'
 ---
 
 # vbaCastObj
 
-Returns an object reinterpreted as another COM interface, given its IID, or **Nothing** if the object does not implement that interface.
+根据给定的IID，返回重新解释为另一个COM接口的对象，如果对象未实现该接口则返回**Nothing**。
 
-Syntax: **vbaCastObj(** *Obj* **,** *IID* **)** **As IUnknown**
+语法：**vbaCastObj(** *Obj* **,** *IID* **)** **As IUnknown**
 
 *Obj*
-: *required* **stdole.IUnknown**. The object to cast.
+: *必需* **stdole.IUnknown**。要转换的对象。
 
 *IID*
-: *required* **Any**. The interface ID to query for --- accepted as a 16-byte **GUID** structure or as a **String** in registry format (`{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}`).
+: *必需* **Any**。要查询的接口ID——接受为16字节的**GUID**结构或注册表格式的**String**（`{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}`）。
 
-A direct wrapper over **IUnknown::QueryInterface**: the object is asked whether it implements the requested interface, and if so a reference to that interface is returned. If not, **Nothing** is returned.
+这是**IUnknown::QueryInterface**的直接封装：询问对象是否实现了请求的接口，如果实现了则返回该接口的引用。如果没有，则返回**Nothing**。
 
-### Example
+### 示例
 
 ```vb
 Const IID_IPicture As String = "{7BF80980-BF32-101A-8BBB-00AA00300CAB}"
@@ -38,9 +38,7 @@ If Not AsPicture Is Nothing Then
 End If
 ```
 
-### See Also
+### 另请参阅
 
-- [ObjPtr](/official/Reference/VBA/Information/ObjPtr) function
-- [CreateGUID](/official/Reference/VBA/HiddenModule/CreateGUID) function
-
-> AI生成
+- [ObjPtr](/official/Reference/VBA/Information/ObjPtr)函数
+- [CreateGUID](/official/Reference/VBA/HiddenModule/CreateGUID)函数

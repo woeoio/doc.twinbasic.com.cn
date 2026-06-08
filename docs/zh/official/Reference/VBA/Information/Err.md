@@ -2,25 +2,34 @@
 title: Err
 parent: Information Module
 permalink: /tB/Modules/Information/Err
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fbe58068-fa76-4a7a-9feb-c6a174870c74'
+  PropagateID: 'fbe58068-fa76-4a7a-9feb-c6a174870c74'
+  ReservedCode1: 'c35dcb5a-90aa-4441-8917-67eb34582db5'
+  ReservedCode2: 'c35dcb5a-90aa-4441-8917-67eb34582db5'
 ---
+
 # Err
 
-Returns or sets the [**ErrObject**](/official/Reference/VBA/ErrObject/) describing the current run-time error state.
+返回或设置描述当前运行时错误状态的[**ErrObject**](/official/Reference/VBA/ErrObject/)。
 
-Syntax:
+语法：
 - **Err** [ **()** ]
 - **Err** **=** *errorNumber*
 
 *errorNumber*
-: A **Long** error code to assign to the **Err** object. This is shorthand for `Err.Number = errorNumber`, since [**Number**](/official/Reference/VBA/ErrObject/Number) is the default property of **ErrObject**.
+: **Long**错误代码，分配给**Err**对象。这是`Err.Number = errorNumber`的简写，因为[**Number**](/official/Reference/VBA/ErrObject/Number)是**ErrObject**的默认属性。
 
-The **Err** object is intrinsic and global --- there is no need to declare or construct one. Its properties are populated when a run-time error is raised, and reset to zero or zero-length strings when the active error handler exits via **Resume**, **Resume Next**, or any **Exit** statement, or when [**Err.Clear**](/official/Reference/VBA/ErrObject/Clear) is called explicitly.
+**Err**对象是内在且全局的——无需声明或构造。当运行时错误引发时其属性被填充，当活动错误处理程序通过**Resume**、**Resume Next**或任何**Exit**语句退出时，或显式调用[**Err.Clear**](/official/Reference/VBA/ErrObject/Clear)时，属性重置为零或零长度字符串。
 
-To generate a run-time error from user code, use the [**Raise**](/official/Reference/VBA/ErrObject/Raise) method rather than the **Error** statement, especially for class-module and Automation errors.
+要从用户代码生成运行时错误，请使用[**Raise**](/official/Reference/VBA/ErrObject/Raise)方法而非**Error**语句，特别是对于类模块和Automation错误。
 
-### Example
+### 示例
 
-This example uses the [**Number**](/official/Reference/VBA/ErrObject/Number), [**Description**](/official/Reference/VBA/ErrObject/Description), [**HelpContext**](/official/Reference/VBA/ErrObject/HelpContext), [**HelpFile**](/official/Reference/VBA/ErrObject/HelpFile), and [**Source**](/official/Reference/VBA/ErrObject/Source) properties of the **Err** object to construct an error-message dialog.
+本示例使用**Err**对象的[**Number**](/official/Reference/VBA/ErrObject/Number)、[**Description**](/official/Reference/VBA/ErrObject/Description)、[**HelpContext**](/official/Reference/VBA/ErrObject/HelpContext)、[**HelpFile**](/official/Reference/VBA/ErrObject/HelpFile)和[**Source**](/official/Reference/VBA/ErrObject/Source)属性构造错误消息对话框。
 
 ```vb
 Dim Msg As String
@@ -34,8 +43,8 @@ If Err.Number <> 0 Then
 End If
 ```
 
-### See Also
+### 另请参阅
 
-- [ErrObject](/official/Reference/VBA/ErrObject/) module
-- [Erl](/official/Reference/VBA/Information/Erl) function
-- [On Error](/official/Reference/Core/On-Error) statement
+- [ErrObject](/official/Reference/VBA/ErrObject/)模块
+- [Erl](/official/Reference/VBA/Information/Erl)函数
+- [On Error](/official/Reference/Core/On-Error)语句

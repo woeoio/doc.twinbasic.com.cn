@@ -1,14 +1,22 @@
 ---
-title: Select Case
+title: "Select Case"
 parent: Statements
 permalink: /tB/Core/Select-Case
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'ca4975ad-3ab0-414d-8d97-ef0cfb47f43c'
+  PropagateID: 'ca4975ad-3ab0-414d-8d97-ef0cfb47f43c'
+  ReservedCode1: '5d928626-8921-47f3-b057-855c8d18b777'
+  ReservedCode2: '5d928626-8921-47f3-b057-855c8d18b777'
 ---
 
 # Select Case
 
-Executes one of several groups of statements, depending on the value of an expression.
+根据表达式的值执行若干语句组之一。
 
-Syntax:
+语法：
 
 > **Select Case** *testexpression*  
 > &nbsp;&nbsp;&nbsp;&nbsp;[ **Case** *expressionlist-n*  
@@ -18,49 +26,49 @@ Syntax:
 > **End Select**
 
 *testexpression*
-: Any numeric expression or string expression.
+: 任意数值表达式或字符串表达式。
 
 *expressionlist-n*
-: Required if a **Case** appears. A delimited list of one or more of the following forms:
+: 如果出现**Case**则为必需。以分隔符分隔的一个或多个以下形式的列表：
   - *expression*
   - *expression* **To** *expression*
   - **Is** *comparisonoperator* *expression*
 
-  The **To** keyword specifies a range of values. When the **To** keyword is used, the smaller value must appear before **To**.
+  **To**关键字指定值的范围。使用**To**关键字时，较小的值必须出现在**To**之前。
 
-  Use the **Is** keyword with comparison operators (except **Is** and **Like**) to specify a range of values. If not supplied, the **Is** keyword is automatically inserted.
+  使用**Is**关键字与比较运算符（**Is**和**Like**除外）来指定值的范围。如果未提供，**Is**关键字会自动插入。
 
 *statements-n*
-: *optional* One or more statements executed if *testexpression* matches any part of *expressionlist-n*.
+: *可选* 如果*testexpression*匹配*expressionlist-n*的任何部分，则执行的一个或多个语句。
 
 *elsestatements*
-: *optional* One or more statements executed if *testexpression* doesn't match any of the **Case** clauses.
+: *可选* 如果*testexpression*不匹配任何**Case**子句，则执行的一个或多个语句。
 
-If *testexpression* matches any **Case** *expressionlist* expression, the *statements* following that **Case** clause are executed up to the next **Case** clause, or, for the last clause, up to **End Select**. Control then passes to the statement following **End Select**. If *testexpression* matches an *expressionlist* expression in more than one **Case** clause, only the statements following the first match are executed.
+如果*testexpression*匹配任何**Case** *expressionlist*表达式，则执行该**Case**子句之后的*statements*，直到下一个**Case**子句，或对于最后一个子句直到**End Select**。然后控制传递到**End Select**之后的语句。如果*testexpression*匹配多个**Case**子句中的*expressionlist*表达式，则只执行第一个匹配之后的语句。
 
-The **Case Else** clause is used to indicate the *elsestatements* to be executed if no match is found between the *testexpression* and an *expressionlist* in any of the other **Case** selections. Although not required, it is a good idea to have a **Case Else** statement in a **Select Case** block to handle unforeseen *testexpression* values. If no **Case** *expressionlist* matches *testexpression* and there is no **Case Else** statement, execution continues at the statement following **End Select**.
+**Case Else**子句用于指示在*testexpression*与任何其他**Case**选择中的*expressionlist*没有匹配时要执行的*elsestatements*。虽然不是必需的，但在**Select Case**块中使用**Case Else**语句处理未预见的*testexpression*值是一个好习惯。如果没有**Case** *expressionlist*匹配*testexpression*且没有**Case Else**语句，执行继续到**End Select**之后的语句。
 
-Multiple expressions or ranges can appear in each **Case** clause. For example, the following line is valid:
+每个**Case**子句中可以出现多个表达式或范围。例如，以下行是有效的：
 
 ```vb
 Case 1 To 4, 7 To 9, 11, 13, Is > MaxNumber
 ```
 
 ::: info
-The **Is** comparison operator is not the same as the **Is** keyword used in the **Select Case** statement.
+**Is**比较运算符与**Select Case**语句中使用的**Is**关键字不同。
 :::
 
-Ranges and multiple expressions can also be specified for character strings. In the following example, **Case** matches strings that are exactly equal to `everything`, strings that fall between `nuts` and `soup` in alphabetic order, and the current value of `TestItem`:
+字符串也可以指定范围和多个表达式。在下面的示例中，**Case**匹配与`everything`完全相等的字符串、按字母顺序在`nuts`和`soup`之间的字符串以及`TestItem`的当前值：
 
 ```vb
 Case "everything", "nuts" To "soup", TestItem
 ```
 
-**Select Case** statements can be nested. Each nested **Select Case** statement must have a matching **End Select** statement.
+**Select Case**语句可以嵌套。每个嵌套的**Select Case**语句必须有匹配的**End Select**语句。
 
-### Example
+### 示例
 
-This example uses the **Select Case** statement to evaluate the value of a variable. The second **Case** clause contains the value of the variable being evaluated, and therefore only the statement associated with it is executed.
+本示例使用**Select Case**语句评估变量的值。第二个**Case**子句包含被评估变量的值，因此只执行与之关联的语句。
 
 ```vb
 Dim Number
@@ -78,7 +86,7 @@ Select Case Number    ' Evaluate Number.
 End Select
 ```
 
-### See Also
+### 另请参阅
 
-- [**If...Then...Else** statement](/official/Reference/Core/If-Then-Else)
-- [**Do...Loop** statement](/official/Reference/Core/Do-Loop)
+- [**If...Then...Else** 语句](/official/Reference/Core/If-Then-Else)
+- [**Do...Loop** 语句](/official/Reference/Core/Do-Loop)

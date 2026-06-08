@@ -6,29 +6,27 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '097047c1-fa3a-4cec-b55a-d11f1e027941'
-  PropagateID: '097047c1-fa3a-4cec-b55a-d11f1e027941'
-  ReservedCode1: '1fab06e3-ea8d-4b76-8ef6-5a7b16f2db61'
-  ReservedCode2: '1fab06e3-ea8d-4b76-8ef6-5a7b16f2db61'
+  ProduceID: '884fc0cc-4039-4acd-a975-0049d261ac50'
+  PropagateID: '884fc0cc-4039-4acd-a975-0049d261ac50'
+  ReservedCode1: '896ff8f5-6387-4135-9cc1-6786f567a83c'
+  ReservedCode2: '896ff8f5-6387-4135-9cc1-6786f567a83c'
 ---
 
 # vbaObjAddref
 
-Calls **IUnknown::AddRef** on the COM object at a given address.
+对给定地址的COM对象调用**IUnknown::AddRef**。
 
-Syntax: **vbaObjAddref** *Address*
+语法：**vbaObjAddref** *Address*
 
 *Address*
-: *required* **LongPtr**. The address of an **IUnknown**-derived COM object --- typically the value returned by [**ObjPtr**](/official/Reference/VBA/Information/ObjPtr).
+: *必需* **LongPtr**。**IUnknown**派生的COM对象的地址——通常是[**ObjPtr**](/official/Reference/VBA/Information/ObjPtr)返回的值。
 
-The reference count of the object is incremented by one. The runtime does not validate that *Address* points at a real COM object; an invalid pointer will crash the host.
+对象的引用计数增加一。运行时不验证*Address*是否指向真正的COM对象；无效指针将导致宿主崩溃。
 
-This is a low-level primitive. Ordinary code does not need it --- assigning to an **Object** variable already addrefs.
+这是低级原语。普通代码不需要它——赋值给**Object**变量时已经执行了addref。
 
-### See Also
+### 另请参阅
 
-- [vbaObjSet](/official/Reference/VBA/HiddenModule/vbaObjSet) function
-- [vbaObjSetAddref](/official/Reference/VBA/HiddenModule/vbaObjSetAddref) function
-- [ObjPtr](/official/Reference/VBA/Information/ObjPtr) function
-
-> AI生成
+- [vbaObjSet](/official/Reference/VBA/HiddenModule/vbaObjSet)函数
+- [vbaObjSetAddref](/official/Reference/VBA/HiddenModule/vbaObjSetAddref)函数
+- [ObjPtr](/official/Reference/VBA/Information/ObjPtr)函数

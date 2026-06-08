@@ -2,26 +2,35 @@
 title: GetMem8
 parent: (Default) Module
 permalink: /tB/Modules/HiddenModule/GetMem8
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'abf4c13c-06ea-4517-94d3-fba71ac3d9ad'
+  PropagateID: 'abf4c13c-06ea-4517-94d3-fba71ac3d9ad'
+  ReservedCode1: 'f5c12e22-aff5-4647-b881-1c906cf0381d'
+  ReservedCode2: 'f5c12e22-aff5-4647-b881-1c906cf0381d'
 ---
+
 # GetMem8
 
-Reads eight bytes from a memory address into a **Currency** variable.
+从内存地址读取八个字节到**Currency**变量中。
 
-Syntax: **GetMem8** *Address* **,** *retVal*
+语法：**GetMem8** *Address* **,** *retVal*
 
 *Address*
-: *required* **LongPtr**. The address to read from.
+: *必需* **LongPtr**。要读取的地址。
 
 *retVal*
-: *required* **Currency**. The variable to receive the bytes read from *Address*.
+: *必需* **Currency**。接收从*Address*读取的字节的变量。
 
-**Currency** is the convenient eight-byte signed-integer carrier used by these primitives because of its in-memory representation; the resulting bits are the raw 64-bit pattern stored at *Address*, scaled by the **Currency** type's fixed factor of 10000 only at the point of arithmetic. To work with the bits as an unscaled 64-bit integer, [**LSet**](/official/Reference/Core/LSet) the **Currency** value into a **LongLong** variable.
+**Currency**是这些原语使用的方便的八字节有符号整数载体，因为其内存表示；结果是存储在*Address*的原始64位模式，仅在算术运算时按**Currency**类型的固定因子10000进行缩放。要将位作为未缩放的64位整数处理，请使用[**LSet**](/official/Reference/Core/LSet)将**Currency**值转换为**LongLong**变量。
 
-The address is read directly with no bounds or alignment check.
+直接读取地址，不进行边界或对齐检查。
 
-### Example
+### 示例
 
-This example writes an 8-byte value to a buffer and reads it back with **GetMem8**.
+本示例将一个8字节值写入缓冲区并用**GetMem8**读回。
 
 ```vb
 Dim buf As LongPtr = AllocMem(8)
@@ -32,7 +41,7 @@ GetMem8 buf, dst        ' dst = src (same raw 8-byte pattern)
 FreeMem buf
 ```
 
-### See Also
+### 另请参阅
 
-- [GetMem1](/official/Reference/VBA/HiddenModule/GetMem1), [GetMem2](/official/Reference/VBA/HiddenModule/GetMem2), [GetMem4](/official/Reference/VBA/HiddenModule/GetMem4), [GetMemPtr](/official/Reference/VBA/HiddenModule/GetMemPtr) procedures
-- [PutMem8](/official/Reference/VBA/HiddenModule/PutMem8) procedure
+- [GetMem1](/official/Reference/VBA/HiddenModule/GetMem1)、[GetMem2](/official/Reference/VBA/HiddenModule/GetMem2)、[GetMem4](/official/Reference/VBA/HiddenModule/GetMem4)、[GetMemPtr](/official/Reference/VBA/HiddenModule/GetMemPtr)过程
+- [PutMem8](/official/Reference/VBA/HiddenModule/PutMem8)过程

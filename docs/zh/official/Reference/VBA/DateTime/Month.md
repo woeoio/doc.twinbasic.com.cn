@@ -2,23 +2,32 @@
 title: Month
 parent: DateTime Module
 permalink: /tB/Modules/DateTime/Month
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '7552ff80-caec-4eca-9473-4300952b9ba1'
+  PropagateID: '7552ff80-caec-4eca-9473-4300952b9ba1'
+  ReservedCode1: 'e155435f-861d-4672-89c1-4bda90438f5a'
+  ReservedCode2: 'e155435f-861d-4672-89c1-4bda90438f5a'
 ---
+
 # Month
 
-Returns a **Variant** (**Integer**) specifying a whole number between 1 and 12, inclusive, representing the month of the year.
+返回一个 **Variant** (**Integer**)，指定一个 1 到 12 之间的整数，表示一年中的月份。
 
-Syntax: **Month** ( *date* )
+语法：**Month** ( *date* )
 
 *date*
-: *required* Any **Variant**, numeric expression, string expression, or any combination that can represent a date. If *date* contains **Null**, **Null** is returned.
+: *必需* 任何可以表示日期的 **Variant**、数值表达式、字符串表达式或其任意组合。如果 *date* 包含 **Null**，则返回 **Null**。
 
 ::: info
-If the [**Calendar**](/official/Reference/VBA/DateTime/Calendar) property setting is Gregorian, the returned integer represents the Gregorian month. If the calendar is Hijri, the returned integer represents the Hijri month. For Hijri dates, the argument can be any numeric expression that represents a date and/or time from 1/1/100 (Gregorian Aug 2, 718) through 4/3/9666 (Gregorian Dec 31, 9999).
+如果 [**Calendar**](/official/Reference/VBA/DateTime/Calendar) 属性设置为公历，则返回的整数表示公历月份。如果日历为回历，则返回的整数表示回历月份。对于回历日期，参数可以是表示 1/1/100（公历 718 年 8 月 2 日）至 4/3/9666（公历 9999 年 12 月 31 日）之间日期和/或时间的任何数值表达式。
 :::
 
-### Example
+### 示例
 
-This example uses the **Month** function to obtain the month from a specified date.
+此示例使用 **Month** 函数从指定日期中获取月份。
 
 ```vb
 Dim MyDate, MyMonth
@@ -26,6 +35,6 @@ MyDate = #February 12, 1969#    ' Assign a date.
 MyMonth = Month(MyDate)    ' MyMonth contains 2.
 ```
 
-### See Also
+### 另请参阅
 
-- [Day](/official/Reference/VBA/DateTime/Day), [Year](/official/Reference/VBA/DateTime/Year), [DatePart](/official/Reference/VBA/DateTime/DatePart) functions
+- [Day](/official/Reference/VBA/DateTime/Day)、[Year](/official/Reference/VBA/DateTime/Year)、[DatePart](/official/Reference/VBA/DateTime/DatePart) 函数

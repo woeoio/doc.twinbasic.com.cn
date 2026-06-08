@@ -1,64 +1,73 @@
 ---
-title: Print #
+title: "Print #"
 parent: Statements
 permalink: /tB/Core/Print
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '2461be05-6967-4224-8cf6-e221058e27ee'
+  PropagateID: '2461be05-6967-4224-8cf6-e221058e27ee'
+  ReservedCode1: '00db201c-9b93-4e96-96a5-44e66180b95d'
+  ReservedCode2: '00db201c-9b93-4e96-96a5-44e66180b95d'
 ---
-# Print # statement
 
-Writes display-formatted data to a sequential file.
+# Print # 语句
+
+将显示格式的数据写入顺序文件。
 
 ::: info
-This page documents the **Print #** *statement* (file I/O). The unrelated `Debug.Print` statement writes to the **Immediate** window during debugging.
+本页面记录的是**Print #***语句*（文件I/O）。不相关的`Debug.Print`语句在调试时写入**立即**窗口。
 :::
 
-Syntax:
+语法：
 > **Print** **#** *filenumber* **,** [ *outputlist* ]
 
 *filenumber*
-: Any valid file number.
+: 任何有效的文件号。
 
 *outputlist*
-: *optional* Expression or list of expressions to print. The *outputlist* settings are:
+: *可选* 要打印的表达式或表达式列表。*outputlist*的设置为：
 
   > [ { **Spc(***n***)** \| **Tab** [ **(***n***)** ] } ] [ *expression* ] [ *charpos* ]
 
   **Spc(***n***)**
-  : Used to insert space characters in the output, where *n* is the number of space characters to insert.
+  : 用于在输出中插入空格字符，*n*为要插入的空格字符数。
 
   **Tab(***n***)**
-  : Used to position the insertion point to an absolute column number, where *n* is the column number. Use **Tab** with no argument to position the insertion point at the beginning of the next print zone.
+  : 用于将插入点定位到绝对列号，*n*为列号。使用不带参数的**Tab**将插入点定位到下一个打印区的开头。
 
   *expression*
-  : Numeric expressions or string expressions to print.
+  : 要打印的数值表达式或字符串表达式。
 
   *charpos*
-  : Specifies the insertion point for the next character. Use a semicolon to position the insertion point immediately after the last character displayed. Use **Tab(***n***)** to position the insertion point to an absolute column number. Use **Tab** with no argument to position the insertion point at the beginning of the next print zone. If *charpos* is omitted, the next character is printed on the next line.
+  : 指定下一个字符的插入点。使用分号将插入点定位到最后显示字符之后。使用**Tab(***n***)**将插入点定位到绝对列号。使用不带参数的**Tab**将插入点定位到下一个打印区的开头。如果省略*charpos*，下一个字符打印在下一行。
 
-Data written with **Print #** is usually read from a file with [**Line Input #**](/official/Reference/Core/Line-Input) or [**Input #**](/official/Reference/Core/Input).
+使用**Print #**写入的数据通常用[**Line Input #**](/official/Reference/Core/Line-Input)或[**Input #**](/official/Reference/Core/Input)从文件中读取。
 
-When *outputlist* is omitted and only a list separator follows *filenumber*, a blank line is printed to the file.
+当省略*outputlist*且文件号后仅跟列表分隔符时，向文件打印一个空行。
 
-Multiple expressions can be separated with either a space or a semicolon. A space has the same effect as a semicolon.
+多个表达式可以用空格或分号分隔。空格与分号效果相同。
 
-For **Boolean** data, either `True` or `False` is printed. The **True** and **False** keywords are not translated, regardless of the locale.
+对于**Boolean**数据，打印`True`或`False`。**True**和**False**关键字不会根据区域设置进行翻译。
 
-**Date** data is written to the file by using the standard short date format recognized by the system. When either the date or the time component is missing or zero, only the part provided gets written to the file.
+**Date**数据使用系统识别的标准短日期格式写入文件。当日期或时间部分缺失或为零时，仅写入提供的部分。
 
-Nothing is written to the file if *outputlist* data is **Empty**. However, if *outputlist* data is **Null**, `Null` is written to the file.
+如果*outputlist*数据为**Empty**，则不向文件写入任何内容。但如果*outputlist*数据为**Null**，则向文件写入`Null`。
 
-For **Error** data, the output appears as `Error `*errorcode*. The **Error** keyword is not translated regardless of the locale.
+对于**Error**数据，输出显示为`Error `*errorcode*。**Error**关键字不会根据区域设置进行翻译。
 
-All data written to the file by using **Print #** is internationally-aware; that is, the data is properly formatted by using the appropriate decimal separator.
+使用**Print #**写入文件的所有数据都具有国际化感知能力；即数据使用适当的小数分隔符正确格式化。
 
-Because **Print #** writes an image of the data to the file, the data must be delimited so that it prints correctly. When **Tab** is used with no arguments to move the print position to the next print zone, **Print #** also writes the spaces between print fields to the file.
+因为**Print #**将数据的映像写入文件，所以数据必须正确分隔才能正确打印。当使用不带参数的**Tab**将打印位置移动到下一个打印区时，**Print #**也会将打印字段之间的空格写入文件。
 
 ::: info
-When the data is later read from a file by using the **Input #** statement, use the [**Write #**](/official/Reference/Core/Write) statement instead of the **Print #** statement to write the data to the file. Using **Write #** ensures the integrity of each separate data field by properly delimiting it, so that it can be read back in by using **Input #**. Using **Write #** also ensures that it can be correctly read in any locale.
+当稍后使用**Input #**语句从文件读取数据时，请使用[**Write #**](/official/Reference/Core/Write)语句代替**Print #**语句将数据写入文件。使用**Write #**可通过正确分隔来确保每个独立数据字段的完整性，以便使用**Input #**读回。使用**Write #**还能确保在任何区域设置中都能正确读取。
 :::
 
-### Example
+### 示例
 
-This example uses the **Print #** statement to write data to a file.
+本示例使用**Print #**语句将数据写入文件。
 
 ```vb
 Open "TESTFILE" For Output As #1 ' Open file for output.
@@ -83,10 +92,10 @@ Print #1, MyError; " is an error value"
 Close #1 ' Close file.
 ```
 
-### See Also
+### 另请参阅
 
-- [**Open** statement](/official/Reference/Core/Open)
-- [**Close** statement](/official/Reference/Core/Close)
-- [**Write #** statement](/official/Reference/Core/Write)
-- [**Input #** statement](/official/Reference/Core/Input)
-- [**Line Input #** statement](/official/Reference/Core/Line-Input)
+- [**Open** 语句](/official/Reference/Core/Open)
+- [**Close** 语句](/official/Reference/Core/Close)
+- [**Write #** 语句](/official/Reference/Core/Write)
+- [**Input #** 语句](/official/Reference/Core/Input)
+- [**Line Input #** 语句](/official/Reference/Core/Line-Input)

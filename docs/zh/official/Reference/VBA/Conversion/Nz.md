@@ -2,32 +2,41 @@
 title: Nz
 parent: Conversion Module
 permalink: /tB/Modules/Conversion/Nz
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'f96635d0-4e05-427e-b6b3-c74e248cd9a6'
+  PropagateID: 'f96635d0-4e05-427e-b6b3-c74e248cd9a6'
+  ReservedCode1: '4c15a737-91b9-4467-bb56-840d9fb0cf88'
+  ReservedCode2: '4c15a737-91b9-4467-bb56-840d9fb0cf88'
 ---
+
 # Nz
 
-Replaces a **Null** value with the specified replacement value.
+用指定的替换值替代 **Null** 值。
 
-Syntax: **Nz(** *value* [ **,** *valueIfNull* ] **)**
+语法：**Nz(** *value* [ **,** *valueIfNull* ] **)**
 
 *value*
-: *required* A **Variant** to check for **Null**.
+: *必需* 要检查是否为 **Null** 的 **Variant**。
 
 *valueIfNull*
-: *optional* A **Variant** to return if *value* is **Null**. If omitted, **Nz** returns **Empty**.
+: *可选* 如果 *value* 为 **Null** 则返回的 **Variant**。如果省略，**Nz** 返回 **Empty**。
 
-The return type is **Variant**.
+返回类型为 **Variant**。
 
-**Nz** is useful for handling expressions that may evaluate to **Null** --- most commonly, fields read from a database recordset where a column permits **Null**. Unlike a direct comparison with **Null** (which itself yields **Null**), **Nz** returns a usable substitute value.
+**Nz** 在处理可能计算为 **Null** 的表达式时非常有用——最常见的是从允许 **Null** 列的数据库记录集中读取字段。与直接与 **Null** 比较（其本身产生 **Null**）不同，**Nz** 返回一个可用的替代值。
 
-If *value* is anything other than **Null**, **Nz** returns *value* unchanged.
+如果 *value* 不是 **Null**，**Nz** 原样返回 *value*。
 
 ::: info
-The function originated in Microsoft Access. twinBASIC provides it as a built-in so the same idiom can be used outside of an Access host.
+该函数起源于 Microsoft Access。twinBASIC 将其作为内置函数提供，以便在 Access 宿主之外也能使用相同的惯用法。
 :::
 
-### Example
+### 示例
 
-This example uses **Nz** to substitute the string `"Unknown"` for a recordset field that may be **Null**.
+此示例使用 **Nz** 将字符串 `"Unknown"` 替代可能为 **Null** 的记录集字段。
 
 ```vb
 Dim customerName As Variant
@@ -35,7 +44,7 @@ customerName = recordset.Fields("Name").Value
 MsgBox "Customer Name: " & Nz(customerName, "Unknown")
 ```
 
-### See Also
+### 另请参阅
 
-- [IsNull](/official/Reference/VBA/Information/IsNull) function
-- [IIf](/official/Reference/VBA/Interaction/IIf) function
+- [IsNull](/official/Reference/VBA/Information/IsNull) 函数
+- [IIf](/official/Reference/VBA/Interaction/IIf) 函数
