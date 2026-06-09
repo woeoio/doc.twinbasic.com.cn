@@ -5,10 +5,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '97c80cd5-25e4-4457-ad09-7477c88e3ebf'
-  PropagateID: '97c80cd5-25e4-4457-ad09-7477c88e3ebf'
-  ReservedCode1: 'ca0949b6-e402-4282-a785-8f8d41a2c8d9'
-  ReservedCode2: 'ca0949b6-e402-4282-a785-8f8d41a2c8d9'
+  ProduceID: 'e4b7e18c-c948-42f2-978e-59f18279f73e'
+  PropagateID: 'e4b7e18c-c948-42f2-978e-59f18279f73e'
+  ReservedCode1: '41f1c73b-b382-4163-8283-2092533dd618'
+  ReservedCode2: '41f1c73b-b382-4163-8283-2092533dd618'
 ---
 
 # VBCCR 开发手册
@@ -192,7 +192,7 @@ VBCCR 还提供以下公共辅助模块，供所有控件共享使用：
 
 VBCCR 作者 Kr00l 编写的官方文档（中文翻译），涵盖 StdEXE/OCX 版本使用指南、OCX2StdEXE 工具说明、编译选项及版本历史等：
 
-[阅读作者原文档](./author/author.md)
+[阅读作者原文档](./author.md)
 
 ## 附加资源
 
