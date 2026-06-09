@@ -9,10 +9,6 @@ Author: [Kr00l](https://github.com/Kr00l)
 
 This document was compiled by woeoio, the webmaster of [vb6.pro](https://vb6.pro). Please credit the source if you share or reproduce this content. The documentation was created using VSCode and Copilot AI.
 
-::: tip Now available in Twinbasic package
-VBCCR now provides direct references in Twinbasic's package manager, eliminating the need for external DLL files.
-:::
-
 ## Overview
 
 The VBCCR library includes the following controls:
@@ -25,45 +21,34 @@ The VBCCR library includes the following controls:
 6. CommonDialog Control (VBCCRCommonDialog)
 7. CoolBar Control (VBCCRCoolBar)
 8. DateTimePicker Control (VBCCRDTPicker)
-9. DriveList Control (VBCCRDriveList)
-10. DrivePath Control (VBCCRDrivePath)
-11. FilePath Control (VBCCRFilePath)
-12. FontCombo Control (VBCCRFontCombo)
-13. Frame Control (VBCCRFrame)
-14. HotKey Control (VBCCRHotKey)
-15. ImageCombo Control (VBCCRImageCombo)
-16. ImageList Control (VBCCRImageList)
-17. IPAddress Control (VBCCRIPAddress)
-18. Label Control (VBCCRLabel)
-19. Line Control (VBCCRLine)
-20. LinkLabel Control (VBCCRLinkLabel)
-21. ListBox Control (VBCCRListBox)
-22. ListView Control (VBCCRListView)
-23. MCIWnd Control (VBCCRMCIWnd)
-24. MonthCalendar Control (VBCCRMonthCalendar)
-25. MonthView Control (VBCCRMonthView)
-26. Option Control (VBCCROption)
-27. OptionButton Control (VBCCROptionButton)
-28. Pager Control (VBCCRPager)
-29. Picture Control (VBCCRPicture)
-30. ProgressBar Control (VBCCRProgressBar)
-31. RichTextBox Control (VBCCRRichTextBox)
-32. ScrollBar Control (VBCCRScrollBar)
-33. Shape Control (VBCCRShape)
-34. Slider Control (VBCCRSlider)
-35. SpinBox Control (VBCCRSpinBox)
-36. StatusBar Control (VBCCRStatusBar)
-37. SysInfo Control (VBCCRSysInfo)
-38. TabStrip Control (VBCCRTabStrip)
-39. TextBox Control (VBCCRTextBox)
-40. Timer Control (VBCCRTimer)
-41. ToolBar Control (VBCCRToolBar)
-42. TreeView Control (VBCCRTreeView)
-43. UpDown Control (VBCCRUpDown)
-44. VirtualCombo Control (VBCCRVirtualCombo)
-45. VListBox Control (VBCCRVListBox)
-<!-- 47. WebBrowser Control (VBCCRWebBrowser) -->
-46. WindowedLabel Control (VBCCRWindowedLabel)
+9. FontCombo Control (VBCCRFontCombo)
+10. Frame Control (VBCCRFrame)
+11. HotKey Control (VBCCRHotKey)
+12. ImageCombo Control (VBCCRImageCombo)
+13. ImageList Control (VBCCRImageList)
+14. IPAddress Control (VBCCRIPAddress)
+15. Label Control (VBCCRLabel)
+16. LinkLabel Control (VBCCRLinkLabel)
+17. ListBox Control (VBCCRListBox)
+18. ListView Control (VBCCRListView)
+19. MCIWnd Control (VBCCRMCIWnd)
+20. MonthView Control (VBCCRMonthView)
+21. OptionButton Control (VBCCROptionButton)
+22. Pager Control (VBCCRPager)
+23. ProgressBar Control (VBCCRProgressBar)
+24. RichTextBox Control (VBCCRRichTextBox)
+25. Slider Control (VBCCRSlider)
+26. SpinBox Control (VBCCRSpinBox)
+27. StatusBar Control (VBCCRStatusBar)
+28. SysInfo Control (VBCCRSysInfo)
+29. TabStrip Control (VBCCRTabStrip)
+30. TextBox Control (VBCCRTextBox)
+31. ToolBar Control (VBCCRToolBar)
+32. TreeView Control (VBCCRTreeView)
+33. UpDown Control (VBCCRUpDown)
+34. VirtualCombo Control (VBCCRVirtualCombo)
+35. VListBox Control (VBCCRVListBox)
+36. WindowedLabel Control (VBCCRWindowedLabel)
 
 ## Key Features
 
@@ -77,7 +62,6 @@ The VBCCR library includes the following controls:
 ## Documentation Structure
 
 Each control has its own dedicated documentation page with:
-
 - Detailed properties and methods description
 - Events documentation
 - Code examples
@@ -150,6 +134,6 @@ You can also start by reading the [official documentation](./readme.md) written 
 
 ## Additional Resources
 
-- [Original VBForums Thread](<https://www.vbforums.com/showthread.php?841929-VB6-ActiveX-CommonControls-(Replacement-of-the-MS-common-controls)>)
+- [Original VBForums Thread](https://www.vbforums.com/showthread.php?841929-VB6-ActiveX-CommonControls-(Replacement-of-the-MS-common-controls))
 - [Source Code Repository](https://github.com/Kr00l/VBCCR)
-- [Legacy Discussion Thread](<https://www.vbforums.com/showthread.php?698563-CommonControls-(Replacement-of-the-MS-common-controls)>)
+- [Legacy Discussion Thread](https://www.vbforums.com/showthread.php?698563-CommonControls-(Replacement-of-the-MS-common-controls))

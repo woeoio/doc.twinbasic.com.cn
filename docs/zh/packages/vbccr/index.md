@@ -2,13 +2,9 @@
 
 VBCCR 是 Visual Basic 6 中 Microsoft 通用控件 (MSComCtl) 的全面替代品。该库在保持与原始控件兼容的同时，提供了增强的功能和改进的视觉外观。作者：[Kr00l](https://github.com/Kr00l)
 
-**本套控件库最重要主要是解决了在原生 vb6 窗体控件上显示 unicode 字符的问题。从此再也不怕乱码了！！！**
+**本套控件库最重要主要是解决了在原生vb6窗体控件上显示unicode字符的问题。从此再也不怕乱码了！！！**
 
 本文档由 [vb6.pro](https://vb6.pro) 站长邓伟整理，转载请注明出处。文档使用了 vscode + copilot ai 生成制作。
-
-::: tip 现在已经在 Twinbasic 包提供
-VBCCR 现在已经在 Twinbasic 的包管理器提供直接引用，无需外带 DLL 文件了。
-:::
 
 ## 概述
 
@@ -22,46 +18,34 @@ VBCCR 库包含以下控件：
 6. 通用对话框控件 (VBCCRCommonDialog)
 7. 工具条控件 (VBCCRCoolBar)
 8. 日期时间选择器控件 (VBCCRDTPicker)
-9. 驱动器列表控件 (VBCCRDriveList)
-10. 驱动器路径控件 (VBCCRDrivePath)
-11. 文件路径控件 (VBCCRFilePath)
-12. 字体组合框控件 (VBCCRFontCombo)
-13. 框架控件 (VBCCRFrame)
-14. 热键控件 (VBCCRHotKey)
-<!-- 15. 图像控件 (VBCCRImage) -->
-15. 图像组合框控件 (VBCCRImageCombo)
-16. 图像列表控件 (VBCCRImageList)
-17. IP 地址控件 (VBCCRIPAddress)
-18. 标签控件 (VBCCRLabel)
-19. 线条控件 (VBCCRLine)
-20. 链接标签控件 (VBCCRLinkLabel)
-21. 列表框控件 (VBCCRListBox)
-22. 列表视图控件 (VBCCRListView)
-23. 多媒体控件 (VBCCRMCIWnd)
-24. 月历控件 (VBCCRMonthCalendar)
-25. 月视图控件 (VBCCRMonthView)
-26. 选项控件 (VBCCROption)
-27. 选项按钮控件 (VBCCROptionButton)
-28. 分页控件 (VBCCRPager)
-29. 图片框控件 (VBCCRPicture)
-30. 进度条控件 (VBCCRProgressBar)
-31. 富文本框控件 (VBCCRRichTextBox)
-32. 滚动条控件 (VBCCRScrollBar)
-33. 形状控件 (VBCCRShape)
-34. 滑块控件 (VBCCRSlider)
-35. 数字调节框控件 (VBCCRSpinBox)
-36. 状态栏控件 (VBCCRStatusBar)
-37. 系统信息控件 (VBCCRSysInfo)
-38. 选项卡控件 (VBCCRTabStrip)
-39. 文本框控件 (VBCCRTextBox)
-40. 定时器控件 (VBCCRTimer)
-41. 工具栏控件 (VBCCRToolBar)
-42. 树形视图控件 (VBCCRTreeView)
-43. 上下调节控件 (VBCCRUpDown)
-44. 虚拟组合框控件 (VBCCRVirtualCombo)
-45. 虚拟列表框控件 (VBCCRVListBox)
-<!-- 47. 网页浏览器控件 (VBCCRWebBrowser) -->
-46. 窗口化标签控件 (VBCCRWindowedLabel)
+9. 字体组合框控件 (VBCCRFontCombo)
+10. 框架控件 (VBCCRFrame)
+11. 热键控件 (VBCCRHotKey)
+12. 图像组合框控件 (VBCCRImageCombo)
+13. 图像列表控件 (VBCCRImageList)
+14. IP地址控件 (VBCCRIPAddress)
+15. 标签控件 (VBCCRLabel)
+16. 链接标签控件 (VBCCRLinkLabel)
+17. 列表框控件 (VBCCRListBox)
+18. 列表视图控件 (VBCCRListView)
+19. 多媒体控件 (VBCCRMCIWnd)
+20. 月视图控件 (VBCCRMonthView)
+21. 选项按钮控件 (VBCCROptionButton)
+22. 分页控件 (VBCCRPager)
+23. 进度条控件 (VBCCRProgressBar)
+24. 富文本框控件 (VBCCRRichTextBox)
+25. 滑块控件 (VBCCRSlider)
+26. 数字调节框控件 (VBCCRSpinBox)
+27. 状态栏控件 (VBCCRStatusBar)
+28. 系统信息控件 (VBCCRSysInfo)
+29. 选项卡控件 (VBCCRTabStrip)
+30. 文本框控件 (VBCCRTextBox)
+31. 工具栏控件 (VBCCRToolBar)
+32. 树形视图控件 (VBCCRTreeView)
+33. 上下调节控件 (VBCCRUpDown)
+34. 虚拟组合框控件 (VBCCRVirtualCombo)
+35. 虚拟列表框控件 (VBCCRVListBox)
+36. 窗口化标签控件 (VBCCRWindowedLabel)
 
 ## 主要特性
 
@@ -75,7 +59,6 @@ VBCCR 库包含以下控件：
 ## 文档结构
 
 每个控件都有其专门的文档页面，包含：
-
 - 详细的属性和方法说明
 - 事件文档
 - 代码示例
@@ -144,10 +127,10 @@ VBCCR 库包含以下控件：
 
 ## 官方文档
 
-你也可以先阅读一次作者写的[官方文档](./readme.md)内容，然后再查看 ai 写的每一个控件详解。
+你也可以先阅读一次作者写的[官方文档](./readme.md)内容，然后再查看ai写的每一个控件详解。
 
 ## 附加资源
 
-- [原始 VBForums 讨论帖](<https://www.vbforums.com/showthread.php?841929-VB6-ActiveX-CommonControls-(Replacement-of-the-MS-common-controls)>)
+- [原始 VBForums 讨论帖](https://www.vbforums.com/showthread.php?841929-VB6-ActiveX-CommonControls-(Replacement-of-the-MS-common-controls))
 - [源代码仓库](https://github.com/Kr00l/VBCCR)
-- [历史讨论帖](<https://www.vbforums.com/showthread.php?698563-CommonControls-(Replacement-of-the-MS-common-controls)>)
+- [历史讨论帖](https://www.vbforums.com/showthread.php?698563-CommonControls-(Replacement-of-the-MS-common-controls))
