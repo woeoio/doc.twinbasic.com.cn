@@ -648,46 +648,94 @@ export const zhSidebar = {
   ],
   '/packages/vbccr/': [
     {
-      text: 'VBCCR 控件',
+      text: 'VBCCR 开发手册',
       items: [
-        { text: '介绍', link: '/vbccr/' },
-        { text: '动画控件', link: '/vbccr/animation' },
-        { text: '复选框控件', link: '/vbccr/checkbox' },
-        { text: '组合框控件', link: '/vbccr/combobox' },
-        { text: '命令按钮控件', link: '/vbccr/commandbutton' },
-        { text: '命令链接控件', link: '/vbccr/commandlink' },
-        { text: '通用对话框控件', link: '/vbccr/commondialog' },
-        { text: '工具条控件', link: '/vbccr/coolbar' },
-        { text: '日期时间选择器控件', link: '/vbccr/dtpicker' },
-        { text: '字体组合框控件', link: '/vbccr/fontcombo' },
-        { text: '框架控件', link: '/vbccr/frame' },
-        { text: '热键控件', link: '/vbccr/hotkey' },
-        { text: '图像组合框控件', link: '/vbccr/imagecombo' },
-        { text: '图像列表控件', link: '/vbccr/imagelist' },
-        { text: 'IP地址控件', link: '/vbccr/ipaddress' },
-        { text: '标签控件', link: '/vbccr/label' },
-        { text: '链接标签控件', link: '/vbccr/linklabel' },
-        { text: '列表框控件', link: '/vbccr/listbox' },
-        { text: '列表视图控件', link: '/vbccr/listview' },
-        { text: '多媒体控件', link: '/vbccr/mciwnd' },
-        { text: '月视图控件', link: '/vbccr/monthview' },
-        { text: '选项按钮控件', link: '/vbccr/optionbutton' },
-        { text: '分页控件', link: '/vbccr/pager' },
-        { text: '进度条控件', link: '/vbccr/progressbar' },
-        { text: '富文本框控件', link: '/vbccr/richtextbox' },
-        { text: '滑块控件', link: '/vbccr/slider' },
-        { text: '数字调节框控件', link: '/vbccr/spinbox' },
-        { text: '状态栏控件', link: '/vbccr/statusbar' },
-        { text: '系统信息控件', link: '/vbccr/sysinfo' },
-        { text: '选项卡控件', link: '/vbccr/tabstrip' },
-        { text: '文本框控件', link: '/vbccr/textbox' },
-        { text: '工具栏控件', link: '/vbccr/toolbar' },
-        { text: '树形视图控件', link: '/vbccr/treeview' },
-        { text: '上下调节控件', link: '/vbccr/updown' },
-        { text: '虚拟组合框控件', link: '/vbccr/virtualcombo' },
-        { text: '虚拟列表框控件', link: '/vbccr/vlistbox' },
-        { text: '窗口化标签控件', link: '/vbccr/windowedlabel' },
-        { text: '官方文档', link: '/vbccr/readme' }
+        { text: '概述', link: '/packages/vbccr/' },
+        {
+          text: '按钮类',
+          collapsed: false,
+          items: [
+            { text: 'CheckBoxW', link: '/packages/vbccr/buttons/checkboxw' },
+            { text: 'CommandButtonW', link: '/packages/vbccr/buttons/commandbuttonw' },
+            { text: 'CommandLink', link: '/packages/vbccr/buttons/commandlink' },
+            { text: 'OptionButtonW', link: '/packages/vbccr/buttons/optionbuttonw' },
+          ]
+        },
+        {
+          text: '文本标签类',
+          collapsed: false,
+          items: [
+            { text: 'TextBoxW', link: '/packages/vbccr/text/textboxw' },
+            { text: 'RichTextBox', link: '/packages/vbccr/text/richtextbox' },
+            { text: 'SpinBox', link: '/packages/vbccr/text/spinbox' },
+            { text: 'LabelW', link: '/packages/vbccr/text/labelw' },
+            { text: 'WindowedLabel', link: '/packages/vbccr/text/windowedlabel' },
+            { text: 'LinkLabel', link: '/packages/vbccr/text/linklabel' },
+            { text: 'HotKey', link: '/packages/vbccr/text/hotkey' },
+          ]
+        },
+        {
+          text: '列表选择类',
+          collapsed: false,
+          items: [
+            { text: 'ComboBoxW', link: '/packages/vbccr/lists/comboboxw' },
+            { text: 'ListBoxW', link: '/packages/vbccr/lists/listboxw' },
+            { text: 'FontCombo', link: '/packages/vbccr/lists/fontcombo' },
+            { text: 'ImageCombo', link: '/packages/vbccr/lists/imagecombo' },
+            { text: 'IPAddress', link: '/packages/vbccr/lists/ipaddress' },
+            { text: 'VirtualCombo', link: '/packages/vbccr/lists/virtualcombo' },
+            { text: 'VListBox', link: '/packages/vbccr/lists/vlistbox' },
+          ]
+        },
+        {
+          text: '视图类',
+          collapsed: false,
+          items: [
+            { text: 'ListView', link: '/packages/vbccr/views/listview' },
+            { text: 'TreeView', link: '/packages/vbccr/views/treeview' },
+            { text: 'TabStrip', link: '/packages/vbccr/views/tabstrip' },
+          ]
+        },
+        {
+          text: '工具条/状态栏类',
+          collapsed: false,
+          items: [
+            { text: 'ToolBar', link: '/packages/vbccr/bars/toolbar' },
+            { text: 'StatusBar', link: '/packages/vbccr/bars/statusbar' },
+            { text: 'CoolBar', link: '/packages/vbccr/bars/coolbar' },
+            { text: 'Pager', link: '/packages/vbccr/bars/pager' },
+          ]
+        },
+        {
+          text: '滑块/进度/调节类',
+          collapsed: false,
+          items: [
+            { text: 'Slider', link: '/packages/vbccr/ranges/slider' },
+            { text: 'ProgressBar', link: '/packages/vbccr/ranges/progressbar' },
+            { text: 'UpDown', link: '/packages/vbccr/ranges/updown' },
+            { text: 'Animation', link: '/packages/vbccr/ranges/animation' },
+          ]
+        },
+        {
+          text: '日期时间类',
+          collapsed: false,
+          items: [
+            { text: 'DTPicker', link: '/packages/vbccr/datetime/dtpicker' },
+            { text: 'MonthView', link: '/packages/vbccr/datetime/monthview' },
+          ]
+        },
+        {
+          text: '对话框/系统/容器/多媒体类',
+          collapsed: false,
+          items: [
+            { text: 'CommonDialog', link: '/packages/vbccr/system/commondialog' },
+            { text: 'SysInfo', link: '/packages/vbccr/system/sysinfo' },
+            { text: 'ImageList', link: '/packages/vbccr/system/imagelist' },
+            { text: 'FrameW', link: '/packages/vbccr/system/framew' },
+            { text: 'MCIWnd', link: '/packages/vbccr/system/mciwnd' },
+          ]
+        },
+        { text: '作者原文档', link: '/packages/vbccr/author' },
       ]
     }
   ],

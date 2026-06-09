@@ -646,46 +646,94 @@ export const enSidebar = {
   ],
   '/en/packages/vbccr/': [
     {
-      text: 'VBCCR Controls',
+      text: 'VBCCR Development Manual',
       items: [
-       { text: 'Introduction', link: '/en/vbccr/' },
-        { text: 'Animation Control', link: '/en/vbccr/animation' },
-        { text: 'Checkbox Control', link: '/en/vbccr/checkbox' },
-        { text: 'ComboBox Control', link: '/en/vbccr/combobox' },
-        { text: 'CommandButton Control', link: '/en/vbccr/commandbutton' },
-        { text: 'CommandLink Control', link: '/en/vbccr/commandlink' },
-        { text: 'CommonDialog Control', link: '/en/vbccr/commondialog' },
-        { text: 'CoolBar Control', link: '/en/vbccr/coolbar' },
-        { text: 'DateTimePicker Control', link: '/en/vbccr/dtpicker' },
-        { text: 'FontCombo Control', link: '/en/vbccr/fontcombo' },
-        { text: 'Frame Control', link: '/en/vbccr/frame' },
-        { text: 'HotKey Control', link: '/en/vbccr/hotkey' },
-        { text: 'ImageCombo Control', link: '/en/vbccr/imagecombo' },
-        { text: 'ImageList Control', link: '/en/vbccr/imagelist' },
-        { text: 'IPAddress Control', link: '/en/vbccr/ipaddress' },
-        { text: 'Label Control', link: '/en/vbccr/label' },
-        { text: 'LinkLabel Control', link: '/en/vbccr/linklabel' },
-        { text: 'ListBox Control', link: '/en/vbccr/listbox' },
-        { text: 'ListView Control', link: '/en/vbccr/listview' },
-        { text: 'MCIWnd Control', link: '/en/vbccr/mciwnd' },
-        { text: 'MonthView Control', link: '/en/vbccr/monthview' },
-        { text: 'OptionButton Control', link: '/en/vbccr/optionbutton' },
-        { text: 'Pager Control', link: '/en/vbccr/pager' },
-        { text: 'ProgressBar Control', link: '/en/vbccr/progressbar' },
-        { text: 'RichTextBox Control', link: '/en/vbccr/richtextbox' },
-        { text: 'Slider Control', link: '/en/vbccr/slider' },
-        { text: 'SpinBox Control', link: '/en/vbccr/spinbox' },
-        { text: 'StatusBar Control', link: '/en/vbccr/statusbar' },
-        { text: 'SysInfo Control', link: '/en/vbccr/sysinfo' },
-        { text: 'TabStrip Control', link: '/en/vbccr/tabstrip' },
-        { text: 'TextBox Control', link: '/en/vbccr/textbox' },
-        { text: 'ToolBar Control', link: '/en/vbccr/toolbar' },
-        { text: 'TreeView Control', link: '/en/vbccr/treeview' },
-        { text: 'UpDown Control', link: '/en/vbccr/updown' },
-        { text: 'VirtualCombo Control', link: '/en/vbccr/virtualcombo' },
-        { text: 'VListBox Control', link: '/en/vbccr/vlistbox' },
-        { text: 'WindowedLabel Control', link: '/en/vbccr/windowedlabel' },
-        { text: 'Official Documentation', link: '/en/vbccr/readme' }
+        { text: 'Overview', link: '/en/packages/vbccr/' },
+        {
+          text: 'Buttons',
+          collapsed: false,
+          items: [
+            { text: 'CheckBoxW', link: '/en/packages/vbccr/buttons/checkboxw' },
+            { text: 'CommandButtonW', link: '/en/packages/vbccr/buttons/commandbuttonw' },
+            { text: 'CommandLink', link: '/en/packages/vbccr/buttons/commandlink' },
+            { text: 'OptionButtonW', link: '/en/packages/vbccr/buttons/optionbuttonw' },
+          ]
+        },
+        {
+          text: 'Text',
+          collapsed: false,
+          items: [
+            { text: 'TextBoxW', link: '/en/packages/vbccr/text/textboxw' },
+            { text: 'RichTextBox', link: '/en/packages/vbccr/text/richtextbox' },
+            { text: 'SpinBox', link: '/en/packages/vbccr/text/spinbox' },
+            { text: 'LabelW', link: '/en/packages/vbccr/text/labelw' },
+            { text: 'WindowedLabel', link: '/en/packages/vbccr/text/windowedlabel' },
+            { text: 'LinkLabel', link: '/en/packages/vbccr/text/linklabel' },
+            { text: 'HotKey', link: '/en/packages/vbccr/text/hotkey' },
+          ]
+        },
+        {
+          text: 'Lists',
+          collapsed: false,
+          items: [
+            { text: 'ComboBoxW', link: '/en/packages/vbccr/lists/comboboxw' },
+            { text: 'ListBoxW', link: '/en/packages/vbccr/lists/listboxw' },
+            { text: 'FontCombo', link: '/en/packages/vbccr/lists/fontcombo' },
+            { text: 'ImageCombo', link: '/en/packages/vbccr/lists/imagecombo' },
+            { text: 'IPAddress', link: '/en/packages/vbccr/lists/ipaddress' },
+            { text: 'VirtualCombo', link: '/en/packages/vbccr/lists/virtualcombo' },
+            { text: 'VListBox', link: '/en/packages/vbccr/lists/vlistbox' },
+          ]
+        },
+        {
+          text: 'Views',
+          collapsed: false,
+          items: [
+            { text: 'ListView', link: '/en/packages/vbccr/views/listview' },
+            { text: 'TreeView', link: '/en/packages/vbccr/views/treeview' },
+            { text: 'TabStrip', link: '/en/packages/vbccr/views/tabstrip' },
+          ]
+        },
+        {
+          text: 'Bars',
+          collapsed: false,
+          items: [
+            { text: 'ToolBar', link: '/en/packages/vbccr/bars/toolbar' },
+            { text: 'StatusBar', link: '/en/packages/vbccr/bars/statusbar' },
+            { text: 'CoolBar', link: '/en/packages/vbccr/bars/coolbar' },
+            { text: 'Pager', link: '/en/packages/vbccr/bars/pager' },
+          ]
+        },
+        {
+          text: 'Ranges',
+          collapsed: false,
+          items: [
+            { text: 'Slider', link: '/en/packages/vbccr/ranges/slider' },
+            { text: 'ProgressBar', link: '/en/packages/vbccr/ranges/progressbar' },
+            { text: 'UpDown', link: '/en/packages/vbccr/ranges/updown' },
+            { text: 'Animation', link: '/en/packages/vbccr/ranges/animation' },
+          ]
+        },
+        {
+          text: 'Date/Time',
+          collapsed: false,
+          items: [
+            { text: 'DTPicker', link: '/en/packages/vbccr/datetime/dtpicker' },
+            { text: 'MonthView', link: '/en/packages/vbccr/datetime/monthview' },
+          ]
+        },
+        {
+          text: 'System',
+          collapsed: false,
+          items: [
+            { text: 'CommonDialog', link: '/en/packages/vbccr/system/commondialog' },
+            { text: 'SysInfo', link: '/en/packages/vbccr/system/sysinfo' },
+            { text: 'ImageList', link: '/en/packages/vbccr/system/imagelist' },
+            { text: 'FrameW', link: '/en/packages/vbccr/system/framew' },
+            { text: 'MCIWnd', link: '/en/packages/vbccr/system/mciwnd' },
+          ]
+        },
+        { text: 'Author Documentation', link: '/en/packages/vbccr/author' },
       ]
     }
   ],
