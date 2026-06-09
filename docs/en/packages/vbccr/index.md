@@ -5,10 +5,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '416c73d2-760a-46b2-b70b-a4405cfcd3d0'
-  PropagateID: '416c73d2-760a-46b2-b70b-a4405cfcd3d0'
-  ReservedCode1: '3b280cae-ab4c-4dde-afc3-2f882df74acf'
-  ReservedCode2: '3b280cae-ab4c-4dde-afc3-2f882df74acf'
+  ProduceID: '8a55c35b-50e2-4545-89e6-5ff097e2f899'
+  PropagateID: '8a55c35b-50e2-4545-89e6-5ff097e2f899'
+  ReservedCode1: '3b311a20-1937-4109-9280-7feb7b147457'
+  ReservedCode2: '3b311a20-1937-4109-9280-7feb7b147457'
 ---
 
 # VBCCR Development Manual
@@ -32,77 +32,77 @@ This documentation is based on the VBCCR 1.8 source code. All interface informat
 
 | Control | Class Name | Description |
 |---------|-----------|-------------|
-| [CheckBoxW](./buttons/checkboxw.md) | CheckBoxW | Unicode CheckBox control |
-| [CommandButtonW](./buttons/commandbuttonw.md) | CommandButtonW | Unicode CommandButton control |
-| [CommandLink](./buttons/commandlink.md) | CommandLink | CommandLink control |
-| [OptionButtonW](./buttons/optionbuttonw.md) | OptionButtonW | Unicode OptionButton control |
+| [CheckBoxW](./buttons/checkboxw) | CheckBoxW | Unicode CheckBox control |
+| [CommandButtonW](./buttons/commandbuttonw) | CommandButtonW | Unicode CommandButton control |
+| [CommandLink](./buttons/commandlink) | CommandLink | CommandLink control |
+| [OptionButtonW](./buttons/optionbuttonw) | OptionButtonW | Unicode OptionButton control |
 
 ### Text
 
 | Control | Class Name | Description |
 |---------|-----------|-------------|
-| [TextBoxW](./text/textboxw.md) | TextBoxW | Unicode TextBox control |
-| [RichTextBox](./text/richtextbox.md) | RichTextBox | RichTextBox control |
-| [SpinBox](./text/spinbox.md) | SpinBox | SpinBox control |
-| [LabelW](./text/labelw.md) | LabelW | Unicode Label control |
-| [WindowedLabel](./text/windowedlabel.md) | WindowedLabel | Windowed Label control |
-| [LinkLabel](./text/linklabel.md) | LinkLabel | LinkLabel control |
-| [HotKey](./text/hotkey.md) | HotKey | HotKey control |
+| [TextBoxW](./text/textboxw) | TextBoxW | Unicode TextBox control |
+| [RichTextBox](./text/richtextbox) | RichTextBox | RichTextBox control |
+| [SpinBox](./text/spinbox) | SpinBox | SpinBox control |
+| [LabelW](./text/labelw) | LabelW | Unicode Label control |
+| [WindowedLabel](./text/windowedlabel) | WindowedLabel | Windowed Label control |
+| [LinkLabel](./text/linklabel) | LinkLabel | LinkLabel control |
+| [HotKey](./text/hotkey) | HotKey | HotKey control |
 
 ### Lists
 
 | Control | Class Name | Description |
 |---------|-----------|-------------|
-| [ComboBoxW](./lists/comboboxw.md) | ComboBoxW | Unicode ComboBox control |
-| [ListBoxW](./lists/listboxw.md) | ListBoxW | Unicode ListBox control |
-| [FontCombo](./lists/fontcombo.md) | FontCombo | Font selection ComboBox control |
-| [ImageCombo](./lists/imagecombo.md) | ImageCombo | Image ComboBox control |
-| [IPAddress](./lists/ipaddress.md) | IPAddress | IP Address control |
-| [VirtualCombo](./lists/virtualcombo.md) | VirtualCombo | Virtual ComboBox control |
-| [VListBox](./lists/vlistbox.md) | VListBox | Virtual ListBox control |
+| [ComboBoxW](./lists/comboboxw) | ComboBoxW | Unicode ComboBox control |
+| [ListBoxW](./lists/listboxw) | ListBoxW | Unicode ListBox control |
+| [FontCombo](./lists/fontcombo) | FontCombo | Font selection ComboBox control |
+| [ImageCombo](./lists/imagecombo) | ImageCombo | Image ComboBox control |
+| [IPAddress](./lists/ipaddress) | IPAddress | IP Address control |
+| [VirtualCombo](./lists/virtualcombo) | VirtualCombo | Virtual ComboBox control |
+| [VListBox](./lists/vlistbox) | VListBox | Virtual ListBox control |
 
 ### Views
 
 | Control | Class Name | Description |
 |---------|-----------|-------------|
-| [ListView](./views/listview.md) | ListView | ListView control |
-| [TreeView](./views/treeview.md) | TreeView | TreeView control |
-| [TabStrip](./views/tabstrip.md) | TabStrip | TabStrip control |
+| [ListView](./views/listview) | ListView | ListView control |
+| [TreeView](./views/treeview) | TreeView | TreeView control |
+| [TabStrip](./views/tabstrip) | TabStrip | TabStrip control |
 
 ### Bars
 
 | Control | Class Name | Description |
 |---------|-----------|-------------|
-| [ToolBar](./bars/toolbar.md) | ToolBar | ToolBar control |
-| [StatusBar](./bars/statusbar.md) | StatusBar | StatusBar control |
-| [CoolBar](./bars/coolbar.md) | CoolBar | Dockable toolbar control |
-| [Pager](./bars/pager.md) | Pager | Pager control |
+| [ToolBar](./bars/toolbar) | ToolBar | ToolBar control |
+| [StatusBar](./bars/statusbar) | StatusBar | StatusBar control |
+| [CoolBar](./bars/coolbar) | CoolBar | Dockable toolbar control |
+| [Pager](./bars/pager) | Pager | Pager control |
 
 ### Ranges
 
 | Control | Class Name | Description |
 |---------|-----------|-------------|
-| [Slider](./ranges/slider.md) | Slider | Slider control |
-| [ProgressBar](./ranges/progressbar.md) | ProgressBar | ProgressBar control |
-| [UpDown](./ranges/updown.md) | UpDown | UpDown control |
-| [Animation](./ranges/animation.md) | Animation | Animation control |
+| [Slider](./ranges/slider) | Slider | Slider control |
+| [ProgressBar](./ranges/progressbar) | ProgressBar | ProgressBar control |
+| [UpDown](./ranges/updown) | UpDown | UpDown control |
+| [Animation](./ranges/animation) | Animation | Animation control |
 
 ### Date/Time
 
 | Control | Class Name | Description |
 |---------|-----------|-------------|
-| [DTPicker](./datetime/dtpicker.md) | DTPicker | DateTimePicker control |
-| [MonthView](./datetime/monthview.md) | MonthView | MonthView control |
+| [DTPicker](./datetime/dtpicker) | DTPicker | DateTimePicker control |
+| [MonthView](./datetime/monthview) | MonthView | MonthView control |
 
 ### System
 
 | Control | Class Name | Description |
 |---------|-----------|-------------|
-| [CommonDialog](./system/commondialog.md) | CommonDialog | Common Dialog class |
-| [SysInfo](./system/sysinfo.md) | SysInfo | System Information control |
-| [ImageList](./system/imagelist.md) | ImageList | ImageList control |
-| [FrameW](./system/framew.md) | FrameW | Unicode Frame control |
-| [MCIWnd](./system/mciwnd.md) | MCIWnd | Multimedia control |
+| [CommonDialog](./system/commondialog) | CommonDialog | Common Dialog class |
+| [SysInfo](./system/sysinfo) | SysInfo | System Information control |
+| [ImageList](./system/imagelist) | ImageList | ImageList control |
+| [FrameW](./system/framew) | FrameW | Unicode Frame control |
+| [MCIWnd](./system/mciwnd) | MCIWnd | Multimedia control |
 
 ## Common Helper Modules
 
@@ -192,7 +192,7 @@ The following enumerations are shared across multiple controls:
 
 The official documentation written by VBCCR author Kr00l (Chinese translation), covering StdEXE/OCX version usage guides, OCX2StdEXE tool instructions, compilation options, and version history:
 
-[Read Author Documentation](./author.md)
+[Read Author Documentation](./author)
 
 ## Additional Resources
 
