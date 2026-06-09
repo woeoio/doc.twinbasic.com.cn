@@ -10,31 +10,11 @@ export const enNav = [
 export const enSidebar = {
   '/en/official/': [
     {
-      text: 'Challenges',
+      text: 'Twinbasic official',
       items: [
-        { text: 'Overview', link: '/en/official/Challenges/' },
-        { text: 'Create a Game', link: '/en/official/Challenges/create-a-game' },
-        { text: 'Self-Contained Diagnostic Tool', link: '/en/official/Challenges/self-contained_diagnostic_tool' }
+        { text: 'Overview', link: '/en/official/' }
       ]
-    },
-    {
-      text: 'Documentation',
-      items: [
-        { text: 'Documentation Development', link: '/en/official/Documentation/' },
-        { text: 'Book Configuration', link: '/en/official/Documentation/Book-Configuration' },
-        { text: 'tbdocs Builder', link: '/en/official/Documentation/Builder' },
-        { text: 'Building and Deployment', link: '/en/official/Documentation/Building' },
-        { text: 'Extending the Builder', link: '/en/official/Documentation/Extending' },
-        { text: 'Library Patches', link: '/en/official/Documentation/Fixes' },
-        { text: 'Mermaid Dagre Patches', link: '/en/official/Documentation/Fixes-Dagre' },
-        { text: 'Paged.js Patches', link: '/en/official/Documentation/Fixes-PagedJS' },
-        { text: 'pdf-lib Patches', link: '/en/official/Documentation/Fixes-PDFLib' },
-        { text: 'PDF Generation', link: '/en/official/Documentation/PDF-Generation' },
-        { text: 'Permanent Links', link: '/en/official/Documentation/Permanent-Links' },
-        { text: 'Pipeline Stages', link: '/en/official/Documentation/Pipeline-Stages' },
-        { text: 'Tools and Scripts', link: '/en/official/Documentation/Tools' }
-      ]
-    },
+    }, 
     {
       text: 'Features',
       items: [
@@ -626,6 +606,32 @@ export const enSidebar = {
         }
       ]
     },
+   {
+      text: 'Challenges',
+      items: [
+        { text: 'Overview', link: '/en/official/Challenges/' },
+        { text: 'Create a Game', link: '/en/official/Challenges/create-a-game' },
+        { text: 'Self-Contained Diagnostic Tool', link: '/en/official/Challenges/self-contained_diagnostic_tool' }
+      ]
+    },
+    {
+      text: 'Documentation',
+      items: [
+        { text: 'Documentation Development', link: '/en/official/Documentation/' },
+        { text: 'Book Configuration', link: '/en/official/Documentation/Book-Configuration' },
+        { text: 'tbdocs Builder', link: '/en/official/Documentation/Builder' },
+        { text: 'Building and Deployment', link: '/en/official/Documentation/Building' },
+        { text: 'Extending the Builder', link: '/en/official/Documentation/Extending' },
+        { text: 'Library Patches', link: '/en/official/Documentation/Fixes' },
+        { text: 'Mermaid Dagre Patches', link: '/en/official/Documentation/Fixes-Dagre' },
+        { text: 'Paged.js Patches', link: '/en/official/Documentation/Fixes-PagedJS' },
+        { text: 'pdf-lib Patches', link: '/en/official/Documentation/Fixes-PDFLib' },
+        { text: 'PDF Generation', link: '/en/official/Documentation/PDF-Generation' },
+        { text: 'Permanent Links', link: '/en/official/Documentation/Permanent-Links' },
+        { text: 'Pipeline Stages', link: '/en/official/Documentation/Pipeline-Stages' },
+        { text: 'Tools and Scripts', link: '/en/official/Documentation/Tools' }
+      ]
+    },    
     {
       text: 'Videos',
       items: [

@@ -18,32 +18,6 @@ export const zhSidebar = {
       ]
     },
     {
-      text: 'Challenges 挑战赛',
-      items: [
-        { text: '概览', link: '/official/Challenges/' },
-        { text: '创建游戏', link: '/official/Challenges/create-a-game' },
-        { text: '自包含诊断工具', link: '/official/Challenges/self-contained_diagnostic_tool' }
-      ]
-    },    
-    {
-      text: 'Documentation 文档构建',
-      items: [
-        { text: '文档开发', link: '/official/Documentation/' },
-        { text: '书籍配置', link: '/official/Documentation/Book-Configuration' },
-        { text: 'tbdocs 构建器', link: '/official/Documentation/Builder' },
-        { text: '构建与部署', link: '/official/Documentation/Building' },
-        { text: '扩展构建器', link: '/official/Documentation/Extending' },
-        { text: '库补丁', link: '/official/Documentation/Fixes' },
-        { text: 'Mermaid Dagre 补丁', link: '/official/Documentation/Fixes-Dagre' },
-        { text: 'Paged.js 补丁', link: '/official/Documentation/Fixes-PagedJS' },
-        { text: 'pdf-lib 补丁', link: '/official/Documentation/Fixes-PDFLib' },
-        { text: 'PDF 生成', link: '/official/Documentation/PDF-Generation' },
-        { text: '永久链接', link: '/official/Documentation/Permanent-Links' },
-        { text: '流水线阶段', link: '/official/Documentation/Pipeline-Stages' },
-        { text: '工具与脚本', link: '/official/Documentation/Tools' }
-      ]
-    },
-    {
       text: 'Features 功能特性',
       items: [
         { text: '概览', link: '/official/Features/' },
@@ -634,6 +608,32 @@ export const zhSidebar = {
         }
       ]
     },
+    {
+      text: 'Challenges 挑战赛',
+      items: [
+        { text: '概览', link: '/official/Challenges/' },
+        { text: '创建游戏', link: '/official/Challenges/create-a-game' },
+        { text: '自包含诊断工具', link: '/official/Challenges/self-contained_diagnostic_tool' }
+      ]
+    },    
+    {
+      text: 'Documentation 文档构建',
+      items: [
+        { text: '文档开发', link: '/official/Documentation/' },
+        { text: '书籍配置', link: '/official/Documentation/Book-Configuration' },
+        { text: 'tbdocs 构建器', link: '/official/Documentation/Builder' },
+        { text: '构建与部署', link: '/official/Documentation/Building' },
+        { text: '扩展构建器', link: '/official/Documentation/Extending' },
+        { text: '库补丁', link: '/official/Documentation/Fixes' },
+        { text: 'Mermaid Dagre 补丁', link: '/official/Documentation/Fixes-Dagre' },
+        { text: 'Paged.js 补丁', link: '/official/Documentation/Fixes-PagedJS' },
+        { text: 'pdf-lib 补丁', link: '/official/Documentation/Fixes-PDFLib' },
+        { text: 'PDF 生成', link: '/official/Documentation/PDF-Generation' },
+        { text: '永久链接', link: '/official/Documentation/Permanent-Links' },
+        { text: '流水线阶段', link: '/official/Documentation/Pipeline-Stages' },
+        { text: '工具与脚本', link: '/official/Documentation/Tools' }
+      ]
+    },    
     {
       text: 'Videos 视频',
       items: [
