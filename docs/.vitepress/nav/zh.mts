@@ -2,6 +2,9 @@ export const zhNav = [
   { text: '首页', link: '/' },
   { text: 'TBMAN', link: '/tbman' },
   { text: '官方文档', link: '/official/' },
+  { text: '第三方包', items: [
+    { text: 'VBCCR', link: '/packages/vbccr/' },
+  ]},
   { text: '挑战', link: '/challenge/2026/202601' },
   { text: 'VB6.PRO', link: 'https://vb6.pro/' },
   { text: '捐赠', link: 'https://doc.vb6.pro/donate/' },
@@ -643,7 +646,7 @@ export const zhSidebar = {
       ]
     }
   ],
-  '/packages/vbccr': [
+  '/packages/vbccr/': [
     {
       text: 'VBCCR 控件',
       items: [

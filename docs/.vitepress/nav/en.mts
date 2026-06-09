@@ -2,6 +2,9 @@ export const enNav = [
   { text: 'Home', link: '/en/' },
   { text: 'TBMAN', link: '/tbman' },
   { text: 'Official Docs', link: '/en/official/' },
+  { text: 'Packages', items: [
+    { text: 'VBCCR', link: '/en/packages/vbccr/' },
+  ]},  
   { text: 'Challenges', link: '/en/challenge/2026/202601' },
   { text: 'VB6.PRO', link: 'https://vb6.pro/' },
   { text: 'Join Us', link: 'https://discord.gg/UaW9GgKKuE' }
