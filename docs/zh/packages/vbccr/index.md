@@ -1,136 +1,200 @@
-# VBCCR (VB6 ActiveX 通用控件替代库)
+﻿---
+title: VBCCR 开发手册
+description: VBCCR 开发手册 - VBCCR 开发手册，基于源码的完整 API 参考
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '97c80cd5-25e4-4457-ad09-7477c88e3ebf'
+  PropagateID: '97c80cd5-25e4-4457-ad09-7477c88e3ebf'
+  ReservedCode1: 'ca0949b6-e402-4282-a785-8f8d41a2c8d9'
+  ReservedCode2: 'ca0949b6-e402-4282-a785-8f8d41a2c8d9'
+---
 
-VBCCR 是 Visual Basic 6 中 Microsoft 通用控件 (MSComCtl) 的全面替代品。该库在保持与原始控件兼容的同时，提供了增强的功能和改进的视觉外观。作者：[Kr00l](https://github.com/Kr00l)
+# VBCCR 开发手册
 
-**本套控件库最重要主要是解决了在原生vb6窗体控件上显示unicode字符的问题。从此再也不怕乱码了！！！**
+VBCCR（VB Common Controls Replacement）是 Visual Basic 6 中 Microsoft 通用控件 (MSComCtl) 的全面替代库，由 [Kr00l](https://github.com/Kr00l/VBCCR) 开发维护。在保持与原始控件兼容的同时，提供增强的功能、改进的视觉外观，以及**完整的 Unicode 支持**。
 
-本文档由 [vb6.pro](https://vb6.pro) 站长邓伟整理，转载请注明出处。文档使用了 vscode + copilot ai 生成制作。
+**核心优势：解决了原生 VB6 窗体控件上显示 Unicode 字符的乱码问题。**
 
-## 概述
-
-VBCCR 库包含以下控件：
-
-1. 动画控件 (VBCCRAnimation)
-2. 复选框控件 (VBCCRCheck)
-3. 组合框控件 (VBCCRComboBox)
-4. 命令按钮控件 (VBCCRCmdBtn)
-5. 命令链接控件 (VBCCRCmdLink)
-6. 通用对话框控件 (VBCCRCommonDialog)
-7. 工具条控件 (VBCCRCoolBar)
-8. 日期时间选择器控件 (VBCCRDTPicker)
-9. 字体组合框控件 (VBCCRFontCombo)
-10. 框架控件 (VBCCRFrame)
-11. 热键控件 (VBCCRHotKey)
-12. 图像组合框控件 (VBCCRImageCombo)
-13. 图像列表控件 (VBCCRImageList)
-14. IP地址控件 (VBCCRIPAddress)
-15. 标签控件 (VBCCRLabel)
-16. 链接标签控件 (VBCCRLinkLabel)
-17. 列表框控件 (VBCCRListBox)
-18. 列表视图控件 (VBCCRListView)
-19. 多媒体控件 (VBCCRMCIWnd)
-20. 月视图控件 (VBCCRMonthView)
-21. 选项按钮控件 (VBCCROptionButton)
-22. 分页控件 (VBCCRPager)
-23. 进度条控件 (VBCCRProgressBar)
-24. 富文本框控件 (VBCCRRichTextBox)
-25. 滑块控件 (VBCCRSlider)
-26. 数字调节框控件 (VBCCRSpinBox)
-27. 状态栏控件 (VBCCRStatusBar)
-28. 系统信息控件 (VBCCRSysInfo)
-29. 选项卡控件 (VBCCRTabStrip)
-30. 文本框控件 (VBCCRTextBox)
-31. 工具栏控件 (VBCCRToolBar)
-32. 树形视图控件 (VBCCRTreeView)
-33. 上下调节控件 (VBCCRUpDown)
-34. 虚拟组合框控件 (VBCCRVirtualCombo)
-35. 虚拟列表框控件 (VBCCRVListBox)
-36. 窗口化标签控件 (VBCCRWindowedLabel)
-
-## 主要特性
-
-- 现代化的视觉外观
-- 比原始 MSComCtl 更强大的功能
-- 与 VB6 完全兼容
-- 更好的性能
-- 更优的内存管理
-- 扩展的自定义选项
-
-## 文档结构
-
-每个控件都有其专门的文档页面，包含：
-- 详细的属性和方法说明
-- 事件文档
-- 代码示例
-- 常见用例
+本文档基于 VBCCR 1.8 源码编写，所有接口信息均来自实际代码，确保准确性。
 
 ## 快速入门
 
-要在您的 VB6 项目中开始使用 VBCCR 控件：
+1. 从 [GitHub 仓库](https://github.com/Kr00l/VBCCR) 下载 VBCCR 库
+2. 在系统中注册 OCX 文件：`regsvr32 VBCCR18.OCX`
+3. 在 VB6 项目中添加对 VBCCR 控件的引用
+4. 在窗体中使用增强控件
 
-1. 从 [本站直接](https://gitcode.com/woeoio/vb6.pro/releases/download/vbccr/VBCCR18.OCX.zip) 下载已经编译好的 VBCCR 控件
-2. 或者：从 [GitHub 仓库](https://github.com/Kr00l/VBCCR) 下载 VBCCR 库，自行编译
-3. 在您的系统中注册 OCX 文件
-4. 在您的 VB6 项目中添加对 VBCCR 控件的引用
-5. 开始在您的窗体中使用这些增强的控件
+## 包含的控件
 
-<!-- ## 控件文档
+### 按钮类 (buttons)
 
-- [动画控件](./animation.md)
-- [复选框控件](./checkbox.md)
-- [组合框控件](./combobox.md)
-- [命令按钮控件](./commandbutton.md)
-- [命令链接控件](./commandlink.md)
-- [通用对话框控件](./commondialog.md)
-- [工具条控件](./coolbar.md)
-- [日期时间选择器控件](./datetimepicker.md)
-- [驱动器列表控件](./drivelist.md)
-- [驱动器路径控件](./drivepath.md)
-- [文件路径控件](./filepath.md)
-- [字体组合框控件](./fontcombo.md)
-- [框架控件](./frame.md)
-- [热键控件](./hotkey.md)
-- [图像控件](./image.md)
-- [图像组合框控件](./imagecombo.md)
-- [图像列表控件](./imagelist.md)
-- [IP地址控件](./ipaddress.md)
-- [标签控件](./label.md)
-- [线条控件](./line.md)
-- [链接标签控件](./linklabel.md)
-- [列表框控件](./listbox.md)
-- [列表视图控件](./listview.md)
-- [多媒体控件](./mciwnd.md)
-- [月历控件](./monthcalendar.md)
-- [月视图控件](./monthview.md)
-- [选项控件](./option.md)
-- [选项按钮控件](./optionbutton.md)
-- [分页控件](./pager.md)
-- [图片框控件](./picture.md)
-- [进度条控件](./progressbar.md)
-- [富文本框控件](./richtextbox.md)
-- [滚动条控件](./scrollbar.md)
-- [形状控件](./shape.md)
-- [滑块控件](./slider.md)
-- [数字调节框控件](./spinbox.md)
-- [状态栏控件](./statusbar.md)
-- [系统信息控件](./sysinfo.md)
-- [选项卡控件](./tabstrip.md)
-- [文本框控件](./textbox.md)
-- [定时器控件](./timer.md)
-- [工具栏控件](./toolbar.md)
-- [树形视图控件](./treeview.md)
-- [上下调节控件](./updown.md)
-- [虚拟组合框控件](./virtualcombo.md)
-- [虚拟列表框控件](./vlistbox.md)
-- [网页浏览器控件](./webbrowser.md)
-- [窗口化标签控件](./windowedlabel.md) -->
+| 控件 | 类名 | 说明 |
+|------|------|------|
+| [CheckBoxW](./buttons/checkboxw.md) | CheckBoxW | Unicode 复选框控件 |
+| [CommandButtonW](./buttons/commandbuttonw.md) | CommandButtonW | Unicode 命令按钮控件 |
+| [CommandLink](./buttons/commandlink.md) | CommandLink | 命令链接控件 |
+| [OptionButtonW](./buttons/optionbuttonw.md) | OptionButtonW | Unicode 选项按钮控件 |
 
-## 官方文档
+### 文本标签类 (text)
 
-你也可以先阅读一次作者写的[官方文档](./readme.md)内容，然后再查看ai写的每一个控件详解。
+| 控件 | 类名 | 说明 |
+|------|------|------|
+| [TextBoxW](./text/textboxw.md) | TextBoxW | Unicode 文本框控件 |
+| [RichTextBox](./text/richtextbox.md) | RichTextBox | 富文本框控件 |
+| [SpinBox](./text/spinbox.md) | SpinBox | 数字调节框控件 |
+| [LabelW](./text/labelw.md) | LabelW | Unicode 标签控件 |
+| [WindowedLabel](./text/windowedlabel.md) | WindowedLabel | 窗口化标签控件 |
+| [LinkLabel](./text/linklabel.md) | LinkLabel | 链接标签控件 |
+| [HotKey](./text/hotkey.md) | HotKey | 热键控件 |
+
+### 列表选择类 (lists)
+
+| 控件 | 类名 | 说明 |
+|------|------|------|
+| [ComboBoxW](./lists/comboboxw.md) | ComboBoxW | Unicode 组合框控件 |
+| [ListBoxW](./lists/listboxw.md) | ListBoxW | Unicode 列表框控件 |
+| [FontCombo](./lists/fontcombo.md) | FontCombo | 字体选择组合框控件 |
+| [ImageCombo](./lists/imagecombo.md) | ImageCombo | 图像组合框控件 |
+| [IPAddress](./lists/ipaddress.md) | IPAddress | IP 地址控件 |
+| [VirtualCombo](./lists/virtualcombo.md) | VirtualCombo | 虚拟组合框控件 |
+| [VListBox](./lists/vlistbox.md) | VListBox | 虚拟列表框控件 |
+
+### 视图类 (views)
+
+| 控件 | 类名 | 说明 |
+|------|------|------|
+| [ListView](./views/listview.md) | ListView | 列表视图控件 |
+| [TreeView](./views/treeview.md) | TreeView | 树形视图控件 |
+| [TabStrip](./views/tabstrip.md) | TabStrip | 选项卡控件 |
+
+### 工具条/状态栏类 (bars)
+
+| 控件 | 类名 | 说明 |
+|------|------|------|
+| [ToolBar](./bars/toolbar.md) | ToolBar | 工具栏控件 |
+| [StatusBar](./bars/statusbar.md) | StatusBar | 状态栏控件 |
+| [CoolBar](./bars/coolbar.md) | CoolBar | 可停靠工具条控件 |
+| [Pager](./bars/pager.md) | Pager | 分页控件 |
+
+### 滑块/进度/调节类 (ranges)
+
+| 控件 | 类名 | 说明 |
+|------|------|------|
+| [Slider](./ranges/slider.md) | Slider | 滑块控件 |
+| [ProgressBar](./ranges/progressbar.md) | ProgressBar | 进度条控件 |
+| [UpDown](./ranges/updown.md) | UpDown | 上下调节控件 |
+| [Animation](./ranges/animation.md) | Animation | 动画播放控件 |
+
+### 日期时间类 (datetime)
+
+| 控件 | 类名 | 说明 |
+|------|------|------|
+| [DTPicker](./datetime/dtpicker.md) | DTPicker | 日期时间选择器控件 |
+| [MonthView](./datetime/monthview.md) | MonthView | 月历视图控件 |
+
+### 对话框/系统/容器/多媒体类 (system)
+
+| 控件 | 类名 | 说明 |
+|------|------|------|
+| [CommonDialog](./system/commondialog.md) | CommonDialog | 通用对话框类 |
+| [SysInfo](./system/sysinfo.md) | SysInfo | 系统信息控件 |
+| [ImageList](./system/imagelist.md) | ImageList | 图像列表控件 |
+| [FrameW](./system/framew.md) | FrameW | Unicode 框架控件 |
+| [MCIWnd](./system/mciwnd.md) | MCIWnd | 多媒体控件 |
+
+## 公共辅助模块
+
+VBCCR 还提供以下公共辅助模块，供所有控件共享使用：
+
+| 模块 | 文件 | 说明 |
+|------|------|------|
+| Common | Common.bas | 通用工具函数（MsgBox、SendKeys Unicode 版本，剪贴板操作，DPI 辅助，图片处理等） |
+| VisualStyles | VisualStyles.bas | 视觉样式管理（ActivateVisualStyles、RemoveVisualStyles、GetComCtlVersion） |
+| ISubclass | ISubclass.cls | 子类化接口 |
+| ComCtlsBase | ComCtlsBase.bas | 控件基础模块 |
+| VTableHandle | VTableHandle.bas | VTable 处理模块 |
+
+## 通用枚举
+
+以下枚举在多个控件中共享使用：
+
+### CCAppearanceConstants
+| 常量 | 值 | 说明 |
+|------|-----|------|
+| cc2D | 0 | 平面外观 |
+| cc3D | 1 | 三维外观 |
+
+### CCLeftRightAlignmentConstants
+| 常量 | 值 | 说明 |
+|------|-----|------|
+| ccLeft | 0 | 左对齐 |
+| ccRight | 1 | 右对齐 |
+
+### CCVerticalAlignmentConstants
+| 常量 | 值 | 说明 |
+|------|-----|------|
+| ccTop | 0 | 顶部对齐 |
+| ccBottom | 1 | 底部对齐 |
+| ccVCenter | 2 | 垂直居中 |
+
+### CCMousePointerConstants
+| 常量 | 值 |
+|------|-----|
+| ccDefault | 0 |
+| ccArrow | 1 |
+| ccCrosshair | 2 |
+| ccIBeam | 3 |
+| ccIcon | 4 |
+| ccSize | 5 |
+| ccSizeNESW | 6 |
+| ccSizeNS | 7 |
+| ccSizeNWSE | 8 |
+| ccSizeWE | 9 |
+| ccUpArrow | 10 |
+| ccHourglass | 11 |
+| ccNoDrop | 12 |
+| ccArrowHourglass | 13 |
+| ccArrowQuestion | 14 |
+| ccSizeAll | 15 |
+| ccCustom | 99 |
+
+### CCRightToLeftModeConstants
+| 常量 | 值 | 说明 |
+|------|-----|------|
+| ccRtlModeNo | 0 | 无 RTL |
+| ccRtlModeStandard | 1 | 标准 RTL |
+| ccRtlModeV2 | 2 | V2 模式 RTL |
+
+### CCIMEModeConstants
+| 常量 | 值 |
+|------|-----|
+| ccIMENoControl | 0 |
+| ccIMEOn | 1 |
+| ccIMEOff | 2 |
+| ccIMEDisable | 3 |
+| ccIMEHiragana | 4 |
+| ccIMEKatakanaDbl | 5 |
+| ccIMEKatakanaSng | 6 |
+| ccIMEAlphaDbl | 7 |
+| ccIMEAlphaSng | 8 |
+| ccIMEHangulDbl | 9 |
+| ccIMEHangulSng | 10 |
+
+### OLEDropModeConstants
+| 常量 | 值 |
+|------|-----|
+| ccOLEDropNone | 0 |
+| ccOLEDropManual | 1 |
+
+## 作者原文档
+
+VBCCR 作者 Kr00l 编写的官方文档（中文翻译），涵盖 StdEXE/OCX 版本使用指南、OCX2StdEXE 工具说明、编译选项及版本历史等：
+
+[阅读作者原文档](./author/author.md)
 
 ## 附加资源
 
-- [原始 VBForums 讨论帖](https://www.vbforums.com/showthread.php?841929-VB6-ActiveX-CommonControls-(Replacement-of-the-MS-common-controls))
-- [源代码仓库](https://github.com/Kr00l/VBCCR)
-- [历史讨论帖](https://www.vbforums.com/showthread.php?698563-CommonControls-(Replacement-of-the-MS-common-controls))
+- [VBCCR GitHub 仓库](https://github.com/Kr00l/VBCCR)
+- [VBForums 讨论帖](https://www.vbforums.com/showthread.php?841929-VB6-ActiveX-CommonControls)
