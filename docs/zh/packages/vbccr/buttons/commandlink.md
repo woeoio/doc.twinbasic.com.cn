@@ -1,4 +1,4 @@
-﻿---
+---
 title: 命令链接控件（CommandLink）
 description: 命令链接控件（CommandLink） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -22,93 +22,138 @@ Windows 命令链接按钮控件，显示标题、提示文本和可选图标。
 ## 属性
 
 ### Default
-`Property Get Default() As Boolean`
-`Property Let Default(ByVal Value As Boolean)`
+
+```vb
+Property Get Default() As Boolean
+Property Let Default(ByVal Value As Boolean)
+```
 
 是否为默认按钮。
 
 ### Cancel
-`Property Get Cancel() As Boolean`
-`Property Let Cancel(ByVal Value As Boolean)`
+
+```vb
+Property Get Cancel() As Boolean
+Property Let Cancel(ByVal Value As Boolean)
+```
 
 是否为取消按钮。
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 是否启用视觉样式。
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景色。
 
 ### ImageList
-`Property Get ImageList() As Variant`
-`Property Let ImageList(ByVal Value As Variant)`
-`Property Set ImageList(ByVal Value As Variant)`
+
+```vb
+Property Get ImageList() As Variant
+Property Let ImageList(ByVal Value As Variant)
+Property Set ImageList(ByVal Value As Variant)
+```
 
 关联的 ImageList 控件。
 
 ### Caption
-`Property Get Caption() As String`
-`Property Let Caption(ByVal Value As String)`
+
+```vb
+Property Get Caption() As String
+Property Let Caption(ByVal Value As String)
+```
 
 标题文本。
 
 ### Hint
-`Property Get Hint() As String`
-`Property Let Hint(ByVal Value As String)`
+
+```vb
+Property Get Hint() As String
+Property Let Hint(ByVal Value As String)
+```
 
 提示文本（标题下方的说明文字）。
 
 ### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 图标。
 
 ### Transparent
-`Property Get Transparent() As Boolean`
-`Property Let Transparent(ByVal Value As Boolean)`
+
+```vb
+Property Get Transparent() As Boolean
+Property Let Transparent(ByVal Value As Boolean)
+```
 
 透明背景（运行时有效）。
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 从右到左显示。
 
 ### RightToLeftLayout
-`Property Get RightToLeftLayout() As Boolean`
-`Property Let RightToLeftLayout(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeftLayout() As Boolean
+Property Let RightToLeftLayout(ByVal Value As Boolean)
+```
 
 从右到左镜像布局。
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 从右到左模式。参见通用枚举。
 
 ### Value
-`Property Get Value() As Boolean`
-`Property Let Value(ByVal NewValue As Boolean)`
+
+```vb
+Property Get Value() As Boolean
+Property Let Value(ByVal NewValue As Boolean)
+```
 
 按钮值，设为 True 时触发 Click 事件。
 
 ### Pushed
-`Property Get Pushed() As Boolean`
-`Property Let Pushed(ByVal Value As Boolean)`
+
+```vb
+Property Get Pushed() As Boolean
+Property Let Pushed(ByVal Value As Boolean)
+```
 
 是否处于按下状态。
 
 ### Hot
-`Property Get Hot() As Boolean`
+
+```vb
+Property Get Hot() As Boolean
+```
 
 是否处于热状态。只读。
 
@@ -123,27 +168,42 @@ Windows 命令链接按钮控件，显示标题、提示文本和可选图标。
 ## 方法
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 强制重绘。
 
 ### PerformClick
-`Public Sub PerformClick()`
+
+```vb
+Public Sub PerformClick()
+```
 
 模拟用户点击。
 
 ### SetShield
-`Public Function SetShield(ByVal State As Boolean) As Long`
+
+```vb
+Public Function SetShield(ByVal State As Boolean) As Long
+```
 
 设置 UAC 提升图标。成功返回 1。
 
 ### GetIdealHeight
-`Public Function GetIdealHeight() As Single`
+
+```vb
+Public Function GetIdealHeight() As Single
+```
 
 获取控件的理想高度。
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 ### Drag / ZOrder / SetFocus / Move
 
@@ -152,17 +212,26 @@ Windows 命令链接按钮控件，显示标题、提示文本和可选图标。
 ## 事件
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 单击。
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 双击。
 
 ### HotChanged
-`Public Event HotChanged()`
+
+```vb
+Public Event HotChanged()
+```
 
 热状态改变。
 

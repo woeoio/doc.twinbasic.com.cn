@@ -1,4 +1,4 @@
-﻿---
+---
 title: 复选框控件（CheckBoxW）
 description: 复选框控件（CheckBoxW） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -37,196 +37,292 @@ AIGC:
 ## 属性
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 是否启用视觉样式。
 
 ### Appearance
-`Property Get Appearance() As CCAppearanceConstants`
-`Property Let Appearance(ByVal Value As CCAppearanceConstants)`
+
+```vb
+Property Get Appearance() As CCAppearanceConstants
+Property Let Appearance(ByVal Value As CCAppearanceConstants)
+```
 
 外观样式。参见通用枚举。
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景色。
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 前景色。
 
 ### ImageList
-`Property Get ImageList() As Variant`
-`Property Let ImageList(ByVal Value As Variant)`
-`Property Set ImageList(ByVal Value As Variant)`
+
+```vb
+Property Get ImageList() As Variant
+Property Let ImageList(ByVal Value As Variant)
+Property Set ImageList(ByVal Value As Variant)
+```
 
 关联的 ImageList 控件。
 
 ### ImageListAlignment
-`Property Get ImageListAlignment() As ChkImageListAlignmentConstants`
-`Property Let ImageListAlignment(ByVal Value As ChkImageListAlignmentConstants)`
+
+```vb
+Property Get ImageListAlignment() As ChkImageListAlignmentConstants
+Property Let ImageListAlignment(ByVal Value As ChkImageListAlignmentConstants)
+```
 
 ImageList 图标对齐方式。
 
 ### ImageListMargin
-`Property Get ImageListMargin() As Single`
-`Property Let ImageListMargin(ByVal Value As Single)`
+
+```vb
+Property Get ImageListMargin() As Single
+Property Let ImageListMargin(ByVal Value As Single)
+```
 
 ImageList 图标边距。
 
 ### Value
-`Property Get Value() As Integer`
-`Property Let Value(ByVal Value As Integer)`
+
+```vb
+Property Get Value() As Integer
+Property Let Value(ByVal Value As Integer)
+```
 
 复选框状态（0-未选中，1-选中，2-灰显）。
 
 ### Caption
-`Property Get Caption() As String`
-`Property Let Caption(ByVal Value As String)`
+
+```vb
+Property Get Caption() As String
+Property Let Caption(ByVal Value As String)
+```
 
 标题文本。
 
 ### Alignment
-`Property Get Alignment() As CCLeftRightAlignmentConstants`
-`Property Let Alignment(ByVal Value As CCLeftRightAlignmentConstants)`
+
+```vb
+Property Get Alignment() As CCLeftRightAlignmentConstants
+Property Let Alignment(ByVal Value As CCLeftRightAlignmentConstants)
+```
 
 复选框的对齐方式。参见通用枚举。
 
 ### TextAlignment
-`Property Get TextAlignment() As VBRUN.AlignmentConstants`
-`Property Let TextAlignment(ByVal Value As VBRUN.AlignmentConstants)`
+
+```vb
+Property Get TextAlignment() As VBRUN.AlignmentConstants
+Property Let TextAlignment(ByVal Value As VBRUN.AlignmentConstants)
+```
 
 文本对齐方式。
 
 ### PushLike
-`Property Get PushLike() As Boolean`
-`Property Let PushLike(ByVal Value As Boolean)`
+
+```vb
+Property Get PushLike() As Boolean
+Property Let PushLike(ByVal Value As Boolean)
+```
 
 是否以按钮样式显示。
 
 ### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 图片。
 
 ### WordWrap
-`Property Get WordWrap() As Boolean`
-`Property Let WordWrap(ByVal Value As Boolean)`
+
+```vb
+Property Get WordWrap() As Boolean
+Property Let WordWrap(ByVal Value As Boolean)
+```
 
 是否自动换行。
 
 ### Transparent
-`Property Get Transparent() As Boolean`
-`Property Let Transparent(ByVal Value As Boolean)`
+
+```vb
+Property Get Transparent() As Boolean
+Property Let Transparent(ByVal Value As Boolean)
+```
 
 是否透明背景（运行时有效）。
 
 ### VerticalAlignment
-`Property Get VerticalAlignment() As CCVerticalAlignmentConstants`
-`Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)`
+
+```vb
+Property Get VerticalAlignment() As CCVerticalAlignmentConstants
+Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)
+```
 
 垂直对齐。参见通用枚举。
 
 ### Style
-`Property Get Style() As VBRUN.ButtonConstants`
-`Property Let Style(ByVal Value As VBRUN.ButtonConstants)`
+
+```vb
+Property Get Style() As VBRUN.ButtonConstants
+Property Let Style(ByVal Value As VBRUN.ButtonConstants)
+```
 
 外观样式（标准或图形）。
 
 ### DisabledPicture
-`Property Get DisabledPicture() As IPictureDisp`
-`Property Let DisabledPicture(ByVal Value As IPictureDisp)`
-`Property Set DisabledPicture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DisabledPicture() As IPictureDisp
+Property Let DisabledPicture(ByVal Value As IPictureDisp)
+Property Set DisabledPicture(ByVal Value As IPictureDisp)
+```
 
 禁用状态图片。Style 为图形时有效。
 
 ### DownPicture
-`Property Get DownPicture() As IPictureDisp`
-`Property Let DownPicture(ByVal Value As IPictureDisp)`
-`Property Set DownPicture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DownPicture() As IPictureDisp
+Property Let DownPicture(ByVal Value As IPictureDisp)
+Property Set DownPicture(ByVal Value As IPictureDisp)
+```
 
 按下状态图片。Style 为图形时有效。
 
 ### UseMaskColor
-`Property Get UseMaskColor() As Boolean`
-`Property Let UseMaskColor(ByVal Value As Boolean)`
+
+```vb
+Property Get UseMaskColor() As Boolean
+Property Let UseMaskColor(ByVal Value As Boolean)
+```
 
 是否使用遮罩色。Style 为图形时有效。
 
 ### MaskColor
-`Property Get MaskColor() As OLE_COLOR`
-`Property Let MaskColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get MaskColor() As OLE_COLOR
+Property Let MaskColor(ByVal Value As OLE_COLOR)
+```
 
 遮罩色。Style 为图形时有效。
 
 ### DrawMode
-`Property Get DrawMode() As ChkDrawModeConstants`
-`Property Let DrawMode(ByVal Value As ChkDrawModeConstants)`
+
+```vb
+Property Get DrawMode() As ChkDrawModeConstants
+Property Let DrawMode(ByVal Value As ChkDrawModeConstants)
+```
 
 绘制模式。
 
 ### Pushed
-`Property Get Pushed() As Boolean`
+
+```vb
+Property Get Pushed() As Boolean
+```
 
 是否处于按下状态。只读。
 
 ### Hot
-`Property Get Hot() As Boolean`
+
+```vb
+Property Get Hot() As Boolean
+```
 
 是否处于热状态（鼠标悬停）。只读。
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 窗口句柄。
 
 ### hWndUserControl
-`Property Get hWndUserControl() As LongPtr`
+
+```vb
+Property Get hWndUserControl() As LongPtr
+```
 
 用户控件窗口句柄。
 
 ### Font
-`Property Get Font() As StdFont`
-`Property Let Font(ByVal NewFont As StdFont)`
-`Property Set Font(ByVal NewFont As StdFont)`
+
+```vb
+Property Get Font() As StdFont
+Property Let Font(ByVal NewFont As StdFont)
+Property Set Font(ByVal NewFont As StdFont)
+```
 
 字体。
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 是否可用。
 
 ### OLEDropMode
-`Property Get OLEDropMode() As OLEDropModeConstants`
-`Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)`
+
+```vb
+Property Get OLEDropMode() As OLEDropModeConstants
+Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)
+```
 
 OLE 拖放模式。参见通用枚举。
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 鼠标指针。参见通用枚举。
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 自定义鼠标图标。
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 鼠标进入/离开跟踪。
 
@@ -237,12 +333,18 @@ OLE 拖放模式。参见通用枚举。
 ## 方法
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 强制重绘。
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 启动 OLE 拖放。
 
@@ -253,48 +355,84 @@ OLE 拖放模式。参见通用枚举。
 ## 事件
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 单击。
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 双击。
 
 ### HotChanged
-`Public Event HotChanged()`
+
+```vb
+Public Event HotChanged()
+```
 
 热状态改变时触发。
 
 ### OwnerDraw
-`Public Event OwnerDraw(ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As LongPtr, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)`
+
+```vb
+Public Event OwnerDraw(ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As LongPtr, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)
+```
 
 自绘事件。DrawMode 为 OwnerDraw 时触发。
 
 ### KeyDown
-`Public Event KeyDown(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Public Event KeyDown(KeyCode As Integer, Shift As Integer)
+```
 
 ### KeyUp
-`Public Event KeyUp(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Public Event KeyUp(KeyCode As Integer, Shift As Integer)
+```
 
 ### KeyPress
-`Public Event KeyPress(KeyAscii As Integer)`
+
+```vb
+Public Event KeyPress(KeyAscii As Integer)
+```
 
 ### MouseDown
-`Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 ### MouseMove
-`Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 ### MouseUp
-`Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 ### MouseEnter
-`Public Event MouseEnter()`
+
+```vb
+Public Event MouseEnter()
+```
 
 ### MouseLeave
-`Public Event MouseLeave()`
+
+```vb
+Public Event MouseLeave()
+```
 
 ### OLECompleteDrag / OLEDragDrop / OLEDragOver / OLEGiveFeedback / OLESetData / OLEStartDrag
 

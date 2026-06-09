@@ -61,285 +61,432 @@ See common enumerations.
 ## Properties
 
 ### Alignment
-`Property Get Alignment() As Long`
-`Property Let Alignment(ByVal Value As Long)`
+
+```vb
+Property Get Alignment() As Long
+Property Let Alignment(ByVal Value As Long)
+```
 
 Text alignment. 0 = Left-aligned, 1 = Right-aligned, 2 = Centered.
 
 ### AutoSize
-`Property Get AutoSize() As Boolean`
-`Property Let AutoSize(ByVal Value As Boolean)`
+
+```vb
+Property Get AutoSize() As Boolean
+Property Let AutoSize(ByVal Value As Boolean)
+```
 
 Whether to automatically resize to fit the content.
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 The background color.
 
 ### BackStyle
-`Property Get BackStyle() As CCBackStyleConstants`
-`Property Let BackStyle(ByVal Value As CCBackStyleConstants)`
+
+```vb
+Property Get BackStyle() As CCBackStyleConstants
+Property Let BackStyle(ByVal Value As CCBackStyleConstants)
+```
 
 The background style. See common enumerations.
 
 ### BorderStyle
-`Property Get BorderStyle() As CCBorderStyleConstants`
-`Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)`
+
+```vb
+Property Get BorderStyle() As CCBorderStyleConstants
+Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)
+```
 
 The border style. See common enumerations.
 
 ### Caption
-`Property Get Caption() As String`
-`Property Let Caption(ByVal Value As String)`
+
+```vb
+Property Get Caption() As String
+Property Let Caption(ByVal Value As String)
+```
 
 The display text.
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 Whether the control is enabled.
 
 ### Font
-`Property Get Font() As StdFont`
-`Property Let Font(ByVal NewFont As StdFont)`
-`Property Set Font(ByVal NewFont As StdFont)`
+
+```vb
+Property Get Font() As StdFont
+Property Let Font(ByVal NewFont As StdFont)
+Property Set Font(ByVal NewFont As StdFont)
+```
 
 The font.
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 The foreground color.
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 The mouse pointer style. See common enumerations.
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 The custom mouse icon.
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 Whether mouse enter/leave tracking is enabled.
 
 ### UseMnemonic
-`Property Get UseMnemonic() As Boolean`
-`Property Let UseMnemonic(ByVal Value As Boolean)`
+
+```vb
+Property Get UseMnemonic() As Boolean
+Property Let UseMnemonic(ByVal Value As Boolean)
+```
 
 Whether the & character is interpreted as an accelerator prefix.
 
 ### TextEffect
-`Property Get TextEffect() As LblTextEffectsConstants`
-`Property Let TextEffect(ByVal Value As LblTextEffectsConstants)`
+
+```vb
+Property Get TextEffect() As LblTextEffectsConstants
+Property Let TextEffect(ByVal Value As LblTextEffectsConstants)
+```
 
 The text effect.
 
 ### TextEffectColor
-`Property Get TextEffectColor() As OLE_COLOR`
-`Property Let TextEffectColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get TextEffectColor() As OLE_COLOR
+Property Let TextEffectColor(ByVal Value As OLE_COLOR)
+```
 
 The text effect color.
 
 ### BorderEffect
-`Property Get BorderEffect() As LblBorderEffectsConstants`
-`Property Let BorderEffect(ByVal Value As LblBorderEffectsConstants)`
+
+```vb
+Property Get BorderEffect() As LblBorderEffectsConstants
+Property Let BorderEffect(ByVal Value As LblBorderEffectsConstants)
+```
 
 The border effect.
 
 ### BorderEffectColor
-`Property Get BorderEffectColor() As OLE_COLOR`
-`Property Let BorderEffectColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BorderEffectColor() As OLE_COLOR
+Property Let BorderEffectColor(ByVal Value As OLE_COLOR)
+```
 
 The border effect color.
 
 ### WordWrap
-`Property Get WordWrap() As Boolean`
-`Property Let WordWrap(ByVal Value As Boolean)`
+
+```vb
+Property Get WordWrap() As Boolean
+Property Let WordWrap(ByVal Value As Boolean)
+```
 
 Whether text wraps automatically.
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 The right-to-left display direction.
 
 ### RightToLeftLayout
-`Property Get RightToLeftLayout() As Boolean`
-`Property Let RightToLeftLayout(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeftLayout() As Boolean
+Property Let RightToLeftLayout(ByVal Value As Boolean)
+```
 
 The right-to-left mirrored layout.
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 The right-to-left mode. See common enumerations.
 
 ### Appearance
-`Property Get Appearance() As CCAppearanceConstants`
-`Property Let Appearance(ByVal Value As CCAppearanceConstants)`
+
+```vb
+Property Get Appearance() As CCAppearanceConstants
+Property Let Appearance(ByVal Value As CCAppearanceConstants)
+```
 
 The appearance style. See common enumerations.
 
 ### VerticalAlignment
-`Property Get VerticalAlignment() As CCVerticalAlignmentConstants`
-`Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)`
+
+```vb
+Property Get VerticalAlignment() As CCVerticalAlignmentConstants
+Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)
+```
 
 The vertical alignment. See common enumerations.
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 The window handle. Read-only.
 
 ### ToolTipText
-`Property Get ToolTipText() As String`
-`Property Let ToolTipText(ByVal Value As String)`
+
+```vb
+Property Get ToolTipText() As String
+Property Let ToolTipText(ByVal Value As String)
+```
 
 The tooltip text.
 
 ### Name
-`Property Get Name() As String`
+
+```vb
+Property Get Name() As String
+```
 
 The control name. Read-only.
 
 ### Tag
-`Property Get Tag() As Variant`
-`Property Let Tag(ByVal Value As Variant)`
-`Property Set Tag(ByVal Value As Variant)`
+
+```vb
+Property Get Tag() As Variant
+Property Let Tag(ByVal Value As Variant)
+Property Set Tag(ByVal Value As Variant)
+```
 
 Custom data.
 
 ### Parent
-`Property Get Parent() As Object`
+
+```vb
+Property Get Parent() As Object
+```
 
 The parent object. Read-only.
 
 ### Container
-`Property Get Container() As Object`
-`Property Set Container(ByVal Value As Object)`
+
+```vb
+Property Get Container() As Object
+Property Set Container(ByVal Value As Object)
+```
 
 The container object.
 
 ### Left
-`Property Get Left() As Single`
-`Property Let Left(ByVal Value As Single)`
+
+```vb
+Property Get Left() As Single
+Property Let Left(ByVal Value As Single)
+```
 
 The left margin.
 
 ### Top
-`Property Get Top() As Single`
-`Property Let Top(ByVal Value As Single)`
+
+```vb
+Property Get Top() As Single
+Property Let Top(ByVal Value As Single)
+```
 
 The top margin.
 
 ### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 The width.
 
 ### Height
-`Property Get Height() As Single`
-`Property Let Height(ByVal Value As Single)`
+
+```vb
+Property Get Height() As Single
+Property Let Height(ByVal Value As Single)
+```
 
 The height.
 
 ### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 The visibility.
 
 ## Methods
 
 ### Refresh
-`Sub Refresh()`
+
+```vb
+Sub Refresh()
+```
 
 Forces a repaint.
 
 ### AboutBox
-`Sub AboutBox()`
+
+```vb
+Sub AboutBox()
+```
 
 Displays the About dialog.
 
 ## Events
 
 ### Click
-`Event Click()`
+
+```vb
+Event Click()
+```
 
 Occurs when the control is clicked.
 
 ### DblClick
-`Event DblClick()`
+
+```vb
+Event DblClick()
+```
 
 Occurs when the control is double-clicked.
 
 ### MouseDown
-`Event MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Event MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+```
 
 Occurs when a mouse button is pressed.
 
 ### MouseUp
-`Event MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Event MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+```
 
 Occurs when a mouse button is released.
 
 ### MouseMove
-`Event MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Event MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+```
 
 Occurs when the mouse is moved.
 
 ### MouseEnter
-`Event MouseEnter()`
+
+```vb
+Event MouseEnter()
+```
 
 Occurs when the mouse enters the control.
 
 ### MouseLeave
-`Event MouseLeave()`
+
+```vb
+Event MouseLeave()
+```
 
 Occurs when the mouse leaves the control.
 
 ### OLEStartDrag
-`Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)`
+
+```vb
+Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)
+```
 
 Occurs when an OLE drag operation starts.
 
 ### OLEGiveFeedback
-`Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)`
+
+```vb
+Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)
+```
 
 OLE drag feedback.
 
 ### OLESetData
-`Event OLESetData(Data As DataObject, DataFormat As Integer)`
+
+```vb
+Event OLESetData(Data As DataObject, DataFormat As Integer)
+```
 
 OLE set data.
 
 ### OLECompleteDrag
-`Event OLECompleteDrag(Effect As Long)`
+
+```vb
+Event OLECompleteDrag(Effect As Long)
+```
 
 OLE drag completed.
 
 ### OLEDragOver
-`Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)`
+
+```vb
+Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)
+```
 
 Occurs when data is dragged over during an OLE drag operation.
 
 ### OLEDragDrop
-`Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 Occurs when data is dropped during an OLE drag-and-drop operation.
 

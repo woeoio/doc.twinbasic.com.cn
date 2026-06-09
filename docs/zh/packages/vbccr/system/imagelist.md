@@ -1,4 +1,4 @@
-﻿---
+---
 title: 图像列表控件（ImageList）
 description: 图像列表控件（ImageList） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -32,139 +32,211 @@ AIGC:
 ## 属性
 
 ### ImageWidth
-`Property Get ImageWidth() As Long`
-`Property Let ImageWidth(ByVal Value As Long)`
+
+```vb
+Property Get ImageWidth() As Long
+Property Let ImageWidth(ByVal Value As Long)
+```
 
 图像宽度（像素）。
 
 ### ImageHeight
-`Property Get ImageHeight() As Long`
-`Property Let ImageHeight(ByVal Value As Long)`
+
+```vb
+Property Get ImageHeight() As Long
+Property Let ImageHeight(ByVal Value As Long)
+```
 
 图像高度（像素）。
 
 ### ImageSize
-`Property Get ImageSize() As ImlImageSizeConstants`
-`Property Let ImageSize(ByVal Value As ImlImageSizeConstants)`
+
+```vb
+Property Get ImageSize() As ImlImageSizeConstants
+Property Let ImageSize(ByVal Value As ImlImageSizeConstants)
+```
 
 预设图像尺寸。设置此属性将自动调整 ImageWidth 和 ImageHeight。
 
 ### ColorDepth
-`Property Get ColorDepth() As Long`
-`Property Let ColorDepth(ByVal Value As Long)`
+
+```vb
+Property Get ColorDepth() As Long
+Property Let ColorDepth(ByVal Value As Long)
+```
 
 色深。支持 4、8、16、24、32 位。需要 comctl32.dll 6.0 或更高版本。
 
 ### MaskColor
-`Property Get MaskColor() As OLE_COLOR`
-`Property Let MaskColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get MaskColor() As OLE_COLOR
+Property Let MaskColor(ByVal Value As OLE_COLOR)
+```
 
 掩码颜色。
 
 ### UseMaskColor
-`Property Get UseMaskColor() As Boolean`
-`Property Let UseMaskColor(ByVal Value As Boolean)`
+
+```vb
+Property Get UseMaskColor() As Boolean
+Property Let UseMaskColor(ByVal Value As Boolean)
+```
 
 是否使用掩码颜色。
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景颜色。
 
 ### hImageList
-`Property Get hImageList() As LongPtr`
+
+```vb
+Property Get hImageList() As LongPtr
+```
 
 图像列表句柄。只读。
 
 ### ListImages
-`Property Get ListImages() As ImlListImages`
+
+```vb
+Property Get ListImages() As ImlListImages
+```
 
 图像集合。
 
 ### Name
-`Property Get Name() As String`
+
+```vb
+Property Get Name() As String
+```
 
 控件名称。只读。
 
 ### Tag
-`Property Get Tag() As Variant`
-`Property Let Tag(ByVal Value As Variant)`
-`Property Set Tag(ByVal Value As Variant)`
+
+```vb
+Property Get Tag() As Variant
+Property Let Tag(ByVal Value As Variant)
+Property Set Tag(ByVal Value As Variant)
+```
 
 自定义数据。
 
 ### Parent
-`Property Get Parent() As Object`
+
+```vb
+Property Get Parent() As Object
+```
 
 父对象。只读。
 
 ### Container
-`Property Get Container() As Object`
-`Property Set Container(ByVal Value As Object)`
+
+```vb
+Property Get Container() As Object
+Property Set Container(ByVal Value As Object)
+```
 
 容器对象。
 
 ### Left
-`Property Get Left() As Single`
-`Property Let Left(ByVal Value As Single)`
+
+```vb
+Property Get Left() As Single
+Property Let Left(ByVal Value As Single)
+```
 
 左边距。
 
 ### Top
-`Property Get Top() As Single`
-`Property Let Top(ByVal Value As Single)`
+
+```vb
+Property Get Top() As Single
+Property Let Top(ByVal Value As Single)
+```
 
 顶边距。
 
 ### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 宽度（设计时使用）。
 
 ### Height
-`Property Get Height() As Single`
-`Property Let Height(ByVal Value As Single)`
+
+```vb
+Property Get Height() As Single
+Property Let Height(ByVal Value As Single)
+```
 
 高度（设计时使用）。
 
 ### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 可见性（设计时使用）。
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 窗口句柄。只读。
 
 ## 方法
 
 ### Refresh
-`Sub Refresh()`
+
+```vb
+Sub Refresh()
+```
 
 强制重绘。
 
 ### CreateIcon
-`Function CreateIcon(ByVal ImageIndex As Long) As IPictureDisp`
+
+```vb
+Function CreateIcon(ByVal ImageIndex As Long) As IPictureDisp
+```
 
 从指定图像创建图标。
 
 ### CreateBitmap
-`Function CreateBitmap(ByVal ImageIndex As Long) As IPictureDisp`
+
+```vb
+Function CreateBitmap(ByVal ImageIndex As Long) As IPictureDisp
+```
 
 从指定图像创建位图。需要 comctl32.dll 6.0 或更高版本。
 
 ### Overlay
-`Function Overlay(ByVal ImageIndex1 As Long, ByVal ImageIndex2 As Long) As IPictureDisp`
+
+```vb
+Function Overlay(ByVal ImageIndex1 As Long, ByVal ImageIndex2 As Long) As IPictureDisp
+```
 
 将两个图像叠加，返回叠加后的图像。
 
 ### AboutBox
-`Sub AboutBox()`
+
+```vb
+Sub AboutBox()
+```
 
 显示关于对话框。
 

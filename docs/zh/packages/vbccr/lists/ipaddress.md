@@ -1,4 +1,4 @@
-﻿---
+---
 title: IP 地址控件（IPAddress）
 description: IP 地址控件（IPAddress） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -60,355 +60,541 @@ AIGC:
 ## 属性
 
 ### Text
-`Property Get Text() As IPATextConstants`
-`Property Let Text(ByVal Value As IPATextConstants)`
+
+```vb
+Property Get Text() As IPATextConstants
+Property Let Text(ByVal Value As IPATextConstants)
+```
 
 IP 地址的数值表示。IPAEmpty（0）表示空地址，IPAInvalid（-1）表示无效地址。
 
 ### Field1
-`Property Get Field1() As Byte`
-`Property Let Field1(ByVal Value As Byte)`
+
+```vb
+Property Get Field1() As Byte
+Property Let Field1(ByVal Value As Byte)
+```
 
 第 1 字段值（0-255）。
 
 ### Field2
-`Property Get Field2() As Byte`
-`Property Let Field2(ByVal Value As Byte)`
+
+```vb
+Property Get Field2() As Byte
+Property Let Field2(ByVal Value As Byte)
+```
 
 第 2 字段值（0-255）。
 
 ### Field3
-`Property Get Field3() As Byte`
-`Property Let Field3(ByVal Value As Byte)`
+
+```vb
+Property Get Field3() As Byte
+Property Let Field3(ByVal Value As Byte)
+```
 
 第 3 字段值（0-255）。
 
 ### Field4
-`Property Get Field4() As Byte`
-`Property Let Field4(ByVal Value As Byte)`
+
+```vb
+Property Get Field4() As Byte
+Property Let Field4(ByVal Value As Byte)
+```
 
 第 4 字段值（0-255）。
 
 ### Field1RangeMin
-`Property Get Field1RangeMin() As Byte`
-`Property Let Field1RangeMin(ByVal Value As Byte)`
+
+```vb
+Property Get Field1RangeMin() As Byte
+Property Let Field1RangeMin(ByVal Value As Byte)
+```
 
 第 1 字段最小值。默认 0。
 
 ### Field1RangeMax
-`Property Get Field1RangeMax() As Byte`
-`Property Let Field1RangeMax(ByVal Value As Byte)`
+
+```vb
+Property Get Field1RangeMax() As Byte
+Property Let Field1RangeMax(ByVal Value As Byte)
+```
 
 第 1 字段最大值。默认 255。
 
 ### Field2RangeMin
-`Property Get Field2RangeMin() As Byte`
-`Property Let Field2RangeMin(ByVal Value As Byte)`
+
+```vb
+Property Get Field2RangeMin() As Byte
+Property Let Field2RangeMin(ByVal Value As Byte)
+```
 
 第 2 字段最小值。默认 0。
 
 ### Field2RangeMax
-`Property Get Field2RangeMax() As Byte`
-`Property Let Field2RangeMax(ByVal Value As Byte)`
+
+```vb
+Property Get Field2RangeMax() As Byte
+Property Let Field2RangeMax(ByVal Value As Byte)
+```
 
 第 2 字段最大值。默认 255。
 
 ### Field3RangeMin
-`Property Get Field3RangeMin() As Byte`
-`Property Let Field3RangeMin(ByVal Value As Byte)`
+
+```vb
+Property Get Field3RangeMin() As Byte
+Property Let Field3RangeMin(ByVal Value As Byte)
+```
 
 第 3 字段最小值。默认 0。
 
 ### Field3RangeMax
-`Property Get Field3RangeMax() As Byte`
-`Property Let Field3RangeMax(ByVal Value As Byte)`
+
+```vb
+Property Get Field3RangeMax() As Byte
+Property Let Field3RangeMax(ByVal Value As Byte)
+```
 
 第 3 字段最大值。默认 255。
 
 ### Field4RangeMin
-`Property Get Field4RangeMin() As Byte`
-`Property Let Field4RangeMin(ByVal Value As Byte)`
+
+```vb
+Property Get Field4RangeMin() As Byte
+Property Let Field4RangeMin(ByVal Value As Byte)
+```
 
 第 4 字段最小值。默认 0。
 
 ### Field4RangeMax
-`Property Get Field4RangeMax() As Byte`
-`Property Let Field4RangeMax(ByVal Value As Byte)`
+
+```vb
+Property Get Field4RangeMax() As Byte
+Property Let Field4RangeMax(ByVal Value As Byte)
+```
 
 第 4 字段最大值。默认 255。
 
 ### FocusField
-`Property Get FocusField() As IPAFocusConstants`
-`Property Let FocusField(ByVal Value As IPAFocusConstants)`
+
+```vb
+Property Get FocusField() As IPAFocusConstants
+Property Let FocusField(ByVal Value As IPAFocusConstants)
+```
 
 当前焦点字段。
 
 ### BorderStyle
-`Property Get BorderStyle() As CCBorderStyleConstants`
-`Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)`
+
+```vb
+Property Get BorderStyle() As CCBorderStyleConstants
+Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)
+```
 
 边框样式。参见通用枚举。
 
 ### Font
-`Property Get Font() As StdFont`
-`Property Let Font(ByVal NewFont As StdFont)`
-`Property Set Font(ByVal NewFont As StdFont)`
+
+```vb
+Property Get Font() As StdFont
+Property Let Font(ByVal NewFont As StdFont)
+Property Set Font(ByVal NewFont As StdFont)
+```
 
 字体。
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 是否可用。
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景颜色。
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 前景颜色。
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 鼠标指针样式。参见通用枚举。
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 自定义鼠标图标。
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 是否启用鼠标进入/离开跟踪。
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 从右到左显示方向。
 
 ### RightToLeftLayout
-`Property Get RightToLeftLayout() As Boolean`
-`Property Let RightToLeftLayout(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeftLayout() As Boolean
+Property Let RightToLeftLayout(ByVal Value As Boolean)
+```
 
 从右到左镜像布局。
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 从右到左模式。参见通用枚举。
 
 ### IMEMode
-`Property Get IMEMode() As CCIMEModeConstants`
-`Property Let IMEMode(ByVal Value As CCIMEModeConstants)`
+
+```vb
+Property Get IMEMode() As CCIMEModeConstants
+Property Let IMEMode(ByVal Value As CCIMEModeConstants)
+```
 
 输入法编辑器模式。参见通用枚举。
 
 ### OLEDropMode
-`Property Get OLEDropMode() As OLEDropModeConstants`
-`Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)`
+
+```vb
+Property Get OLEDropMode() As OLEDropModeConstants
+Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)
+```
 
 OLE 拖放模式。参见通用枚举。
 
 ### Appearance
-`Property Get Appearance() As CCAppearanceConstants`
-`Property Let Appearance(ByVal Value As CCAppearanceConstants)`
+
+```vb
+Property Get Appearance() As CCAppearanceConstants
+Property Let Appearance(ByVal Value As CCAppearanceConstants)
+```
 
 外观样式。参见通用枚举。
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 IP 地址控件的窗口句柄。只读。
 
 ### ToolTipText
-`Property Get ToolTipText() As String`
-`Property Let ToolTipText(ByVal Value As String)`
+
+```vb
+Property Get ToolTipText() As String
+Property Let ToolTipText(ByVal Value As String)
+```
 
 工具提示文本。
 
 ### hWndUserControl
-`Property Get hWndUserControl() As LongPtr`
+
+```vb
+Property Get hWndUserControl() As LongPtr
+```
 
 用户控件的窗口句柄。只读。
 
 ### Name
-`Property Get Name() As String`
+
+```vb
+Property Get Name() As String
+```
 
 控件名称。只读。
 
 ### Tag
-`Property Get Tag() As Variant`
-`Property Let Tag(ByVal Value As Variant)`
-`Property Set Tag(ByVal Value As Variant)`
+
+```vb
+Property Get Tag() As Variant
+Property Let Tag(ByVal Value As Variant)
+Property Set Tag(ByVal Value As Variant)
+```
 
 自定义数据。
 
 ### Parent
-`Property Get Parent() As Object`
+
+```vb
+Property Get Parent() As Object
+```
 
 父对象。只读。
 
 ### Container
-`Property Get Container() As Object`
-`Property Set Container(ByVal Value As Object)`
+
+```vb
+Property Get Container() As Object
+Property Set Container(ByVal Value As Object)
+```
 
 容器对象。
 
 ### Left
-`Property Get Left() As Single`
-`Property Let Left(ByVal Value As Single)`
+
+```vb
+Property Get Left() As Single
+Property Let Left(ByVal Value As Single)
+```
 
 左边距。
 
 ### Top
-`Property Get Top() As Single`
-`Property Let Top(ByVal Value As Single)`
+
+```vb
+Property Get Top() As Single
+Property Let Top(ByVal Value As Single)
+```
 
 顶边距。
 
 ### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 宽度（设计时使用）。
 
 ### Height
-`Property Get Height() As Single`
-`Property Let Height(ByVal Value As Single)`
+
+```vb
+Property Get Height() As Single
+Property Let Height(ByVal Value As Single)
+```
 
 高度（设计时使用）。
 
 ### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 可见性。
 
 ## 方法
 
 ### Refresh
-`Sub Refresh()`
+
+```vb
+Sub Refresh()
+```
 
 强制重绘。
 
 ### Clear
-`Sub Clear()`
+
+```vb
+Sub Clear()
+```
 
 清除 IP 地址，将所有字段设为空。
 
 ### SetFocusField
-`Sub SetFocusField(ByVal FocusField As IPAFocusConstants)`
+
+```vb
+Sub SetFocusField(ByVal FocusField As IPAFocusConstants)
+```
 
 设置焦点到指定字段。
 
 ### AboutBox
-`Sub AboutBox()`
+
+```vb
+Sub AboutBox()
+```
 
 显示关于对话框。
 
 ## 事件
 
 ### Change
-`Event Change()`
+
+```vb
+Event Change()
+```
 
 IP 地址改变时触发。
 
 ### FieldChange
-`Event FieldChange(ByVal Field As Integer)`
+
+```vb
+Event FieldChange(ByVal Field As Integer)
+```
 
 指定字段改变时触发。
 
 ### KeyDown
-`Event KeyDown(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Event KeyDown(KeyCode As Integer, Shift As Integer)
+```
 
 按键按下时触发。
 
 ### KeyUp
-`Event KeyUp(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Event KeyUp(KeyCode As Integer, Shift As Integer)
+```
 
 按键释放时触发。
 
 ### KeyPress
-`Event KeyPress(KeyChar As Integer)`
+
+```vb
+Event KeyPress(KeyChar As Integer)
+```
 
 按键输入时触发。
 
 ### Click
-`Event Click()`
+
+```vb
+Event Click()
+```
 
 单击时触发。
 
 ### DblClick
-`Event DblClick()`
+
+```vb
+Event DblClick()
+```
 
 双击时触发。
 
 ### MouseDown
-`Event MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Event MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+```
 
 鼠标按下时触发。
 
 ### MouseUp
-`Event MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Event MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+```
 
 鼠标释放时触发。
 
 ### MouseMove
-`Event MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Event MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+```
 
 鼠标移动时触发。
 
 ### MouseEnter
-`Event MouseEnter()`
+
+```vb
+Event MouseEnter()
+```
 
 鼠标进入控件时触发。
 
 ### MouseLeave
-`Event MouseLeave()`
+
+```vb
+Event MouseLeave()
+```
 
 鼠标离开控件时触发。
 
 ### OLEStartDrag
-`Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)`
+
+```vb
+Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)
+```
 
 OLE 拖拽开始时触发。
 
 ### OLEGiveFeedback
-`Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)`
+
+```vb
+Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)
+```
 
 OLE 拖拽反馈。
 
 ### OLESetData
-`Event OLESetData(Data As DataObject, DataFormat As Integer)`
+
+```vb
+Event OLESetData(Data As DataObject, DataFormat As Integer)
+```
 
 OLE 设置数据。
 
 ### OLECompleteDrag
-`Event OLECompleteDrag(Effect As Long)`
+
+```vb
+Event OLECompleteDrag(Effect As Long)
+```
 
 OLE 拖拽完成。
 
 ### OLEDragOver
-`Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)`
+
+```vb
+Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)
+```
 
 OLE 拖拽经过时触发。
 
 ### OLEDragDrop
-`Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 OLE 拖放时触发。
 

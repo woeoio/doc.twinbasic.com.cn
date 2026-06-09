@@ -37,186 +37,276 @@ Enhanced CommandButton control with support for visual styles, split button, own
 ## Properties
 
 ### Default
-`Property Get Default() As Boolean`
-`Property Let Default(ByVal Value As Boolean)`
+
+```vb
+Property Get Default() As Boolean
+Property Let Default(ByVal Value As Boolean)
+```
 
 Whether this is the default button (triggered by Enter key).
 
 ### Cancel
-`Property Get Cancel() As Boolean`
-`Property Let Cancel(ByVal Value As Boolean)`
+
+```vb
+Property Get Cancel() As Boolean
+Property Let Cancel(ByVal Value As Boolean)
+```
 
 Whether this is the cancel button (triggered by Esc key).
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 Whether to enable visual styles.
 
 ### Appearance
-`Property Get Appearance() As CCAppearanceConstants`
-`Property Let Appearance(ByVal Value As CCAppearanceConstants)`
+
+```vb
+Property Get Appearance() As CCAppearanceConstants
+Property Let Appearance(ByVal Value As CCAppearanceConstants)
+```
 
 Appearance style. See Common Enumerations.
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 Background color.
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 Foreground color.
 
 ### ImageList
-`Property Get ImageList() As Variant`
-`Property Let ImageList(ByVal Value As Variant)`
-`Property Set ImageList(ByVal Value As Variant)`
+
+```vb
+Property Get ImageList() As Variant
+Property Let ImageList(ByVal Value As Variant)
+Property Set ImageList(ByVal Value As Variant)
+```
 
 Associated ImageList control.
 
 ### ImageListAlignment
-`Property Get ImageListAlignment() As CmdImageListAlignmentConstants`
-`Property Let ImageListAlignment(ByVal Value As CmdImageListAlignmentConstants)`
+
+```vb
+Property Get ImageListAlignment() As CmdImageListAlignmentConstants
+Property Let ImageListAlignment(ByVal Value As CmdImageListAlignmentConstants)
+```
 
 ImageList icon alignment.
 
 ### ImageListMargin
-`Property Get ImageListMargin() As Single`
-`Property Let ImageListMargin(ByVal Value As Single)`
+
+```vb
+Property Get ImageListMargin() As Single
+Property Let ImageListMargin(ByVal Value As Single)
+```
 
 ImageList icon margin.
 
 ### Caption
-`Property Get Caption() As String`
-`Property Let Caption(ByVal Value As String)`
+
+```vb
+Property Get Caption() As String
+Property Let Caption(ByVal Value As String)
+```
 
 Caption text.
 
 ### Alignment
-`Property Get Alignment() As VBRUN.AlignmentConstants`
-`Property Let Alignment(ByVal Value As VBRUN.AlignmentConstants)`
+
+```vb
+Property Get Alignment() As VBRUN.AlignmentConstants
+Property Let Alignment(ByVal Value As VBRUN.AlignmentConstants)
+```
 
 Horizontal text alignment.
 
 ### VerticalAlignment
-`Property Get VerticalAlignment() As CCVerticalAlignmentConstants`
-`Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)`
+
+```vb
+Property Get VerticalAlignment() As CCVerticalAlignmentConstants
+Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)
+```
 
 Vertical text alignment. See Common Enumerations.
 
 ### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 Picture.
 
 ### PictureAndCaption
-`Property Get PictureAndCaption() As Boolean`
-`Property Let PictureAndCaption(ByVal Value As Boolean)`
+
+```vb
+Property Get PictureAndCaption() As Boolean
+Property Let PictureAndCaption(ByVal Value As Boolean)
+```
 
 Whether to display both picture and caption simultaneously. Requires comctl32.dll 6.1 or later.
 
 ### WordWrap
-`Property Get WordWrap() As Boolean`
-`Property Let WordWrap(ByVal Value As Boolean)`
+
+```vb
+Property Get WordWrap() As Boolean
+Property Let WordWrap(ByVal Value As Boolean)
+```
 
 Whether to enable word wrap.
 
 ### Transparent
-`Property Get Transparent() As Boolean`
-`Property Let Transparent(ByVal Value As Boolean)`
+
+```vb
+Property Get Transparent() As Boolean
+Property Let Transparent(ByVal Value As Boolean)
+```
 
 Whether to use a transparent background (effective at run time).
 
 ### SplitButton
-`Property Get SplitButton() As Boolean`
-`Property Let SplitButton(ByVal Value As Boolean)`
+
+```vb
+Property Get SplitButton() As Boolean
+Property Let SplitButton(ByVal Value As Boolean)
+```
 
 Whether to display as a split button. Requires comctl32.dll 6.1 or later.
 
 ### SplitButtonAlignment
-`Property Get SplitButtonAlignment() As CCLeftRightAlignmentConstants`
-`Property Let SplitButtonAlignment(ByVal Value As CCLeftRightAlignmentConstants)`
+
+```vb
+Property Get SplitButtonAlignment() As CCLeftRightAlignmentConstants
+Property Let SplitButtonAlignment(ByVal Value As CCLeftRightAlignmentConstants)
+```
 
 Split button alignment. See Common Enumerations.
 
 ### SplitButtonNoSplit
-`Property Get SplitButtonNoSplit() As Boolean`
-`Property Let SplitButtonNoSplit(ByVal Value As Boolean)`
+
+```vb
+Property Get SplitButtonNoSplit() As Boolean
+Property Let SplitButtonNoSplit(ByVal Value As Boolean)
+```
 
 Whether the split button hides the split line.
 
 ### SplitButtonGlyph
-`Property Get SplitButtonGlyph() As IPictureDisp`
-`Property Let SplitButtonGlyph(ByVal Value As IPictureDisp)`
-`Property Set SplitButtonGlyph(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get SplitButtonGlyph() As IPictureDisp
+Property Let SplitButtonGlyph(ByVal Value As IPictureDisp)
+Property Set SplitButtonGlyph(ByVal Value As IPictureDisp)
+```
 
 Drop-down arrow icon for the split button.
 
 ### Style
-`Property Get Style() As VBRUN.ButtonConstants`
-`Property Let Style(ByVal Value As VBRUN.ButtonConstants)`
+
+```vb
+Property Get Style() As VBRUN.ButtonConstants
+Property Let Style(ByVal Value As VBRUN.ButtonConstants)
+```
 
 Button style (standard or graphical).
 
 ### DisabledPicture
-`Property Get DisabledPicture() As IPictureDisp`
-`Property Let DisabledPicture(ByVal Value As IPictureDisp)`
-`Property Set DisabledPicture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DisabledPicture() As IPictureDisp
+Property Let DisabledPicture(ByVal Value As IPictureDisp)
+Property Set DisabledPicture(ByVal Value As IPictureDisp)
+```
 
 Disabled state picture.
 
 ### DownPicture
-`Property Get DownPicture() As IPictureDisp`
-`Property Let DownPicture(ByVal Value As IPictureDisp)`
-`Property Set DownPicture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DownPicture() As IPictureDisp
+Property Let DownPicture(ByVal Value As IPictureDisp)
+Property Set DownPicture(ByVal Value As IPictureDisp)
+```
 
 Pressed state picture.
 
 ### UseMaskColor
-`Property Get UseMaskColor() As Boolean`
-`Property Let UseMaskColor(ByVal Value As Boolean)`
+
+```vb
+Property Get UseMaskColor() As Boolean
+Property Let UseMaskColor(ByVal Value As Boolean)
+```
 
 Whether to use mask color.
 
 ### MaskColor
-`Property Get MaskColor() As OLE_COLOR`
-`Property Let MaskColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get MaskColor() As OLE_COLOR
+Property Let MaskColor(ByVal Value As OLE_COLOR)
+```
 
 Mask color.
 
 ### DrawMode
-`Property Get DrawMode() As CmdDrawModeConstants`
-`Property Let DrawMode(ByVal Value As CmdDrawModeConstants)`
+
+```vb
+Property Get DrawMode() As CmdDrawModeConstants
+Property Let DrawMode(ByVal Value As CmdDrawModeConstants)
+```
 
 Draw mode.
 
 ### Value
-`Property Get Value() As Boolean`
-`Property Let Value(ByVal NewValue As Boolean)`
+
+```vb
+Property Get Value() As Boolean
+Property Let Value(ByVal NewValue As Boolean)
+```
 
 Button value; setting to True triggers the Click event.
 
 ### Pushed
-`Property Get Pushed() As Boolean`
-`Property Let Pushed(ByVal Value As Boolean)`
+
+```vb
+Property Get Pushed() As Boolean
+Property Let Pushed(ByVal Value As Boolean)
+```
 
 Whether the control is in a pressed state.
 
 ### Hot
-`Property Get Hot() As Boolean`
+
+```vb
+Property Get Hot() As Boolean
+```
 
 Whether the control is in a hot state. Read-only.
 
 ### DroppedDown
-`Property Get DroppedDown() As Boolean`
-`Property Let DroppedDown(ByVal Value As Boolean)`
+
+```vb
+Property Get DroppedDown() As Boolean
+Property Let DroppedDown(ByVal Value As Boolean)
+```
 
 Whether the split button is dropped down.
 
@@ -231,27 +321,42 @@ See standard extender properties.
 ## Methods
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 Forces a repaint.
 
 ### PerformClick
-`Public Sub PerformClick()`
+
+```vb
+Public Sub PerformClick()
+```
 
 Simulates a user clicking the button.
 
 ### SetShield
-`Public Function SetShield(ByVal State As Boolean) As Long`
+
+```vb
+Public Function SetShield(ByVal State As Boolean) As Long
+```
 
 Sets the UAC shield icon. Returns 1 on success. Requires comctl32.dll 6.1 or later.
 
 ### GetIdealSize
-`Public Sub GetIdealSize(ByRef Width As Single, ByRef Height As Single)`
+
+```vb
+Public Sub GetIdealSize(ByRef Width As Single, ByRef Height As Single)
+```
 
 Gets the ideal size for the button. Requires comctl32.dll 6.0 or later.
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 ### Drag / ZOrder / SetFocus / Move
 
@@ -260,27 +365,42 @@ See standard methods.
 ## Events
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 Single click.
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 Double click.
 
 ### HotChanged
-`Public Event HotChanged()`
+
+```vb
+Public Event HotChanged()
+```
 
 Hot state changed.
 
 ### DropDown
-`Public Event DropDown()`
+
+```vb
+Public Event DropDown()
+```
 
 Fired when the split button drops down.
 
 ### OwnerDraw
-`Public Event OwnerDraw(ByVal DisplayAsDefault As Boolean, ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As LongPtr, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)`
+
+```vb
+Public Event OwnerDraw(ByVal DisplayAsDefault As Boolean, ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As LongPtr, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)
+```
 
 Owner-draw event.
 

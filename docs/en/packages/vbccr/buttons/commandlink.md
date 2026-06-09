@@ -22,93 +22,138 @@ No control-specific enumerations.
 ## Properties
 
 ### Default
-`Property Get Default() As Boolean`
-`Property Let Default(ByVal Value As Boolean)`
+
+```vb
+Property Get Default() As Boolean
+Property Let Default(ByVal Value As Boolean)
+```
 
 Whether this is the default button.
 
 ### Cancel
-`Property Get Cancel() As Boolean`
-`Property Let Cancel(ByVal Value As Boolean)`
+
+```vb
+Property Get Cancel() As Boolean
+Property Let Cancel(ByVal Value As Boolean)
+```
 
 Whether this is the cancel button.
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 Whether to enable visual styles.
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 Background color.
 
 ### ImageList
-`Property Get ImageList() As Variant`
-`Property Let ImageList(ByVal Value As Variant)`
-`Property Set ImageList(ByVal Value As Variant)`
+
+```vb
+Property Get ImageList() As Variant
+Property Let ImageList(ByVal Value As Variant)
+Property Set ImageList(ByVal Value As Variant)
+```
 
 Associated ImageList control.
 
 ### Caption
-`Property Get Caption() As String`
-`Property Let Caption(ByVal Value As String)`
+
+```vb
+Property Get Caption() As String
+Property Let Caption(ByVal Value As String)
+```
 
 Caption text.
 
 ### Hint
-`Property Get Hint() As String`
-`Property Let Hint(ByVal Value As String)`
+
+```vb
+Property Get Hint() As String
+Property Let Hint(ByVal Value As String)
+```
 
 Hint text (description text below the caption).
 
 ### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 Icon.
 
 ### Transparent
-`Property Get Transparent() As Boolean`
-`Property Let Transparent(ByVal Value As Boolean)`
+
+```vb
+Property Get Transparent() As Boolean
+Property Let Transparent(ByVal Value As Boolean)
+```
 
 Transparent background (effective at run time).
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 Right-to-left display.
 
 ### RightToLeftLayout
-`Property Get RightToLeftLayout() As Boolean`
-`Property Let RightToLeftLayout(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeftLayout() As Boolean
+Property Let RightToLeftLayout(ByVal Value As Boolean)
+```
 
 Right-to-left mirrored layout.
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 Right-to-left mode. See Common Enumerations.
 
 ### Value
-`Property Get Value() As Boolean`
-`Property Let Value(ByVal NewValue As Boolean)`
+
+```vb
+Property Get Value() As Boolean
+Property Let Value(ByVal NewValue As Boolean)
+```
 
 Button value; setting to True triggers the Click event.
 
 ### Pushed
-`Property Get Pushed() As Boolean`
-`Property Let Pushed(ByVal Value As Boolean)`
+
+```vb
+Property Get Pushed() As Boolean
+Property Let Pushed(ByVal Value As Boolean)
+```
 
 Whether the control is in a pressed state.
 
 ### Hot
-`Property Get Hot() As Boolean`
+
+```vb
+Property Get Hot() As Boolean
+```
 
 Whether the control is in a hot state. Read-only.
 
@@ -123,27 +168,42 @@ See standard extender properties.
 ## Methods
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 Forces a repaint.
 
 ### PerformClick
-`Public Sub PerformClick()`
+
+```vb
+Public Sub PerformClick()
+```
 
 Simulates a user click.
 
 ### SetShield
-`Public Function SetShield(ByVal State As Boolean) As Long`
+
+```vb
+Public Function SetShield(ByVal State As Boolean) As Long
+```
 
 Sets the UAC shield icon. Returns 1 on success.
 
 ### GetIdealHeight
-`Public Function GetIdealHeight() As Single`
+
+```vb
+Public Function GetIdealHeight() As Single
+```
 
 Gets the ideal height for the control.
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 ### Drag / ZOrder / SetFocus / Move
 
@@ -152,17 +212,26 @@ See standard methods.
 ## Events
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 Single click.
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 Double click.
 
 ### HotChanged
-`Public Event HotChanged()`
+
+```vb
+Public Event HotChanged()
+```
 
 Hot state changed.
 

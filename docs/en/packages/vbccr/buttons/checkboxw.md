@@ -37,196 +37,292 @@ Enhanced CheckBox control with support for visual styles, owner-draw, ImageList 
 ## Properties
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 Whether to enable visual styles.
 
 ### Appearance
-`Property Get Appearance() As CCAppearanceConstants`
-`Property Let Appearance(ByVal Value As CCAppearanceConstants)`
+
+```vb
+Property Get Appearance() As CCAppearanceConstants
+Property Let Appearance(ByVal Value As CCAppearanceConstants)
+```
 
 Appearance style. See Common Enumerations.
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 Background color.
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 Foreground color.
 
 ### ImageList
-`Property Get ImageList() As Variant`
-`Property Let ImageList(ByVal Value As Variant)`
-`Property Set ImageList(ByVal Value As Variant)`
+
+```vb
+Property Get ImageList() As Variant
+Property Let ImageList(ByVal Value As Variant)
+Property Set ImageList(ByVal Value As Variant)
+```
 
 Associated ImageList control.
 
 ### ImageListAlignment
-`Property Get ImageListAlignment() As ChkImageListAlignmentConstants`
-`Property Let ImageListAlignment(ByVal Value As ChkImageListAlignmentConstants)`
+
+```vb
+Property Get ImageListAlignment() As ChkImageListAlignmentConstants
+Property Let ImageListAlignment(ByVal Value As ChkImageListAlignmentConstants)
+```
 
 ImageList icon alignment.
 
 ### ImageListMargin
-`Property Get ImageListMargin() As Single`
-`Property Let ImageListMargin(ByVal Value As Single)`
+
+```vb
+Property Get ImageListMargin() As Single
+Property Let ImageListMargin(ByVal Value As Single)
+```
 
 ImageList icon margin.
 
 ### Value
-`Property Get Value() As Integer`
-`Property Let Value(ByVal Value As Integer)`
+
+```vb
+Property Get Value() As Integer
+Property Let Value(ByVal Value As Integer)
+```
 
 CheckBox state (0 - unchecked, 1 - checked, 2 - grayed).
 
 ### Caption
-`Property Get Caption() As String`
-`Property Let Caption(ByVal Value As String)`
+
+```vb
+Property Get Caption() As String
+Property Let Caption(ByVal Value As String)
+```
 
 Caption text.
 
 ### Alignment
-`Property Get Alignment() As CCLeftRightAlignmentConstants`
-`Property Let Alignment(ByVal Value As CCLeftRightAlignmentConstants)`
+
+```vb
+Property Get Alignment() As CCLeftRightAlignmentConstants
+Property Let Alignment(ByVal Value As CCLeftRightAlignmentConstants)
+```
 
 CheckBox alignment. See Common Enumerations.
 
 ### TextAlignment
-`Property Get TextAlignment() As VBRUN.AlignmentConstants`
-`Property Let TextAlignment(ByVal Value As VBRUN.AlignmentConstants)`
+
+```vb
+Property Get TextAlignment() As VBRUN.AlignmentConstants
+Property Let TextAlignment(ByVal Value As VBRUN.AlignmentConstants)
+```
 
 Text alignment.
 
 ### PushLike
-`Property Get PushLike() As Boolean`
-`Property Let PushLike(ByVal Value As Boolean)`
+
+```vb
+Property Get PushLike() As Boolean
+Property Let PushLike(ByVal Value As Boolean)
+```
 
 Whether to display as a button style.
 
 ### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 Picture.
 
 ### WordWrap
-`Property Get WordWrap() As Boolean`
-`Property Let WordWrap(ByVal Value As Boolean)`
+
+```vb
+Property Get WordWrap() As Boolean
+Property Let WordWrap(ByVal Value As Boolean)
+```
 
 Whether to enable word wrap.
 
 ### Transparent
-`Property Get Transparent() As Boolean`
-`Property Let Transparent(ByVal Value As Boolean)`
+
+```vb
+Property Get Transparent() As Boolean
+Property Let Transparent(ByVal Value As Boolean)
+```
 
 Whether to use a transparent background (effective at run time).
 
 ### VerticalAlignment
-`Property Get VerticalAlignment() As CCVerticalAlignmentConstants`
-`Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)`
+
+```vb
+Property Get VerticalAlignment() As CCVerticalAlignmentConstants
+Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)
+```
 
 Vertical alignment. See Common Enumerations.
 
 ### Style
-`Property Get Style() As VBRUN.ButtonConstants`
-`Property Let Style(ByVal Value As VBRUN.ButtonConstants)`
+
+```vb
+Property Get Style() As VBRUN.ButtonConstants
+Property Let Style(ByVal Value As VBRUN.ButtonConstants)
+```
 
 Appearance style (standard or graphical).
 
 ### DisabledPicture
-`Property Get DisabledPicture() As IPictureDisp`
-`Property Let DisabledPicture(ByVal Value As IPictureDisp)`
-`Property Set DisabledPicture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DisabledPicture() As IPictureDisp
+Property Let DisabledPicture(ByVal Value As IPictureDisp)
+Property Set DisabledPicture(ByVal Value As IPictureDisp)
+```
 
 Disabled state picture. Effective when Style is graphical.
 
 ### DownPicture
-`Property Get DownPicture() As IPictureDisp`
-`Property Let DownPicture(ByVal Value As IPictureDisp)`
-`Property Set DownPicture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DownPicture() As IPictureDisp
+Property Let DownPicture(ByVal Value As IPictureDisp)
+Property Set DownPicture(ByVal Value As IPictureDisp)
+```
 
 Pressed state picture. Effective when Style is graphical.
 
 ### UseMaskColor
-`Property Get UseMaskColor() As Boolean`
-`Property Let UseMaskColor(ByVal Value As Boolean)`
+
+```vb
+Property Get UseMaskColor() As Boolean
+Property Let UseMaskColor(ByVal Value As Boolean)
+```
 
 Whether to use mask color. Effective when Style is graphical.
 
 ### MaskColor
-`Property Get MaskColor() As OLE_COLOR`
-`Property Let MaskColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get MaskColor() As OLE_COLOR
+Property Let MaskColor(ByVal Value As OLE_COLOR)
+```
 
 Mask color. Effective when Style is graphical.
 
 ### DrawMode
-`Property Get DrawMode() As ChkDrawModeConstants`
-`Property Let DrawMode(ByVal Value As ChkDrawModeConstants)`
+
+```vb
+Property Get DrawMode() As ChkDrawModeConstants
+Property Let DrawMode(ByVal Value As ChkDrawModeConstants)
+```
 
 Draw mode.
 
 ### Pushed
-`Property Get Pushed() As Boolean`
+
+```vb
+Property Get Pushed() As Boolean
+```
 
 Whether the control is in a pressed state. Read-only.
 
 ### Hot
-`Property Get Hot() As Boolean`
+
+```vb
+Property Get Hot() As Boolean
+```
 
 Whether the control is in a hot state (mouse hover). Read-only.
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 Window handle.
 
 ### hWndUserControl
-`Property Get hWndUserControl() As LongPtr`
+
+```vb
+Property Get hWndUserControl() As LongPtr
+```
 
 UserControl window handle.
 
 ### Font
-`Property Get Font() As StdFont`
-`Property Let Font(ByVal NewFont As StdFont)`
-`Property Set Font(ByVal NewFont As StdFont)`
+
+```vb
+Property Get Font() As StdFont
+Property Let Font(ByVal NewFont As StdFont)
+Property Set Font(ByVal NewFont As StdFont)
+```
 
 Font.
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 Whether the control is enabled.
 
 ### OLEDropMode
-`Property Get OLEDropMode() As OLEDropModeConstants`
-`Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)`
+
+```vb
+Property Get OLEDropMode() As OLEDropModeConstants
+Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)
+```
 
 OLE drag-drop mode. See Common Enumerations.
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 Mouse pointer. See Common Enumerations.
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 Custom mouse icon.
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 Mouse enter/leave tracking.
 
@@ -237,12 +333,18 @@ See standard extender properties.
 ## Methods
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 Forces a repaint.
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 Initiates an OLE drag-drop operation.
 
@@ -253,48 +355,84 @@ See standard methods.
 ## Events
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 Single click.
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 Double click.
 
 ### HotChanged
-`Public Event HotChanged()`
+
+```vb
+Public Event HotChanged()
+```
 
 Fired when the hot state changes.
 
 ### OwnerDraw
-`Public Event OwnerDraw(ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As LongPtr, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)`
+
+```vb
+Public Event OwnerDraw(ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As LongPtr, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)
+```
 
 Owner-draw event. Fired when DrawMode is OwnerDraw.
 
 ### KeyDown
-`Public Event KeyDown(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Public Event KeyDown(KeyCode As Integer, Shift As Integer)
+```
 
 ### KeyUp
-`Public Event KeyUp(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Public Event KeyUp(KeyCode As Integer, Shift As Integer)
+```
 
 ### KeyPress
-`Public Event KeyPress(KeyAscii As Integer)`
+
+```vb
+Public Event KeyPress(KeyAscii As Integer)
+```
 
 ### MouseDown
-`Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 ### MouseMove
-`Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 ### MouseUp
-`Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 ### MouseEnter
-`Public Event MouseEnter()`
+
+```vb
+Public Event MouseEnter()
+```
 
 ### MouseLeave
-`Public Event MouseLeave()`
+
+```vb
+Public Event MouseLeave()
+```
 
 ### OLECompleteDrag / OLEDragDrop / OLEDragOver / OLEGiveFeedback / OLESetData / OLEStartDrag
 

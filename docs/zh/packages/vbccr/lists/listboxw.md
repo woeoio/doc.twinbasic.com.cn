@@ -1,4 +1,4 @@
-﻿---
+---
 title: 列表框控件（ListBoxW）
 description: 列表框控件（ListBoxW） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -48,575 +48,884 @@ AIGC:
 ## 属性
 
 ### Text
-`Property Get Text() As String`
-`Property Let Text(ByVal Value As String)`
+
+```vb
+Property Get Text() As String
+Property Let Text(ByVal Value As String)
+```
 
 当前选定项的文本。
 
 ### List
-`Property Get List(ByVal Index As Long) As String`
-`Property Let List(ByVal Index As Long, ByVal Value As String)`
+
+```vb
+Property Get List(ByVal Index As Long) As String
+Property Let List(ByVal Index As Long, ByVal Value As String)
+```
 
 按索引获取或设置列表项文本。
 
 ### ItemData
-`Property Get ItemData(ByVal Index As Long) As LongPtr`
-`Property Let ItemData(ByVal Index As Long, ByVal Value As LongPtr)`
+
+```vb
+Property Get ItemData(ByVal Index As Long) As LongPtr
+Property Let ItemData(ByVal Index As Long, ByVal Value As LongPtr)
+```
 
 按索引获取或设置列表项的关联数据。
 
 ### ItemChecked
-`Property Get ItemChecked(ByVal Index As Long) As Boolean`
-`Property Let ItemChecked(ByVal Index As Long, ByVal Value As Boolean)`
+
+```vb
+Property Get ItemChecked(ByVal Index As Long) As Boolean
+Property Let ItemChecked(ByVal Index As Long, ByVal Value As Boolean)
+```
 
 按索引获取或设置项的选中状态（Style 为 Checkbox 或 Option 时有效）。
 
 ### ListCount
-`Property Get ListCount() As Long`
+
+```vb
+Property Get ListCount() As Long
+```
 
 列表项总数。只读。
 
 ### ListIndex
-`Property Get ListIndex() As Long`
-`Property Let ListIndex(ByVal Value As Long)`
+
+```vb
+Property Get ListIndex() As Long
+Property Let ListIndex(ByVal Value As Long)
+```
 
 当前选定项的索引。
 
 ### NewIndex
-`Property Get NewIndex() As Long`
+
+```vb
+Property Get NewIndex() As Long
+```
 
 最近添加项的索引。只读。
 
 ### TopIndex
-`Property Get TopIndex() As Long`
-`Property Let TopIndex(ByVal Value As Long)`
+
+```vb
+Property Get TopIndex() As Long
+Property Let TopIndex(ByVal Value As Long)
+```
 
 列表中第一个可见项的索引。
 
 ### AnchorIndex
-`Property Get AnchorIndex() As Long`
-`Property Let AnchorIndex(ByVal Value As Long)`
+
+```vb
+Property Get AnchorIndex() As Long
+Property Let AnchorIndex(ByVal Value As Long)
+```
 
 选择锚点的索引。
 
 ### SelCount
-`Property Get SelCount() As Long`
+
+```vb
+Property Get SelCount() As Long
+```
 
 选定项数量。只读。
 
 ### Selected
-`Property Get Selected(ByVal Index As Long) As Boolean`
-`Property Let Selected(ByVal Index As Long, ByVal Value As Boolean)`
+
+```vb
+Property Get Selected(ByVal Index As Long) As Boolean
+Property Let Selected(ByVal Index As Long, ByVal Value As Boolean)
+```
 
 按索引获取或设置项的选定状态。
 
 ### ItemHeight
-`Property Get ItemHeight(Optional ByVal Index As Long) As Single`
-`Property Let ItemHeight(Optional ByVal Index As Long, ByVal Value As Single)`
+
+```vb
+Property Get ItemHeight(Optional ByVal Index As Long) As Single
+Property Let ItemHeight(Optional ByVal Index As Long, ByVal Value As Single)
+```
 
 项的高度。可变高度所有者绘制模式下可按索引设置。
 
 ### InsertMark
-`Property Get InsertMark(Optional ByRef After As Boolean) As Long`
-`Property Let InsertMark(Optional ByRef After As Boolean, ByVal Value As Long)`
+
+```vb
+Property Get InsertMark(Optional ByRef After As Boolean) As Long
+Property Let InsertMark(Optional ByRef After As Boolean, ByVal Value As Long)
+```
 
 插入标记的索引。
 
 ### OptionIndex
-`Property Get OptionIndex() As Long`
-`Property Let OptionIndex(ByVal Value As Long)`
+
+```vb
+Property Get OptionIndex() As Long
+Property Let OptionIndex(ByVal Value As Long)
+```
 
 单选按钮样式中选中项的索引。
 
 ### OLEDraggedItem
-`Property Get OLEDraggedItem() As Long`
+
+```vb
+Property Get OLEDraggedItem() As Long
+```
 
 OLE 拖放操作中拖动项的索引。只读。
 
 ### Style
-`Property Get Style() As LstStyleConstants`
-`Property Let Style(ByVal Value As LstStyleConstants)`
+
+```vb
+Property Get Style() As LstStyleConstants
+Property Let Style(ByVal Value As LstStyleConstants)
+```
 
 列表框样式。设计时只读。
 
 ### DrawMode
-`Property Get DrawMode() As LstDrawModeConstants`
-`Property Let DrawMode(ByVal Value As LstDrawModeConstants)`
+
+```vb
+Property Get DrawMode() As LstDrawModeConstants
+Property Let DrawMode(ByVal Value As LstDrawModeConstants)
+```
 
 绘制模式。设计时只读。
 
 ### MultiSelect
-`Property Get MultiSelect() As VBRUN.MultiSelectConstants`
-`Property Let MultiSelect(ByVal Value As VBRUN.MultiSelectConstants)`
+
+```vb
+Property Get MultiSelect() As VBRUN.MultiSelectConstants
+Property Let MultiSelect(ByVal Value As VBRUN.MultiSelectConstants)
+```
 
 多选模式。
 
 ### Sorted
-`Property Get Sorted() As Boolean`
-`Property Let Sorted(ByVal Value As Boolean)`
+
+```vb
+Property Get Sorted() As Boolean
+Property Let Sorted(ByVal Value As Boolean)
+```
 
 是否自动排序。
 
 ### MultiColumn
-`Property Get MultiColumn() As Boolean`
-`Property Let MultiColumn(ByVal Value As Boolean)`
+
+```vb
+Property Get MultiColumn() As Boolean
+Property Let MultiColumn(ByVal Value As Boolean)
+```
 
 是否启用多列显示。
 
 ### IntegralHeight
-`Property Get IntegralHeight() As Boolean`
-`Property Let IntegralHeight(ByVal Value As Boolean)`
+
+```vb
+Property Get IntegralHeight() As Boolean
+Property Let IntegralHeight(ByVal Value As Boolean)
+```
 
 是否只显示完整项。设计时可设置。
 
 ### AllowSelection
-`Property Get AllowSelection() As Boolean`
-`Property Let AllowSelection(ByVal Value As Boolean)`
+
+```vb
+Property Get AllowSelection() As Boolean
+Property Let AllowSelection(ByVal Value As Boolean)
+```
 
 是否允许选择项。
 
 ### UseTabStops
-`Property Get UseTabStops() As Boolean`
-`Property Let UseTabStops(ByVal Value As Boolean)`
+
+```vb
+Property Get UseTabStops() As Boolean
+Property Let UseTabStops(ByVal Value As Boolean)
+```
 
 是否识别和展开制表符。
 
 ### DisableNoScroll
-`Property Get DisableNoScroll() As Boolean`
-`Property Let DisableNoScroll(ByVal Value As Boolean)`
+
+```vb
+Property Get DisableNoScroll() As Boolean
+Property Let DisableNoScroll(ByVal Value As Boolean)
+```
 
 无需滚动时是否禁用（而非隐藏）滚动条。
 
 ### HorizontalExtent
-`Property Get HorizontalExtent() As Single`
-`Property Let HorizontalExtent(ByVal Value As Single)`
+
+```vb
+Property Get HorizontalExtent() As Single
+Property Let HorizontalExtent(ByVal Value As Single)
+```
 
 水平滚动宽度。
 
 ### InsertMarkColor
-`Property Get InsertMarkColor() As OLE_COLOR`
-`Property Let InsertMarkColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get InsertMarkColor() As OLE_COLOR
+Property Let InsertMarkColor(ByVal Value As OLE_COLOR)
+```
 
 插入标记的颜色。
 
 ### ScrollTrack
-`Property Get ScrollTrack() As Boolean`
-`Property Let ScrollTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get ScrollTrack() As Boolean
+Property Let ScrollTrack(ByVal Value As Boolean)
+```
 
 是否在拖动滚动条时实时滚动内容。
 
 ### Redraw
-`Property Get Redraw() As Boolean`
-`Property Let Redraw(ByVal Value As Boolean)`
+
+```vb
+Property Get Redraw() As Boolean
+Property Let Redraw(ByVal Value As Boolean)
+```
 
 是否在更改项时重绘列表框。禁用可加速批量添加。
 
 ### BorderStyle
-`Property Get BorderStyle() As CCBorderStyleConstants`
-`Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)`
+
+```vb
+Property Get BorderStyle() As CCBorderStyleConstants
+Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)
+```
 
 边框样式。参见通用枚举。
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 是否启用视觉样式。
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景色。
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 前景色。
 
 ### Font
-`Property Get Font() As StdFont`
-`Property Let Font(ByVal NewFont As StdFont)`
-`Property Set Font(ByVal NewFont As StdFont)`
+
+```vb
+Property Get Font() As StdFont
+Property Let Font(ByVal NewFont As StdFont)
+Property Set Font(ByVal NewFont As StdFont)
+```
 
 字体。
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 是否可用。
 
 ### AllowDropFiles
-`Property Get AllowDropFiles() As Boolean`
-`Property Let AllowDropFiles(ByVal Value As Boolean)`
+
+```vb
+Property Get AllowDropFiles() As Boolean
+Property Let AllowDropFiles(ByVal Value As Boolean)
+```
 
 是否允许拖放文件。
 
 ### OLEDragMode
-`Property Get OLEDragMode() As VBRUN.OLEDragConstants`
-`Property Let OLEDragMode(ByVal Value As VBRUN.OLEDragConstants)`
+
+```vb
+Property Get OLEDragMode() As VBRUN.OLEDragConstants
+Property Let OLEDragMode(ByVal Value As VBRUN.OLEDragConstants)
+```
 
 OLE 拖动模式。
 
 ### OLEDragDropScroll
-`Property Get OLEDragDropScroll() As Boolean`
-`Property Let OLEDragDropScroll(ByVal Value As Boolean)`
+
+```vb
+Property Get OLEDragDropScroll() As Boolean
+Property Let OLEDragDropScroll(ByVal Value As Boolean)
+```
 
 OLE 拖放时是否自动滚动。
 
 ### OLEDropMode
-`Property Get OLEDropMode() As OLEDropModeConstants`
-`Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)`
+
+```vb
+Property Get OLEDropMode() As OLEDropModeConstants
+Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)
+```
 
 OLE 放置模式。
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 鼠标指针样式。参见通用枚举。
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 自定义鼠标图标。
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 是否启用鼠标进入/离开跟踪。
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 从右到左显示方向。
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 从右到左模式。参见通用枚举。
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 列表框控件的窗口句柄。
 
 ### hWndUserControl
-`Property Get hWndUserControl() As LongPtr`
+
+```vb
+Property Get hWndUserControl() As LongPtr
+```
 
 用户控件的窗口句柄。
 
 ### ToolTipText
-`Property Get ToolTipText() As String`
-`Property Let ToolTipText(ByVal Value As String)`
+
+```vb
+Property Get ToolTipText() As String
+Property Let ToolTipText(ByVal Value As String)
+```
 
 工具提示文本。
 
 ### Name
-`Property Get Name() As String`
+
+```vb
+Property Get Name() As String
+```
 
 控件名称。只读。
 
 ### Tag
-`Property Get Tag() As String`
-`Property Let Tag(ByVal Value As String)`
+
+```vb
+Property Get Tag() As String
+Property Let Tag(ByVal Value As String)
+```
 
 自定义数据。
 
 ### Parent
-`Property Get Parent() As Object`
+
+```vb
+Property Get Parent() As Object
+```
 
 父对象。只读。
 
 ### Container
-`Property Get Container() As Object`
-`Property Set Container(ByVal Value As Object)`
+
+```vb
+Property Get Container() As Object
+Property Set Container(ByVal Value As Object)
+```
 
 容器对象。
 
 ### Left
-`Property Get Left() As Single`
-`Property Let Left(ByVal Value As Single)`
+
+```vb
+Property Get Left() As Single
+Property Let Left(ByVal Value As Single)
+```
 
 左边距。
 
 ### Top
-`Property Get Top() As Single`
-`Property Let Top(ByVal Value As Single)`
+
+```vb
+Property Get Top() As Single
+Property Let Top(ByVal Value As Single)
+```
 
 顶边距。
 
 ### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 宽度。
 
 ### Height
-`Property Get Height() As Single`
-`Property Let Height(ByVal Value As Single)`
+
+```vb
+Property Get Height() As Single
+Property Let Height(ByVal Value As Single)
+```
 
 高度。
 
 ### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 是否可见。
 
 ### HelpContextID
-`Property Get HelpContextID() As Long`
-`Property Let HelpContextID(ByVal Value As Long)`
+
+```vb
+Property Get HelpContextID() As Long
+Property Let HelpContextID(ByVal Value As Long)
+```
 
 帮助上下文 ID。
 
 ### WhatsThisHelpID
-`Property Get WhatsThisHelpID() As Long`
-`Property Let WhatsThisHelpID(ByVal Value As Long)`
+
+```vb
+Property Get WhatsThisHelpID() As Long
+Property Let WhatsThisHelpID(ByVal Value As Long)
+```
 
 "这是什么"帮助 ID。
 
 ### DragIcon
-`Property Get DragIcon() As IPictureDisp`
-`Property Let DragIcon(ByVal Value As IPictureDisp)`
-`Property Set DragIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DragIcon() As IPictureDisp
+Property Let DragIcon(ByVal Value As IPictureDisp)
+Property Set DragIcon(ByVal Value As IPictureDisp)
+```
 
 拖动图标。
 
 ### DragMode
-`Property Get DragMode() As Integer`
-`Property Let DragMode(ByVal Value As Integer)`
+
+```vb
+Property Get DragMode() As Integer
+Property Let DragMode(ByVal Value As Integer)
+```
 
 拖动模式。
 
 ## 方法
 
 ### AddItem
-`Public Sub AddItem(ByVal Item As String, Optional ByVal Index As Variant)`
+
+```vb
+Public Sub AddItem(ByVal Item As String, Optional ByVal Index As Variant)
+```
 
 添加列表项。
 
 ### RemoveItem
-`Public Sub RemoveItem(ByVal Index As Long)`
+
+```vb
+Public Sub RemoveItem(ByVal Index As Long)
+```
 
 移除指定索引的列表项。
 
 ### Clear
-`Public Sub Clear()`
+
+```vb
+Public Sub Clear()
+```
 
 清除所有列表项。
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 强制重绘控件。
 
 ### SetSelRange
-`Public Sub SetSelRange(ByVal StartIndex As Long, ByVal EndIndex As Long)`
+
+```vb
+Public Sub SetSelRange(ByVal StartIndex As Long, ByVal EndIndex As Long)
+```
 
 设置选择范围（多选模式下）。
 
 ### SetColumnWidth
-`Public Sub SetColumnWidth(ByVal Value As Single)`
+
+```vb
+Public Sub SetColumnWidth(ByVal Value As Single)
+```
 
 设置多列模式下列的宽度。
 
 ### SelectItem
-`Public Function SelectItem(ByVal Text As String, Optional ByVal Index As Long = -1) As Long`
+
+```vb
+Public Function SelectItem(ByVal Text As String, Optional ByVal Index As Long = -1) As Long
+```
 
 选择匹配文本的项，返回选中项索引。
 
 ### FindItem
-`Public Function FindItem(ByVal Text As String, Optional ByVal Index As Long = -1, Optional ByVal Partial As Boolean) As Long`
+
+```vb
+Public Function FindItem(ByVal Text As String, Optional ByVal Index As Long = -1, Optional ByVal Partial As Boolean) As Long
+```
 
 查找匹配文本的项，返回索引。
 
 ### HitTest
-`Public Function HitTest(ByVal X As Single, ByVal Y As Single) As Long`
+
+```vb
+Public Function HitTest(ByVal X As Single, ByVal Y As Single) As Long
+```
 
 命中测试，返回指定坐标处的项索引。
 
 ### HitTestInsertMark
-`Public Function HitTestInsertMark(ByVal X As Single, ByVal Y As Single, Optional ByRef After As Boolean) As Long`
+
+```vb
+Public Function HitTestInsertMark(ByVal X As Single, ByVal Y As Single, Optional ByRef After As Boolean) As Long
+```
 
 插入标记命中测试，返回插入位置索引。
 
 ### ItemsPerColumn
-`Public Function ItemsPerColumn() As Long`
+
+```vb
+Public Function ItemsPerColumn() As Long
+```
 
 获取每列项数。
 
 ### SelectedIndices
-`Public Function SelectedIndices() As Collection`
+
+```vb
+Public Function SelectedIndices() As Collection
+```
 
 获取所有选定项索引的集合。
 
 ### CheckedIndices
-`Public Function CheckedIndices() As Collection`
+
+```vb
+Public Function CheckedIndices() As Collection
+```
 
 获取所有选中项（复选框/单选）索引的集合。
 
 ### GetIdealHorizontalExtent
-`Public Function GetIdealHorizontalExtent() As Single`
+
+```vb
+Public Function GetIdealHorizontalExtent() As Single
+```
 
 获取理想的水平滚动宽度。
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 启动 OLE 拖放操作。
 
 ### Drag
-`Public Sub Drag(Optional ByRef Action As Variant)`
+
+```vb
+Public Sub Drag(Optional ByRef Action As Variant)
+```
 
 开始、结束或取消拖动操作。
 
 ### SetFocus
-`Public Sub SetFocus()`
+
+```vb
+Public Sub SetFocus()
+```
 
 获取焦点。
 
 ### ZOrder
-`Public Sub ZOrder(Optional ByRef Position As Variant)`
+
+```vb
+Public Sub ZOrder(Optional ByRef Position As Variant)
+```
 
 调整 Z 顺序。
 
 ### Move
-`Public Sub Move(ByVal Left As Single, Optional ByVal Top As Variant, Optional ByVal Width As Variant, Optional ByVal Height As Variant)`
+
+```vb
+Public Sub Move(ByVal Left As Single, Optional ByVal Top As Variant, Optional ByVal Width As Variant, Optional ByVal Height As Variant)
+```
 
 移动并调整控件位置和大小。
 
 ## 事件
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 单击。
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 双击。
 
 ### Scroll
-`Public Event Scroll()`
+
+```vb
+Public Event Scroll()
+```
 
 滚动时触发。
 
 ### ItemCheck
-`Public Event ItemCheck(ByVal Item As Long)`
+
+```vb
+Public Event ItemCheck(ByVal Item As Long)
+```
 
 项被选中或取消选中时触发。
 
 ### ItemBeforeCheck
-`Public Event ItemBeforeCheck(ByVal Item As Long, ByRef Cancel As Boolean)`
+
+```vb
+Public Event ItemBeforeCheck(ByVal Item As Long, ByRef Cancel As Boolean)
+```
 
 项即将被选中或取消选中时触发，可取消。
 
 ### ItemMeasure
-`Public Event ItemMeasure(ByVal Item As Long, ByRef ItemHeight As Long)`
+
+```vb
+Public Event ItemMeasure(ByVal Item As Long, ByRef ItemHeight As Long)
+```
 
 可变高度所有者绘制模式下测量项高度时触发。
 
 ### ItemDraw
-`Public Event ItemDraw(ByVal Item As Long, ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As Long, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)`
+
+```vb
+Public Event ItemDraw(ByVal Item As Long, ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As Long, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)
+```
 
 所有者绘制模式下绘制项时触发。
 
 ### DropFiles
-`Public Event DropFiles(ByRef FileList As Variant, ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Public Event DropFiles(ByRef FileList As Variant, ByVal X As Single, ByVal Y As Single)
+```
 
 拖放文件到控件时触发。
 
 ### ContextMenu
-`Public Event ContextMenu(ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Public Event ContextMenu(ByVal X As Single, ByVal Y As Single)
+```
 
 右键菜单请求时触发。
 
 ### PreviewKeyDown
-`Public Event PreviewKeyDown(ByVal KeyCode As Integer, ByRef IsInputKey As Boolean)`
+
+```vb
+Public Event PreviewKeyDown(ByVal KeyCode As Integer, ByRef IsInputKey As Boolean)
+```
 
 按键前事件，在 KeyDown 之前触发。
 
 ### PreviewKeyUp
-`Public Event PreviewKeyUp(ByVal KeyCode As Integer, ByRef IsInputKey As Boolean)`
+
+```vb
+Public Event PreviewKeyUp(ByVal KeyCode As Integer, ByRef IsInputKey As Boolean)
+```
 
 按键释放前事件，在 KeyUp 之前触发。
 
 ### KeyDown
-`Public Event KeyDown(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Public Event KeyDown(KeyCode As Integer, Shift As Integer)
+```
 
 按键按下。
 
 ### KeyUp
-`Public Event KeyUp(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Public Event KeyUp(KeyCode As Integer, Shift As Integer)
+```
 
 按键释放。
 
 ### KeyPress
-`Public Event KeyPress(KeyChar As Integer)`
+
+```vb
+Public Event KeyPress(KeyChar As Integer)
+```
 
 按键字符。
 
 ### MouseDown
-`Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 鼠标按下。
 
 ### MouseMove
-`Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 鼠标移动。
 
 ### MouseUp
-`Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 鼠标释放。
 
 ### MouseEnter
-`Public Event MouseEnter()`
+
+```vb
+Public Event MouseEnter()
+```
 
 鼠标进入控件。
 
 ### MouseLeave
-`Public Event MouseLeave()`
+
+```vb
+Public Event MouseLeave()
+```
 
 鼠标离开控件。
 
 ### OLECompleteDrag
-`Public Event OLECompleteDrag(Effect As Long)`
+
+```vb
+Public Event OLECompleteDrag(Effect As Long)
+```
 
 OLE 拖放完成。
 
 ### OLEDragDrop
-`Public Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 OLE 拖放落下。
 
 ### OLEDragOver
-`Public Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)`
+
+```vb
+Public Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)
+```
 
 OLE 拖放悬停。
 
 ### OLEGiveFeedback
-`Public Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)`
+
+```vb
+Public Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)
+```
 
 OLE 给出反馈。
 
 ### OLESetData
-`Public Event OLESetData(Data As DataObject, DataFormat As Integer)`
+
+```vb
+Public Event OLESetData(Data As DataObject, DataFormat As Integer)
+```
 
 OLE 设置数据。
 
 ### OLEStartDrag
-`Public Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)`
+
+```vb
+Public Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)
+```
 
 OLE 开始拖动。
 

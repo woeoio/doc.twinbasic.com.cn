@@ -1,4 +1,4 @@
-﻿---
+---
 title: 通用对话框控件（CommonDialog）
 description: 通用对话框控件（CommonDialog） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -313,343 +313,457 @@ AIGC:
 
 ### Object
 
-`Property Get Object() As Object`
+```vb
+Property Get Object() As Object
+```
 
 返回对象自身的实例。
 
 ### CancelError
 
-`Property Get/Let CancelError() As Boolean`
+```vb
+Property Get/Let CancelError() As Boolean
+```
 
 指示用户选择"取消"时是否产生错误。
 
 ### HookEvents
 
-`Property Get/Let HookEvents() As Boolean`
+```vb
+Property Get/Let HookEvents() As Boolean
+```
 
 指示对话框是否可以引发需要钩子回调的事件。
 
 ### Tag
 
-`Property Get/Let Tag() As String`
+```vb
+Property Get/Let Tag() As String
+```
 
 存储程序所需的附加数据。
 
 ### hDC
 
-`Property Get hDC() As LongPtr`
+```vb
+Property Get hDC() As LongPtr
+```
 
 返回设备上下文句柄（只读）。
 
 ### Flags
 
-`Property Get/Let Flags() As Long`
+```vb
+Property Get/Let Flags() As Long
+```
 
 返回/设置对话框选项标志。
 
 ### DialogTitle
 
-`Property Get/Let DialogTitle() As String`
+```vb
+Property Get/Let DialogTitle() As String
+```
 
 设置对话框标题栏显示的字符串。
 
 ### MaxFileSize
 
-`Property Get/Let MaxFileSize() As Long`
+```vb
+Property Get/Let MaxFileSize() As Long
+```
 
 返回/设置打开文件名的最大大小。
 
 ### FileName
 
-`Property Get/Let FileName() As String`
+```vb
+Property Get/Let FileName() As String
+```
 
 返回/设置所选文件的路径和文件名。
 
 ### FileTitle
 
-`Property Get FileTitle() As String`
+```vb
+Property Get FileTitle() As String
+```
 
 返回所选文件的文件名（不含路径，只读）。
 
 ### FileOffset
 
-`Property Get FileOffset() As Integer`
+```vb
+Property Get FileOffset() As Integer
+```
 
 返回从路径开头到文件名的零偏移量（只读）。
 
 ### Filter
 
-`Property Get/Let Filter() As String`
+```vb
+Property Get/Let Filter() As String
+```
 
 返回/设置对话框类型列表框中显示的过滤器。
 
 ### FilterIndex
 
-`Property Get/Let FilterIndex() As Long`
+```vb
+Property Get/Let FilterIndex() As Long
+```
 
 返回/设置默认过滤器索引。
 
 ### InitDir
 
-`Property Get/Let InitDir() As String`
+```vb
+Property Get/Let InitDir() As String
+```
 
 返回/设置初始文件目录。
 
 ### DefaultExt
 
-`Property Get/Let DefaultExt() As String`
+```vb
+Property Get/Let DefaultExt() As String
+```
 
 返回/设置默认文件扩展名。
 
 ### Color
 
-`Property Get/Let Color() As Long`
+```vb
+Property Get/Let Color() As Long
+```
 
 返回/设置所选颜色。
 
 ### CustomColors
 
-`Property Get/Let CustomColors() As Variant`
+```vb
+Property Get/Let CustomColors() As Variant
+```
 
 返回/设置用户可选择的自定义颜色。
 
 ### FontName
 
-`Property Get/Let FontName() As String`
+```vb
+Property Get/Let FontName() As String
+```
 
 返回/设置字体名称。
 
 ### FontSize
 
-`Property Get/Let FontSize() As Single`
+```vb
+Property Get/Let FontSize() As Single
+```
 
 返回/设置字体大小（磅值）。
 
 ### FontBold
 
-`Property Get/Let FontBold() As Boolean`
+```vb
+Property Get/Let FontBold() As Boolean
+```
 
 返回/设置粗体字体样式。
 
 ### FontItalic
 
-`Property Get/Let FontItalic() As Boolean`
+```vb
+Property Get/Let FontItalic() As Boolean
+```
 
 返回/设置斜体字体样式。
 
 ### FontStrikethru
 
-`Property Get/Let FontStrikethru() As Boolean`
+```vb
+Property Get/Let FontStrikethru() As Boolean
+```
 
 返回/设置删除线字体样式。
 
 ### FontUnderline
 
-`Property Get/Let FontUnderline() As Boolean`
+```vb
+Property Get/Let FontUnderline() As Boolean
+```
 
 返回/设置下划线字体样式。
 
 ### FontCharset
 
-`Property Get/Let FontCharset() As Integer`
+```vb
+Property Get/Let FontCharset() As Integer
+```
 
 返回/设置字体字符集。
 
 ### FontWeight
 
-`Property Get/Let FontWeight() As Integer`
+```vb
+Property Get/Let FontWeight() As Integer
+```
 
 返回/设置字体粗细（0=Don'tCare, 100=Thin, 200=ExtraLight, 300=Light, 400=Normal, 500=Medium, 600=SemiBold, 700=Bold, 800=ExtraBold, 900=Heavy）。
 
 ### Min
 
-`Property Get/Let Min() As Long`
+```vb
+Property Get/Let Min() As Long
+```
 
 返回/设置最小字体大小（字体对话框）或最小打印页范围（打印对话框）。
 
 ### Max
 
-`Property Get/Let Max() As Long`
+```vb
+Property Get/Let Max() As Long
+```
 
 返回/设置最大字体大小（字体对话框）或最大打印页范围（打印对话框）。
 
 ### FromPage
 
-`Property Get/Let FromPage() As Long`
+```vb
+Property Get/Let FromPage() As Long
+```
 
 返回/设置打印起始页。
 
 ### ToPage
 
-`Property Get/Let ToPage() As Long`
+```vb
+Property Get/Let ToPage() As Long
+```
 
 返回/设置打印终止页。
 
 ### Orientation
 
-`Property Get/Let Orientation() As CdlPRORConstants`
+```vb
+Property Get/Let Orientation() As CdlPRORConstants
+```
 
 返回/设置打印方向。
 
 ### PaperSize
 
-`Property Get/Let PaperSize() As CdlPRPSConstants`
+```vb
+Property Get/Let PaperSize() As CdlPRPSConstants
+```
 
 返回/设置打印纸张大小。
 
 ### Copies
 
-`Property Get/Let Copies() As Integer`
+```vb
+Property Get/Let Copies() As Integer
+```
 
 返回/设置打印份数。
 
 ### PaperBin
 
-`Property Get/Let PaperBin() As CdlPRBNConstants`
+```vb
+Property Get/Let PaperBin() As CdlPRBNConstants
+```
 
 返回/设置默认送纸器。
 
 ### PrintQuality
 
-`Property Get/Let PrintQuality() As CdlPRPQConstants`
+```vb
+Property Get/Let PrintQuality() As CdlPRPQConstants
+```
 
 返回/设置打印分辨率。
 
 ### ColorMode
 
-`Property Get/Let ColorMode() As CdlPRCMConstants`
+```vb
+Property Get/Let ColorMode() As CdlPRCMConstants
+```
 
 返回/设置打印机颜色模式。
 
 ### Duplex
 
-`Property Get/Let Duplex() As CdlPRDPConstants`
+```vb
+Property Get/Let Duplex() As CdlPRDPConstants
+```
 
 返回/设置双面打印模式。
 
 ### PrinterDefault
 
-`Property Get/Let PrinterDefault() As Boolean`
+```vb
+Property Get/Let PrinterDefault() As Boolean
+```
 
 返回/设置用户选择是否更改默认打印机。
 
 ### PrinterDefaultInit
 
-`Property Get/Let PrinterDefaultInit() As Boolean`
+```vb
+Property Get/Let PrinterDefaultInit() As Boolean
+```
 
 返回/设置是否始终初始化默认打印机。
 
 ### PrinterDriver
 
-`Property Get/Let PrinterDriver() As String`
+```vb
+Property Get/Let PrinterDriver() As String
+```
 
 返回/设置非默认打印机驱动名称。
 
 ### PrinterName
 
-`Property Get/Let PrinterName() As String`
+```vb
+Property Get/Let PrinterName() As String
+```
 
 返回/设置非默认打印机设备名称。
 
 ### PrinterPort
 
-`Property Get/Let PrinterPort() As String`
+```vb
+Property Get/Let PrinterPort() As String
+```
 
 返回/设置非默认打印机端口名称。
 
 ### HelpFile
 
-`Property Get/Let HelpFile() As String`
+```vb
+Property Get/Let HelpFile() As String
+```
 
 返回/设置与项目关联的帮助文件名。
 
 ### HelpCommand
 
-`Property Get/Let HelpCommand() As CdlHelpConstants`
+```vb
+Property Get/Let HelpCommand() As CdlHelpConstants
+```
 
 返回/设置联机帮助类型。
 
 ### HelpContext
 
-`Property Get/Let HelpContext() As LongPtr`
+```vb
+Property Get/Let HelpContext() As LongPtr
+```
 
 返回/设置帮助主题的上下文 ID。
 
 ### HelpKey
 
-`Property Get/Let HelpKey() As String`
+```vb
+Property Get/Let HelpKey() As String
+```
 
 返回/设置标识帮助主题的关键字。
 
 ### PageLeftMargin
 
-`Property Get/Let PageLeftMargin() As Long`
+```vb
+Property Get/Let PageLeftMargin() As Long
+```
 
 返回/设置纸张左边距（设备单位）。
 
 ### PageTopMargin
 
-`Property Get/Let PageTopMargin() As Long`
+```vb
+Property Get/Let PageTopMargin() As Long
+```
 
 返回/设置纸张上边距（设备单位）。
 
 ### PageRightMargin
 
-`Property Get/Let PageRightMargin() As Long`
+```vb
+Property Get/Let PageRightMargin() As Long
+```
 
 返回/设置纸张右边距（设备单位）。
 
 ### PageBottomMargin
 
-`Property Get/Let PageBottomMargin() As Long`
+```vb
+Property Get/Let PageBottomMargin() As Long
+```
 
 返回/设置纸张下边距（设备单位）。
 
 ### PageLeftMinMargin
 
-`Property Get/Let PageLeftMinMargin() As Long`
+```vb
+Property Get/Let PageLeftMinMargin() As Long
+```
 
 返回/设置纸张最小左边距（设备单位）。
 
 ### PageTopMinMargin
 
-`Property Get/Let PageTopMinMargin() As Long`
+```vb
+Property Get/Let PageTopMinMargin() As Long
+```
 
 返回/设置纸张最小上边距（设备单位）。
 
 ### PageRightMinMargin
 
-`Property Get/Let PageRightMinMargin() As Long`
+```vb
+Property Get/Let PageRightMinMargin() As Long
+```
 
 返回/设置纸张最小右边距（设备单位）。
 
 ### PageBottomMinMargin
 
-`Property Get/Let PageBottomMinMargin() As Long`
+```vb
+Property Get/Let PageBottomMinMargin() As Long
+```
 
 返回/设置纸张最小下边距（设备单位）。
 
 ### RootFolder
 
-`Property Get/Let RootFolder() As Variant`
+```vb
+Property Get/Let RootFolder() As Variant
+```
 
 返回/设置文件夹浏览对话框的根文件夹。
 
 ### FindWhat
 
-`Property Get/Let FindWhat() As String`
+```vb
+Property Get/Let FindWhat() As String
+```
 
 返回/设置查找对话框的搜索字符串。
 
 ### ReplaceWith
 
-`Property Get/Let ReplaceWith() As String`
+```vb
+Property Get/Let ReplaceWith() As String
+```
 
 返回/设置替换对话框的替换字符串。
 
 ### Action
 
-`Property Let Action() As Integer`
+```vb
+Property Let Action() As Integer
+```
 
 设置要显示的对话框类型（只写，1=打开, 2=保存, 3=颜色, 4=字体, 5=打印, 6=帮助, 7=页面设置, 8=文件夹浏览, 9=查找, 10=替换）。
 
@@ -657,67 +771,89 @@ AIGC:
 
 ### ShowOpen
 
-`Public Function ShowOpen() As Boolean`
+```vb
+Public Function ShowOpen() As Boolean
+```
 
 显示"打开"对话框。成功返回 True。
 
 ### ShowSave
 
-`Public Function ShowSave() As Boolean`
+```vb
+Public Function ShowSave() As Boolean
+```
 
 显示"保存"对话框。成功返回 True。
 
 ### ShowColor
 
-`Public Function ShowColor() As Boolean`
+```vb
+Public Function ShowColor() As Boolean
+```
 
 显示"颜色"对话框。成功返回 True。
 
 ### ShowFont
 
-`Public Function ShowFont() As Boolean`
+```vb
+Public Function ShowFont() As Boolean
+```
 
 显示"字体"对话框。成功返回 True。
 
 ### ShowPrinter
 
-`Public Function ShowPrinter() As Boolean`
+```vb
+Public Function ShowPrinter() As Boolean
+```
 
 显示"打印"对话框。成功返回 True。
 
 ### ShowPrinterEx
 
-`Public Function ShowPrinterEx() As Boolean`
+```vb
+Public Function ShowPrinterEx() As Boolean
+```
 
 显示"打印"扩展对话框（PrintDlgEx）。成功返回 True。
 
 ### ShowHelp
 
-`Public Sub ShowHelp()`
+```vb
+Public Sub ShowHelp()
+```
 
 显示帮助。
 
 ### ShowPageSetup
 
-`Public Function ShowPageSetup() As Boolean`
+```vb
+Public Function ShowPageSetup() As Boolean
+```
 
 显示"页面设置"对话框。成功返回 True。
 
 ### ShowFolderBrowser
 
-`Public Function ShowFolderBrowser() As Boolean`
+```vb
+Public Function ShowFolderBrowser() As Boolean
+```
 
 显示"文件夹浏览"对话框。成功返回 True。
 
 ### ShowFind
 
-`Public Function ShowFind() As Boolean`
+```vb
+Public Function ShowFind() As Boolean
+```
 
 显示"查找"对话框。成功返回 True。
 
 ### ShowReplace
 
-`Public Function ShowReplace() As Boolean`
+```vb
+Public Function ShowReplace() As Boolean
+```
 
 显示"替换"对话框。成功返回 True。
 
@@ -725,61 +861,81 @@ AIGC:
 
 ### InitDialog
 
-`Public Event InitDialog(ByVal Action As Integer, ByVal hDlg As Long)`
+```vb
+Public Event InitDialog(ByVal Action As Integer, ByVal hDlg As Long)
+```
 
 对话框完成初始化时发生。
 
 ### Help
 
-`Public Event Help(ByRef Handled As Boolean, ByVal Action As Integer, ByVal hDlg As Long)`
+```vb
+Public Event Help(ByRef Handled As Boolean, ByVal Action As Integer, ByVal hDlg As Long)
+```
 
 用户在对话框中点击帮助按钮时发生。
 
 ### FileShareViolation
 
-`Public Event FileShareViolation(ByVal FileName As String, ByRef Result As CdlOFNShareViResultConstants, ByVal hDlg As Long)`
+```vb
+Public Event FileShareViolation(ByVal FileName As String, ByRef Result As CdlOFNShareViResultConstants, ByVal hDlg As Long)
+```
 
 在打开或保存对话框中用户点击确定且发生网络共享冲突时发生。
 
 ### FileValidate
 
-`Public Event FileValidate(ByVal FileName As String, ByVal FileTitle As String, ByVal FileOffset As Integer, ByRef Cancel As Boolean, ByVal hDlg As Long)`
+```vb
+Public Event FileValidate(ByVal FileName As String, ByVal FileTitle As String, ByVal FileOffset As Integer, ByRef Cancel As Boolean, ByVal hDlg As Long)
+```
 
 在打开或保存对话框中用户点击确定时发生。
 
 ### ColorValidate
 
-`Public Event ColorValidate(ByRef RGBColor As Long, ByRef Cancel As Boolean, ByVal hDlg As Long)`
+```vb
+Public Event ColorValidate(ByRef RGBColor As Long, ByRef Cancel As Boolean, ByVal hDlg As Long)
+```
 
 在颜色对话框中用户点击确定时发生。
 
 ### FontApply
 
-`Public Event FontApply(ByVal Flags As Long, ByVal FontName As String, ByVal FontSize As Single, ByVal FontBold As Boolean, ByVal FontItalic As Boolean, ByVal FontStrikethru As Boolean, ByVal FontUnderline As Boolean, ByVal FontCharset As Integer, ByVal RGBColor As Long, ByVal hDlg As Long)`
+```vb
+Public Event FontApply(ByVal Flags As Long, ByVal FontName As String, ByVal FontSize As Single, ByVal FontBold As Boolean, ByVal FontItalic As Boolean, ByVal FontStrikethru As Boolean, ByVal FontUnderline As Boolean, ByVal FontCharset As Integer, ByVal RGBColor As Long, ByVal hDlg As Long)
+```
 
 在字体对话框中用户点击"应用"按钮时发生。
 
 ### FolderBrowserValidateFailed
 
-`Public Event FolderBrowserValidateFailed(ByVal Text As String, ByRef Cancel As Boolean, ByVal hDlg As Long)`
+```vb
+Public Event FolderBrowserValidateFailed(ByVal Text As String, ByRef Cancel As Boolean, ByVal hDlg As Long)
+```
 
 在文件夹浏览对话框中用户输入无效名称时发生。
 
 ### FindNext
 
-`Public Event FindNext()`
+```vb
+Public Event FindNext()
+```
 
 在查找或替换对话框中用户点击"查找下一个"按钮时发生。
 
 ### Replace
 
-`Public Event Replace()`
+```vb
+Public Event Replace()
+```
 
 在替换对话框中用户点击"替换"按钮时发生。
 
 ### ReplaceAll
 
-`Public Event ReplaceAll()`
+```vb
+Public Event ReplaceAll()
+```
 
 在替换对话框中用户点击"全部替换"按钮时发生。
 

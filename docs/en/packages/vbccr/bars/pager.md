@@ -1,4 +1,4 @@
-﻿---
+---
 title: Pager Control
 description: Pager Control - VBCCR Developer Reference, complete API documentation based on source code
 AIGC:
@@ -57,306 +57,468 @@ See common enumerations.
 ## Properties
 
 ### BuddyControl
-`Property Get BuddyControl() As Variant`
-`Property Let BuddyControl(ByVal Value As Variant)`
+
+```vb
+Property Get BuddyControl() As Variant
+Property Let BuddyControl(ByVal Value As Variant)
+```
 
 Associated buddy control. Can accept a control object, a control name, or an hWnd.
 
 ### Orientation
-`Property Get Orientation() As PgrOrientationConstants`
-`Property Let Orientation(ByVal Value As PgrOrientationConstants)`
+
+```vb
+Property Get Orientation() As PgrOrientationConstants
+Property Let Orientation(ByVal Value As PgrOrientationConstants)
+```
 
 Pager control orientation.
 
 ### BorderWidth
-`Property Get BorderWidth() As Long`
-`Property Let BorderWidth(ByVal Value As Long)`
+
+```vb
+Property Get BorderWidth() As Long
+Property Let BorderWidth(ByVal Value As Long)
+```
 
 Border width (pixels).
 
 ### AutoScroll
-`Property Get AutoScroll() As Boolean`
-`Property Let AutoScroll(ByVal Value As Boolean)`
+
+```vb
+Property Get AutoScroll() As Boolean
+Property Let AutoScroll(ByVal Value As Boolean)
+```
 
 Whether automatic scrolling is enabled.
 
 ### ButtonSize
-`Property Get ButtonSize() As Long`
-`Property Let ButtonSize(ByVal Value As Long)`
+
+```vb
+Property Get ButtonSize() As Long
+Property Let ButtonSize(ByVal Value As Long)
+```
 
 Button size (pixels).
 
 ### OLEDragDropScroll
-`Property Get OLEDragDropScroll() As Boolean`
-`Property Let OLEDragDropScroll(ByVal Value As Boolean)`
+
+```vb
+Property Get OLEDragDropScroll() As Boolean
+Property Let OLEDragDropScroll(ByVal Value As Boolean)
+```
 
 Whether automatic scrolling is enabled during OLE drag-and-drop.
 
 ### Value
-`Property Get Value() As Single`
-`Property Let Value(ByVal Value As Single)`
+
+```vb
+Property Get Value() As Single
+Property Let Value(ByVal Value As Single)
+```
 
 Current scroll position.
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 Whether visual styles are enabled.
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 Window handle of the pager control.
 
 ### hWndUserControl
-`Property Get hWndUserControl() As LongPtr`
+
+```vb
+Property Get hWndUserControl() As LongPtr
+```
 
 Window handle of the user control.
 
 ### Font
-`Property Get Font() As StdFont`
-`Property Let Font(ByVal NewFont As StdFont)`
-`Property Set Font(ByVal NewFont As StdFont)`
+
+```vb
+Property Get Font() As StdFont
+Property Let Font(ByVal NewFont As StdFont)
+Property Set Font(ByVal NewFont As StdFont)
+```
 
 Font.
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 Whether the control is enabled.
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 Mouse pointer style. See common enumerations.
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 Custom mouse icon.
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 Whether mouse enter/leave tracking is enabled.
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 Right-to-left display direction.
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 Right-to-left mode. See common enumerations.
 
 ### Name
-`Property Get Name() As String`
+
+```vb
+Property Get Name() As String
+```
 
 Control name. Read-only.
 
 ### Tag
-`Property Get Tag() As String`
-`Property Let Tag(ByVal Value As String)`
+
+```vb
+Property Get Tag() As String
+Property Let Tag(ByVal Value As String)
+```
 
 Custom data.
 
 ### Parent
-`Property Get Parent() As Object`
+
+```vb
+Property Get Parent() As Object
+```
 
 Parent object. Read-only.
 
 ### Container
-`Property Get Container() As Object`
-`Property Set Container(ByVal Value As Object)`
+
+```vb
+Property Get Container() As Object
+Property Set Container(ByVal Value As Object)
+```
 
 Container object.
 
 ### Left
-`Property Get Left() As Single`
-`Property Let Left(ByVal Value As Single)`
+
+```vb
+Property Get Left() As Single
+Property Let Left(ByVal Value As Single)
+```
 
 Left edge distance.
 
 ### Top
-`Property Get Top() As Single`
-`Property Let Top(ByVal Value As Single)`
+
+```vb
+Property Get Top() As Single
+Property Let Top(ByVal Value As Single)
+```
 
 Top edge distance.
 
 ### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 Width.
 
 ### Height
-`Property Get Height() As Single`
-`Property Let Height(ByVal Value As Single)`
+
+```vb
+Property Get Height() As Single
+Property Let Height(ByVal Value As Single)
+```
 
 Height.
 
 ### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 Whether visible.
 
 ### ToolTipText
-`Property Get ToolTipText() As String`
-`Property Let ToolTipText(ByVal Value As String)`
+
+```vb
+Property Get ToolTipText() As String
+Property Let ToolTipText(ByVal Value As String)
+```
 
 ToolTip text.
 
 ### HelpContextID
-`Property Get HelpContextID() As Long`
-`Property Let HelpContextID(ByVal Value As Long)`
+
+```vb
+Property Get HelpContextID() As Long
+Property Let HelpContextID(ByVal Value As Long)
+```
 
 Help context ID.
 
 ### WhatsThisHelpID
-`Property Get WhatsThisHelpID() As Long`
-`Property Let WhatsThisHelpID(ByVal Value As Long)`
+
+```vb
+Property Get WhatsThisHelpID() As Long
+Property Let WhatsThisHelpID(ByVal Value As Long)
+```
 
 "What's This" help ID.
 
 ### DragIcon
-`Property Get DragIcon() As IPictureDisp`
-`Property Let DragIcon(ByVal Value As IPictureDisp)`
-`Property Set DragIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DragIcon() As IPictureDisp
+Property Let DragIcon(ByVal Value As IPictureDisp)
+Property Set DragIcon(ByVal Value As IPictureDisp)
+```
 
 Drag icon.
 
 ### DragMode
-`Property Get DragMode() As Integer`
-`Property Let DragMode(ByVal Value As Integer)`
+
+```vb
+Property Get DragMode() As Integer
+Property Let DragMode(ByVal Value As Integer)
+```
 
 Drag mode.
 
 ## Methods
 
 ### ReCalcSize
-`Public Sub ReCalcSize()`
+
+```vb
+Public Sub ReCalcSize()
+```
 
 Recalculates the size of the pager control and the buddy control.
 
 ### GetButtonState
-`Public Function GetButtonState(ByVal Button As PgrButtonConstants) As PgrButtonStateConstants`
+
+```vb
+Public Function GetButtonState(ByVal Button As PgrButtonConstants) As PgrButtonStateConstants
+```
 
 Returns the state of the specified button.
 
 ### Drag
-`Public Sub Drag([ByRef Action As Variant])`
+
+```vb
+Public Sub Drag([ByRef Action As Variant])
+```
 
 Starts, ends, or cancels a drag-and-drop operation.
 
 ### SetFocus
-`Public Sub SetFocus()`
+
+```vb
+Public Sub SetFocus()
+```
 
 Sets focus to the control.
 
 ### ZOrder
-`Public Sub ZOrder([ByRef Position As Variant])`
+
+```vb
+Public Sub ZOrder([ByRef Position As Variant])
+```
 
 Sets the control's Z-order.
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 Initiates an OLE drag-and-drop operation.
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 Forces a redraw of the control.
 
 ## Events
 
 ### Scroll
-`Public Event Scroll()`
+
+```vb
+Public Event Scroll()
+```
 
 Raised when the scroll position changes.
 
 ### CalcSize
-`Public Event CalcSize()`
+
+```vb
+Public Event CalcSize()
+```
 
 Raised before the buddy control size needs to be recalculated.
 
 ### HotChanged
-`Public Event HotChanged()`
+
+```vb
+Public Event HotChanged()
+```
 
 Raised when a button's hot state changes.
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 Raised when the control is clicked.
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 Raised when the control is double-clicked.
 
 ### MouseDown
-`Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 Raised when a mouse button is pressed.
 
 ### MouseUp
-`Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 Raised when a mouse button is released.
 
 ### MouseMove
-`Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 Raised when the mouse is moved.
 
 ### MouseEnter
-`Public Event MouseEnter()`
+
+```vb
+Public Event MouseEnter()
+```
 
 Raised when the mouse enters the control.
 
 ### MouseLeave
-`Public Event MouseLeave()`
+
+```vb
+Public Event MouseLeave()
+```
 
 Raised when the mouse leaves the control.
 
 ### OLEDragDrop
-`Public Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 Raised when an OLE drag-and-drop operation completes.
 
 ### OLEDragOver
-`Public Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)`
+
+```vb
+Public Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)
+```
 
 Raised when an OLE drag-and-drop operation passes over the control.
 
 ### OLEGiveFeedback
-`Public Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)`
+
+```vb
+Public Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)
+```
 
 Raised when an OLE drag-and-drop operation needs to change the cursor.
 
 ### OLEStartDrag
-`Public Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)`
+
+```vb
+Public Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)
+```
 
 Raised when an OLE drag-and-drop operation starts.
 
 ### OLECompleteDrag
-`Public Event OLECompleteDrag(Effect As Long)`
+
+```vb
+Public Event OLECompleteDrag(Effect As Long)
+```
 
 Raised when an OLE drag-and-drop operation completes.
 
 ### OLESetData
-`Public Event OLESetData(Data As DataObject, DataFormat As Integer)`
+
+```vb
+Public Event OLESetData(Data As DataObject, DataFormat As Integer)
+```
 
 Raised when an OLE drop target requests data.
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: MCIWnd 控件（MCIWnd）
 description: MCIWnd 控件（MCIWnd） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -78,506 +78,782 @@ AIGC:
 ## 属性
 
 ### Command
-`Property Let Command(ByVal Value As String)`
+
+```vb
+Property Let Command(ByVal Value As String)
+```
 
 向 MCI 设备发送命令字符串。
 
 ### CommandReturn
-`Property Get CommandReturn() As String`
+
+```vb
+Property Get CommandReturn() As String
+```
 
 返回最后一次 MCI 命令的返回结果。只读。
 
 ### FileName
-`Property Get FileName() As String`
-`Property Let FileName(ByVal Value As String)`
+
+```vb
+Property Get FileName() As String
+Property Let FileName(ByVal Value As String)
+```
 
 要打开或加载的媒体文件名。
 
 ### DeviceAlias
-`Property Get DeviceAlias() As String`
+
+```vb
+Property Get DeviceAlias() As String
+```
 
 返回设备的别名。只读。
 
 ### DeviceID
-`Property Get DeviceID() As Long`
+
+```vb
+Property Get DeviceID() As Long
+```
 
 返回设备的 ID。只读。
 
 ### Device
-`Property Get Device() As String`
+
+```vb
+Property Get Device() As String
+```
 
 返回当前设备类型。只读。
 
 ### NewDevice
-`Property Let NewDevice(ByVal Value As String)`
+
+```vb
+Property Let NewDevice(ByVal Value As String)
+```
 
 设置要打开的新设备类型。只写。
 
 ### Error
-`Property Get Error() As Long`
+
+```vb
+Property Get Error() As Long
+```
 
 返回最近的 MCI 错误代码。只读。
 
 ### ErrorString
-`Property Get ErrorString() As String`
+
+```vb
+Property Get ErrorString() As String
+```
 
 返回最近的 MCI 错误描述字符串。只读。
 
 ### TimeFormat
-`Property Get TimeFormat() As MciFormatConstants`
-`Property Let TimeFormat(ByVal Value As MciFormatConstants)`
+
+```vb
+Property Get TimeFormat() As MciFormatConstants
+Property Let TimeFormat(ByVal Value As MciFormatConstants)
+```
 
 时间格式。
 
 ### Mode
-`Property Get Mode() As MciModeConstants`
+
+```vb
+Property Get Mode() As MciModeConstants
+```
 
 返回当前设备模式。只读。
 
 ### ModeString
-`Property Get ModeString() As String`
+
+```vb
+Property Get ModeString() As String
+```
 
 返回当前设备模式的字符串描述。只读。
 
 ### Position
-`Property Get Position() As Long`
+
+```vb
+Property Get Position() As Long
+```
 
 返回当前位置。只读。
 
 ### PositionString
-`Property Get PositionString() As String`
+
+```vb
+Property Get PositionString() As String
+```
 
 返回当前位置的字符串表示。只读。
 
 ### StartPosition
-`Property Get StartPosition() As Long`
+
+```vb
+Property Get StartPosition() As Long
+```
 
 返回起始位置。只读。
 
 ### Length
-`Property Get Length() As Long`
+
+```vb
+Property Get Length() As Long
+```
 
 返回媒体总长度。只读。
 
 ### EndPosition
-`Property Get EndPosition() As Long`
+
+```vb
+Property Get EndPosition() As Long
+```
 
 返回结束位置。只读。
 
 ### Volume
-`Property Get Volume() As Long`
-`Property Let Volume(ByVal Value As Long)`
+
+```vb
+Property Get Volume() As Long
+Property Let Volume(ByVal Value As Long)
+```
 
 音量。
 
 ### Speed
-`Property Get Speed() As Long`
-`Property Let Speed(ByVal Value As Long)`
+
+```vb
+Property Get Speed() As Long
+Property Let Speed(ByVal Value As Long)
+```
 
 播放速度。
 
 ### Repeat
-`Property Get Repeat() As Boolean`
-`Property Let Repeat(ByVal Value As Boolean)`
+
+```vb
+Property Get Repeat() As Boolean
+Property Let Repeat(ByVal Value As Boolean)
+```
 
 是否循环播放。
 
 ### ErrorDlg
-`Property Get ErrorDlg() As Boolean`
-`Property Let ErrorDlg(ByVal Value As Boolean)`
+
+```vb
+Property Get ErrorDlg() As Boolean
+Property Let ErrorDlg(ByVal Value As Boolean)
+```
 
 是否显示错误对话框。
 
 ### Record
-`Property Get Record() As Boolean`
-`Property Let Record(ByVal Value As Boolean)`
+
+```vb
+Property Get Record() As Boolean
+Property Let Record(ByVal Value As Boolean)
+```
 
 是否处于录制模式。
 
 ### Playbar
-`Property Get Playbar() As Boolean`
-`Property Let Playbar(ByVal Value As Boolean)`
+
+```vb
+Property Get Playbar() As Boolean
+Property Let Playbar(ByVal Value As Boolean)
+```
 
 是否显示播放条。
 
 ### Menu
-`Property Get Menu() As Boolean`
-`Property Let Menu(ByVal Value As Boolean)`
+
+```vb
+Property Get Menu() As Boolean
+Property Let Menu(ByVal Value As Boolean)
+```
 
 是否显示菜单。
 
 ### AllowOpen
-`Property Get AllowOpen() As Boolean`
-`Property Let AllowOpen(ByVal Value As Boolean)`
+
+```vb
+Property Get AllowOpen() As Boolean
+Property Let AllowOpen(ByVal Value As Boolean)
+```
 
 是否允许通过用户界面打开文件。
 
 ### AutoSizeWindow
-`Property Get AutoSizeWindow() As Boolean`
-`Property Let AutoSizeWindow(ByVal Value As Boolean)`
+
+```vb
+Property Get AutoSizeWindow() As Boolean
+Property Let AutoSizeWindow(ByVal Value As Boolean)
+```
 
 是否自动调整窗口大小以适应媒体。
 
 ### AutoSizeMovie
-`Property Get AutoSizeMovie() As Boolean`
-`Property Let AutoSizeMovie(ByVal Value As Boolean)`
+
+```vb
+Property Get AutoSizeMovie() As Boolean
+Property Let AutoSizeMovie(ByVal Value As Boolean)
+```
 
 是否自动调整媒体大小以适应窗口。
 
 ### TimerFreq
-`Property Get TimerFreq() As Long`
-`Property Let TimerFreq(ByVal Value As Long)`
+
+```vb
+Property Get TimerFreq() As Long
+Property Let TimerFreq(ByVal Value As Long)
+```
 
 计时器频率。
 
 ### Zoom
-`Property Get Zoom() As Long`
-`Property Let Zoom(ByVal Value As Long)`
+
+```vb
+Property Get Zoom() As Long
+Property Let Zoom(ByVal Value As Long)
+```
 
 缩放比例。
 
 ### Caption
-`Property Get Caption() As MciCaptionConstants`
-`Property Let Caption(ByVal Value As MciCaptionConstants)`
+
+```vb
+Property Get Caption() As MciCaptionConstants
+Property Let Caption(ByVal Value As MciCaptionConstants)
+```
 
 标题显示模式。
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景颜色。
 
 ### BorderStyle
-`Property Get BorderStyle() As CCBorderStyleConstants`
-`Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)`
+
+```vb
+Property Get BorderStyle() As CCBorderStyleConstants
+Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)
+```
 
 边框样式。参见通用枚举。
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 是否启用视觉样式。
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 MCIWnd 控件的窗口句柄。
 
 ### hWndUserControl
-`Property Get hWndUserControl() As LongPtr`
+
+```vb
+Property Get hWndUserControl() As LongPtr
+```
 
 用户控件的窗口句柄。
 
 ### Font
-`Property Get Font() As StdFont`
-`Property Let Font(ByVal NewFont As StdFont)`
-`Property Set Font(ByVal NewFont As StdFont)`
+
+```vb
+Property Get Font() As StdFont
+Property Let Font(ByVal NewFont As StdFont)
+Property Set Font(ByVal NewFont As StdFont)
+```
 
 字体。
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 是否可用。
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 鼠标指针样式。参见通用枚举。
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 自定义鼠标图标。
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 是否启用鼠标进入/离开跟踪。
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 从右到左显示方向。
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 从右到左模式。参见通用枚举。
 
 ### Name
-`Property Get Name() As String`
+
+```vb
+Property Get Name() As String
+```
 
 控件名称。只读。
 
 ### Tag
-`Property Get Tag() As String`
-`Property Let Tag(ByVal Value As String)`
+
+```vb
+Property Get Tag() As String
+Property Let Tag(ByVal Value As String)
+```
 
 自定义数据。
 
 ### Parent
-`Property Get Parent() As Object`
+
+```vb
+Property Get Parent() As Object
+```
 
 父对象。只读。
 
 ### Container
-`Property Get Container() As Object`
-`Property Set Container(ByVal Value As Object)`
+
+```vb
+Property Get Container() As Object
+Property Set Container(ByVal Value As Object)
+```
 
 容器对象。
 
 ### Left
-`Property Get Left() As Single`
-`Property Let Left(ByVal Value As Single)`
+
+```vb
+Property Get Left() As Single
+Property Let Left(ByVal Value As Single)
+```
 
 左边距。
 
 ### Top
-`Property Get Top() As Single`
-`Property Let Top(ByVal Value As Single)`
+
+```vb
+Property Get Top() As Single
+Property Let Top(ByVal Value As Single)
+```
 
 顶边距。
 
 ### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 宽度。
 
 ### Height
-`Property Get Height() As Single`
-`Property Let Height(ByVal Value As Single)`
+
+```vb
+Property Get Height() As Single
+Property Let Height(ByVal Value As Single)
+```
 
 高度。
 
 ### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 是否可见。
 
 ### ToolTipText
-`Property Get ToolTipText() As String`
-`Property Let ToolTipText(ByVal Value As String)`
+
+```vb
+Property Get ToolTipText() As String
+Property Let ToolTipText(ByVal Value As String)
+```
 
 工具提示文本。
 
 ### HelpContextID
-`Property Get HelpContextID() As Long`
-`Property Let HelpContextID(ByVal Value As Long)`
+
+```vb
+Property Get HelpContextID() As Long
+Property Let HelpContextID(ByVal Value As Long)
+```
 
 帮助上下文 ID。
 
 ### WhatsThisHelpID
-`Property Get WhatsThisHelpID() As Long`
-`Property Let WhatsThisHelpID(ByVal Value As Long)`
+
+```vb
+Property Get WhatsThisHelpID() As Long
+Property Let WhatsThisHelpID(ByVal Value As Long)
+```
 
 "这是什么"帮助 ID。
 
 ### DragIcon
-`Property Get DragIcon() As IPictureDisp`
-`Property Let DragIcon(ByVal Value As IPictureDisp)`
-`Property Set DragIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DragIcon() As IPictureDisp
+Property Let DragIcon(ByVal Value As IPictureDisp)
+Property Set DragIcon(ByVal Value As IPictureDisp)
+```
 
 拖拽图标。
 
 ### DragMode
-`Property Get DragMode() As Integer`
-`Property Let DragMode(ByVal Value As Integer)`
+
+```vb
+Property Get DragMode() As Integer
+Property Let DragMode(ByVal Value As Integer)
+```
 
 拖拽模式。
 
 ## 方法
 
 ### ShowOpen
-`Public Sub ShowOpen()`
+
+```vb
+Public Sub ShowOpen()
+```
 
 显示打开文件对话框。
 
 ### ShowSave
-`Public Sub ShowSave()`
+
+```vb
+Public Sub ShowSave()
+```
 
 显示保存文件对话框。
 
 ### CanSave
-`Public Function CanSave() As Boolean`
+
+```vb
+Public Function CanSave() As Boolean
+```
 
 判断是否可以保存当前媒体。
 
 ### Eject
-`Public Sub Eject()`
+
+```vb
+Public Sub Eject()
+```
 
 弹出当前媒体。
 
 ### CanEject
-`Public Function CanEject() As Boolean`
+
+```vb
+Public Function CanEject() As Boolean
+```
 
 判断设备是否支持弹出操作。
 
 ### PlayFrom
-`Public Sub PlayFrom(ByVal StartPosition As Long)`
+
+```vb
+Public Sub PlayFrom(ByVal StartPosition As Long)
+```
 
 从指定位置开始播放。
 
 ### PlayTo
-`Public Sub PlayTo(ByVal EndPosition As Long)`
+
+```vb
+Public Sub PlayTo(ByVal EndPosition As Long)
+```
 
 播放到指定位置后停止。
 
 ### PlayReverse
-`Public Sub PlayReverse()`
+
+```vb
+Public Sub PlayReverse()
+```
 
 反向播放。
 
 ### CanPlay
-`Public Function CanPlay() As Boolean`
+
+```vb
+Public Function CanPlay() As Boolean
+```
 
 判断设备是否支持播放。
 
 ### CanRecord
-`Public Function CanRecord() As Boolean`
+
+```vb
+Public Function CanRecord() As Boolean
+```
 
 判断设备是否支持录制。
 
 ### CanConfig
-`Public Function CanConfig() As Boolean`
+
+```vb
+Public Function CanConfig() As Boolean
+```
 
 判断设备是否支持配置。
 
 ### CanWindow
-`Public Function CanWindow() As Boolean`
+
+```vb
+Public Function CanWindow() As Boolean
+```
 
 判断设备是否支持窗口显示。
 
 ### Drag
-`Public Sub Drag([ByRef Action As Variant])`
+
+```vb
+Public Sub Drag([ByRef Action As Variant])
+```
 
 开始、结束或取消拖放操作。
 
 ### SetFocus
-`Public Sub SetFocus()`
+
+```vb
+Public Sub SetFocus()
+```
 
 将焦点移至控件。
 
 ### ZOrder
-`Public Sub ZOrder([ByRef Position As Variant])`
+
+```vb
+Public Sub ZOrder([ByRef Position As Variant])
+```
 
 设置控件的 Z 顺序。
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 启动 OLE 拖放操作。
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 强制重绘控件。
 
 ## 事件
 
 ### ModeChange
-`Public Event ModeChange()`
+
+```vb
+Public Event ModeChange()
+```
 
 设备模式发生改变时触发。
 
 ### PositionChange
-`Public Event PositionChange()`
+
+```vb
+Public Event PositionChange()
+```
 
 当前位置发生改变时触发。
 
 ### MediaChange
-`Public Event MediaChange()`
+
+```vb
+Public Event MediaChange()
+```
 
 当前媒体发生改变时触发。
 
 ### Error
-`Public Event Error()`
+
+```vb
+Public Event Error()
+```
 
 发生 MCI 错误时触发。
 
 ### Notify
-`Public Event Notify()`
+
+```vb
+Public Event Notify()
+```
 
 MCI 操作完成通知。
 
 ### Signal
-`Public Event Signal()`
+
+```vb
+Public Event Signal()
+```
 
 收到信号时触发。
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 单击控件时触发。
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 双击控件时触发。
 
 ### MouseDown
-`Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 按下鼠标按钮时触发。
 
 ### MouseUp
-`Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 释放鼠标按钮时触发。
 
 ### MouseMove
-`Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 移动鼠标时触发。
 
 ### MouseEnter
-`Public Event MouseEnter()`
+
+```vb
+Public Event MouseEnter()
+```
 
 鼠标进入控件时触发。
 
 ### MouseLeave
-`Public Event MouseLeave()`
+
+```vb
+Public Event MouseLeave()
+```
 
 鼠标离开控件时触发。
 
 ### OLEDragDrop
-`Public Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 OLE 拖放完成时触发。
 
 ### OLEDragOver
-`Public Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)`
+
+```vb
+Public Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)
+```
 
 OLE 拖放经过控件时触发。
 
 ### OLEGiveFeedback
-`Public Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)`
+
+```vb
+Public Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)
+```
 
 OLE 拖放需要更改光标时触发。
 
 ### OLEStartDrag
-`Public Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)`
+
+```vb
+Public Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)
+```
 
 OLE 拖放开始时触发。
 
 ### OLECompleteDrag
-`Public Event OLECompleteDrag(Effect As Long)`
+
+```vb
+Public Event OLECompleteDrag(Effect As Long)
+```
 
 OLE 拖放完成时触发。
 
 ### OLESetData
-`Public Event OLESetData(Data As DataObject, DataFormat As Integer)`
+
+```vb
+Public Event OLESetData(Data As DataObject, DataFormat As Integer)
+```
 
 OLE 放置目标请求数据时触发。
 

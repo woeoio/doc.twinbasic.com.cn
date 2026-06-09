@@ -1,4 +1,4 @@
-﻿---
+---
 title: ListView Control
 description: ListView Control - VBCCR Developer Reference, complete API documentation based on source code
 AIGC:
@@ -188,1064 +188,1631 @@ See common enumerations.
 ## Properties
 
 ### View
-`Property Get View() As LvwViewConstants`
-`Property Let View(ByVal Value As LvwViewConstants)`
+
+```vb
+Property Get View() As LvwViewConstants
+Property Let View(ByVal Value As LvwViewConstants)
+```
 
 View mode.
 
 ### Arrange
-`Property Get Arrange() As LvwArrangeConstants`
-`Property Let Arrange(ByVal Value As LvwArrangeConstants)`
+
+```vb
+Property Get Arrange() As LvwArrangeConstants
+Property Let Arrange(ByVal Value As LvwArrangeConstants)
+```
 
 Icon arrangement.
 
 ### SortKey
-`Property Get SortKey() As Integer`
-`Property Let SortKey(ByVal Value As Integer)`
+
+```vb
+Property Get SortKey() As Integer
+Property Let SortKey(ByVal Value As Integer)
+```
 
 Sort key column index.
 
 ### SortOrder
-`Property Get SortOrder() As LvwSortOrderConstants`
-`Property Let SortOrder(ByVal Value As LvwSortOrderConstants)`
+
+```vb
+Property Get SortOrder() As LvwSortOrderConstants
+Property Let SortOrder(ByVal Value As LvwSortOrderConstants)
+```
 
 Sort order.
 
 ### SortType
-`Property Get SortType() As LvwSortTypeConstants`
-`Property Let SortType(ByVal Value As LvwSortTypeConstants)`
+
+```vb
+Property Get SortType() As LvwSortTypeConstants
+Property Let SortType(ByVal Value As LvwSortTypeConstants)
+```
 
 Sort type.
 
 ### Sorted
-`Property Get Sorted() As Boolean`
-`Property Let Sorted(ByVal Value As Boolean)`
+
+```vb
+Property Get Sorted() As Boolean
+Property Let Sorted(ByVal Value As Boolean)
+```
 
 Whether sorting is enabled.
 
 ### LabelEdit
-`Property Get LabelEdit() As LvwLabelEditConstants`
-`Property Let LabelEdit(ByVal Value As LvwLabelEditConstants)`
+
+```vb
+Property Get LabelEdit() As LvwLabelEditConstants
+Property Let LabelEdit(ByVal Value As LvwLabelEditConstants)
+```
 
 Label edit mode.
 
 ### LabelWrap
-`Property Get LabelWrap() As Boolean`
-`Property Let LabelWrap(ByVal Value As Boolean)`
+
+```vb
+Property Get LabelWrap() As Boolean
+Property Let LabelWrap(ByVal Value As Boolean)
+```
 
 Whether label text wrapping is allowed.
 
 ### MultiSelect
-`Property Get MultiSelect() As Boolean`
-`Property Let MultiSelect(ByVal Value As Boolean)`
+
+```vb
+Property Get MultiSelect() As Boolean
+Property Let MultiSelect(ByVal Value As Boolean)
+```
 
 Whether multiple selection is allowed.
 
 ### FullRowSelect
-`Property Get FullRowSelect() As Boolean`
-`Property Let FullRowSelect(ByVal Value As Boolean)`
+
+```vb
+Property Get FullRowSelect() As Boolean
+Property Let FullRowSelect(ByVal Value As Boolean)
+```
 
 Whether full row selection is enabled.
 
 ### GridLines
-`Property Get GridLines() As Boolean`
-`Property Let GridLines(ByVal Value As Boolean)`
+
+```vb
+Property Get GridLines() As Boolean
+Property Let GridLines(ByVal Value As Boolean)
+```
 
 Whether grid lines are displayed.
 
 ### Checkboxes
-`Property Get Checkboxes() As Boolean`
-`Property Let Checkboxes(ByVal Value As Boolean)`
+
+```vb
+Property Get Checkboxes() As Boolean
+Property Let Checkboxes(ByVal Value As Boolean)
+```
 
 Whether checkboxes are displayed.
 
 ### HideSelection
-`Property Get HideSelection() As Boolean`
-`Property Let HideSelection(ByVal Value As Boolean)`
+
+```vb
+Property Get HideSelection() As Boolean
+Property Let HideSelection(ByVal Value As Boolean)
+```
 
 Whether the selection is hidden when the control loses focus.
 
 ### HideColumnHeaders
-`Property Get HideColumnHeaders() As Boolean`
-`Property Let HideColumnHeaders(ByVal Value As Boolean)`
+
+```vb
+Property Get HideColumnHeaders() As Boolean
+Property Let HideColumnHeaders(ByVal Value As Boolean)
+```
 
 Whether column headers are hidden.
 
 ### AllowColumnReorder
-`Property Get AllowColumnReorder() As Boolean`
-`Property Let AllowColumnReorder(ByVal Value As Boolean)`
+
+```vb
+Property Get AllowColumnReorder() As Boolean
+Property Let AllowColumnReorder(ByVal Value As Boolean)
+```
 
 Whether column reordering by dragging is allowed.
 
 ### AllowColumnCheckboxes
-`Property Get AllowColumnCheckboxes() As Boolean`
-`Property Let AllowColumnCheckboxes(ByVal Value As Boolean)`
+
+```vb
+Property Get AllowColumnCheckboxes() As Boolean
+Property Let AllowColumnCheckboxes(ByVal Value As Boolean)
+```
 
 Whether column checkboxes are allowed.
 
 ### AllowDropFiles
-`Property Get AllowDropFiles() As Boolean`
-`Property Let AllowDropFiles(ByVal Value As Boolean)`
+
+```vb
+Property Get AllowDropFiles() As Boolean
+Property Let AllowDropFiles(ByVal Value As Boolean)
+```
 
 Whether dropping files is allowed.
 
 ### ShowInfoTips
-`Property Get ShowInfoTips() As Boolean`
-`Property Let ShowInfoTips(ByVal Value As Boolean)`
+
+```vb
+Property Get ShowInfoTips() As Boolean
+Property Let ShowInfoTips(ByVal Value As Boolean)
+```
 
 Whether info tips are displayed.
 
 ### ShowLabelTips
-`Property Get ShowLabelTips() As Boolean`
-`Property Let ShowLabelTips(ByVal Value As Boolean)`
+
+```vb
+Property Get ShowLabelTips() As Boolean
+Property Let ShowLabelTips(ByVal Value As Boolean)
+```
 
 Whether label tips are displayed.
 
 ### ShowColumnTips
-`Property Get ShowColumnTips() As Boolean`
-`Property Let ShowColumnTips(ByVal Value As Boolean)`
+
+```vb
+Property Get ShowColumnTips() As Boolean
+Property Let ShowColumnTips(ByVal Value As Boolean)
+```
 
 Whether column tips are displayed.
 
 ### DoubleBuffer
-`Property Get DoubleBuffer() As Boolean`
-`Property Let DoubleBuffer(ByVal Value As Boolean)`
+
+```vb
+Property Get DoubleBuffer() As Boolean
+Property Let DoubleBuffer(ByVal Value As Boolean)
+```
 
 Whether double buffering is enabled.
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 Whether visual styles are enabled.
 
 ### VisualTheme
-`Property Get VisualTheme() As LvwVisualThemeConstants`
-`Property Let VisualTheme(ByVal Value As LvwVisualThemeConstants)`
+
+```vb
+Property Get VisualTheme() As LvwVisualThemeConstants
+Property Let VisualTheme(ByVal Value As LvwVisualThemeConstants)
+```
 
 Visual theme.
 
 ### HoverSelection
-`Property Get HoverSelection() As Boolean`
-`Property Let HoverSelection(ByVal Value As Boolean)`
+
+```vb
+Property Get HoverSelection() As Boolean
+Property Let HoverSelection(ByVal Value As Boolean)
+```
 
 Whether hover selection is enabled.
 
 ### HoverSelectionTime
-`Property Get HoverSelectionTime() As Long`
-`Property Let HoverSelectionTime(ByVal Value As Long)`
+
+```vb
+Property Get HoverSelectionTime() As Long
+Property Let HoverSelectionTime(ByVal Value As Long)
+```
 
 Hover selection delay time (milliseconds).
 
 ### HotTracking
-`Property Get HotTracking() As Boolean`
-`Property Let HotTracking(ByVal Value As Boolean)`
+
+```vb
+Property Get HotTracking() As Boolean
+Property Let HotTracking(ByVal Value As Boolean)
+```
 
 Whether hot tracking is enabled.
 
 ### HighlightHot
-`Property Get HighlightHot() As Boolean`
-`Property Let HighlightHot(ByVal Value As Boolean)`
+
+```vb
+Property Get HighlightHot() As Boolean
+Property Let HighlightHot(ByVal Value As Boolean)
+```
 
 Whether hot items are highlighted.
 
 ### UnderlineHot
-`Property Get UnderlineHot() As Boolean`
-`Property Let UnderlineHot(ByVal Value As Boolean)`
+
+```vb
+Property Get UnderlineHot() As Boolean
+Property Let UnderlineHot(ByVal Value As Boolean)
+```
 
 Whether hot items are underlined.
 
 ### InsertMarkColor
-`Property Get InsertMarkColor() As OLE_COLOR`
-`Property Let InsertMarkColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get InsertMarkColor() As OLE_COLOR
+Property Let InsertMarkColor(ByVal Value As OLE_COLOR)
+```
 
 Insert mark color.
 
 ### TextBackground
-`Property Get TextBackground() As CCBackStyleConstants`
-`Property Let TextBackground(ByVal Value As CCBackStyleConstants)`
+
+```vb
+Property Get TextBackground() As CCBackStyleConstants
+Property Let TextBackground(ByVal Value As CCBackStyleConstants)
+```
 
 Text background style. See common enumerations.
 
 ### ClickableColumnHeaders
-`Property Get ClickableColumnHeaders() As Boolean`
-`Property Let ClickableColumnHeaders(ByVal Value As Boolean)`
+
+```vb
+Property Get ClickableColumnHeaders() As Boolean
+Property Let ClickableColumnHeaders(ByVal Value As Boolean)
+```
 
 Whether column headers are clickable.
 
 ### HighlightColumnHeaders
-`Property Get HighlightColumnHeaders() As Boolean`
-`Property Let HighlightColumnHeaders(ByVal Value As Boolean)`
+
+```vb
+Property Get HighlightColumnHeaders() As Boolean
+Property Let HighlightColumnHeaders(ByVal Value As Boolean)
+```
 
 Whether column headers are highlighted.
 
 ### TrackSizeColumnHeaders
-`Property Get TrackSizeColumnHeaders() As Boolean`
-`Property Let TrackSizeColumnHeaders(ByVal Value As Boolean)`
+
+```vb
+Property Get TrackSizeColumnHeaders() As Boolean
+Property Let TrackSizeColumnHeaders(ByVal Value As Boolean)
+```
 
 Whether column header size tracking is enabled.
 
 ### ResizableColumnHeaders
-`Property Get ResizableColumnHeaders() As Boolean`
-`Property Let ResizableColumnHeaders(ByVal Value As Boolean)`
+
+```vb
+Property Get ResizableColumnHeaders() As Boolean
+Property Let ResizableColumnHeaders(ByVal Value As Boolean)
+```
 
 Whether column headers are resizable.
 
 ### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 Background picture.
 
 ### PictureAlignment
-`Property Get PictureAlignment() As LvwPictureAlignmentConstants`
-`Property Let PictureAlignment(ByVal Value As LvwPictureAlignmentConstants)`
+
+```vb
+Property Get PictureAlignment() As LvwPictureAlignmentConstants
+Property Let PictureAlignment(ByVal Value As LvwPictureAlignmentConstants)
+```
 
 Background picture alignment.
 
 ### PictureWatermark
-`Property Get PictureWatermark() As Boolean`
-`Property Let PictureWatermark(ByVal Value As Boolean)`
+
+```vb
+Property Get PictureWatermark() As Boolean
+Property Let PictureWatermark(ByVal Value As Boolean)
+```
 
 Whether the background picture is used as a watermark.
 
 ### TileViewLines
-`Property Get TileViewLines() As Long`
-`Property Let TileViewLines(ByVal Value As Long)`
+
+```vb
+Property Get TileViewLines() As Long
+Property Let TileViewLines(ByVal Value As Long)
+```
 
 Number of text lines in tile view.
 
 ### SnapToGrid
-`Property Get SnapToGrid() As Boolean`
-`Property Let SnapToGrid(ByVal Value As Boolean)`
+
+```vb
+Property Get SnapToGrid() As Boolean
+Property Let SnapToGrid(ByVal Value As Boolean)
+```
 
 Whether snap to grid is enabled.
 
 ### GroupView
-`Property Get GroupView() As Boolean`
-`Property Let GroupView(ByVal Value As Boolean)`
+
+```vb
+Property Get GroupView() As Boolean
+Property Let GroupView(ByVal Value As Boolean)
+```
 
 Whether group view is enabled.
 
 ### GroupSubsetCount
-`Property Get GroupSubsetCount() As Long`
-`Property Let GroupSubsetCount(ByVal Value As Long)`
+
+```vb
+Property Get GroupSubsetCount() As Long
+Property Let GroupSubsetCount(ByVal Value As Long)
+```
 
 Number of items displayed in a group subset.
 
 ### UseColumnChevron
-`Property Get UseColumnChevron() As Boolean`
-`Property Let UseColumnChevron(ByVal Value As Boolean)`
+
+```vb
+Property Get UseColumnChevron() As Boolean
+Property Let UseColumnChevron(ByVal Value As Boolean)
+```
 
 Whether column chevrons are used.
 
 ### UseColumnFilterBar
-`Property Get UseColumnFilterBar() As Boolean`
-`Property Let UseColumnFilterBar(ByVal Value As Boolean)`
+
+```vb
+Property Get UseColumnFilterBar() As Boolean
+Property Let UseColumnFilterBar(ByVal Value As Boolean)
+```
 
 Whether the column filter bar is used.
 
 ### AutoSelectFirstItem
-`Property Get AutoSelectFirstItem() As Boolean`
-`Property Let AutoSelectFirstItem(ByVal Value As Boolean)`
+
+```vb
+Property Get AutoSelectFirstItem() As Boolean
+Property Let AutoSelectFirstItem(ByVal Value As Boolean)
+```
 
 Whether the first item is automatically selected.
 
 ### IMEMode
-`Property Get IMEMode() As CCIMEModeConstants`
-`Property Let IMEMode(ByVal Value As CCIMEModeConstants)`
+
+```vb
+Property Get IMEMode() As CCIMEModeConstants
+Property Let IMEMode(ByVal Value As CCIMEModeConstants)
+```
 
 Input method editor mode. See common enumerations.
 
 ### VirtualMode
-`Property Get VirtualMode() As Boolean`
-`Property Let VirtualMode(ByVal Value As Boolean)`
+
+```vb
+Property Get VirtualMode() As Boolean
+Property Let VirtualMode(ByVal Value As Boolean)
+```
 
 Whether virtual mode is enabled.
 
 ### VirtualItemCount
-`Property Get VirtualItemCount() As Long`
-`Property Let VirtualItemCount(ByVal Value As Long)`
+
+```vb
+Property Get VirtualItemCount() As Long
+Property Let VirtualItemCount(ByVal Value As Long)
+```
 
 Total item count in virtual mode.
 
 ### VirtualDisabledInfos
-`Property Get VirtualDisabledInfos() As LvwVirtualPropertyConstants`
-`Property Let VirtualDisabledInfos(ByVal Value As LvwVirtualPropertyConstants)`
+
+```vb
+Property Get VirtualDisabledInfos() As LvwVirtualPropertyConstants
+Property Let VirtualDisabledInfos(ByVal Value As LvwVirtualPropertyConstants)
+```
 
 Disabled property mask in virtual mode.
 
 ### ListItems
-`Property Get ListItems() As LvwListItems`
+
+```vb
+Property Get ListItems() As LvwListItems
+```
 
 List items collection. Read-only.
 
 ### VirtualListItems
-`Property Get VirtualListItems() As LvwVirtualListItems`
+
+```vb
+Property Get VirtualListItems() As LvwVirtualListItems
+```
 
 Virtual list items collection. Read-only.
 
 ### ColumnHeaders
-`Property Get ColumnHeaders() As LvwColumnHeaders`
+
+```vb
+Property Get ColumnHeaders() As LvwColumnHeaders
+```
 
 Column headers collection. Read-only.
 
 ### Groups
-`Property Get Groups() As LvwGroups`
+
+```vb
+Property Get Groups() As LvwGroups
+```
 
 Groups collection. Read-only.
 
 ### WorkAreas
-`Property Get WorkAreas() As LvwWorkAreas`
+
+```vb
+Property Get WorkAreas() As LvwWorkAreas
+```
 
 Work areas collection. Read-only.
 
 ### TopItem
-`Property Get TopItem() As LvwListItem`
+
+```vb
+Property Get TopItem() As LvwListItem
+```
 
 First visible item. Read-only.
 
 ### SelectedItem
-`Property Get SelectedItem() As LvwListItem`
-`Property Let SelectedItem(ByVal Value As LvwListItem)`
-`Property Set SelectedItem(ByVal Value As LvwListItem)`
+
+```vb
+Property Get SelectedItem() As LvwListItem
+Property Let SelectedItem(ByVal Value As LvwListItem)
+Property Set SelectedItem(ByVal Value As LvwListItem)
+```
 
 Currently selected item.
 
 ### HotItem
-`Property Get HotItem() As LvwListItem`
-`Property Let HotItem(ByVal Value As LvwListItem)`
-`Property Set HotItem(ByVal Value As LvwListItem)`
+
+```vb
+Property Get HotItem() As LvwListItem
+Property Let HotItem(ByVal Value As LvwListItem)
+Property Set HotItem(ByVal Value As LvwListItem)
+```
 
 Hot item (the item under the mouse cursor).
 
 ### SelectionMark
-`Property Get SelectionMark() As LvwListItem`
-`Property Let SelectionMark(ByVal Value As LvwListItem)`
-`Property Set SelectionMark(ByVal Value As LvwListItem)`
+
+```vb
+Property Get SelectionMark() As LvwListItem
+Property Let SelectionMark(ByVal Value As LvwListItem)
+Property Set SelectionMark(ByVal Value As LvwListItem)
+```
 
 Selection mark item.
 
 ### DropHighlight
-`Property Get DropHighlight() As LvwListItem`
-`Property Let DropHighlight(ByVal Value As LvwListItem)`
-`Property Set DropHighlight(ByVal Value As LvwListItem)`
+
+```vb
+Property Get DropHighlight() As LvwListItem
+Property Let DropHighlight(ByVal Value As LvwListItem)
+Property Set DropHighlight(ByVal Value As LvwListItem)
+```
 
 Drop highlight item.
 
 ### InsertMark
-`Property Get InsertMark(Optional ByRef After As Boolean) As LvwListItem`
-`Property Let InsertMark(Optional ByRef After As Boolean, ByVal Value As LvwListItem)`
-`Property Set InsertMark(Optional ByRef After As Boolean, ByVal Value As LvwListItem)`
+
+```vb
+Property Get InsertMark(Optional ByRef After As Boolean) As LvwListItem
+Property Let InsertMark(Optional ByRef After As Boolean, ByVal Value As LvwListItem)
+Property Set InsertMark(Optional ByRef After As Boolean, ByVal Value As LvwListItem)
+```
 
 Insert mark item.
 
 ### OLEDraggedItem
-`Property Get OLEDraggedItem() As LvwListItem`
+
+```vb
+Property Get OLEDraggedItem() As LvwListItem
+```
 
 The item being dragged during an OLE drag-and-drop operation. Read-only.
 
 ### SelectedGroup
-`Property Get SelectedGroup() As LvwGroup`
-`Property Let SelectedGroup(ByVal Value As LvwGroup)`
-`Property Set SelectedGroup(ByVal Value As LvwGroup)`
+
+```vb
+Property Get SelectedGroup() As LvwGroup
+Property Let SelectedGroup(ByVal Value As LvwGroup)
+Property Set SelectedGroup(ByVal Value As LvwGroup)
+```
 
 Currently selected group.
 
 ### SelectedColumn
-`Property Get SelectedColumn() As LvwColumnHeader`
-`Property Let SelectedColumn(ByVal Value As LvwColumnHeader)`
-`Property Set SelectedColumn(ByVal Value As LvwColumnHeader)`
+
+```vb
+Property Get SelectedColumn() As LvwColumnHeader
+Property Let SelectedColumn(ByVal Value As LvwColumnHeader)
+Property Set SelectedColumn(ByVal Value As LvwColumnHeader)
+```
 
 Currently selected column.
 
 ### ColumnOrder
-`Property Get ColumnOrder() As Variant`
-`Property Let ColumnOrder(ByVal ArgList As Variant)`
+
+```vb
+Property Get ColumnOrder() As Variant
+Property Let ColumnOrder(ByVal ArgList As Variant)
+```
 
 Column order array.
 
 ### ColumnWidth
-`Property Get ColumnWidth() As Single`
-`Property Let ColumnWidth(ByVal Value As Single)`
+
+```vb
+Property Get ColumnWidth() As Single
+Property Let ColumnWidth(ByVal Value As Single)
+```
 
 Current column width.
 
 ### ColumnFilterChangedTimeout
-`Property Get ColumnFilterChangedTimeout() As Long`
-`Property Let ColumnFilterChangedTimeout(ByVal Value As Long)`
+
+```vb
+Property Get ColumnFilterChangedTimeout() As Long
+Property Let ColumnFilterChangedTimeout(ByVal Value As Long)
+```
 
 Column filter change timeout.
 
 ### IconSpacingWidth
-`Property Get IconSpacingWidth() As Single`
-`Property Let IconSpacingWidth(ByVal Value As Single)`
+
+```vb
+Property Get IconSpacingWidth() As Single
+Property Let IconSpacingWidth(ByVal Value As Single)
+```
 
 Icon spacing width.
 
 ### IconSpacingHeight
-`Property Get IconSpacingHeight() As Single`
-`Property Let IconSpacingHeight(ByVal Value As Single)`
+
+```vb
+Property Get IconSpacingHeight() As Single
+Property Let IconSpacingHeight(ByVal Value As Single)
+```
 
 Icon spacing height.
 
 ### IncrementalSearchString
-`Property Get IncrementalSearchString() As String`
+
+```vb
+Property Get IncrementalSearchString() As String
+```
 
 Incremental search string. Read-only.
 
 ### Redraw
-`Property Get Redraw() As Boolean`
-`Property Let Redraw(ByVal Value As Boolean)`
+
+```vb
+Property Get Redraw() As Boolean
+Property Let Redraw(ByVal Value As Boolean)
+```
 
 Whether redrawing is enabled.
 
 ### BorderStyle
-`Property Get BorderStyle() As CCBorderStyleConstants`
-`Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)`
+
+```vb
+Property Get BorderStyle() As CCBorderStyleConstants
+Property Let BorderStyle(ByVal Value As CCBorderStyleConstants)
+```
 
 Border style. See common enumerations.
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 Background color.
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 Foreground color.
 
 ### Font
-`Property Get Font() As StdFont`
-`Property Let Font(ByVal NewFont As StdFont)`
-`Property Set Font(ByVal NewFont As StdFont)`
+
+```vb
+Property Get Font() As StdFont
+Property Let Font(ByVal NewFont As StdFont)
+Property Set Font(ByVal NewFont As StdFont)
+```
 
 Font.
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 Whether the control is enabled.
 
 ### Icons
-`Property Get Icons() As Variant`
-`Property Set Icons(ByVal Value As Variant)`
-`Property Let Icons(ByVal Value As Variant)`
+
+```vb
+Property Get Icons() As Variant
+Property Set Icons(ByVal Value As Variant)
+Property Let Icons(ByVal Value As Variant)
+```
 
 Large icon image list.
 
 ### SmallIcons
-`Property Get SmallIcons() As Variant`
-`Property Set SmallIcons(ByVal Value As Variant)`
-`Property Let SmallIcons(ByVal Value As Variant)`
+
+```vb
+Property Get SmallIcons() As Variant
+Property Set SmallIcons(ByVal Value As Variant)
+Property Let SmallIcons(ByVal Value As Variant)
+```
 
 Small icon image list.
 
 ### ColumnHeaderIcons
-`Property Get ColumnHeaderIcons() As Variant`
-`Property Set ColumnHeaderIcons(ByVal Value As Variant)`
-`Property Let ColumnHeaderIcons(ByVal Value As Variant)`
+
+```vb
+Property Get ColumnHeaderIcons() As Variant
+Property Set ColumnHeaderIcons(ByVal Value As Variant)
+Property Let ColumnHeaderIcons(ByVal Value As Variant)
+```
 
 Column header image list.
 
 ### GroupIcons
-`Property Get GroupIcons() As Variant`
-`Property Set GroupIcons(ByVal Value As Variant)`
-`Property Let GroupIcons(ByVal Value As Variant)`
+
+```vb
+Property Get GroupIcons() As Variant
+Property Set GroupIcons(ByVal Value As Variant)
+Property Let GroupIcons(ByVal Value As Variant)
+```
 
 Group header image list.
 
 ### OLEDragMode
-`Property Get OLEDragMode() As VBRUN.OLEDragConstants`
-`Property Let OLEDragMode(ByVal Value As VBRUN.OLEDragConstants)`
+
+```vb
+Property Get OLEDragMode() As VBRUN.OLEDragConstants
+Property Let OLEDragMode(ByVal Value As VBRUN.OLEDragConstants)
+```
 
 OLE drag mode.
 
 ### OLEDragDropScroll
-`Property Get OLEDragDropScroll() As Boolean`
-`Property Let OLEDragDropScroll(ByVal Value As Boolean)`
+
+```vb
+Property Get OLEDragDropScroll() As Boolean
+Property Let OLEDragDropScroll(ByVal Value As Boolean)
+```
 
 Whether automatic scrolling is enabled during OLE drag-and-drop.
 
 ### OLEDragDropScrollOrientation
-`Property Get OLEDragDropScrollOrientation() As CCScrollOrientationConstants`
-`Property Let OLEDragDropScrollOrientation(ByVal Value As CCScrollOrientationConstants)`
+
+```vb
+Property Get OLEDragDropScrollOrientation() As CCScrollOrientationConstants
+Property Let OLEDragDropScrollOrientation(ByVal Value As CCScrollOrientationConstants)
+```
 
 OLE drag-and-drop auto-scroll orientation. See common enumerations.
 
 ### OLEDropMode
-`Property Get OLEDropMode() As OLEDropModeConstants`
-`Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)`
+
+```vb
+Property Get OLEDropMode() As OLEDropModeConstants
+Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)
+```
 
 OLE drop mode.
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 Mouse pointer style. See common enumerations.
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 Custom mouse icon.
 
 ### HotMousePointer
-`Property Get HotMousePointer() As CCMousePointerConstants`
-`Property Let HotMousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get HotMousePointer() As CCMousePointerConstants
+Property Let HotMousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 Hot item mouse pointer style. See common enumerations.
 
 ### HotMouseIcon
-`Property Get HotMouseIcon() As IPictureDisp`
-`Property Let HotMouseIcon(ByVal Value As IPictureDisp)`
-`Property Set HotMouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get HotMouseIcon() As IPictureDisp
+Property Let HotMouseIcon(ByVal Value As IPictureDisp)
+Property Set HotMouseIcon(ByVal Value As IPictureDisp)
+```
 
 Hot item custom mouse icon.
 
 ### HeaderMousePointer
-`Property Get HeaderMousePointer() As CCMousePointerConstants`
-`Property Let HeaderMousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get HeaderMousePointer() As CCMousePointerConstants
+Property Let HeaderMousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 Column header mouse pointer style. See common enumerations.
 
 ### HeaderMouseIcon
-`Property Get HeaderMouseIcon() As IPictureDisp`
-`Property Let HeaderMouseIcon(ByVal Value As IPictureDisp)`
-`Property Set HeaderMouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get HeaderMouseIcon() As IPictureDisp
+Property Let HeaderMouseIcon(ByVal Value As IPictureDisp)
+Property Set HeaderMouseIcon(ByVal Value As IPictureDisp)
+```
 
 Column header custom mouse icon.
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 Whether mouse enter/leave tracking is enabled.
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 Right-to-left display direction.
 
 ### RightToLeftLayout
-`Property Get RightToLeftLayout() As Boolean`
-`Property Let RightToLeftLayout(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeftLayout() As Boolean
+Property Let RightToLeftLayout(ByVal Value As Boolean)
+```
 
 Right-to-left mirrored layout.
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 Right-to-left mode. See common enumerations.
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 Window handle of the list view control.
 
 ### hWndUserControl
-`Property Get hWndUserControl() As LongPtr`
+
+```vb
+Property Get hWndUserControl() As LongPtr
+```
 
 Window handle of the user control.
 
 ### hWndHeader
-`Property Get hWndHeader() As LongPtr`
+
+```vb
+Property Get hWndHeader() As LongPtr
+```
 
 Window handle of the column header control.
 
 ### hWndLabelEdit
-`Property Get hWndLabelEdit() As LongPtr`
+
+```vb
+Property Get hWndLabelEdit() As LongPtr
+```
 
 Window handle of the label edit box.
 
 ### ToolTipText
-`Property Get ToolTipText() As String`
-`Property Let ToolTipText(ByVal Value As String)`
+
+```vb
+Property Get ToolTipText() As String
+Property Let ToolTipText(ByVal Value As String)
+```
 
 ToolTip text.
 
 ### Name
-`Property Get Name() As String`
+
+```vb
+Property Get Name() As String
+```
 
 Control name. Read-only.
 
 ### Tag
-`Property Get Tag() As String`
-`Property Let Tag(ByVal Value As String)`
+
+```vb
+Property Get Tag() As String
+Property Let Tag(ByVal Value As String)
+```
 
 Custom data.
 
 ### Parent
-`Property Get Parent() As Object`
+
+```vb
+Property Get Parent() As Object
+```
 
 Parent object. Read-only.
 
 ### Container
-`Property Get Container() As Object`
-`Property Set Container(ByVal Value As Object)`
+
+```vb
+Property Get Container() As Object
+Property Set Container(ByVal Value As Object)
+```
 
 Container object.
 
 ### Left
-`Property Get Left() As Single`
-`Property Let Left(ByVal Value As Single)`
+
+```vb
+Property Get Left() As Single
+Property Let Left(ByVal Value As Single)
+```
 
 Left edge distance.
 
 ### Top
-`Property Get Top() As Single`
-`Property Let Top(ByVal Value As Single)`
+
+```vb
+Property Get Top() As Single
+Property Let Top(ByVal Value As Single)
+```
 
 Top edge distance.
 
 ### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 Width.
 
 ### Height
-`Property Get Height() As Single`
-`Property Let Height(ByVal Value As Single)`
+
+```vb
+Property Get Height() As Single
+Property Let Height(ByVal Value As Single)
+```
 
 Height.
 
 ### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 Whether the control is visible.
 
 ### HelpContextID
-`Property Get HelpContextID() As Long`
-`Property Let HelpContextID(ByVal Value As Long)`
+
+```vb
+Property Get HelpContextID() As Long
+Property Let HelpContextID(ByVal Value As Long)
+```
 
 Help context ID.
 
 ### WhatsThisHelpID
-`Property Get WhatsThisHelpID() As Long`
-`Property Let WhatsThisHelpID(ByVal Value As Long)`
+
+```vb
+Property Get WhatsThisHelpID() As Long
+Property Let WhatsThisHelpID(ByVal Value As Long)
+```
 
 "What's This" help ID.
 
 ### DragIcon
-`Property Get DragIcon() As IPictureDisp`
-`Property Let DragIcon(ByVal Value As IPictureDisp)`
-`Property Set DragIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DragIcon() As IPictureDisp
+Property Let DragIcon(ByVal Value As IPictureDisp)
+Property Set DragIcon(ByVal Value As IPictureDisp)
+```
 
 Drag icon.
 
 ### DragMode
-`Property Get DragMode() As Integer`
-`Property Let DragMode(ByVal Value As Integer)`
+
+```vb
+Property Get DragMode() As Integer
+Property Let DragMode(ByVal Value As Integer)
+```
 
 Drag mode.
 
 ## Methods
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 Forces a redraw of the control.
 
 ### HitTest
-`Public Function HitTest(ByVal X As Single, ByVal Y As Single, Optional ByRef SubItemIndex As Variant) As LvwListItem`
+
+```vb
+Public Function HitTest(ByVal X As Single, ByVal Y As Single, Optional ByRef SubItemIndex As Variant) As LvwListItem
+```
 
 Hit test; returns the list item at the specified coordinates.
 
 ### HitTestInsertMark
-`Public Function HitTestInsertMark(ByVal X As Single, ByVal Y As Single, Optional ByRef After As Boolean) As LvwListItem`
+
+```vb
+Public Function HitTestInsertMark(ByVal X As Single, ByVal Y As Single, Optional ByRef After As Boolean) As LvwListItem
+```
 
 Insert mark hit test; returns the list item at the insertion position.
 
 ### FindItem
-`Public Function FindItem(ByVal Text As String, Optional ByVal Index As Long, Optional ByVal Partial As Boolean, Optional ByVal Wrap As Boolean) As LvwListItem`
+
+```vb
+Public Function FindItem(ByVal Text As String, Optional ByVal Index As Long, Optional ByVal Partial As Boolean, Optional ByVal Wrap As Boolean) As LvwListItem
+```
 
 Finds a list item matching the specified text.
 
 ### FindNearestItem
-`Public Function FindNearestItem(ByVal X As Single, ByVal Y As Single, Optional ByVal Direction As LvwFindDirectionConstants) As LvwListItem`
+
+```vb
+Public Function FindNearestItem(ByVal X As Single, ByVal Y As Single, Optional ByVal Direction As LvwFindDirectionConstants) As LvwListItem
+```
 
 Finds the nearest list item in the specified direction.
 
 ### FindSubItem
-`Public Function FindSubItem(ByVal Text As String, Optional ByVal Index As Long, Optional ByRef SubItemIndex As Long, Optional ByVal Partial As Boolean, Optional ByVal Wrap As Boolean) As LvwListItem`
+
+```vb
+Public Function FindSubItem(ByVal Text As String, Optional ByVal Index As Long, Optional ByRef SubItemIndex As Long, Optional ByVal Partial As Boolean, Optional ByVal Wrap As Boolean) As LvwListItem
+```
 
 Finds a sub-item matching the specified text.
 
 ### GetVisibleCount
-`Public Function GetVisibleCount() As Long`
+
+```vb
+Public Function GetVisibleCount() As Long
+```
 
 Returns the number of visible items.
 
 ### GetSelectedCount
-`Public Function GetSelectedCount() As Long`
+
+```vb
+Public Function GetSelectedCount() As Long
+```
 
 Returns the number of selected items.
 
 ### GetHeaderHeight
-`Public Function GetHeaderHeight() As Single`
+
+```vb
+Public Function GetHeaderHeight() As Single
+```
 
 Returns the column header height.
 
 ### StartLabelEdit
-`Public Sub StartLabelEdit()`
+
+```vb
+Public Sub StartLabelEdit()
+```
 
 Starts label editing.
 
 ### EndLabelEdit
-`Public Sub EndLabelEdit()`
+
+```vb
+Public Sub EndLabelEdit()
+```
 
 Ends label editing.
 
 ### Scroll
-`Public Sub Scroll(ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Public Sub Scroll(ByVal X As Single, ByVal Y As Single)
+```
 
 Scrolls the list view content.
 
 ### ResetEmptyMarkup
-`Public Sub ResetEmptyMarkup()`
+
+```vb
+Public Sub ResetEmptyMarkup()
+```
 
 Resets the empty markup text.
 
 ### ComputeControlSize
-`Public Sub ComputeControlSize(ByVal VisibleCount As Long, ByRef Width As Single, ByRef Height As Single, Optional ByVal ProposedWidth As Single, Optional ByVal ProposedHeight As Single)`
+
+```vb
+Public Sub ComputeControlSize(ByVal VisibleCount As Long, ByRef Width As Single, ByRef Height As Single, Optional ByVal ProposedWidth As Single, Optional ByVal ProposedHeight As Single)
+```
 
 Calculates the control size needed to display the specified number of items.
 
 ### TextWidth
-`Public Function TextWidth(ByVal Text As String) As Single`
+
+```vb
+Public Function TextWidth(ByVal Text As String) As Single
+```
 
 Calculates the text width.
 
 ### ResetForeColors
-`Public Sub ResetForeColors()`
+
+```vb
+Public Sub ResetForeColors()
+```
 
 Resets the foreground color of all list items and sub-items.
 
 ### SelectedIndices
-`Public Function SelectedIndices() As Collection`
+
+```vb
+Public Function SelectedIndices() As Collection
+```
 
 Returns a collection of all selected item indices.
 
 ### GhostedIndices
-`Public Function GhostedIndices() As Collection`
+
+```vb
+Public Function GhostedIndices() As Collection
+```
 
 Returns a collection of all ghosted item indices.
 
 ### CheckedIndices
-`Public Function CheckedIndices() As Collection`
+
+```vb
+Public Function CheckedIndices() As Collection
+```
 
 Returns a collection of all checked item indices.
 
 ### ResetIconSpacing
-`Public Sub ResetIconSpacing()`
+
+```vb
+Public Sub ResetIconSpacing()
+```
 
 Resets icon spacing to the default value.
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 Initiates an OLE drag-and-drop operation.
 
 ### Drag
-`Public Sub Drag(Optional ByRef Action As Variant)`
+
+```vb
+Public Sub Drag(Optional ByRef Action As Variant)
+```
 
 Starts, ends, or cancels a drag operation.
 
 ### SetFocus
-`Public Sub SetFocus()`
+
+```vb
+Public Sub SetFocus()
+```
 
 Sets focus to the control.
 
 ### ZOrder
-`Public Sub ZOrder(Optional ByRef Position As Variant)`
+
+```vb
+Public Sub ZOrder(Optional ByRef Position As Variant)
+```
 
 Adjusts the Z-order.
 
 ### Move
-`Public Sub Move(ByVal Left As Single, Optional ByVal Top As Variant, Optional ByVal Width As Variant, Optional ByVal Height As Variant)`
+
+```vb
+Public Sub Move(ByVal Left As Single, Optional ByVal Top As Variant, Optional ByVal Width As Variant, Optional ByVal Height As Variant)
+```
 
 Moves and resizes the control.
 
 ## Events
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 Click.
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 Double-click.
 
 ### ItemClick
-`Public Event ItemClick(ByVal Item As LvwListItem, ByVal Button As Integer)`
+
+```vb
+Public Event ItemClick(ByVal Item As LvwListItem, ByVal Button As Integer)
+```
 
 A list item was clicked.
 
 ### ItemDblClick
-`Public Event ItemDblClick(ByVal Item As LvwListItem, ByVal Button As Integer)`
+
+```vb
+Public Event ItemDblClick(ByVal Item As LvwListItem, ByVal Button As Integer)
+```
 
 A list item was double-clicked.
 
 ### ItemFocus
-`Public Event ItemFocus(ByVal Item As LvwListItem)`
+
+```vb
+Public Event ItemFocus(ByVal Item As LvwListItem)
+```
 
 A list item received focus.
 
 ### ItemActivate
-`Public Event ItemActivate(ByVal Item As LvwListItem, ByVal SubItemIndex As Long, ByVal Shift As Integer)`
+
+```vb
+Public Event ItemActivate(ByVal Item As LvwListItem, ByVal SubItemIndex As Long, ByVal Shift As Integer)
+```
 
 A list item was activated.
 
 ### ItemSelect
-`Public Event ItemSelect(ByVal Item As LvwListItem, ByVal Selected As Boolean)`
+
+```vb
+Public Event ItemSelect(ByVal Item As LvwListItem, ByVal Selected As Boolean)
+```
 
 A list item's selection state changed.
 
 ### ItemCheck
-`Public Event ItemCheck(ByVal Item As LvwListItem, ByVal Checked As Boolean)`
+
+```vb
+Public Event ItemCheck(ByVal Item As LvwListItem, ByVal Checked As Boolean)
+```
 
 A list item's checkbox state changed.
 
 ### ItemDrag
-`Public Event ItemDrag(ByVal Item As LvwListItem, ByVal Button As Integer)`
+
+```vb
+Public Event ItemDrag(ByVal Item As LvwListItem, ByVal Button As Integer)
+```
 
 A drag-and-drop operation was initiated on a list item.
 
 ### ItemBkColor
-`Public Event ItemBkColor(ByVal Item As LvwListItem, ByRef RGBColor As Long)`
+
+```vb
+Public Event ItemBkColor(ByVal Item As LvwListItem, ByRef RGBColor As Long)
+```
 
 List item background color request (report view); allows providing an alternate background color.
 
 ### GetVirtualItem
-`Public Event GetVirtualItem(ByVal ItemIndex As Long, ByVal SubItemIndex As Long, ByVal VirtualProperty As LvwVirtualPropertyConstants, ByRef Value As Variant)`
+
+```vb
+Public Event GetVirtualItem(ByVal ItemIndex As Long, ByVal SubItemIndex As Long, ByVal VirtualProperty As LvwVirtualPropertyConstants, ByRef Value As Variant)
+```
 
 Requests item properties in virtual mode.
 
 ### FindVirtualItem
-`Public Event FindVirtualItem(ByVal StartIndex As Long, ByVal SearchText As String, ByVal Partial As Boolean, ByVal Wrap As Boolean, ByRef FoundIndex As Long)`
+
+```vb
+Public Event FindVirtualItem(ByVal StartIndex As Long, ByVal SearchText As String, ByVal Partial As Boolean, ByVal Wrap As Boolean, ByRef FoundIndex As Long)
+```
 
 Finds an item in virtual mode.
 
 ### CacheVirtualItems
-`Public Event CacheVirtualItems(ByVal FromIndex As Long, ByVal ToIndex As Long)`
+
+```vb
+Public Event CacheVirtualItems(ByVal FromIndex As Long, ByVal ToIndex As Long)
+```
 
 Requests caching of an item range in virtual mode.
 
 ### BeforeLabelEdit
-`Public Event BeforeLabelEdit(ByRef Cancel As Boolean)`
+
+```vb
+Public Event BeforeLabelEdit(ByRef Cancel As Boolean)
+```
 
 Raised before label editing begins; can be canceled.
 
 ### AfterLabelEdit
-`Public Event AfterLabelEdit(ByRef Cancel As Boolean, ByRef NewString As String)`
+
+```vb
+Public Event AfterLabelEdit(ByRef Cancel As Boolean, ByRef NewString As String)
+```
 
 Raised after label editing ends.
 
 ### ColumnClick
-`Public Event ColumnClick(ByVal ColumnHeader As LvwColumnHeader)`
+
+```vb
+Public Event ColumnClick(ByVal ColumnHeader As LvwColumnHeader)
+```
 
 A column header was clicked.
 
 ### ColumnDblClick
-`Public Event ColumnDblClick(ByVal ColumnHeader As LvwColumnHeader)`
+
+```vb
+Public Event ColumnDblClick(ByVal ColumnHeader As LvwColumnHeader)
+```
 
 A column header was double-clicked.
 
 ### ColumnCheck
-`Public Event ColumnCheck(ByVal ColumnHeader As LvwColumnHeader)`
+
+```vb
+Public Event ColumnCheck(ByVal ColumnHeader As LvwColumnHeader)
+```
 
 A column header's checkbox state changed.
 
 ### ColumnBeforeResize
-`Public Event ColumnBeforeResize(ByVal ColumnHeader As LvwColumnHeader, ByRef Cancel As Boolean)`
+
+```vb
+Public Event ColumnBeforeResize(ByVal ColumnHeader As LvwColumnHeader, ByRef Cancel As Boolean)
+```
 
 Column width is about to change; can be canceled.
 
 ### ColumnAfterResize
-`Public Event ColumnAfterResize(ByVal ColumnHeader As LvwColumnHeader, ByRef NewWidth As Single)`
+
+```vb
+Public Event ColumnAfterResize(ByVal ColumnHeader As LvwColumnHeader, ByRef NewWidth As Single)
+```
 
 Column width change completed.
 
 ### ColumnDividerDblClick
-`Public Event ColumnDividerDblClick(ByVal ColumnHeader As LvwColumnHeader, ByRef Cancel As Boolean)`
+
+```vb
+Public Event ColumnDividerDblClick(ByVal ColumnHeader As LvwColumnHeader, ByRef Cancel As Boolean)
+```
 
 A column divider was double-clicked.
 
 ### ColumnBeforeDrag
-`Public Event ColumnBeforeDrag(ByVal ColumnHeader As LvwColumnHeader)`
+
+```vb
+Public Event ColumnBeforeDrag(ByVal ColumnHeader As LvwColumnHeader)
+```
 
 A column header drag is starting.
 
 ### ColumnAfterDrag
-`Public Event ColumnAfterDrag(ByVal ColumnHeader As LvwColumnHeader, ByVal NewPosition As Long, ByRef Cancel As Boolean)`
+
+```vb
+Public Event ColumnAfterDrag(ByVal ColumnHeader As LvwColumnHeader, ByVal NewPosition As Long, ByRef Cancel As Boolean)
+```
 
 A column header drag completed.
 
 ### ColumnDropDown
-`Public Event ColumnDropDown(ByVal ColumnHeader As LvwColumnHeader)`
+
+```vb
+Public Event ColumnDropDown(ByVal ColumnHeader As LvwColumnHeader)
+```
 
 A column header dropdown button was clicked.
 
 ### ColumnChevronPushed
-`Public Event ColumnChevronPushed(ByVal ColumnHeader As LvwColumnHeader)`
+
+```vb
+Public Event ColumnChevronPushed(ByVal ColumnHeader As LvwColumnHeader)
+```
 
 A column chevron button was clicked.
 
 ### ColumnFilterChanged
-`Public Event ColumnFilterChanged(ByVal ColumnHeader As LvwColumnHeader)`
+
+```vb
+Public Event ColumnFilterChanged(ByVal ColumnHeader As LvwColumnHeader)
+```
 
 Column filter criteria changed.
 
 ### ColumnFilterButtonClick
-`Public Event ColumnFilterButtonClick(ByVal ColumnHeader As LvwColumnHeader, ByRef RaiseFilterChanged As Boolean, ByVal ButtonLeft As Long, ByVal ButtonTop As Long, ByVal ButtonRight As Long, ByVal ButtonBottom As Long)`
+
+```vb
+Public Event ColumnFilterButtonClick(ByVal ColumnHeader As LvwColumnHeader, ByRef RaiseFilterChanged As Boolean, ByVal ButtonLeft As Long, ByVal ButtonTop As Long, ByVal ButtonRight As Long, ByVal ButtonBottom As Long)
+```
 
 A column filter button was clicked.
 
 ### BeforeFilterEdit
-`Public Event BeforeFilterEdit(ByVal ColumnHeader As LvwColumnHeader, ByVal hWndFilterEdit As LongPtr)`
+
+```vb
+Public Event BeforeFilterEdit(ByVal ColumnHeader As LvwColumnHeader, ByVal hWndFilterEdit As LongPtr)
+```
 
 Raised before a column filter edit begins.
 
 ### AfterFilterEdit
-`Public Event AfterFilterEdit(ByVal ColumnHeader As LvwColumnHeader)`
+
+```vb
+Public Event AfterFilterEdit(ByVal ColumnHeader As LvwColumnHeader)
+```
 
 Raised after a column filter edit ends.
 
 ### GetEmptyMarkup
-`Public Event GetEmptyMarkup(ByRef Text As String, ByRef Center As Boolean)`
+
+```vb
+Public Event GetEmptyMarkup(ByRef Text As String, ByRef Center As Boolean)
+```
 
 Requests markup text when the list is empty.
 
 ### GroupCollapsedChanged
-`Public Event GroupCollapsedChanged(ByVal Group As LvwGroup)`
+
+```vb
+Public Event GroupCollapsedChanged(ByVal Group As LvwGroup)
+```
 
 A group's collapsed state changed.
 
 ### GroupSelectedChanged
-`Public Event GroupSelectedChanged(ByVal Group As LvwGroup)`
+
+```vb
+Public Event GroupSelectedChanged(ByVal Group As LvwGroup)
+```
 
 A group's selection state changed.
 
 ### GroupLinkClick
-`Public Event GroupLinkClick(ByVal Group As LvwGroup)`
+
+```vb
+Public Event GroupLinkClick(ByVal Group As LvwGroup)
+```
 
 A group link was clicked.
 
 ### BeginMarqueeSelection
-`Public Event BeginMarqueeSelection(ByRef Cancel As Boolean)`
+
+```vb
+Public Event BeginMarqueeSelection(ByRef Cancel As Boolean)
+```
 
 Marquee selection is starting; can be canceled.
 
 ### BeforeScroll
-`Public Event BeforeScroll(ByVal DeltaX As Single, ByVal DeltaY As Single)`
+
+```vb
+Public Event BeforeScroll(ByVal DeltaX As Single, ByVal DeltaY As Single)
+```
 
 Raised before scrolling begins.
 
 ### AfterScroll
-`Public Event AfterScroll(ByVal DeltaX As Single, ByVal DeltaY As Single)`
+
+```vb
+Public Event AfterScroll(ByVal DeltaX As Single, ByVal DeltaY As Single)
+```
 
 Raised after scrolling completes.
 
 ### DropFiles
-`Public Event DropFiles(ByRef FileList As Variant, ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Public Event DropFiles(ByRef FileList As Variant, ByVal X As Single, ByVal Y As Single)
+```
 
 Raised when files are dropped onto the control.
 
 ### ContextMenu
-`Public Event ContextMenu(ByVal X As Single, ByVal Y As Single)`
+
+```vb
+Public Event ContextMenu(ByVal X As Single, ByVal Y As Single)
+```
 
 Raised when a context menu is requested.
 
 ### PreviewKeyDown
-`Public Event PreviewKeyDown(ByVal KeyCode As Integer, ByRef IsInputKey As Boolean)`
+
+```vb
+Public Event PreviewKeyDown(ByVal KeyCode As Integer, ByRef IsInputKey As Boolean)
+```
 
 Key preview event; raised before KeyDown.
 
 ### PreviewKeyUp
-`Public Event PreviewKeyUp(ByVal KeyCode As Integer, ByRef IsInputKey As Boolean)`
+
+```vb
+Public Event PreviewKeyUp(ByVal KeyCode As Integer, ByRef IsInputKey As Boolean)
+```
 
 Key release preview event; raised before KeyUp.
 
 ### KeyDown
-`Public Event KeyDown(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Public Event KeyDown(KeyCode As Integer, Shift As Integer)
+```
 
 Key pressed.
 
 ### KeyUp
-`Public Event KeyUp(KeyCode As Integer, Shift As Integer)`
+
+```vb
+Public Event KeyUp(KeyCode As Integer, Shift As Integer)
+```
 
 Key released.
 
 ### KeyPress
-`Public Event KeyPress(KeyChar As Integer)`
+
+```vb
+Public Event KeyPress(KeyChar As Integer)
+```
 
 Key character.
 
 ### MouseDown
-`Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 Mouse button pressed.
 
 ### MouseMove
-`Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 Mouse moved.
 
 ### MouseUp
-`Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 Mouse button released.
 
 ### MouseEnter
-`Public Event MouseEnter()`
+
+```vb
+Public Event MouseEnter()
+```
 
 Mouse entered the control.
 
 ### MouseLeave
-`Public Event MouseLeave()`
+
+```vb
+Public Event MouseLeave()
+```
 
 Mouse left the control.
 
 ### OLECompleteDrag
-`Public Event OLECompleteDrag(Effect As Long)`
+
+```vb
+Public Event OLECompleteDrag(Effect As Long)
+```
 
 OLE drag-and-drop completed.
 
 ### OLEDragDrop
-`Public Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)`
+
+```vb
+Public Event OLEDragDrop(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single)
+```
 
 OLE drag-and-drop drop.
 
 ### OLEDragOver
-`Public Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)`
+
+```vb
+Public Event OLEDragOver(Data As DataObject, Effect As Long, Button As Integer, Shift As Integer, X As Single, Y As Single, State As Integer)
+```
 
 OLE drag-and-drop hover.
 
 ### OLEGiveFeedback
-`Public Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)`
+
+```vb
+Public Event OLEGiveFeedback(Effect As Long, DefaultCursors As Boolean)
+```
 
 OLE give feedback.
 
 ### OLESetData
-`Public Event OLESetData(Data As DataObject, DataFormat As Integer)`
+
+```vb
+Public Event OLESetData(Data As DataObject, DataFormat As Integer)
+```
 
 OLE set data.
 
 ### OLEStartDrag
-`Public Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)`
+
+```vb
+Public Event OLEStartDrag(Data As DataObject, AllowedEffects As Long)
+```
 
 OLE start drag.
 

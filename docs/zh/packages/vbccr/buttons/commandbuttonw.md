@@ -1,4 +1,4 @@
-﻿---
+---
 title: 命令按钮控件（CommandButtonW）
 description: 命令按钮控件（CommandButtonW） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -37,186 +37,276 @@ AIGC:
 ## 属性
 
 ### Default
-`Property Get Default() As Boolean`
-`Property Let Default(ByVal Value As Boolean)`
+
+```vb
+Property Get Default() As Boolean
+Property Let Default(ByVal Value As Boolean)
+```
 
 是否为默认按钮（Enter 键触发）。
 
 ### Cancel
-`Property Get Cancel() As Boolean`
-`Property Let Cancel(ByVal Value As Boolean)`
+
+```vb
+Property Get Cancel() As Boolean
+Property Let Cancel(ByVal Value As Boolean)
+```
 
 是否为取消按钮（Esc 键触发）。
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 是否启用视觉样式。
 
 ### Appearance
-`Property Get Appearance() As CCAppearanceConstants`
-`Property Let Appearance(ByVal Value As CCAppearanceConstants)`
+
+```vb
+Property Get Appearance() As CCAppearanceConstants
+Property Let Appearance(ByVal Value As CCAppearanceConstants)
+```
 
 外观样式。参见通用枚举。
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景色。
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 前景色。
 
 ### ImageList
-`Property Get ImageList() As Variant`
-`Property Let ImageList(ByVal Value As Variant)`
-`Property Set ImageList(ByVal Value As Variant)`
+
+```vb
+Property Get ImageList() As Variant
+Property Let ImageList(ByVal Value As Variant)
+Property Set ImageList(ByVal Value As Variant)
+```
 
 关联的 ImageList 控件。
 
 ### ImageListAlignment
-`Property Get ImageListAlignment() As CmdImageListAlignmentConstants`
-`Property Let ImageListAlignment(ByVal Value As CmdImageListAlignmentConstants)`
+
+```vb
+Property Get ImageListAlignment() As CmdImageListAlignmentConstants
+Property Let ImageListAlignment(ByVal Value As CmdImageListAlignmentConstants)
+```
 
 ImageList 图标对齐方式。
 
 ### ImageListMargin
-`Property Get ImageListMargin() As Single`
-`Property Let ImageListMargin(ByVal Value As Single)`
+
+```vb
+Property Get ImageListMargin() As Single
+Property Let ImageListMargin(ByVal Value As Single)
+```
 
 ImageList 图标边距。
 
 ### Caption
-`Property Get Caption() As String`
-`Property Let Caption(ByVal Value As String)`
+
+```vb
+Property Get Caption() As String
+Property Let Caption(ByVal Value As String)
+```
 
 标题文本。
 
 ### Alignment
-`Property Get Alignment() As VBRUN.AlignmentConstants`
-`Property Let Alignment(ByVal Value As VBRUN.AlignmentConstants)`
+
+```vb
+Property Get Alignment() As VBRUN.AlignmentConstants
+Property Let Alignment(ByVal Value As VBRUN.AlignmentConstants)
+```
 
 文本水平对齐。
 
 ### VerticalAlignment
-`Property Get VerticalAlignment() As CCVerticalAlignmentConstants`
-`Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)`
+
+```vb
+Property Get VerticalAlignment() As CCVerticalAlignmentConstants
+Property Let VerticalAlignment(ByVal Value As CCVerticalAlignmentConstants)
+```
 
 文本垂直对齐。参见通用枚举。
 
 ### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 图片。
 
 ### PictureAndCaption
-`Property Get PictureAndCaption() As Boolean`
-`Property Let PictureAndCaption(ByVal Value As Boolean)`
+
+```vb
+Property Get PictureAndCaption() As Boolean
+Property Let PictureAndCaption(ByVal Value As Boolean)
+```
 
 是否同时显示图片和标题。需要 comctl32.dll 6.1 或更高版本。
 
 ### WordWrap
-`Property Get WordWrap() As Boolean`
-`Property Let WordWrap(ByVal Value As Boolean)`
+
+```vb
+Property Get WordWrap() As Boolean
+Property Let WordWrap(ByVal Value As Boolean)
+```
 
 是否自动换行。
 
 ### Transparent
-`Property Get Transparent() As Boolean`
-`Property Let Transparent(ByVal Value As Boolean)`
+
+```vb
+Property Get Transparent() As Boolean
+Property Let Transparent(ByVal Value As Boolean)
+```
 
 是否透明背景（运行时有效）。
 
 ### SplitButton
-`Property Get SplitButton() As Boolean`
-`Property Let SplitButton(ByVal Value As Boolean)`
+
+```vb
+Property Get SplitButton() As Boolean
+Property Let SplitButton(ByVal Value As Boolean)
+```
 
 是否显示为分割按钮。需要 comctl32.dll 6.1 或更高版本。
 
 ### SplitButtonAlignment
-`Property Get SplitButtonAlignment() As CCLeftRightAlignmentConstants`
-`Property Let SplitButtonAlignment(ByVal Value As CCLeftRightAlignmentConstants)`
+
+```vb
+Property Get SplitButtonAlignment() As CCLeftRightAlignmentConstants
+Property Let SplitButtonAlignment(ByVal Value As CCLeftRightAlignmentConstants)
+```
 
 分割按钮对齐方式。参见通用枚举。
 
 ### SplitButtonNoSplit
-`Property Get SplitButtonNoSplit() As Boolean`
-`Property Let SplitButtonNoSplit(ByVal Value As Boolean)`
+
+```vb
+Property Get SplitButtonNoSplit() As Boolean
+Property Let SplitButtonNoSplit(ByVal Value As Boolean)
+```
 
 分割按钮不显示分割线。
 
 ### SplitButtonGlyph
-`Property Get SplitButtonGlyph() As IPictureDisp`
-`Property Let SplitButtonGlyph(ByVal Value As IPictureDisp)`
-`Property Set SplitButtonGlyph(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get SplitButtonGlyph() As IPictureDisp
+Property Let SplitButtonGlyph(ByVal Value As IPictureDisp)
+Property Set SplitButtonGlyph(ByVal Value As IPictureDisp)
+```
 
 分割按钮的下拉箭头图标。
 
 ### Style
-`Property Get Style() As VBRUN.ButtonConstants`
-`Property Let Style(ByVal Value As VBRUN.ButtonConstants)`
+
+```vb
+Property Get Style() As VBRUN.ButtonConstants
+Property Let Style(ByVal Value As VBRUN.ButtonConstants)
+```
 
 按钮样式（标准或图形）。
 
 ### DisabledPicture
-`Property Get DisabledPicture() As IPictureDisp`
-`Property Let DisabledPicture(ByVal Value As IPictureDisp)`
-`Property Set DisabledPicture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DisabledPicture() As IPictureDisp
+Property Let DisabledPicture(ByVal Value As IPictureDisp)
+Property Set DisabledPicture(ByVal Value As IPictureDisp)
+```
 
 禁用状态图片。
 
 ### DownPicture
-`Property Get DownPicture() As IPictureDisp`
-`Property Let DownPicture(ByVal Value As IPictureDisp)`
-`Property Set DownPicture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get DownPicture() As IPictureDisp
+Property Let DownPicture(ByVal Value As IPictureDisp)
+Property Set DownPicture(ByVal Value As IPictureDisp)
+```
 
 按下状态图片。
 
 ### UseMaskColor
-`Property Get UseMaskColor() As Boolean`
-`Property Let UseMaskColor(ByVal Value As Boolean)`
+
+```vb
+Property Get UseMaskColor() As Boolean
+Property Let UseMaskColor(ByVal Value As Boolean)
+```
 
 是否使用遮罩色。
 
 ### MaskColor
-`Property Get MaskColor() As OLE_COLOR`
-`Property Let MaskColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get MaskColor() As OLE_COLOR
+Property Let MaskColor(ByVal Value As OLE_COLOR)
+```
 
 遮罩色。
 
 ### DrawMode
-`Property Get DrawMode() As CmdDrawModeConstants`
-`Property Let DrawMode(ByVal Value As CmdDrawModeConstants)`
+
+```vb
+Property Get DrawMode() As CmdDrawModeConstants
+Property Let DrawMode(ByVal Value As CmdDrawModeConstants)
+```
 
 绘制模式。
 
 ### Value
-`Property Get Value() As Boolean`
-`Property Let Value(ByVal NewValue As Boolean)`
+
+```vb
+Property Get Value() As Boolean
+Property Let Value(ByVal NewValue As Boolean)
+```
 
 按钮值，设为 True 时触发 Click 事件。
 
 ### Pushed
-`Property Get Pushed() As Boolean`
-`Property Let Pushed(ByVal Value As Boolean)`
+
+```vb
+Property Get Pushed() As Boolean
+Property Let Pushed(ByVal Value As Boolean)
+```
 
 是否处于按下状态。
 
 ### Hot
-`Property Get Hot() As Boolean`
+
+```vb
+Property Get Hot() As Boolean
+```
 
 是否处于热状态。只读。
 
 ### DroppedDown
-`Property Get DroppedDown() As Boolean`
-`Property Let DroppedDown(ByVal Value As Boolean)`
+
+```vb
+Property Get DroppedDown() As Boolean
+Property Let DroppedDown(ByVal Value As Boolean)
+```
 
 分割按钮是否已下拉。
 
@@ -231,27 +321,42 @@ ImageList 图标边距。
 ## 方法
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 强制重绘。
 
 ### PerformClick
-`Public Sub PerformClick()`
+
+```vb
+Public Sub PerformClick()
+```
 
 模拟用户点击按钮。
 
 ### SetShield
-`Public Function SetShield(ByVal State As Boolean) As Long`
+
+```vb
+Public Function SetShield(ByVal State As Boolean) As Long
+```
 
 设置 UAC 提升图标。成功返回 1。需要 comctl32.dll 6.1 或更高版本。
 
 ### GetIdealSize
-`Public Sub GetIdealSize(ByRef Width As Single, ByRef Height As Single)`
+
+```vb
+Public Sub GetIdealSize(ByRef Width As Single, ByRef Height As Single)
+```
 
 获取按钮的理想尺寸。需要 comctl32.dll 6.0 或更高版本。
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 ### Drag / ZOrder / SetFocus / Move
 
@@ -260,27 +365,42 @@ ImageList 图标边距。
 ## 事件
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 单击。
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 双击。
 
 ### HotChanged
-`Public Event HotChanged()`
+
+```vb
+Public Event HotChanged()
+```
 
 热状态改变。
 
 ### DropDown
-`Public Event DropDown()`
+
+```vb
+Public Event DropDown()
+```
 
 分割按钮下拉时触发。
 
 ### OwnerDraw
-`Public Event OwnerDraw(ByVal DisplayAsDefault As Boolean, ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As LongPtr, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)`
+
+```vb
+Public Event OwnerDraw(ByVal DisplayAsDefault As Boolean, ByVal ItemAction As Long, ByVal ItemState As Long, ByVal hDC As LongPtr, ByVal Left As Long, ByVal Top As Long, ByVal Right As Long, ByVal Bottom As Long)
+```
 
 自绘事件。
 

@@ -313,343 +313,457 @@ Provides a wrapper class for Windows standard dialogs (Open, Save, Color, Font, 
 
 ### Object
 
-`Property Get Object() As Object`
+```vb
+Property Get Object() As Object
+```
 
 Returns the instance of the object itself.
 
 ### CancelError
 
-`Property Get/Let CancelError() As Boolean`
+```vb
+Property Get/Let CancelError() As Boolean
+```
 
 Indicates whether an error is raised when the user selects "Cancel".
 
 ### HookEvents
 
-`Property Get/Let HookEvents() As Boolean`
+```vb
+Property Get/Let HookEvents() As Boolean
+```
 
 Indicates whether the dialog can raise events that require hook callbacks.
 
 ### Tag
 
-`Property Get/Let Tag() As String`
+```vb
+Property Get/Let Tag() As String
+```
 
 Stores additional data needed by the program.
 
 ### hDC
 
-`Property Get hDC() As LongPtr`
+```vb
+Property Get hDC() As LongPtr
+```
 
 Returns the device context handle (read-only).
 
 ### Flags
 
-`Property Get/Let Flags() As Long`
+```vb
+Property Get/Let Flags() As Long
+```
 
 Returns/sets the dialog option flags.
 
 ### DialogTitle
 
-`Property Get/Let DialogTitle() As String`
+```vb
+Property Get/Let DialogTitle() As String
+```
 
 Sets the string displayed in the dialog title bar.
 
 ### MaxFileSize
 
-`Property Get/Let MaxFileSize() As Long`
+```vb
+Property Get/Let MaxFileSize() As Long
+```
 
 Returns/sets the maximum size of the open file name.
 
 ### FileName
 
-`Property Get/Let FileName() As String`
+```vb
+Property Get/Let FileName() As String
+```
 
 Returns/sets the path and file name of the selected file.
 
 ### FileTitle
 
-`Property Get FileTitle() As String`
+```vb
+Property Get FileTitle() As String
+```
 
 Returns the file name of the selected file (without path, read-only).
 
 ### FileOffset
 
-`Property Get FileOffset() As Integer`
+```vb
+Property Get FileOffset() As Integer
+```
 
 Returns the zero-based offset from the beginning of the path to the file name (read-only).
 
 ### Filter
 
-`Property Get/Let Filter() As String`
+```vb
+Property Get/Let Filter() As String
+```
 
 Returns/sets the filter displayed in the dialog type list box.
 
 ### FilterIndex
 
-`Property Get/Let FilterIndex() As Long`
+```vb
+Property Get/Let FilterIndex() As Long
+```
 
 Returns/sets the default filter index.
 
 ### InitDir
 
-`Property Get/Let InitDir() As String`
+```vb
+Property Get/Let InitDir() As String
+```
 
 Returns/sets the initial file directory.
 
 ### DefaultExt
 
-`Property Get/Let DefaultExt() As String`
+```vb
+Property Get/Let DefaultExt() As String
+```
 
 Returns/sets the default file extension.
 
 ### Color
 
-`Property Get/Let Color() As Long`
+```vb
+Property Get/Let Color() As Long
+```
 
 Returns/sets the selected color.
 
 ### CustomColors
 
-`Property Get/Let CustomColors() As Variant`
+```vb
+Property Get/Let CustomColors() As Variant
+```
 
 Returns/sets the custom colors available for user selection.
 
 ### FontName
 
-`Property Get/Let FontName() As String`
+```vb
+Property Get/Let FontName() As String
+```
 
 Returns/sets the font name.
 
 ### FontSize
 
-`Property Get/Let FontSize() As Single`
+```vb
+Property Get/Let FontSize() As Single
+```
 
 Returns/sets the font size (in points).
 
 ### FontBold
 
-`Property Get/Let FontBold() As Boolean`
+```vb
+Property Get/Let FontBold() As Boolean
+```
 
 Returns/sets the bold font style.
 
 ### FontItalic
 
-`Property Get/Let FontItalic() As Boolean`
+```vb
+Property Get/Let FontItalic() As Boolean
+```
 
 Returns/sets the italic font style.
 
 ### FontStrikethru
 
-`Property Get/Let FontStrikethru() As Boolean`
+```vb
+Property Get/Let FontStrikethru() As Boolean
+```
 
 Returns/sets the strikethrough font style.
 
 ### FontUnderline
 
-`Property Get/Let FontUnderline() As Boolean`
+```vb
+Property Get/Let FontUnderline() As Boolean
+```
 
 Returns/sets the underline font style.
 
 ### FontCharset
 
-`Property Get/Let FontCharset() As Integer`
+```vb
+Property Get/Let FontCharset() As Integer
+```
 
 Returns/sets the font character set.
 
 ### FontWeight
 
-`Property Get/Let FontWeight() As Integer`
+```vb
+Property Get/Let FontWeight() As Integer
+```
 
 Returns/sets the font weight (0=Don'tCare, 100=Thin, 200=ExtraLight, 300=Light, 400=Normal, 500=Medium, 600=SemiBold, 700=Bold, 800=ExtraBold, 900=Heavy).
 
 ### Min
 
-`Property Get/Let Min() As Long`
+```vb
+Property Get/Let Min() As Long
+```
 
 Returns/sets the minimum font size (Font dialog) or minimum print page range (Print dialog).
 
 ### Max
 
-`Property Get/Let Max() As Long`
+```vb
+Property Get/Let Max() As Long
+```
 
 Returns/sets the maximum font size (Font dialog) or maximum print page range (Print dialog).
 
 ### FromPage
 
-`Property Get/Let FromPage() As Long`
+```vb
+Property Get/Let FromPage() As Long
+```
 
 Returns/sets the starting print page.
 
 ### ToPage
 
-`Property Get/Let ToPage() As Long`
+```vb
+Property Get/Let ToPage() As Long
+```
 
 Returns/sets the ending print page.
 
 ### Orientation
 
-`Property Get/Let Orientation() As CdlPRORConstants`
+```vb
+Property Get/Let Orientation() As CdlPRORConstants
+```
 
 Returns/sets the print orientation.
 
 ### PaperSize
 
-`Property Get/Let PaperSize() As CdlPRPSConstants`
+```vb
+Property Get/Let PaperSize() As CdlPRPSConstants
+```
 
 Returns/sets the print paper size.
 
 ### Copies
 
-`Property Get/Let Copies() As Integer`
+```vb
+Property Get/Let Copies() As Integer
+```
 
 Returns/sets the number of print copies.
 
 ### PaperBin
 
-`Property Get/Let PaperBin() As CdlPRBNConstants`
+```vb
+Property Get/Let PaperBin() As CdlPRBNConstants
+```
 
 Returns/sets the default paper bin.
 
 ### PrintQuality
 
-`Property Get/Let PrintQuality() As CdlPRPQConstants`
+```vb
+Property Get/Let PrintQuality() As CdlPRPQConstants
+```
 
 Returns/sets the print resolution.
 
 ### ColorMode
 
-`Property Get/Let ColorMode() As CdlPRCMConstants`
+```vb
+Property Get/Let ColorMode() As CdlPRCMConstants
+```
 
 Returns/sets the printer color mode.
 
 ### Duplex
 
-`Property Get/Let Duplex() As CdlPRDPConstants`
+```vb
+Property Get/Let Duplex() As CdlPRDPConstants
+```
 
 Returns/sets the duplex printing mode.
 
 ### PrinterDefault
 
-`Property Get/Let PrinterDefault() As Boolean`
+```vb
+Property Get/Let PrinterDefault() As Boolean
+```
 
 Returns/sets whether the user selection changes the default printer.
 
 ### PrinterDefaultInit
 
-`Property Get/Let PrinterDefaultInit() As Boolean`
+```vb
+Property Get/Let PrinterDefaultInit() As Boolean
+```
 
 Returns/sets whether to always initialize the default printer.
 
 ### PrinterDriver
 
-`Property Get/Let PrinterDriver() As String`
+```vb
+Property Get/Let PrinterDriver() As String
+```
 
 Returns/sets the non-default printer driver name.
 
 ### PrinterName
 
-`Property Get/Let PrinterName() As String`
+```vb
+Property Get/Let PrinterName() As String
+```
 
 Returns/sets the non-default printer device name.
 
 ### PrinterPort
 
-`Property Get/Let PrinterPort() As String`
+```vb
+Property Get/Let PrinterPort() As String
+```
 
 Returns/sets the non-default printer port name.
 
 ### HelpFile
 
-`Property Get/Let HelpFile() As String`
+```vb
+Property Get/Let HelpFile() As String
+```
 
 Returns/sets the help file name associated with the project.
 
 ### HelpCommand
 
-`Property Get/Let HelpCommand() As CdlHelpConstants`
+```vb
+Property Get/Let HelpCommand() As CdlHelpConstants
+```
 
 Returns/sets the online help type.
 
 ### HelpContext
 
-`Property Get/Let HelpContext() As LongPtr`
+```vb
+Property Get/Let HelpContext() As LongPtr
+```
 
 Returns/sets the context ID for the help topic.
 
 ### HelpKey
 
-`Property Get/Let HelpKey() As String`
+```vb
+Property Get/Let HelpKey() As String
+```
 
 Returns/sets the keyword that identifies the help topic.
 
 ### PageLeftMargin
 
-`Property Get/Let PageLeftMargin() As Long`
+```vb
+Property Get/Let PageLeftMargin() As Long
+```
 
 Returns/sets the left margin of the paper (device units).
 
 ### PageTopMargin
 
-`Property Get/Let PageTopMargin() As Long`
+```vb
+Property Get/Let PageTopMargin() As Long
+```
 
 Returns/sets the top margin of the paper (device units).
 
 ### PageRightMargin
 
-`Property Get/Let PageRightMargin() As Long`
+```vb
+Property Get/Let PageRightMargin() As Long
+```
 
 Returns/sets the right margin of the paper (device units).
 
 ### PageBottomMargin
 
-`Property Get/Let PageBottomMargin() As Long`
+```vb
+Property Get/Let PageBottomMargin() As Long
+```
 
 Returns/sets the bottom margin of the paper (device units).
 
 ### PageLeftMinMargin
 
-`Property Get/Let PageLeftMinMargin() As Long`
+```vb
+Property Get/Let PageLeftMinMargin() As Long
+```
 
 Returns/sets the minimum left margin of the paper (device units).
 
 ### PageTopMinMargin
 
-`Property Get/Let PageTopMinMargin() As Long`
+```vb
+Property Get/Let PageTopMinMargin() As Long
+```
 
 Returns/sets the minimum top margin of the paper (device units).
 
 ### PageRightMinMargin
 
-`Property Get/Let PageRightMinMargin() As Long`
+```vb
+Property Get/Let PageRightMinMargin() As Long
+```
 
 Returns/sets the minimum right margin of the paper (device units).
 
 ### PageBottomMinMargin
 
-`Property Get/Let PageBottomMinMargin() As Long`
+```vb
+Property Get/Let PageBottomMinMargin() As Long
+```
 
 Returns/sets the minimum bottom margin of the paper (device units).
 
 ### RootFolder
 
-`Property Get/Let RootFolder() As Variant`
+```vb
+Property Get/Let RootFolder() As Variant
+```
 
 Returns/sets the root folder for the folder browser dialog.
 
 ### FindWhat
 
-`Property Get/Let FindWhat() As String`
+```vb
+Property Get/Let FindWhat() As String
+```
 
 Returns/sets the search string for the Find dialog.
 
 ### ReplaceWith
 
-`Property Get/Let ReplaceWith() As String`
+```vb
+Property Get/Let ReplaceWith() As String
+```
 
 Returns/sets the replacement string for the Replace dialog.
 
 ### Action
 
-`Property Let Action() As Integer`
+```vb
+Property Let Action() As Integer
+```
 
 Sets the type of dialog to display (write-only, 1=Open, 2=Save, 3=Color, 4=Font, 5=Print, 6=Help, 7=Page Setup, 8=Folder Browser, 9=Find, 10=Replace).
 
@@ -657,67 +771,89 @@ Sets the type of dialog to display (write-only, 1=Open, 2=Save, 3=Color, 4=Font,
 
 ### ShowOpen
 
-`Public Function ShowOpen() As Boolean`
+```vb
+Public Function ShowOpen() As Boolean
+```
 
 Displays the Open dialog. Returns True on success.
 
 ### ShowSave
 
-`Public Function ShowSave() As Boolean`
+```vb
+Public Function ShowSave() As Boolean
+```
 
 Displays the Save dialog. Returns True on success.
 
 ### ShowColor
 
-`Public Function ShowColor() As Boolean`
+```vb
+Public Function ShowColor() As Boolean
+```
 
 Displays the Color dialog. Returns True on success.
 
 ### ShowFont
 
-`Public Function ShowFont() As Boolean`
+```vb
+Public Function ShowFont() As Boolean
+```
 
 Displays the Font dialog. Returns True on success.
 
 ### ShowPrinter
 
-`Public Function ShowPrinter() As Boolean`
+```vb
+Public Function ShowPrinter() As Boolean
+```
 
 Displays the Print dialog. Returns True on success.
 
 ### ShowPrinterEx
 
-`Public Function ShowPrinterEx() As Boolean`
+```vb
+Public Function ShowPrinterEx() As Boolean
+```
 
 Displays the extended Print dialog (PrintDlgEx). Returns True on success.
 
 ### ShowHelp
 
-`Public Sub ShowHelp()`
+```vb
+Public Sub ShowHelp()
+```
 
 Displays help.
 
 ### ShowPageSetup
 
-`Public Function ShowPageSetup() As Boolean`
+```vb
+Public Function ShowPageSetup() As Boolean
+```
 
 Displays the Page Setup dialog. Returns True on success.
 
 ### ShowFolderBrowser
 
-`Public Function ShowFolderBrowser() As Boolean`
+```vb
+Public Function ShowFolderBrowser() As Boolean
+```
 
 Displays the Folder Browser dialog. Returns True on success.
 
 ### ShowFind
 
-`Public Function ShowFind() As Boolean`
+```vb
+Public Function ShowFind() As Boolean
+```
 
 Displays the Find dialog. Returns True on success.
 
 ### ShowReplace
 
-`Public Function ShowReplace() As Boolean`
+```vb
+Public Function ShowReplace() As Boolean
+```
 
 Displays the Replace dialog. Returns True on success.
 
@@ -725,61 +861,81 @@ Displays the Replace dialog. Returns True on success.
 
 ### InitDialog
 
-`Public Event InitDialog(ByVal Action As Integer, ByVal hDlg As Long)`
+```vb
+Public Event InitDialog(ByVal Action As Integer, ByVal hDlg As Long)
+```
 
 Occurs when the dialog has completed initialization.
 
 ### Help
 
-`Public Event Help(ByRef Handled As Boolean, ByVal Action As Integer, ByVal hDlg As Long)`
+```vb
+Public Event Help(ByRef Handled As Boolean, ByVal Action As Integer, ByVal hDlg As Long)
+```
 
 Occurs when the user clicks the help button in the dialog.
 
 ### FileShareViolation
 
-`Public Event FileShareViolation(ByVal FileName As String, ByRef Result As CdlOFNShareViResultConstants, ByVal hDlg As Long)`
+```vb
+Public Event FileShareViolation(ByVal FileName As String, ByRef Result As CdlOFNShareViResultConstants, ByVal hDlg As Long)
+```
 
 Occurs when the user clicks OK in the Open or Save dialog and a network sharing violation occurs.
 
 ### FileValidate
 
-`Public Event FileValidate(ByVal FileName As String, ByVal FileTitle As String, ByVal FileOffset As Integer, ByRef Cancel As Boolean, ByVal hDlg As Long)`
+```vb
+Public Event FileValidate(ByVal FileName As String, ByVal FileTitle As String, ByVal FileOffset As Integer, ByRef Cancel As Boolean, ByVal hDlg As Long)
+```
 
 Occurs when the user clicks OK in the Open or Save dialog.
 
 ### ColorValidate
 
-`Public Event ColorValidate(ByRef RGBColor As Long, ByRef Cancel As Boolean, ByVal hDlg As Long)`
+```vb
+Public Event ColorValidate(ByRef RGBColor As Long, ByRef Cancel As Boolean, ByVal hDlg As Long)
+```
 
 Occurs when the user clicks OK in the Color dialog.
 
 ### FontApply
 
-`Public Event FontApply(ByVal Flags As Long, ByVal FontName As String, ByVal FontSize As Single, ByVal FontBold As Boolean, ByVal FontItalic As Boolean, ByVal FontStrikethru As Boolean, ByVal FontUnderline As Boolean, ByVal FontCharset As Integer, ByVal RGBColor As Long, ByVal hDlg As Long)`
+```vb
+Public Event FontApply(ByVal Flags As Long, ByVal FontName As String, ByVal FontSize As Single, ByVal FontBold As Boolean, ByVal FontItalic As Boolean, ByVal FontStrikethru As Boolean, ByVal FontUnderline As Boolean, ByVal FontCharset As Integer, ByVal RGBColor As Long, ByVal hDlg As Long)
+```
 
 Occurs when the user clicks the "Apply" button in the Font dialog.
 
 ### FolderBrowserValidateFailed
 
-`Public Event FolderBrowserValidateFailed(ByVal Text As String, ByRef Cancel As Boolean, ByVal hDlg As Long)`
+```vb
+Public Event FolderBrowserValidateFailed(ByVal Text As String, ByRef Cancel As Boolean, ByVal hDlg As Long)
+```
 
 Occurs when the user enters an invalid name in the Folder Browser dialog.
 
 ### FindNext
 
-`Public Event FindNext()`
+```vb
+Public Event FindNext()
+```
 
 Occurs when the user clicks the "Find Next" button in the Find or Replace dialog.
 
 ### Replace
 
-`Public Event Replace()`
+```vb
+Public Event Replace()
+```
 
 Occurs when the user clicks the "Replace" button in the Replace dialog.
 
 ### ReplaceAll
 
-`Public Event ReplaceAll()`
+```vb
+Public Event ReplaceAll()
+```
 
 Occurs when the user clicks the "Replace All" button in the Replace dialog.
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: 冷却栏控件（CoolBar）
 description: 冷却栏控件（CoolBar） - VBCCR 开发手册，基于源码的完整 API 参考
 AIGC:
@@ -53,152 +53,227 @@ AIGC:
 ## 属性
 
 ### VisualStyles
-`Property Get VisualStyles() As Boolean`
-`Property Let VisualStyles(ByVal Value As Boolean)`
+
+```vb
+Property Get VisualStyles() As Boolean
+Property Let VisualStyles(ByVal Value As Boolean)
+```
 
 是否启用视觉样式。
 
 ### Enabled
-`Property Get Enabled() As Boolean`
-`Property Let Enabled(ByVal Value As Boolean)`
+
+```vb
+Property Get Enabled() As Boolean
+Property Let Enabled(ByVal Value As Boolean)
+```
 
 是否可用。
 
 ### OLEDropMode
-`Property Get OLEDropMode() As OLEDropModeConstants`
-`Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)`
+
+```vb
+Property Get OLEDropMode() As OLEDropModeConstants
+Property Let OLEDropMode(ByVal Value As OLEDropModeConstants)
+```
 
 OLE 拖放模式。参见通用枚举。
 
 ### MousePointer
-`Property Get MousePointer() As CCMousePointerConstants`
-`Property Let MousePointer(ByVal Value As CCMousePointerConstants)`
+
+```vb
+Property Get MousePointer() As CCMousePointerConstants
+Property Let MousePointer(ByVal Value As CCMousePointerConstants)
+```
 
 鼠标指针。参见通用枚举。
 
 ### MouseIcon
-`Property Get MouseIcon() As IPictureDisp`
-`Property Let MouseIcon(ByVal Value As IPictureDisp)`
-`Property Set MouseIcon(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get MouseIcon() As IPictureDisp
+Property Let MouseIcon(ByVal Value As IPictureDisp)
+Property Set MouseIcon(ByVal Value As IPictureDisp)
+```
 
 自定义鼠标图标。
 
 ### MouseTrack
-`Property Get MouseTrack() As Boolean`
-`Property Let MouseTrack(ByVal Value As Boolean)`
+
+```vb
+Property Get MouseTrack() As Boolean
+Property Let MouseTrack(ByVal Value As Boolean)
+```
 
 鼠标进入/离开跟踪。
 
 ### RightToLeft
-`Property Get RightToLeft() As Boolean`
-`Property Let RightToLeft(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeft() As Boolean
+Property Let RightToLeft(ByVal Value As Boolean)
+```
 
 从右到左显示。
 
 ### RightToLeftLayout
-`Property Get RightToLeftLayout() As Boolean`
-`Property Let RightToLeftLayout(ByVal Value As Boolean)`
+
+```vb
+Property Get RightToLeftLayout() As Boolean
+Property Let RightToLeftLayout(ByVal Value As Boolean)
+```
 
 从右到左镜像布局。
 
 ### RightToLeftMode
-`Property Get RightToLeftMode() As CCRightToLeftModeConstants`
-`Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)`
+
+```vb
+Property Get RightToLeftMode() As CCRightToLeftModeConstants
+Property Let RightToLeftMode(ByVal Value As CCRightToLeftModeConstants)
+```
 
 从右到左模式。参见通用枚举。
 
 ### ImageList
-`Property Get ImageList() As Variant`
-`Property Let ImageList(ByVal Value As Variant)`
-`Property Set ImageList(ByVal Value As Variant)`
+
+```vb
+Property Get ImageList() As Variant
+Property Let ImageList(ByVal Value As Variant)
+Property Set ImageList(ByVal Value As Variant)
+```
 
 关联的 ImageList 控件。
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景色。
 
 ### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 前景色。
 
 ### BorderStyle
-`Property Get BorderStyle() As Integer`
-`Property Let BorderStyle(ByVal Value As Integer)`
+
+```vb
+Property Get BorderStyle() As Integer
+Property Let BorderStyle(ByVal Value As Integer)
+```
 
 边框样式（0-无边框，1-固定单线）。
 
 ### Orientation
-`Property Get Orientation() As CbrOrientationConstants`
-`Property Let Orientation(ByVal Value As CbrOrientationConstants)`
+
+```vb
+Property Get Orientation() As CbrOrientationConstants
+Property Let Orientation(ByVal Value As CbrOrientationConstants)
+```
 
 方向。
 
 ### BandBorders
-`Property Get BandBorders() As Boolean`
-`Property Let BandBorders(ByVal Value As Boolean)`
+
+```vb
+Property Get BandBorders() As Boolean
+Property Let BandBorders(ByVal Value As Boolean)
+```
 
 是否在带之间显示分隔线。
 
 ### FixedOrder
-`Property Get FixedOrder() As Boolean`
-`Property Let FixedOrder(ByVal Value As Boolean)`
+
+```vb
+Property Get FixedOrder() As Boolean
+Property Let FixedOrder(ByVal Value As Boolean)
+```
 
 是否禁止用户重新排列带。
 
 ### VariantHeight
-`Property Get VariantHeight() As Boolean`
-`Property Let VariantHeight(ByVal Value As Boolean)`
+
+```vb
+Property Get VariantHeight() As Boolean
+Property Let VariantHeight(ByVal Value As Boolean)
+```
 
 是否允许带具有不同高度。
 
 ### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 背景图片。
 
 ### DblClickToggle
-`Property Get DblClickToggle() As Boolean`
-`Property Let DblClickToggle(ByVal Value As Boolean)`
+
+```vb
+Property Get DblClickToggle() As Boolean
+Property Let DblClickToggle(ByVal Value As Boolean)
+```
 
 双击是否切换最大化/最小化。
 
 ### VerticalGripper
-`Property Get VerticalGripper() As Boolean`
-`Property Let VerticalGripper(ByVal Value As Boolean)`
+
+```vb
+Property Get VerticalGripper() As Boolean
+Property Let VerticalGripper(ByVal Value As Boolean)
+```
 
 垂直方向时是否使用垂直抓握条。
 
 ### ShowTips
-`Property Get ShowTips() As Boolean`
-`Property Let ShowTips(ByVal Value As Boolean)`
+
+```vb
+Property Get ShowTips() As Boolean
+Property Let ShowTips(ByVal Value As Boolean)
+```
 
 是否显示工具提示。
 
 ### DoubleBuffer
-`Property Get DoubleBuffer() As Boolean`
-`Property Let DoubleBuffer(ByVal Value As Boolean)`
+
+```vb
+Property Get DoubleBuffer() As Boolean
+Property Let DoubleBuffer(ByVal Value As Boolean)
+```
 
 是否启用双缓冲减少闪烁。
 
 ### Bands
-`Property Get Bands() As CbrBands`
+
+```vb
+Property Get Bands() As CbrBands
+```
 
 带的集合。
 
 ### ContainedControls
-`Property Get ContainedControls() As VBRUN.ContainedControls`
+
+```vb
+Property Get ContainedControls() As VBRUN.ContainedControls
+```
 
 包含的控件集合。只读。
 
 ### RowCount
-`Property Get RowCount() As Long`
+
+```vb
+Property Get RowCount() As Long
+```
 
 行数。只读。
 
@@ -213,17 +288,26 @@ OLE 拖放模式。参见通用枚举。
 ## 方法
 
 ### Refresh
-`Public Sub Refresh()`
+
+```vb
+Public Sub Refresh()
+```
 
 强制重绘。
 
 ### HitTest
-`Public Function HitTest(ByVal X As Single, ByVal Y As Single, Optional ByRef HitResult As CbrHitResultConstants) As CbrBand`
+
+```vb
+Public Function HitTest(ByVal X As Single, ByVal Y As Single, Optional ByRef HitResult As CbrHitResultConstants) As CbrBand
+```
 
 命中测试，返回指定坐标处的带对象。
 
 ### OLEDrag
-`Public Sub OLEDrag()`
+
+```vb
+Public Sub OLEDrag()
+```
 
 ### Drag / ZOrder
 
@@ -232,57 +316,90 @@ OLE 拖放模式。参见通用枚举。
 ## 事件
 
 ### Click
-`Public Event Click()`
+
+```vb
+Public Event Click()
+```
 
 单击。
 
 ### DblClick
-`Public Event DblClick()`
+
+```vb
+Public Event DblClick()
+```
 
 双击。
 
 ### Resize
-`Public Event Resize()`
+
+```vb
+Public Event Resize()
+```
 
 大小改变。
 
 ### HeightChanged
-`Public Event HeightChanged(ByVal NewHeight As Single)`
+
+```vb
+Public Event HeightChanged(ByVal NewHeight As Single)
+```
 
 高度改变。
 
 ### LayoutChanged
-`Public Event LayoutChanged()`
+
+```vb
+Public Event LayoutChanged()
+```
 
 布局改变。
 
 ### MinMax
-`Public Event MinMax(ByRef Cancel As Boolean)`
+
+```vb
+Public Event MinMax(ByRef Cancel As Boolean)
+```
 
 带即将最大化或最小化，可取消。
 
 ### BandBeforeDrag
-`Public Event BandBeforeDrag(ByVal Band As CbrBand, ByRef Cancel As Boolean)`
+
+```vb
+Public Event BandBeforeDrag(ByVal Band As CbrBand, ByRef Cancel As Boolean)
+```
 
 带即将被拖动，可取消。
 
 ### BandAfterDrag
-`Public Event BandAfterDrag(ByVal Band As CbrBand, ByVal NewPosition As Long)`
+
+```vb
+Public Event BandAfterDrag(ByVal Band As CbrBand, ByVal NewPosition As Long)
+```
 
 带拖动完成。
 
 ### BandChevronPushed
-`Public Event BandChevronPushed(ByVal Band As CbrBand, ByVal Left As Single, ByVal Top As Single, ByVal Width As Single, ByVal Height As Single)`
+
+```vb
+Public Event BandChevronPushed(ByVal Band As CbrBand, ByVal Left As Single, ByVal Top As Single, ByVal Width As Single, ByVal Height As Single)
+```
 
 折叠箭头被点击。
 
 ### BandMouseEnter
-`Public Event BandMouseEnter(ByVal Band As CbrBand)`
+
+```vb
+Public Event BandMouseEnter(ByVal Band As CbrBand)
+```
 
 鼠标进入带。
 
 ### BandMouseLeave
-`Public Event BandMouseLeave(ByVal Band As CbrBand)`
+
+```vb
+Public Event BandMouseLeave(ByVal Band As CbrBand)
+```
 
 鼠标离开带。
 
@@ -297,186 +414,279 @@ OLE 拖放模式。参见通用枚举。
 ### 属性
 
 #### Index
-`Property Get Index() As Long`
+
+```vb
+Property Get Index() As Long
+```
 
 带在集合中的索引。只读。
 
 #### Key
-`Property Get Key() As String`
-`Property Let Key(ByVal Value As String)`
+
+```vb
+Property Get Key() As String
+Property Let Key(ByVal Value As String)
+```
 
 带的关键字。
 
 #### Tag
-`Property Get Tag() As Variant`
-`Property Let Tag(ByVal Value As Variant)`
-`Property Set Tag(ByVal Value As Variant)`
+
+```vb
+Property Get Tag() As Variant
+Property Let Tag(ByVal Value As Variant)
+Property Set Tag(ByVal Value As Variant)
+```
 
 自定义数据。
 
 #### ID
-`Property Get ID() As Long`
+
+```vb
+Property Get ID() As Long
+```
 
 内部标识。只读。
 
 #### Caption
-`Property Get Caption() As String`
-`Property Let Caption(ByVal Value As String)`
+
+```vb
+Property Get Caption() As String
+Property Let Caption(ByVal Value As String)
+```
 
 带标题。
 
 #### Child
-`Property Get Child() As Object`
-`Property Let Child(ByVal Value As Object)`
-`Property Set Child(ByVal Value As Object)`
+
+```vb
+Property Get Child() As Object
+Property Let Child(ByVal Value As Object)
+Property Set Child(ByVal Value As Object)
+```
 
 带中包含的子控件。
 
 #### Style
-`Property Get Style() As CbrBandStyleConstants`
-`Property Let Style(ByVal Value As CbrBandStyleConstants)`
+
+```vb
+Property Get Style() As CbrBandStyleConstants
+Property Let Style(ByVal Value As CbrBandStyleConstants)
+```
 
 带样式。
 
 #### Image
-`Property Get Image() As Variant`
-`Property Let Image(ByVal Value As Variant)`
+
+```vb
+Property Get Image() As Variant
+Property Let Image(ByVal Value As Variant)
+```
 
 ImageList 中图像的索引或关键字。
 
 #### ImageIndex
-`Property Get ImageIndex() As Long`
+
+```vb
+Property Get ImageIndex() As Long
+```
 
 图像索引。只读。
 
 #### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 带宽度。Style 为 FixedSize 时只读。
 
 #### Height
-`Property Get Height() As Single`
+
+```vb
+Property Get Height() As Single
+```
 
 带高度。只读。
 
 #### MinWidth
-`Property Get MinWidth() As Single`
-`Property Let MinWidth(ByVal Value As Single)`
+
+```vb
+Property Get MinWidth() As Single
+Property Let MinWidth(ByVal Value As Single)
+```
 
 最小宽度。
 
 #### MinHeight
-`Property Get MinHeight() As Single`
-`Property Let MinHeight(ByVal Value As Single)`
+
+```vb
+Property Get MinHeight() As Single
+Property Let MinHeight(ByVal Value As Single)
+```
 
 最小高度。
 
 #### IdealWidth
-`Property Get IdealWidth() As Single`
-`Property Let IdealWidth(ByVal Value As Single)`
+
+```vb
+Property Get IdealWidth() As Single
+Property Let IdealWidth(ByVal Value As Single)
+```
 
 理想宽度。
 
 #### Gripper
-`Property Get Gripper() As CbrBandGripperConstants`
-`Property Let Gripper(ByVal Value As CbrBandGripperConstants)`
+
+```vb
+Property Get Gripper() As CbrBandGripperConstants
+Property Let Gripper(ByVal Value As CbrBandGripperConstants)
+```
 
 抓握条样式。
 
 #### ToolTipText
-`Property Get ToolTipText() As String`
-`Property Let ToolTipText(ByVal Value As String)`
+
+```vb
+Property Get ToolTipText() As String
+Property Let ToolTipText(ByVal Value As String)
+```
 
 工具提示文本。需要 ShowTips 为 True。
 
 #### UseCoolBarPicture
-`Property Get UseCoolBarPicture() As Boolean`
-`Property Let UseCoolBarPicture(ByVal Value As Boolean)`
+
+```vb
+Property Get UseCoolBarPicture() As Boolean
+Property Let UseCoolBarPicture(ByVal Value As Boolean)
+```
 
 是否使用 CoolBar 的背景图片。
 
 #### Picture
-`Property Get Picture() As IPictureDisp`
-`Property Let Picture(ByVal Value As IPictureDisp)`
-`Property Set Picture(ByVal Value As IPictureDisp)`
+
+```vb
+Property Get Picture() As IPictureDisp
+Property Let Picture(ByVal Value As IPictureDisp)
+Property Set Picture(ByVal Value As IPictureDisp)
+```
 
 带的背景图片。
 
 #### UseCoolBarColors
-`Property Get UseCoolBarColors() As Boolean`
-`Property Let UseCoolBarColors(ByVal Value As Boolean)`
+
+```vb
+Property Get UseCoolBarColors() As Boolean
+Property Let UseCoolBarColors(ByVal Value As Boolean)
+```
 
 是否使用 CoolBar 的前景/背景色。
 
 #### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 带背景色。
 
 #### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 带前景色。
 
 #### NewRow
-`Property Get NewRow() As Boolean`
-`Property Let NewRow(ByVal Value As Boolean)`
+
+```vb
+Property Get NewRow() As Boolean
+Property Let NewRow(ByVal Value As Boolean)
+```
 
 是否在新行开始。
 
 #### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 是否可见。
 
 #### ChildEdge
-`Property Get ChildEdge() As Boolean`
-`Property Let ChildEdge(ByVal Value As Boolean)`
+
+```vb
+Property Get ChildEdge() As Boolean
+Property Let ChildEdge(ByVal Value As Boolean)
+```
 
 是否在子控件上下显示边缘。
 
 #### UseChevron
-`Property Get UseChevron() As Boolean`
-`Property Let UseChevron(ByVal Value As Boolean)`
+
+```vb
+Property Get UseChevron() As Boolean
+Property Let UseChevron(ByVal Value As Boolean)
+```
 
 带宽小于理想宽度时是否显示折叠箭头。
 
 #### HideCaption
-`Property Get HideCaption() As Boolean`
-`Property Let HideCaption(ByVal Value As Boolean)`
+
+```vb
+Property Get HideCaption() As Boolean
+Property Let HideCaption(ByVal Value As Boolean)
+```
 
 是否隐藏标题。
 
 #### FixedBackground
-`Property Get FixedBackground() As Boolean`
-`Property Let FixedBackground(ByVal Value As Boolean)`
+
+```vb
+Property Get FixedBackground() As Boolean
+Property Let FixedBackground(ByVal Value As Boolean)
+```
 
 背景图片是否固定不动。
 
 #### Position
-`Property Get Position() As Long`
-`Property Let Position(ByVal Value As Long)`
+
+```vb
+Property Get Position() As Long
+Property Let Position(ByVal Value As Long)
+```
 
 带的位置。
 
 ### 方法
 
 #### Maximize
-`Public Sub Maximize()`
+
+```vb
+Public Sub Maximize()
+```
 
 最大化带。
 
 #### Minimize
-`Public Sub Minimize()`
+
+```vb
+Public Sub Minimize()
+```
 
 最小化带。
 
 #### PushChevron
-`Public Sub PushChevron()`
+
+```vb
+Public Sub PushChevron()
+```
 
 程序化点击折叠箭头。
 
@@ -487,39 +697,60 @@ ImageList 中图像的索引或关键字。
 ### 属性
 
 #### Item
-`Property Get Item(ByVal Index As Variant) As CbrBand`
+
+```vb
+Property Get Item(ByVal Index As Variant) As CbrBand
+```
 
 按索引或关键字获取带。
 
 #### ItemFromPosition
-`Property Get ItemFromPosition(ByVal Position As Long) As CbrBand`
+
+```vb
+Property Get ItemFromPosition(ByVal Position As Long) As CbrBand
+```
 
 按位置获取带。
 
 #### Count
-`Property Get Count() As Long`
+
+```vb
+Property Get Count() As Long
+```
 
 带数量。
 
 ### 方法
 
 #### Add
-`Public Function Add(Optional ByVal Index As Long, Optional ByVal Key As String, Optional ByVal Caption As String, Optional ByVal Image As Variant, Optional ByVal NewRow As Boolean, Optional ByVal Child As Variant, Optional ByVal Visible As Boolean = True) As CbrBand`
+
+```vb
+Public Function Add(Optional ByVal Index As Long, Optional ByVal Key As String, Optional ByVal Caption As String, Optional ByVal Image As Variant, Optional ByVal NewRow As Boolean, Optional ByVal Child As Variant, Optional ByVal Visible As Boolean = True) As CbrBand
+```
 
 添加新带。
 
 #### Remove
-`Public Sub Remove(ByVal Index As Variant)`
+
+```vb
+Public Sub Remove(ByVal Index As Variant)
+```
 
 移除带。
 
 #### Clear
-`Public Sub Clear()`
+
+```vb
+Public Sub Clear()
+```
 
 清空所有带。
 
 #### Exists
-`Public Function Exists(ByVal Index As Variant) As Boolean`
+
+```vb
+Public Function Exists(ByVal Index As Variant) As Boolean
+```
 
 检查带是否存在。
 
@@ -530,14 +761,20 @@ ImageList 中图像的索引或关键字。
 ### 属性
 
 #### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 背景色。
 
 #### ForeColor
-`Property Get ForeColor() As OLE_COLOR`
-`Property Let ForeColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get ForeColor() As OLE_COLOR
+Property Let ForeColor(ByVal Value As OLE_COLOR)
+```
 
 前景色。
 

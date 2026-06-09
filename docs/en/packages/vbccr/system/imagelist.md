@@ -32,139 +32,211 @@ See Common Enumerations.
 ## Properties
 
 ### ImageWidth
-`Property Get ImageWidth() As Long`
-`Property Let ImageWidth(ByVal Value As Long)`
+
+```vb
+Property Get ImageWidth() As Long
+Property Let ImageWidth(ByVal Value As Long)
+```
 
 Image width (pixels).
 
 ### ImageHeight
-`Property Get ImageHeight() As Long`
-`Property Let ImageHeight(ByVal Value As Long)`
+
+```vb
+Property Get ImageHeight() As Long
+Property Let ImageHeight(ByVal Value As Long)
+```
 
 Image height (pixels).
 
 ### ImageSize
-`Property Get ImageSize() As ImlImageSizeConstants`
-`Property Let ImageSize(ByVal Value As ImlImageSizeConstants)`
+
+```vb
+Property Get ImageSize() As ImlImageSizeConstants
+Property Let ImageSize(ByVal Value As ImlImageSizeConstants)
+```
 
 Preset image size. Setting this property automatically adjusts ImageWidth and ImageHeight.
 
 ### ColorDepth
-`Property Get ColorDepth() As Long`
-`Property Let ColorDepth(ByVal Value As Long)`
+
+```vb
+Property Get ColorDepth() As Long
+Property Let ColorDepth(ByVal Value As Long)
+```
 
 Color depth. Supports 4, 8, 16, 24, 32 bits. Requires comctl32.dll 6.0 or later.
 
 ### MaskColor
-`Property Get MaskColor() As OLE_COLOR`
-`Property Let MaskColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get MaskColor() As OLE_COLOR
+Property Let MaskColor(ByVal Value As OLE_COLOR)
+```
 
 Mask color.
 
 ### UseMaskColor
-`Property Get UseMaskColor() As Boolean`
-`Property Let UseMaskColor(ByVal Value As Boolean)`
+
+```vb
+Property Get UseMaskColor() As Boolean
+Property Let UseMaskColor(ByVal Value As Boolean)
+```
 
 Whether to use mask color.
 
 ### BackColor
-`Property Get BackColor() As OLE_COLOR`
-`Property Let BackColor(ByVal Value As OLE_COLOR)`
+
+```vb
+Property Get BackColor() As OLE_COLOR
+Property Let BackColor(ByVal Value As OLE_COLOR)
+```
 
 Background color.
 
 ### hImageList
-`Property Get hImageList() As LongPtr`
+
+```vb
+Property Get hImageList() As LongPtr
+```
 
 Image list handle. Read-only.
 
 ### ListImages
-`Property Get ListImages() As ImlListImages`
+
+```vb
+Property Get ListImages() As ImlListImages
+```
 
 Image collection.
 
 ### Name
-`Property Get Name() As String`
+
+```vb
+Property Get Name() As String
+```
 
 Control name. Read-only.
 
 ### Tag
-`Property Get Tag() As Variant`
-`Property Let Tag(ByVal Value As Variant)`
-`Property Set Tag(ByVal Value As Variant)`
+
+```vb
+Property Get Tag() As Variant
+Property Let Tag(ByVal Value As Variant)
+Property Set Tag(ByVal Value As Variant)
+```
 
 Custom data.
 
 ### Parent
-`Property Get Parent() As Object`
+
+```vb
+Property Get Parent() As Object
+```
 
 Parent object. Read-only.
 
 ### Container
-`Property Get Container() As Object`
-`Property Set Container(ByVal Value As Object)`
+
+```vb
+Property Get Container() As Object
+Property Set Container(ByVal Value As Object)
+```
 
 Container object.
 
 ### Left
-`Property Get Left() As Single`
-`Property Let Left(ByVal Value As Single)`
+
+```vb
+Property Get Left() As Single
+Property Let Left(ByVal Value As Single)
+```
 
 Left margin.
 
 ### Top
-`Property Get Top() As Single`
-`Property Let Top(ByVal Value As Single)`
+
+```vb
+Property Get Top() As Single
+Property Let Top(ByVal Value As Single)
+```
 
 Top margin.
 
 ### Width
-`Property Get Width() As Single`
-`Property Let Width(ByVal Value As Single)`
+
+```vb
+Property Get Width() As Single
+Property Let Width(ByVal Value As Single)
+```
 
 Width (used at design time).
 
 ### Height
-`Property Get Height() As Single`
-`Property Let Height(ByVal Value As Single)`
+
+```vb
+Property Get Height() As Single
+Property Let Height(ByVal Value As Single)
+```
 
 Height (used at design time).
 
 ### Visible
-`Property Get Visible() As Boolean`
-`Property Let Visible(ByVal Value As Boolean)`
+
+```vb
+Property Get Visible() As Boolean
+Property Let Visible(ByVal Value As Boolean)
+```
 
 Visibility (used at design time).
 
 ### hWnd
-`Property Get hWnd() As LongPtr`
+
+```vb
+Property Get hWnd() As LongPtr
+```
 
 Window handle. Read-only.
 
 ## Methods
 
 ### Refresh
-`Sub Refresh()`
+
+```vb
+Sub Refresh()
+```
 
 Forces a repaint.
 
 ### CreateIcon
-`Function CreateIcon(ByVal ImageIndex As Long) As IPictureDisp`
+
+```vb
+Function CreateIcon(ByVal ImageIndex As Long) As IPictureDisp
+```
 
 Creates an icon from the specified image.
 
 ### CreateBitmap
-`Function CreateBitmap(ByVal ImageIndex As Long) As IPictureDisp`
+
+```vb
+Function CreateBitmap(ByVal ImageIndex As Long) As IPictureDisp
+```
 
 Creates a bitmap from the specified image. Requires comctl32.dll 6.0 or later.
 
 ### Overlay
-`Function Overlay(ByVal ImageIndex1 As Long, ByVal ImageIndex2 As Long) As IPictureDisp`
+
+```vb
+Function Overlay(ByVal ImageIndex1 As Long, ByVal ImageIndex2 As Long) As IPictureDisp
+```
 
 Overlays two images and returns the resulting image.
 
 ### AboutBox
-`Sub AboutBox()`
+
+```vb
+Sub AboutBox()
+```
 
 Displays the About dialog.
 
