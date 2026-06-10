@@ -1,12 +1,12 @@
 ---
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'c703000a-af62-49b8-a3d3-129b7b47e43a'
-  PropagateID: 'c703000a-af62-49b8-a3d3-129b7b47e43a'
-  ReservedCode1: '2b5dd516-6b00-4404-9115-8340a5ef5c24'
-  ReservedCode2: '2b5dd516-6b00-4404-9115-8340a5ef5c24'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "c703000a-af62-49b8-a3d3-129b7b47e43a"
+  PropagateID: "c703000a-af62-49b8-a3d3-129b7b47e43a"
+  ReservedCode1: "2b5dd516-6b00-4404-9115-8340a5ef5c24"
+  ReservedCode2: "2b5dd516-6b00-4404-9115-8340a5ef5c24"
 ---
 
 # Jekyll → VitePress 文档迁移规则
@@ -143,13 +143,13 @@ More text
 
 完整映射：
 
-| Jekyll (GitHub) | VitePress       |
-| --------------- | --------------- |
-| `[!NOTE]`       | `::: info`      |
-| `[!IMPORTANT]`  | `::: important` |
-| `[!WARNING]`    | `::: warning`   |
-| `[!TIP]`        | `::: tip`       |
-| `[!CAUTION]`    | `::: caution`   |
+| Jekyll (GitHub) | VitePress     |
+| --------------- | ------------- |
+| `[!NOTE]`       | `::: info`    |
+| `[!IMPORTANT]`  | `::: danger`  |
+| `[!WARNING]`    | `::: warning` |
+| `[!TIP]`        | `::: tip`     |
+| `[!CAUTION]`    | `::: warning` |
 
 转换要点：
 
@@ -290,6 +290,7 @@ More text
 #### (6) 图片链接
 
 图片链接 `![alt](path)` 特殊处理：
+
 - 同目录下的 `Images/xxx.png` → 保留相对路径，不做修改
 - `../Images/xxx.png` → 保留相对路径（图片目录结构不变）
 - `../_Images/xxx.png` → 改为 `../Images/xxx.png`（去掉下划线前缀）
@@ -383,13 +384,14 @@ IDE 子目录的 permalink 使用了 `tB/IDE/Project/` 前缀，映射关系：
 处理过程中，所有无法修正的死链（即被替换为纯文本的链接），必须记录到 `ai/dielink.md` 文件中，格式如下：
 
 ```markdown
-| 文件路径 | 行号 | 原超链接内容 |
-|---------|------|------------|
-| en/official/IDE/Editor.md | 42 | `[Settings](./tB/IDE/Project/Settings)` |
-| en/official/Features/Language/Operators.md | 15 | `[xxx](../../NonExist/Page)` |
+| 文件路径                                   | 行号 | 原超链接内容                            |
+| ------------------------------------------ | ---- | --------------------------------------- |
+| en/official/IDE/Editor.md                  | 42   | `[Settings](./tB/IDE/Project/Settings)` |
+| en/official/Features/Language/Operators.md | 15   | `[xxx](../../NonExist/Page)`            |
 ```
 
 记录内容：
+
 - **文件路径**：相对于项目根目录的目标文件路径
 - **行号**：死链在目标文件中的行号
 - **原超链接内容**：未修改前的原始链接 markdown 语法
@@ -414,12 +416,14 @@ Content here
 </details>
 
 <!-- 目标 -->
+
 ::: details Click to expand
 Content here
 :::
 ```
 
 注意事项：
+
 - `<summary markdown="span">` 中的 `markdown=span` 是 Kramdown 特有属性，转换时删除
 - `<summary>` 内的文本成为 `::: details` 后面的标题
 
@@ -431,9 +435,11 @@ Content here
 
 ```markdown
 <!-- 目标 -->
+
 ::: details Click to expand
+
 > **Info**: 原来的 info 容器内容
-:::
+> :::
 ```
 
 ### 9.3 Vue 插值冲突 `{{ }}`
@@ -454,9 +460,11 @@ Content here
 
 ```markdown
 <!-- 源 -->
+
 \<MyTag\>
 
 <!-- 目标 -->
+
 `<MyTag>`
 ```
 
@@ -468,9 +476,11 @@ Content here
 
 ```markdown
 <!-- 方案 A：HTML 实体 -->
+
 `&lt;twinbasic unzip folder&gt;`
 
 <!-- 方案 B：反引号（如果语义上是代码/占位符） -->
+
 `<twinbasic unzip folder>`
 ```
 
@@ -482,9 +492,11 @@ Content here
 
 ```markdown
 <!-- 源 -->
+
 ![img](x.png){style="width:80%; height:auto;"}
 
 <!-- 目标 -->
+
 ![img](x.png)
 ```
 
@@ -501,6 +513,7 @@ Content here
 **问题**：某些目录被链接到但没有 `index.md`，导致死链。
 
 **修复**：创建缺失的 `index.md` 落地页。已创建：
+
 - `en/official/index.md` — 站点根首页
 - 28 个 Core 语句 stub 文件（`Reference/Core/` 下）
 
@@ -512,9 +525,11 @@ Content here
 
 ```markdown
 <!-- 源 -->
+
 ](.#dynamic-dom-property-resolution)
 
 <!-- 目标 -->
+
 ](/en/official/Reference/tbIDE/#dynamic-dom-property-resolution)
 ```
 
@@ -587,3 +602,4 @@ rewrites: {
 由于已有 SEO 收录了 `/official/` 路径，中文版的 URL 必须保持在 `/official/xxx`，不能变成 `/zh/official/xxx`。这就是 rewrites 配置存在的原因。
 
 > AI生成
+

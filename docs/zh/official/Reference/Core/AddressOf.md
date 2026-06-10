@@ -3,13 +3,13 @@ title: AddressOf
 parent: Operators
 permalink: /tB/Core/AddressOf
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '0e476837-1059-49e5-9427-6cf3af38ea0f'
-  PropagateID: '0e476837-1059-49e5-9427-6cf3af38ea0f'
-  ReservedCode1: '17492843-7ff1-4cf2-be7a-eb2320179eb3'
-  ReservedCode2: '17492843-7ff1-4cf2-be7a-eb2320179eb3'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "0e476837-1059-49e5-9427-6cf3af38ea0f"
+  PropagateID: "0e476837-1059-49e5-9427-6cf3af38ea0f"
+  ReservedCode1: "17492843-7ff1-4cf2-be7a-eb2320179eb3"
+  ReservedCode2: "17492843-7ff1-4cf2-be7a-eb2320179eb3"
 ---
 
 # AddressOf 运算符
@@ -17,22 +17,23 @@ AIGC:
 一元运算符，返回其操作数的函数指针引用。
 
 语法：
-> **AddressOf** *procedurename*  
-> **AddressOf** *instance*.*procedurename*     *(twinBASIC)*
 
-*procedurename*
+> **AddressOf** _procedurename_  
+> **AddressOf** _instance_._procedurename_ _(twinBASIC)_
+
+_procedurename_
 : 需要获取地址的 [**Sub**](/official/Reference/Core/Sub)、[**Function**](/official/Reference/Core/Function) 或 [**Property**](/official/Reference/Core/Property) 过程的名称。
 
-*instance*
-: *可选* (twinBASIC) 对象引用，其成员 *procedurename* 为目标。生成的指针绑定到 *instance*，因此通过该指针调用会在该特定对象上调用方法。
+_instance_
+: _可选_ (twinBASIC) 对象引用，其成员 _procedurename_ 为目标。生成的指针绑定到 _instance_，因此通过该指针调用会在该特定对象上调用方法。
 
 当过程名出现在参数列表中时，通常会*调用*该过程并传递其返回值。**AddressOf** 抑制调用，改为传递过程的地址。最常见的用途是在Windows API中安装回调——API随后从项目代码外部调用该过程，这个过程称为*回调*。
 
 **AddressOr** 生成的值与 **LongPtr** 在位级别兼容，因此可以传递给任何需要函数指针的地方——包括使用 **As Long** 或 **As LongPtr** 类型的传统 [**Declare**](/official/Reference/Core/Declare) 参数。当目标类型为 [**Delegate**](/official/Reference/Core/Delegate) 时，编译器还会检查操作数的签名是否与委托的签名匹配。
 
-在经典VBA中，*procedurename* 必须是当前项目标准 [**Module**](/official/Reference/Core/Module) 中的过程名称；目标参数必须为 **As Long** 类型；生成的指针只能由Basic外部的代码（如DLL）调用。twinBASIC解除了所有限制——参见下文[twinBASIC增强功能](#twinbasic-enhancements)。
+在经典VBA中，_procedurename_ 必须是当前项目标准 [**Module**](/official/Reference/Core/Module) 中的过程名称；目标参数必须为 **As Long** 类型；生成的指针只能由Basic外部的代码（如DLL）调用。twinBASIC解除了所有限制——参见下文[twinBASIC增强功能](#twinbasic-enhancements)。
 
-::: important
+::: warning
 回调内部引发的错误无法传播回外部调用者——API运行在项目的错误处理链之外。在用作 **AddressOf** 目标的任何过程顶部放置 `On Error Resume Next`（或显式错误处理程序）。
 :::
 
@@ -60,7 +61,7 @@ Private Sub Demo()
 End Sub
 ```
 
-在Win32 API中安装回调。`EnumWindows` 对每个顶层窗口调用一次 *EnumProc*：
+在Win32 API中安装回调。`EnumWindows` 对每个顶层窗口调用一次 _EnumProc_：
 
 ```vb
 Public Declare PtrSafe Function EnumWindows Lib "user32" ( _

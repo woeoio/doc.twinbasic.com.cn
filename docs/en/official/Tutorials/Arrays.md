@@ -4,7 +4,6 @@ parent: Tutorials
 permalink: /Tutorials/Arrays
 ---
 
-
 # Arrays
 
 Arrays come in two kinds:
@@ -19,8 +18,7 @@ Fixed size arrays have lower memory and runtime overhead than dynamic arrays. Th
 
 In arrays larger than that, the overhead of a dynamic array becomes negligible when creating (dimensioning) the array. However, there is still slight runtime overhead on element access, independently of the size of a dynamic array.
 
-
-## Array  Declaration Syntax
+## Array Declaration Syntax
 
 Fixed size arrays can only be used for variables or class and UDT fields.  
 Dynamic arrays can be used for variables, fields, parameter types and return types.  
@@ -31,26 +29,26 @@ A fixed size array can be passed as an argument accepting a dynamic array.
 Fixed size arrays cannot be used as return types directly. They can be returned when wrapped in a UDT.
 :::
 
-* Syntax for variable declarations in procedures  
-  **Dim** | **Static** name **()** [ **As** type ]  -- dynamic array  
-  **Dim** | **Static** name **(** size [ **,** size ... ] **)** [ **As** type ]  -- fixed array
-* Syntax for procedure parameter types; only dynamic arrays are valid and both syntaxes below are equivalent  
-  name **()** [ **As** type ]   
+- Syntax for variable declarations in procedures  
+  **Dim** | **Static** name **()** [ **As** type ] -- dynamic array  
+  **Dim** | **Static** name **(** size [ **,** size ... ] **)** [ **As** type ] -- fixed array
+- Syntax for procedure parameter types; only dynamic arrays are valid and both syntaxes below are equivalent  
+  name **()** [ **As** type ]  
   name **As** type **()**
-* Syntax for procedure return types; only dynamic arrays are valid  
+- Syntax for procedure return types; only dynamic arrays are valid  
   name **As** type **()**
-* Syntax for field declarations in classes  
-  **Dim** | **Private** | **Protected** | **Public** name **()** [ **As** type ]  -- dynamic array  
-  **Dim** | **Private** | **Protected** | **Public** name **(** size [ **,** size ....] **)** [ **As** type ]  -- static array
-* Syntax for field declarations in types (UDTs)  
-  name **()** [ **As** type ]  -- dynamic array  
-  name **(** size [ **,** size ....] **)** [ **As** type ]  -- static array
+- Syntax for field declarations in classes  
+  **Dim** | **Private** | **Protected** | **Public** name **()** [ **As** type ] -- dynamic array  
+  **Dim** | **Private** | **Protected** | **Public** name **(** size [ **,** size ....] **)** [ **As** type ] -- static array
+- Syntax for field declarations in types (UDTs)  
+  name **()** [ **As** type ] -- dynamic array  
+  name **(** size [ **,** size ....] **)** [ **As** type ] -- static array
 
 Each size specification is a range, but the lower bound is optional and defaults to currently active **Option Base**:
 
 - ubound, e.g.
   `Dim A(10, 20)`
-- lbound **To** ubound  -- range, inclusive of both bounds, e.g.
+- lbound **To** ubound -- range, inclusive of both bounds, e.g.
   `Dim A(1 To 10, 1 To 20)`
 
 Both variants of size specifications can be mixed in one declaration, e.g.  
@@ -75,7 +73,7 @@ Sub OkSub1(data() As Byte)     ' Dynamic array parameter
 Sub OkSub2(data As Byte())     ' Alternate syntax
 
 Sub BadSub1(data(10) As Byte)  ' Invalid, fixed array types are not allowed as parameters...
-Sub BadSub2(data As Byte(10))  ' ... in neither syntax          
+Sub BadSub2(data As Byte(10))  ' ... in neither syntax
 ```
 
 ## Dimensioning Dynamic Arrays
@@ -96,11 +94,11 @@ Debug.Assert UBound(array) = 10
 
 **ReDim** has two operating modes: by default, it discards the existing data in the array. Optionally, it can preserve the existing data to the extent that new dimensions allow it.
 
-Syntax:  
+Syntax:
 
-* **ReDim** [ **Preserve** ] name **(** size [ **,** size ...] **)**
+- **ReDim** [ **Preserve** ] name **(** size [ **,** size ...] **)**
 
-::: important
+::: warning
 
 Only the upper bound of an array dimension can be changed with **ReDim Preserve**.
 Non-preserving **ReDim** allows arbitrary changes.
@@ -126,7 +124,7 @@ Debug.Assert a(5) = 0
 
 ## Determining Array Dimension Bounds
 
-Every dimension of an *initialized* array has an associated lower and upper bound. These bounds are accessed with the **LBound** and **UBound** functions.
+Every dimension of an _initialized_ array has an associated lower and upper bound. These bounds are accessed with the **LBound** and **UBound** functions.
 
 ```vb
 Dim array(1 To 10, 3 To 20)
@@ -142,7 +140,7 @@ An attempt to use **LBound** or **UBound** on an uninitialized array causes a ru
 
 ```vb
 Sub ArrayLen(Of T)(array() Of T, ByVal dimension% = 1) As Long
-    ' zero is the default return value    
+    ' zero is the default return value
     If IsArrayInitialized(array) Then
         Return 1 + UBound(array, dimension) - LBound(array, dimension)
     End If
@@ -258,7 +256,7 @@ Sub Save(array() As Long)
     Debug.Assert ArrayBytes(array) = ArrayLen(array) * 4   ' 4 = size of a Long
     SaveLongData(ArrayPtr(array), ArrayLen(array))
 End Sub
-        
+
 Sub Write(array() As Long)
     WriteData(ArrayPtr(array), ArrayBytes(array))
 End Sub
@@ -284,3 +282,4 @@ End Sub
 
 Dynamic arrays are internally represented with a **STATICARRAY** struct. It is possible to synthesize such a struct for wide strings (UTF-16 encoded) to allow quick enumeration.
 -->
+

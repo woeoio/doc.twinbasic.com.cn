@@ -4,13 +4,13 @@ parent: Features
 nav_order: 9
 permalink: /Features/64bit
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '1d0aeb0e-2488-4f33-a84f-cb31d7938f7b'
-  PropagateID: '1d0aeb0e-2488-4f33-a84f-cb31d7938f7b'
-  ReservedCode1: '805c34a9-8efa-446d-8bfb-fa443c4d3240'
-  ReservedCode2: '805c34a9-8efa-446d-8bfb-fa443c4d3240'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "1d0aeb0e-2488-4f33-a84f-cb31d7938f7b"
+  PropagateID: "1d0aeb0e-2488-4f33-a84f-cb31d7938f7b"
+  ReservedCode1: "805c34a9-8efa-446d-8bfb-fa443c4d3240"
+  ReservedCode2: "805c34a9-8efa-446d-8bfb-fa443c4d3240"
 ---
 
 # 64位编译
@@ -27,7 +27,7 @@ Public Declare PtrSafe Sub foo Lib "bar" (ByVal hWnd As LongPtr)
 
 ## 重要注意事项
 
-::: important
+::: warning
 要让大多数 32 位应用程序在 64 位下正常工作，还需要做更多工作。只有部分 `Long` 变量需要更改，这取决于它们对应的 C/C++ 数据类型（种类繁多）。需要改为 `LongPtr` 的示例包括：`HWND, HBITMAP, HICON` 和 `HANDLE` 等句柄；`void*, PVOID, ULONG_PTR, DWORD_PTR` 以及以 `Long` 传递时的 `LPWSTR/PWSTR/LPCWSTR/WCHAR*` 等指针；以及 CopyMemory 和内存分配函数中出现的 `SIZE_T` 类型。
 :::
 

@@ -3,13 +3,13 @@ title: ITbService
 parent: "WinServicesLib 包"
 permalink: /tB/Packages/WinServicesLib/ITbService
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '20bcde18-c07c-4168-8f29-a88e55ecacd4'
-  PropagateID: '20bcde18-c07c-4168-8f29-a88e55ecacd4'
-  ReservedCode1: '2e1bd02b-b340-4647-a5ae-300950f320c5'
-  ReservedCode2: '2e1bd02b-b340-4647-a5ae-300950f320c5'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "20bcde18-c07c-4168-8f29-a88e55ecacd4"
+  PropagateID: "20bcde18-c07c-4168-8f29-a88e55ecacd4"
+  ReservedCode1: "2e1bd02b-b340-4647-a5ae-300950f320c5"
+  ReservedCode2: "2e1bd02b-b340-4647-a5ae-300950f320c5"
 ---
 
 # ITbService 接口
@@ -18,7 +18,7 @@ AIGC:
 
 - [**EntryPoint**](#entrypoint) -- 运行服务的实际工作。
 - [**StartupFailed**](#startupfailed) -- 当SCM握手在 [**EntryPoint**](#entrypoint) 可以运行之前失败时调用。
-- [**ChangeState**](#changestate) -- 当SCM传递控制代码（*Stop*、*Pause*、*Continue*、…）时调用。
+- [**ChangeState**](#changestate) -- 当SCM传递控制代码（_Stop_、_Pause_、_Continue_、…）时调用。
 
 包的 [**ServiceCreator**](/official/Reference/WinServicesLib/ServiceCreator)`(Of T)` 工厂为每次服务启动创建一个实例；调度器跳板在服务的整个生命周期内持有该实例，并将三个生命周期子过程路由到它。
 
@@ -57,7 +57,7 @@ Class MyService
 End Class
 ```
 
-::: important
+::: warning
 [**EntryPoint**](#entrypoint) 运行在**服务线程**上。[**ChangeState**](#changestate) 运行在**调度器线程**（EXE的主线程）上。两个方法并发执行，必须通过类上的共享 `Public` 标志进行协调——参见包概述上的[双线程分离](/official/Reference/WinServicesLib/#two-thread-split)。
 :::
 
@@ -67,21 +67,21 @@ End Class
 
 当控制代码传递给服务时，由SCM调度器线程调用。
 
-语法：*service*.**ChangeState** *ServiceManager*, *dwControl*, *dwEventType*, *lpEventData*
+语法：_service_.**ChangeState** _ServiceManager_, _dwControl_, _dwEventType_, _lpEventData_
 
-*ServiceManager*
+_ServiceManager_
 : 此服务的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)——与传递给 [**EntryPoint**](#entrypoint) 的实例相同。实现在其上调用 [**ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 以确认待处理的转换。
 
-*dwControl*
+_dwControl_
 : 标识控制的 [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) 值。SCM可能传递的标准代码包括 [**vbServiceControlStop**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlStop)、[**vbServiceControlShutdown**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlShutdown)、[**vbServiceControlPause**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPause)、[**vbServiceControlContinue**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlContinue)、[**vbServiceControlInterrogate**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlInterrogate)，以及承载事件的代码（[**vbServiceControlSessionChange**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlSessionChange)、[**vbServiceControlPowerEvent**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPowerEvent)、[**vbServiceControlDeviceEvent**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlDeviceEvent)、[**vbServiceControlHardwareProfileChange**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlHardwareProfileChange)）。128--255范围内的用户定义代码也可以通过 [**Services.ControlService**](/official/Reference/WinServicesLib/Services#controlservice) 传递。
 
-*dwEventType*
+_dwEventType_
 : 包含具有子代码的代码的事件类型子代码的 **Long**。否则为 **0**。参见Microsoft的 `HandlerEx` 文档了解每个代码的解释。
 
-*lpEventData*
+_lpEventData_
 : 对于具有事件特定数据结构的代码，为指向该结构的 **LongPtr**。否则为 `vbNullPtr`。
 
-典型模式是 `Select Case dwControl` 处理服务关心的代码并忽略其余代码。服务至少需要处理 *Stop*：
+典型模式是 `Select Case dwControl` 处理服务关心的代码并忽略其余代码。服务至少需要处理 _Stop_：
 
 ```vb
 Select Case dwControl
@@ -99,9 +99,9 @@ End Select
 
 服务的主例程。在SCM握手完成且跳板已报告 [**vbServiceStatusStartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending) 后，由包的调度器跳板在SCM生成的服务线程上调用。
 
-语法：*service*.**EntryPoint** *ServiceManager*
+语法：_service_.**EntryPoint** _ServiceManager_
 
-*ServiceManager*
+_ServiceManager_
 : 此服务的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)。包含在 `Sub Main` 期间设置的配置以及SCM传入的运行时 [**LaunchArgs**](/official/Reference/WinServicesLib/ServiceManager#launchargs)。实现为其调用 [**ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 进行每个状态转换。
 
 **EntryPoint** 的主体是服务的实际工作。最低职责：
@@ -113,7 +113,7 @@ End Select
 
 **EntryPoint** 子过程返回后，服务线程退出，SCM将服务标记为已停止。
 
-::: important
+::: warning
 **EntryPoint** 运行在**服务线程**上，而非调度器线程。两个线程在服务生命周期内并发执行。实现类上的共享 `Public` 标志（`IsStopping`、`IsPaused`、…）协调从 [**ChangeState**](#changestate) 触发的状态变更。
 :::
 
@@ -121,9 +121,9 @@ End Select
 
 当SCM握手在 [**EntryPoint**](#entrypoint) 可以运行之前失败时调用。
 
-语法：*service*.**StartupFailed** *ServiceManager*
+语法：_service_.**StartupFailed** _ServiceManager_
 
-*ServiceManager*
+_ServiceManager_
 : 此服务的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)。
 
 此子过程在 `RegisterServiceCtrlHandlerExW` 返回零句柄时触发——通常是因为服务在SCM上下文之外启动，或SCM的 `RegisterServiceCtrlHandlerExW` 拒绝了注册。服务在此状态下没有SCM状态句柄，因此 [**ServiceManager.ReportStatus**](/official/Reference/WinServicesLib/ServiceManager#reportstatus) 不能从 **StartupFailed** 内部调用——调用它会引发运行时错误5。

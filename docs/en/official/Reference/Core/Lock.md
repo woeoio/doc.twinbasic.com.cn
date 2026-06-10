@@ -3,40 +3,42 @@ title: Lock, Unlock
 parent: Statements
 permalink: /tB/Core/Lock
 ---
+
 # Lock, Unlock
 
 Controls access by other processes to all or part of a file opened with the [**Open**](/en/official/Reference/Core/Open) statement.
 
 Syntax:
-- > **Lock** [ **#** ] *filenumber* **,** [ *recordrange* ]
-- > **Unlock** [ **#** ] *filenumber* **,** [ *recordrange* ]
 
-*filenumber*
+- > **Lock** [ **#** ] _filenumber_ **,** [ *recordrange* ]
+- > **Unlock** [ **#** ] _filenumber_ **,** [ *recordrange* ]
+
+_filenumber_
 : Any valid file number.
 
-*recordrange*
-: *optional* The range of records to lock or unlock. The *recordrange* settings are:
+_recordrange_
+: _optional_ The range of records to lock or unlock. The _recordrange_ settings are:
 
-  > *recnumber* \| [ *start* ] **To** *end*
+> _recnumber_ \| [ *start* ] **To** _end_
 
-  *recnumber*
-  : Record number (**Random** mode files) or byte number (**Binary** mode files) at which locking or unlocking begins.
+_recnumber_
+: Record number (**Random** mode files) or byte number (**Binary** mode files) at which locking or unlocking begins.
 
-  *start*
-  : Number of the first record or byte to lock or unlock.
+_start_
+: Number of the first record or byte to lock or unlock.
 
-  *end*
-  : Number of the last record or byte to lock or unlock.
+_end_
+: Number of the last record or byte to lock or unlock.
 
 The **Lock** and **Unlock** statements are used in environments where several processes might need access to the same file.
 
 **Lock** and **Unlock** statements are always used in pairs. The arguments to **Lock** and **Unlock** must match exactly.
 
-The first record or byte in a file is at position 1, the second record or byte is at position 2, and so on. When just one record is specified, only that record is locked or unlocked. When a range of records is specified and a starting record (*start*) is omitted, all records from the first record to the end of the range (*end*) are locked or unlocked. Using **Lock** without *recnumber* locks the entire file; using **Unlock** without *recnumber* unlocks the entire file.
+The first record or byte in a file is at position 1, the second record or byte is at position 2, and so on. When just one record is specified, only that record is locked or unlocked. When a range of records is specified and a starting record (_start_) is omitted, all records from the first record to the end of the range (_end_) are locked or unlocked. Using **Lock** without _recnumber_ locks the entire file; using **Unlock** without _recnumber_ unlocks the entire file.
 
-If the file has been opened for sequential input or output, **Lock** and **Unlock** affect the entire file, regardless of the range specified by *start* and *end*.
+If the file has been opened for sequential input or output, **Lock** and **Unlock** affect the entire file, regardless of the range specified by _start_ and _end_.
 
-::: important
+::: warning
 Be sure to remove all locks with an **Unlock** statement before closing a file or quitting the program. Failure to remove locks produces unpredictable results.
 :::
 

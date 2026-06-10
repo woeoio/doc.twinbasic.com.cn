@@ -3,13 +3,13 @@ title: CEF
 parent: Tutorials
 permalink: /Tutorials/CEF/
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '835b43e0-38ff-42ad-bbf6-de76ebd7dcbc'
-  PropagateID: '835b43e0-38ff-42ad-bbf6-de76ebd7dcbc'
-  ReservedCode1: '43df1a74-b557-4924-8dde-5109d9b80152'
-  ReservedCode2: '43df1a74-b557-4924-8dde-5109d9b80152'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "835b43e0-38ff-42ad-bbf6-de76ebd7dcbc"
+  PropagateID: "835b43e0-38ff-42ad-bbf6-de76ebd7dcbc"
+  ReservedCode1: "43df1a74-b557-4924-8dde-5109d9b80152"
+  ReservedCode2: "43df1a74-b557-4924-8dde-5109d9b80152"
 ---
 
 # CEF
@@ -28,7 +28,7 @@ AIGC:
 
 后四个教程的完整示例代码以*示例1b——Chromium Embedded Framework示例*的形式在新项目对话框中提供，几乎逐功能镜像*示例1a——WebView2示例*。
 
-::: important
+::: warning
 CEF包目前处于**BETA**阶段。[**WebView2**](/official/Reference/WebView2/WebView2/)上的几个功能尚未暴露——参见参考的[WebView2对等](/official/Reference/CEF/#webview2-parity)部分了解当前差距列表。
 :::
 

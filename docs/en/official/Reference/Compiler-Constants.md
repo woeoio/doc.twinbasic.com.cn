@@ -12,7 +12,7 @@ This is a guide to the built in compiler constants in twinBASIC. It includes the
 **Purpose:** Indicates a 16-bit Windows compatible platform.\
 **Value:** Always 0 (False); 16 bit Windows is not supported.
 
-## `Win32` 
+## `Win32`
 
 **Purpose:** Indicates a 32bit compatible Windows platform\
 **Value:** Always 1 (True) on supported Windows platforms, for both 32bit and 64bit.
@@ -33,6 +33,7 @@ This is a guide to the built in compiler constants in twinBASIC. It includes the
 **Value:** Always 1 (True).
 
 ## `MAC`
+
 **Purpose:** Indicates running on a MacOS platform.\
 **Value:** Always 0 (False). Mac is not currently supported, although this will change in the future.
 
@@ -47,13 +48,13 @@ This is a guide to the built in compiler constants in twinBASIC. It includes the
 **Value:** Currently this is the same as the "BETA" number, e.g. for Beta 610 it will have a value of 610.
 
 ## `TWINBASIC_BUILD_TYPE`
+
 **Purpose:** Allows conditional compilation based on whether the project is an exe, dll, or ocx.\
 **Value:** A `String` that can be one of "Standard EXE", "Standard DLL", "ActiveX DLL", or "ActiveX Control", determined by the "Build Type" option in Project Settings.
 
-
 # Usage
 
-Usage of these follows the standard syntax of using a hashtag before the standard `If/Else/ElseIf` conditionals. For example, to differentiate between 32bit and 64bit VBA vs 64bit twinBASIC, 
+Usage of these follows the standard syntax of using a hashtag before the standard `If/Else/ElseIf` conditionals. For example, to differentiate between 32bit and 64bit VBA vs 64bit twinBASIC,
 
 ```vb
 #If VBA7 Then
@@ -95,7 +96,7 @@ Or more simply, to determine whether to use `PtrSafe` then `DeclareWide` or othe
 #End If
 ```
 
-::: important
+::: warning
 Reminder: Compiler Constants are not `Boolean` values, so you shouuldn't use syntax like `#If Not Win64 Then` as the result may not be desired, for instance that example evaluates to `True` for both 32bit and 64bit modes when you likely used it expecting `False` under 64bit to use 32bit-only code.\
 :::
 If you wish to treat these as `Boolean`, you can use the `CBool()` function, e.g. `#If Not CBool(Win64) Then`.
@@ -110,7 +111,8 @@ For example, in 32bit mode:\
 Then switching to 64bit mode:\
 ![image](Images/TYizrRW.png)
 
-
 ---
-*VB6, VBA, VBA6, and VBA7 are trademarks of the Microsoft Corporation.*\
-*MacOS is a trademark of Apple, Inc.*
+
+_VB6, VBA, VBA6, and VBA7 are trademarks of the Microsoft Corporation._\
+_MacOS is a trademark of Apple, Inc._
+

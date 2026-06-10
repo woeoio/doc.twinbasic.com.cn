@@ -10,15 +10,15 @@ Executes a series of statements on a single object or a user-defined type.
 
 Syntax:
 
-> **With** *object*  
+> **With** _object_  
 > &nbsp;&nbsp;&nbsp;&nbsp;[ *statements* ]  
 > **End With**
 
-*object*
+_object_
 : Name of an object or a user-defined type.
 
-*statements*
-: *optional* One or more statements to be executed on *object*.
+_statements_
+: _optional_ One or more statements to be executed on _object_.
 
 The **With** statement permits a series of statements on a specified object without requalifying the name of the object. For example, to change a number of different properties on a single object, place the property assignment statements within the **With** control structure, referring to the object once instead of referring to it with each property assignment.
 
@@ -33,12 +33,12 @@ End With
 ```
 
 ::: info
-Once a **With** block is entered, *object* can't be changed. As a result, a single **With** statement cannot affect a number of different objects.
+Once a **With** block is entered, _object_ can't be changed. As a result, a single **With** statement cannot affect a number of different objects.
 :::
 
 **With** statements can be nested by placing one **With** block within another. However, because members of outer **With** blocks are masked within the inner **With** blocks, a fully qualified object reference must be supplied in an inner **With** block to any member of an object in an outer **With** block.
 
-::: important
+::: warning
 Jumping into or out of **With** blocks is not recommended. If statements in a **With** block are executed, but either the **With** or **End With** statement is not executed, a temporary variable containing a reference to the object remains in memory until the procedure exits.
 :::
 

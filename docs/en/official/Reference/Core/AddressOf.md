@@ -3,27 +3,29 @@ title: AddressOf
 parent: Operators
 permalink: /tB/Core/AddressOf
 ---
+
 # AddressOf operator
 
 A unary operator that returns a function-pointer reference to its operand.
 
 Syntax:
-> **AddressOf** *procedurename*  
-> **AddressOf** *instance*.*procedurename*     *(twinBASIC)*
 
-*procedurename*
+> **AddressOf** _procedurename_  
+> **AddressOf** _instance_._procedurename_ _(twinBASIC)_
+
+_procedurename_
 : The name of a [**Sub**](/en/official/Reference/Core/Sub), [**Function**](/en/official/Reference/Core/Function), or [**Property**](/en/official/Reference/Core/Property) procedure whose address is taken.
 
-*instance*
-: *optional* (twinBASIC) An object reference whose member *procedurename* is targeted. The resulting pointer is bound to *instance*, so calling through it invokes the method on that specific object.
+_instance_
+: _optional_ (twinBASIC) An object reference whose member _procedurename_ is targeted. The resulting pointer is bound to _instance_, so calling through it invokes the method on that specific object.
 
-When a procedure name appears in an argument list, normally the procedure is *called* and the procedure's return value is passed. **AddressOf** suppresses the call and substitutes the procedure's address instead. The most common use is to install a callback in a Windows API --- the API then invokes the procedure from outside the project's code, in a process known as a *callback*.
+When a procedure name appears in an argument list, normally the procedure is _called_ and the procedure's return value is passed. **AddressOf** suppresses the call and substitutes the procedure's address instead. The most common use is to install a callback in a Windows API --- the API then invokes the procedure from outside the project's code, in a process known as a _callback_.
 
 The value **AddressOf** produces is bit-compatible with **LongPtr**, so it can be passed wherever a function pointer is expected --- including legacy [**Declare**](/en/official/Reference/Core/Declare) parameters typed **As Long** or **As LongPtr**. When the destination type is a [**Delegate**](/en/official/Reference/Core/Delegate), the compiler additionally checks that the operand's signature matches the delegate's.
 
-In classic VBA, *procedurename* must name a procedure in a standard [**Module**](/en/official/Reference/Core/Module) of the current project; the destination parameter must be typed **As Long**; and the resulting pointer can only be invoked by code outside Basic (e.g. a DLL). twinBASIC lifts each of these restrictions --- see [twinBASIC enhancements](#twinbasic-enhancements) below.
+In classic VBA, _procedurename_ must name a procedure in a standard [**Module**](/en/official/Reference/Core/Module) of the current project; the destination parameter must be typed **As Long**; and the resulting pointer can only be invoked by code outside Basic (e.g. a DLL). twinBASIC lifts each of these restrictions --- see [twinBASIC enhancements](#twinbasic-enhancements) below.
 
-::: important
+::: warning
 Errors raised inside a callback cannot propagate back to the foreign caller --- the API runs outside the project's error-handling chain. Place `On Error Resume Next` (or an explicit handler) at the top of any procedure used as an **AddressOf** target.
 :::
 
@@ -51,7 +53,7 @@ Private Sub Demo()
 End Sub
 ```
 
-Installing a callback in a Win32 API. `EnumWindows` invokes *EnumProc* once per top-level window:
+Installing a callback in a Win32 API. `EnumWindows` invokes _EnumProc_ once per top-level window:
 
 ```vb
 Public Declare PtrSafe Function EnumWindows Lib "user32" ( _

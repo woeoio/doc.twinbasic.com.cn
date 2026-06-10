@@ -3,13 +3,13 @@ title: Services
 parent: "WinServicesLib 包"
 permalink: /tB/Packages/WinServicesLib/Services
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '047a3210-3da5-4881-ad2f-6633379f2f78'
-  PropagateID: '047a3210-3da5-4881-ad2f-6633379f2f78'
-  ReservedCode1: '9d1a672f-f23c-49c4-b724-637ca7c35b38'
-  ReservedCode2: '9d1a672f-f23c-49c4-b724-637ca7c35b38'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "047a3210-3da5-4881-ad2f-6633379f2f78"
+  PropagateID: "047a3210-3da5-4881-ad2f-6633379f2f78"
+  ReservedCode1: "9d1a672f-f23c-49c4-b724-637ca7c35b38"
+  ReservedCode2: "9d1a672f-f23c-49c4-b724-637ca7c35b38"
 ---
 
 # Services 类
@@ -58,13 +58,13 @@ End With
 
 向运行中的服务发送SCM控制代码。
 
-语法：**Services.ControlService** *ServiceName*, *ControlCode*
+语法：**Services.ControlService** _ServiceName_, _ControlCode_
 
-*ServiceName*
-: *必需* 命名已安装服务的 **String**。
+_ServiceName_
+: _必需_ 命名已安装服务的 **String**。
 
-*ControlCode*
-: *必需* [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) 值——通常为 [**vbServiceControlStop**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlStop)、[**vbServiceControlPause**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPause)、[**vbServiceControlContinue**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlContinue) 或 [**vbServiceControlInterrogate**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlInterrogate)。128--255范围内的用户定义代码也被接受。
+_ControlCode_
+: _必需_ [**ServiceControlCodeConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) 值——通常为 [**vbServiceControlStop**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlStop)、[**vbServiceControlPause**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPause)、[**vbServiceControlContinue**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlContinue) 或 [**vbServiceControlInterrogate**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlInterrogate)。128--255范围内的用户定义代码也被接受。
 
 该方法打开SCM，请求所选控制代码所需的最低权限（`SERVICE_STOP`、`SERVICE_PAUSE_CONTINUE`、`SERVICE_INTERROGATE` 或 `SERVICE_USER_DEFINED_CONTROL`），打开服务，调用 `ControlServiceExW`，并关闭句柄。对于 [**vbServiceControlStop**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlStop)，原因代码填充为 `SERVICE_STOP_REASON_FLAG_PLANNED | SERVICE_STOP_REASON_MAJOR_NONE | SERVICE_STOP_REASON_MINOR_NONE`（"计划停止，无特定原因"）。自定义原因代码目前未暴露。
 
@@ -74,12 +74,12 @@ End With
 
 按 [**Name**](/official/Reference/WinServicesLib/ServiceManager#name) 查找先前配置的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)。
 
-语法：**Services.GetConfiguredService**( *Name* ) **As** [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)
+语法：**Services.GetConfiguredService**( _Name_ ) **As** [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager)
 
-*Name*
-: *必需* 与通过 [**ConfigureNew**](#configurenew) 创建的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 实例之一的 [**Name**](/official/Reference/WinServicesLib/ServiceManager#name) 匹配的 **String**。
+_Name_
+: _必需_ 与通过 [**ConfigureNew**](#configurenew) 创建的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 实例之一的 [**Name**](/official/Reference/WinServicesLib/ServiceManager#name) 匹配的 **String**。
 
-如果没有配置的服务具有该名称，引发运行时错误5 *"service not found"*。典型用途在 `Sub Main` 的交互/安装分支中，UI按钮需要操作单个已配置服务：
+如果没有配置的服务具有该名称，引发运行时错误5 _"service not found"_。典型用途在 `Sub Main` 的交互/安装分支中，UI按钮需要操作单个已配置服务：
 
 ```vb
 Private Sub btnInstallA_Click()
@@ -96,7 +96,7 @@ End Sub
 
 语法：**Services.InstallAll**
 
-::: important
+::: warning
 **InstallAll** 在 `HKEY_LOCAL_MACHINE` 下写入注册表条目，需要管理员权限。通常的做法是从提升的安装程序中调用一次。
 :::
 
@@ -106,15 +106,15 @@ End Sub
 
 按名称启动已安装的服务，并可选地将启动参数传递到其 [**ServiceManager.LaunchArgs**](/official/Reference/WinServicesLib/ServiceManager#launchargs) 字段。
 
-语法：**Services.LaunchService** *ServiceName* [, *LaunchArgs* ... ]
+语法：**Services.LaunchService** _ServiceName_ [, *LaunchArgs* ... ]
 
-*ServiceName*
-: *必需* 命名已安装服务的 **String**。
+_ServiceName_
+: _必需_ 命名已安装服务的 **String**。
 
-*LaunchArgs*
-: *可选* 通过 `StartServiceW` 转发给服务的 `ParamArray` 值。每个值转换为 **String**；服务端的 [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 通过 [**ServiceManager.LaunchArgs**](/official/Reference/WinServicesLib/ServiceManager#launchargs) 读取它们。
+_LaunchArgs_
+: _可选_ 通过 `StartServiceW` 转发给服务的 `ParamArray` 值。每个值转换为 **String**；服务端的 [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 通过 [**ServiceManager.LaunchArgs**](/official/Reference/WinServicesLib/ServiceManager#launchargs) 读取它们。
 
-该方法以 `SC_MANAGER_CONNECT` 打开SCM，以 `SERVICE_START` 打开服务，调用 `StartServiceW`。如果无法打开SCM、服务未安装、调用者缺少 *Start* 权限或 `StartServiceW` 失败（通常因为服务已在运行），引发运行时错误5。
+该方法以 `SC_MANAGER_CONNECT` 打开SCM，以 `SERVICE_START` 打开服务，调用 `StartServiceW`。如果无法打开SCM、服务未安装、调用者缺少 _Start_ 权限或 `StartServiceW` 失败（通常因为服务已在运行），引发运行时错误5。
 
 启动参数机制通常用于以共享密钥控制启动：
 
@@ -139,10 +139,10 @@ End Sub
 
 返回已安装服务的全新 [**ServiceState**](/official/Reference/WinServicesLib/ServiceState) 快照。
 
-语法：**Services.QueryStateOfService**( *ServiceName* ) **As** [**ServiceState**](/official/Reference/WinServicesLib/ServiceState)
+语法：**Services.QueryStateOfService**( _ServiceName_ ) **As** [**ServiceState**](/official/Reference/WinServicesLib/ServiceState)
 
-*ServiceName*
-: *必需* 命名已安装服务的 **String**。
+_ServiceName_
+: _必需_ 命名已安装服务的 **String**。
 
 如果服务未安装或无法打开SCM，引发运行时错误5。返回的 [**ServiceState**](/official/Reference/WinServicesLib/ServiceState) 是一次性快照；要随时间监控服务状态，在每个采样间隔再次调用 **QueryStateOfService**。
 
@@ -166,9 +166,9 @@ End Sub
 
 语法：**Services.RunServiceDispatcher**
 
-内部从每个已配置的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 构建 `SERVICE_TABLE_ENTRYW` 数组并调用 `StartServiceCtrlDispatcherW`。SCM为用户（或 *Start* 配置）想要启动的每个服务生成一个新线程，并在该线程上调用包的调度器跳板；跳板报告 `StartPending`，可选地以STA模式初始化COM（由 [**ServiceManager.AutoInitializeCOM**](/official/Reference/WinServicesLib/ServiceManager#autoinitializecom) 控制），然后调用用户的 [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint)。
+内部从每个已配置的 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 构建 `SERVICE_TABLE_ENTRYW` 数组并调用 `StartServiceCtrlDispatcherW`。SCM为用户（或 _Start_ 配置）想要启动的每个服务生成一个新线程，并在该线程上调用包的调度器跳板；跳板报告 `StartPending`，可选地以STA模式初始化COM（由 [**ServiceManager.AutoInitializeCOM**](/official/Reference/WinServicesLib/ServiceManager#autoinitializecom) 控制），然后调用用户的 [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint)。
 
-如果 `StartServiceCtrlDispatcherW` 返回零，引发运行时错误5 *"Unable to start the service dispatcher"*。通常原因是EXE被正常启动而非由SCM启动——调度器仅在进程是服务宿主时工作。`Sub Main` 中常规的 `If InStr(Command, "-startService") > 0 Then` 门控可避免此错误。
+如果 `StartServiceCtrlDispatcherW` 返回零，引发运行时错误5 _"Unable to start the service dispatcher"_。通常原因是EXE被正常启动而非由SCM启动——调度器仅在进程是服务宿主时工作。`Sub Main` 中常规的 `If InStr(Command, "-startService") > 0 Then` 门控可避免此错误。
 
 ### UninstallAll
 
@@ -176,17 +176,17 @@ End Sub
 
 语法：**Services.UninstallAll**
 
-::: important
+::: warning
 **UninstallAll** 在 `HKEY_LOCAL_MACHINE` 下写入注册表条目，需要管理员权限。每服务错误会中止批量操作；失败前已卸载的服务保持已卸载状态。
 :::
 
 ## 枚举器
 
-### _NewEnum
+### \_NewEnum
 
 提供跨项目已配置的每个 [**ServiceManager**](/official/Reference/WinServicesLib/ServiceManager) 的 `For Each` 支持。
 
-语法：**For Each** *manager* **In Services**
+语法：**For Each** _manager_ **In Services**
 
 ```vb
 Dim manager As ServiceManager

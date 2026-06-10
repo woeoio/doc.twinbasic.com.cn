@@ -3,13 +3,13 @@ title: HtmlElementProperties
 parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/HtmlElementProperties
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'de36cc4b-59ac-4069-b1e3-c8edb78576f0'
-  PropagateID: 'de36cc4b-59ac-4069-b1e3-c8edb78576f0'
-  ReservedCode1: 'dbbfa970-f022-4aff-b7cf-4108b8fddb9a'
-  ReservedCode2: 'dbbfa970-f022-4aff-b7cf-4108b8fddb9a'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "de36cc4b-59ac-4069-b1e3-c8edb78576f0"
+  PropagateID: "de36cc4b-59ac-4069-b1e3-c8edb78576f0"
+  ReservedCode1: "dbbfa970-f022-4aff-b7cf-4108b8fddb9a"
+  ReservedCode2: "dbbfa970-f022-4aff-b7cf-4108b8fddb9a"
 ---
 
 # HtmlElementProperties 类
@@ -27,7 +27,7 @@ End With
 
 简写在运行时解析为针对底层 DOM 元素的 `Item("name")` 查找链——参见包概述中的[动态 DOM 属性解析](/official/Reference/tbIDE/#动态-dom-属性解析)。
 
-::: important
+::: warning
 此接口是 **`[COMExtensible(True)]`**。属性名在运行时根据活动 DOM 元素解析，而非在接口上静态声明。编译器不验证名称——拼写错误（例如 `.innerTxt = "..."` 而非 `.innerText = "..."`）会静默失败或在运行时抛出异常。可接受的属性集是**底层标签的每个 DOM 属性**，加上任何自定义控件扩展；参考文档不逐一列举。
 :::
 
@@ -41,7 +41,7 @@ End With
 
 按名称查找属性。返回一个 [**HtmlElementProperty**](/official/Reference/tbIDE/HtmlElementProperty)，其中包含属性的值加上用于进一步下钻的嵌套 [**Properties**](/official/Reference/tbIDE/HtmlElementProperty#properties)。
 
-语法：*properties*( *DomPropertyName* ) **As** [**HtmlElementProperty**](/official/Reference/tbIDE/HtmlElementProperty)
+语法：_properties_( _DomPropertyName_ ) **As** [**HtmlElementProperty**](/official/Reference/tbIDE/HtmlElementProperty)
 
-*DomPropertyName*
-: *必需* 属性名称。**String**。标准 DOM 属性名、CSS 样式属性名（在 `style` 下查找时）或自定义控件属性名——全部转发到 IDE 的工具窗口渲染器。
+_DomPropertyName_
+: _必需_ 属性名称。**String**。标准 DOM 属性名、CSS 样式属性名（在 `style` 下查找时）或自定义控件属性名——全部转发到 IDE 的工具窗口渲染器。

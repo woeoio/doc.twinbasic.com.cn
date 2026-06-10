@@ -3,13 +3,13 @@ title: "Input #"
 parent: Statements
 permalink: /tB/Core/Input
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '00052947-9d8b-46a7-b382-593ff82a71a6'
-  PropagateID: '00052947-9d8b-46a7-b382-593ff82a71a6'
-  ReservedCode1: 'a237abb8-f594-4d2c-956e-b27446843f05'
-  ReservedCode2: 'a237abb8-f594-4d2c-956e-b27446843f05'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "00052947-9d8b-46a7-b382-593ff82a71a6"
+  PropagateID: "00052947-9d8b-46a7-b382-593ff82a71a6"
+  ReservedCode1: "a237abb8-f594-4d2c-956e-b27446843f05"
+  ReservedCode2: "a237abb8-f594-4d2c-956e-b27446843f05"
 ---
 
 # Input # 语句
@@ -17,37 +17,38 @@ AIGC:
 从打开的顺序文件中读取数据并将数据赋值给变量。
 
 ::: info
-本页记录 **Input #** *语句*。不相关的 [**Input** 函数](/official/Reference/VBA/FileSystem/Input) 从任何打开的文件读取固定数量的字符。
+本页记录 **Input #** _语句_。不相关的 [**Input** 函数](/official/Reference/VBA/FileSystem/Input) 从任何打开的文件读取固定数量的字符。
 :::
 
 语法：
-> **Input** **#** *filenumber* **,** *varlist*
 
-*filenumber*
+> **Input** **#** _filenumber_ **,** _varlist_
+
+_filenumber_
 : 任何有效的文件号。
 
-*varlist*
-: 逗号分隔的变量列表，从文件读取的值赋给这些变量。*varlist* 不能包含数组变量或对象变量。但描述数组元素或用户自定义类型的变量可以使用。
+_varlist_
+: 逗号分隔的变量列表，从文件读取的值赋给这些变量。_varlist_ 不能包含数组变量或对象变量。但描述数组元素或用户自定义类型的变量可以使用。
 
 用 **Input #** 读取的数据通常用 [**Write #**](/official/Reference/Core/Write) 写入文件。此语句仅用于以 **Input** 或 **Binary** 模式打开的文件。读取时，标准字符串或数值数据不经修改赋值给变量。
 
 下表说明了其他输入数据的处理方式：
 
-| 数据 | 赋给变量的值 |
-|:-----|:-----|
-| 分隔逗号或空行 | **Empty** |
-| `#NULL#` | **Null** |
-| `#TRUE#` 或 `#FALSE#` | **True** 或 **False** |
-| `#`*yyyy-mm-dd hh:mm:ss*`#` | 表达式表示的日期和/或时间 |
-| `#ERROR `*errornumber*`#` | *errornumber*（变量为标记为错误的 **Variant**） |
+| 数据                        | 赋给变量的值                                    |
+| :-------------------------- | :---------------------------------------------- |
+| 分隔逗号或空行              | **Empty**                                       |
+| `#NULL#`                    | **Null**                                        |
+| `#TRUE#` 或 `#FALSE#`       | **True** 或 **False**                           |
+| `#`_yyyy-mm-dd hh:mm:ss_`#` | 表达式表示的日期和/或时间                       |
+| `#ERROR `_errornumber_`#`   | _errornumber_（变量为标记为错误的 **Variant**） |
 
 输入数据中的双引号（`"`）被忽略。
 
-::: important
+::: warning
 不要为 **Input #** 语句编写包含嵌入引号的字符串（例如 `"1,2""X"`）；**Input #** 会将此字符串解析为两个完整独立的字符串。
 :::
 
-文件中的数据项必须以 *varlist* 中变量的相同顺序出现，并与相同数据类型的变量匹配。如果变量是数值类型而数据不是数值类型，则将零值赋给变量。
+文件中的数据项必须以 _varlist_ 中变量的相同顺序出现，并与相同数据类型的变量匹配。如果变量是数值类型而数据不是数值类型，则将零值赋给变量。
 
 如果在读取数据项时到达文件末尾，输入终止并发生错误。
 

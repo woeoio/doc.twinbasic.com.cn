@@ -24,10 +24,9 @@ Private Sub WalkAllFiles(ByVal folder As Folder)
 End Sub
 ```
 
-::: important
+::: warning
 The twinBASIC IDE is multi-threaded. The same folder can change while an addin holds a reference to it --- files arrive, files disappear, indices renumber. The supported way to traverse a folder is **For Each**; index-based access through [**Count**](#count) / [**Item**](#item) races against the IDE's own threads and will sometimes miss or duplicate entries. Always prefer **For Each** for traversal.
 :::
-
 
 ## Properties
 
@@ -35,7 +34,7 @@ The twinBASIC IDE is multi-threaded. The same folder can change while an addin h
 
 Number of items currently in the folder. **Long**, read-only.
 
-::: important
+::: warning
 The value can change between two reads --- the IDE is multi-threaded. **Do not** use this as a `For i = 0 To Count - 1` loop bound; use **For Each** instead.
 :::
 
@@ -43,7 +42,7 @@ The value can change between two reads --- the IDE is multi-threaded. **Do not**
 
 **True** if this folder is the project's special `Packages` folder (the one that contains every referenced package's source tree). **Boolean**, read-only.
 
-Useful when traversing the project for source-search purposes --- an addin that searches user code will usually want to *skip* the package sources:
+Useful when traversing the project for source-search purposes --- an addin that searches user code will usually want to _skip_ the package sources:
 
 ```vb
 If folder.IsPackagesFolder And Not searchInsidePackages Then Exit Sub
@@ -53,11 +52,11 @@ If folder.IsPackagesFolder And Not searchInsidePackages Then Exit Sub
 
 Indexed or named access to a child item. **DefaultMember** --- so `folder(0)` is equivalent to `folder.Item(0)`, and `folder("MainModule.twin")` is equivalent to `folder.Item("MainModule.twin")`.
 
-Syntax: *folder*( *IndexOrName* ) **As** [**FileSystemItem**](/en/official/Reference/tbIDE/FileSystemItem)
+Syntax: _folder_( _IndexOrName_ ) **As** [**FileSystemItem**](/en/official/Reference/tbIDE/FileSystemItem)
 
-*IndexOrName*
+_IndexOrName_
 : A **Variant** --- either a zero-based **Long** index or a **String** child name.
 
-::: important
+::: warning
 Numeric indices race against the IDE's own threads --- the item at index `n` may have changed identity by the time the call returns. Named lookup is safer; **For Each** traversal is safer still.
 :::

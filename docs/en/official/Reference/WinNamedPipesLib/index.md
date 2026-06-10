@@ -6,6 +6,7 @@ permalink: /tB/Packages/WinNamedPipesLib/
 ---
 
 # WinNamedPipesLib Package
+
 The **WinNamedPipesLib** built-in package exposes Windows named pipes as twinBASIC objects with an asynchronous, IOCP-driven I/O model. One process hosts a [**NamedPipeServer**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer); other processes use a [**NamedPipeClientManager**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager) to open one or more [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) instances to it. Writes complete in the background; messages and connection-lifecycle changes are delivered as events.
 
 The package is a built-in package shipped with twinBASIC. Add it through Project → References (**Ctrl-T**) → Available Packages.
@@ -14,10 +15,10 @@ The package is a built-in package shipped with twinBASIC. Add it through Project
 
 Two halves, each one user-instantiated coordinator class plus one per-connection class:
 
-| Side    | Coordinator                                            | Per-connection                                                 |
-|---------|--------------------------------------------------------|----------------------------------------------------------------|
-| Server  | [**NamedPipeServer**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer)                 | [**NamedPipeServerConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection)     |
-| Client  | [**NamedPipeClientManager**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager)   | [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection)     |
+| Side   | Coordinator                                                                                  | Per-connection                                                                                     |
+| ------ | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Server | [**NamedPipeServer**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer)               | [**NamedPipeServerConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) |
+| Client | [**NamedPipeClientManager**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager) | [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) |
 
 The server publishes a name (`PipeName = "MyService"` → Win32 path `\\.\pipe\MyService`) and returns a [**NamedPipeServerConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) for every client that connects. The client manager dials by the same name (with [**Connect**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect)) and returns a [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection). The two ends are symmetric thereafter --- both expose `AsyncRead`, `AsyncWrite`, and `AsyncClose` with the same signatures.
 
@@ -35,7 +36,7 @@ The flag must be set before [**Start**](/en/official/Reference/WinNamedPipesLib/
 
 Windows services hosted through the [**WinServicesLib**](/en/official/Reference/WinServicesLib/) package run into the message-loop dependency described above when they also host a [**NamedPipeServer**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer): the [**ITbService.EntryPoint**](/en/official/Reference/WinServicesLib/ITbService#entrypoint) thread is not pumping messages by default, so the marshalled-event delivery has nothing to dispatch through. The package provides [**NamedPipeServer.ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) / [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) for exactly this case.
 
-The canonical pattern: [**ITbService.EntryPoint**](/en/official/Reference/WinServicesLib/ITbService#entrypoint) opens the server, transitions the service to `Running`, blocks inside [**ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter), and only leaves the loop when [**ITbService.ChangeState**](/en/official/Reference/WinServicesLib/ITbService#changestate) --- running on the *other* (dispatcher) thread --- calls [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) on the same server instance.
+The canonical pattern: [**ITbService.EntryPoint**](/en/official/Reference/WinServicesLib/ITbService#entrypoint) opens the server, transitions the service to `Running`, blocks inside [**ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter), and only leaves the loop when [**ITbService.ChangeState**](/en/official/Reference/WinServicesLib/ITbService#changestate) --- running on the _other_ (dispatcher) thread --- calls [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) on the same server instance.
 
 ```vb
 ' On the service-entry-point thread:
@@ -61,7 +62,7 @@ End Select
 Three facts worth pulling out:
 
 - The service entry-point and the control-code handler run on **different threads**. The shared [**NamedPipeServer**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer) member field is what they coordinate through; the handler calls [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) on it to wake the entry-point.
-- [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) is the only way to exit [**ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) cleanly. There is no timeout and no second blocking primitive. Services that need to react to other wake-up sources (e.g. a *Pause* control code) set a shared `Public` flag *then* call [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) to break out, inspect the flag, and re-enter the loop or proceed to shutdown.
+- [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) is the only way to exit [**ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) cleanly. There is no timeout and no second blocking primitive. Services that need to react to other wake-up sources (e.g. a _Pause_ control code) set a shared `Public` flag _then_ call [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) to break out, inspect the flag, and re-enter the loop or proceed to shutdown.
 - [**FreeThreadingEvents**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#freethreadingevents) = **False** (the default) is **required** for this pattern. Setting it to **True** would deliver events directly on the IOCP worker thread and bypass the manual loop entirely -- the pipe still works, but `ManualMessageLoopEnter` / `Leave` become irrelevant. Pick one mode and stay with it.
 
 The non-service equivalent --- hosting the same [**NamedPipeServer**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer) inside a Form --- is simpler: the Form's regular message loop pumps the marshalling window automatically, so the Form calls [**Start**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#start) in `Form_Load`, [**Stop**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#stop) in `Form_Unload`, and never touches [**ManualMessageLoopEnter**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) / [**ManualMessageLoopLeave**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave). Either pattern works; the service-host pattern is the one that needs the manual pump.
@@ -72,7 +73,7 @@ When [**ContinuouslyReadFromPipe**](/en/official/Reference/WinNamedPipesLib/Name
 
 ## The cookie correlation pattern
 
-Every [**AsyncRead**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) and [**AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) accepts an optional *Cookie* of type **Variant**. Whatever value the caller passes in is round-tripped through the IOCP completion and re-emitted as the *Cookie* parameter of the matching [**ClientMessageReceived**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagereceived) / [**ClientMessageSent**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagesent) (or client-side [**MessageReceived**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) / [**MessageSent**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagesent)) event. Use this to correlate event callbacks with the calls that initiated them --- a per-request sequence number, a callback object, a key into a pending-replies dictionary.
+Every [**AsyncRead**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) and [**AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) accepts an optional _Cookie_ of type **Variant**. Whatever value the caller passes in is round-tripped through the IOCP completion and re-emitted as the _Cookie_ parameter of the matching [**ClientMessageReceived**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagereceived) / [**ClientMessageSent**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagesent) (or client-side [**MessageReceived**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) / [**MessageSent**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagesent)) event. Use this to correlate event callbacks with the calls that initiated them --- a per-request sequence number, a callback object, a key into a pending-replies dictionary.
 
 ```vb
 Private pending As New Collection
@@ -92,9 +93,9 @@ End Sub
 
 ## Working with `Data() As Byte` in events
 
-The *Data* parameter on [**ClientMessageReceived**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagereceived) and [**MessageReceived**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) is **not** a normal heap-allocated **Byte** array. The package constructs a custom `SAFEARRAY` whose backing memory points at the IOCP read buffer, then clears the array pointer at the end of the event handler so the buffer can be recycled. The values are valid *only* while the handler is on the stack.
+The _Data_ parameter on [**ClientMessageReceived**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagereceived) and [**MessageReceived**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) is **not** a normal heap-allocated **Byte** array. The package constructs a custom `SAFEARRAY` whose backing memory points at the IOCP read buffer, then clears the array pointer at the end of the event handler so the buffer can be recycled. The values are valid _only_ while the handler is on the stack.
 
-::: important
+::: warning
 Copy the bytes out before the event handler returns if they are needed later. Storing the array reference in a module-level variable, a **Collection**, or a class field leaves a dangling pointer once the IOCP loop reuses the buffer for the next message.
 :::
 
@@ -112,7 +113,7 @@ For a text payload, `StrConv(Data, vbUnicode)` (UTF-8) or `CStr` over a `vbUnico
 
 The package transports raw bytes; it is agnostic about what is inside them. For non-trivial protocols the recommended carrier is [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/) --- twinBASIC's built-in keyed-property serialiser. Two reasons:
 
-1. **`PropertyBag.Contents` deep-copies the bytes**, which is the simplest answer to the transient-`Data()` lifetime caveat above. Assigning *Data* to a fresh **PropertyBag**'s **Contents** captures the buffer in one step; the copy is safe to retain past the event handler.
+1. **`PropertyBag.Contents` deep-copies the bytes**, which is the simplest answer to the transient-`Data()` lifetime caveat above. Assigning _Data_ to a fresh **PropertyBag**'s **Contents** captures the buffer in one step; the copy is safe to retain past the event handler.
 2. **`PropertyBag` provides typed multi-field payloads** without the consumer having to design a wire protocol. Both sides agree on property names (e.g. `"CommandID"`, `"ResponseCommandID"`, `"Data"`) and **PropertyBag** handles the byte-level encoding.
 
 ```vb
@@ -139,8 +140,8 @@ Nothing in the package mandates **PropertyBag** --- raw `Byte()` works too, and 
 
 ## Closing a client connection
 
-::: important
-The **`_README.txt`** states: *"you MUST call **AsyncClose** on the client side, otherwise the connection is left alive when the object goes out of scope"*.
+::: warning
+The **`_README.txt`** states: _"you MUST call **AsyncClose** on the client side, otherwise the connection is left alive when the object goes out of scope"_.
 :::
 
 Either let the [**NamedPipeClientConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) object terminate cleanly through its `Class_Terminate` (which calls [**AsyncClose**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncclose) automatically) **or** call [**AsyncClose**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncclose) explicitly before dropping the last reference. Holding a reference forever --- for example in a long-lived module-level **Collection** --- without calling [**AsyncClose**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncclose) keeps the underlying pipe handle open and the IOCP thread alive.
@@ -169,8 +170,8 @@ End Sub
 
 ## Known limitations
 
-- **No `Error` event is raised.** None of the four classes raises an `Error` event. Recognised IOCP failures (`ERROR_BROKEN_PIPE`, `ERROR_OPERATION_ABORTED`) drop the connection silently through the normal [**ClientDisconnected**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientdisconnected) / [**Disconnected**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#disconnected) path --- the consumer cannot distinguish a deliberate close from a transport failure. Worse, the client-side IOCP loop (`IOCPThreadClient` in `NamedPipeClientManager.twin`) contains a literal **Stop** statement on the branch for *unrecognised* error codes, which halts execution rather than reporting the error to consumer code.
-- **Send is hard-capped at** [**MessageBufferSize**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#messagebuffersize) **bytes.** The receive path grows its buffer dynamically on `ERROR_MORE_DATA`, so reads of arbitrary size work. The send path does not: [**AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) (and the client-side [**AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncwrite)) copies the caller's `Byte()` *without a bounds-check* into a per-completion buffer sized at [**MessageBufferSize**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#messagebuffersize) (default **131072** bytes); the same applies to [**AsyncBroadcast**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#asyncbroadcast). A larger message overruns the buffer --- likely a crash or heap corruption rather than a clean error. Raise [**MessageBufferSize**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#messagebuffersize) above the largest expected message *before* the first [**Start**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#start) (server) or [**Connect**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect) (client); the value is read once at that point and propagated to every per-connection buffer.
+- **No `Error` event is raised.** None of the four classes raises an `Error` event. Recognised IOCP failures (`ERROR_BROKEN_PIPE`, `ERROR_OPERATION_ABORTED`) drop the connection silently through the normal [**ClientDisconnected**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#clientdisconnected) / [**Disconnected**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#disconnected) path --- the consumer cannot distinguish a deliberate close from a transport failure. Worse, the client-side IOCP loop (`IOCPThreadClient` in `NamedPipeClientManager.twin`) contains a literal **Stop** statement on the branch for _unrecognised_ error codes, which halts execution rather than reporting the error to consumer code.
+- **Send is hard-capped at** [**MessageBufferSize**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#messagebuffersize) **bytes.** The receive path grows its buffer dynamically on `ERROR_MORE_DATA`, so reads of arbitrary size work. The send path does not: [**AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) (and the client-side [**AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncwrite)) copies the caller's `Byte()` _without a bounds-check_ into a per-completion buffer sized at [**MessageBufferSize**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#messagebuffersize) (default **131072** bytes); the same applies to [**AsyncBroadcast**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#asyncbroadcast). A larger message overruns the buffer --- likely a crash or heap corruption rather than a clean error. Raise [**MessageBufferSize**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#messagebuffersize) above the largest expected message _before_ the first [**Start**](/en/official/Reference/WinNamedPipesLib/NamedPipeServer#start) (server) or [**Connect**](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect) (client); the value is read once at that point and propagated to every per-connection buffer.
 
 ## Classes
 

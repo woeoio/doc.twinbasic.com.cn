@@ -18,14 +18,13 @@ Private Sub MyKeyUp(ByVal eventInfo As HtmlEventProperties)
 End Sub
 ```
 
-::: important
+::: warning
 This interface is **`[COMExtensible(True)]`**. Field names are resolved against the underlying event object at run time. The standard DOM event properties (`.target` → the element that fired the event; `.key`, `.code`, `.altKey`, `.ctrlKey`, `.shiftKey` for keyboard events; `.clientX`, `.clientY` for mouse events; `.index` for the IDE's listview events; …) are forwarded as-is to the JavaScript-side event object. See MDN's DOM Event documentation for the standard fields.
 :::
 
-
 ## Custom-data fan-out from `raiseEvent()`
 
-When inline HTML inside a tool window calls the IDE-side `raiseEvent(eventName, event, stopPropagation, ...customData)` helper, the trailing *customData* values flow through to the addin's listener as `eventInfo.customData0`, `eventInfo.customData1`, …, numerically indexed from zero. This is the mechanism the listview / virtual listview use to attach per-row context (file path, line number, …) to their item events.
+When inline HTML inside a tool window calls the IDE-side `raiseEvent(eventName, event, stopPropagation, ...customData)` helper, the trailing _customData_ values flow through to the addin's listener as `eventInfo.customData0`, `eventInfo.customData1`, …, numerically indexed from zero. This is the mechanism the listview / virtual listview use to attach per-row context (file path, line number, …) to their item events.
 
 ```vb
 ' Inline HTML — sample 15:
@@ -41,7 +40,7 @@ End Sub
 
 ## Asynchronous events (`setAsyncResult`)
 
-Some events --- notably the virtual listview's `onAsyncGetItemHTML` --- are *asynchronous*: the IDE asks the addin to produce content for a specific argument and expects the answer back through the event object itself. The argument arrives on the event as `eventInfo.asyncArgument`, and the listener responds by calling `eventInfo.setAsyncResult(answer)`:
+Some events --- notably the virtual listview's `onAsyncGetItemHTML` --- are _asynchronous_: the IDE asks the addin to produce content for a specific argument and expects the answer back through the event object itself. The argument arrives on the event as `eventInfo.asyncArgument`, and the listener responds by calling `eventInfo.setAsyncResult(answer)`:
 
 ```vb
 Private Sub OnAsyncGetItemHTML(ByVal eventInfo As HtmlEventProperties)
@@ -62,7 +61,7 @@ The interface's **DefaultMember** is [**Item**](#item) --- so `eventInfo("target
 
 Looks up a field by name. Returns an [**HtmlEventProperty**](/en/official/Reference/tbIDE/HtmlEventProperty), which includes the field's value plus a nested [**Properties**](/en/official/Reference/tbIDE/HtmlEventProperty#properties) for further drill-down.
 
-Syntax: *eventInfo*( *DomPropertyName* ) **As** [**HtmlEventProperty**](/en/official/Reference/tbIDE/HtmlEventProperty)
+Syntax: _eventInfo_( _DomPropertyName_ ) **As** [**HtmlEventProperty**](/en/official/Reference/tbIDE/HtmlEventProperty)
 
-*DomPropertyName*
-: *required* The field name. **String**.
+_DomPropertyName_
+: _required_ The field name. **String**.

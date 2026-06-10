@@ -1,9 +1,7 @@
 ﻿---
-
 title: HtmlElement
 parent: tbIDE Package
 permalink: /tB/Packages/tbIDE/HtmlElement
-
 ---
 
 # HtmlElement class
@@ -67,7 +65,7 @@ Private Sub MyButtonClicked(ByVal eventInfo As HtmlEventProperties)
 End Sub
 ```
 
-::: important
+::: warning
 For the four custom-widget tags (`"chartjs"`, `"monaco"`, `"listview"`, `"virtuallistview"`), the widget-specific events (e.g. Monaco's `onDidChangeModelContent`, the listview's `onClickItem`) are registered on the **widget object**, not on the DOM element. So:
 
 ```vb

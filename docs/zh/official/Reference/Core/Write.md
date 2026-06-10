@@ -3,13 +3,13 @@ title: "Write #"
 parent: Statements
 permalink: /tB/Core/Write
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '97132e18-8731-4031-b40d-e1a8078a7ad2'
-  PropagateID: '97132e18-8731-4031-b40d-e1a8078a7ad2'
-  ReservedCode1: '6b4e1ccc-ea4a-4499-885b-ad30f535df09'
-  ReservedCode2: '6b4e1ccc-ea4a-4499-885b-ad30f535df09'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "97132e18-8731-4031-b40d-e1a8078a7ad2"
+  PropagateID: "97132e18-8731-4031-b40d-e1a8078a7ad2"
+  ReservedCode1: "6b4e1ccc-ea4a-4499-885b-ad30f535df09"
+  ReservedCode2: "6b4e1ccc-ea4a-4499-885b-ad30f535df09"
 ---
 
 # Write # 语句
@@ -17,13 +17,14 @@ AIGC:
 将数据写入顺序文件。
 
 语法：
-> **Write** **#** *filenumber* **,** [ *outputlist* ]
 
-*filenumber*
+> **Write** **#** _filenumber_ **,** [ *outputlist* ]
+
+_filenumber_
 : 任何有效的文件号。
 
-*outputlist*
-: *可选* 要写入文件的一个或多个以逗号分隔的数值表达式或字符串表达式。
+_outputlist_
+: _可选_ 要写入文件的一个或多个以逗号分隔的数值表达式或字符串表达式。
 
 使用**Write #**写入的数据通常用[**Input #**](/official/Reference/Core/Input)从文件中读取。
 
@@ -35,11 +36,11 @@ AIGC:
 - 对于**Boolean**数据，打印`#TRUE#`或`#FALSE#`。**True**和**False**关键字不会根据区域设置进行翻译。
 - **Date**数据使用通用日期格式写入文件。当日期或时间部分缺失或为零时，仅写入提供的部分。
 - 如果*outputlist*数据为**Empty**，则不向文件写入任何内容。但对于**Null**数据，写入`#NULL#`。
-- 对于**Error**数据，输出显示为`#ERROR `*errorcode*`#`。**Error**关键字不会根据区域设置进行翻译。
+- 对于**Error**数据，输出显示为`#ERROR `_errorcode_`#`。**Error**关键字不会根据区域设置进行翻译。
 
 与[**Print #**](/official/Reference/Core/Print)语句不同，**Write #**语句在将项写入文件时在项之间插入逗号，在字符串周围插入引号。列表中不需要显式分隔符。**Write #**在将*outputlist*中的最后一个字符写入文件后插入换行符——即回车换行符（**Chr**(13) + **Chr**(10)）。
 
-::: important
+::: warning
 不要写入包含嵌入引号的字符串（例如`"1,2""X"`）供**Input #**语句使用；**Input #**会将此类字符串解析为两个完整且独立的字符串。
 :::
 

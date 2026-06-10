@@ -4,18 +4,18 @@ parent: Language Syntax
 nav_order: 5
 permalink: /Features/Language/Generics
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '7347a22a-aa26-4ed3-8a49-eb20b49d0a32'
-  PropagateID: '7347a22a-aa26-4ed3-8a49-eb20b49d0a32'
-  ReservedCode1: 'f98f488b-ccf5-44c0-a725-4701d6ec628b'
-  ReservedCode2: 'f98f488b-ccf5-44c0-a725-4701d6ec628b'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "7347a22a-aa26-4ed3-8a49-eb20b49d0a32"
+  PropagateID: "7347a22a-aa26-4ed3-8a49-eb20b49d0a32"
+  ReservedCode1: "f98f488b-ccf5-44c0-a725-4701d6ec628b"
+  ReservedCode2: "f98f488b-ccf5-44c0-a725-4701d6ec628b"
 ---
 
 # 泛型
 
-::: important
+::: warning
 泛型是"复制粘贴代码后搜索替换类型名"的语法糖。
 
 泛型语法提供的所有功能都可以通过编写重复代码来实现。
@@ -23,7 +23,7 @@ AIGC:
 
 然而这种重复既容易出错又乏味，因此泛型语法保持代码 DRY[^1]。
 
-泛型语法引入了*类型参数*/*类型变量*，其*类型值*在编译时存在，而常规参数及其值仅在运行时存在。
+泛型语法引入了*类型参数*/_类型变量_，其*类型值*在编译时存在，而常规参数及其值仅在运行时存在。
 
 过程、**Class** 和 **Type**（UDT）可以声明为泛型。
 
@@ -35,33 +35,33 @@ AIGC:
 
 语法：
 
-* **定义**
-  ( **Function** | ... ) *name* **(Of** *type-variable-list* **)** **(** *parameter-list* **)** **As** *return-type*
+- **定义**
+  ( **Function** | ... ) _name_ **(Of** _type-variable-list_ **)** **(** _parameter-list_ **)** **As** _return-type_
 
-* 详细形式：
-  ( **Function** | **Sub** | **Property** (**Get** | **Let** | **Set**) ) *name* **(Of** *type-var1* [ **,** *type-var2* ...]**)** **(** *parameter-list* **)** **As** *return-type*
-  *parameter-list* 可以引用任何类型变量，例如
+- 详细形式：
+  ( **Function** | **Sub** | **Property** (**Get** | **Let** | **Set**) ) _name_ **(Of** _type-var1_ [ **,** *type-var2* ...]**)** **(** _parameter-list_ **)** **As** _return-type_
+  _parameter-list_ 可以引用任何类型变量，例如
   `Sub MyPrint(Of T)(ByVal file&, value As T)`
 
-* **调用**或**调用点**
-  *name* [ **(Of** *type-argument-list* **)** ] [ **(** *argument-list* **)** ]
+- **调用**或**调用点**
+  _name_ [ **(Of** *type-argument-list* **)** ] [ **(** *argument-list* **)** ]
 
-* 详细形式：
-  *name* [ **(Of** *type-arg1* [ **,** *type-arg2* ] **)** ] [ **(** *argument-list* **)** ]
-  定义中 *parameter-list* 中的类型变量将被调用点 *argument-list* 中提供的具体类型替代，除非在 *type-argument-list* 中显式提供。
-  未在 *parameter-list* 中引用的类型变量必须在 *type-argument-list* 中作为*类型参数*提供。
+- 详细形式：
+  _name_ [ **(Of** _type-arg1_ [ **,** *type-arg2* ] **)** ] [ **(** *argument-list* **)** ]
+  定义中 _parameter-list_ 中的类型变量将被调用点 _argument-list_ 中提供的具体类型替代，除非在 _type-argument-list_ 中显式提供。
+  未在 _parameter-list_ 中引用的类型变量必须在 _type-argument-list_ 中作为*类型参数*提供。
 
-在定义中，*type-variable-list*，即 **(Of** *type-var* ... **)**，引入泛型性。类型变量（*type-var*）引入任意类型的标识符，可以在以下位置引用：
+在定义中，_type-variable-list_，即 **(Of** _type-var_ ... **)**，引入泛型性。类型变量（_type-var_）引入任意类型的标识符，可以在以下位置引用：
 
-- *parameter-list*，
-- *return-type*，以及
+- _parameter-list_，
+- _return-type_，以及
 - 过程体。
 
-在调用中，*type-argument-list*，即 **(Of** *type-arg* ... **)**，根据需要可选，为那些不出现在定义 *parameter-list* 中的类型变量提供类型参数。在 *parameter-list* 中使用的类型变量将自动从调用点对应参数的类型推断出类型值，*除非在 *type-argument-list* 中显式提供了其值*。
+在调用中，_type-argument-list_，即 **(Of** _type-arg_ ... **)**，根据需要可选，为那些不出现在定义 _parameter-list_ 中的类型变量提供类型参数。在 _parameter-list_ 中使用的类型变量将自动从调用点对应参数的类型推断出类型值，*除非在 *type-argument-list* 中显式提供了其值*。
 
 ### 调用点类型参数
 
-对应可从调用参数类型推断出的类型的类型变量必须构成 *type-variable-list* 的尾部：
+对应可从调用参数类型推断出的类型的类型变量必须构成 _type-variable-list_ 的尾部：
 
 ```vb
 Sub MySub1(Of T, U, V)(argu As U, argv As V): End Sub
@@ -78,11 +78,11 @@ MySub1(Of Long, , Double)(33%, 42%)      ' Invalid: omitted deduced type must be
 Function MyFn1(Of T, U)(argu As T) As U: End Function
 MyFn1(Of Single, String)(10%)   ' Valid: provided T = Single, U = String
 MyFn1(Of, String)(10%)          ' Invalid: T is not trailing so it can't be omitted
-                                ' Effectively, the definition of MyFn1 
+                                ' Effectively, the definition of MyFn1
                                 ' suppresses deduction of T
 ```
 
-只有未使用的类型变量可以在 *type-variable-list* 中第一个位置*之后*省略其参数：
+只有未使用的类型变量可以在 _type-variable-list_ 中第一个位置*之后*省略其参数：
 
 ```vb
 Sub MySub2(Of T, U, V)(argt As T, argv As V): End Sub
@@ -106,7 +106,7 @@ End Function
 Public Function Last(Of T)(Array() As T) As T
     If IsArrayInitialized(Array) Then Return Array(UBound(Array))
 End Function
-        
+
 Sub Test()
     Dim data() As String = Array("A", "B", "C")
     Debug.Assert First(data) = "A"
@@ -114,17 +114,17 @@ Sub Test()
 End Sub
 ```
 
-如果没有泛型语法，过程必须为每个使用的类型 *T* 单独编写。在下面的示例中，需要 `T=String` 和 `T=Integer`：
+如果没有泛型语法，过程必须为每个使用的类型 _T_ 单独编写。在下面的示例中，需要 `T=String` 和 `T=Integer`：
 
 ```vb
 Public Function First(Array() As String) As String
     If IsArrayInitialized(Array) Then Return Array(LBound(Array))
 End Function
-    
+
 Public Function First(Array() As Integer) As Integer
     If IsArrayInitialized(Array) Then Return Array(UBound(Array))
 End Function
-        
+
 Sub Test()
     Dim strings() As String = Array("A", "B", "C")
     Dim ints() As Integer = Array(1, 2, 3)
@@ -132,9 +132,9 @@ Sub Test()
 End Sub
 ```
 
-### 示例 2：部分类型变量不出现在 *parameter-list* 中
+### 示例 2：部分类型变量不出现在 _parameter-list_ 中
 
-类型变量可能不出现在 *parameter-list* 中的常见情况有两种：
+类型变量可能不出现在 _parameter-list_ 中的常见情况有两种：
 
 - 当它是*返回类型*时，和/或
 - 当它在过程体中使用时。
@@ -162,35 +162,34 @@ End Sub
 - **U** 是函数体中使用的类型，必须在调用时提供。
 
 ::: tip
-定义中类型变量的顺序可以安排为尾部变量在 *parameter-list* 中使用。这样如果调用点从参数类型推断的类型合适，这些类型变量的类型值可以省略。
+定义中类型变量的顺序可以安排为尾部变量在 _parameter-list_ 中使用。这样如果调用点从参数类型推断的类型合适，这些类型变量的类型值可以省略。
 :::
 
 1. 在调用 `Example(Of String, Integer)(1.23!)` 中，
-   *T* 被推断为 **Single**，*U* 被提供并设为 **Integer**，**R** 被提供并设为 **String**。
+   _T_ 被推断为 **Single**，_U_ 被提供并设为 **Integer**，**R** 被提供并设为 **String**。
 
 2. 在调用 `Example(Of String, Integer, Double)(1.23!)` 中，
-   *T* 被提供并设为 **Double**，*U* 被提供并设为 **Integer**，**R** 被提供并设为 **String**。
-   * 首先，编译器将 `1.23!` 转换为形参的类型，即 **Double** `1.23#`。
-   * 然后，在函数体中，*value* 在赋值给 **intermediate** 时被转换为 **Integer**。
-   * 最后，同样在函数体中，**intermediate** 被转换为结果类型 **String** 并返回。
-
+   _T_ 被提供并设为 **Double**，_U_ 被提供并设为 **Integer**，**R** 被提供并设为 **String**。
+   - 首先，编译器将 `1.23!` 转换为形参的类型，即 **Double** `1.23#`。
+   - 然后，在函数体中，_value_ 在赋值给 **intermediate** 时被转换为 **Integer**。
+   - 最后，同样在函数体中，**intermediate** 被转换为结果类型 **String** 并返回。
 
 ## 泛型类和 UDT
 
 语法：
 
-* **定义**
-  [ **Class** | ... ] *name* **(Of** *type-variable-list* **)**
-* 详细形式：
-  [ **Class** | **Type** ] *name* **(Of** *type-var1* [ **,** *type-var2* ... ] **)**
-* **实例化**
-  *name* **(Of** *type-argument-list* **)**
-* 详细形式：
-  *name* **(Of** *type-arg1* [ **,** *type-arg2* ... ] **)**
+- **定义**
+  [ **Class** | ... ] _name_ **(Of** _type-variable-list_ **)**
+- 详细形式：
+  [ **Class** | **Type** ] _name_ **(Of** _type-var1_ [ **,** *type-var2* ... ] **)**
+- **实例化**
+  _name_ **(Of** _type-argument-list_ **)**
+- 详细形式：
+  _name_ **(Of** _type-arg1_ [ **,** *type-arg2* ... ] **)**
 
-类型变量（*type-var*）引入任意类型的标识符，可以在类体内的任何位置引用。
+类型变量（_type-var_）引入任意类型的标识符，可以在类体内的任何位置引用。
 
-::: important
+::: warning
 实例化泛型类和 UDT 时，**所有类型参数**都必须提供。
 
 如果未提供，可能会导致代码生成错误和运行时的静默失败。
@@ -242,11 +241,11 @@ End Sub
 [COMCreatable(False)]
 Class List(Of T)
     Private mData() As T
-    
+
     Sub New(preset() As T)
         mData = preset
     End Sub
-    
+
     [DefaultMember]
     Function GetAt(ByVal index&) As T
         Return mData(index)

@@ -3,23 +3,24 @@ title: IIf
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/IIf
 ---
+
 # IIf
 
 Returns one of two values, depending on the evaluation of an expression.
 
-Syntax: **IIf(** *expr* **,** *truepart* **,** *falsepart* **)**
+Syntax: **IIf(** _expr_ **,** _truepart_ **,** _falsepart_ **)**
 
-*expr*
-: *required* Expression to evaluate.
+_expr_
+: _required_ Expression to evaluate.
 
-*truepart*
-: *required* Value or expression returned if *expr* is **True**.
+_truepart_
+: _required_ Value or expression returned if _expr_ is **True**.
 
-*falsepart*
-: *required* Value or expression returned if *expr* is **False**.
+_falsepart_
+: _required_ Value or expression returned if _expr_ is **False**.
 
-::: important
-**IIf** always evaluates both *truepart* and *falsepart*, even though it returns only one of them. Watch for side effects: if the unused branch would raise an error (for example, division by zero), the error still occurs. Use the short-circuiting [**If**](/en/official/Reference/VBA/Interaction/If) function --- a twinBASIC addition --- to guard against errors in the unused branch.
+::: warning
+**IIf** always evaluates both _truepart_ and _falsepart_, even though it returns only one of them. Watch for side effects: if the unused branch would raise an error (for example, division by zero), the error still occurs. Use the short-circuiting [**If**](/en/official/Reference/VBA/Interaction/If) function --- a twinBASIC addition --- to guard against errors in the unused branch.
 :::
 
 ### Example

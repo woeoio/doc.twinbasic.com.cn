@@ -23,7 +23,7 @@ How to add a new pipeline stage or a custom markdown-it plugin to `tbdocs`. This
 
 **New markdown-it plugin** --- a function that configures the shared markdown-it instance with additional parsing or rendering rules. Registered in `createMarkdownIt` inside `render.mjs`. Both Phase 2's SEO title extraction and Phase 3's body render use the same instance, so the plugin runs on every page.
 
-::: important
+::: warning
 Stage module changes are not hot-reloaded. After editing a stage module, stop and restart `serve.bat` (Ctrl+C, then re-run) to load the change.
 :::
 
@@ -54,7 +54,7 @@ export async function myStage(pages, site, destRoot) {
 
 Use the I/O utilities exported by `write.mjs` --- `writeFileMkdirp`, `mkdirRec`, `runLimited`, `safeWrite` --- rather than raw `fs.writeFile` calls. They handle directory creation and include the destination path in error messages.
 
-::: important
+::: warning
 If the stage writes to disk, check `opts.dryRun` and skip all filesystem writes when it is `true`. The `dryRun` flag is passed through the same `opts` object the orchestrator receives and must propagate to all I/O operations.
 :::
 

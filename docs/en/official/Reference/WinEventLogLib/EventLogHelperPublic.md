@@ -34,7 +34,7 @@ Creates `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\<LogPath>` and writes:
 - **CategoryMessageFile** = `App.ModulePath` (**REG_SZ**)
 - **CategoryCount** = _CategoryCount_ (**REG_DWORD**)
 
-::: important
+::: warning
 **RegisterEventLogInternal** writes under `HKEY_LOCAL_MACHINE` and requires administrator rights. The usual pattern is to call it once from an elevated installer, not from the application's normal startup path.
 :::
 

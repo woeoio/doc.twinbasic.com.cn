@@ -4,13 +4,13 @@ parent: tbdocs Builder
 nav_order: 3
 permalink: /Documentation/Development/Extending
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'e3940bfb-690f-4289-8fb5-c7b761a4bcd2'
-  PropagateID: 'e3940bfb-690f-4289-8fb5-c7b761a4bcd2'
-  ReservedCode1: 'fcae5eb9-2cb3-4d22-a215-168e7e765216'
-  ReservedCode2: 'fcae5eb9-2cb3-4d22-a215-168e7e765216'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "e3940bfb-690f-4289-8fb5-c7b761a4bcd2"
+  PropagateID: "e3940bfb-690f-4289-8fb5-c7b761a4bcd2"
+  ReservedCode1: "fcae5eb9-2cb3-4d22-a215-168e7e765216"
+  ReservedCode2: "fcae5eb9-2cb3-4d22-a215-168e7e765216"
 ---
 
 # 扩展构建器
@@ -23,7 +23,7 @@ AIGC:
 
 **新 markdown-it 插件** --- 一个配置共享 markdown-it 实例以添加额外解析或渲染规则的函数。在 `render.mjs` 内的 `createMarkdownIt` 中注册。阶段 2 的 SEO 标题提取和阶段 3 的正文渲染都使用同一个实例，因此插件在每个页面上运行。
 
-::: important
+::: warning
 阶段模块的更改不会热重载。编辑阶段模块后，停止并重启 `serve.bat`（Ctrl+C，然后重新运行）以加载更改。
 :::
 
@@ -40,7 +40,7 @@ import { writeFileMkdirp } from "./write.mjs";
 import path from "node:path";
 
 export async function myStage(pages, site, destRoot) {
-  const manifest = pages.map(p => ({
+  const manifest = pages.map((p) => ({
     url: p.permalink,
     title: p.frontmatter.title ?? null,
   }));
@@ -54,7 +54,7 @@ export async function myStage(pages, site, destRoot) {
 
 使用 `write.mjs` 导出的 I/O 工具 --- `writeFileMkdirp`、`mkdirRec`、`runLimited`、`safeWrite` --- 而不是原始的 `fs.writeFile` 调用。它们处理目录创建并在错误消息中包含目标路径。
 
-::: important
+::: warning
 如果阶段写入磁盘，请检查 `opts.dryRun` 并在其为 `true` 时跳过所有文件系统写入。`dryRun` 标志通过编排器接收的同一个 `opts` 对象传递，必须传播到所有 I/O 操作。
 :::
 
@@ -86,7 +86,10 @@ if (myStats) {
 
 ```js
 export async function myStage(pages, site, destRoot, { dryRun = false } = {}) {
-  const manifest = pages.map(p => ({ url: p.permalink, title: p.frontmatter.title ?? null }));
+  const manifest = pages.map((p) => ({
+    url: p.permalink,
+    title: p.frontmatter.title ?? null,
+  }));
 
   if (dryRun) {
     console.log(`[dry-run] my-stage: would write ${manifest.length} entries`);
@@ -121,14 +124,19 @@ markdown-it 插件是一个接收 `md` 实例（和可选的选项对象）并�
 
 ```js
 export function tableWrapPlugin(md) {
-  const originalOpen = md.renderer.rules.table_open
-    ?? ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
+  const originalOpen =
+    md.renderer.rules.table_open ??
+    ((tokens, idx, options, _env, self) =>
+      self.renderToken(tokens, idx, options));
 
-  const originalClose = md.renderer.rules.table_close
-    ?? ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
+  const originalClose =
+    md.renderer.rules.table_close ??
+    ((tokens, idx, options, _env, self) =>
+      self.renderToken(tokens, idx, options));
 
   md.renderer.rules.table_open = (tokens, idx, options, env, self) =>
-    "<div class=\"table-wrapper\">" + originalOpen(tokens, idx, options, env, self);
+    '<div class="table-wrapper">' +
+    originalOpen(tokens, idx, options, env, self);
 
   md.renderer.rules.table_close = (tokens, idx, options, env, self) =>
     originalClose(tokens, idx, options, env, self) + "</div>";
@@ -139,26 +147,37 @@ export function tableWrapPlugin(md) {
 
 ```js
 export function calloutPlugin(md) {
-  md.block.ruler.before("fence", "callout", (state, startLine, endLine, silent) => {
-    const pos = state.bMarks[startLine] + state.tShift[startLine];
-    const max = state.eMarks[startLine];
-    if (state.src.slice(pos, pos + 3) !== ":::") return false;
-    if (silent) return true;
+  md.block.ruler.before(
+    "fence",
+    "callout",
+    (state, startLine, endLine, silent) => {
+      const pos = state.bMarks[startLine] + state.tShift[startLine];
+      const max = state.eMarks[startLine];
+      if (state.src.slice(pos, pos + 3) !== ":::") return false;
+      if (silent) return true;
 
-    const label = state.src.slice(pos + 3, max).trim();
-    state.push("callout_open", "div", 1).attrSet("class", `callout callout-${label}`);
-    state.line = startLine + 1;
+      const label = state.src.slice(pos + 3, max).trim();
+      state
+        .push("callout_open", "div", 1)
+        .attrSet("class", `callout callout-${label}`);
+      state.line = startLine + 1;
 
-    while (state.line < endLine) {
-      if (state.src.slice(state.bMarks[state.line] + state.tShift[state.line], state.eMarks[state.line]) === ":::") {
+      while (state.line < endLine) {
+        if (
+          state.src.slice(
+            state.bMarks[state.line] + state.tShift[state.line],
+            state.eMarks[state.line],
+          ) === ":::"
+        ) {
+          state.line++;
+          break;
+        }
         state.line++;
-        break;
       }
-      state.line++;
-    }
-    state.push("callout_close", "div", -1);
-    return true;
-  });
+      state.push("callout_close", "div", -1);
+      return true;
+    },
+  );
 }
 ```
 

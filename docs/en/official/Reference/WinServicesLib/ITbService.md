@@ -5,11 +5,12 @@ permalink: /tB/Packages/WinServicesLib/ITbService
 ---
 
 # ITbService interface
+
 The contract every service class in a **WinServicesLib** project implements. Three subs, each invoked at a specific point in the service's lifecycle:
 
 - [**EntryPoint**](#entrypoint) -- runs the service's actual work.
 - [**StartupFailed**](#startupfailed) -- invoked when the SCM handshake fails before [**EntryPoint**](#entrypoint) can run.
-- [**ChangeState**](#changestate) -- invoked when the SCM delivers a control code (*Stop*, *Pause*, *Continue*, …).
+- [**ChangeState**](#changestate) -- invoked when the SCM delivers a control code (_Stop_, _Pause_, _Continue_, …).
 
 The package's [**ServiceCreator**](/en/official/Reference/WinServicesLib/ServiceCreator)`(Of T)` factory creates one instance per service start; the dispatcher trampoline holds the instance for the lifetime of the service and routes the three lifecycle subs to it.
 
@@ -48,7 +49,7 @@ Class MyService
 End Class
 ```
 
-::: important
+::: warning
 [**EntryPoint**](#entrypoint) runs on the **service thread**. [**ChangeState**](#changestate) runs on the **dispatcher thread** (the EXE's main thread). The two methods execute concurrently and must coordinate through shared `Public` flags on the class --- see [The two-thread split](/en/official/Reference/WinServicesLib/#two-thread-split) on the package overview.
 :::
 
@@ -58,21 +59,21 @@ End Class
 
 Invoked by the SCM dispatcher thread when a control code is delivered to the service.
 
-Syntax: *service*.**ChangeState** *ServiceManager*, *dwControl*, *dwEventType*, *lpEventData*
+Syntax: _service_.**ChangeState** _ServiceManager_, _dwControl_, _dwEventType_, _lpEventData_
 
-*ServiceManager*
+_ServiceManager_
 : The [**ServiceManager**](/en/official/Reference/WinServicesLib/ServiceManager) for this service --- the same instance passed to [**EntryPoint**](#entrypoint). The implementation calls [**ReportStatus**](/en/official/Reference/WinServicesLib/ServiceManager#reportstatus) on it to acknowledge the pending transition.
 
-*dwControl*
+_dwControl_
 : A [**ServiceControlCodeConstants**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants) value identifying the control. Standard codes the SCM may deliver include [**vbServiceControlStop**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlStop), [**vbServiceControlShutdown**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlShutdown), [**vbServiceControlPause**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPause), [**vbServiceControlContinue**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlContinue), [**vbServiceControlInterrogate**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlInterrogate), and the event-bearing codes ([**vbServiceControlSessionChange**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlSessionChange), [**vbServiceControlPowerEvent**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPowerEvent), [**vbServiceControlDeviceEvent**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlDeviceEvent), [**vbServiceControlHardwareProfileChange**](/en/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlHardwareProfileChange)). User-defined codes in the range 128--255 can also be delivered through [**Services.ControlService**](/en/official/Reference/WinServicesLib/Services#controlservice).
 
-*dwEventType*
+_dwEventType_
 : A **Long** holding the event-type sub-code for the codes that have one. **0** otherwise. See Microsoft's `HandlerEx` documentation for the per-code interpretation.
 
-*lpEventData*
+_lpEventData_
 : A **LongPtr** to an event-specific data structure for the codes that have one. `vbNullPtr` otherwise.
 
-The typical pattern is a `Select Case dwControl` that handles the codes the service cares about and ignores the rest. The minimum a service needs to handle is *Stop*:
+The typical pattern is a `Select Case dwControl` that handles the codes the service cares about and ignores the rest. The minimum a service needs to handle is _Stop_:
 
 ```vb
 Select Case dwControl
@@ -90,9 +91,9 @@ The method runs on a different thread than [**EntryPoint**](#entrypoint); see [T
 
 The service's main routine. Invoked by the package's dispatcher trampoline on the SCM-spawned service thread once the SCM handshake has completed and the trampoline has reported [**vbServiceStatusStartPending**](/en/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending).
 
-Syntax: *service*.**EntryPoint** *ServiceManager*
+Syntax: _service_.**EntryPoint** _ServiceManager_
 
-*ServiceManager*
+_ServiceManager_
 : The [**ServiceManager**](/en/official/Reference/WinServicesLib/ServiceManager) for this service. Contains the configuration that was set during `Sub Main` plus the runtime [**LaunchArgs**](/en/official/Reference/WinServicesLib/ServiceManager#launchargs) the SCM passed in. The implementation calls [**ReportStatus**](/en/official/Reference/WinServicesLib/ServiceManager#reportstatus) on it for every state transition.
 
 The body of **EntryPoint** is the service's actual work. The minimum responsibilities:
@@ -104,7 +105,7 @@ The body of **EntryPoint** is the service's actual work. The minimum responsibil
 
 After the **EntryPoint** sub returns, the service thread exits and the SCM marks the service as stopped.
 
-::: important
+::: warning
 **EntryPoint** runs on the **service thread**, not the dispatcher thread. The two threads execute concurrently for the lifetime of the service. Shared `Public` flags on the implementing class (`IsStopping`, `IsPaused`, …) coordinate state changes triggered from [**ChangeState**](#changestate).
 :::
 
@@ -112,9 +113,9 @@ After the **EntryPoint** sub returns, the service thread exits and the SCM marks
 
 Invoked when the SCM handshake fails before [**EntryPoint**](#entrypoint) can run.
 
-Syntax: *service*.**StartupFailed** *ServiceManager*
+Syntax: _service_.**StartupFailed** _ServiceManager_
 
-*ServiceManager*
+_ServiceManager_
 : The [**ServiceManager**](/en/official/Reference/WinServicesLib/ServiceManager) for this service.
 
 This sub fires when `RegisterServiceCtrlHandlerExW` returns a zero handle --- typically because the service was launched outside the SCM context, or the SCM's `RegisterServiceCtrlHandlerExW` rejected the registration. The service has no SCM status handle in this state, so [**ServiceManager.ReportStatus**](/en/official/Reference/WinServicesLib/ServiceManager#reportstatus) cannot be called from inside **StartupFailed** --- calling it raises run-time error 5.

@@ -5,6 +5,7 @@ permalink: /tB/Packages/WinNamedPipesLib/NamedPipeServer
 ---
 
 # NamedPipeServer class
+
 Hosts one named pipe and accepts an unbounded number of concurrent client connections, each represented by a [**NamedPipeServerConnection**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection). The class owns a Windows I/O Completion Port and a configurable pool of worker threads that handle every connection's reads, writes, and connect notifications. Instantiate with **New**.
 
 Configure the public fields ([**PipeName**](#pipename) is required, the others have reasonable defaults), call [**Start**](#start), and respond to the lifecycle events as clients arrive and exchange messages. The package opens the underlying pipe as **PIPE_TYPE_MESSAGE** / **PIPE_READMODE_MESSAGE** --- messages preserve their boundaries between sender and receiver.
@@ -56,8 +57,8 @@ The number of IOCP worker threads created by [**Start**](#start). **Long**, defa
 
 The name the pipe is published under. **String**, no default. The Win32 pipe namespace path is `\\.\pipe\<PipeName>` --- the package prepends `\\.\pipe\` itself; pass just the leaf name.
 
-::: important
-[**PipeName**](#pipename) must be set to a non-empty value before [**Start**](#start), or [**Start**](#start) raises run-time error 5 (*"cannot start without specifying a pipe name"*).
+::: warning
+[**PipeName**](#pipename) must be set to a non-empty value before [**Start**](#start), or [**Start**](#start) raises run-time error 5 (_"cannot start without specifying a pipe name"_).
 :::
 
 ## Events
@@ -66,52 +67,52 @@ The name the pipe is published under. **String**, no default. The Win32 pipe nam
 
 Fires after a client's `ConnectNamedPipe` has completed and the connection is ready for message exchange.
 
-Syntax: *server*_**ClientConnected**(*Connection* **As NamedPipeServerConnection**)
+Syntax: _server_\_**ClientConnected**(_Connection_ **As NamedPipeServerConnection**)
 
-*Connection*
+_Connection_
 : The newly-connected client's server-side connection object. Hold the reference to keep per-client state across messages --- the same instance is passed to every event for this client. **Cookie** / `Tag`-style storage is available through [**NamedPipeServerConnection.CustomData**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#customdata).
 
 ### ClientDisconnected
 
-Fires once the client has dropped *and* every outstanding asynchronous I/O against the connection has returned. The connection object is no longer usable for I/O after this event.
+Fires once the client has dropped _and_ every outstanding asynchronous I/O against the connection has returned. The connection object is no longer usable for I/O after this event.
 
-Syntax: *server*_**ClientDisconnected**(*Connection* **As NamedPipeServerConnection**)
+Syntax: _server_\_**ClientDisconnected**(_Connection_ **As NamedPipeServerConnection**)
 
-*Connection*
+_Connection_
 : The connection that has just shut down. Its [**IsConnected**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#isconnected) is **False**.
 
 ### ClientMessageReceived
 
 Fires when a complete message has been read from the pipe.
 
-Syntax: *server*_**ClientMessageReceived**(*Connection* **As NamedPipeServerConnection**, **ByRef** *Cookie* **As Variant**, **ByRef** *Data*() **As Byte**)
+Syntax: _server_\_**ClientMessageReceived**(_Connection_ **As NamedPipeServerConnection**, **ByRef** _Cookie_ **As Variant**, **ByRef** _Data_() **As Byte**)
 
-*Connection*
+_Connection_
 : The connection the message came from.
 
-*Cookie*
+_Cookie_
 : The opaque correlation value originally passed to the [**NamedPipeServerConnection.AsyncRead**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) that produced this read --- or **Empty** if the read came from the auto-issued reads triggered by [**ContinuouslyReadFromPipe**](#continuouslyreadfrompipe).
 
-*Data*
-: The message payload. See [Working with `Data() As Byte` in events](/en/official/Reference/WinNamedPipesLib/#working-with-data-as-byte-in-events) on the package overview for the transient-buffer lifetime caveat --- copy the bytes out before the handler returns if they are needed later. The [recommended capture mechanism](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) is to assign *Data* to a fresh [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/)'s **Contents**, which deep-copies the bytes and provides typed multi-field access in one step.
+_Data_
+: The message payload. See [Working with `Data() As Byte` in events](/en/official/Reference/WinNamedPipesLib/#working-with-data-as-byte-in-events) on the package overview for the transient-buffer lifetime caveat --- copy the bytes out before the handler returns if they are needed later. The [recommended capture mechanism](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) is to assign _Data_ to a fresh [**PropertyBag**](/en/official/Reference/VBRUN/PropertyBag/)'s **Contents**, which deep-copies the bytes and provides typed multi-field access in one step.
 
 ### ClientMessageSent
 
 Fires when a previously-issued [**NamedPipeServerConnection.AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) has completed (or when an [**AsyncBroadcast**](#asyncbroadcast) message reaches each individual client).
 
-Syntax: *server*_**ClientMessageSent**(*Connection* **As NamedPipeServerConnection**, **ByRef** *Cookie* **As Variant**)
+Syntax: _server_\_**ClientMessageSent**(_Connection_ **As NamedPipeServerConnection**, **ByRef** _Cookie_ **As Variant**)
 
-*Connection*
+_Connection_
 : The connection the write went out on.
 
-*Cookie*
+_Cookie_
 : The opaque correlation value that was passed to the originating [**AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) call.
 
 ### ServerReady
 
 Fires once, after [**Start**](#start), when every IOCP worker thread has joined the completion-port loop and the first connection listener is published. Use this as the "the server is now accepting connections" signal.
 
-Syntax: *server*_**ServerReady**()
+Syntax: _server_\_**ServerReady**()
 
 ## Methods
 
@@ -119,13 +120,13 @@ Syntax: *server*_**ServerReady**()
 
 Issues an [**AsyncWrite**](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) against every currently-connected client.
 
-Syntax: *server*.**AsyncBroadcast** *Data*() [, *Cookie* ]
+Syntax: _server_.**AsyncBroadcast** _Data_() [, *Cookie* ]
 
-*Data*
-: *required* The message bytes to send. twinBASIC will coerce a **String** literal to **Byte()** implicitly, so `server.AsyncBroadcast "shutting down"` works without a separate `StrConv` step --- useful for protocol-less server-pushed notifications.
+_Data_
+: _required_ The message bytes to send. twinBASIC will coerce a **String** literal to **Byte()** implicitly, so `server.AsyncBroadcast "shutting down"` works without a separate `StrConv` step --- useful for protocol-less server-pushed notifications.
 
-*Cookie*
-: *optional* A **Variant** correlation value, attached to *each* per-client [**ClientMessageSent**](#clientmessagesent) event. Default **Empty**.
+_Cookie_
+: _optional_ A **Variant** correlation value, attached to _each_ per-client [**ClientMessageSent**](#clientmessagesent) event. Default **Empty**.
 
 The set of recipients is snapshotted under a lock at the start of the call. Clients connecting after the snapshot do not receive this broadcast; clients disconnecting after the snapshot but before their per-client write completes simply fail that individual write silently.
 
@@ -133,27 +134,27 @@ The set of recipients is snapshotted under a lock at the start of the call. Clie
 
 Runs a Win32 message loop on the calling thread until [**ManualMessageLoopLeave**](#manualmessageloopleave) is called from another thread (or any handler raises a `WM_USER_QUITTING` posting).
 
-Syntax: *server*.**ManualMessageLoopEnter**
+Syntax: _server_.**ManualMessageLoopEnter**
 
 Intended for console / service hosts that do not have a Forms-style message pump of their own but want the default ([**FreeThreadingEvents**](#freethreadingevents) = **False**) marshalled-event semantics. UI hosts already pump messages naturally and do not need this method.
 
-The canonical caller is a Windows service that owns this server: the service-thread entry-point opens the server, transitions the service to `Running`, calls **ManualMessageLoopEnter** to block while events flow, and a control-code handler running on the dispatcher thread calls [**ManualMessageLoopLeave**](#manualmessageloopleave) when the SCM signals stop. See [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib/#service-host-idiom) on the package overview for the complete pattern, including the two-thread coordination and the *Pause* / *Continue* extension.
+The canonical caller is a Windows service that owns this server: the service-thread entry-point opens the server, transitions the service to `Running`, calls **ManualMessageLoopEnter** to block while events flow, and a control-code handler running on the dispatcher thread calls [**ManualMessageLoopLeave**](#manualmessageloopleave) when the SCM signals stop. See [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib/#service-host-idiom) on the package overview for the complete pattern, including the two-thread coordination and the _Pause_ / _Continue_ extension.
 
 ### ManualMessageLoopLeave
 
 Posts a `WM_USER_QUITTING` message to the hidden marshalling window, causing the [**ManualMessageLoopEnter**](#manualmessageloopenter) loop on the other thread to exit. Safe to call from any thread.
 
-Syntax: *server*.**ManualMessageLoopLeave**
+Syntax: _server_.**ManualMessageLoopLeave**
 
-The intended caller is a thread *other* than the one inside [**ManualMessageLoopEnter**](#manualmessageloopenter) --- typically the Windows service's dispatcher thread waking the service-entry-point thread out of its blocked loop. See [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib/#service-host-idiom).
+The intended caller is a thread _other_ than the one inside [**ManualMessageLoopEnter**](#manualmessageloopenter) --- typically the Windows service's dispatcher thread waking the service-entry-point thread out of its blocked loop. See [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib/#service-host-idiom).
 
 ### Start
 
 Creates the I/O Completion Port, starts [**NumThreadsIOCP**](#numthreadsiocp) worker threads, and publishes the first connection listener under `\\.\pipe\<PipeName>`. Fires [**ServerReady**](#serverready) when every worker has joined.
 
-Syntax: *server*.**Start**
+Syntax: _server_.**Start**
 
-Raises run-time error 5 *"cannot start without specifying a pipe name"* if [**PipeName**](#pipename) is empty, or *"unable to create an IOCP port"* if `CreateIoCompletionPort` fails.
+Raises run-time error 5 _"cannot start without specifying a pipe name"_ if [**PipeName**](#pipename) is empty, or _"unable to create an IOCP port"_ if `CreateIoCompletionPort` fails.
 
 Idempotent: calling [**Start**](#start) while the server is already running is a no-op.
 
@@ -161,7 +162,7 @@ Idempotent: calling [**Start**](#start) while the server is already running is a
 
 Cancels every outstanding I/O on every connection, posts the IOCP shutdown sentinel to each worker, waits for the threads to exit, closes every pipe handle, and frees the completion port. Idempotent: calling [**Stop**](#stop) on a server that has not been started --- or has already been stopped --- is a no-op. Automatically invoked from `Class_Terminate`, so a server going out of scope closes resources implicitly.
 
-Syntax: *server*.**Stop**
+Syntax: _server_.**Stop**
 
 ### New
 
@@ -173,6 +174,6 @@ Syntax: **New NamedPipeServer**
 
 - [WinNamedPipesLib package](/en/official/Reference/WinNamedPipesLib/) -- overview, IOCP / event-marshalling architecture, cookie pattern, `Data()` lifetime caveat, known limitations
 - [Hosting inside a Windows service](/en/official/Reference/WinNamedPipesLib/#service-host-idiom) -- the **ManualMessageLoopEnter** / **ManualMessageLoopLeave** service-entry-point pattern
-- [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- the deep-copy capture pattern for transient *Data* in events
+- [Recommended payload encoding: `PropertyBag`](/en/official/Reference/WinNamedPipesLib/#propertybag-carrier) -- the deep-copy capture pattern for transient _Data_ in events
 - [NamedPipeServerConnection class](/en/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) -- the per-client connection passed to every event
 - [NamedPipeClientManager class](/en/official/Reference/WinNamedPipesLib/NamedPipeClientManager) -- the client-side counterpart

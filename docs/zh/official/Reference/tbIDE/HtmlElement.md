@@ -3,13 +3,13 @@ title: HtmlElement
 parent: "tbIDE 包"
 permalink: /tB/Packages/tbIDE/HtmlElement
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '3d829252-00ca-41fb-8a2f-5b1c5f8a6ba1'
-  PropagateID: '3d829252-00ca-41fb-8a2f-5b1c5f8a6ba1'
-  ReservedCode1: '6451ece0-f37c-42ed-ad7d-cbdbba599be6'
-  ReservedCode2: '6451ece0-f37c-42ed-ad7d-cbdbba599be6'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "3d829252-00ca-41fb-8a2f-5b1c5f8a6ba1"
+  PropagateID: "3d829252-00ca-41fb-8a2f-5b1c5f8a6ba1"
+  ReservedCode1: "6451ece0-f37c-42ed-ad7d-cbdbba599be6"
+  ReservedCode2: "6451ece0-f37c-42ed-ad7d-cbdbba599be6"
 ---
 
 # HtmlElement 类
@@ -27,7 +27,6 @@ End With
 ```
 
 元素的*属性*——每个 CSS 样式属性、每个 DOM 属性、每个自定义控件扩展——都存在于 [**Properties**](#properties) 包中，通过动态解析机制访问。参见包概述中的[动态 DOM 属性解析](/official/Reference/tbIDE/#动态-dom-属性解析)，了解使 `.style.textAlign = "center"` 在没有静态声明 `style` 成员的情况下工作的底层机制。
-
 
 ## 属性
 
@@ -51,16 +50,16 @@ End With
 
 注册一个在元素上触发 DOM 事件时调用的回调。
 
-语法：*element*.**AddEventListener** *DomEventName*, *CallbackFunc* [, *Data* ]
+语法：_element_.**AddEventListener** _DomEventName_, _CallbackFunc_ [, *Data* ]
 
-*DomEventName*
-: *必需* DOM 事件名称。**String**。标准名称（`"click"`、`"keyup"`、`"input"`、`"change"`、`"mouseenter"` 等）和行内 HTML 触发的自定义事件名称（见下文）均可。
+_DomEventName_
+: _必需_ DOM 事件名称。**String**。标准名称（`"click"`、`"keyup"`、`"input"`、`"change"`、`"mouseenter"` 等）和行内 HTML 触发的自定义事件名称（见下文）均可。
 
-*CallbackFunc*
-: *必需* 回调。传入签名为 `Sub(ByVal eventInfo As HtmlEventProperties)` 的子过程的 `AddressOf`。**LongPtr**。
+_CallbackFunc_
+: _必需_ 回调。传入签名为 `Sub(ByVal eventInfo As HtmlEventProperties)` 的子过程的 `AddressOf`。**LongPtr**。
 
-*Data*
-: *可选* 与注册关联的不透明值。**Variant**。
+_Data_
+: _可选_ 与注册关联的不透明值。**Variant**。
 
 ```vb
 With .ChildDomElements.Add("myButton", "div")
@@ -74,7 +73,7 @@ Private Sub MyButtonClicked(ByVal eventInfo As HtmlEventProperties)
 End Sub
 ```
 
-::: important
+::: warning
 对于四个自定义控件标签（`"chartjs"`、`"monaco"`、`"listview"`、`"virtuallistview"`），控件特有的事件（例如 Monaco 的 `onDidChangeModelContent`、列表视图的 `onClickItem`）注册在**控件对象**上，而非 DOM 元素上。因此：
 
 ```vb
@@ -93,7 +92,7 @@ monacoDivElement.Properties.editor.AddEventListener("onDidChangeModelContent", A
 工具窗口内渲染的行内 HTML 可以通过 IDE 端的 `raiseEvent()` JavaScript 辅助函数向插件触发任意事件名称。JavaScript 端的函数签名为：
 
 ```js
-raiseEvent(eventName, event, stopPropagation, ...customData)
+raiseEvent(eventName, event, stopPropagation, ...customData);
 ```
 
 ——传入事件名称（任意字符串）、DOM `event` 对象、控制传播的布尔值，以及任意数量的尾部自定义数据值。然后插件通过 **AddEventListener** 以相同事件名注册监听器，自定义数据值到达 [**HtmlEventProperties**](/official/Reference/tbIDE/HtmlEventProperties) 时为 `eventInfo.customData0`、`eventInfo.customData1` 等（从零开始数字索引）。此模式在示例 13（列表视图）和示例 15（全局搜索）中被大量使用，以将处理程序附加到列表视图 HTML 内渲染的逐项按钮。
@@ -102,4 +101,4 @@ raiseEvent(eventName, event, stopPropagation, ...customData)
 
 从 DOM 中移除元素。任何子元素随之移除。在此元素上注册的任何事件监听器被释放。
 
-语法：*element*.**Remove**
+语法：_element_.**Remove**

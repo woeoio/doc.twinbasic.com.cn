@@ -24,10 +24,9 @@ Private Sub WalkAllFiles(ByVal folder As Folder)
 End Sub
 ```
 
-::: important
+::: warning
 twinBASIC IDE 是多线程的。当插件持有对文件夹的引用时，同一文件夹可能发生变化——文件到达、文件消失、索引重新编号。遍历文件夹的支持方式是 **For Each**；通过 [**Count**](#count) / [**Item**](#item) 的基于索引的访问与 IDE 自身线程竞争，有时会遗漏或重复条目。遍历时始终优先使用 **For Each**。
 :::
-
 
 ## 属性
 
@@ -35,7 +34,7 @@ twinBASIC IDE 是多线程的。当插件持有对文件夹的引用时，同一
 
 文件夹中当前的项数。**Long**，只读。
 
-::: important
+::: warning
 该值可能在两次读取之间发生变化——IDE 是多线程的。**不要**将其用作 `For i = 0 To Count - 1` 的循环边界；应使用 **For Each**。
 :::
 
@@ -53,11 +52,11 @@ If folder.IsPackagesFolder And Not searchInsidePackages Then Exit Sub
 
 子项的索引或命名访问。**DefaultMember**——因此 `folder(0)` 等同于 `folder.Item(0)`，`folder("MainModule.twin")` 等同于 `folder.Item("MainModule.twin")`。
 
-语法：*folder*( *IndexOrName* ) **As** [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)
+语法：_folder_( _IndexOrName_ ) **As** [**FileSystemItem**](/official/Reference/tbIDE/FileSystemItem)
 
-*IndexOrName*
+_IndexOrName_
 : 一个 **Variant** —— 基于 0 的 **Long** 索引或 **String** 子项名称。
 
-::: important
+::: warning
 数字索引与 IDE 自身线程竞争——索引 `n` 处的项在调用返回时可能已改变身份。命名查找更安全；**For Each** 遍历更加安全。
 :::

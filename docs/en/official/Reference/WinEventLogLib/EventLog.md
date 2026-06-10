@@ -112,7 +112,7 @@ Creates `HKLM\SYSTEM\CurrentControlSet\Services\EventLog\<LogPath>` (prepending 
 - **CategoryMessageFile** = `App.ModulePath`
 - **CategoryCount** = the largest declared value in _T2_, resolved at compile time via [**GetDeclaredMaxEnumValue**](/en/official/Reference/VBA/HiddenModule/GetDeclaredMaxEnumValue)`(Of T2)`
 
-::: important
+::: warning
 **Register** requires administrator rights --- it writes to `HKEY_LOCAL_MACHINE`. The usual pattern is to call it once from an elevated installer, not from the application's normal startup path.
 :::
 

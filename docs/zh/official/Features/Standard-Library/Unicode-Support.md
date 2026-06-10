@@ -4,13 +4,13 @@ parent: Standard Library
 nav_order: 1
 permalink: /Features/Standard-Library/Unicode-Support
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'd6260c91-8bf6-49ee-8fd7-d283bb43d92b'
-  PropagateID: 'd6260c91-8bf6-49ee-8fd7-d283bb43d92b'
-  ReservedCode1: 'd25865cd-de8b-4a6b-b302-d69d86b37111'
-  ReservedCode2: 'd25865cd-de8b-4a6b-b302-d69d86b37111'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "d6260c91-8bf6-49ee-8fd7-d283bb43d92b"
+  PropagateID: "d6260c91-8bf6-49ee-8fd7-d283bb43d92b"
+  ReservedCode1: "d25865cd-de8b-4a6b-b302-d69d86b37111"
+  ReservedCode2: "d25865cd-de8b-4a6b-b302-d69d86b37111"
 ---
 
 # Unicode 支持
@@ -25,7 +25,7 @@ twinBASIC 在整个语言和运行时中提供完整的 Unicode 支持。
 
 所有 tB 实现的控件都支持 Unicode，包括在代码编辑器中和显示时。
 
-::: important
+::: warning
 如果你子类化控件，请注意这意味着你将收到窗口消息的 Unicode (W) 版本，例如 ListView 将发送 `LVN_GETDISPINFOW (LVN_FIRST - 77)` 而不是 `LVN_GETDISPINFOA (LVN_FIRST - 50)`。
 :::
 

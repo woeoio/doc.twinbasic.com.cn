@@ -3,13 +3,13 @@ title: With
 parent: Statements
 permalink: /tB/Core/With
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '51df9f8a-6e96-4293-97b6-7299b208580f'
-  PropagateID: '51df9f8a-6e96-4293-97b6-7299b208580f'
-  ReservedCode1: 'ca8f70cf-4dbd-48e6-856e-921f41cce1d6'
-  ReservedCode2: 'ca8f70cf-4dbd-48e6-856e-921f41cce1d6'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "51df9f8a-6e96-4293-97b6-7299b208580f"
+  PropagateID: "51df9f8a-6e96-4293-97b6-7299b208580f"
+  ReservedCode1: "ca8f70cf-4dbd-48e6-856e-921f41cce1d6"
+  ReservedCode2: "ca8f70cf-4dbd-48e6-856e-921f41cce1d6"
 ---
 
 # With
@@ -18,15 +18,15 @@ AIGC:
 
 语法：
 
-> **With** *object*  
+> **With** _object_  
 > &nbsp;&nbsp;&nbsp;&nbsp;[ *statements* ]  
 > **End With**
 
-*object*
+_object_
 : 对象或用户自定义类型的名称。
 
-*statements*
-: *可选* 要对*object*执行的一个或多个语句。
+_statements_
+: _可选_ 要对*object*执行的一个或多个语句。
 
 **With**语句允许对指定对象执行一系列语句而无需重新限定对象名称。例如，要更改单个对象的多个不同属性，将属性赋值语句放在**With**控制结构中，只需引用对象一次而不是在每个属性赋值时都引用。
 
@@ -46,7 +46,7 @@ End With
 
 **With**语句可以通过将一个**With**块放在另一个**With**块内来嵌套。但是，由于外部**With**块的成员在内部**With**块中被遮蔽，在内部**With**块中必须提供完全限定的对象引用来访问外部**With**块中对象的任何成员。
 
-::: important
+::: warning
 不建议跳入或跳出**With**块。如果**With**块中的语句被执行，但**With**或**End With**语句未被执行，则包含对象引用的临时变量会保留在内存中，直到过程退出。
 :::
 

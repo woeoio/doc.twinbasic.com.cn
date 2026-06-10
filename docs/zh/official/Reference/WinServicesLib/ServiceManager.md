@@ -3,13 +3,13 @@ title: ServiceManager
 parent: "WinServicesLib 包"
 permalink: /tB/Packages/WinServicesLib/ServiceManager
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f5479d71-5b14-4bf4-aae3-13b10e2bfe3e'
-  PropagateID: 'f5479d71-5b14-4bf4-aae3-13b10e2bfe3e'
-  ReservedCode1: 'c33e414c-9540-4b69-9637-e69334b36cbf'
-  ReservedCode2: 'c33e414c-9540-4b69-9637-e69334b36cbf'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "f5479d71-5b14-4bf4-aae3-13b10e2bfe3e"
+  PropagateID: "f5479d71-5b14-4bf4-aae3-13b10e2bfe3e"
+  ReservedCode1: "c33e414c-9540-4b69-9637-e69334b36cbf"
+  ReservedCode2: "c33e414c-9540-4b69-9637-e69334b36cbf"
 ---
 
 # ServiceManager 类
@@ -120,7 +120,7 @@ SCM启动服务宿主EXE时将使用的命令行。**String**，默认 `"""<App.
 
 服务在SCM数据库中的名称，由 `services.msc` 和 `sc.exe` 使用。**String**，无默认值。
 
-名称是SCM存储在 `HKLM\SYSTEM\CurrentControlSet\Services\<Name>` 的内容；它也是 [**Services.LaunchService**](/official/Reference/WinServicesLib/Services#launchservice)、[**Services.ControlService**](/official/Reference/WinServicesLib/Services#controlservice) 和 [**Services.QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice) 作为 *ServiceName* 参数接受的名称。相同的值用于SCM的 *DisplayName*——包目前不暴露独立的显示名称。
+名称是SCM存储在 `HKLM\SYSTEM\CurrentControlSet\Services\<Name>` 的内容；它也是 [**Services.LaunchService**](/official/Reference/WinServicesLib/Services#launchservice)、[**Services.ControlService**](/official/Reference/WinServicesLib/Services#controlservice) 和 [**Services.QueryStateOfService**](/official/Reference/WinServicesLib/Services#querystateofservice) 作为 _ServiceName_ 参数接受的名称。相同的值用于SCM的 _DisplayName_——包目前不暴露独立的显示名称。
 
 ### SupportsPausing
 
@@ -128,7 +128,7 @@ SCM启动服务宿主EXE时将使用的命令行。**String**，默认 `"""<App.
 
 设置此属性后立即通过 `SetServiceStatus` 将缓存的 `SERVICE_STATUS` 重新同步到SCM，因此从 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 内部切换——一旦服务过了 `StartPending` 阶段——在下次SCM查询时生效。大多数支持暂停的服务在 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 顶部将属性设置为 **True**，并在 [**ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) 中处理 [**vbServiceControlPause**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlPause) / [**vbServiceControlContinue**](/official/Reference/WinServicesLib/Enumerations/ServiceControlCodeConstants#vbServiceControlContinue)。
 
-如果设置 **SupportsPausing** 时服务尚未达到已启动状态，重新同步会引发运行时错误5 *"Can't update the service state until the service has started"*。等到第一次 [**ReportStatus**](#reportstatus)`(vbServiceStatusRunning)` 调用之后再切换属性。
+如果设置 **SupportsPausing** 时服务尚未达到已启动状态，重新同步会引发运行时错误5 _"Can't update the service state until the service has started"_。等到第一次 [**ReportStatus**](#reportstatus)`(vbServiceStatusRunning)` 调用之后再切换属性。
 
 ### Type
 
@@ -147,11 +147,11 @@ Win32服务类型——控制服务是否在自己的进程、共享进程中运
 
 在SCM数据库中注册此服务。
 
-语法：*manager*.**Install**
+语法：_manager_.**Install**
 
 以 `SC_MANAGER_CONNECT Or SC_MANAGER_CREATE_SERVICE` 打开SCM，用已配置字段调用 `CreateServiceW`。如果具有相同 [**Name**](#name) 的服务已经存在，方法会先删除它（通过 `OpenServiceW(SERVICE_DELETE)` + `DeleteService`）然后重试——因此对已存在的服务调用 [**Install**](#install) 会覆盖现有注册而非失败。创建成功后，[**Description**](#description) 通过 `ChangeServiceConfig2W(SERVICE_CONFIG_DESCRIPTION)` 写入。
 
-::: important
+::: warning
 [**Install**](#install) 写入SCM数据库，需要管理员权限。通常的做法是从提升的安装程序中调用一次，而不是从应用程序的正常启动路径中调用。从twinBASIC IDE内运行通常会失败——IDE很少以提升权限运行。
 :::
 
@@ -161,18 +161,18 @@ Win32服务类型——控制服务是否在自己的进程、共享进程中运
 
 通知SCM服务的当前状态。由服务从 [**ITbService.EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 内部调用（以及从 [**ITbService.ChangeState**](/official/Reference/WinServicesLib/ITbService#changestate) 调用以确认待处理的转换）。
 
-语法：*manager*.**ReportStatus** *CurrentState* [, *Win32ExitCode* [, *WaitHint* ] ]
+语法：_manager_.**ReportStatus** _CurrentState_ [, _Win32ExitCode_ [, *WaitHint* ] ]
 
-*CurrentState*
-: *必需* [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) 值——通常为 [**vbServiceStatusRunning**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning)、[**vbServiceStatusStopPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopPending) 或 [**vbServiceStatusStopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped)。
+_CurrentState_
+: _必需_ [**ServiceStatusConstants**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants) 值——通常为 [**vbServiceStatusRunning**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning)、[**vbServiceStatusStopPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopPending) 或 [**vbServiceStatusStopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped)。
 
-*Win32ExitCode*
-: *可选* **Long** 退出代码。默认 **0**（`NO_ERROR`）。当因错误报告 [**vbServiceStatusStopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped) 时，传入Win32错误代码，或者对于服务特定代码使用魔术值 `ERROR_SERVICE_SPECIFIC_ERROR`（1066）并将实际代码放在服务特定字段中——但包的API只直接暴露 *Win32ExitCode* 参数。大多数服务为干净停止传入 **0**，为错误停止传入小的自定义代码。
+_Win32ExitCode_
+: _可选_ **Long** 退出代码。默认 **0**（`NO_ERROR`）。当因错误报告 [**vbServiceStatusStopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped) 时，传入Win32错误代码，或者对于服务特定代码使用魔术值 `ERROR_SERVICE_SPECIFIC_ERROR`（1066）并将实际代码放在服务特定字段中——但包的API只直接暴露 _Win32ExitCode_ 参数。大多数服务为干净停止传入 **0**，为错误停止传入小的自定义代码。
 
-*WaitHint*
-: *可选* 给SCM当前待处理转换预计所需的毫秒数上限的 **Long**。默认 **0**。仅对待处理状态有意义（[**vbServiceStatusStartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending)、[**vbServiceStatusStopPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopPending)、[**vbServiceStatusPausePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusPausePending)、[**vbServiceStatusContinuePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusContinuePending)）——SCM将其与自动递增的 `dwCheckPoint` 字段一起使用来检测卡住的服务。
+_WaitHint_
+: _可选_ 给SCM当前待处理转换预计所需的毫秒数上限的 **Long**。默认 **0**。仅对待处理状态有意义（[**vbServiceStatusStartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending)、[**vbServiceStatusStopPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopPending)、[**vbServiceStatusPausePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusPausePending)、[**vbServiceStatusContinuePending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusContinuePending)）——SCM将其与自动递增的 `dwCheckPoint` 字段一起使用来检测卡住的服务。
 
-**ReportStatus** 自动填充 `SERVICE_STATUS` 的 `dwControlsAccepted` 字段——*Stop* 在 [**vbServiceStatusStartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending) 期间以外总是被接受，*Pause* / *Continue* 在 [**SupportsPausing**](#supportspausing) 为 **True** 时被接受。`dwCheckPoint` 字段在服务处于待处理状态时自动递增，在 [**vbServiceStatusRunning**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning) / [**vbServiceStatusStopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped) 时重置为 **0**。
+**ReportStatus** 自动填充 `SERVICE_STATUS` 的 `dwControlsAccepted` 字段——_Stop_ 在 [**vbServiceStatusStartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending) 期间以外总是被接受，_Pause_ / _Continue_ 在 [**SupportsPausing**](#supportspausing) 为 **True** 时被接受。`dwCheckPoint` 字段在服务处于待处理状态时自动递增，在 [**vbServiceStatusRunning**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning) / [**vbServiceStatusStopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped) 时重置为 **0**。
 
 包的调度器跳板在调用 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 之前立即报告 [**vbServiceStatusStartPending**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStartPending)；用户的 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 负责后续的 [**vbServiceStatusRunning**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusRunning) 和 [**vbServiceStatusStopped**](/official/Reference/WinServicesLib/Enumerations/ServiceStatusConstants#vbServiceStatusStopped) 转换。
 
@@ -180,19 +180,19 @@ Win32服务类型——控制服务是否在自己的进程、共享进程中运
 
 通过 `SetServiceStatus` 将缓存的 `SERVICE_STATUS` 重新应用到SCM。由 [**ReportStatus**](#reportstatus) 和 [**SupportsPausing**](#supportspausing) 设置器自动调用；消费者代码很少需要直接调用此方法。
 
-语法：*manager*.**ResyncStatus**
+语法：_manager_.**ResyncStatus**
 
-如果在服务获取其SCM状态句柄之前调用（即在调度器跳板调用 `RegisterServiceCtrlHandlerExW` 之前），引发运行时错误5 *"Can't update the service state until the service has started"*。从 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 内部，[**ReportStatus**](#reportstatus) 是正确的调用，而非直接调用 **ResyncStatus**。
+如果在服务获取其SCM状态句柄之前调用（即在调度器跳板调用 `RegisterServiceCtrlHandlerExW` 之前），引发运行时错误5 _"Can't update the service state until the service has started"_。从 [**EntryPoint**](/official/Reference/WinServicesLib/ITbService#entrypoint) 内部，[**ReportStatus**](#reportstatus) 是正确的调用，而非直接调用 **ResyncStatus**。
 
 ### Uninstall
 
 从SCM数据库中移除此服务。
 
-语法：*manager*.**Uninstall**
+语法：_manager_.**Uninstall**
 
-打开SCM，以 `SERVICE_DELETE` 打开服务，调用 `DeleteService`。实际删除由SCM排队并在每个打开的服务句柄关闭后完成——`services.msc` 可能将服务显示为 *"Marked for deletion"* 直到宿主进程退出。
+打开SCM，以 `SERVICE_DELETE` 打开服务，调用 `DeleteService`。实际删除由SCM排队并在每个打开的服务句柄关闭后完成——`services.msc` 可能将服务显示为 _"Marked for deletion"_ 直到宿主进程退出。
 
-::: important
+::: warning
 [**Uninstall**](#uninstall) 需要管理员权限。如果无法打开SCM、服务未安装或 `DeleteService` 失败，引发运行时错误5，附带描述性消息。
 :::
 

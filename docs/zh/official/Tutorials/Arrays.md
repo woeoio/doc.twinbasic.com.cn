@@ -3,13 +3,13 @@ title: "数组"
 parent: Tutorials
 permalink: /Tutorials/Arrays
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '5254c09b-7179-45fc-a930-8509c7f80990'
-  PropagateID: '5254c09b-7179-45fc-a930-8509c7f80990'
-  ReservedCode1: 'afd03130-e92b-4a88-a7c1-304f8a085f5b'
-  ReservedCode2: 'afd03130-e92b-4a88-a7c1-304f8a085f5b'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "5254c09b-7179-45fc-a930-8509c7f80990"
+  PropagateID: "5254c09b-7179-45fc-a930-8509c7f80990"
+  ReservedCode1: "afd03130-e92b-4a88-a7c1-304f8a085f5b"
+  ReservedCode2: "afd03130-e92b-4a88-a7c1-304f8a085f5b"
 ---
 
 # 数组
@@ -26,7 +26,6 @@ AIGC:
 
 在更大的数组中，创建（定义维度）时动态数组的开销变得可以忽略不计。然而，无论动态数组的大小如何，元素访问仍有轻微的运行时开销。
 
-
 ## 数组声明语法
 
 固定大小数组只能用于变量或类和UDT的字段。
@@ -38,20 +37,20 @@ AIGC:
 固定大小数组不能直接作为返回类型使用。当包装在UDT中时可以返回。
 :::
 
-* 过程中变量声明的语法
-  **Dim** | **Static** name **()** [ **As** type ]  -- 动态数组
-  **Dim** | **Static** name **(** size [ **,** size ... ] **)** [ **As** type ]  -- 固定数组
-* 过程参数类型的语法；仅动态数组有效，以下两种语法等价
-  name **()** [ **As** type ]   
+- 过程中变量声明的语法
+  **Dim** | **Static** name **()** [ **As** type ] -- 动态数组
+  **Dim** | **Static** name **(** size [ **,** size ... ] **)** [ **As** type ] -- 固定数组
+- 过程参数类型的语法；仅动态数组有效，以下两种语法等价
+  name **()** [ **As** type ]  
   name **As** type **()**
-* 过程返回类型的语法；仅动态数组有效
+- 过程返回类型的语法；仅动态数组有效
   name **As** type **()**
-* 类中字段声明的语法
-  **Dim** | **Private** | **Protected** | **Public** name **()** [ **As** type ]  -- 动态数组
-  **Dim** | **Private** | **Protected** | **Public** name **(** size [ **,** size ....] **)** [ **As** type ]  -- 静态数组
-* 类型（UDT）中字段声明的语法
-  name **()** [ **As** type ]  -- 动态数组
-  name **(** size [ **,** size ....] **)** [ **As** type ]  -- 静态数组
+- 类中字段声明的语法
+  **Dim** | **Private** | **Protected** | **Public** name **()** [ **As** type ] -- 动态数组
+  **Dim** | **Private** | **Protected** | **Public** name **(** size [ **,** size ....] **)** [ **As** type ] -- 静态数组
+- 类型（UDT）中字段声明的语法
+  name **()** [ **As** type ] -- 动态数组
+  name **(** size [ **,** size ....] **)** [ **As** type ] -- 静态数组
 
 每个大小规格是一个范围，但下界是可选的，默认为当前有效的**Option Base**：
 
@@ -82,7 +81,7 @@ Sub OkSub1(data() As Byte)     ' Dynamic array parameter
 Sub OkSub2(data As Byte())     ' Alternate syntax
 
 Sub BadSub1(data(10) As Byte)  ' Invalid, fixed array types are not allowed as parameters...
-Sub BadSub2(data As Byte(10))  ' ... in neither syntax          
+Sub BadSub2(data As Byte(10))  ' ... in neither syntax
 ```
 
 ## 定义动态数组维度
@@ -105,9 +104,9 @@ Debug.Assert UBound(array) = 10
 
 语法：
 
-* **ReDim** [ **Preserve** ] name **(** size [ **,** size ...] **)**
+- **ReDim** [ **Preserve** ] name **(** size [ **,** size ...] **)**
 
-::: important
+::: warning
 
 使用**ReDim Preserve**只能更改数组维度的上界。
 非保留的**ReDim**允许任意更改。
@@ -149,7 +148,7 @@ Debug.Assert UBound(array, 2) = 20  ' 2nd dimension, upper bound'
 
 ```vb
 Sub ArrayLen(Of T)(array() Of T, ByVal dimension% = 1) As Long
-    ' zero is the default return value    
+    ' zero is the default return value
     If IsArrayInitialized(array) Then
         Return 1 + UBound(array, dimension) - LBound(array, dimension)
     End If
@@ -265,7 +264,7 @@ Sub Save(array() As Long)
     Debug.Assert ArrayBytes(array) = ArrayLen(array) * 4   ' 4 = size of a Long
     SaveLongData(ArrayPtr(array), ArrayLen(array))
 End Sub
-        
+
 Sub Write(array() As Long)
     WriteData(ArrayPtr(array), ArrayBytes(array))
 End Sub

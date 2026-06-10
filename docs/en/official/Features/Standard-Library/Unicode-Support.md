@@ -17,10 +17,11 @@ Native functions that take string arguments, such as `MsgBox` and FileSystem fun
 
 All tB-implemented controls support Unicode, both in the code editor and when displayed.
 
-::: important
+::: warning
 If you subclass controls, note that this means you will receive the Unicode (W) version of window messages, e.g. ListViews will send `LVN_GETDISPINFOW (LVN_FIRST - 77)` instead of `LVN_GETDISPINFOA (LVN_FIRST - 50)`.
 :::
 
 ## String Conversion
 
 `StrConv()` now has `vbUTF8` / `vbFromUTF8` options for UTF-8 string conversion.
+

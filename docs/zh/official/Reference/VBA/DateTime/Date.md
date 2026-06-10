@@ -3,13 +3,13 @@ title: Date
 parent: DateTime Module
 permalink: /tB/Modules/DateTime/Date
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '1f1b9dbc-84c2-42b2-b6ec-ecfe6de7aa2b'
-  PropagateID: '1f1b9dbc-84c2-42b2-b6ec-ecfe6de7aa2b'
-  ReservedCode1: '8c29db63-04cc-4e1a-8b72-ae35d8031774'
-  ReservedCode2: '8c29db63-04cc-4e1a-8b72-ae35d8031774'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "1f1b9dbc-84c2-42b2-b6ec-ecfe6de7aa2b"
+  PropagateID: "1f1b9dbc-84c2-42b2-b6ec-ecfe6de7aa2b"
+  ReservedCode1: "8c29db63-04cc-4e1a-8b72-ae35d8031774"
+  ReservedCode2: "8c29db63-04cc-4e1a-8b72-ae35d8031774"
 ---
 
 # Date
@@ -42,12 +42,12 @@ MyDate = Date   ' MyDate contains the current system date.
 
 从 Variant 或 Date 类型的值设置当前系统日期。
 
-语法：**Date** **=** *date*
+语法：**Date** **=** _date_
 
-*date*
-: *必需* 对于运行 Microsoft Windows 95 的系统，*date* 必须是从 1980 年 1 月 1 日到 2099 年 12 月 31 日的日期。对于运行 Microsoft Windows NT 的系统，*date* 必须是从 1980 年 1 月 1 日到 2079 年 12 月 31 日的日期。对于 Macintosh，*date* 必须是从 1904 年 1 月 1 日到 2040 年 2 月 5 日的日期。
+_date_
+: _必需_ 对于运行 Microsoft Windows 95 的系统，_date_ 必须是从 1980 年 1 月 1 日到 2099 年 12 月 31 日的日期。对于运行 Microsoft Windows NT 的系统，_date_ 必须是从 1980 年 1 月 1 日到 2079 年 12 月 31 日的日期。对于 Macintosh，_date_ 必须是从 1904 年 1 月 1 日到 2040 年 2 月 5 日的日期。
 
-::: important
+::: warning
 
 在某些版本的 Microsoft Windows（包括 Windows 10 和 11）中，设置系统日期是一项特权操作，需要进程具有相关权限。如果没有这些权限，对 **Date** 的赋值会导致"权限被拒绝"运行时错误。
 :::
@@ -59,12 +59,12 @@ MyDate = Date   ' MyDate contains the current system date.
 ```vb
 Dim MyDate As Date
 MyDate = #February 12, 1985#  ' Assign a date to a variable.
-Date= MyDate                  ' Change system date. 
+Date= MyDate                  ' Change system date.
 ```
 
 ## Date$ 属性
 
-**Date$** 属性的行为依赖于 [**Calendar**](/official/Reference/VBA/DateTime/Calendar) 属性设置。如果日历为回历，**Date$** 返回或接受一个 10 字符的字符串，格式为 *mm-dd-yyyy*，其中 *mm* (01--12)、*dd* (01--30) 和 *yyyy* (1400--1523) 分别为回历月、日和年。等效的公历范围为 1980 年 1 月 1 日到 2099 年 12 月 31 日。
+**Date$** 属性的行为依赖于 [**Calendar**](/official/Reference/VBA/DateTime/Calendar) 属性设置。如果日历为回历，**Date$** 返回或接受一个 10 字符的字符串，格式为 _mm-dd-yyyy_，其中 _mm_ (01--12)、_dd_ (01--30) 和 _yyyy_ (1400--1523) 分别为回历月、日和年。等效的公历范围为 1980 年 1 月 1 日到 2099 年 12 月 31 日。
 
 ### Get
 
@@ -85,12 +85,12 @@ MyDate = Date$  ' MyDate contains the current system date.
 
 从字符串设置当前系统日期。
 
-语法：**Date$** **=** *date*
+语法：**Date$** **=** _date_
 
-*date*
-: *必需* 对于运行 Microsoft Windows 95 的系统，*date* 必须是从 1980 年 1 月 1 日到 2099 年 12 月 31 日的日期。对于运行 Microsoft Windows NT 的系统，*date* 必须是从 1980 年 1 月 1 日到 2079 年 12 月 31 日的日期。对于 Macintosh，*date* 必须是从 1904 年 1 月 1 日到 2040 年 2 月 5 日的日期。
+_date_
+: _必需_ 对于运行 Microsoft Windows 95 的系统，_date_ 必须是从 1980 年 1 月 1 日到 2099 年 12 月 31 日的日期。对于运行 Microsoft Windows NT 的系统，_date_ 必须是从 1980 年 1 月 1 日到 2079 年 12 月 31 日的日期。对于 Macintosh，_date_ 必须是从 1904 年 1 月 1 日到 2040 年 2 月 5 日的日期。
 
-::: important
+::: warning
 
 在某些版本的 Microsoft Windows（包括 Windows 10 和 11）中，设置系统日期是一项特权操作，需要进程具有相关权限。如果没有这些权限，对 **Date**$ 的赋值会导致"权限被拒绝"运行时错误。
 :::
@@ -102,7 +102,7 @@ MyDate = Date$  ' MyDate contains the current system date.
 ```vb
 Dim MyDate$
 MyDate = "02-12-1985"        ' Assign a date to a variable.
-Date$ = MyDate               ' Change the system date. 
+Date$ = MyDate               ' Change the system date.
 ```
 
 ### 另请参阅

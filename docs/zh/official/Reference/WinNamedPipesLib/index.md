@@ -4,13 +4,13 @@ parent: Packages
 nav_order: 9
 permalink: /tB/Packages/WinNamedPipesLib/
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'f6c815c3-4d98-4760-95dc-28a925b6fefe'
-  PropagateID: 'f6c815c3-4d98-4760-95dc-28a925b6fefe'
-  ReservedCode1: 'cb2ddbee-ab71-465d-b7a7-e6a0adc95567'
-  ReservedCode2: 'cb2ddbee-ab71-465d-b7a7-e6a0adc95567'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "f6c815c3-4d98-4760-95dc-28a925b6fefe"
+  PropagateID: "f6c815c3-4d98-4760-95dc-28a925b6fefe"
+  ReservedCode1: "cb2ddbee-ab71-465d-b7a7-e6a0adc95567"
+  ReservedCode2: "cb2ddbee-ab71-465d-b7a7-e6a0adc95567"
 ---
 
 # WinNamedPipesLib 包
@@ -23,10 +23,10 @@ AIGC:
 
 两半，各一个用户实例化的协调器类加一个每连接类：
 
-| 侧    | 协调器                                            | 每连接                                                 |
-|---------|--------------------------------------------------------|----------------------------------------------------------------|
-| 服务器  | [**NamedPipeServer**](/official/Reference/WinNamedPipesLib/NamedPipeServer)                 | [**NamedPipeServerConnection**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection)     |
-| 客户端  | [**NamedPipeClientManager**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager)   | [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection)     |
+| 侧     | 协调器                                                                                    | 每连接                                                                                          |
+| ------ | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| 服务器 | [**NamedPipeServer**](/official/Reference/WinNamedPipesLib/NamedPipeServer)               | [**NamedPipeServerConnection**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection) |
+| 客户端 | [**NamedPipeClientManager**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager) | [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) |
 
 服务器发布一个名称（`PipeName = "MyService"` → Win32路径 `\\.\pipe\MyService`）并为每个连接的客户端返回一个 [**NamedPipeServerConnection**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection)。客户端管理器以相同名称拨号（使用 [**Connect**](/official/Reference/WinNamedPipesLib/NamedPipeClientManager#connect)）并返回一个 [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection)。此后两端是对称的——都暴露具有相同签名的 `AsyncRead`、`AsyncWrite` 和 `AsyncClose`。
 
@@ -70,7 +70,7 @@ End Select
 值得强调的三个要点：
 
 - 服务入口点和控制代码处理程序运行在**不同线程**上。共享的 [**NamedPipeServer**](/official/Reference/WinNamedPipesLib/NamedPipeServer) 成员字段是它们协调的媒介；处理程序调用其上的 [**ManualMessageLoopLeave**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) 来唤醒入口点。
-- [**ManualMessageLoopLeave**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) 是干净退出 [**ManualMessageLoopEnter**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) 的唯一方式。没有超时，也没有第二个阻塞原语。需要响应其他唤醒源（例如 *Pause* 控制代码）的服务先设置共享的 `Public` 标志，*然后*调用 [**ManualMessageLoopLeave**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) 跳出，检查标志，然后重新进入循环或继续关闭。
+- [**ManualMessageLoopLeave**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) 是干净退出 [**ManualMessageLoopEnter**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) 的唯一方式。没有超时，也没有第二个阻塞原语。需要响应其他唤醒源（例如 _Pause_ 控制代码）的服务先设置共享的 `Public` 标志，*然后*调用 [**ManualMessageLoopLeave**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave) 跳出，检查标志，然后重新进入循环或继续关闭。
 - [**FreeThreadingEvents**](/official/Reference/WinNamedPipesLib/NamedPipeServer#freethreadingevents) = **False**（默认）是此模式**必需的**。将其设置为 **True** 会直接在IOCP工作线程上传递事件，完全绕过手动循环——管道仍然工作，但 `ManualMessageLoopEnter` / `Leave` 变得不相关。选择一种模式并坚持使用。
 
 非服务等价方式——在Form内托管相同的 [**NamedPipeServer**](/official/Reference/WinNamedPipesLib/NamedPipeServer)——更简单：Form的常规消息循环自动泵送封送窗口，因此Form在 `Form_Load` 中调用 [**Start**](/official/Reference/WinNamedPipesLib/NamedPipeServer#start)，在 `Form_Unload` 中调用 [**Stop**](/official/Reference/WinNamedPipesLib/NamedPipeServer#stop)，且从不使用 [**ManualMessageLoopEnter**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopenter) / [**ManualMessageLoopLeave**](/official/Reference/WinNamedPipesLib/NamedPipeServer#manualmessageloopleave)。两种模式都可行；服务托管模式是需要手动泵送的那种。
@@ -81,7 +81,7 @@ End Select
 
 ## Cookie关联模式
 
-每个 [**AsyncRead**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) 和 [**AsyncWrite**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) 接受一个可选 **Variant** 类型的 *Cookie*。调用者传入的任何值都会通过IOCP完成往返，并作为匹配的 [**ClientMessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagereceived) / [**ClientMessageSent**](/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagesent)（或客户端 [**MessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) / [**MessageSent**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagesent)）事件的 *Cookie* 参数重新发出。使用它将事件回调与发起它们的调用关联起来——按请求的序列号、回调对象、待回复字典的键。
+每个 [**AsyncRead**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncread) 和 [**AsyncWrite**](/official/Reference/WinNamedPipesLib/NamedPipeServerConnection#asyncwrite) 接受一个可选 **Variant** 类型的 _Cookie_。调用者传入的任何值都会通过IOCP完成往返，并作为匹配的 [**ClientMessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagereceived) / [**ClientMessageSent**](/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagesent)（或客户端 [**MessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) / [**MessageSent**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagesent)）事件的 _Cookie_ 参数重新发出。使用它将事件回调与发起它们的调用关联起来——按请求的序列号、回调对象、待回复字典的键。
 
 ```vb
 Private pending As New Collection
@@ -101,9 +101,9 @@ End Sub
 
 ## 在事件中使用 `Data() As Byte`
 
-[**ClientMessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagereceived) 和 [**MessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) 上的 *Data* 参数**不是**普通的堆分配 **Byte** 数组。包构造了一个自定义 `SAFEARRAY`，其后备内存指向IOCP读取缓冲区，然后在事件处理程序末尾清除数组指针以便缓冲区可以回收。这些值*仅在*处理程序位于栈上时有效。
+[**ClientMessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeServer#clientmessagereceived) 和 [**MessageReceived**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#messagereceived) 上的 _Data_ 参数**不是**普通的堆分配 **Byte** 数组。包构造了一个自定义 `SAFEARRAY`，其后备内存指向IOCP读取缓冲区，然后在事件处理程序末尾清除数组指针以便缓冲区可以回收。这些值*仅在*处理程序位于栈上时有效。
 
-::: important
+::: warning
 如果稍后需要这些字节，请在事件处理程序返回之前将其复制出来。将数组引用存储在模块级变量、**Collection** 或类字段中，一旦IOCP循环将缓冲区重用于下一条消息，就会留下悬空指针。
 :::
 
@@ -121,7 +121,7 @@ ReDim Stored(UBound(Data))
 
 包传输原始字节；它不关心字节内部是什么。对于非简单协议，推荐的载体是 [**PropertyBag**](/official/Reference/VBRUN/PropertyBag/)——twinBASIC 的内置键控属性序列化器。两个原因：
 
-1. **`PropertyBag.Contents` 深拷贝字节**，这是对上述瞬时 `Data()` 生命周期注意事项的最简单解决方案。将 *Data* 赋值给新的 **PropertyBag** 的 **Contents** 即可一步捕获缓冲区；该副本可以在事件处理程序之后安全保留。
+1. **`PropertyBag.Contents` 深拷贝字节**，这是对上述瞬时 `Data()` 生命周期注意事项的最简单解决方案。将 _Data_ 赋值给新的 **PropertyBag** 的 **Contents** 即可一步捕获缓冲区；该副本可以在事件处理程序之后安全保留。
 2. **`PropertyBag` 提供类型化的多字段载荷**，无需消费者设计线路协议。双方约定属性名称（例如 `"CommandID"`、`"ResponseCommandID"`、`"Data"`），**PropertyBag** 处理字节级编码。
 
 ```vb
@@ -148,8 +148,8 @@ End Select
 
 ## 关闭客户端连接
 
-::: important
-**`_README.txt`** 声明：*"你必须在客户端调用 **AsyncClose**，否则当对象超出作用域时连接仍然存活"*。
+::: warning
+**`_README.txt`** 声明：_"你必须在客户端调用 **AsyncClose**，否则当对象超出作用域时连接仍然存活"_。
 :::
 
 让 [**NamedPipeClientConnection**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection) 对象通过其 `Class_Terminate`（自动调用 [**AsyncClose**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncclose)）干净地终止，**或者**在丢弃最后一个引用之前显式调用 [**AsyncClose**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncclose)。永远持有引用——例如在长期存在的模块级 **Collection** 中——而不调用 [**AsyncClose**](/official/Reference/WinNamedPipesLib/NamedPipeClientConnection#asyncclose) 会使底层管道句柄保持打开且IOCP线程保持活动。

@@ -3,13 +3,13 @@ title: DoEvents
 parent: Interaction Module
 permalink: /tB/Modules/Interaction/DoEvents
 AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '2ede2452-200c-464e-b066-dfc147ccdf74'
-  PropagateID: '2ede2452-200c-464e-b066-dfc147ccdf74'
-  ReservedCode1: 'b4567f65-e780-4543-83de-5c60fa7f7eb2'
-  ReservedCode2: 'b4567f65-e780-4543-83de-5c60fa7f7eb2'
+  ContentProducer: "001191110102MAD55U9H0F10002"
+  ContentPropagator: "001191110102MAD55U9H0F10002"
+  Label: "1"
+  ProduceID: "2ede2452-200c-464e-b066-dfc147ccdf74"
+  PropagateID: "2ede2452-200c-464e-b066-dfc147ccdf74"
+  ReservedCode1: "b4567f65-e780-4543-83de-5c60fa7f7eb2"
+  ReservedCode2: "b4567f65-e780-4543-83de-5c60fa7f7eb2"
 ---
 
 # DoEvents
@@ -24,7 +24,7 @@ AIGC:
 
 **DoEvents**对于简单的事情最有用，例如在紧密循环期间保持UI响应，或让用户取消长时间运行的操作。对于真正长时间运行的工作，建议使用定时器或后台工作器（例如进程外ActiveX EXE），以便操作系统处理多任务。
 
-::: important
+::: warning
 每当在事件过程中让出处理器时，该过程在原始调用返回之前不得从不同的代码路径重新进入；否则程序可能会产生不可预测的行为。同样，在让出控制权期间其他应用程序可能以不可预见的方式与过程交互时，避免使用**DoEvents**。
 :::
 

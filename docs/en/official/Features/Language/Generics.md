@@ -7,7 +7,7 @@ permalink: /Features/Language/Generics
 
 # Generics
 
-::: important
+::: warning
 Generics are syntactic sugar for copy-pasting code followed by a search-and-replace of type names.
 
 Everything that the generic syntax provides can be achieved without it by writing repetitive code.
@@ -15,7 +15,7 @@ Everything that the generic syntax provides can be achieved without it by writin
 
 This repetition is error-prone and tedious, however, and thus the generic syntax keeps the code DRY[^1].
 
-The generic syntax introduces *type parameters* / *type variables* whose *type-values* exist during compilation, as opposed to regular parameters and their values that exist during run-time only.
+The generic syntax introduces _type parameters_ / _type variables_ whose _type-values_ exist during compilation, as opposed to regular parameters and their values that exist during run-time only.
 
 Procedures, **Class**es and **Type**s (UDTs) can be made generic.
 
@@ -27,33 +27,30 @@ Generic **Type**s (UDTs) don't yet support member procedures (error TB5124).
 
 Syntax:
 
-* **Definition**  
-  ( **Function** | ... ) *name* **(Of** *type-variable-list* **)** **(** *parameter-list* **)** **As** *return-type*
-  
-* In detail:  
-  ( **Function** | **Sub** | **Property** (**Get** | **Let** | **Set**) ) *name* **(Of** *type-var1* [ **,** *type-var2* ...]**)** **(** *parameter-list* **)** **As** *return-type*  
-  The *parameter-list* can reference any of the type variables, e.g.  
+- **Definition**  
+  ( **Function** | ... ) _name_ **(Of** _type-variable-list_ **)** **(** _parameter-list_ **)** **As** _return-type_
+- In detail:  
+  ( **Function** | **Sub** | **Property** (**Get** | **Let** | **Set**) ) _name_ **(Of** _type-var1_ [ **,** *type-var2* ...]**)** **(** _parameter-list_ **)** **As** _return-type_  
+  The _parameter-list_ can reference any of the type variables, e.g.  
   `Sub MyPrint(Of T)(ByVal file&, value As T)`
-  
-* **Invocation** or **Call Site**  
-  *name* [ **(Of** *type-argument-list* **)** ] [ **(** *argument-list* **)** ] 
-  
-* In detail:  
-  *name* [ **(Of** *type-arg1* [ **,** *type-arg2* ] **)** ] [ **(** *argument-list* **)** ]  
-  The type variables from the definition's *parameter-list* are substituted with concrete or arguments types provided in the *argument-list*, unless provided explicitly as a type argument in the *type-argument-list*.  
-  The type variables that were not referenced in the *parameter-list* have to be provided in the *type-argument-list* as *type-arguments*.
+- **Invocation** or **Call Site**  
+  _name_ [ **(Of** *type-argument-list* **)** ] [ **(** *argument-list* **)** ]
+- In detail:  
+  _name_ [ **(Of** _type-arg1_ [ **,** *type-arg2* ] **)** ] [ **(** *argument-list* **)** ]  
+  The type variables from the definition's _parameter-list_ are substituted with concrete or arguments types provided in the _argument-list_, unless provided explicitly as a type argument in the _type-argument-list_.  
+  The type variables that were not referenced in the _parameter-list_ have to be provided in the _type-argument-list_ as _type-arguments_.
 
-In the definition, the *type-variable-list*, i.e. **(Of** *type-var* ... **)**, introduces genericity. The type variables (*type-var*) introduce identifiers of arbitrary types that can be referenced within:
+In the definition, the _type-variable-list_, i.e. **(Of** _type-var_ ... **)**, introduces genericity. The type variables (_type-var_) introduce identifiers of arbitrary types that can be referenced within:
 
-- *parameter-list*, 
-- *return-type*, and 
+- _parameter-list_,
+- _return-type_, and
 - the body of the procedure.
 
-In the invocation, the *type-argument-list*, i.e. **(Of** *type-arg* ... **)**, is optional as needed to provide types arguments for those type variables that don't appear in the *parameter-list* of the definition. The type variables that are used within the *parameter-list* are assigned type values of the respective arguments at the call site *unless their values are explicitly provided* in the *type-argument-list*.
+In the invocation, the _type-argument-list_, i.e. **(Of** _type-arg_ ... **)**, is optional as needed to provide types arguments for those type variables that don't appear in the _parameter-list_ of the definition. The type variables that are used within the _parameter-list_ are assigned type values of the respective arguments at the call site _unless their values are explicitly provided_ in the _type-argument-list_.
 
 ### Call site type arguments
 
-Type variables that correspond to types that could be deduced from the call argument types must form a trailer of the *type-variable-list*:  
+Type variables that correspond to types that could be deduced from the call argument types must form a trailer of the _type-variable-list_:
 
 ```vb
 Sub MySub1(Of T, U, V)(argu As U, argv As V): End Sub
@@ -63,18 +60,18 @@ MySub1(Of Long, Single, Double)(33%, 42%)' Valid: provided U = Single, provided 
 MySub1(Of Long, , Double)(33%, 42%)      ' Invalid: omitted deduced type must be trailing
 ```
 
-Thus, to suppress deduction, put the type variable in the type list *before* the non-deducible type parameters:
+Thus, to suppress deduction, put the type variable in the type list _before_ the non-deducible type parameters:
 
 ```vb
 ' T must be provided, it won't be deduced
 Function MyFn1(Of T, U)(argu As T) As U: End Function
 MyFn1(Of Single, String)(10%)   ' Valid: provided T = Single, U = String
 MyFn1(Of, String)(10%)          ' Invalid: T is not trailing so it can't be omitted
-                                ' Effectively, the definition of MyFn1 
+                                ' Effectively, the definition of MyFn1
                                 ' suppresses deduction of T
 ```
 
-Only the unused type variables may have their arguments omitted at positions *after the first* in the *type-variable-list*.:
+Only the unused type variables may have their arguments omitted at positions _after the first_ in the _type-variable-list_.:
 
 ```vb
 Sub MySub2(Of T, U, V)(argt As T, argv As V): End Sub
@@ -88,7 +85,7 @@ MySub3(Of, Single)(22%)             ' Invalid: unused U can't be omitted as it's
 
 ### Example 1
 
-In this example, the invocations of the generic **First** and **Last** subs don't need to explicitly provide type argument values using the  *type-argument-list*, i.e. **(Of** ... **)**, since they can be deduced from the argument types.
+In this example, the invocations of the generic **First** and **Last** subs don't need to explicitly provide type argument values using the _type-argument-list_, i.e. **(Of** ... **)**, since they can be deduced from the argument types.
 
 ```vb
 Public Function First(Of T)(Array() As T) As T
@@ -98,7 +95,7 @@ End Function
 Public Function Last(Of T)(Array() As T) As T
     If IsArrayInitialized(Array) Then Return Array(UBound(Array))
 End Function
-        
+
 Sub Test()
     Dim data() As String = Array("A", "B", "C")
     Debug.Assert First(data) = "A"
@@ -106,17 +103,17 @@ Sub Test()
 End Sub
 ```
 
-Without the generic syntax, the procedure would have had to be written for every type *T* it's used on. In the example below, that would be `T=String` and `T=Integer`:
+Without the generic syntax, the procedure would have had to be written for every type _T_ it's used on. In the example below, that would be `T=String` and `T=Integer`:
 
 ```vb
 Public Function First(Array() As String) As String
     If IsArrayInitialized(Array) Then Return Array(LBound(Array))
 End Function
-    
+
 Public Function First(Array() As Integer) As Integer
     If IsArrayInitialized(Array) Then Return Array(LBound(Array))
 End Function
-        
+
 Sub Test()
     Dim strings() As String = Array("A", "B", "C")
     Dim ints() As Integer = Array(1, 2, 3)
@@ -124,11 +121,11 @@ Sub Test()
 End Sub
 ```
 
-### Example 2 with some type variables not appearing in the *parameter-list*
+### Example 2 with some type variables not appearing in the _parameter-list_
 
-There are two common cases when a type variable might not appear in the *parameter-list*:
+There are two common cases when a type variable might not appear in the _parameter-list_:
 
-- when it is the *result-type*, and/or
+- when it is the _result-type_, and/or
 - when it is used in the body of the procedure.
 
 The example below illustrates those possibilities:
@@ -154,41 +151,40 @@ The function **Caster** introduces three type variables within its scope:
 - **U** is a type used in the body of the function and must be provided on invocation.
 
 ::: tip
-The order of the type variables in the definition can be chosen so that the trailing variable(s) are used in the *parameter-list*. The type-values of those type variable can thus be omitted if the types inferred from the argument types at the call site are appropriate.
+The order of the type variables in the definition can be chosen so that the trailing variable(s) are used in the _parameter-list_. The type-values of those type variable can thus be omitted if the types inferred from the argument types at the call site are appropriate.
 :::
 
 1. In the invocation `Example(Of String, Integer)(1.23!)`,  
-   *T* is deduced to be **Single**, *U* is provided and set to **Integer**, and **R** is provided and set to **String**.
+   _T_ is deduced to be **Single**, _U_ is provided and set to **Integer**, and **R** is provided and set to **String**.
 
 2. In the invocation `Example(Of String, Integer, Double)(1.23!)`,  
-    *T* is provided and set to **Double**, *U* is provided and set to **Integer**, and *R* is provided and set to **String**.
-   * First, the compiler will cast `1.23!` to the type of the formal parameter, that is to a **Double** `1.23#`.
-   * Then, in the body of the function, the *value* is cast to **Integer** when it's assigned to **intermediate**.
-   * Finally, also in the body, the **intermediate** is cast to the result type of **String**, and returned.
-   
+    _T_ is provided and set to **Double**, _U_ is provided and set to **Integer**, and _R_ is provided and set to **String**.
+   - First, the compiler will cast `1.23!` to the type of the formal parameter, that is to a **Double** `1.23#`.
+   - Then, in the body of the function, the _value_ is cast to **Integer** when it's assigned to **intermediate**.
+   - Finally, also in the body, the **intermediate** is cast to the result type of **String**, and returned.
 
 ## Generic Classes And UDTs
 
 Syntax:
 
-* **Definition**  
-  [ **Class** | ... ] *name* **(Of** *type-variable-list* **)** 
-* In Detail:  
-  [ **Class** | **Type** ] *name* **(Of** *type-var1* [ **,** *type-var2* ... ] **)**
-* **Instantiation**  
-  *name* **(Of** *type-argument-list* **)**
-* In Detail:  
-  *name* **(Of** *type-arg1* [ **,** *type-arg2* ... ] **)**
+- **Definition**  
+  [ **Class** | ... ] _name_ **(Of** _type-variable-list_ **)**
+- In Detail:  
+  [ **Class** | **Type** ] _name_ **(Of** _type-var1_ [ **,** *type-var2* ... ] **)**
+- **Instantiation**  
+  _name_ **(Of** _type-argument-list_ **)**
+- In Detail:  
+  _name_ **(Of** _type-arg1_ [ **,** *type-arg2* ... ] **)**
 
-The type variables (*type-var*) introduce identifiers of arbitrary types that can be referenced anywhere within the body of the class.
+The type variables (_type-var_) introduce identifiers of arbitrary types that can be referenced anywhere within the body of the class.
 
-::: important
-When instantiating generic classes and UDTs,  **all of the type arguments** have to be provided.
+::: warning
+When instantiating generic classes and UDTs, **all of the type arguments** have to be provided.
 
 If they aren't, code generation errors and silent failures at runtime may occur.
 :::
 
-### Example of  correct and incorrect instantiation
+### Example of correct and incorrect instantiation
 
 ```vb
 Class MyClass(Of T, U)
@@ -211,7 +207,7 @@ A generic class enables substitution of type variables with type arguments provi
 ::: info
 Compile Time: A generic class is instantiated by calling out its name with arguments.
 
-Run Time:  Objects of those instantiated types can be created.
+Run Time: Objects of those instantiated types can be created.
 :::
 
 In the example below, two class types are instantiated: **MyClass**(**Integer**) and **MyClass**(**String**). This happens at compile time. No instances of **MyClass** are created at runtime, since both variables default to **Nothing**:
@@ -234,11 +230,11 @@ A Class generic allows the type in methods throughout the class. The following e
 [COMCreatable(False)]
 Class List(Of T)
     Private mData() As T
-    
+
     Sub New(preset() As T)
         mData = preset
     End Sub
-    
+
     [DefaultMember]
     Function GetAt(ByVal index&) As T
         Return mData(index)

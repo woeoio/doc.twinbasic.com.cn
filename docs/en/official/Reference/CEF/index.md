@@ -9,12 +9,11 @@ permalink: /tB/Packages/CEF/
 
 The **cefPackage** wraps the [Chromium Embedded Framework](https://chromiumembedded.github.io/cef/) and exposes it as an ordinary twinBASIC control. Drop a [**CefBrowser**](/en/official/Reference/CEF/CefBrowser/) onto a form and a Chromium browser renders web content inside it --- navigate to URLs, run JavaScript, print pages to PDF, and exchange messages with the loaded page.
 
-The package is a built-in package shipped with twinBASIC, but the CEF runtime itself is distributed *separately* --- applications must ship the matching runtime ZIP alongside the executable. See [Runtime files](#runtime-files) below.
+The package is a built-in package shipped with twinBASIC, but the CEF runtime itself is distributed _separately_ --- applications must ship the matching runtime ZIP alongside the executable. See [Runtime files](#runtime-files) below.
 
-::: important
+::: warning
 The CEF package is currently in **BETA**. Several features available on [**WebView2**](/en/official/Reference/WebView2/) are not yet exposed; see [WebView2 parity](#webview2-parity) below.
 :::
-
 
 ## Why CEF instead of WebView2?
 
@@ -30,11 +29,11 @@ CEF and [**WebView2**](/en/official/Reference/WebView2/) both wrap a Chromium-ba
 
 Three CEF versions are supported, each with a different Chromium baseline and different OS reach:
 
-| Runtime version | Supported OS  | Notes                                                          |
-|-----------------|---------------|----------------------------------------------------------------|
-| **v49**         | Windows XP+   | Last Chromium version that supports Windows XP.                |
-| **v109**        | Windows 7+    | Last Chromium version that supports Windows 7.                 |
-| **v145**        | Windows 10+   | Recommended modern runtime.                                    |
+| Runtime version | Supported OS | Notes                                           |
+| --------------- | ------------ | ----------------------------------------------- |
+| **v49**         | Windows XP+  | Last Chromium version that supports Windows XP. |
+| **v109**        | Windows 7+   | Last Chromium version that supports Windows 7.  |
+| **v145**        | Windows 10+  | Recommended modern runtime.                     |
 
 ::: warning
 Older Chromium versions should not generally be used for unrestricted internet browsing --- they have unpatched security vulnerabilities. They remain appropriate for tightly controlled environments where the browser loads only trusted local or internal content.
@@ -51,16 +50,15 @@ The runtime bitness must match the application bitness --- a 32-bit application 
 
 The runtime ships separately from the package. Download the ZIP that matches both the CEF version and the application bitness:
 
-| Version | Win32                                                        | Win64                                                        |
-| ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| v49     | [cefRuntime49_win32.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime49_win32.zip) | [cefRuntime49_win64.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime49_win64.zip) |
+| Version | Win32                                                                                                                 | Win64                                                                                                                 |
+| ------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| v49     | [cefRuntime49_win32.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime49_win32.zip)   | [cefRuntime49_win64.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime49_win64.zip)   |
 | v109    | [cefRuntime109_win32.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime109_win32.zip) | [cefRuntime109_win64.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime109_win64.zip) |
 | v145    | [cefRuntime145_win32.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime145_win32.zip) | [cefRuntime145_win64.zip](https://github.com/twinbasic/cef-runtimes/releases/download/v1.0.0/cefRuntime145_win64.zip) |
 
 See also [CEF Runtime Releases](https://github.com/twinbasic/cef-runtimes/releases/) for the latest release.
 
 ### Installing runtime files
-
 
 Extract the ZIP into:
 
