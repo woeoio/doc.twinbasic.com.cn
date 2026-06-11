@@ -42,6 +42,67 @@ const redirectMap: Record<string, string> = {
   '/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file': '/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file.html',
   '/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV': '/official/Features/Packages/Importing-a-package-from-TWINSERV.html',
   '/official/twinBASIC-Packages-Updating-a-package': '/official/Features/Packages/Updating-a-package.html',
+
+  // VBCCR 旧路径 (扁平结构 -> 新分类结构)
+  '/packages/vbccr/readme': '/packages/vbccr/author',
+  // 按钮类
+  '/packages/vbccr/checkbox': '/packages/vbccr/buttons/checkboxw',
+  '/packages/vbccr/commandbutton': '/packages/vbccr/buttons/commandbuttonw',
+  '/packages/vbccr/commandlink': '/packages/vbccr/buttons/commandlink',
+  '/packages/vbccr/optionbutton': '/packages/vbccr/buttons/optionbuttonw',
+  // 文本标签类
+  '/packages/vbccr/textbox': '/packages/vbccr/text/textboxw',
+  '/packages/vbccr/richtextbox': '/packages/vbccr/text/richtextbox',
+  '/packages/vbccr/spinbox': '/packages/vbccr/text/spinbox',
+  '/packages/vbccr/label': '/packages/vbccr/text/labelw',
+  '/packages/vbccr/windowedlabel': '/packages/vbccr/text/windowedlabel',
+  '/packages/vbccr/linklabel': '/packages/vbccr/text/linklabel',
+  '/packages/vbccr/hotkey': '/packages/vbccr/text/hotkey',
+  // 列表选择类
+  '/packages/vbccr/combobox': '/packages/vbccr/lists/comboboxw',
+  '/packages/vbccr/listbox': '/packages/vbccr/lists/listboxw',
+  '/packages/vbccr/fontcombo': '/packages/vbccr/lists/fontcombo',
+  '/packages/vbccr/imagecombo': '/packages/vbccr/lists/imagecombo',
+  '/packages/vbccr/ipaddress': '/packages/vbccr/lists/ipaddress',
+  '/packages/vbccr/virtualcombo': '/packages/vbccr/lists/virtualcombo',
+  '/packages/vbccr/vlistbox': '/packages/vbccr/lists/vlistbox',
+  // 视图类
+  '/packages/vbccr/listview': '/packages/vbccr/views/listview',
+  '/packages/vbccr/treeview': '/packages/vbccr/views/treeview',
+  '/packages/vbccr/tabstrip': '/packages/vbccr/views/tabstrip',
+  // 工具条/状态栏类
+  '/packages/vbccr/toolbar': '/packages/vbccr/bars/toolbar',
+  '/packages/vbccr/statusbar': '/packages/vbccr/bars/statusbar',
+  '/packages/vbccr/coolbar': '/packages/vbccr/bars/coolbar',
+  '/packages/vbccr/pager': '/packages/vbccr/bars/pager',
+  // 滑块/进度/调节类
+  '/packages/vbccr/slider': '/packages/vbccr/ranges/slider',
+  '/packages/vbccr/progressbar': '/packages/vbccr/ranges/progressbar',
+  '/packages/vbccr/updown': '/packages/vbccr/ranges/updown',
+  '/packages/vbccr/animation': '/packages/vbccr/ranges/animation',
+  // 日期时间类
+  '/packages/vbccr/dtpicker': '/packages/vbccr/datetime/dtpicker',
+  '/packages/vbccr/datetimepicker': '/packages/vbccr/datetime/dtpicker',
+  '/packages/vbccr/monthview': '/packages/vbccr/datetime/monthview',
+  '/packages/vbccr/monthcalendar': '/packages/vbccr/datetime/monthview',
+  // 对话框/系统/容器/多媒体类
+  '/packages/vbccr/commondialog': '/packages/vbccr/system/commondialog',
+  '/packages/vbccr/sysinfo': '/packages/vbccr/system/sysinfo',
+  '/packages/vbccr/imagelist': '/packages/vbccr/system/imagelist',
+  '/packages/vbccr/frame': '/packages/vbccr/system/framew',
+  '/packages/vbccr/mciwnd': '/packages/vbccr/system/mciwnd',
+  // 已删除/不再存在的旧控件 -> 重定向到 VBCCR 首页
+  '/packages/vbccr/drivelist': '/packages/vbccr/',
+  '/packages/vbccr/drivepath': '/packages/vbccr/',
+  '/packages/vbccr/filepath': '/packages/vbccr/',
+  '/packages/vbccr/image': '/packages/vbccr/',
+  '/packages/vbccr/line': '/packages/vbccr/',
+  '/packages/vbccr/option': '/packages/vbccr/',
+  '/packages/vbccr/picture': '/packages/vbccr/',
+  '/packages/vbccr/scrollbar': '/packages/vbccr/',
+  '/packages/vbccr/shape': '/packages/vbccr/',
+  '/packages/vbccr/timer': '/packages/vbccr/',
+  '/packages/vbccr/webbrowser': '/packages/vbccr/',
   
   // ========== 英文路径 ==========
   // 首页相关
@@ -77,7 +138,68 @@ const redirectMap: Record<string, string> = {
   '/en/official/twinBASIC-Packages-Creating-a-TWINPACK-package': '/en/official/Features/Packages/Creating-a-TWINPACK-package.html',
   '/en/official/twinBASIC-Packages-Importing-a-package-from-a-TWINPACK-file': '/en/official/Features/Packages/Importing-a-package-from-a-TWINPACK-file.html',
   '/en/official/twinBASIC-Packages-Importing-a-package-from-TWINSERV': '/en/official/Features/Packages/Importing-a-package-from-TWINSERV.html',
-  '/en/official/twinBASIC-Packages-Updating-a-package': '/en/official/Features/Packages/Updating-a-package.html'
+  '/en/official/twinBASIC-Packages-Updating-a-package': '/en/official/Features/Packages/Updating-a-package.html',
+
+  // VBCCR 旧路径 (扁平结构 -> 新分类结构)
+  '/en/packages/vbccr/readme': '/en/packages/vbccr/author',
+  // Buttons
+  '/en/packages/vbccr/checkbox': '/en/packages/vbccr/buttons/checkboxw',
+  '/en/packages/vbccr/commandbutton': '/en/packages/vbccr/buttons/commandbuttonw',
+  '/en/packages/vbccr/commandlink': '/en/packages/vbccr/buttons/commandlink',
+  '/en/packages/vbccr/optionbutton': '/en/packages/vbccr/buttons/optionbuttonw',
+  // Text
+  '/en/packages/vbccr/textbox': '/en/packages/vbccr/text/textboxw',
+  '/en/packages/vbccr/richtextbox': '/en/packages/vbccr/text/richtextbox',
+  '/en/packages/vbccr/spinbox': '/en/packages/vbccr/text/spinbox',
+  '/en/packages/vbccr/label': '/en/packages/vbccr/text/labelw',
+  '/en/packages/vbccr/windowedlabel': '/en/packages/vbccr/text/windowedlabel',
+  '/en/packages/vbccr/linklabel': '/en/packages/vbccr/text/linklabel',
+  '/en/packages/vbccr/hotkey': '/en/packages/vbccr/text/hotkey',
+  // Lists
+  '/en/packages/vbccr/combobox': '/en/packages/vbccr/lists/comboboxw',
+  '/en/packages/vbccr/listbox': '/en/packages/vbccr/lists/listboxw',
+  '/en/packages/vbccr/fontcombo': '/en/packages/vbccr/lists/fontcombo',
+  '/en/packages/vbccr/imagecombo': '/en/packages/vbccr/lists/imagecombo',
+  '/en/packages/vbccr/ipaddress': '/en/packages/vbccr/lists/ipaddress',
+  '/en/packages/vbccr/virtualcombo': '/en/packages/vbccr/lists/virtualcombo',
+  '/en/packages/vbccr/vlistbox': '/en/packages/vbccr/lists/vlistbox',
+  // Views
+  '/en/packages/vbccr/listview': '/en/packages/vbccr/views/listview',
+  '/en/packages/vbccr/treeview': '/en/packages/vbccr/views/treeview',
+  '/en/packages/vbccr/tabstrip': '/en/packages/vbccr/views/tabstrip',
+  // Bars
+  '/en/packages/vbccr/toolbar': '/en/packages/vbccr/bars/toolbar',
+  '/en/packages/vbccr/statusbar': '/en/packages/vbccr/bars/statusbar',
+  '/en/packages/vbccr/coolbar': '/en/packages/vbccr/bars/coolbar',
+  '/en/packages/vbccr/pager': '/en/packages/vbccr/bars/pager',
+  // Ranges
+  '/en/packages/vbccr/slider': '/en/packages/vbccr/ranges/slider',
+  '/en/packages/vbccr/progressbar': '/en/packages/vbccr/ranges/progressbar',
+  '/en/packages/vbccr/updown': '/en/packages/vbccr/ranges/updown',
+  '/en/packages/vbccr/animation': '/en/packages/vbccr/ranges/animation',
+  // Date/Time
+  '/en/packages/vbccr/dtpicker': '/en/packages/vbccr/datetime/dtpicker',
+  '/en/packages/vbccr/datetimepicker': '/en/packages/vbccr/datetime/dtpicker',
+  '/en/packages/vbccr/monthview': '/en/packages/vbccr/datetime/monthview',
+  '/en/packages/vbccr/monthcalendar': '/en/packages/vbccr/datetime/monthview',
+  // System
+  '/en/packages/vbccr/commondialog': '/en/packages/vbccr/system/commondialog',
+  '/en/packages/vbccr/sysinfo': '/en/packages/vbccr/system/sysinfo',
+  '/en/packages/vbccr/imagelist': '/en/packages/vbccr/system/imagelist',
+  '/en/packages/vbccr/frame': '/en/packages/vbccr/system/framew',
+  '/en/packages/vbccr/mciwnd': '/en/packages/vbccr/system/mciwnd',
+  // 已删除/不再存在的旧控件 -> 重定向到 VBCCR 首页
+  '/en/packages/vbccr/drivelist': '/en/packages/vbccr/',
+  '/en/packages/vbccr/drivepath': '/en/packages/vbccr/',
+  '/en/packages/vbccr/filepath': '/en/packages/vbccr/',
+  '/en/packages/vbccr/image': '/en/packages/vbccr/',
+  '/en/packages/vbccr/line': '/en/packages/vbccr/',
+  '/en/packages/vbccr/option': '/en/packages/vbccr/',
+  '/en/packages/vbccr/picture': '/en/packages/vbccr/',
+  '/en/packages/vbccr/scrollbar': '/en/packages/vbccr/',
+  '/en/packages/vbccr/shape': '/en/packages/vbccr/',
+  '/en/packages/vbccr/timer': '/en/packages/vbccr/',
+  '/en/packages/vbccr/webbrowser': '/en/packages/vbccr/'
 }
 
 export function navRedirectPlugin(): Plugin {
