@@ -1,15 +1,4 @@
 ---
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '2223009a-b2fa-45a4-8fd5-91544943dcfd'
-  PropagateID: '2223009a-b2fa-45a4-8fd5-91544943dcfd'
-  ReservedCode1: '9a7ba1a9-86cf-42e8-a72a-db3a83c3c273'
-  ReservedCode2: '9a7ba1a9-86cf-42e8-a72a-db3a83c3c273'
----
-
----
 title: Common Controls Replacement (Official Document)
 description: Official documentation for VBCCR - VB Common Controls Replacement library, covering StdEXE/OCX usage guide, OCX2StdEXE tool, compilation options and version history.
 ---
@@ -18,7 +7,7 @@ description: Official documentation for VBCCR - VB Common Controls Replacement l
 
 **[official document]**
 
-This page is a translation of the official documentation written by the original author. The original Word document was converted to Markdown using AI.
+This page is a translation of the official documentation written by the original author. The original Word document was converted to Markdown using AI by woeoio.
 
 ## Utility
 
@@ -161,7 +150,7 @@ Below is a discussion of usage for each version. After that is a discussion of m
 
 VBCCR - Two versions exist for this set of 33 controls (all of the ones in the previous table except the last one). Until now, programmers have had to decide whether to use either the StdEXE or OCX versions; there has been no way to use both of them. After the user guides for the two versions I will show you another, hopefully better, way of using these controls so you can take advantage of the easier and faster OCX version for development yet produce a final executable with the code for the controls in your control with the StdEXE version.
 
-## --- VBCCR - StdEXE Version
+### VBCCR - StdEXE Version
 
 This is the version in which all of the control code is compiled into your program. You will include the appropriate source code in your program and when you compile the controls become part of your program.
 
@@ -341,7 +330,7 @@ You may have some issues with names of subroutines and variables being the same 
 
 Note - I don’t use the above approach because I don’t like the long compile times although I do like a fully self-contained executable. That’s part of the reason I wrote the utility I will discuss later. It allows you to develop using the .OCX version (compiles so much faster) and then do the final compile through my utility with the StdEXE version so you have the self-contained executable.
 
-## --- VBCCR OCX Version Guide
+### VBCCR OCX Version Guide
 
 Krool has the equivalent of the StdEXE package for VBCCR in a pre-compiled form as a more typical single controls file with an OCX extension found [here](http://www.vbforums.com/showthread.php?841929-VB6-ActiveX-CommonControls-%28Replacement-of-the-MS-common-controls%29&p=5129155#post5129155). Advantages versus the StdEXE-based controls are: 1) simpler to use as it needs one .OCX file instead of 153 individual files to include in each of your programs, 2) compile times for your program are faster since the OCX file is already compiled and 3) programmers are used to OCX systems available from Microsoft and other vendors. Disadvantages are: 1) the OCX file has to accompany the executable to the users, 2) the OCX file must either be registered on the user’s PC or employ a more-complicated side-by-side solution.
 
@@ -383,7 +372,7 @@ You do need to include VBCCRxx.OCX with your program. If you use the side-by-sid
 
 If you don’t specify side-by-side you won’t need to do anything on your PC since you already have it registered but you need to have your installation program install it to the user’s system directory and register it.
 
-## --- VBFlexGrid User Guide
+### VBFlexGrid User Guide
 
 The MSFlexgrid replacement package from Krool is almost identical to what we have discussed above for the other 33 Common Control replacements Krool has done. This one came much later than the others so Krool decided to keep it separate. Perhaps at some point these two packages get merged but for now just think of VBFLXGRD as just like VBCCR except it has one control instead of 33.
 
@@ -391,7 +380,7 @@ You can download the StdEXE version from VBForums [here](<http://www.vbforums.co
 
 My utility will help you manage both of these seamlessly.
 
-## --- VBA Usage
+### VBA Usage
 
 The StdEXE version of the VBCCR and VBFLXGRD controls will not work in VBA because VBA does not allow you to have controls embedded into the code. Any controls in addition to the ones built-in to VBA must be ActiveX controls (i.e., the OCX version).
 
@@ -494,7 +483,7 @@ Below are two screen shots, one of a successful compile and one that failed.
 
 <!-- ![](data:image/png;base64...) -->
 
-## --- Running OCX2StdEXE with Commandline Options
+### Running OCX2StdEXE with Commandline Options
 
 There is now a commandline version of the utility that can do either OCX version upgrade or OCX compile using the StdEXE version just like described above but without the input form. Note that in both cases if the full path to your project has any spaces in it that the full path must be in quotes.
 

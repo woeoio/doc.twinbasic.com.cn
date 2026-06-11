@@ -149,7 +149,7 @@ Krool的控件很棒,但在他的包内部和周围使用的许多术语可能�
 
 VBCCR - 这组33个控件(除了最后一个之外的表中的所有控件)存在两个版本。到目前为止,程序员必须决定是使用StdEXE还是OCX版本;没有办法同时使用这两个版本。在介绍两个版本的用户指南之后,我将向您展示另一种希望更好的使用这些控件的方法,这样您就可以利用OCX版本更简单和更快的开发优势,同时用StdEXE版本生产最终的可执行文件,使控件成为您控制代码的一部分。
 
-## --- VBCCR - StdEXE版本
+### VBCCR - StdEXE版本
 
 这是将所有控件代码编译到程序中的版本。您将在程序中包含适当的源代码,当您编译时,控件成为程序的一部分。
 
@@ -327,7 +327,7 @@ Call InitVisualStyles ' 在Common\VisualStyles.bas中
 
 注意 - 我不使用上述方法,因为我不喜欢长时间的编译,尽管我确实喜欢完全独立的可执行文件。这就是我编写后面要讨论的工具的部分原因。它允许您使用.OCX版本进行开发(编译速度快得多),然后通过我的工具使用StdEXE版本进行最终编译,这样您就有了独立的可执行文件。
 
-## --- VBCCR OCX 版本指南
+### VBCCR OCX 版本指南
 
 Krool 提供了 VBCCR 控件的预编译 OCX 版本，等价于 StdEXE 包，但更符合传统 ActiveX 控件的使用方式。你可以在 [这里](http://www.vbforums.com/showthread.php?841929-VB6-ActiveX-CommonControls-%28Replacement-of-the-MS-common-controls%29&p=5129155#post5129155) 下载。与 StdEXE 版本相比，OCX 版本的优点有：1）只需一个 .OCX 文件而不是 153 个单独文件，使用更简单；2）编译速度更快，因为 OCX 已经预编译好；3）大多数程序员都熟悉 OCX 控件的用法。缺点是：1）OCX 文件需要和可执行文件一起分发给用户；2）OCX 文件必须在用户电脑上注册，或者采用更复杂的并排（side-by-side）方案。
 
@@ -371,7 +371,7 @@ InitVisualStyles
 
 如果不采用并排，开发机上已注册 OCX 文件无需额外操作，但分发时需让安装程序将 OCX 文件复制到用户系统目录并注册。
 
-## --- VBFlexGrid 用户指南
+### VBFlexGrid 用户指南
 
 Krool 的 MSFlexGrid 替代控件包与前述 33 个 Common Controls 替代控件几乎完全一致。由于该控件发布较晚，Krool 将其单独分离。未来可能会合并，但目前请将 VBFLXGRD 理解为和 VBCCR 类似，只是它只有一个控件。
 
@@ -379,7 +379,7 @@ StdEXE 版本可在 VBForums [这里](http://www.vbforums.com/showthread.php?848
 
 我的工具可以帮助您无缝管理这两类控件。
 
-## --- VBA 使用说明
+### VBA 使用说明
 
 VBCCR 和 VBFLXGRD 控件的 StdEXE 版本无法在 VBA 中使用，因为 VBA 不允许将控件直接嵌入代码。VBA 只能使用 ActiveX 控件（即 OCX 版本）。
 
@@ -482,7 +482,7 @@ OCX 版本可以在 VBA 中正常使用。类型库无需单独引用，因为�
 
 <!-- ![](data:image/png;base64...) -->
 
-## --- 使用命令行选项运行OCX2StdEXE
+### 使用命令行选项运行OCX2StdEXE
 
 现在有一个工具的命令行版本,可以执行OCX版本升级或使用StdEXE版本进行OCX编译,就像上面描述的那样,但没有输入窗体。请注意,在这两种情况下,如果项目的完整路径中有任何空格,那么完整路径必须用引号括起来。
 
